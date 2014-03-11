@@ -15,12 +15,25 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fIndex : Form
     {
-        string path = "";
-        bool updates = false;
+        string path = "",
+            sVerPack,
+            sVerTanks;
+
+        int verPack,
+            verTanks;
+
+        bool updPack = false,
+            updTanks = false;
+
 
         public fIndex()
         {
             InitializeComponent();
+
+            this.Text = Application.ProductName + " v" + Application.ProductVersion;
+            this.Icon = Properties.Resources.myicon;
+
+            llVersion.Text = Application.ProductVersion;
 
             setBackground();
 
@@ -36,11 +49,18 @@ namespace _Hell_PRO_Tanki_Launcher
                 doc.Load("settings.xml");
                 path = doc.GetElementsByTagName("path")[0].InnerText;
 
-                llContent.Text = path;
-
-                if (!bwUpdater.IsBusy)
+                if (Directory.Exists(path))
                 {
-                    bwUpdater.RunWorkerAsync();
+                    llContent.Text = path;
+
+                    if (!bwUpdater.IsBusy)
+                    {
+                        bwUpdater.RunWorkerAsync();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Папка с танками не обнаружена");
                 }
             }
             else
@@ -52,31 +72,45 @@ namespace _Hell_PRO_Tanki_Launcher
         // Получаем версию танков
         private int getVersion()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(path + "version.xml");
+            try
+            {
+                if (File.Exists(path + "version.xml"))
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(path + "version.xml");
 
-            string ver = doc.GetElementsByTagName("version")[0].InnerText;
-            ver = ver.Trim().Remove(0, 2).Remove(ver.IndexOf("#") - 4).Replace(".","");
+                    string ver = doc.GetElementsByTagName("version")[0].InnerText;
+                    ver = ver.Trim().Remove(0, 2).Remove(ver.IndexOf("#") - 4).Replace(".", "");
 
-            return Convert.ToInt16(ver)+0;
+                    return Convert.ToInt16(ver) + 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            catch (Exception) { return -1; }
         }
 
         // Выбираем изображение для установки фона
         private void setBackground()
         {
-            Random rand = new Random();
-
-            string r = "back_"+rand.Next(1,7);
-
-            switch(r){
-                case "back_1": this.BackgroundImage = Properties.Resources.back_1; break;
-                case "back_2": this.BackgroundImage = Properties.Resources.back_2; break;
-                case "back_3": this.BackgroundImage = Properties.Resources.back_3; break;
-                case "back_4": this.BackgroundImage = Properties.Resources.back_4; break;
-                case "back_5": this.BackgroundImage = Properties.Resources.back_5; break;
-                case "back_6": this.BackgroundImage = Properties.Resources.back_6; break;
-                default: this.BackgroundImage = Properties.Resources.back_7; break;
+            try
+            {
+                Random rand = new Random();
+                string r = "back_" + rand.Next(1, 7);
+                switch (r)
+                {
+                    case "back_1": this.BackgroundImage = Properties.Resources.back_1; break;
+                    case "back_2": this.BackgroundImage = Properties.Resources.back_2; break;
+                    case "back_3": this.BackgroundImage = Properties.Resources.back_3; break;
+                    case "back_4": this.BackgroundImage = Properties.Resources.back_4; break;
+                    case "back_5": this.BackgroundImage = Properties.Resources.back_5; break;
+                    case "back_6": this.BackgroundImage = Properties.Resources.back_6; break;
+                    default: this.BackgroundImage = Properties.Resources.back_7; break;
+                }
             }
+            catch (Exception) { }
         }
 
         private void bExit_Click(object sender, EventArgs e)
@@ -94,19 +128,22 @@ namespace _Hell_PRO_Tanki_Launcher
             // Парсим сайт танков
             /*string s = getResponse("http://worldoftanks.ru");
             s = s.Remove(0, s.IndexOf("b-game-version") + 16);
-            s = s.Remove(s.IndexOf("</span>")).Replace(".","");
-             
+            s = s.Remove(s.IndexOf("</span>")).Replace(".","");             
              updates = getVersion() < (Convert.ToInt16(s)+0) ? true : false;*/
 
             XmlDocument doc = new XmlDocument();
             doc.Load(@"http://ai-rus.com/pro.xml");
-            string version = doc.GetElementsByTagName("version")[0].InnerText;
-            string tanks = doc.GetElementsByTagName("tanks")[0].InnerText;
+            sVerPack = doc.GetElementsByTagName("version")[0].InnerText;
+            sVerTanks = doc.GetElementsByTagName("tanks")[0].InnerText;
 
-            version = version.Replace(".", "");
-            tanks = tanks.Replace(".", "");
+            verPack = Convert.ToInt32(sVerPack.Replace(".", "")) + 0;
+            verTanks = Convert.ToInt32(sVerTanks.Replace(".", "")) + 0;
 
-            updates = getVersion() < (Convert.ToInt16(tanks) + 0) ? true : false;
+            int v = getVersion();
+            updTanks = v < 0 || v < verTanks ? true : false;
+
+            //Проверяем апдейты на модпак
+            updPack = Convert.ToInt32(Application.ProductVersion.Replace(".", "")) < verPack ? true : false;
         }
 
 
@@ -132,8 +169,41 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            llContent.Text = updates ? "Обнаружена новая версия" : "Вы используете актуальную версию";
-            bUpdate.Enabled = updates;
+            string status = "";
+
+            if (updPack || updTanks)
+            {
+                if (updPack)
+                {
+                    status += "Обнаружена новая версия!" + Environment.NewLine +
+                        "Вы используете устаревшую версию Мультипака" + Environment.NewLine +
+                        "Рекомендуем обновить Ваш Мультипак до версии '" + sVerPack.ToString() + "'";
+                    bUpdate.Enabled = true;
+                    llContent.Location = new Point(22, 55);
+                    llContent.Size = new Size(638, 377);
+                }
+
+                if (updTanks)
+                {
+                    status += "Обнаружена новая версия клиента игры!" + Environment.NewLine +
+                        "Необходимо запустить лаунчер игры для обновления до версии '" + sVerTanks.ToString() + "'";
+                    bUpdate.Enabled = true;
+                    llContent.Location = new Point(22, 55);
+                    llContent.Size = new Size(638, 377);
+                }
+            }
+            else
+            {
+                status = "Поздравляю!" + Environment.NewLine +
+                    "Вы используете самые свежие моды." + Environment.NewLine +
+                    "Текущая версия Мультипака '" + Application.ProductVersion + "'";
+                bUpdate.Enabled = false;
+
+                llContent.Location = new Point(70, 130);
+                llContent.Size = new Size(590, 227);
+            }
+
+            llContent.Text = status;
         }
 
         private void bLauncher_Click(object sender, EventArgs e)

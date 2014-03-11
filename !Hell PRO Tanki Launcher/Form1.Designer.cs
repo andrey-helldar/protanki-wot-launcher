@@ -160,21 +160,22 @@
             this.llVersion.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llVersion.Location = new System.Drawing.Point(9, 4);
             this.llVersion.Name = "llVersion";
-            this.llVersion.Size = new System.Drawing.Size(68, 18);
+            this.llVersion.Size = new System.Drawing.Size(52, 18);
             this.llVersion.TabIndex = 7;
             this.llVersion.TabStop = true;
-            this.llVersion.Text = "0.8.11.10";
+            this.llVersion.Text = "0.0.0.0";
             // 
             // llContent
             // 
             this.llContent.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llContent.BackColor = System.Drawing.Color.Transparent;
             this.llContent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llContent.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llContent.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llContent.Location = new System.Drawing.Point(22, 55);
+            this.llContent.Location = new System.Drawing.Point(70, 55);
             this.llContent.Name = "llContent";
-            this.llContent.Size = new System.Drawing.Size(638, 377);
+            this.llContent.Size = new System.Drawing.Size(590, 350);
             this.llContent.TabIndex = 8;
             this.llContent.TabStop = true;
             this.llContent.Text = "path";
