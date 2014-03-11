@@ -91,11 +91,22 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdater_DoWork(object sender, DoWorkEventArgs e)
         {
-            string s = getResponse("http://worldoftanks.ru");
+            // Парсим сайт танков
+            /*string s = getResponse("http://worldoftanks.ru");
             s = s.Remove(0, s.IndexOf("b-game-version") + 16);
             s = s.Remove(s.IndexOf("</span>")).Replace(".","");
+             
+             updates = getVersion() < (Convert.ToInt16(s)+0) ? true : false;*/
 
-            updates = getVersion() < (Convert.ToInt16(s)+0) ? true : false;
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"http://ai-rus.com/pro.xml");
+            string version = doc.GetElementsByTagName("version")[0].InnerText;
+            string tanks = doc.GetElementsByTagName("tanks")[0].InnerText;
+
+            version = version.Replace(".", "");
+            tanks = tanks.Replace(".", "");
+
+            updates = getVersion() < (Convert.ToInt16(tanks) + 0) ? true : false;
         }
 
 
@@ -122,6 +133,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             llContent.Text = updates ? "Обнаружена новая версия" : "Вы используете актуальную версию";
+            bUpdate.Enabled = updates;
         }
 
         private void bLauncher_Click(object sender, EventArgs e)
@@ -149,6 +161,16 @@ namespace _Hell_PRO_Tanki_Launcher
                 var msg = Message.Create(this.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
                 this.WndProc(ref msg);
             };
+        }
+
+        private void bUpdate_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://goo.gl/gr6pFl");
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://ai-rus.com");
         }
     }
 }

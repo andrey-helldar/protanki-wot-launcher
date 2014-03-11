@@ -95,6 +95,7 @@
             this.bUpdate.TabIndex = 3;
             this.bUpdate.Text = "Обновить";
             this.bUpdate.UseVisualStyleBackColor = false;
+            this.bUpdate.Click += new System.EventHandler(this.bUpdate_Click);
             // 
             // bVideo
             // 
@@ -147,6 +148,7 @@
             this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Developed by Andrey Helldar";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // llVersion
             // 
@@ -186,7 +188,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_1;
+            this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(860, 460);
             this.Controls.Add(this.llContent);
             this.Controls.Add(this.llVersion);
