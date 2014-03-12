@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Net;
 using System.IO;
 using System.Xml;
+using System.Threading;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -23,7 +24,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         int verPack,
             verTanks,
-            verModPack;
+            verModPack,
+            threadSleep = 1000;
 
         bool updPack = false,
             updTanks = false;
@@ -60,7 +62,7 @@ namespace _Hell_PRO_Tanki_Launcher
         }
 
         // Загружаем настройки
-        private void loadSettings()
+        public void loadSettings()
         {
             if (File.Exists("settings.xml"))
             {
@@ -78,11 +80,14 @@ namespace _Hell_PRO_Tanki_Launcher
                 //if (Directory.Exists(path))
                 if (File.Exists(path + "version.xml"))
                 {
-                    llContent.Text = path;
-
                     if (!bwUpdater.IsBusy)
                     {
-                        bwUpdater.RunWorkerAsync();
+                        this.bwUpdater.RunWorkerAsync();
+                    }
+                    else
+                    {
+                        //Thread.Sleep(threadSleep);
+                        loadSettings();
                     }
                 }
                 else
@@ -106,7 +111,7 @@ namespace _Hell_PRO_Tanki_Launcher
         }
 
         // Если папка с танками не найдена, запускаем рекурсию, пока папка не будет указана верно
-        private void checkTanks()
+        public void checkTanks()
         {
             MessageBox.Show("Папка 'World of Tanks' задана некорректно");
 
@@ -121,11 +126,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
+                    //Thread.Sleep(threadSleep);
                     checkTanks();
                 }
             }
             else
             {
+                //Thread.Sleep(threadSleep);
                 checkTanks();
             }
         }
@@ -155,7 +162,7 @@ namespace _Hell_PRO_Tanki_Launcher
         }
 
         // Выбираем изображение для установки фона
-        private void setBackground()
+        public void setBackground()
         {
             try
             {
@@ -233,46 +240,54 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            pWork.Visible = false;
-
-            string status = "";
-
-            if (updPack || updTanks)
+            try
             {
-                if (updPack)
-                {
-                    status += "Обнаружена новая версия!" + Environment.NewLine +
-                        "Вы используете устаревшую версию Мультипака" + Environment.NewLine +
-                        "Рекомендуем обновить Ваш Мультипак до версии '" + sVerPack.ToString() + "'" + Environment.NewLine + Environment.NewLine;
-                    bUpdate.Enabled = true;
+                //pWork.Visible = false;
 
-                    llContent.Location = new Point(22, 55);
-                    llContent.Size = new Size(638, 377);
+                string status = "";
+
+                if (updPack || updTanks)
+                {
+                    if (updPack)
+                    {
+                        status += "Обнаружена новая версия!" + Environment.NewLine +
+                            "Вы используете устаревшую версию Мультипака" + Environment.NewLine +
+                            "Рекомендуем обновить Ваш Мультипак до версии '" + sVerPack.ToString() + "'" + Environment.NewLine + Environment.NewLine;
+                        bUpdate.Enabled = true;
+
+                        this.llContent.Location = new Point(22, 55);
+                        this.llContent.Size = new Size(638, 377);
+                    }
+
+                    if (updTanks)
+                    {
+                        status += "Обнаружена новая версия клиента игры!" + Environment.NewLine +
+                            "Необходимо запустить лаунчер игры для обновления до версии '" + sVerTanks.ToString() + "'";
+                        bUpdate.Enabled = true;
+
+                        this.llContent.Location = new Point(22, 55);
+                        this.llContent.Size = new Size(638, 377);
+                    }
+                }
+                else
+                {
+                    status = "Вы используете самые свежие моды." + Environment.NewLine +
+                        "Текущая версия Мультипака '" + sVerModPack + "'";
+                    bUpdate.Enabled = false;
+
+                    this.llContent.Location = new Point(70, 130);
+                    this.llContent.Size = new Size(590, 227);
                 }
 
-                if (updTanks)
-                {
-                    status += "Обнаружена новая версия клиента игры!" + Environment.NewLine +
-                        "Необходимо запустить лаунчер игры для обновления до версии '" + sVerTanks.ToString() + "'";
-                    bUpdate.Enabled = true;
-
-                    llContent.Location = new Point(22, 55);
-                    llContent.Size = new Size(638, 377);
-                }
+                this.llContent.Text = status;
+                notifyIcon.ShowBalloonTip(2000, xmlTitle, status, ToolTipIcon.Info);
             }
-            else
+            catch (Exception)
             {
-                status = "Поздравляю!" + Environment.NewLine +
-                    "Вы используете самые свежие моды." + Environment.NewLine +
-                    "Текущая версия Мультипака '" + sVerModPack + "'";
-                bUpdate.Enabled = false;
-
-                llContent.Location = new Point(70, 130);
-                llContent.Size = new Size(590, 227);
+                MessageBox.Show("Возникла ошибка. Требуется перезапустить лаунчер модпака.");
+                Process.Start("restart.exe", Process.GetCurrentProcess().ProcessName);
+                Close();
             }
-
-            llContent.Text = status;
-            notifyIcon.ShowBalloonTip(2000, xmlTitle, status, ToolTipIcon.Info);
         }
 
         private void bLauncher_Click(object sender, EventArgs e)
@@ -390,6 +405,24 @@ namespace _Hell_PRO_Tanki_Launcher
             myRegKey = myRegKey.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
             myRegKey.SetValue("DisablePreviewDesktop", "dword: 00000001");
 
+        }
+
+        private void llContent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!bwUpdater.IsBusy)
+            {
+                bwUpdater.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fSettings fSettings = new fSettings();
+            fSettings.ShowDialog();
         }
     }
 }

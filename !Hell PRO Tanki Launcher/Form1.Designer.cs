@@ -47,14 +47,11 @@
             this.видеоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pWork = new System.Windows.Forms.Panel();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.bOptimizePC = new System.Windows.Forms.Button();
             this.bwOptimize = new System.ComponentModel.BackgroundWorker();
+            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
-            this.pWork.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // bPlay
@@ -198,7 +195,8 @@
             this.llContent.Size = new System.Drawing.Size(590, 350);
             this.llContent.TabIndex = 8;
             this.llContent.TabStop = true;
-            this.llContent.Text = "path";
+            this.llContent.Text = "Получение данных...";
+            this.llContent.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llContent_LinkClicked);
             // 
             // bwUpdater
             // 
@@ -218,13 +216,14 @@
             // 
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem4,
-            this.проверитьОбновленияToolStripMenuItem,
-            this.toolStripMenuItem2,
             this.видеоToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.проверитьОбновленияToolStripMenuItem,
+            this.настройкиToolStripMenuItem,
             this.toolStripMenuItem3,
             this.toolStripMenuItem1});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(205, 104);
+            this.contextMenu.Size = new System.Drawing.Size(205, 148);
             // 
             // toolStripMenuItem4
             // 
@@ -264,25 +263,6 @@
             this.toolStripMenuItem1.Text = "Выход";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // pWork
-            // 
-            this.pWork.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.pWork.Controls.Add(this.pictureBox);
-            this.pWork.Location = new System.Drawing.Point(11, 445);
-            this.pWork.Name = "pWork";
-            this.pWork.Size = new System.Drawing.Size(837, 366);
-            this.pWork.TabIndex = 9;
-            this.pWork.Visible = false;
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.loading;
-            this.pictureBox.Location = new System.Drawing.Point(377, 161);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(80, 80);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -314,6 +294,13 @@
             this.bwOptimize.WorkerSupportsCancellation = true;
             this.bwOptimize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwOptimize_DoWork);
             // 
+            // настройкиToolStripMenuItem
+            // 
+            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.настройкиToolStripMenuItem.Text = "Настройки";
+            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,7 +308,6 @@
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(860, 460);
             this.Controls.Add(this.bOptimizePC);
-            this.Controls.Add(this.pWork);
             this.Controls.Add(this.llContent);
             this.Controls.Add(this.llVersion);
             this.Controls.Add(this.linkLabel1);
@@ -335,8 +321,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.contextMenu.ResumeLayout(false);
-            this.pWork.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,11 +345,10 @@
         private System.Windows.Forms.ToolStripMenuItem видеоToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.Panel pWork;
-        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button bOptimizePC;
         private System.ComponentModel.BackgroundWorker bwOptimize;
+        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
     }
 }
 
