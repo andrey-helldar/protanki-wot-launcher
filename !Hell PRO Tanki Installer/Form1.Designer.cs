@@ -272,7 +272,7 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.linkLabel3);
             this.panel1.Controls.Add(this.linkLabel2);
-            this.panel1.Location = new System.Drawing.Point(818, 37);
+            this.panel1.Location = new System.Drawing.Point(348, 37);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(484, 337);
             this.panel1.TabIndex = 11;
@@ -288,7 +288,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(441, 77);
+            this.panel2.Location = new System.Drawing.Point(348, 37);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(480, 334);
             this.panel2.TabIndex = 12;
@@ -296,7 +296,6 @@
             // 
             // panel2_1
             // 
-            this.panel2_1.Controls.Add(this.panel6);
             this.panel2_1.Controls.Add(this.checkBox6);
             this.panel2_1.Controls.Add(this.checkBox5);
             this.panel2_1.Controls.Add(this.checkBox4);
@@ -477,7 +476,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(2, 70);
+            this.panel3.Location = new System.Drawing.Point(348, 37);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(484, 337);
             this.panel3.TabIndex = 12;
@@ -520,7 +519,7 @@
             this.panel4.Controls.Add(this.tbFolderStart);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.pictureBox2);
-            this.panel4.Location = new System.Drawing.Point(3, 19);
+            this.panel4.Location = new System.Drawing.Point(348, 37);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(484, 337);
             this.panel4.TabIndex = 14;
@@ -600,7 +599,7 @@
             this.panel5.Controls.Add(this.checkBox9);
             this.panel5.Controls.Add(this.checkBox8);
             this.panel5.Controls.Add(this.label6);
-            this.panel5.Location = new System.Drawing.Point(3, 39);
+            this.panel5.Location = new System.Drawing.Point(348, 37);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(484, 337);
             this.panel5.TabIndex = 14;
@@ -774,7 +773,7 @@
             this.panel6.BackColor = System.Drawing.Color.Transparent;
             this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.progressBar1);
-            this.panel6.Location = new System.Drawing.Point(3, 109);
+            this.panel6.Location = new System.Drawing.Point(348, 37);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(484, 334);
             this.panel6.TabIndex = 14;
@@ -799,7 +798,6 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.Transparent;
-            this.panel7.Controls.Add(this.panel2);
             this.panel7.Controls.Add(this.label8);
             this.panel7.Location = new System.Drawing.Point(348, 37);
             this.panel7.Name = "panel7";
@@ -822,6 +820,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Installer.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(844, 422);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel3_1);
             this.Controls.Add(this.panel1);
