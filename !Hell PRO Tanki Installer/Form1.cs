@@ -25,9 +25,18 @@ namespace _Hell_PRO_Tanki_Installer
         // Определяем какой пункт меню открыт, что отображается справа
         private void setMenu(int newPage = 0)
         {
-            if (newPage > 7) newPage = 7;
+            if (newPage > 7) { newPage = 7; }
 
             pbMenu.Visible = true;
+
+            //Так как во время разработки панели были сдвинуты, восстанавливаем их расположение
+            panel1.Location = new Point(348, 37); panel1.Size = new Size(484, 337);
+            panel2.Location = new Point(348, 37); panel2.Size = new Size(484, 337);
+            panel3.Location = new Point(348, 37); panel3.Size = new Size(484, 337);
+            panel4.Location = new Point(348, 37); panel4.Size = new Size(484, 337);
+            panel5.Location = new Point(348, 37); panel5.Size = new Size(484, 337);
+            panel6.Location = new Point(348, 37); panel6.Size = new Size(484, 337);
+            panel7.Location = new Point(348, 37); panel7.Size = new Size(484, 337);
 
             // Чтобы по 100 раз не копировать код, отключаем видимость всех панелей
             panel1.Visible = false;
@@ -39,15 +48,6 @@ namespace _Hell_PRO_Tanki_Installer
             panel6.Visible = false;
             panel7.Visible = false;
 
-            //Так как во время разработки панели были сдвинуты, восстанавливаем их расположение
-            panel1.Location = new Point(348, 37); panel1.Size = new Size(484, 337);
-            panel2.Location = new Point(348, 37); panel2.Size = new Size(484, 337);
-            panel3.Location = new Point(348, 37); panel3.Size = new Size(484, 337);
-            panel4.Location = new Point(348, 37); panel4.Size = new Size(484, 337);
-            panel5.Location = new Point(348, 37); panel5.Size = new Size(484, 337);
-            panel6.Location = new Point(348, 37); panel6.Size = new Size(484, 337);
-            panel7.Location = new Point(348, 37); panel7.Size = new Size(484, 337);
-
             switch (newPage)
             {
                 case 1: 
@@ -58,7 +58,7 @@ namespace _Hell_PRO_Tanki_Installer
                     panel1.Visible = true;
                     break;
 
-                case 2: 
+                case 2:
                     pbMenu.Image = Properties.Resources.menu_2; 
                     nowPage = 2; 
                     bPrev.Visible = true; 
