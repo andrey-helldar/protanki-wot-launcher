@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fIndex));
             this.bPlay = new System.Windows.Forms.Button();
             this.bLauncher = new System.Windows.Forms.Button();
             this.bUpdate = new System.Windows.Forms.Button();
@@ -37,6 +39,20 @@
             this.llVersion = new System.Windows.Forms.LinkLabel();
             this.llContent = new System.Windows.Forms.LinkLabel();
             this.bwUpdater = new System.ComponentModel.BackgroundWorker();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.проверитьОбновленияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.видеоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pWork = new System.Windows.Forms.Panel();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.contextMenu.SuspendLayout();
+            this.pWork.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // bPlay
@@ -164,6 +180,7 @@
             this.llVersion.TabIndex = 7;
             this.llVersion.TabStop = true;
             this.llVersion.Text = "0.0.0.0";
+            this.llVersion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llVersion_LinkClicked);
             // 
             // llContent
             // 
@@ -182,8 +199,92 @@
             // 
             // bwUpdater
             // 
+            this.bwUpdater.WorkerReportsProgress = true;
+            this.bwUpdater.WorkerSupportsCancellation = true;
             this.bwUpdater.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwUpdater_DoWork);
+            this.bwUpdater.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwUpdater_ProgressChanged);
             this.bwUpdater.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwUpdater_RunWorkerCompleted);
+            // 
+            // notifyIcon
+            // 
+            this.notifyIcon.ContextMenuStrip = this.contextMenu;
+            this.notifyIcon.Text = "notifyIcon";
+            this.notifyIcon.Visible = true;
+            // 
+            // contextMenu
+            // 
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem4,
+            this.проверитьОбновленияToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.видеоToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem1});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.Size = new System.Drawing.Size(205, 104);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(204, 22);
+            this.toolStripMenuItem4.Text = "Главное окно";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // проверитьОбновленияToolStripMenuItem
+            // 
+            this.проверитьОбновленияToolStripMenuItem.Name = "проверитьОбновленияToolStripMenuItem";
+            this.проверитьОбновленияToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.проверитьОбновленияToolStripMenuItem.Text = "Проверить обновления";
+            this.проверитьОбновленияToolStripMenuItem.Click += new System.EventHandler(this.проверитьОбновленияToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(201, 6);
+            // 
+            // видеоToolStripMenuItem
+            // 
+            this.видеоToolStripMenuItem.Name = "видеоToolStripMenuItem";
+            this.видеоToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.видеоToolStripMenuItem.Text = "Видео";
+            this.видеоToolStripMenuItem.Click += new System.EventHandler(this.видеоToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(201, 6);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 22);
+            this.toolStripMenuItem1.Text = "Выход";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // pWork
+            // 
+            this.pWork.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.pWork.Controls.Add(this.pictureBox);
+            this.pWork.Location = new System.Drawing.Point(4, 25);
+            this.pWork.Name = "pWork";
+            this.pWork.Size = new System.Drawing.Size(852, 431);
+            this.pWork.TabIndex = 9;
+            this.pWork.Visible = false;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.loading;
+            this.pictureBox.Location = new System.Drawing.Point(377, 161);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox.TabIndex = 0;
+            this.pictureBox.TabStop = false;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "loading.gif");
             // 
             // fIndex
             // 
@@ -191,6 +292,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.pWork);
             this.Controls.Add(this.llContent);
             this.Controls.Add(this.llVersion);
             this.Controls.Add(this.linkLabel1);
@@ -203,6 +305,9 @@
             this.Name = "fIndex";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.contextMenu.ResumeLayout(false);
+            this.pWork.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,6 +324,17 @@
         private System.Windows.Forms.LinkLabel llVersion;
         private System.Windows.Forms.LinkLabel llContent;
         private System.ComponentModel.BackgroundWorker bwUpdater;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem проверитьОбновленияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem видеоToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.Panel pWork;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

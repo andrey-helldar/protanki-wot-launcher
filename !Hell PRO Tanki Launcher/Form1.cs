@@ -15,12 +15,15 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fIndex : Form
     {
-        string path = "",
+        string xmlTitle = "",
+            path = "",
             sVerPack,
-            sVerTanks;
+            sVerTanks,
+            sVerModPack;
 
         int verPack,
-            verTanks;
+            verTanks,
+            verModPack;
 
         bool updPack = false,
             updTanks = false;
@@ -30,24 +33,20 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             InitializeComponent();
 
-            this.Text = Application.ProductName + " v" + Application.ProductVersion;
-            this.Icon = Properties.Resources.myicon;
-
-            llVersion.Text = Application.ProductVersion;
-
-            setBackground();
-
-            moveForm();
-
-            bwUpdater.WorkerReportsProgress = true;
-            bwUpdater.WorkerSupportsCancellation = true;
-
             // Загружаем настройки
             if (File.Exists("settings.xml"))
             {
                 XmlDocument doc = new XmlDocument();
                 doc.Load("settings.xml");
+
+                //xmlTitle = doc.GetElementsByTagName("title")[0].InnerText;
+                //xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
+                xmlTitle = Application.ProductName;
+
                 path = doc.GetElementsByTagName("path")[0].InnerText;
+
+                sVerModPack = doc.GetElementsByTagName("version")[0].InnerText;
+                verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
 
                 if (Directory.Exists(path))
                 {
@@ -67,6 +66,21 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 MessageBox.Show("Файл настроек не обнаружен!");
             }
+
+            this.Text = xmlTitle + " v" + sVerModPack;
+            this.Icon = Properties.Resources.myicon;
+
+            notifyIcon.Icon = Properties.Resources.myicon;
+            notifyIcon.Text = xmlTitle + " v" + sVerModPack;
+
+            llVersion.Text = sVerModPack;
+
+            setBackground();
+
+            moveForm();
+
+            bwUpdater.WorkerReportsProgress = true;
+            bwUpdater.WorkerSupportsCancellation = true;
         }
 
         // Получаем версию танков
@@ -125,11 +139,12 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdater_DoWork(object sender, DoWorkEventArgs e)
         {
+            bwUpdater.ReportProgress(0);
             // Парсим сайт танков
             /*string s = getResponse("http://worldoftanks.ru");
             s = s.Remove(0, s.IndexOf("b-game-version") + 16);
             s = s.Remove(s.IndexOf("</span>")).Replace(".","");             
-             updates = getVersion() < (Convert.ToInt16(s)+0) ? true : false;*/
+             updates = getVersion() < (Convert.ToInt32(s)+0) ? true : false;*/
 
             XmlDocument doc = new XmlDocument();
             doc.Load(@"http://ai-rus.com/pro.xml");
@@ -143,7 +158,7 @@ namespace _Hell_PRO_Tanki_Launcher
             updTanks = v < 0 || v < verTanks ? true : false;
 
             //Проверяем апдейты на модпак
-            updPack = Convert.ToInt32(Application.ProductVersion.Replace(".", "")) < verPack ? true : false;
+            updPack = verModPack < verPack ? true : false;
         }
 
 
@@ -169,6 +184,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            pWork.Visible = false;
+
             string status = "";
 
             if (updPack || updTanks)
@@ -177,7 +194,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     status += "Обнаружена новая версия!" + Environment.NewLine +
                         "Вы используете устаревшую версию Мультипака" + Environment.NewLine +
-                        "Рекомендуем обновить Ваш Мультипак до версии '" + sVerPack.ToString() + "'";
+                        "Рекомендуем обновить Ваш Мультипак до версии '" + sVerPack.ToString() + "'"+ Environment.NewLine + Environment.NewLine;
                     bUpdate.Enabled = true;
                     llContent.Location = new Point(22, 55);
                     llContent.Size = new Size(638, 377);
@@ -196,7 +213,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 status = "Поздравляю!" + Environment.NewLine +
                     "Вы используете самые свежие моды." + Environment.NewLine +
-                    "Текущая версия Мультипака '" + Application.ProductVersion + "'";
+                    "Текущая версия Мультипака '" + sVerModPack + "'";
                 bUpdate.Enabled = false;
 
                 llContent.Location = new Point(70, 130);
@@ -204,16 +221,25 @@ namespace _Hell_PRO_Tanki_Launcher
             }
 
             llContent.Text = status;
+            notifyIcon.ShowBalloonTip(2000, xmlTitle, status, ToolTipIcon.Info);
         }
 
         private void bLauncher_Click(object sender, EventArgs e)
         {
             Process.Start(path + "WoTLauncher.exe");
+
+            Hide();
+            WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = true;
         }
 
         private void bPlay_Click(object sender, EventArgs e)
         {
             Process.Start(path + "WorldOfTanks.exe");
+
+            Hide();
+            WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = true;
         }
 
         private void moveForm()
@@ -241,6 +267,54 @@ namespace _Hell_PRO_Tanki_Launcher
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("http://ai-rus.com");
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void проверитьОбновленияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!bwUpdater.IsBusy)
+            {
+                bwUpdater.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void видеоToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://goo.gl/gr6pFl");
+        }
+
+        private void llVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!bwUpdater.IsBusy)
+            {
+                bwUpdater.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show(this,"Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+        }
+
+        private void bwUpdater_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            pWork.Visible = true;
+            pWork.Location = new Point(4, 25);
+            pWork.Size = new Size(852, 431);
         }
     }
 }
