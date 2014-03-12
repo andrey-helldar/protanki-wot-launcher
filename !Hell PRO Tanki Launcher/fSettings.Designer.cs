@@ -61,6 +61,7 @@
             // 
             this.tbPath.Location = new System.Drawing.Point(6, 22);
             this.tbPath.Name = "tbPath";
+            this.tbPath.ReadOnly = true;
             this.tbPath.Size = new System.Drawing.Size(523, 20);
             this.tbPath.TabIndex = 0;
             // 

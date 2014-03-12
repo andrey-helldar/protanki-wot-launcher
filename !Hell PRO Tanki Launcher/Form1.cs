@@ -38,48 +38,7 @@ namespace _Hell_PRO_Tanki_Launcher
             Process[] myProcesses = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
             for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
 
-
-            // Загружаем настройки
-            if (File.Exists("settings.xml"))
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load("settings.xml");
-
-                xmlTitle = doc.GetElementsByTagName("title")[0].InnerText;
-                xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
-
-                path = doc.GetElementsByTagName("path")[0].InnerText;
-
-                sVerModPack = doc.GetElementsByTagName("version")[0].InnerText;
-                verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
-
-                if (Directory.Exists(path))
-                {
-                    llContent.Text = path;
-
-                    if (!bwUpdater.IsBusy)
-                    {
-                        bwUpdater.RunWorkerAsync();
-                    }
-                }
-                else
-                {
-                    checkTanks();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Файл настроек не обнаружен!"+Environment.NewLine+"Будут применены настройки по-умолчанию.");
-
-                xmlTitle = Application.ProductName;
-
-                sVerModPack = Application.ProductVersion;
-                verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
-
-                path = "";
-
-                checkTanks();
-            }
+            loadSettings();
 
             this.Text = xmlTitle + " v" + sVerModPack;
             this.Icon = Properties.Resources.myicon;
@@ -100,17 +59,70 @@ namespace _Hell_PRO_Tanki_Launcher
             bwOptimize.WorkerSupportsCancellation = true;
         }
 
+        // Загружаем настройки
+        private void loadSettings()
+        {
+            if (File.Exists("settings.xml"))
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load("settings.xml");
+
+                xmlTitle = doc.GetElementsByTagName("title")[0].InnerText;
+                xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
+
+                path = doc.GetElementsByTagName("path")[0].InnerText;
+
+                sVerModPack = doc.GetElementsByTagName("version")[0].InnerText;
+                verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
+
+                //if (Directory.Exists(path))
+                if (File.Exists(path + "version.xml"))
+                {
+                    llContent.Text = path;
+
+                    if (!bwUpdater.IsBusy)
+                    {
+                        bwUpdater.RunWorkerAsync();
+                    }
+                }
+                else
+                {
+                    checkTanks();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Файл настроек не обнаружен!" + Environment.NewLine + "Будут применены настройки по-умолчанию.");
+
+                xmlTitle = Application.ProductName;
+
+                sVerModPack = Application.ProductVersion;
+                verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
+
+                path = "";
+
+                checkTanks();
+            }
+        }
+
         // Если папка с танками не найдена, запускаем рекурсию, пока папка не будет указана верно
         private void checkTanks()
         {
-            MessageBox.Show("Папка 'World of Tanks' не обнаружена");
+            MessageBox.Show("Папка 'World of Tanks' задана некорректно");
 
             fSettings fSettings = new fSettings();
-            DialogResult dr = fSettings.ShowDialog();
-
-            if (dr == DialogResult.OK)
+            if (fSettings.ShowDialog() == DialogResult.OK)
             {
-                if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
+                loadSettings();
+
+                if (File.Exists(path + "version.xml"))
+                {                    
+                    if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
+                }
+                else
+                {
+                    checkTanks();
+                }
             }
             else
             {
@@ -175,17 +187,18 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdater_DoWork(object sender, DoWorkEventArgs e)
         {
-            bwUpdater.ReportProgress(0);
+            //bwUpdater.ReportProgress(0);
+
             // Парсим сайт танков
             /*string s = getResponse("http://worldoftanks.ru");
             s = s.Remove(0, s.IndexOf("b-game-version") + 16);
             s = s.Remove(s.IndexOf("</span>")).Replace(".","");             
              updates = getVersion() < (Convert.ToInt32(s)+0) ? true : false;*/
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(@"http://ai-rus.com/pro.xml");
-            sVerPack = doc.GetElementsByTagName("version")[0].InnerText;
-            sVerTanks = doc.GetElementsByTagName("tanks")[0].InnerText;
+            XmlDocument doc0 = new XmlDocument();
+            doc0.Load(@"http://ai-rus.com/pro.xml");
+            sVerPack = doc0.GetElementsByTagName("version")[0].InnerText;
+            sVerTanks = doc0.GetElementsByTagName("tanks")[0].InnerText;
 
             verPack = Convert.ToInt32(sVerPack.Replace(".", "")) + 0;
             verTanks = Convert.ToInt32(sVerTanks.Replace(".", "")) + 0;
