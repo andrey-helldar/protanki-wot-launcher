@@ -45,9 +45,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 XmlDocument doc = new XmlDocument();
                 doc.Load("settings.xml");
 
-                //xmlTitle = doc.GetElementsByTagName("title")[0].InnerText;
-                //xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
-                xmlTitle = Application.ProductName;
+                xmlTitle = doc.GetElementsByTagName("title")[0].InnerText;
+                xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
 
                 path = doc.GetElementsByTagName("path")[0].InnerText;
 
@@ -65,12 +64,21 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    MessageBox.Show("Папка с танками не обнаружена");
+                    checkTanks();
                 }
             }
             else
             {
-                MessageBox.Show("Файл настроек не обнаружен!");
+                MessageBox.Show("Файл настроек не обнаружен!"+Environment.NewLine+"Будут применены настройки по-умолчанию.");
+
+                xmlTitle = Application.ProductName;
+
+                sVerModPack = Application.ProductVersion;
+                verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
+
+                path = "";
+
+                checkTanks();
             }
 
             this.Text = xmlTitle + " v" + sVerModPack;
@@ -91,6 +99,25 @@ namespace _Hell_PRO_Tanki_Launcher
             bwOptimize.WorkerReportsProgress = true;
             bwOptimize.WorkerSupportsCancellation = true;
         }
+
+        // Если папка с танками не найдена, запускаем рекурсию, пока папка не будет указана верно
+        private void checkTanks()
+        {
+            MessageBox.Show("Папка 'World of Tanks' не обнаружена");
+
+            fSettings fSettings = new fSettings();
+            DialogResult dr = fSettings.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
+            }
+            else
+            {
+                checkTanks();
+            }
+        }
+
 
         // Получаем версию танков
         private int getVersion()
@@ -205,6 +232,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         "Вы используете устаревшую версию Мультипака" + Environment.NewLine +
                         "Рекомендуем обновить Ваш Мультипак до версии '" + sVerPack.ToString() + "'" + Environment.NewLine + Environment.NewLine;
                     bUpdate.Enabled = true;
+
                     llContent.Location = new Point(22, 55);
                     llContent.Size = new Size(638, 377);
                 }
@@ -214,6 +242,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     status += "Обнаружена новая версия клиента игры!" + Environment.NewLine +
                         "Необходимо запустить лаунчер игры для обновления до версии '" + sVerTanks.ToString() + "'";
                     bUpdate.Enabled = true;
+
                     llContent.Location = new Point(22, 55);
                     llContent.Size = new Size(638, 377);
                 }
@@ -322,8 +351,8 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bwUpdater_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             //pWork.Visible = true;
-            pWork.Location = new Point(4, 25);
-            pWork.Size = new Size(852, 431);
+            //pWork.Location = new Point(4, 25);
+            //pWork.Size = new Size(852, 431);
         }
 
         private void bOptimizePC_Click(object sender, EventArgs e)
