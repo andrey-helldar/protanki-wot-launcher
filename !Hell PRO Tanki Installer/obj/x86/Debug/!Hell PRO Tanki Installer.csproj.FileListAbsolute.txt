@@ -1,0 +1,7 @@
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Installer\bin\Debug\!Hell PRO Tanki Installer.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Installer\bin\Debug\!Hell PRO Tanki Installer.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Installer\obj\x86\Debug\_Hell_PRO_Tanki_Installer.fIndex.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Installer\obj\x86\Debug\_Hell_PRO_Tanki_Installer.Properties.Resources.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Installer\obj\x86\Debug\!Hell PRO Tanki Installer.csproj.GenerateResource.Cache
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Installer\obj\x86\Debug\!Hell PRO Tanki Installer.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Installer\obj\x86\Debug\!Hell PRO Tanki Installer.pdb

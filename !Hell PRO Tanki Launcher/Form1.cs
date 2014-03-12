@@ -36,10 +36,7 @@ namespace _Hell_PRO_Tanki_Launcher
             //Проверяем запущен ли процесс
             // Если запущен, то закрываем все предыдущие, оставляя заново открытое окно
             Process[] myProcesses = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
-            for (int i = 1; i < myProcesses.Length; i++)
-            {
-                myProcesses[i].Kill();
-            }
+            for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
 
 
             // Загружаем настройки
