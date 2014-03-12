@@ -33,6 +33,15 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             InitializeComponent();
 
+            //Проверяем запущен ли процесс
+            // Если запущен, то закрываем все предыдущие, оставляя заново открытое окно
+            Process[] myProcesses = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
+            for (int i = 1; i < myProcesses.Length; i++)
+            {
+                myProcesses[i].Kill();
+            }
+
+
             // Загружаем настройки
             if (File.Exists("settings.xml"))
             {
@@ -312,7 +321,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdater_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            pWork.Visible = true;
+            //pWork.Visible = true;
             pWork.Location = new Point(4, 25);
             pWork.Size = new Size(852, 431);
         }
