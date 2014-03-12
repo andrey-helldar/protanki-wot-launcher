@@ -50,6 +50,8 @@
             this.pWork = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.bOptimizePC = new System.Windows.Forms.Button();
+            this.bwOptimize = new System.ComponentModel.BackgroundWorker();
             this.contextMenu.SuspendLayout();
             this.pWork.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -266,9 +268,9 @@
             // 
             this.pWork.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.pWork.Controls.Add(this.pictureBox);
-            this.pWork.Location = new System.Drawing.Point(73, 408);
+            this.pWork.Location = new System.Drawing.Point(11, 445);
             this.pWork.Name = "pWork";
-            this.pWork.Size = new System.Drawing.Size(852, 431);
+            this.pWork.Size = new System.Drawing.Size(837, 366);
             this.pWork.TabIndex = 9;
             this.pWork.Visible = false;
             // 
@@ -287,12 +289,38 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "loading.gif");
             // 
+            // bOptimizePC
+            // 
+            this.bOptimizePC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bOptimizePC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bOptimizePC.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bOptimizePC.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.bOptimizePC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.bOptimizePC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bOptimizePC.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bOptimizePC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bOptimizePC.Location = new System.Drawing.Point(510, 355);
+            this.bOptimizePC.Margin = new System.Windows.Forms.Padding(0);
+            this.bOptimizePC.Name = "bOptimizePC";
+            this.bOptimizePC.Size = new System.Drawing.Size(150, 50);
+            this.bOptimizePC.TabIndex = 10;
+            this.bOptimizePC.Text = "Optimize";
+            this.bOptimizePC.UseVisualStyleBackColor = false;
+            this.bOptimizePC.Click += new System.EventHandler(this.bOptimizePC_Click);
+            // 
+            // bwOptimize
+            // 
+            this.bwOptimize.WorkerReportsProgress = true;
+            this.bwOptimize.WorkerSupportsCancellation = true;
+            this.bwOptimize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwOptimize_DoWork);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.bOptimizePC);
             this.Controls.Add(this.pWork);
             this.Controls.Add(this.llContent);
             this.Controls.Add(this.llVersion);
@@ -336,6 +364,8 @@
         private System.Windows.Forms.Panel pWork;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button bOptimizePC;
+        private System.ComponentModel.BackgroundWorker bwOptimize;
     }
 }
 

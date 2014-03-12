@@ -87,6 +87,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
             bwUpdater.WorkerReportsProgress = true;
             bwUpdater.WorkerSupportsCancellation = true;
+
+            bwOptimize.WorkerReportsProgress = true;
+            bwOptimize.WorkerSupportsCancellation = true;
         }
 
         // Получаем версию танков
@@ -200,7 +203,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     status += "Обнаружена новая версия!" + Environment.NewLine +
                         "Вы используете устаревшую версию Мультипака" + Environment.NewLine +
-                        "Рекомендуем обновить Ваш Мультипак до версии '" + sVerPack.ToString() + "'"+ Environment.NewLine + Environment.NewLine;
+                        "Рекомендуем обновить Ваш Мультипак до версии '" + sVerPack.ToString() + "'" + Environment.NewLine + Environment.NewLine;
                     bUpdate.Enabled = true;
                     llContent.Location = new Point(22, 55);
                     llContent.Size = new Size(638, 377);
@@ -305,7 +308,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             else
             {
-                MessageBox.Show(this,"Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -321,6 +324,30 @@ namespace _Hell_PRO_Tanki_Launcher
             //pWork.Visible = true;
             pWork.Location = new Point(4, 25);
             pWork.Size = new Size(852, 431);
+        }
+
+        private void bOptimizePC_Click(object sender, EventArgs e)
+        {
+            if (!bwOptimize.IsBusy)
+            {
+                bwOptimize.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show(this, "Подождите завершения предыдущей операции", "Оптимизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // Отключаем гибернацию
+            Process.Start(Environment.SystemDirectory + @"\powercfg.exe", "-h off");
+
+            // Правим реестр
+            Microsoft.Win32.RegistryKey myRegKey = Microsoft.Win32.Registry.CurrentUser;
+            myRegKey = myRegKey.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            myRegKey.SetValue("DisablePreviewDesktop", "dword: 00000001");
+
         }
     }
 }
