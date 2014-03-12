@@ -27,10 +27,13 @@ namespace _Hell_PRO_Tanki_Installer
         {
             if (newPage > 7) newPage = 7;
 
+            pbMenu.Visible = true;
+
             // Чтобы по 100 раз не копировать код, отключаем видимость всех панелей
             panel1.Visible = false;
             panel2.Visible = false;
             panel3.Visible = false;
+            panel3_1.Visible = false;
             panel4.Visible = false;
             panel5.Visible = false;
             panel6.Visible = false;
@@ -78,6 +81,9 @@ namespace _Hell_PRO_Tanki_Installer
                         bPrev.Visible = true;
                         bNext.Text = "Далее >";
                         panel3.Visible = true;
+
+                        pbMenu.Visible = false;
+                        panel3_1.Visible = true;
                     }
                     break;
 
