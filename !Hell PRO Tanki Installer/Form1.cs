@@ -64,11 +64,21 @@ namespace _Hell_PRO_Tanki_Installer
                     break;
 
                 case 3: 
-                    pbMenu.Image = Properties.Resources.menu_3;
-                    nowPage = 3; 
-                    bPrev.Visible = true;
-                    bNext.Text = "Далее >"; 
-                    panel3.Visible = true;
+                    // Проверяем верно ли указан путь, так как присутствует возможность выбора пути вручную
+                    // Если путь не существует, то возвращаемся к пункту 2
+                    if (!Directory.Exists(tbPath.Text))
+                    {
+                        MessageBox.Show(this, "Выбранный Вами путь не существует!"+Environment.NewLine+"Проверьте правильность пути", "Папка с World of Tanks не обнаружена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        setMenu(2);
+                    }
+                    else
+                    {
+                        pbMenu.Image = Properties.Resources.menu_3;
+                        nowPage = 3;
+                        bPrev.Visible = true;
+                        bNext.Text = "Далее >";
+                        panel3.Visible = true;
+                    }
                     break;
 
                 case 4: 
