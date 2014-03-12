@@ -31,34 +31,73 @@ namespace _Hell_PRO_Tanki_Launcher
             updTanks = false;
 
 
+        private void showError(string err)
+        {
+            MessageBox.Show(this, err, "Обнаружена ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         public fIndex()
         {
-            InitializeComponent();
+            try
+            {
+                // Проверяем установлен ли в системе нужный нам фраймворк
+                getFramework();
 
-            //Проверяем запущен ли процесс
-            // Если запущен, то закрываем все предыдущие, оставляя заново открытое окно
-            Process[] myProcesses = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
-            for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
+                InitializeComponent();
 
-            loadSettings();
+                //Проверяем запущен ли процесс
+                // Если запущен, то закрываем все предыдущие, оставляя заново открытое окно
+                Process[] myProcesses = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
+                for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
 
-            this.Text = xmlTitle + " v" + sVerModPack;
-            this.Icon = Properties.Resources.myicon;
+                loadSettings();
 
-            notifyIcon.Icon = Properties.Resources.myicon;
-            notifyIcon.Text = xmlTitle + " v" + sVerModPack;
+                this.Text = xmlTitle + " v" + sVerModPack;
+                this.Icon = Properties.Resources.myicon;
 
-            llVersion.Text = sVerModPack;
+                notifyIcon.Icon = Properties.Resources.myicon;
+                notifyIcon.Text = xmlTitle + " v" + sVerModPack;
 
-            setBackground();
+                llVersion.Text = sVerModPack;
 
-            moveForm();
+                setBackground();
 
-            bwUpdater.WorkerReportsProgress = true;
-            bwUpdater.WorkerSupportsCancellation = true;
+                moveForm();
 
-            bwOptimize.WorkerReportsProgress = true;
-            bwOptimize.WorkerSupportsCancellation = true;
+                bwUpdater.WorkerReportsProgress = true;
+                bwUpdater.WorkerSupportsCancellation = true;
+
+                bwOptimize.WorkerReportsProgress = true;
+                bwOptimize.WorkerSupportsCancellation = true;
+            }
+            catch (Exception ex0)
+            {
+                showError(ex0.Message);
+            }
+        }
+
+        // Скачиваем и устанавливаем необходимую версию .NET Framework
+        public void getFramework()
+        {
+            string query = "";
+
+            Microsoft.Win32.RegistryKey myRegKey = Microsoft.Win32.Registry.LocalMachine;
+                // 3.0
+            query += !Directory.Exists(Environment.SystemDirectory + @"\..\Microsoft.NET\Framework\v3.0\") ? "3.0:" : "";
+
+            // 4.0
+            myRegKey = myRegKey.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4.0\Client\", true);
+            try
+            {
+                query += (string)myRegKey.GetValue("version") != "4.0.0.0" ? "4.0" : "";
+            }
+            catch (Exception ex1)
+            {
+                query += (string)myRegKey.GetValue("version") != "4.0.0.0" ? "4.0" : "";
+                showError(ex1.Message);
+            }
+
+            if (query != "") MessageBox.Show(query);
         }
 
         // Загружаем настройки
@@ -158,7 +197,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     return -1;
                 }
             }
-            catch (Exception) { return -1; }
+            catch (Exception ex) { showError(ex.Message); return -1; }
         }
 
         // Выбираем изображение для установки фона
