@@ -123,6 +123,14 @@
     <None Include="Resources\Project1_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\7.jpg" />
+    <None Include="Resources\6.jpg" />
+    <None Include="Resources\5.jpg" />
+    <None Include="Resources\4.jpg" />
+    <None Include="Resources\3.jpg" />
+    <None Include="Resources\2.jpg" />
+    <None Include="Resources\1.jpg" />
     <None Include="back\loading.gif" />
     <Content Include="Project1_Icon.ico" />
   </ItemGroup>

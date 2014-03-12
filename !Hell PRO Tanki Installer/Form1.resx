@@ -117,4 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="linkLabel3.Text" xml:space="preserve">
+    <value>Рекомендуется закрыть игру World of Tanks перед продолжением установки. При нажатии на кнопку "Далее&gt;" клиент игры будет автоматически закрыт.
+
+Нажмите "Далее&gt;", чтобы продолжить, или "Отмена", чтобы выйти из программы установки.</value>
+  </data>
 </root>
