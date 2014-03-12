@@ -81,6 +81,16 @@ namespace _Hell_PRO_Tanki_Installer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] font_sochi {
+            get {
+                object obj = ResourceManager.GetObject("font_sochi", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap menu_1 {

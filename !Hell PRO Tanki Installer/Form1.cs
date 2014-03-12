@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
+using System.Runtime.InteropServices;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -18,8 +20,10 @@ namespace _Hell_PRO_Tanki_Installer
         public fIndex()
         {
             InitializeComponent();
-
             setMenu();
+
+            CargoPrivateFontCollection();
+            CargoEtiqueta(font);
         }
 
         // Определяем какой пункт меню открыт, что отображается справа
@@ -174,6 +178,48 @@ namespace _Hell_PRO_Tanki_Installer
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             fbd.ShowDialog();
             tbPath.Text = fbd.SelectedPath;
+        }
+
+
+        [DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
+        FontFamily ff;
+        Font font;
+
+        private void CargoPrivateFontCollection()
+        {
+            // Create the byte array and get its length
+
+            byte[] fontArray = Properties.Resources.font_sochi;
+            int dataLength = Properties.Resources.font_sochi.Length;
+
+
+            // ASSIGN MEMORY AND COPY  BYTE[] ON THAT MEMORY ADDRESS
+            IntPtr ptrData = Marshal.AllocCoTaskMem(dataLength);
+            Marshal.Copy(fontArray, 0, ptrData, dataLength);
+
+
+            uint cFonts = 0;
+            AddFontMemResourceEx(ptrData, (uint)fontArray.Length, IntPtr.Zero, ref cFonts);
+
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            //PASS THE FONT TO THE  PRIVATEFONTCOLLECTION OBJECT
+            pfc.AddMemoryFont(ptrData, dataLength);
+
+            //FREE THE  "UNSAFE" MEMORY
+            Marshal.FreeCoTaskMem(ptrData);
+
+            ff = pfc.Families[0];
+            font = new Font(ff, 15f, FontStyle.Bold);
+        }
+
+        private void CargoEtiqueta(Font font)
+        {
+            float size = 11f;
+            FontStyle fontStyle = FontStyle.Regular;
+
+            bPROsite.Font = new Font(ff, 20, fontStyle);
+
         }
     }
 }
