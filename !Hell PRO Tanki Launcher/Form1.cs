@@ -108,8 +108,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 XmlDocument doc = new XmlDocument();
                 doc.Load("settings.xml");
 
-                xmlTitle = doc.GetElementsByTagName("title")[0].InnerText;
-                xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
+                //xmlTitle = doc.GetElementsByTagName("title")[0].InnerText;
+                //xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
+                xmlTitle = Application.ProductName;
 
                 path = doc.GetElementsByTagName("path")[0].InnerText;
 
@@ -462,6 +463,13 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             fSettings fSettings = new fSettings();
             fSettings.ShowDialog();
+        }
+
+        private void notifyIcon_Click(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
         }
     }
 }

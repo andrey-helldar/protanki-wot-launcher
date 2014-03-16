@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("!Hell PRO Tanki Launcher")]
+[assembly: AssemblyTitle("PRO Tanki Multipack")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("!Hell PRO Tanki Launcher")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyProduct("PRO Tanki Multipack")]
+[assembly: AssemblyCopyright("Copyright ©  2014 AI RUS - Professional tech support")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
