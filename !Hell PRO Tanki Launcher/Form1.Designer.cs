@@ -321,6 +321,7 @@
             this.Name = "fIndex";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fIndex_FormClosing);
             this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

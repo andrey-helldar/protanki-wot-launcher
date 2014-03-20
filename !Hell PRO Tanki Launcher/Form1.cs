@@ -28,7 +28,10 @@ namespace _Hell_PRO_Tanki_Launcher
             threadSleep = 1000;
 
         bool updPack = false,
-            updTanks = false;
+            updTanks = false,
+            optimized = false;
+
+        ProcessStartInfo psi;
 
 
         private void showError(string err)
@@ -427,6 +430,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (!bwOptimize.IsBusy)
             {
+                optimized = true;
+
                 bwOptimize.RunWorkerAsync();
             }
             else
@@ -437,14 +442,38 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)
         {
-            // Отключаем гибернацию
-            Process.Start(Environment.SystemDirectory + @"\powercfg.exe", "-h off");
+            // Для начала определим версию ОС
+            OperatingSystem osInfo = Environment.OSVersion;
 
-            // Правим реестр
-            Microsoft.Win32.RegistryKey myRegKey = Microsoft.Win32.Registry.CurrentUser;
-            myRegKey = myRegKey.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
-            myRegKey.SetValue("DisablePreviewDesktop", "dword: 00000001");
+            switch (osInfo.Platform)
+            {
+                case System.PlatformID.Win32NT:
+                    switch (osInfo.Version.Major)
+                    {
+                        case 6:
+                            // Win7
+                                psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
+                                Process.Start(psi);
+                            break;
 
+                        case 7:
+                            // Win8
+                                psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
+                                Process.Start(psi);
+                            break;
+
+                        default:
+                            if (osInfo.Version.Major == 5 && osInfo.Version.Minor != 0)
+                            {
+                                // WinXP
+                            }
+                            else
+                            {
+                            }
+                            break;
+                    }
+                    break;
+            }
         }
 
         private void llContent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -470,6 +499,15 @@ namespace _Hell_PRO_Tanki_Launcher
             Show();
             WindowState = FormWindowState.Normal;
             this.ShowInTaskbar = true;
+        }
+
+        private void fIndex_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (optimized)
+            {
+                psi = new ProcessStartInfo("cmd", @"/c net start uxsms"); // останавливаем aero
+                Process.Start(psi);
+            }
         }
     }
 }
