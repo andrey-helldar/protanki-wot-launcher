@@ -346,10 +346,8 @@
             this.llUpdateStatus.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llUpdateStatus.Location = new System.Drawing.Point(252, 421);
             this.llUpdateStatus.Name = "llUpdateStatus";
-            this.llUpdateStatus.Size = new System.Drawing.Size(258, 18);
+            this.llUpdateStatus.Size = new System.Drawing.Size(0, 18);
             this.llUpdateStatus.TabIndex = 13;
-            this.llUpdateStatus.TabStop = true;
-            this.llUpdateStatus.Text = "Оптимизация завершена на: 0%";
             this.llUpdateStatus.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
             // fIndex

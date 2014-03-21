@@ -20,7 +20,10 @@ namespace _Hell_PRO_Tanki_Launcher
             path = "",
             sVerPack,
             sVerTanks,
-            sVerModPack;
+            sVerModPack,
+            sUpdateNews,
+            sUpdateLink = "http://goo.gl/gr6pFl",
+            videoLink = "http://goo.gl/gr6pFl";
 
         int verPack,
             verTanks,
@@ -250,7 +253,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bVideo_Click(object sender, EventArgs e)
         {
-            Process.Start("http://goo.gl/gr6pFl");
+            Process.Start(videoLink);
         }
 
         private void bwUpdater_DoWork(object sender, DoWorkEventArgs e)
@@ -263,9 +266,17 @@ namespace _Hell_PRO_Tanki_Launcher
             s = s.Remove(s.IndexOf("</span>")).Replace(".","");             
              updates = getVersion() < (Convert.ToInt32(s)+0) ? true : false;*/
 
+            // Парсим сайт PRO Танки
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"http://file.theaces.ru/mods/proupdate/updateFull.xml");
+            sVerPack = doc.GetElementsByTagName("version")[0].InnerText;
+            sUpdateNews = doc.GetElementsByTagName("message")[0].InnerText;
+            sUpdateLink = doc.GetElementsByTagName("download")[0].InnerText;
+
+
             XmlDocument doc0 = new XmlDocument();
             doc0.Load(@"http://ai-rus.com/pro.xml");
-            sVerPack = doc0.GetElementsByTagName("version")[0].InnerText;
+            //sVerPack = doc0.GetElementsByTagName("version")[0].InnerText;
             sVerTanks = doc0.GetElementsByTagName("tanks")[0].InnerText;
 
             verPack = Convert.ToInt32(sVerPack.Replace(".", "")) + 0;
@@ -311,24 +322,26 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (updPack)
                     {
-                        status += "Обнаружена новая версия!" + Environment.NewLine +
-                            "Вы используете устаревшую версию Мультипака" + Environment.NewLine +
-                            "Рекомендуем обновить Ваш Мультипак до версии '" + sVerPack.ToString() + "'" + Environment.NewLine + Environment.NewLine;
+                        status += "Обнаружена новая версия Мультипака (" + sVerPack.ToString() + ")!" + Environment.NewLine;
                         bUpdate.Enabled = true;
 
                         this.llContent.Location = new Point(30, 40);
                         this.llContent.Size = new Size(595, 370);
+
+                        videoLink = sUpdateLink;
                     }
 
                     if (updTanks)
                     {
-                        status += "Обнаружена новая версия клиента игры!" + Environment.NewLine +
-                            "Необходимо запустить лаунчер игры для обновления до версии '" + sVerTanks.ToString() + "'";
+                        status += "Обнаружена новая версия клиента игры (" + sVerTanks.ToString() + ")!" + Environment.NewLine;
                         bUpdate.Enabled = true;
 
                         this.llContent.Location = new Point(30, 40);
                         this.llContent.Size = new Size(595, 370);
                     }
+
+                    // Добавляем новость об изменениях в модпаке
+                    if (updPack) { status += sUpdateNews; }
                 }
                 else
                 {
@@ -392,7 +405,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bUpdate_Click(object sender, EventArgs e)
         {
-            Process.Start("http://goo.gl/gr6pFl");
+            Process.Start(sUpdateLink);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -660,29 +673,39 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void saveLog(int index, string param)
         {
-            if (!Directory.Exists("log")) { Directory.CreateDirectory("log"); }
+            bool z = false;
 
-            string myFile = @"log\" + index.ToString() + "__" + param + ".log";
+            if (z)
+            {
+                if (!Directory.Exists("log")) { Directory.CreateDirectory("log"); }
 
-            if (!File.Exists(myFile))
-            {
-                File.WriteAllText(myFile, param, Encoding.UTF8);
-            }
-            else
-            {
-                File.AppendAllText(myFile, Environment.NewLine + param, Encoding.UTF8);
+                string myFile = @"log\" + index.ToString() + "__" + param + ".log";
+
+                if (!File.Exists(myFile))
+                {
+                    File.WriteAllText(myFile, param, Encoding.UTF8);
+                }
+                else
+                {
+                    File.AppendAllText(myFile, Environment.NewLine + param, Encoding.UTF8);
+                }
             }
         }
 
         private void saveLogNotCloseProcess(string param)
         {
-            if (!File.Exists(@"log\not_closed_process.log"))
+            bool z = false;
+
+            if (z)
             {
-                File.WriteAllText(@"log\not_closed_process.log", param, Encoding.UTF8);
-            }
-            else
-            {
-                File.AppendAllText(@"log\not_closed_process.log", Environment.NewLine + param, Encoding.UTF8);
+                if (!File.Exists(@"log\not_closed_process.log"))
+                {
+                    File.WriteAllText(@"log\not_closed_process.log", param, Encoding.UTF8);
+                }
+                else
+                {
+                    File.AppendAllText(@"log\not_closed_process.log", Environment.NewLine + param, Encoding.UTF8);
+                }
             }
         }
 
