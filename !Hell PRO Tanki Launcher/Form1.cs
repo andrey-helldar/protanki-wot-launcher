@@ -58,6 +58,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 this.Text = xmlTitle + " v" + sVerModPack;
                 this.Icon = Properties.Resources.myicon;
 
+                llTitle.Text = xmlTitle;
+
                 notifyIcon.Icon = Properties.Resources.myicon;
                 notifyIcon.Text = xmlTitle + " v" + sVerModPack;
 
@@ -442,7 +444,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)
         {
-            // Для начала определим версию ОС
+            // Для начала определим версию ОС для отключения AERO
             OperatingSystem osInfo = Environment.OSVersion;
 
             switch (osInfo.Platform)
@@ -452,27 +454,73 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         case 6:
                             // Win7
-                                psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
-                                Process.Start(psi);
+                            psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
+                            Process.Start(psi);
                             break;
 
                         case 7:
                             // Win8
-                                psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
-                                Process.Start(psi);
+                            psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
+                            Process.Start(psi);
                             break;
 
-                        default:
-                            if (osInfo.Version.Major == 5 && osInfo.Version.Minor != 0)
-                            {
-                                // WinXP
-                            }
-                            else
-                            {
-                            }
-                            break;
+                        /* default:
+                             if (osInfo.Version.Major == 5 && osInfo.Version.Minor != 0)
+                             {
+                                 // WinXP
+                             }
+                             break;*/
                     }
                     break;
+            }
+
+
+            // Завершаем ненужные процессы путем перебора массива имен с условием отсутствия определенных условий
+            Process[] myProcesses = Process.GetProcesses();
+
+            // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
+            string[] vipProcess = {
+                                      Process.GetCurrentProcess().ProcessName.ToString(),
+                                      "restart",
+                                      "WorldOfTanks", 
+                                      "WoTLauncher",
+                                      "devenv",
+                                      "CCC", 
+                                      "atieclxx", 
+                                      "avpui", 
+                                      "conhost",
+                                      "explorer",
+                                      "IntelliTrace",
+                                      "MOM",
+                                      "taskhost"
+                                  };
+
+            // Передаем процессам инфу, что приложение должно закрыться
+            for (int i = 1; i < myProcesses.Length; i++)
+            {
+                try
+                {
+                    if (myProcesses[i].SessionId == 1 && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                    {
+                        myProcesses[i].CloseMainWindow();
+                    }
+                }
+                catch (Exception) { }
+            }
+
+            Thread.Sleep(10000); // Ждем 10 секунд завершения, пока приложения нормально завершатся
+
+            // Кто не успел - тот опоздал! Принудительно убиваем процесс
+            for (int i = 1; i < myProcesses.Length; i++)
+            {
+                try
+                {
+                    if (myProcesses[i].SessionId == 1 && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                    {
+                        myProcesses[i].Kill();
+                    }
+                }
+                catch (Exception) { }
             }
         }
 
@@ -505,8 +553,20 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (optimized)
             {
-                psi = new ProcessStartInfo("cmd", @"/c net start uxsms"); // останавливаем aero
+                psi = new ProcessStartInfo("cmd", @"/c /q net start uxsms"); // останавливаем aero
                 Process.Start(psi);
+            }
+        }
+
+        private void llTitle_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!bwUpdater.IsBusy)
+            {
+                bwUpdater.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

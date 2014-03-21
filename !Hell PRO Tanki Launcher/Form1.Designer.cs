@@ -51,6 +51,8 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.bOptimizePC = new System.Windows.Forms.Button();
             this.bwOptimize = new System.ComponentModel.BackgroundWorker();
+            this.llTitle = new System.Windows.Forms.LinkLabel();
+            this.bwAero = new System.ComponentModel.BackgroundWorker();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -302,12 +304,31 @@
             this.bwOptimize.WorkerSupportsCancellation = true;
             this.bwOptimize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwOptimize_DoWork);
             // 
+            // llTitle
+            // 
+            this.llTitle.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llTitle.AutoSize = true;
+            this.llTitle.BackColor = System.Drawing.Color.Transparent;
+            this.llTitle.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.llTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llTitle.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llTitle.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llTitle.Location = new System.Drawing.Point(189, 2);
+            this.llTitle.Name = "llTitle";
+            this.llTitle.Size = new System.Drawing.Size(72, 18);
+            this.llTitle.TabIndex = 11;
+            this.llTitle.TabStop = true;
+            this.llTitle.Text = "Loading...";
+            this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llTitle.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTitle_LinkClicked);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.llTitle);
             this.Controls.Add(this.bOptimizePC);
             this.Controls.Add(this.llContent);
             this.Controls.Add(this.llVersion);
@@ -351,6 +372,8 @@
         private System.Windows.Forms.Button bOptimizePC;
         private System.ComponentModel.BackgroundWorker bwOptimize;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.LinkLabel llTitle;
+        private System.ComponentModel.BackgroundWorker bwAero;
     }
 }
 
