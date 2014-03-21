@@ -433,6 +433,7 @@ namespace _Hell_PRO_Tanki_Launcher
             if (!bwOptimize.IsBusy)
             {
                 optimized = true;
+                listView1.Items.Clear();
 
                 bwOptimize.RunWorkerAsync();
             }
@@ -454,14 +455,16 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         case 6:
                             // Win7
-                            psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
-                            Process.Start(psi);
+                            //psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
+                            //Process.Start(psi);
+                            addData("cmd", @"Win7 :: /c /q net stop uxsms");
                             break;
 
                         case 7:
                             // Win8
-                            psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
-                            Process.Start(psi);
+                            //psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
+                            //Process.Start(psi);
+                            addData("cmd", @"Win8 :: /c /q net stop uxsms");
                             break;
 
                         /* default:
@@ -502,13 +505,14 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (myProcesses[i].SessionId == 1 && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                     {
-                        myProcesses[i].CloseMainWindow();
+                        //myProcesses[i].CloseMainWindow();
+                        addData(myProcesses[i].ProcessName.ToString(), "Closed normally");
                     }
                 }
                 catch (Exception) { }
             }
 
-            Thread.Sleep(10000); // Ждем 10 секунд завершения, пока приложения нормально завершатся
+            Thread.Sleep(5000); // Ждем 10 секунд завершения, пока приложения нормально завершатся
 
             // Кто не успел - тот опоздал! Принудительно убиваем процесс
             for (int i = 1; i < myProcesses.Length; i++)
@@ -517,7 +521,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (myProcesses[i].SessionId == 1 && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                     {
-                        myProcesses[i].Kill();
+                        //myProcesses[i].Kill();
+                        addData(myProcesses[i].ProcessName.ToString(), "Killed");
                     }
                 }
                 catch (Exception) { }
@@ -553,8 +558,9 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (optimized)
             {
-                psi = new ProcessStartInfo("cmd", @"/c /q net start uxsms"); // останавливаем aero
-                Process.Start(psi);
+                //psi = new ProcessStartInfo("cmd", @"/c /q net start uxsms"); // останавливаем aero
+                //Process.Start(psi);
+                addData("cmd", @"/c /q net start uxsms");
             }
         }
 
@@ -568,6 +574,12 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void addData(string attr, string param)
+        {
+            int i = listView1.Items.Add(attr).Index;
+            listView1.Items[i].SubItems.Add(param);
         }
     }
 }
