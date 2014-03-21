@@ -535,8 +535,7 @@ namespace _Hell_PRO_Tanki_Launcher
                                       "RtkNGUI64",
                                       "csrss",
                                       "dwm",
-                                      "winlogon",
-                                      "chrome"
+                                      "winlogon"
                                   };
 
                 // Передаем процессам инфу, что приложение должно закрыться
