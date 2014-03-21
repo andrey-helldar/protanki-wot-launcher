@@ -341,12 +341,12 @@
             this.llUpdateStatus.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llUpdateStatus.AutoSize = true;
             this.llUpdateStatus.BackColor = System.Drawing.Color.Transparent;
-            this.llUpdateStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llUpdateStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llUpdateStatus.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llUpdateStatus.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llUpdateStatus.Location = new System.Drawing.Point(287, 421);
+            this.llUpdateStatus.Location = new System.Drawing.Point(252, 421);
             this.llUpdateStatus.Name = "llUpdateStatus";
-            this.llUpdateStatus.Size = new System.Drawing.Size(230, 18);
+            this.llUpdateStatus.Size = new System.Drawing.Size(258, 18);
             this.llUpdateStatus.TabIndex = 13;
             this.llUpdateStatus.TabStop = true;
             this.llUpdateStatus.Text = "Оптимизация завершена на: 0%";

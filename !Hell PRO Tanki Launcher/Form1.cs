@@ -26,7 +26,7 @@ namespace _Hell_PRO_Tanki_Launcher
             verTanks,
             verModPack,
             threadSleep = 1000,
-            maxPercentUpdateStatus = 100;
+            maxPercentUpdateStatus = 1;
 
         bool updPack = false,
             updTanks = false,
@@ -516,7 +516,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 int processID = Process.GetCurrentProcess().SessionId;
 
                 // Расчитываем значение прогресс бара
-                maxPercentUpdateStatus += myProcesses.Length * 2;
+                maxPercentUpdateStatus += myProcesses.Length * 2 - 2;
 
                 // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
                 string[] vipProcess = {
@@ -535,7 +535,8 @@ namespace _Hell_PRO_Tanki_Launcher
                                       "RtkNGUI64",
                                       "csrss",
                                       "dwm",
-                                      "winlogon"
+                                      "winlogon",
+                                      "chrome"
                                   };
 
                 // Передаем процессам инфу, что приложение должно закрыться
@@ -691,8 +692,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwOptimize_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int perc = (e.ProgressPercentage / maxPercentUpdateStatus) * 100;
-            llUpdateStatus.Text = "Оптимизация завершена на: " + perc.ToString() + "%";
+            double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;
+            llUpdateStatus.Text = "Оптимизация завершена на: " + ((int)i).ToString() + "%";
         }
     }
 }
