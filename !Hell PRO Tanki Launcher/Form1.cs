@@ -645,12 +645,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void fIndex_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (optimized)
-            {
+            // Раньше проверяли выли ли внесены изменения, сейчас просто запускаем aero...
+            //if (optimized)
+            //{
                 psi = new ProcessStartInfo("cmd", @"/c net start uxsms"); // останавливаем aero
                 Process.Start(psi);
                 //addData("cmd", @"/c net start uxsms");
-            }
+            //}
         }
 
         private void llTitle_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -711,7 +712,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwOptimize_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Успешно завершено!");
+            //MessageBox.Show("Успешно завершено!");
+            //llUpdateStatus.Text = "Оптимизация завершена";
         }
 
         private void bSettings_Click(object sender, EventArgs e)
