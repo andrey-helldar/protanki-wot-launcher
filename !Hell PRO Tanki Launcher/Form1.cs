@@ -445,6 +445,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)
         {
+            int myIndex = 0;
+
+
             // Для начала определим версию ОС для отключения AERO
             OperatingSystem osInfo = Environment.OSVersion;
 
@@ -455,16 +458,20 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         case 6:
                             // Win7
-                            //psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
-                            //Process.Start(psi);
-                            addData("cmd", @"Win7 :: /c /q net stop uxsms");
+                            saveLog(++myIndex, @"Start :: /c /q net stop uxsms");
+                            psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
+                            Process.Start(psi);
+                            saveLog(myIndex, @"End :: /c /q net stop uxsms");
+                            //addData("cmd", @"Win7 :: /c /q net stop uxsms");
                             break;
 
                         case 7:
                             // Win8
-                            //psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
-                            //Process.Start(psi);
-                            addData("cmd", @"Win8 :: /c /q net stop uxsms");
+                            saveLog(++myIndex, @"Start :: /c /q net stop uxsms");
+                            psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
+                            Process.Start(psi);
+                            saveLog(myIndex, @"End :: /c /q net stop uxsms");
+                            //addData("cmd", @"Win8 :: /c /q net stop uxsms");
                             break;
 
                         /* default:
@@ -505,8 +512,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (myProcesses[i].SessionId == 1 && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                     {
-                        //myProcesses[i].CloseMainWindow();
-                        addData(myProcesses[i].ProcessName.ToString(), "Closed normally");
+                        saveLog(++myIndex, @"Start close normally :: " + myProcesses[i].ProcessName.ToString());
+                        myProcesses[i].CloseMainWindow();
+                        saveLog(myIndex, @"End close normally :: " + myProcesses[i].ProcessName.ToString());
+                        //addData(myProcesses[i].ProcessName.ToString(), "Closed normally");
                     }
                 }
                 catch (Exception) { }
@@ -521,8 +530,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (myProcesses[i].SessionId == 1 && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                     {
-                        //myProcesses[i].Kill();
-                        addData(myProcesses[i].ProcessName.ToString(), "Killed");
+                        saveLog(++myIndex, @"Start Kill :: " + myProcesses[i].ProcessName.ToString());
+                        myProcesses[i].Kill();
+                        saveLog(myIndex, @"End Kill :: " + myProcesses[i].ProcessName.ToString());
+                        //addData(myProcesses[i].ProcessName.ToString(), "Killed");
                     }
                 }
                 catch (Exception) { }
@@ -580,6 +591,22 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             int i = listView1.Items.Add(attr).Index;
             listView1.Items[i].SubItems.Add(param);
+        }
+
+        private void saveLog(int index, string param)
+        {
+            if (!Directory.Exists("log")) { Directory.CreateDirectory("log"); }
+
+            string myFile = @"log\"+index.ToString()+".log";
+
+            if (!File.Exists(myFile))
+            {
+                File.WriteAllText(myFile, param, Encoding.UTF8);
+            }
+            else
+            {
+                File.AppendAllText(myFile, Environment.NewLine+ param, Encoding.UTF8);
+            }
         }
     }
 }
