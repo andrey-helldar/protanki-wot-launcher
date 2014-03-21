@@ -331,7 +331,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 MessageBox.Show("Возникла ошибка. Требуется перезапустить лаунчер модпака.");
                 Process.Start("restart.exe", Process.GetCurrentProcess().ProcessName);
-                Close();
+                this.Close();
             }
         }
 
@@ -639,6 +639,12 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bwOptimize_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Успешно завершено!");
+        }
+
+        private void bSettings_Click(object sender, EventArgs e)
+        {
+            fSettings fSettings = new fSettings();
+            fSettings.ShowDialog();
         }
     }
 }

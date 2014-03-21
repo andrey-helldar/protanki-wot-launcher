@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fIndex));
             this.bPlay = new System.Windows.Forms.Button();
             this.bLauncher = new System.Windows.Forms.Button();
             this.bUpdate = new System.Windows.Forms.Button();
@@ -48,11 +47,11 @@
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.bOptimizePC = new System.Windows.Forms.Button();
             this.bwOptimize = new System.ComponentModel.BackgroundWorker();
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.bwAero = new System.ComponentModel.BackgroundWorker();
+            this.bSettings = new System.Windows.Forms.Button();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -197,7 +196,7 @@
             this.llContent.Size = new System.Drawing.Size(595, 370);
             this.llContent.TabIndex = 8;
             this.llContent.TabStop = true;
-            this.llContent.Text = "Вы используете самые свежие моды.\r\nТекущая версия Мультипака \'0,8,11,11\"";
+            this.llContent.Text = "Loading...";
             this.llContent.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llContent_LinkClicked);
             // 
             // bwUpdater
@@ -273,12 +272,6 @@
             this.toolStripMenuItem1.Text = "Выход";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "loading.gif");
-            // 
             // bOptimizePC
             // 
             this.bOptimizePC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
@@ -323,12 +316,31 @@
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llTitle.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTitle_LinkClicked);
             // 
+            // bSettings
+            // 
+            this.bSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.bSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.bSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bSettings.Location = new System.Drawing.Point(12, 413);
+            this.bSettings.Name = "bSettings";
+            this.bSettings.Size = new System.Drawing.Size(131, 35);
+            this.bSettings.TabIndex = 12;
+            this.bSettings.Text = "Настройки";
+            this.bSettings.UseVisualStyleBackColor = true;
+            this.bSettings.Click += new System.EventHandler(this.bSettings_Click);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.bSettings);
             this.Controls.Add(this.llTitle);
             this.Controls.Add(this.bOptimizePC);
             this.Controls.Add(this.llContent);
@@ -369,12 +381,12 @@
         private System.Windows.Forms.ToolStripMenuItem видеоToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button bOptimizePC;
         private System.ComponentModel.BackgroundWorker bwOptimize;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.LinkLabel llTitle;
         private System.ComponentModel.BackgroundWorker bwAero;
+        private System.Windows.Forms.Button bSettings;
     }
 }
 

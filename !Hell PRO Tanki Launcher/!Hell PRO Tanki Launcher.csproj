@@ -132,6 +132,8 @@
     <None Include="Resources\Project1_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Settings_back.jpg" />
+    <None Include="Resources\settings.png" />
     <None Include="Resources\loading.gif" />
     <None Include="Resources\7.jpg" />
     <None Include="Resources\6.jpg" />
