@@ -306,6 +306,7 @@
             this.bwOptimize.WorkerReportsProgress = true;
             this.bwOptimize.WorkerSupportsCancellation = true;
             this.bwOptimize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwOptimize_DoWork);
+            this.bwOptimize.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwOptimize_RunWorkerCompleted);
             // 
             // llTitle
             // 

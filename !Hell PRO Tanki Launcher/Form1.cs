@@ -87,7 +87,7 @@ namespace _Hell_PRO_Tanki_Launcher
             string query = "";
 
             Microsoft.Win32.RegistryKey myRegKey = Microsoft.Win32.Registry.LocalMachine;
-                // 3.0
+            // 3.0
             query += !Directory.Exists(Environment.SystemDirectory + @"\..\Microsoft.NET\Framework\v3.0\") ? "3.0:" : "";
 
             // 4.0
@@ -166,7 +166,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 loadSettings();
 
                 if (File.Exists(path + "version.xml"))
-                {                    
+                {
                     if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
                 }
                 else
@@ -447,7 +447,6 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             int myIndex = 0;
 
-
             // Для начала определим версию ОС для отключения AERO
             OperatingSystem osInfo = Environment.OSVersion;
 
@@ -458,19 +457,19 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         case 6:
                             // Win7
-                            saveLog(++myIndex, @"Start :: /c /q net stop uxsms");
-                            psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
+                            saveLog(++myIndex, @"Start -- net stop uxsms");
+                            psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
                             Process.Start(psi);
-                            saveLog(myIndex, @"End :: /c /q net stop uxsms");
+                            saveLog(myIndex, @"End -- net stop uxsms");
                             //addData("cmd", @"Win7 :: /c /q net stop uxsms");
                             break;
 
                         case 7:
                             // Win8
-                            saveLog(++myIndex, @"Start :: /c /q net stop uxsms");
-                            psi = new ProcessStartInfo("cmd", @"/c /q net stop uxsms"); // останавливаем aero
+                            saveLog(++myIndex, @"Start -- net stop uxsms");
+                            psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
                             Process.Start(psi);
-                            saveLog(myIndex, @"End :: /c /q net stop uxsms");
+                            saveLog(myIndex, @"End -- net stop uxsms");
                             //addData("cmd", @"Win8 :: /c /q net stop uxsms");
                             break;
 
@@ -487,6 +486,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             // Завершаем ненужные процессы путем перебора массива имен с условием отсутствия определенных условий
             Process[] myProcesses = Process.GetProcesses();
+            int processID = Process.GetCurrentProcess().SessionId;
 
             // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
             string[] vipProcess = {
@@ -500,9 +500,12 @@ namespace _Hell_PRO_Tanki_Launcher
                                       "avpui", 
                                       "conhost",
                                       "explorer",
-                                      "IntelliTrace",
                                       "MOM",
-                                      "taskhost"
+                                      "taskhost",
+                                      "RtkNGUI64",
+                                      "csrss",
+                                      "dwm",
+                                      "winlogon"
                                   };
 
             // Передаем процессам инфу, что приложение должно закрыться
@@ -510,15 +513,22 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 try
                 {
-                    if (myProcesses[i].SessionId == 1 && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                    if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                     {
-                        saveLog(++myIndex, @"Start close normally :: " + myProcesses[i].ProcessName.ToString());
+                        saveLog(++myIndex, @"Start close normally -- " + myProcesses[i].ProcessName.ToString());
                         myProcesses[i].CloseMainWindow();
-                        saveLog(myIndex, @"End close normally :: " + myProcesses[i].ProcessName.ToString());
+                        saveLog(myIndex, @"End close normally -- " + myProcesses[i].ProcessName.ToString());
                         //addData(myProcesses[i].ProcessName.ToString(), "Closed normally");
                     }
+                    else
+                    {
+                        saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + "   ||   SessionID : " + myProcesses[i].SessionId.ToString());
+                    }
                 }
-                catch (Exception) { }
+                catch (Exception)
+                {
+                    saveLog(myIndex, @"ERROR EXCEPTION close normally -- " + myProcesses[i].ProcessName.ToString());
+                }
             }
 
             Thread.Sleep(5000); // Ждем 10 секунд завершения, пока приложения нормально завершатся
@@ -528,15 +538,22 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 try
                 {
-                    if (myProcesses[i].SessionId == 1 && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                    if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                     {
-                        saveLog(++myIndex, @"Start Kill :: " + myProcesses[i].ProcessName.ToString());
+                        saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
                         myProcesses[i].Kill();
-                        saveLog(myIndex, @"End Kill :: " + myProcesses[i].ProcessName.ToString());
+                        saveLog(myIndex, @"End Kill -- " + myProcesses[i].ProcessName.ToString());
                         //addData(myProcesses[i].ProcessName.ToString(), "Killed");
                     }
+                    else
+                    {
+                        saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + " (kill)   ||   SessionID : "+myProcesses[i].SessionId.ToString());
+                    }
                 }
-                catch (Exception) { }
+                catch (Exception)
+                {
+                    saveLog(myIndex, @"ERROR EXCEPTION Kill -- " + myProcesses[i].ProcessName.ToString());
+                }
             }
         }
 
@@ -569,9 +586,9 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (optimized)
             {
-                //psi = new ProcessStartInfo("cmd", @"/c /q net start uxsms"); // останавливаем aero
-                //Process.Start(psi);
-                addData("cmd", @"/c /q net start uxsms");
+                psi = new ProcessStartInfo("cmd", @"/c net start uxsms"); // останавливаем aero
+                Process.Start(psi);
+                //addData("cmd", @"/c net start uxsms");
             }
         }
 
@@ -597,7 +614,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (!Directory.Exists("log")) { Directory.CreateDirectory("log"); }
 
-            string myFile = @"log\"+index.ToString()+".log";
+            string myFile = @"log\" + index.ToString() + "__" + param + ".log";
 
             if (!File.Exists(myFile))
             {
@@ -605,8 +622,25 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             else
             {
-                File.AppendAllText(myFile, Environment.NewLine+ param, Encoding.UTF8);
+                File.AppendAllText(myFile, Environment.NewLine + param, Encoding.UTF8);
             }
+        }
+
+        private void saveLogNotCloseProcess(string param)
+        {
+            if (!File.Exists(@"log\not_closed_process.log"))
+            {
+                File.WriteAllText(@"log\not_closed_process.log", param, Encoding.UTF8);
+            }
+            else
+            {
+                File.AppendAllText(@"log\not_closed_process.log", Environment.NewLine + param, Encoding.UTF8);
+            }
+        }
+
+        private void bwOptimize_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Успешно завершено!");
         }
     }
 }
