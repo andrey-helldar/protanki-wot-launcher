@@ -53,9 +53,6 @@
             this.bwOptimize = new System.ComponentModel.BackgroundWorker();
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.bwAero = new System.ComponentModel.BackgroundWorker();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,10 +66,10 @@
             this.bPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bPlay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bPlay.Location = new System.Drawing.Point(680, 55);
+            this.bPlay.Location = new System.Drawing.Point(644, 39);
             this.bPlay.Margin = new System.Windows.Forms.Padding(0);
             this.bPlay.Name = "bPlay";
-            this.bPlay.Size = new System.Drawing.Size(150, 50);
+            this.bPlay.Size = new System.Drawing.Size(200, 50);
             this.bPlay.TabIndex = 1;
             this.bPlay.Text = "Играть";
             this.bPlay.UseVisualStyleBackColor = false;
@@ -88,10 +85,10 @@
             this.bLauncher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bLauncher.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bLauncher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bLauncher.Location = new System.Drawing.Point(680, 130);
+            this.bLauncher.Location = new System.Drawing.Point(644, 109);
             this.bLauncher.Margin = new System.Windows.Forms.Padding(0);
             this.bLauncher.Name = "bLauncher";
-            this.bLauncher.Size = new System.Drawing.Size(150, 50);
+            this.bLauncher.Size = new System.Drawing.Size(200, 50);
             this.bLauncher.TabIndex = 2;
             this.bLauncher.Text = "Лаунчер";
             this.bLauncher.UseVisualStyleBackColor = false;
@@ -108,10 +105,10 @@
             this.bUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bUpdate.Location = new System.Drawing.Point(680, 205);
+            this.bUpdate.Location = new System.Drawing.Point(644, 179);
             this.bUpdate.Margin = new System.Windows.Forms.Padding(0);
             this.bUpdate.Name = "bUpdate";
-            this.bUpdate.Size = new System.Drawing.Size(150, 50);
+            this.bUpdate.Size = new System.Drawing.Size(200, 50);
             this.bUpdate.TabIndex = 3;
             this.bUpdate.Text = "Обновить";
             this.bUpdate.UseVisualStyleBackColor = false;
@@ -127,10 +124,10 @@
             this.bVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bVideo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bVideo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bVideo.Location = new System.Drawing.Point(680, 280);
+            this.bVideo.Location = new System.Drawing.Point(644, 249);
             this.bVideo.Margin = new System.Windows.Forms.Padding(0);
             this.bVideo.Name = "bVideo";
-            this.bVideo.Size = new System.Drawing.Size(150, 50);
+            this.bVideo.Size = new System.Drawing.Size(200, 50);
             this.bVideo.TabIndex = 4;
             this.bVideo.Text = "Видео";
             this.bVideo.UseVisualStyleBackColor = false;
@@ -146,10 +143,10 @@
             this.bExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bExit.Location = new System.Drawing.Point(680, 355);
+            this.bExit.Location = new System.Drawing.Point(644, 389);
             this.bExit.Margin = new System.Windows.Forms.Padding(0);
             this.bExit.Name = "bExit";
-            this.bExit.Size = new System.Drawing.Size(150, 50);
+            this.bExit.Size = new System.Drawing.Size(200, 50);
             this.bExit.TabIndex = 5;
             this.bExit.Text = "Выход";
             this.bExit.UseVisualStyleBackColor = false;
@@ -195,12 +192,12 @@
             this.llContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llContent.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llContent.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llContent.Location = new System.Drawing.Point(70, 55);
+            this.llContent.Location = new System.Drawing.Point(30, 40);
             this.llContent.Name = "llContent";
-            this.llContent.Size = new System.Drawing.Size(590, 350);
+            this.llContent.Size = new System.Drawing.Size(595, 370);
             this.llContent.TabIndex = 8;
             this.llContent.TabStop = true;
-            this.llContent.Text = "Получение данных...";
+            this.llContent.Text = "Вы используете самые свежие моды.\r\nТекущая версия Мультипака \'0,8,11,11\"";
             this.llContent.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llContent_LinkClicked);
             // 
             // bwUpdater
@@ -292,12 +289,12 @@
             this.bOptimizePC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bOptimizePC.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bOptimizePC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bOptimizePC.Location = new System.Drawing.Point(510, 355);
+            this.bOptimizePC.Location = new System.Drawing.Point(644, 319);
             this.bOptimizePC.Margin = new System.Windows.Forms.Padding(0);
             this.bOptimizePC.Name = "bOptimizePC";
-            this.bOptimizePC.Size = new System.Drawing.Size(150, 50);
+            this.bOptimizePC.Size = new System.Drawing.Size(200, 50);
             this.bOptimizePC.TabIndex = 10;
-            this.bOptimizePC.Text = "Optimize";
+            this.bOptimizePC.Text = "Оптимизировать";
             this.bOptimizePC.UseVisualStyleBackColor = false;
             this.bOptimizePC.Click += new System.EventHandler(this.bOptimizePC_Click);
             // 
@@ -326,34 +323,12 @@
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llTitle.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTitle_LinkClicked);
             // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.listView1.FullRowSelect = true;
-            this.listView1.Location = new System.Drawing.Point(28, 100);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(479, 348);
-            this.listView1.TabIndex = 12;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 313;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Width = 155;
-            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(860, 460);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.llTitle);
             this.Controls.Add(this.bOptimizePC);
             this.Controls.Add(this.llContent);
@@ -400,9 +375,6 @@
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.LinkLabel llTitle;
         private System.ComponentModel.BackgroundWorker bwAero;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }
 

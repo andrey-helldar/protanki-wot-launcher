@@ -300,8 +300,8 @@ namespace _Hell_PRO_Tanki_Launcher
                             "Рекомендуем обновить Ваш Мультипак до версии '" + sVerPack.ToString() + "'" + Environment.NewLine + Environment.NewLine;
                         bUpdate.Enabled = true;
 
-                        this.llContent.Location = new Point(22, 55);
-                        this.llContent.Size = new Size(638, 377);
+                        this.llContent.Location = new Point(30, 40);
+                        this.llContent.Size = new Size(595, 370);
                     }
 
                     if (updTanks)
@@ -310,8 +310,8 @@ namespace _Hell_PRO_Tanki_Launcher
                             "Необходимо запустить лаунчер игры для обновления до версии '" + sVerTanks.ToString() + "'";
                         bUpdate.Enabled = true;
 
-                        this.llContent.Location = new Point(22, 55);
-                        this.llContent.Size = new Size(638, 377);
+                        this.llContent.Location = new Point(30, 40);
+                        this.llContent.Size = new Size(595, 370);
                     }
                 }
                 else
@@ -320,8 +320,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         "Текущая версия Мультипака '" + sVerModPack + "'";
                     bUpdate.Enabled = false;
 
-                    this.llContent.Location = new Point(70, 130);
-                    this.llContent.Size = new Size(590, 227);
+                    this.llContent.Location = new Point(150, 200);
+                    this.llContent.Size = new Size(477, 100);
                 }
 
                 this.llContent.Text = status;
@@ -433,8 +433,6 @@ namespace _Hell_PRO_Tanki_Launcher
             if (!bwOptimize.IsBusy)
             {
                 optimized = true;
-                listView1.Items.Clear();
-
                 bwOptimize.RunWorkerAsync();
             }
             else
@@ -606,8 +604,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void addData(string attr, string param)
         {
-            int i = listView1.Items.Add(attr).Index;
-            listView1.Items[i].SubItems.Add(param);
+            //int i = listView1.Items.Add(attr).Index;
+            //listView1.Items[i].SubItems.Add(param);
         }
 
         private void saveLog(int index, string param)
