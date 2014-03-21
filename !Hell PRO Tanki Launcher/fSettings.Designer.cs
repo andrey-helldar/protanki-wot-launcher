@@ -35,10 +35,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbAutoOptimize = new System.Windows.Forms.CheckBox();
+            this.cbKillProcesses = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbVideo = new System.Windows.Forms.CheckBox();
             this.cbNews = new System.Windows.Forms.CheckBox();
+            this.llTitle = new System.Windows.Forms.LinkLabel();
+            this.cbAero = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -124,7 +126,8 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox2.Controls.Add(this.cbAutoOptimize);
+            this.groupBox2.Controls.Add(this.cbAero);
+            this.groupBox2.Controls.Add(this.cbKillProcesses);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(12, 99);
             this.groupBox2.Name = "groupBox2";
@@ -133,17 +136,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Оптимизация ПК:";
             // 
-            // cbAutoOptimize
+            // cbKillProcesses
             // 
-            this.cbAutoOptimize.AutoSize = true;
-            this.cbAutoOptimize.Checked = true;
-            this.cbAutoOptimize.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAutoOptimize.Location = new System.Drawing.Point(18, 19);
-            this.cbAutoOptimize.Name = "cbAutoOptimize";
-            this.cbAutoOptimize.Size = new System.Drawing.Size(302, 17);
-            this.cbAutoOptimize.TabIndex = 0;
-            this.cbAutoOptimize.Text = "Автоматически оптимизировать ПК при запуске игры";
-            this.cbAutoOptimize.UseVisualStyleBackColor = true;
+            this.cbKillProcesses.AutoSize = true;
+            this.cbKillProcesses.Checked = true;
+            this.cbKillProcesses.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbKillProcesses.Location = new System.Drawing.Point(18, 19);
+            this.cbKillProcesses.Name = "cbKillProcesses";
+            this.cbKillProcesses.Size = new System.Drawing.Size(240, 17);
+            this.cbKillProcesses.TabIndex = 0;
+            this.cbKillProcesses.Text = "Закрывать приложения при запуске игры";
+            this.cbKillProcesses.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -182,6 +185,35 @@
             this.cbNews.Text = "Уведомлять о новых новостях";
             this.cbNews.UseVisualStyleBackColor = true;
             // 
+            // llTitle
+            // 
+            this.llTitle.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llTitle.AutoSize = true;
+            this.llTitle.BackColor = System.Drawing.Color.Transparent;
+            this.llTitle.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.llTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llTitle.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llTitle.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llTitle.Location = new System.Drawing.Point(146, 0);
+            this.llTitle.Name = "llTitle";
+            this.llTitle.Size = new System.Drawing.Size(79, 15);
+            this.llTitle.TabIndex = 5;
+            this.llTitle.TabStop = true;
+            this.llTitle.Text = "Настройки...";
+            this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            // 
+            // cbAero
+            // 
+            this.cbAero.AutoSize = true;
+            this.cbAero.Checked = true;
+            this.cbAero.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAero.Location = new System.Drawing.Point(300, 19);
+            this.cbAero.Name = "cbAero";
+            this.cbAero.Size = new System.Drawing.Size(246, 17);
+            this.cbAero.TabIndex = 1;
+            this.cbAero.Text = "Отключать Windows Aero при запуске игры";
+            this.cbAero.UseVisualStyleBackColor = true;
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,6 +221,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(640, 285);
+            this.Controls.Add(this.llTitle);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button2);
@@ -198,7 +231,6 @@
             this.Name = "fSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настройки...";
-            this.Move += new System.EventHandler(this.fSettings_Move);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -206,6 +238,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -217,9 +250,11 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox cbAutoOptimize;
+        private System.Windows.Forms.CheckBox cbKillProcesses;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox cbNews;
         private System.Windows.Forms.CheckBox cbVideo;
+        private System.Windows.Forms.LinkLabel llTitle;
+        private System.Windows.Forms.CheckBox cbAero;
     }
 }

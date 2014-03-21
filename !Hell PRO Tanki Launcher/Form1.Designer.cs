@@ -52,6 +52,7 @@
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.bwAero = new System.ComponentModel.BackgroundWorker();
             this.bSettings = new System.Windows.Forms.Button();
+            this.llUpdateStatus = new System.Windows.Forms.LinkLabel();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,12 +157,12 @@
             this.linkLabel1.ActiveLinkColor = System.Drawing.Color.Red;
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.linkLabel1.Location = new System.Drawing.Point(680, 3);
+            this.linkLabel1.Location = new System.Drawing.Point(652, 3);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(164, 15);
+            this.linkLabel1.Size = new System.Drawing.Size(191, 15);
             this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Developed by Andrey Helldar";
@@ -296,6 +297,7 @@
             this.bwOptimize.WorkerReportsProgress = true;
             this.bwOptimize.WorkerSupportsCancellation = true;
             this.bwOptimize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwOptimize_DoWork);
+            this.bwOptimize.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwOptimize_ProgressChanged);
             this.bwOptimize.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwOptimize_RunWorkerCompleted);
             // 
             // llTitle
@@ -334,12 +336,29 @@
             this.bSettings.UseVisualStyleBackColor = true;
             this.bSettings.Click += new System.EventHandler(this.bSettings_Click);
             // 
+            // llUpdateStatus
+            // 
+            this.llUpdateStatus.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llUpdateStatus.AutoSize = true;
+            this.llUpdateStatus.BackColor = System.Drawing.Color.Transparent;
+            this.llUpdateStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llUpdateStatus.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llUpdateStatus.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llUpdateStatus.Location = new System.Drawing.Point(287, 421);
+            this.llUpdateStatus.Name = "llUpdateStatus";
+            this.llUpdateStatus.Size = new System.Drawing.Size(230, 18);
+            this.llUpdateStatus.TabIndex = 13;
+            this.llUpdateStatus.TabStop = true;
+            this.llUpdateStatus.Text = "Оптимизация завершена на: 0%";
+            this.llUpdateStatus.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.llUpdateStatus);
             this.Controls.Add(this.bSettings);
             this.Controls.Add(this.llTitle);
             this.Controls.Add(this.bOptimizePC);
@@ -387,6 +406,7 @@
         private System.Windows.Forms.LinkLabel llTitle;
         private System.ComponentModel.BackgroundWorker bwAero;
         private System.Windows.Forms.Button bSettings;
+        private System.Windows.Forms.LinkLabel llUpdateStatus;
     }
 }
 

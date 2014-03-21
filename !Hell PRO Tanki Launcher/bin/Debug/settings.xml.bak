@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <title />
   <version>0.8.11.10</version>
   <path>G:\Games\World of Tanks\</path>
+  <settings optimize="True" news="True" video="True" />
 </pro>

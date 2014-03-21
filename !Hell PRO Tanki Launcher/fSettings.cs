@@ -35,14 +35,16 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
                     {
-                        cbAutoOptimize.Checked = xmlNode.Attributes["optimize"].InnerText == "False" ? false : true;
+                        cbKillProcesses.Checked = xmlNode.Attributes["kill"].InnerText == "False" ? false : true;
+                        cbAero.Checked = xmlNode.Attributes["aero"].InnerText == "False" ? false : true;
                         cbNews.Checked = xmlNode.Attributes["news"].InnerText == "False" ? false : true;
                         cbVideo.Checked = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
                     }
                 }
                 catch (Exception)
                 {
-                    cbAutoOptimize.Checked = true;
+                    cbKillProcesses.Checked = true;
+                    cbAero.Checked = true;
                     cbNews.Checked = true;
                     cbVideo.Checked = true;
                 }
@@ -53,7 +55,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 version = Application.ProductVersion;
                 path = "";
 
-                cbAutoOptimize.Checked = true;
+                cbKillProcesses.Checked = true;
+                cbAero.Checked = true;
                 cbNews.Checked = true;
                 cbVideo.Checked = true;
             }
@@ -92,7 +95,8 @@ namespace _Hell_PRO_Tanki_Launcher
             wr.WriteEndElement();
 
             wr.WriteStartElement("settings", null);
-            wr.WriteAttributeString("optimize", cbAutoOptimize.Checked.ToString());
+            wr.WriteAttributeString("kill", cbKillProcesses.Checked.ToString());
+            wr.WriteAttributeString("aero", cbAero.Checked.ToString());
             wr.WriteAttributeString("news", cbNews.Checked.ToString());
             wr.WriteAttributeString("video", cbVideo.Checked.ToString());
             wr.WriteEndElement();
@@ -106,10 +110,6 @@ namespace _Hell_PRO_Tanki_Launcher
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void fSettings_Move(object sender, EventArgs e)
-        {
         }
 
         private void moveForm()

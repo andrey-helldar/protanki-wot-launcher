@@ -25,11 +25,17 @@ namespace _Hell_PRO_Tanki_Launcher
         int verPack,
             verTanks,
             verModPack,
-            threadSleep = 1000;
+            threadSleep = 1000,
+            maxPercentUpdateStatus = 100;
 
         bool updPack = false,
             updTanks = false,
-            optimized = false;
+            optimized = false,
+            
+            autoKill = true,
+            autoAero = true,
+            autoNews = true,
+            autoVideo = true;
 
         ProcessStartInfo psi;
 
@@ -62,6 +68,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 notifyIcon.Icon = Properties.Resources.myicon;
                 notifyIcon.Text = xmlTitle + " v" + sVerModPack;
+
+                llUpdateStatus.Text = ""; // Убираем текст с метки статуса обновления
 
                 llVersion.Text = sVerModPack;
 
@@ -119,6 +127,14 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 path = doc.GetElementsByTagName("path")[0].InnerText;
 
+                foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
+                {
+                    autoKill = xmlNode.Attributes["kill"].InnerText == "False" ? false : true;
+                    autoAero = xmlNode.Attributes["aero"].InnerText == "False" ? false : true;
+                    autoNews = xmlNode.Attributes["news"].InnerText == "False" ? false : true;
+                    autoVideo = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
+                }
+
                 sVerModPack = doc.GetElementsByTagName("version")[0].InnerText;
                 verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
 
@@ -131,7 +147,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
                     else
                     {
-                        //Thread.Sleep(threadSleep);
+                        Thread.Sleep(500);
                         loadSettings();
                     }
                 }
@@ -337,6 +353,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bLauncher_Click(object sender, EventArgs e)
         {
+            if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
+
             Process.Start(path + "WoTLauncher.exe");
 
             Hide();
@@ -346,6 +364,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bPlay_Click(object sender, EventArgs e)
         {
+            if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
+
             Process.Start(path + "WorldOfTanks.exe");
 
             Hide();
@@ -443,51 +463,63 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)
         {
-            int myIndex = 0;
+            int myIndex = 0,
+                myProgressStatus = 0;
 
-            // Для начала определим версию ОС для отключения AERO
-            OperatingSystem osInfo = Environment.OSVersion;
-
-            switch (osInfo.Platform)
+            // Проверяем условие: если процесс оптимизации запущен вручную, или указан в настройках, то:
+            if (optimized || autoAero)
             {
-                case System.PlatformID.Win32NT:
-                    switch (osInfo.Version.Major)
-                    {
-                        case 6:
-                            // Win7
-                            saveLog(++myIndex, @"Start -- net stop uxsms");
-                            psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
-                            Process.Start(psi);
-                            saveLog(myIndex, @"End -- net stop uxsms");
-                            //addData("cmd", @"Win7 :: /c /q net stop uxsms");
-                            break;
+                // Для начала определим версию ОС для отключения AERO
+                OperatingSystem osInfo = Environment.OSVersion;
 
-                        case 7:
-                            // Win8
-                            saveLog(++myIndex, @"Start -- net stop uxsms");
-                            psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
-                            Process.Start(psi);
-                            saveLog(myIndex, @"End -- net stop uxsms");
-                            //addData("cmd", @"Win8 :: /c /q net stop uxsms");
-                            break;
+                switch (osInfo.Platform)
+                {
+                    case System.PlatformID.Win32NT:
+                        switch (osInfo.Version.Major)
+                        {
+                            case 6:
+                                // Win7
+                                saveLog(++myIndex, @"Start -- net stop uxsms");
+                                psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
+                                Process.Start(psi);
+                                saveLog(myIndex, @"End -- net stop uxsms");
+                                //addData("cmd", @"Win7 :: /c /q net stop uxsms");
+                                break;
 
-                        /* default:
-                             if (osInfo.Version.Major == 5 && osInfo.Version.Minor != 0)
-                             {
-                                 // WinXP
-                             }
-                             break;*/
-                    }
-                    break;
+                            case 7:
+                                // Win8
+                                saveLog(++myIndex, @"Start -- net stop uxsms");
+                                psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
+                                Process.Start(psi);
+                                saveLog(myIndex, @"End -- net stop uxsms");
+                                //addData("cmd", @"Win8 :: /c /q net stop uxsms");
+                                break;
+
+                            /* default:
+                                 if (osInfo.Version.Major == 5 && osInfo.Version.Minor != 0)
+                                 {
+                                     // WinXP
+                                 }
+                                 break;*/
+                        }
+                        break;
+                }
+
+                maxPercentUpdateStatus = 1;
+                bwOptimize.ReportProgress(++myProgressStatus);
             }
 
+            if (optimized || autoKill)
+            {
+                // Завершаем ненужные процессы путем перебора массива имен с условием отсутствия определенных условий
+                Process[] myProcesses = Process.GetProcesses();
+                int processID = Process.GetCurrentProcess().SessionId;
 
-            // Завершаем ненужные процессы путем перебора массива имен с условием отсутствия определенных условий
-            Process[] myProcesses = Process.GetProcesses();
-            int processID = Process.GetCurrentProcess().SessionId;
+                // Расчитываем значение прогресс бара
+                maxPercentUpdateStatus += myProcesses.Length * 2;
 
-            // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
-            string[] vipProcess = {
+                // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
+                string[] vipProcess = {
                                       Process.GetCurrentProcess().ProcessName.ToString(),
                                       "restart",
                                       "WorldOfTanks", 
@@ -506,51 +538,58 @@ namespace _Hell_PRO_Tanki_Launcher
                                       "winlogon"
                                   };
 
-            // Передаем процессам инфу, что приложение должно закрыться
-            for (int i = 1; i < myProcesses.Length; i++)
-            {
-                try
+                // Передаем процессам инфу, что приложение должно закрыться
+                for (int i = 1; i < myProcesses.Length; i++)
                 {
-                    if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                    try
                     {
-                        saveLog(++myIndex, @"Start close normally -- " + myProcesses[i].ProcessName.ToString());
-                        myProcesses[i].CloseMainWindow();
-                        saveLog(myIndex, @"End close normally -- " + myProcesses[i].ProcessName.ToString());
-                        //addData(myProcesses[i].ProcessName.ToString(), "Closed normally");
-                    }
-                    else
-                    {
-                        saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + "   ||   SessionID : " + myProcesses[i].SessionId.ToString());
-                    }
-                }
-                catch (Exception)
-                {
-                    saveLog(myIndex, @"ERROR EXCEPTION close normally -- " + myProcesses[i].ProcessName.ToString());
-                }
-            }
+                        // Расчитываем значение прогресс бара
+                        bwOptimize.ReportProgress(++myProgressStatus);
 
-            Thread.Sleep(5000); // Ждем 10 секунд завершения, пока приложения нормально завершатся
-
-            // Кто не успел - тот опоздал! Принудительно убиваем процесс
-            for (int i = 1; i < myProcesses.Length; i++)
-            {
-                try
-                {
-                    if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
-                    {
-                        saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
-                        myProcesses[i].Kill();
-                        saveLog(myIndex, @"End Kill -- " + myProcesses[i].ProcessName.ToString());
-                        //addData(myProcesses[i].ProcessName.ToString(), "Killed");
+                        if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                        {
+                            saveLog(++myIndex, @"Start close normally -- " + myProcesses[i].ProcessName.ToString());
+                            myProcesses[i].CloseMainWindow();
+                            saveLog(myIndex, @"End close normally -- " + myProcesses[i].ProcessName.ToString());
+                            //addData(myProcesses[i].ProcessName.ToString(), "Closed normally");
+                        }
+                        else
+                        {
+                            saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + "   ||   SessionID : " + myProcesses[i].SessionId.ToString());
+                        }
                     }
-                    else
+                    catch (Exception)
                     {
-                        saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + " (kill)   ||   SessionID : "+myProcesses[i].SessionId.ToString());
+                        saveLog(myIndex, @"ERROR EXCEPTION close normally -- " + myProcesses[i].ProcessName.ToString());
                     }
                 }
-                catch (Exception)
+
+                Thread.Sleep(5000); // Ждем 5 секунд завершения, пока приложения нормально завершатся
+
+                // Кто не успел - тот опоздал! Принудительно убиваем процесс
+                for (int i = 1; i < myProcesses.Length; i++)
                 {
-                    saveLog(myIndex, @"ERROR EXCEPTION Kill -- " + myProcesses[i].ProcessName.ToString());
+                    try
+                    {
+                        // Расчитываем значение прогресс бара
+                        bwOptimize.ReportProgress(++myProgressStatus);
+
+                        if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                        {
+                            saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
+                            myProcesses[i].Kill();
+                            saveLog(myIndex, @"End Kill -- " + myProcesses[i].ProcessName.ToString());
+                            //addData(myProcesses[i].ProcessName.ToString(), "Killed");
+                        }
+                        else
+                        {
+                            saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + " (kill)   ||   SessionID : " + myProcesses[i].SessionId.ToString());
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        saveLog(myIndex, @"ERROR EXCEPTION Kill -- " + myProcesses[i].ProcessName.ToString());
+                    }
                 }
             }
         }
@@ -644,7 +683,16 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bSettings_Click(object sender, EventArgs e)
         {
             fSettings fSettings = new fSettings();
-            fSettings.ShowDialog();
+            if (fSettings.ShowDialog() == DialogResult.OK)
+            {
+                loadSettings();
+            }
+        }
+
+        private void bwOptimize_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            int perc = (e.ProgressPercentage / maxPercentUpdateStatus) * 100;
+            llUpdateStatus.Text = "Оптимизация завершена на: " + perc.ToString() + "%";
         }
     }
 }
