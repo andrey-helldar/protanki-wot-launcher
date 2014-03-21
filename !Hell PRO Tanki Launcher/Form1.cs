@@ -524,19 +524,30 @@ namespace _Hell_PRO_Tanki_Launcher
                                       "restart",
                                       "WorldOfTanks", 
                                       "WoTLauncher",
-                                      "devenv",
-                                      "CCC", 
-                                      "atieclxx", 
-                                      "avpui", 
+                                      "devenv", // Visual Studio
+                                      "CCC", // ATI
+                                      "atieclxx", // ATI
+                                      "avpui", // Kaspersky
                                       "conhost",
                                       "explorer",
                                       "MOM",
+                                      "taskeng",
                                       "taskhost",
-                                      "RtkNGUI64",
+                                      "RtkNGUI64",  // Realtek
                                       "csrss",
                                       "dwm",
-                                      "winlogon"
-                                  };
+                                      "winlogon",
+                                      "iusb3mon",
+                                      "U3BoostSvr64",
+                                      "U3BoostSvr32",
+                                      "MKey",
+                                      "NvBackend", // NVIDIA
+                                      "nvstreamsvc",// NVIDIA
+                                      "NvTmru",// NVIDIA
+                                      "nvtray",// NVIDIA
+                                      "nvvsvc",// NVIDIA
+                                      "nvxdsync"// NVIDIA
+                                      };
 
                 // Передаем процессам инфу, что приложение должно закрыться
                 for (int i = 1; i < myProcesses.Length; i++)
