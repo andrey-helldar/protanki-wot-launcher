@@ -318,6 +318,10 @@
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llTitle.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTitle_LinkClicked);
             // 
+            // bwAero
+            // 
+            this.bwAero.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwAero_DoWork);
+            // 
             // bSettings
             // 
             this.bSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));

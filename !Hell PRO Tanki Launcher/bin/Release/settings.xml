@@ -2,5 +2,6 @@
 <pro>
   <version>0.8.11.10</version>
   <path>G:\Games\World of Tanks\</path>
+  <type>full</type>
   <settings kill="True" aero="True" news="True" video="True" />
 </pro>

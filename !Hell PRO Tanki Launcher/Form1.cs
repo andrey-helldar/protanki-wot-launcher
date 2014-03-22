@@ -18,6 +18,7 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         string xmlTitle = "",
             path = "",
+            sVerType = "full",
             sVerPack,
             sVerTanks,
             sVerModPack,
@@ -67,7 +68,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 this.Text = xmlTitle + " v" + sVerModPack;
                 this.Icon = Properties.Resources.myicon;
 
-                llTitle.Text = xmlTitle;
+                llTitle.Text = xmlTitle + " (" + sVerType + ")";
 
                 notifyIcon.Icon = Properties.Resources.myicon;
                 notifyIcon.Text = xmlTitle + " v" + sVerModPack;
@@ -129,6 +130,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 xmlTitle = Application.ProductName;
 
                 path = doc.GetElementsByTagName("path")[0].InnerText;
+                sVerType = doc.GetElementsByTagName("type")[0].InnerText;
 
                 foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
                 {
@@ -258,35 +260,46 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdater_DoWork(object sender, DoWorkEventArgs e)
         {
-            //bwUpdater.ReportProgress(0);
+            try
+            {
+                //bwUpdater.ReportProgress(0);
 
-            // Парсим сайт танков
-            /*string s = getResponse("http://worldoftanks.ru");
-            s = s.Remove(0, s.IndexOf("b-game-version") + 16);
-            s = s.Remove(s.IndexOf("</span>")).Replace(".","");             
-             updates = getVersion() < (Convert.ToInt32(s)+0) ? true : false;*/
+                // Парсим сайт танков
+                /*string s = getResponse("http://worldoftanks.ru");
+                s = s.Remove(0, s.IndexOf("b-game-version") + 16);
+                s = s.Remove(s.IndexOf("</span>")).Replace(".","");             
+                 updates = getVersion() < (Convert.ToInt32(s)+0) ? true : false;*/
 
-            // Парсим сайт PRO Танки
-            XmlDocument doc = new XmlDocument();
-            doc.Load(@"http://file.theaces.ru/mods/proupdate/updateFull.xml");
-            sVerPack = doc.GetElementsByTagName("version")[0].InnerText;
-            sUpdateNews = doc.GetElementsByTagName("message")[0].InnerText;
-            sUpdateLink = doc.GetElementsByTagName("download")[0].InnerText;
+                // Парсим сайт PRO Танки
+                XmlDocument doc = new XmlDocument();
+                //doc.Load(@"http://file.theaces.ru/mods/proupdate/updateFull.xml");
+                //doc.Load(@"pro.xml");
+                doc.Load(@"http://ai-rus.com/pro.xml");
+                sVerPack = doc.GetElementsByTagName("version")[0].InnerText;
+                sVerTanks = doc.GetElementsByTagName("tanks")[0].InnerText;
 
+                verPack = Convert.ToInt32(sVerPack.Replace(".", "")) + 0;
+                verTanks = Convert.ToInt32(sVerTanks.Replace(".", "")) + 0;
 
-            XmlDocument doc0 = new XmlDocument();
-            doc0.Load(@"http://ai-rus.com/pro.xml");
-            //sVerPack = doc0.GetElementsByTagName("version")[0].InnerText;
-            sVerTanks = doc0.GetElementsByTagName("tanks")[0].InnerText;
+                int v = getVersion();
+                updTanks = v < 0 || v < verTanks ? true : false;
 
-            verPack = Convert.ToInt32(sVerPack.Replace(".", "")) + 0;
-            verTanks = Convert.ToInt32(sVerTanks.Replace(".", "")) + 0;
+                //Проверяем апдейты на модпак
+                updPack = verModPack < verPack ? true : false;
 
-            int v = getVersion();
-            updTanks = v < 0 || v < verTanks ? true : false;
-
-            //Проверяем апдейты на модпак
-            updPack = verModPack < verPack ? true : false;
+                if (updPack)
+                {
+                    foreach (XmlNode xmlNode in doc.GetElementsByTagName(sVerType))
+                    {
+                        sUpdateNews = xmlNode["message"].InnerText.Replace(":;", Environment.NewLine);
+                        sUpdateLink = xmlNode["download"].InnerText;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
         }
 
 
@@ -341,7 +354,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
 
                     // Добавляем новость об изменениях в модпаке
-                    if (updPack) { status += sUpdateNews; }
+                    if (updPack) { status += Environment.NewLine + sUpdateNews; }
                 }
                 else
                 {
@@ -370,6 +383,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
             Process.Start(path + "WoTLauncher.exe");
 
+            if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
+
             Hide();
             WindowState = FormWindowState.Minimized;
             this.ShowInTaskbar = true;
@@ -380,6 +395,8 @@ namespace _Hell_PRO_Tanki_Launcher
             if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
 
             Process.Start(path + "WorldOfTanks.exe");
+
+            if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
 
             Hide();
             WindowState = FormWindowState.Minimized;
@@ -573,7 +590,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                         {
                             saveLog(++myIndex, @"Start close normally -- " + myProcesses[i].ProcessName.ToString());
-                            myProcesses[i].CloseMainWindow();
+                            //myProcesses[i].CloseMainWindow();
                             saveLog(myIndex, @"End close normally -- " + myProcesses[i].ProcessName.ToString());
                             //addData(myProcesses[i].ProcessName.ToString(), "Closed normally");
                         }
@@ -601,7 +618,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                         {
                             saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
-                            myProcesses[i].Kill();
+                            //myProcesses[i].Kill();
                             saveLog(myIndex, @"End Kill -- " + myProcesses[i].ProcessName.ToString());
                             //addData(myProcesses[i].ProcessName.ToString(), "Killed");
                         }
@@ -729,6 +746,30 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;
             llUpdateStatus.Text = "Оптимизация завершена на: " + ((int)i).ToString() + "%";
+        }
+
+        private void bwAero_DoWork(object sender, DoWorkEventArgs e)
+        {
+            bool t = true;
+
+            Thread.Sleep(5000);
+
+            while (t)
+            {
+                Process[] myProcessL = Process.GetProcessesByName("WoTLauncher");
+                Process[] myProcessW = Process.GetProcessesByName("WorldOfTanks");
+
+                if (myProcessW.Length < 1 && myProcessL.Length < 1)
+                {
+                    psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
+                    Process.Start(psi);
+                    t = false;
+                }
+                else
+                {
+                    Thread.Sleep(5000);
+                }
+            }
         }
     }
 }
