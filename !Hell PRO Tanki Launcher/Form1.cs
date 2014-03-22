@@ -590,7 +590,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                         {
                             saveLog(++myIndex, @"Start close normally -- " + myProcesses[i].ProcessName.ToString());
-                            //myProcesses[i].CloseMainWindow();
+                            myProcesses[i].CloseMainWindow();
                             saveLog(myIndex, @"End close normally -- " + myProcesses[i].ProcessName.ToString());
                             //addData(myProcesses[i].ProcessName.ToString(), "Closed normally");
                         }
@@ -618,7 +618,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                         {
                             saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
-                            //myProcesses[i].Kill();
+                            myProcesses[i].Kill();
                             saveLog(myIndex, @"End Kill -- " + myProcesses[i].ProcessName.ToString());
                             //addData(myProcesses[i].ProcessName.ToString(), "Killed");
                         }
