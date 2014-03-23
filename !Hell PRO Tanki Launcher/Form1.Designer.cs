@@ -200,6 +200,7 @@
             this.llContent.TabIndex = 8;
             this.llContent.TabStop = true;
             this.llContent.Text = "Loading...";
+            this.llContent.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llContent.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llContent_LinkClicked);
             // 
             // bwUpdater

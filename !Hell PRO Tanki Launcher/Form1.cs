@@ -24,6 +24,7 @@ namespace _Hell_PRO_Tanki_Launcher
             sVerModPack,
             sUpdateNews,
             youtubeChannel = "PROTankiWoT",
+            youtubeLink = "",
             sUpdateLink = "http://goo.gl/gr6pFl",
             videoLink = "http://goo.gl/gr6pFl";
 
@@ -778,26 +779,46 @@ namespace _Hell_PRO_Tanki_Launcher
             try
             {
                 string str = "";
+                int i = 0;
 
                 XmlDocument doc = new XmlDocument();
                 doc.Load(@"https://gdata.youtube.com/feeds/api/users/"+youtubeChannel+"/uploads");
 
                 foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
                 {
-                    str += xmlNode["title"].InnerText + "   :::   ";
-
+                    /*str += xmlNode["title"].InnerText + "   :::   ";
                     if (xmlNode["link"].Attributes["rel"].InnerText == "alternate")
                     {
                         str += xmlNode["link"].Attributes["href"].InnerText + Environment.NewLine;
+                    }*/
+
+                    LinkLabel lebel = new LinkLabel();
+                    lebel.SetBounds(10,i*20,100,20);
+                    lebel.AutoSize = true;
+                    lebel.ActiveLinkColor = Color.FromArgb(243, 123, 16);
+                    lebel.ForeColor = Color.FromArgb(243, 123, 16);
+                    lebel.VisitedLinkColor = Color.FromArgb(243, 123, 16);
+                    lebel.LinkColor = Color.FromArgb(243, 123, 16);
+                    lebel.Text = xmlNode["title"].InnerText;
+                    lebel.Name = "llNews" + (++i).ToString();
+                    if (xmlNode["link"].Attributes["rel"].InnerText == "alternate"){
+                        lebel.Links[0].LinkData = xmlNode["link"].Attributes["href"].InnerText;
+                        lebel.Click += new EventHandler(lebel_Click);
                     }
+                    this.gbVideo.Controls.Add(lebel);
                 }
 
-                MessageBox.Show(str);
+               // MessageBox.Show(str);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void lebel_Click(object sender, EventArgs e)
+        {
+            if (youtubeLink != "") { Process.Start(youtubeLink); }
         }
     }
 }
