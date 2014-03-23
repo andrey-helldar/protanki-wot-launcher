@@ -53,6 +53,8 @@
             this.bwAero = new System.ComponentModel.BackgroundWorker();
             this.bSettings = new System.Windows.Forms.Button();
             this.llUpdateStatus = new System.Windows.Forms.LinkLabel();
+            this.gbVideo = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -354,12 +356,35 @@
             this.llUpdateStatus.TabIndex = 13;
             this.llUpdateStatus.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
+            // gbVideo
+            // 
+            this.gbVideo.BackColor = System.Drawing.Color.Transparent;
+            this.gbVideo.ForeColor = System.Drawing.Color.White;
+            this.gbVideo.Location = new System.Drawing.Point(12, 96);
+            this.gbVideo.Name = "gbVideo";
+            this.gbVideo.Size = new System.Drawing.Size(315, 311);
+            this.gbVideo.TabIndex = 14;
+            this.gbVideo.TabStop = false;
+            this.gbVideo.Text = "Видео:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(377, 386);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.gbVideo);
             this.Controls.Add(this.llUpdateStatus);
             this.Controls.Add(this.bSettings);
             this.Controls.Add(this.llTitle);
@@ -409,6 +434,8 @@
         private System.ComponentModel.BackgroundWorker bwAero;
         private System.Windows.Forms.Button bSettings;
         private System.Windows.Forms.LinkLabel llUpdateStatus;
+        private System.Windows.Forms.GroupBox gbVideo;
+        private System.Windows.Forms.Button button1;
     }
 }
 

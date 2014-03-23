@@ -23,6 +23,7 @@ namespace _Hell_PRO_Tanki_Launcher
             sVerTanks,
             sVerModPack,
             sUpdateNews,
+            youtubeChannel = "PROTankiWoT",
             sUpdateLink = "http://goo.gl/gr6pFl",
             videoLink = "http://goo.gl/gr6pFl";
 
@@ -769,6 +770,33 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     Thread.Sleep(5000);
                 }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string str = "";
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(@"https://gdata.youtube.com/feeds/api/users/"+youtubeChannel+"/uploads");
+
+                foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
+                {
+                    str += xmlNode["title"].InnerText + "   :::   ";
+
+                    if (xmlNode["link"].Attributes["rel"].InnerText == "alternate")
+                    {
+                        str += xmlNode["link"].Attributes["href"].InnerText + Environment.NewLine;
+                    }
+                }
+
+                MessageBox.Show(str);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
