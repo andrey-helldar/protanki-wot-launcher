@@ -607,6 +607,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
                 }
 
+				/*
                 Thread.Sleep(5000); // Ждем 5 секунд завершения, пока приложения нормально завершатся
 
                 // Кто не успел - тот опоздал! Принудительно убиваем процесс
@@ -634,6 +635,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         saveLog(myIndex, @"ERROR EXCEPTION Kill -- " + myProcesses[i].ProcessName.ToString());
                     }
                 }
+				*/
             }
         }
 
