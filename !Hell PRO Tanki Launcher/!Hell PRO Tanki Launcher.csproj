@@ -160,6 +160,10 @@
     <None Include="Resources\Project1_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\newVersion50.png" />
+    <None Include="Resources\newVersion.png" />
+    <None Include="Resources\good50.png" />
+    <None Include="Resources\good.png" />
     <None Include="Resources\Settings_back.jpg" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\loading.gif" />

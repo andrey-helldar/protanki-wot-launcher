@@ -46,6 +46,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
         ProcessStartInfo psi;
 
+        // Инициализируем окно статуса обновлений
+        fNewVersion fNewVersion = new fNewVersion();
+
 
         private void showError(string err)
         {
@@ -75,6 +78,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 notifyIcon.Icon = Properties.Resources.myicon;
                 notifyIcon.Text = xmlTitle + " v" + sVerModPack;
+
+                // Грузим видео с ютуба
+                if (!bwVideo.IsBusy) { bwVideo.RunWorkerAsync(); }
 
                 llUpdateStatus.Text = ""; // Убираем текст с метки статуса обновления
 
@@ -341,8 +347,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         status += "Обнаружена новая версия Мультипака (" + sVerPack.ToString() + ")!" + Environment.NewLine;
                         bUpdate.Enabled = true;
 
-                        this.llContent.Location = new Point(30, 40);
-                        this.llContent.Size = new Size(595, 370);
+                        //this.llContent.Location = new Point(30, 40);
+                        //this.llContent.Size = new Size(595, 370);
 
                         videoLink = sUpdateLink;
                     }
@@ -352,12 +358,20 @@ namespace _Hell_PRO_Tanki_Launcher
                         status += "Обнаружена новая версия клиента игры (" + sVerTanks.ToString() + ")!" + Environment.NewLine;
                         bUpdate.Enabled = true;
 
-                        this.llContent.Location = new Point(30, 40);
-                        this.llContent.Size = new Size(595, 370);
+                        //this.llContent.Location = new Point(30, 40);
+                        //this.llContent.Size = new Size(595, 370);
                     }
 
                     // Добавляем новость об изменениях в модпаке
                     if (updPack) { status += Environment.NewLine + sUpdateNews; }
+
+                    // Изменяем изображение иконки статуса обновлений
+                    pbNewVersion.BackgroundImage = Properties.Resources.newVersion;
+                    pbNewVersion.Cursor = Cursors.Hand;
+
+                    // Окно статуса обновлений
+                    fNewVersion.linkLabel1.Text = status;
+                    fNewVersion.ShowDialog();
                 }
                 else
                 {
@@ -365,11 +379,18 @@ namespace _Hell_PRO_Tanki_Launcher
                         "Текущая версия Мультипака '" + sVerModPack + "'";
                     bUpdate.Enabled = false;
 
-                    this.llContent.Location = new Point(150, 200);
-                    this.llContent.Size = new Size(477, 100);
+                    //this.llContent.Location = new Point(150, 200);
+                    //this.llContent.Size = new Size(477, 100);
+
+                    // Изменяем изображение иконки статуса обновлений
+                    pbNewVersion.BackgroundImage = Properties.Resources.good;
+                    pbNewVersion.Cursor = Cursors.Default;
+
+                    // Окно статуса обновлений
+                    fNewVersion.linkLabel1.Text = status;
                 }
 
-                this.llContent.Text = status;
+                //this.llContent.Text = status;
                 notifyIcon.ShowBalloonTip(2000, xmlTitle, status, ToolTipIcon.Info);
             }
             catch (Exception)
@@ -415,12 +436,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 this.WndProc(ref msg);
             };
 
-            llContent.MouseDown += delegate
+            /*llContent.MouseDown += delegate
             {
                 llContent.Capture = false;
                 var msg = Message.Create(this.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
                 this.WndProc(ref msg);
-            };
+            };*/
         }
 
         private void bUpdate_Click(object sender, EventArgs e)
@@ -778,7 +799,31 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Инфа тут:
+        //          http://www.cyberforum.ru/windows-forms/thread740428.html
+
+        /* Запрос тут:
+         * https://www.google.ru/search?q=%D0%BA%D0%B0%D0%BA+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%BE+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C+linklabel+c%23&oq=%D0%BA%D0%B0%D0%BA+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%BE+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C+linklabel+c%23&aqs=chrome..69i57.11575j0j7&sourceid=chrome&espv=2&es_sm=93&ie=UTF-8
+         * */
+        private void lebel_Click(object sender, EventArgs e)
+        {
+            Process.Start((sender as LinkLabel).Links[0].LinkData.ToString());
+        }
+
+        private void pbNewVersion_Click(object sender, EventArgs e)
+        {
+            // Если версия актуальна, то перепроверяем ее, иначе сразу открываем окно
+            if (pbNewVersion.BackgroundImage == Properties.Resources.good)
+            {
+                if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
+            }
+            else
+            {
+                fNewVersion.ShowDialog();
+            }
+        }
+
+        private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try
             {
@@ -786,10 +831,12 @@ namespace _Hell_PRO_Tanki_Launcher
                     r;
 
                 XmlDocument doc = new XmlDocument();
-                doc.Load(@"https://gdata.youtube.com/feeds/api/users/"+youtubeChannel+"/uploads");
+                doc.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
 
                 foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
                 {
+                    if (i >= 12) { break; }
+
                     /*str += xmlNode["title"].InnerText + "   :::   ";
                     if (xmlNode["link"].Attributes["rel"].InnerText == "alternate")
                     {
@@ -797,7 +844,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }*/
 
                     LinkLabel lebel = new LinkLabel();
-                    lebel.SetBounds(10,i*20+20,100,20);
+                    lebel.SetBounds(10, i * 30 + 40, 100, 20);
                     lebel.AutoSize = true;
                     lebel.ActiveLinkColor = Color.FromArgb(243, 123, 16);
                     lebel.BackColor = Color.Transparent;
@@ -805,35 +852,24 @@ namespace _Hell_PRO_Tanki_Launcher
                     lebel.VisitedLinkColor = Color.FromArgb(243, 123, 16);
                     lebel.LinkColor = Color.FromArgb(243, 123, 16);
                     lebel.LinkBehavior = LinkBehavior.HoverUnderline;
+                    lebel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                     lebel.Text = xmlNode["published"].InnerText.Remove(10) + ": ";
                     lebel.Text += xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText;
                     lebel.Name = "llNews" + (++i).ToString();
-                    if (xmlNode["link"].Attributes["rel"].InnerText == "alternate"){
+                    if (xmlNode["link"].Attributes["rel"].InnerText == "alternate")
+                    {
                         lebel.Links[0].LinkData = xmlNode["link"].Attributes["href"].InnerText;
                         lebel.Click += new EventHandler(lebel_Click);
                     }
                     this.Controls.Add(lebel);
-
-                    if (i >= 9) { break; }
                 }
 
-               // MessageBox.Show(str);
+                // MessageBox.Show(str);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
-        // Инфа тут:
-        //          http://www.cyberforum.ru/windows-forms/thread740428.html
-        private void lebel_Click(object sender, EventArgs e)
-        {
-            Process.Start((sender as LinkLabel).Links[0].LinkData.ToString());
-        }
-
-        /* Запрос тут:
-         * https://www.google.ru/search?q=%D0%BA%D0%B0%D0%BA+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%BE+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C+linklabel+c%23&oq=%D0%BA%D0%B0%D0%BA+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%BE+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C+linklabel+c%23&aqs=chrome..69i57.11575j0j7&sourceid=chrome&espv=2&es_sm=93&ie=UTF-8
-         * */
     }
 }

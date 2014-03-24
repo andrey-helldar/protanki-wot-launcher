@@ -15,5 +15,10 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             InitializeComponent();
         }
+
+        private void bCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

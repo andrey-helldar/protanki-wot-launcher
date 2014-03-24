@@ -36,7 +36,6 @@
             this.bExit = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.llVersion = new System.Windows.Forms.LinkLabel();
-            this.llContent = new System.Windows.Forms.LinkLabel();
             this.bwUpdater = new System.ComponentModel.BackgroundWorker();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -53,8 +52,8 @@
             this.bwAero = new System.ComponentModel.BackgroundWorker();
             this.bSettings = new System.Windows.Forms.Button();
             this.llUpdateStatus = new System.Windows.Forms.LinkLabel();
-            this.button1 = new System.Windows.Forms.Button();
             this.pbNewVersion = new System.Windows.Forms.PictureBox();
+            this.bwVideo = new System.ComponentModel.BackgroundWorker();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbNewVersion)).BeginInit();
             this.SuspendLayout();
@@ -186,23 +185,6 @@
             this.llVersion.TabStop = true;
             this.llVersion.Text = "0.0.0.0";
             this.llVersion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llVersion_LinkClicked);
-            // 
-            // llContent
-            // 
-            this.llContent.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llContent.BackColor = System.Drawing.Color.Transparent;
-            this.llContent.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.llContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llContent.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llContent.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llContent.Location = new System.Drawing.Point(30, 40);
-            this.llContent.Name = "llContent";
-            this.llContent.Size = new System.Drawing.Size(555, 370);
-            this.llContent.TabIndex = 8;
-            this.llContent.TabStop = true;
-            this.llContent.Text = "Loading...";
-            this.llContent.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llContent.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llContent_LinkClicked);
             // 
             // bwUpdater
             // 
@@ -358,23 +340,23 @@
             this.llUpdateStatus.TabIndex = 13;
             this.llUpdateStatus.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(149, 420);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // pbNewVersion
             // 
-            this.pbNewVersion.Location = new System.Drawing.Point(591, 39);
+            this.pbNewVersion.BackColor = System.Drawing.Color.Transparent;
+            this.pbNewVersion.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.good;
+            this.pbNewVersion.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pbNewVersion.Location = new System.Drawing.Point(592, 2);
             this.pbNewVersion.Name = "pbNewVersion";
-            this.pbNewVersion.Size = new System.Drawing.Size(50, 50);
+            this.pbNewVersion.Size = new System.Drawing.Size(20, 20);
             this.pbNewVersion.TabIndex = 16;
             this.pbNewVersion.TabStop = false;
+            this.pbNewVersion.Click += new System.EventHandler(this.pbNewVersion_Click);
+            // 
+            // bwVideo
+            // 
+            this.bwVideo.WorkerReportsProgress = true;
+            this.bwVideo.WorkerSupportsCancellation = true;
+            this.bwVideo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwVideo_RunWorkerCompleted);
             // 
             // fIndex
             // 
@@ -383,12 +365,10 @@
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
             this.ClientSize = new System.Drawing.Size(860, 460);
             this.Controls.Add(this.pbNewVersion);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.llUpdateStatus);
             this.Controls.Add(this.bSettings);
             this.Controls.Add(this.llTitle);
             this.Controls.Add(this.bOptimizePC);
-            this.Controls.Add(this.llContent);
             this.Controls.Add(this.llVersion);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.bExit);
@@ -417,7 +397,6 @@
         private System.Windows.Forms.Button bExit;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel llVersion;
-        private System.Windows.Forms.LinkLabel llContent;
         private System.ComponentModel.BackgroundWorker bwUpdater;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
@@ -434,8 +413,8 @@
         private System.ComponentModel.BackgroundWorker bwAero;
         private System.Windows.Forms.Button bSettings;
         private System.Windows.Forms.LinkLabel llUpdateStatus;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pbNewVersion;
+        private System.ComponentModel.BackgroundWorker bwVideo;
     }
 }
 
