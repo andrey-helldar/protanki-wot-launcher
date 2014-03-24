@@ -88,6 +88,12 @@
     <Compile Include="fIndex.Designer.cs">
       <DependentUpon>fIndex.cs</DependentUpon>
     </Compile>
+    <Compile Include="fNewVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fNewVersion.Designer.cs">
+      <DependentUpon>fNewVersion.cs</DependentUpon>
+    </Compile>
     <Compile Include="fSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="fIndex.resx">
       <DependentUpon>fIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fNewVersion.resx">
+      <DependentUpon>fNewVersion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fSettings.resx">
       <DependentUpon>fSettings.cs</DependentUpon>

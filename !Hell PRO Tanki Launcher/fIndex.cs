@@ -782,8 +782,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                string str = "";
-                int i = 0;
+                int i = 0,
+                    r;
 
                 XmlDocument doc = new XmlDocument();
                 doc.Load(@"https://gdata.youtube.com/feeds/api/users/"+youtubeChannel+"/uploads");
@@ -797,19 +797,24 @@ namespace _Hell_PRO_Tanki_Launcher
                     }*/
 
                     LinkLabel lebel = new LinkLabel();
-                    lebel.SetBounds(10,i*20,100,20);
+                    lebel.SetBounds(10,i*20+20,100,20);
                     lebel.AutoSize = true;
                     lebel.ActiveLinkColor = Color.FromArgb(243, 123, 16);
+                    lebel.BackColor = Color.Transparent;
                     lebel.ForeColor = Color.FromArgb(243, 123, 16);
                     lebel.VisitedLinkColor = Color.FromArgb(243, 123, 16);
                     lebel.LinkColor = Color.FromArgb(243, 123, 16);
-                    lebel.Text = xmlNode["title"].InnerText;
+                    lebel.LinkBehavior = LinkBehavior.HoverUnderline;
+                    lebel.Text = xmlNode["published"].InnerText.Remove(10) + ": ";
+                    lebel.Text += xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText;
                     lebel.Name = "llNews" + (++i).ToString();
                     if (xmlNode["link"].Attributes["rel"].InnerText == "alternate"){
                         lebel.Links[0].LinkData = xmlNode["link"].Attributes["href"].InnerText;
                         lebel.Click += new EventHandler(lebel_Click);
                     }
-                    this.gbVideo.Controls.Add(lebel);
+                    this.Controls.Add(lebel);
+
+                    if (i >= 9) { break; }
                 }
 
                // MessageBox.Show(str);
