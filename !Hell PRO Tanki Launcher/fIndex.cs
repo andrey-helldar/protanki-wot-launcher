@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using System.Xml;
 using System.Threading;
+using Microsoft.Win32;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -24,20 +25,18 @@ namespace _Hell_PRO_Tanki_Launcher
             sVerModPack,
             sUpdateNews,
             youtubeChannel = "PROTankiWoT",
-            youtubeLink = "",
             sUpdateLink = "http://goo.gl/gr6pFl",
             videoLink = "http://goo.gl/gr6pFl";
 
         int verPack,
             verTanks,
             verModPack,
-            threadSleep = 1000,
             maxPercentUpdateStatus = 1;
 
         bool updPack = false,
             updTanks = false,
             optimized = false,
-            
+
             autoKill = true,
             autoForceKill = false,
             autoAero = true,
@@ -52,7 +51,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void showError(string err)
         {
-            MessageBox.Show(this, err, "Обнаружена ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, err, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public fIndex()
@@ -90,6 +89,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 moveForm();
 
+                //if (!bwUpdateLauncher.IsBusy) { bwUpdateLauncher.RunWorkerAsync(); }
+
                 bwUpdater.WorkerReportsProgress = true;
                 bwUpdater.WorkerSupportsCancellation = true;
 
@@ -105,110 +106,162 @@ namespace _Hell_PRO_Tanki_Launcher
         // Скачиваем и устанавливаем необходимую версию .NET Framework
         public void getFramework()
         {
-            string query = "";
-
-            Microsoft.Win32.RegistryKey myRegKey = Microsoft.Win32.Registry.LocalMachine;
-            // 3.0
-            query += !Directory.Exists(Environment.SystemDirectory + @"\..\Microsoft.NET\Framework\v3.0\") ? "3.0:" : "";
-
-            // 4.0
-            myRegKey = myRegKey.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4.0\Client\", true);
             try
             {
-                query += (string)myRegKey.GetValue("version") != "4.0.0.0" ? "4.0" : "";
-            }
-            catch (Exception ex1)
-            {
-                query += (string)myRegKey.GetValue("version") != "4.0.0.0" ? "4.0" : "";
-                showError(ex1.Message);
-            }
+                string mess = "";
 
-            if (query != "") MessageBox.Show(query);
+                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727");
+
+
+                // v2.0.50727
+                if (Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727") != null)
+                {
+                    if ((int)key.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine; }
+                }
+                else
+                {
+                    mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
+                }
+
+
+                // v3.0.30729
+                if (Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.0") != null)
+                {
+                    if ((int)key.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine; }
+                }
+                else
+                {
+                    mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
+                }
+
+
+                // v3.5
+                if (Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5") != null)
+                {
+                    if ((int)key.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine; }
+                }
+                else
+                {
+                    mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
+                }
+
+
+                // v4.0
+                if (Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4.0\Client") != null)
+                {
+                    if ((int)key.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine; }
+                }
+                else
+                {
+                    mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
+                }
+
+                if (mess.Length > 0)
+                {
+                    MessageBox.Show(this, "Для корректной работы приложения требуется установка следующих пакетов:" + Environment.NewLine + mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                showError(ex.Message);
+            }
         }
 
         // Загружаем настройки
         public void loadSettings()
         {
-            if (File.Exists("settings.xml"))
+            try
             {
-                XmlDocument doc = new XmlDocument();
-                doc.Load("settings.xml");
-
-                //xmlTitle = doc.GetElementsByTagName("title")[0].InnerText;
-                //xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
-                xmlTitle = Application.ProductName;
-
-                path = doc.GetElementsByTagName("path")[0].InnerText;
-                sVerType = doc.GetElementsByTagName("type")[0].InnerText;
-
-                foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
+                if (File.Exists("settings.xml"))
                 {
-                    autoKill = xmlNode.Attributes["kill"].InnerText == "False" ? false : true;
-                    autoAero = xmlNode.Attributes["aero"].InnerText == "False" ? false : true;
-                    autoNews = xmlNode.Attributes["news"].InnerText == "False" ? false : true;
-                    autoVideo = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
-                }
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load("settings.xml");
 
-                sVerModPack = doc.GetElementsByTagName("version")[0].InnerText;
-                verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
+                    //xmlTitle = doc.GetElementsByTagName("title")[0].InnerText;
+                    //xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
+                    xmlTitle = Application.ProductName;
 
-                //if (Directory.Exists(path))
-                if (File.Exists(path + "version.xml"))
-                {
-                    if (!bwUpdater.IsBusy)
+                    path = doc.GetElementsByTagName("path")[0].InnerText;
+                    sVerType = doc.GetElementsByTagName("type")[0].InnerText;
+
+                    foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
                     {
-                        this.bwUpdater.RunWorkerAsync();
+                        autoKill = xmlNode.Attributes["kill"].InnerText == "False" ? false : true;
+                        autoAero = xmlNode.Attributes["aero"].InnerText == "False" ? false : true;
+                        autoNews = xmlNode.Attributes["news"].InnerText == "False" ? false : true;
+                        autoVideo = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
+                    }
+
+                    sVerModPack = doc.GetElementsByTagName("version")[0].InnerText;
+                    verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
+
+                    //if (Directory.Exists(path))
+                    if (File.Exists(path + "version.xml"))
+                    {
+                        if (!bwUpdater.IsBusy)
+                        {
+                            this.bwUpdater.RunWorkerAsync();
+                        }
+                        else
+                        {
+                            Thread.Sleep(500);
+                            loadSettings();
+                        }
                     }
                     else
                     {
-                        Thread.Sleep(500);
-                        loadSettings();
+                       // checkTanks();
                     }
                 }
                 else
                 {
-                    checkTanks();
+                    MessageBox.Show("Файл настроек не обнаружен!" + Environment.NewLine + "Будут применены настройки по-умолчанию.");
+
+                    xmlTitle = Application.ProductName;
+
+                    sVerModPack = Application.ProductVersion;
+                    verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
+
+                    path = "";
+
+                    //checkTanks();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Файл настроек не обнаружен!" + Environment.NewLine + "Будут применены настройки по-умолчанию.");
-
-                xmlTitle = Application.ProductName;
-
-                sVerModPack = Application.ProductVersion;
-                verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
-
-                path = "";
-
-                checkTanks();
+                showError(ex.Message);
             }
         }
 
         // Если папка с танками не найдена, запускаем рекурсию, пока папка не будет указана верно
         public void checkTanks()
         {
-            MessageBox.Show("Папка 'World of Tanks' задана некорректно");
-
-            fSettings fSettings = new fSettings();
-            if (fSettings.ShowDialog() == DialogResult.OK)
+            try
             {
-                loadSettings();
+                MessageBox.Show("Папка 'World of Tanks' задана некорректно");
 
-                if (File.Exists(path + "version.xml"))
+                fSettings fSettings = new fSettings();
+                if (fSettings.ShowDialog() == DialogResult.OK)
                 {
-                    if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
+                    loadSettings();
+
+                    if (File.Exists(path + "version.xml"))
+                    {
+                        if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
+                    }
+                   /* else
+                    {
+                        checkTanks();
+                    }*/
                 }
-                else
+               /* else
                 {
-                    //Thread.Sleep(threadSleep);
                     checkTanks();
-                }
+                }*/
             }
-            else
+            catch (Exception ex)
             {
-                //Thread.Sleep(threadSleep);
-                checkTanks();
+                showError(ex.Message);
             }
         }
 
@@ -254,7 +307,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     default: this.BackgroundImage = Properties.Resources.back_7; break;
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex) { /*showError(ex.Message);*/ this.BackgroundImage = Properties.Resources.back_7; }
         }
 
         private void bExit_Click(object sender, EventArgs e)
@@ -283,7 +336,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 XmlDocument doc = new XmlDocument();
                 //doc.Load(@"http://file.theaces.ru/mods/proupdate/updateFull.xml");
                 //doc.Load(@"pro.xml");
-                doc.Load(@"http://ai-rus.com/pro.xml");
+                doc.Load(@"http://ai-rus.com/pro/pro.xml");
                 sVerPack = doc.GetElementsByTagName("version")[0].InnerText;
                 sVerTanks = doc.GetElementsByTagName("tanks")[0].InnerText;
 
@@ -307,37 +360,43 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
+                showError(ex.Message);
             }
         }
 
 
         static string getResponse(string uri)
         {
-            StringBuilder sb = new StringBuilder();
-            byte[] buf = new byte[8192];
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream resStream = response.GetResponseStream();
-            int count = 0;
-            do
+            try
             {
-                count = resStream.Read(buf, 0, buf.Length);
-                if (count != 0)
+                StringBuilder sb = new StringBuilder();
+                byte[] buf = new byte[8192];
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream resStream = response.GetResponseStream();
+                int count = 0;
+                do
                 {
-                    sb.Append(Encoding.Default.GetString(buf, 0, count));
+                    count = resStream.Read(buf, 0, buf.Length);
+                    if (count != 0)
+                    {
+                        sb.Append(Encoding.Default.GetString(buf, 0, count));
+                    }
                 }
+                while (count > 0);
+                return sb.ToString();
             }
-            while (count > 0);
-            return sb.ToString();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return "null";
+            }
         }
 
         private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try
             {
-                //pWork.Visible = false;
-
                 string status = "";
 
                 if (updPack || updTanks)
@@ -395,36 +454,50 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception)
             {
-                MessageBox.Show("Возникла ошибка. Требуется перезапустить лаунчер модпака.");
+                MessageBox.Show("Возникла ошибка обновления. Требуется перезапустить лаунчер модпака.");
                 Process.Start("restart.exe", Process.GetCurrentProcess().ProcessName);
-                this.Close();
+                Process.GetCurrentProcess().Kill();
             }
         }
 
         private void bLauncher_Click(object sender, EventArgs e)
         {
-            if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
+            try
+            {
+                if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
 
-            Process.Start(path + "WoTLauncher.exe");
+                Process.Start(path + "WoTLauncher.exe");
 
-            if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
+                if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
 
-            Hide();
-            WindowState = FormWindowState.Minimized;
-            this.ShowInTaskbar = true;
+                Hide();
+                WindowState = FormWindowState.Minimized;
+                this.ShowInTaskbar = true;
+            }
+            catch (Exception ex)
+            {
+                showError(ex.Message);
+            }
         }
 
         private void bPlay_Click(object sender, EventArgs e)
         {
-            if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
+            try
+            {
+                if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
 
-            Process.Start(path + "WorldOfTanks.exe");
+                Process.Start(path + "WorldOfTanks.exe");
 
-            if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
+                if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
 
-            Hide();
-            WindowState = FormWindowState.Minimized;
-            this.ShowInTaskbar = true;
+                Hide();
+                WindowState = FormWindowState.Minimized;
+                this.ShowInTaskbar = true;
+            }
+            catch (Exception ex)
+            {
+                showError(ex.Message);
+            }
         }
 
         private void moveForm()
@@ -435,13 +508,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 var msg = Message.Create(this.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
                 this.WndProc(ref msg);
             };
-
-            /*llContent.MouseDown += delegate
-            {
-                llContent.Capture = false;
-                var msg = Message.Create(this.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
-                this.WndProc(ref msg);
-            };*/
         }
 
         private void bUpdate_Click(object sender, EventArgs e)
@@ -495,85 +561,83 @@ namespace _Hell_PRO_Tanki_Launcher
             this.ShowInTaskbar = true;
         }
 
-        private void bwUpdater_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            //pWork.Visible = true;
-            //pWork.Location = new Point(4, 25);
-            //pWork.Size = new Size(852, 431);
-        }
-
         private void bOptimizePC_Click(object sender, EventArgs e)
         {
-            if (!bwOptimize.IsBusy)
+            if (MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." + Environment.NewLine + "Вы хотите продолжить?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                optimized = true;
-                bwOptimize.RunWorkerAsync();
-            }
-            else
-            {
-                MessageBox.Show(this, "Подождите завершения предыдущей операции", "Оптимизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!bwOptimize.IsBusy)
+                {
+                    optimized = true;
+                    bwOptimize.RunWorkerAsync();
+                }
+                else
+                {
+                    MessageBox.Show(this, "Подождите завершения предыдущей операции", "Оптимизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
         private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)
         {
-            int myIndex = 0,
-                myProgressStatus = 0;
-
-            // Проверяем условие: если процесс оптимизации запущен вручную, или указан в настройках, то:
-            if (optimized || autoAero)
+            try
             {
-                // Для начала определим версию ОС для отключения AERO
-                OperatingSystem osInfo = Environment.OSVersion;
+                int myIndex = 0,
+                    myProgressStatus = 0;
 
-                switch (osInfo.Platform)
+                // Проверяем условие: если процесс оптимизации запущен вручную, или указан в настройках, то:
+                if (optimized || autoAero)
                 {
-                    case System.PlatformID.Win32NT:
-                        switch (osInfo.Version.Major)
-                        {
-                            case 6:
-                                // Win7
-                                saveLog(++myIndex, @"Start -- net stop uxsms");
-                                psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
-                                Process.Start(psi);
-                                saveLog(myIndex, @"End -- net stop uxsms");
-                                //addData("cmd", @"Win7 :: /c /q net stop uxsms");
-                                break;
+                    // Для начала определим версию ОС для отключения AERO
+                    OperatingSystem osInfo = Environment.OSVersion;
 
-                            case 7:
-                                // Win8
-                                saveLog(++myIndex, @"Start -- net stop uxsms");
-                                psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
-                                Process.Start(psi);
-                                saveLog(myIndex, @"End -- net stop uxsms");
-                                //addData("cmd", @"Win8 :: /c /q net stop uxsms");
-                                break;
+                    switch (osInfo.Platform)
+                    {
+                        case System.PlatformID.Win32NT:
+                            switch (osInfo.Version.Major)
+                            {
+                                case 6:
+                                    // Win7
+                                    saveLog(++myIndex, @"Start -- net stop uxsms");
+                                    psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
+                                    Process.Start(psi);
+                                    saveLog(myIndex, @"End -- net stop uxsms");
+                                    //addData("cmd", @"Win7 :: /c /q net stop uxsms");
+                                    break;
 
-                            /* default:
-                                 if (osInfo.Version.Major == 5 && osInfo.Version.Minor != 0)
-                                 {
-                                     // WinXP
-                                 }
-                                 break;*/
-                        }
-                        break;
+                                case 7:
+                                    // Win8
+                                    saveLog(++myIndex, @"Start -- net stop uxsms");
+                                    psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
+                                    Process.Start(psi);
+                                    saveLog(myIndex, @"End -- net stop uxsms");
+                                    //addData("cmd", @"Win8 :: /c /q net stop uxsms");
+                                    break;
+
+                                /* default:
+                                     if (osInfo.Version.Major == 5 && osInfo.Version.Minor != 0)
+                                     {
+                                         // WinXP
+                                     }
+                                     break;*/
+                            }
+                            break;
+                    }
+
+                    maxPercentUpdateStatus = 1;
+                    bwOptimize.ReportProgress(++myProgressStatus);
                 }
 
-                maxPercentUpdateStatus = 1;
-                bwOptimize.ReportProgress(++myProgressStatus);
-            }
+                if (optimized || autoKill)
+                {
+                    // Завершаем ненужные процессы путем перебора массива имен с условием отсутствия определенных условий
+                    Process[] myProcesses = Process.GetProcesses();
+                    int processID = Process.GetCurrentProcess().SessionId;
 
-            if (optimized || autoKill)
-            {
-                // Завершаем ненужные процессы путем перебора массива имен с условием отсутствия определенных условий
-                Process[] myProcesses = Process.GetProcesses();
-                int processID = Process.GetCurrentProcess().SessionId;
+                    // Расчитываем значение прогресс бара
+                    maxPercentUpdateStatus += myProcesses.Length * 2 - 2;
 
-                // Расчитываем значение прогресс бара
-                maxPercentUpdateStatus += myProcesses.Length * 2 - 2;
-
-                // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
-                string[] vipProcess = {
+                    // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
+                    string[] vipProcess = {
                                       Process.GetCurrentProcess().ProcessName.ToString(),
                                       "restart",
                                       "WorldOfTanks", 
@@ -600,40 +664,14 @@ namespace _Hell_PRO_Tanki_Launcher
                                       "NvTmru",// NVIDIA
                                       "nvtray",// NVIDIA
                                       "nvvsvc",// NVIDIA
-                                      "nvxdsync"// NVIDIA
+                                      "nvxdsync",// NVIDIA
+                                      "Skype",
+                                      "qip",
+                                      "icq",
+                                      "fraps"
                                       };
 
-                // Передаем процессам инфу, что приложение должно закрыться
-                for (int i = 1; i < myProcesses.Length; i++)
-                {
-                    try
-                    {
-                        // Расчитываем значение прогресс бара
-                        bwOptimize.ReportProgress(++myProgressStatus);
-
-                        if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
-                        {
-                            saveLog(++myIndex, @"Start close normally -- " + myProcesses[i].ProcessName.ToString());
-                            myProcesses[i].CloseMainWindow();
-                            saveLog(myIndex, @"End close normally -- " + myProcesses[i].ProcessName.ToString());
-                            //addData(myProcesses[i].ProcessName.ToString(), "Closed normally");
-                        }
-                        else
-                        {
-                            saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + "   ||   SessionID : " + myProcesses[i].SessionId.ToString());
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        saveLog(myIndex, @"ERROR EXCEPTION close normally -- " + myProcesses[i].ProcessName.ToString());
-                    }
-                }
-
-                if (autoForceKill)
-                {
-                    Thread.Sleep(5000); // Ждем 5 секунд завершения, пока приложения нормально завершатся
-
-                    // Кто не успел - тот опоздал! Принудительно убиваем процесс
+                    // Передаем процессам инфу, что приложение должно закрыться
                     for (int i = 1; i < myProcesses.Length; i++)
                     {
                         try
@@ -643,22 +681,57 @@ namespace _Hell_PRO_Tanki_Launcher
 
                             if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
                             {
-                                saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
-                                myProcesses[i].Kill();
-                                saveLog(myIndex, @"End Kill -- " + myProcesses[i].ProcessName.ToString());
-                                //addData(myProcesses[i].ProcessName.ToString(), "Killed");
+                                saveLog(++myIndex, @"Start close normally -- " + myProcesses[i].ProcessName.ToString());
+                                myProcesses[i].CloseMainWindow();
+                                saveLog(myIndex, @"End close normally -- " + myProcesses[i].ProcessName.ToString());
+                                //addData(myProcesses[i].ProcessName.ToString(), "Closed normally");
                             }
                             else
                             {
-                                saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + " (kill)   ||   SessionID : " + myProcesses[i].SessionId.ToString());
+                                saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + "   ||   SessionID : " + myProcesses[i].SessionId.ToString());
                             }
                         }
                         catch (Exception)
                         {
-                            saveLog(myIndex, @"ERROR EXCEPTION Kill -- " + myProcesses[i].ProcessName.ToString());
+                            saveLog(myIndex, @"ERROR EXCEPTION close normally -- " + myProcesses[i].ProcessName.ToString());
+                        }
+                    }
+
+                    if (autoForceKill)
+                    {
+                        Thread.Sleep(5000); // Ждем 5 секунд завершения, пока приложения нормально завершатся
+
+                        // Кто не успел - тот опоздал! Принудительно убиваем процесс
+                        for (int i = 1; i < myProcesses.Length; i++)
+                        {
+                            try
+                            {
+                                // Расчитываем значение прогресс бара
+                                bwOptimize.ReportProgress(++myProgressStatus);
+
+                                if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                                {
+                                    saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
+                                    myProcesses[i].Kill();
+                                    saveLog(myIndex, @"End Kill -- " + myProcesses[i].ProcessName.ToString());
+                                    //addData(myProcesses[i].ProcessName.ToString(), "Killed");
+                                }
+                                else
+                                {
+                                    saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + " (kill)   ||   SessionID : " + myProcesses[i].SessionId.ToString());
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                saveLog(myIndex, @"ERROR EXCEPTION Kill -- " + myProcesses[i].ProcessName.ToString());
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                showError(ex.Message);
             }
         }
 
@@ -692,9 +765,9 @@ namespace _Hell_PRO_Tanki_Launcher
             // Раньше проверяли выли ли внесены изменения, сейчас просто запускаем aero...
             //if (optimized)
             //{
-                psi = new ProcessStartInfo("cmd", @"/c net start uxsms"); // останавливаем aero
-                Process.Start(psi);
-                //addData("cmd", @"/c net start uxsms");
+            psi = new ProcessStartInfo("cmd", @"/c net start uxsms"); // останавливаем aero
+            Process.Start(psi);
+            //addData("cmd", @"/c net start uxsms");
             //}
         }
 
@@ -718,39 +791,53 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void saveLog(int index, string param)
         {
-            bool z = false;
-
-            if (z)
+            try
             {
-                if (!Directory.Exists("log")) { Directory.CreateDirectory("log"); }
+                bool z = false;
 
-                string myFile = @"log\" + index.ToString() + "__" + param + ".log";
+                if (z)
+                {
+                    if (!Directory.Exists("log")) { Directory.CreateDirectory("log"); }
 
-                if (!File.Exists(myFile))
-                {
-                    File.WriteAllText(myFile, param, Encoding.UTF8);
+                    string myFile = @"log\" + index.ToString() + "__" + param + ".log";
+
+                    if (!File.Exists(myFile))
+                    {
+                        File.WriteAllText(myFile, param, Encoding.UTF8);
+                    }
+                    else
+                    {
+                        File.AppendAllText(myFile, Environment.NewLine + param, Encoding.UTF8);
+                    }
                 }
-                else
-                {
-                    File.AppendAllText(myFile, Environment.NewLine + param, Encoding.UTF8);
-                }
+            }
+            catch (Exception ex)
+            {
+                showError(ex.Message);
             }
         }
 
         private void saveLogNotCloseProcess(string param)
         {
-            bool z = false;
-
-            if (z)
+            try
             {
-                if (!File.Exists(@"log\not_closed_process.log"))
+                bool z = false;
+
+                if (z)
                 {
-                    File.WriteAllText(@"log\not_closed_process.log", param, Encoding.UTF8);
+                    if (!File.Exists(@"log\not_closed_process.log"))
+                    {
+                        File.WriteAllText(@"log\not_closed_process.log", param, Encoding.UTF8);
+                    }
+                    else
+                    {
+                        File.AppendAllText(@"log\not_closed_process.log", Environment.NewLine + param, Encoding.UTF8);
+                    }
                 }
-                else
-                {
-                    File.AppendAllText(@"log\not_closed_process.log", Environment.NewLine + param, Encoding.UTF8);
-                }
+            }
+            catch (Exception ex)
+            {
+                showError(ex.Message);
             }
         }
 
@@ -777,25 +864,32 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwAero_DoWork(object sender, DoWorkEventArgs e)
         {
-            bool t = true;
-
-            Thread.Sleep(5000);
-
-            while (t)
+            try
             {
-                Process[] myProcessL = Process.GetProcessesByName("WoTLauncher");
-                Process[] myProcessW = Process.GetProcessesByName("WorldOfTanks");
+                bool t = true;
 
-                if (myProcessW.Length < 1 && myProcessL.Length < 1)
+                Thread.Sleep(5000);
+
+                while (t)
                 {
-                    psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
-                    Process.Start(psi);
-                    t = false;
+                    Process[] myProcessL = Process.GetProcessesByName("WoTLauncher");
+                    Process[] myProcessW = Process.GetProcessesByName("WorldOfTanks");
+
+                    if (myProcessW.Length < 1 && myProcessL.Length < 1)
+                    {
+                        psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
+                        Process.Start(psi);
+                        t = false;
+                    }
+                    else
+                    {
+                        Thread.Sleep(5000);
+                    }
                 }
-                else
-                {
-                    Thread.Sleep(5000);
-                }
+            }
+            catch (Exception ex)
+            {
+                showError(ex.Message);
             }
         }
 
@@ -827,8 +921,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                int i = 0,
-                    r;
+                int i = 0;
 
                 XmlDocument doc = new XmlDocument();
                 doc.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
@@ -868,7 +961,42 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                showError(ex.Message);
+            }
+        }
+
+        private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(@"http://ai-rus.com/pro/protanks.xml");
+
+                double ver = Convert.ToDouble(doc.GetElementsByTagName("version")[0].InnerText.Replace(".", "")),
+                    thisVer = Convert.ToDouble(Application.ProductVersion.Replace(".", ""));
+
+                if (thisVer < ver)
+                {
+                    if (File.Exists("hell-protanks-download")) { File.Delete("hell-protanks-download"); }
+
+                    var client = new WebClient();
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/launcher.txt"), "hell-protanks-download");
+
+                    if (!File.Exists("updater.exe"))
+                    {
+                        var client1 = new WebClient();
+                        client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.txt"), "updater.exe");
+                    }
+
+                    //MessageBox.Show(this, "Требуется перезапуск приложения для завершения обновления", "Обновление " + Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Process.Start("updater.exe", "hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"");
+                    Process.GetCurrentProcess().Kill();
+                }
+            }
+            catch (Exception ex)
+            {
+                showError(ex.Message);
             }
         }
     }

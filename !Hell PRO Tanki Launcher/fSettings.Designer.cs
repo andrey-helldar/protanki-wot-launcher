@@ -35,13 +35,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbForceClose = new System.Windows.Forms.CheckBox();
             this.cbAero = new System.Windows.Forms.CheckBox();
             this.cbKillProcesses = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbVideo = new System.Windows.Forms.CheckBox();
             this.cbNews = new System.Windows.Forms.CheckBox();
             this.llTitle = new System.Windows.Forms.LinkLabel();
-            this.cbForceClose = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -138,11 +138,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Оптимизация ПК:";
             // 
+            // cbForceClose
+            // 
+            this.cbForceClose.AutoSize = true;
+            this.cbForceClose.Location = new System.Drawing.Point(18, 42);
+            this.cbForceClose.Name = "cbForceClose";
+            this.cbForceClose.Size = new System.Drawing.Size(227, 17);
+            this.cbForceClose.TabIndex = 2;
+            this.cbForceClose.Text = "Принудительно завершать приложения";
+            this.cbForceClose.UseVisualStyleBackColor = true;
+            // 
             // cbAero
             // 
             this.cbAero.AutoSize = true;
-            this.cbAero.Checked = true;
-            this.cbAero.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbAero.Location = new System.Drawing.Point(300, 19);
             this.cbAero.Name = "cbAero";
             this.cbAero.Size = new System.Drawing.Size(246, 17);
@@ -153,8 +161,6 @@
             // cbKillProcesses
             // 
             this.cbKillProcesses.AutoSize = true;
-            this.cbKillProcesses.Checked = true;
-            this.cbKillProcesses.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbKillProcesses.Location = new System.Drawing.Point(18, 19);
             this.cbKillProcesses.Name = "cbKillProcesses";
             this.cbKillProcesses.Size = new System.Drawing.Size(240, 17);
@@ -215,16 +221,6 @@
             this.llTitle.TabStop = true;
             this.llTitle.Text = "Настройки...";
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            // 
-            // cbForceClose
-            // 
-            this.cbForceClose.AutoSize = true;
-            this.cbForceClose.Location = new System.Drawing.Point(18, 42);
-            this.cbForceClose.Name = "cbForceClose";
-            this.cbForceClose.Size = new System.Drawing.Size(227, 17);
-            this.cbForceClose.TabIndex = 2;
-            this.cbForceClose.Text = "Принудительно завершать приложения";
-            this.cbForceClose.UseVisualStyleBackColor = true;
             // 
             // fSettings
             // 
