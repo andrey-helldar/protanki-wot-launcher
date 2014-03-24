@@ -1,0 +1,8 @@
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Process List\bin\Debug\!Hell Process List.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Process List\bin\Debug\!Hell Process List.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Process List\obj\x86\Debug\_Hell_Process_List.fIndex.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Process List\obj\x86\Debug\_Hell_Process_List.Properties.Resources.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Process List\obj\x86\Debug\!Hell Process List.csproj.GenerateResource.Cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Process List\obj\x86\Debug\!Hell Process List.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Process List\obj\x86\Debug\!Hell Process List.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Process List\bin\Debug\!Hell Process List.exe.config

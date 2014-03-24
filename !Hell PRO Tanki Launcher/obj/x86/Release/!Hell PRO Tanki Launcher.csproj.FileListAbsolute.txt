@@ -23,3 +23,4 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Relea
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Release\!Hell PRO Tanki Launcher.exe.manifest
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Release\!Hell PRO Tanki Launcher.application
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Release\_Hell_PRO_Tanki_Launcher.fNewVersion.resources
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Release\_Hell_PRO_Tanki_Launcher.fNewVersion.resources

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Restart Software", "!
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell PRO Tanki Launcher WPF", "!Hell PRO Tanki Launcher WPF\!Hell PRO Tanki Launcher WPF.csproj", "{5014185D-AFCA-4D02-93D1-64F484F6223A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Process List", "!Hell Process List\!Hell Process List.csproj", "{AF9F8199-194C-4BFA-B49D-4BE012B0028A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -31,6 +33,10 @@ Global
 		{5014185D-AFCA-4D02-93D1-64F484F6223A}.Debug|x86.Build.0 = Debug|x86
 		{5014185D-AFCA-4D02-93D1-64F484F6223A}.Release|x86.ActiveCfg = Release|x86
 		{5014185D-AFCA-4D02-93D1-64F484F6223A}.Release|x86.Build.0 = Release|x86
+		{AF9F8199-194C-4BFA-B49D-4BE012B0028A}.Debug|x86.ActiveCfg = Debug|x86
+		{AF9F8199-194C-4BFA-B49D-4BE012B0028A}.Debug|x86.Build.0 = Debug|x86
+		{AF9F8199-194C-4BFA-B49D-4BE012B0028A}.Release|x86.ActiveCfg = Release|x86
+		{AF9F8199-194C-4BFA-B49D-4BE012B0028A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
