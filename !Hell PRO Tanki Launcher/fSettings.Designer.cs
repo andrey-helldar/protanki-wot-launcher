@@ -35,12 +35,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbAero = new System.Windows.Forms.CheckBox();
             this.cbKillProcesses = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbVideo = new System.Windows.Forms.CheckBox();
             this.cbNews = new System.Windows.Forms.CheckBox();
             this.llTitle = new System.Windows.Forms.LinkLabel();
-            this.cbAero = new System.Windows.Forms.CheckBox();
+            this.cbForceClose = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -96,7 +97,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.button1.Location = new System.Drawing.Point(161, 215);
+            this.button1.Location = new System.Drawing.Point(156, 236);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 50);
             this.button1.TabIndex = 1;
@@ -115,7 +116,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.button2.Location = new System.Drawing.Point(332, 215);
+            this.button2.Location = new System.Drawing.Point(327, 236);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 50);
             this.button2.TabIndex = 2;
@@ -126,15 +127,28 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.cbForceClose);
             this.groupBox2.Controls.Add(this.cbAero);
             this.groupBox2.Controls.Add(this.cbKillProcesses);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(12, 99);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(616, 51);
+            this.groupBox2.Size = new System.Drawing.Size(616, 72);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Оптимизация ПК:";
+            // 
+            // cbAero
+            // 
+            this.cbAero.AutoSize = true;
+            this.cbAero.Checked = true;
+            this.cbAero.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAero.Location = new System.Drawing.Point(300, 19);
+            this.cbAero.Name = "cbAero";
+            this.cbAero.Size = new System.Drawing.Size(246, 17);
+            this.cbAero.TabIndex = 1;
+            this.cbAero.Text = "Отключать Windows Aero при запуске игры";
+            this.cbAero.UseVisualStyleBackColor = true;
             // 
             // cbKillProcesses
             // 
@@ -154,7 +168,7 @@
             this.groupBox3.Controls.Add(this.cbVideo);
             this.groupBox3.Controls.Add(this.cbNews);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(12, 156);
+            this.groupBox3.Location = new System.Drawing.Point(12, 177);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(616, 53);
             this.groupBox3.TabIndex = 4;
@@ -202,17 +216,15 @@
             this.llTitle.Text = "Настройки...";
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
-            // cbAero
+            // cbForceClose
             // 
-            this.cbAero.AutoSize = true;
-            this.cbAero.Checked = true;
-            this.cbAero.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAero.Location = new System.Drawing.Point(300, 19);
-            this.cbAero.Name = "cbAero";
-            this.cbAero.Size = new System.Drawing.Size(246, 17);
-            this.cbAero.TabIndex = 1;
-            this.cbAero.Text = "Отключать Windows Aero при запуске игры";
-            this.cbAero.UseVisualStyleBackColor = true;
+            this.cbForceClose.AutoSize = true;
+            this.cbForceClose.Location = new System.Drawing.Point(18, 42);
+            this.cbForceClose.Name = "cbForceClose";
+            this.cbForceClose.Size = new System.Drawing.Size(227, 17);
+            this.cbForceClose.TabIndex = 2;
+            this.cbForceClose.Text = "Принудительно завершать приложения";
+            this.cbForceClose.UseVisualStyleBackColor = true;
             // 
             // fSettings
             // 
@@ -220,7 +232,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(640, 285);
+            this.ClientSize = new System.Drawing.Size(640, 300);
             this.Controls.Add(this.llTitle);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -256,5 +268,6 @@
         private System.Windows.Forms.CheckBox cbVideo;
         private System.Windows.Forms.LinkLabel llTitle;
         private System.Windows.Forms.CheckBox cbAero;
+        private System.Windows.Forms.CheckBox cbForceClose;
     }
 }

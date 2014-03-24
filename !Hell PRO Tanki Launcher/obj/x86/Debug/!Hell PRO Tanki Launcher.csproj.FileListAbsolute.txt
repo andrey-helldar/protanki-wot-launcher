@@ -20,3 +20,7 @@ f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\!Hell PRO Tanki Launcher.application
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\!Hell PRO Tanki Launcher.exe.manifest
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\!Hell PRO Tanki Launcher.application
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\!Hell PRO Tanki Launcher.exe.manifest
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\!Hell PRO Tanki Launcher.application
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\!Hell PRO Tanki Launcher.exe.manifest
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\!Hell PRO Tanki Launcher.application

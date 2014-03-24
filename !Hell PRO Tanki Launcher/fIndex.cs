@@ -39,6 +39,7 @@ namespace _Hell_PRO_Tanki_Launcher
             optimized = false,
             
             autoKill = true,
+            autoForceKill = false,
             autoAero = true,
             autoNews = true,
             autoVideo = true;
@@ -607,35 +608,36 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
                 }
 
-				/*
-                Thread.Sleep(5000); // Ждем 5 секунд завершения, пока приложения нормально завершатся
-
-                // Кто не успел - тот опоздал! Принудительно убиваем процесс
-                for (int i = 1; i < myProcesses.Length; i++)
+                if (autoForceKill)
                 {
-                    try
-                    {
-                        // Расчитываем значение прогресс бара
-                        bwOptimize.ReportProgress(++myProgressStatus);
+                    Thread.Sleep(5000); // Ждем 5 секунд завершения, пока приложения нормально завершатся
 
-                        if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
-                        {
-                            saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
-                            myProcesses[i].Kill();
-                            saveLog(myIndex, @"End Kill -- " + myProcesses[i].ProcessName.ToString());
-                            //addData(myProcesses[i].ProcessName.ToString(), "Killed");
-                        }
-                        else
-                        {
-                            saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + " (kill)   ||   SessionID : " + myProcesses[i].SessionId.ToString());
-                        }
-                    }
-                    catch (Exception)
+                    // Кто не успел - тот опоздал! Принудительно убиваем процесс
+                    for (int i = 1; i < myProcesses.Length; i++)
                     {
-                        saveLog(myIndex, @"ERROR EXCEPTION Kill -- " + myProcesses[i].ProcessName.ToString());
+                        try
+                        {
+                            // Расчитываем значение прогресс бара
+                            bwOptimize.ReportProgress(++myProgressStatus);
+
+                            if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                            {
+                                saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
+                                myProcesses[i].Kill();
+                                saveLog(myIndex, @"End Kill -- " + myProcesses[i].ProcessName.ToString());
+                                //addData(myProcesses[i].ProcessName.ToString(), "Killed");
+                            }
+                            else
+                            {
+                                saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + " (kill)   ||   SessionID : " + myProcesses[i].SessionId.ToString());
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            saveLog(myIndex, @"ERROR EXCEPTION Kill -- " + myProcesses[i].ProcessName.ToString());
+                        }
                     }
                 }
-				*/
             }
         }
 

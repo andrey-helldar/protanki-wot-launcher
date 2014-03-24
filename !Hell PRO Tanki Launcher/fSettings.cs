@@ -15,7 +15,8 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         string //title,
             version,
-            path;
+            path,
+            type = "full";
 
         public fSettings()
         {
@@ -30,12 +31,14 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 version = doc.GetElementsByTagName("version")[0].InnerText;
                 path = doc.GetElementsByTagName("path")[0].InnerText;
+                type = doc.GetElementsByTagName("type")[0].InnerText;
 
                 try
                 {
                     foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
                     {
                         cbKillProcesses.Checked = xmlNode.Attributes["kill"].InnerText == "False" ? false : true;
+                        cbForceClose.Checked = xmlNode.Attributes["force"].InnerText == "False" ? false : true;
                         cbAero.Checked = xmlNode.Attributes["aero"].InnerText == "False" ? false : true;
                         cbNews.Checked = xmlNode.Attributes["news"].InnerText == "False" ? false : true;
                         cbVideo.Checked = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
@@ -94,8 +97,13 @@ namespace _Hell_PRO_Tanki_Launcher
             wr.WriteString(tbPath.Text);
             wr.WriteEndElement();
 
+            wr.WriteStartElement("type", null);
+            wr.WriteString(type);
+            wr.WriteEndElement();
+
             wr.WriteStartElement("settings", null);
             wr.WriteAttributeString("kill", cbKillProcesses.Checked.ToString());
+            wr.WriteAttributeString("force", cbForceClose.Checked.ToString());
             wr.WriteAttributeString("aero", cbAero.Checked.ToString());
             wr.WriteAttributeString("news", cbNews.Checked.ToString());
             wr.WriteAttributeString("video", cbVideo.Checked.ToString());
