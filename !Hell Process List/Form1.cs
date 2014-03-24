@@ -31,13 +31,16 @@ namespace _Hell_Process_List
         {
             clbProcesses.Items.Clear();
 
-            string s = "";
+            int processID = Process.GetCurrentProcess().SessionId;
 
             ManagementObjectSearcher searcher1 = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Process");
 
             foreach (ManagementObject queryObj in searcher1.Get())
             {
-                clbProcesses.Items.Add(queryObj["Name"].ToString());
+                if (processID == Convert.ToInt32(queryObj["SessionId"].ToString()))
+                {
+                    clbProcesses.Items.Add(queryObj["Name"].ToString().Replace(".exe", ""));
+                }
             }
         }
 
@@ -51,7 +54,7 @@ namespace _Hell_Process_List
             string str = "";
 
             foreach(object item in clbProcesses.CheckedItems){
-                str += item.ToString().Replace(".exe", "") + Environment.NewLine;
+                str += item.ToString() + Environment.NewLine;
             }
 
             if (File.Exists("log.txt")) { File.Delete("log.txt"); }
