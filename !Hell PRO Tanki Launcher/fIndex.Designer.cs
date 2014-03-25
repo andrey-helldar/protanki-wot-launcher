@@ -59,6 +59,7 @@
             this.llActually = new System.Windows.Forms.LinkLabel();
             this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
             this.llLauncherVersion = new System.Windows.Forms.LinkLabel();
+            this.bProcess = new System.Windows.Forms.Button();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbNewVersion)).BeginInit();
             this.SuspendLayout();
@@ -374,13 +375,13 @@
             this.llActually.ActiveLinkColor = System.Drawing.Color.Lime;
             this.llActually.AutoSize = true;
             this.llActually.BackColor = System.Drawing.Color.Transparent;
-            this.llActually.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llActually.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llActually.ForeColor = System.Drawing.Color.Lime;
             this.llActually.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llActually.LinkColor = System.Drawing.Color.Lime;
-            this.llActually.Location = new System.Drawing.Point(189, 38);
+            this.llActually.Location = new System.Drawing.Point(189, 35);
             this.llActually.Name = "llActually";
-            this.llActually.Size = new System.Drawing.Size(246, 20);
+            this.llActually.Size = new System.Drawing.Size(295, 24);
             this.llActually.TabIndex = 19;
             this.llActually.TabStop = true;
             this.llActually.Text = "Вы используете самые свежие моды!";
@@ -420,12 +421,31 @@
             this.llLauncherVersion.Text = "0.0.0.0";
             this.llLauncherVersion.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
+            // bProcess
+            // 
+            this.bProcess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bProcess.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bProcess.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bProcess.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.bProcess.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.bProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bProcess.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bProcess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bProcess.Location = new System.Drawing.Point(12, 33);
+            this.bProcess.Name = "bProcess";
+            this.bProcess.Size = new System.Drawing.Size(131, 30);
+            this.bProcess.TabIndex = 24;
+            this.bProcess.Text = "Процессы";
+            this.bProcess.UseVisualStyleBackColor = true;
+            this.bProcess.Click += new System.EventHandler(this.bProcess_Click);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.bProcess);
             this.Controls.Add(this.llLauncherVersion);
             this.Controls.Add(this.llLoadingVideoData);
             this.Controls.Add(this.llActually);
@@ -484,6 +504,7 @@
         private System.Windows.Forms.LinkLabel llActually;
         private System.Windows.Forms.LinkLabel llLoadingVideoData;
         private System.Windows.Forms.LinkLabel llLauncherVersion;
+        private System.Windows.Forms.Button bProcess;
     }
 }
 

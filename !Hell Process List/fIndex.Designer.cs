@@ -74,6 +74,7 @@
             // 
             this.bwSave.WorkerReportsProgress = true;
             this.bwSave.WorkerSupportsCancellation = true;
+            this.bwSave.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwSave_DoWork);
             this.bwSave.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwSave_RunWorkerCompleted);
             // 
             // fIndex

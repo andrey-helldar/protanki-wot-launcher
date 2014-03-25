@@ -15,9 +15,13 @@ namespace _Hell_Process_List
 {
     public partial class fIndex : Form
     {
+        string filename = "";
+
         public fIndex()
         {
             InitializeComponent();
+
+            this.Text = Application.ProductName + " v" + Application.ProductVersion;
 
             if (!bwLoad.IsBusy) { bwLoad.RunWorkerAsync(); }
         }
@@ -51,17 +55,24 @@ namespace _Hell_Process_List
 
         private void bwSave_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            MessageBox.Show("Данные успешно сохранены в файл " + filename + " папке с данной программой");
+        }
+
+        private void bwSave_DoWork(object sender, DoWorkEventArgs e)
+        {
+
             string str = "";
 
-            foreach(object item in clbProcesses.CheckedItems){
+            foreach (object item in clbProcesses.CheckedItems)
+            {
                 str += item.ToString() + Environment.NewLine;
             }
 
-            if (File.Exists("log.txt")) { File.Delete("log.txt"); }
+            //if (File.Exists(".log")) { File.Delete(".log"); }
 
-            File.WriteAllText("log.txt", str);
+            filename = DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".log";
 
-            MessageBox.Show("Данные успешно сохранены в файл log.txt папке с данной программой");
+            File.WriteAllText(filename, str);
         }
     }
 }

@@ -116,19 +116,28 @@ namespace _Hell_PRO_Tanki_Launcher
             bwOptimize.WorkerSupportsCancellation = true;
         }
 
+        // Узнаем разряд системы
+        private bool isX64()
+        {
+            return Environment.Is64BitOperatingSystem ? true : false;
+        }
+
         // Скачиваем и устанавливаем необходимую версию .NET Framework
         public void getFramework()
         {
             try
             {
                 string mess = "";
-
+                List<string> frameworkLinks = new List<string>();
 
                 // v2.0.50727
                 /*var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727");
                 if (key) != null)
                 {
-                    if ((int)key.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine; }
+                    if ((int)key.GetValue("Install") != 1) { 
+                        mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;                        
+                        frameworkLinks.Add(isX64() ? "http://www.microsoft.com/ru-ru/download/details.aspx?id=6041" : "http://www.microsoft.com/ru-ru/download/details.aspx?id=1639");
+                    }
                 }
                 else
                 {
@@ -164,7 +173,11 @@ namespace _Hell_PRO_Tanki_Launcher
                 var key40 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4.0\Client");
                 if (key40 != null)
                 {
-                    if ((int)key40.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key40.GetValue("Version") + " not installed!" + Environment.NewLine; }
+                    if ((int)key40.GetValue("Install") != 1)
+                    {
+                        mess += ".NET Framework " + (string)key40.GetValue("Version") + " not installed!" + Environment.NewLine;
+                        frameworkLinks.Add("http://www.microsoft.com/ru-ru/download/details.aspx?id=24872");
+                    }
                 }
                 else
                 {
@@ -173,7 +186,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (mess.Length > 0)
                 {
-                    MessageBox.Show(this, "Для корректной работы приложения требуется установка следующих пакетов:" + Environment.NewLine + mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, "Для корректной работы приложения требуется установка следующих пакетов:" + Environment.NewLine + mess + Environment.NewLine +
+                    "---------------------------------------------------" + Environment.NewLine +
+                    "ВНИМАНИЕ! После закрытия данного окна в Вашем браузере будут открыты ссылки на страницы для скачивания нужных Вам библиотек .NET Framework с сайта microsoft.com", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    foreach (string link in frameworkLinks)
+                    {
+                        Process.Start(link);
+                    }
                 }
             }
             catch (Exception ex)
@@ -1062,15 +1081,22 @@ namespace _Hell_PRO_Tanki_Launcher
             }
 
 
-
             try
             {
                 //XmlDocument doc = new XmlDocument();
                 doc.Load(@"http://ai-rus.com/pro/protanks.xml");
 
+                // Process List
+                double verProcesses = Convert.ToDouble(doc.GetElementsByTagName("processes")[0].InnerText.Replace(".", ""));
+                if (!File.Exists("processes.exe") || getFileVersion("processes.exe") < verProcesses)
+                {
+                    var client1 = new WebClient();
+                    client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/processes.txt"), "processes.exe");
+                }
+
                 // Updater
                 double verUpdater = Convert.ToDouble(doc.GetElementsByTagName("updater")[0].InnerText.Replace(".", ""));
-                if (!File.Exists("updater.exe") || verUpdater < getFileVersion("updater.exe"))
+                if (!File.Exists("updater.exe") || getFileVersion("updater.exe") < verUpdater)
                 {
                     var client1 = new WebClient();
                     client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.txt"), "updater.exe");
@@ -1078,7 +1104,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 // Restarter
                 double verRestart = Convert.ToDouble(doc.GetElementsByTagName("restart")[0].InnerText.Replace(".", ""));
-                if (!File.Exists("restart.exe") || verRestart < getFileVersion("restart.exe"))
+                if (!File.Exists("restart.exe") || getFileVersion("restart.exe") < verRestart)
                 {
                     client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.txt"), "restart.exe");
                 }
@@ -1227,6 +1253,18 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 debug.Save("private string formatDate(string dt)", "", ex.Message);
                 return "error";
+            }
+        }
+
+        private void bProcess_Click(object sender, EventArgs e)
+        {
+            if (File.Exists("processes.exe"))
+            {
+                Process.Start("processes.exe");
+            }
+            else
+            {
+                MessageBox.Show(this, "Исполняемый файл приложения не найден. Попробуйте перезапустить программу для автоматического устранения неисправности.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

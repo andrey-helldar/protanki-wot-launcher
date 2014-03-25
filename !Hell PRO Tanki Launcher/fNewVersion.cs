@@ -109,7 +109,6 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bDownload_Click(object sender, EventArgs e)
         {
             Process.Start(llContent.Links[0].LinkData.ToString());
-
             Close();
         }
     }

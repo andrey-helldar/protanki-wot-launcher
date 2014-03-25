@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PRO Tanki Multipack")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Developed by Andrey Helldar")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("AI RUS - Professional tech support")]
 [assembly: AssemblyProduct("PRO Tanki Multipack")]
 [assembly: AssemblyCopyright("Copyright ©  2014 AI RUS - Professional tech support")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.12")]
-[assembly: AssemblyFileVersion("1.0.0.12")]
+[assembly: AssemblyVersion("1.0.0.13")]
+[assembly: AssemblyFileVersion("1.0.0.13")]

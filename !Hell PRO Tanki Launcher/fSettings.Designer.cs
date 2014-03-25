@@ -167,12 +167,12 @@
             this.llTitle.AutoSize = true;
             this.llTitle.BackColor = System.Drawing.Color.Transparent;
             this.llTitle.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.llTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llTitle.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llTitle.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llTitle.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llTitle.Location = new System.Drawing.Point(146, 0);
+            this.llTitle.Location = new System.Drawing.Point(12, 3);
             this.llTitle.Name = "llTitle";
-            this.llTitle.Size = new System.Drawing.Size(79, 15);
+            this.llTitle.Size = new System.Drawing.Size(80, 19);
             this.llTitle.TabIndex = 5;
             this.llTitle.TabStop = true;
             this.llTitle.Text = "Настройки...";
