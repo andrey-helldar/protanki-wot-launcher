@@ -123,50 +123,52 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 string mess = "";
 
-                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727");
-
 
                 // v2.0.50727
-                if (Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727") != null)
+                /*var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727");
+                if (key) != null)
                 {
                     if ((int)key.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine; }
                 }
                 else
                 {
                     mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
-                }
+                }*/
 
 
                 // v3.0.30729
-                if (Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.0") != null)
+                /*var key30 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.0");
+                if (key30) != null)
                 {
-                    if ((int)key.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine; }
+                    if ((int)key30.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key30.GetValue("Version") + " not installed!" + Environment.NewLine; }
                 }
                 else
                 {
-                    mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
-                }
+                    mess += ".NET Framework " + (string)key30.GetValue("Version") + " not installed!" + Environment.NewLine;
+                }*/
 
 
                 // v3.5
-                if (Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5") != null)
+                /*var key35 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5");
+                if (key35 != null)
                 {
-                    if ((int)key.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine; }
+                    if ((int)key35.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key35.GetValue("Version") + " not installed!" + Environment.NewLine; }
                 }
                 else
                 {
-                    mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
-                }
+                    mess += ".NET Framework " + (string)key35.GetValue("Version") + " not installed!" + Environment.NewLine;
+                }*/
 
 
                 // v4.0
-                if (Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4.0\Client") != null)
+                var key40 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4.0\Client");
+                if (key40 != null)
                 {
-                    if ((int)key.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine; }
+                    if ((int)key40.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key40.GetValue("Version") + " not installed!" + Environment.NewLine; }
                 }
                 else
                 {
-                    mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
+                    mess += ".NET Framework " + (string)key40.GetValue("Version") + " not installed!" + Environment.NewLine;
                 }
 
                 if (mess.Length > 0)
