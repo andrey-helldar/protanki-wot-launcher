@@ -47,7 +47,8 @@ namespace _Hell_PRO_Tanki_Launcher
             autoVideo = true;
 
         List<string> youtubeTitle = new List<string>();
-        List<string> youtubeLink = new List<string>();        
+        List<string> youtubeLink = new List<string>();
+        List<string> youtubeDate = new List<string>();
 
         ProcessStartInfo psi;
 
@@ -127,8 +128,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 InitializeComponent();
 
                 // Загружаем шрифт
-                CargoPrivateFontCollection();
-                bSettings.Font = new Font(ff, 12f, FontStyle.Regular);
+                //CargoPrivateFontCollection();
+                //bSettings.Font = new Font(ff, 12f, FontStyle.Regular);
 
                 overLoad();
 
@@ -520,6 +521,12 @@ namespace _Hell_PRO_Tanki_Launcher
                     // Добавляем новость об изменениях в модпаке
                     if (updPack) { status += Environment.NewLine + sUpdateNews; }
 
+                    llActually.Text = "Обнаружена новая версия!";
+                    llActually.ForeColor = Color.Yellow;
+                    llActually.ActiveLinkColor = Color.Yellow;
+                    llActually.LinkColor = Color.Yellow;
+                    llActually.VisitedLinkColor = Color.Yellow;
+
                     // Изменяем изображение иконки статуса обновлений
                     pbNewVersion.BackgroundImage = Properties.Resources.newVersion;
                     pbNewVersion.Cursor = Cursors.Hand;
@@ -535,6 +542,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
+                    llActually.Text = "Вы используете самые свежие моды!";
+                    llActually.ForeColor = Color.FromArgb(243, 123, 16);
+                    llActually.ActiveLinkColor = Color.FromArgb(243, 123, 16);
+                    llActually.LinkColor = Color.FromArgb(243, 123, 16);
+                    llActually.VisitedLinkColor = Color.FromArgb(243, 123, 16);
+
                     status = "Вы используете самые свежие моды." + Environment.NewLine +
                         "Текущая версия Мультипака '" + sVerModPack + "'";
                     bUpdate.Enabled = false;
@@ -1031,31 +1044,44 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            /*try
+            try
             {
-                for (int i = 0; i < youtubeTitle.Count; i++)
-                {
-                    LinkLabel lebel = new LinkLabel();
-                    lebel.SetBounds(10, i * 30 + 40, 100, 20);
-                    lebel.AutoSize = true;
-                    lebel.ActiveLinkColor = Color.FromArgb(243, 123, 16);
-                    lebel.BackColor = Color.Transparent;
-                    lebel.ForeColor = Color.FromArgb(243, 123, 16);
-                    lebel.VisitedLinkColor = Color.FromArgb(243, 123, 16);
-                    lebel.LinkColor = Color.FromArgb(243, 123, 16);
-                    lebel.LinkBehavior = LinkBehavior.HoverUnderline;
-                    lebel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                    lebel.Text = youtubeTitle[i];
-                    lebel.Name = "llNews" + (i).ToString();
-                    lebel.Links[0].LinkData = youtubeLink[i];
-                    lebel.Click += new EventHandler(lebel_Click);
-                    this.Controls.Add(lebel);
+               // for (int i = 0; i < youtubeTitle.Count; i++)
+                // {
+                LinkLabel lebel = new LinkLabel();
+                lebel.SetBounds(190, 421, 100, 20);
+                lebel.AutoSize = true;
+                lebel.ActiveLinkColor = Color.FromArgb(243, 123, 16);
+                lebel.BackColor = Color.Transparent;
+                lebel.ForeColor = Color.FromArgb(243, 123, 16);
+                lebel.VisitedLinkColor = Color.FromArgb(243, 123, 16);
+                lebel.LinkColor = Color.FromArgb(243, 123, 16);
+                lebel.LinkBehavior = LinkBehavior.HoverUnderline;
+                lebel.Font = new System.Drawing.Font("Sochi2014", 12f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                lebel.Text = "Все видео";
+                lebel.Name = "llVideoAll";
+                lebel.Click += new EventHandler(bVideo_Click);
+                this.Controls.Add(lebel);
+               // }
+
+
+                /*
+                 * Теперь двигаем элементы перед выводом новостей
+                 * */
+                foreach(object sender in new Label){
+                    if( (sender as Label).Name.StartsWith("llNews")){
+                    }
                 }
+
+                private void lebel_Click(object sender, EventArgs e)
+        {
+            Process.Start((sender as LinkLabel).Links[0].LinkData.ToString());
+        }
             }
             catch (Exception ex)
             {
                 showError(ex.Message);
-            }*/
+            }
         }
 
         private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)
@@ -1105,12 +1131,14 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 youtubeTitle.Clear();
                 youtubeLink.Clear();
+                youtubeDate.Clear();
 
                 foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
                 {
-                    if (i >= 12) { break; }
+                    if (i >= 11) { break; }
 
-                    youtubeTitle.Add(xmlNode["published"].InnerText.Remove(10) + ": " + (xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText));
+                    youtubeDate.Add(xmlNode["published"].InnerText.Remove(10));
+                    youtubeTitle.Add((xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText));
                     youtubeLink.Add(xmlNode["link"].Attributes["rel"].InnerText == "alternate" ? xmlNode["link"].Attributes["href"].InnerText : "");
 
                     bwVideo.ReportProgress(i);
@@ -1129,19 +1157,31 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                int topOffset = 80;
+
+                Label labelDate = new Label();
+                labelDate.SetBounds(10, e.ProgressPercentage * 30 + topOffset, 10, 10);
+                labelDate.AutoSize = true;
+                labelDate.BackColor = Color.Transparent;
+                labelDate.ForeColor = Color.Silver;
+                labelDate.Font = new System.Drawing.Font("Sochi2014", 12f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                labelDate.Text = formatDate(youtubeDate[e.ProgressPercentage]);
+                labelDate.Name = "llNewsDate" + e.ProgressPercentage.ToString();
+                this.Controls.Add(labelDate);
+
                 LinkLabel lebel = new LinkLabel();
-                lebel.SetBounds(10, e.ProgressPercentage * 30 + 40, 100, 20);
-                lebel.AutoSize = true;
+                lebel.Font = new System.Drawing.Font("Sochi2014", 12f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));              
                 lebel.ActiveLinkColor = Color.FromArgb(243, 123, 16);
                 lebel.BackColor = Color.Transparent;
                 lebel.ForeColor = Color.FromArgb(243, 123, 16);
                 lebel.VisitedLinkColor = Color.FromArgb(243, 123, 16);
                 lebel.LinkColor = Color.FromArgb(243, 123, 16);
                 lebel.LinkBehavior = LinkBehavior.HoverUnderline;
-                lebel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                lebel.Text = youtubeTitle[e.ProgressPercentage];
                 lebel.Name = "llNews" + e.ProgressPercentage.ToString();
+                lebel.Text = youtubeTitle[e.ProgressPercentage];
                 lebel.Links[0].LinkData = youtubeLink[e.ProgressPercentage];
+                lebel.SetBounds(labelDate.Width + 10, e.ProgressPercentage * 30 + topOffset, 100, 20);
+                lebel.AutoSize = true;
                 lebel.Click += new EventHandler(lebel_Click);
                 this.Controls.Add(lebel);
             }
@@ -1150,6 +1190,47 @@ namespace _Hell_PRO_Tanki_Launcher
                 debug.Save("private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)", ex.Message);
                 showError(ex.Message);
             }
+        }
+
+        private string formatDate(string dt)
+        {
+            try
+            {
+                DateTime nd = DateTime.Parse(dt);
+
+                return nd.ToString("dd/MM").Replace(".", "/");
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private string formatDate(string dt)", ex.Message);
+                return "error";
+            }
+        }
+
+        // Изменение стиля кнопок Видео/Новости
+        private void setStyleNV(bool video=true)
+        {
+            if (video)
+            {
+                bShowVideo.BackColor = Color.Black;
+                bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(138, 67, 4);
+
+                bShowNews.BackColor = Color.FromArgb(28, 28, 28);
+                bShowNews.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
+            }
+            else
+            {
+                bShowNews.BackColor = Color.Black;
+                bShowNews.FlatAppearance.BorderColor = Color.FromArgb(138, 67, 4);
+
+                bShowVideo.BackColor = Color.FromArgb(28, 28, 28);
+                bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
+            }
+        }
+
+        private void bShowVideo_Click(object sender, EventArgs e)
+        {
+            setStyleNV();
         }
     }
 }
