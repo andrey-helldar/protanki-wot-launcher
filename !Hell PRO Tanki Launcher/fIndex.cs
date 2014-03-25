@@ -119,7 +119,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 moveForm();
 
-                //if (!bwUpdateLauncher.IsBusy) { bwUpdateLauncher.RunWorkerAsync(); }
+                if (!bwUpdateLauncher.IsBusy) { bwUpdateLauncher.RunWorkerAsync(); }
 
                 bwUpdater.WorkerReportsProgress = true;
                 bwUpdater.WorkerSupportsCancellation = true;
@@ -213,7 +213,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     //xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
                     xmlTitle = Application.ProductName;
 
-                    path = @"d:\Games\World_of_Tanks\";
+                    //path = @"d:\Games\World_of_Tanks\";
+                    path = Application.StartupPath + @"\..\";
                     sVerType = doc.GetElementsByTagName("type")[0].InnerText;
 
                     try
