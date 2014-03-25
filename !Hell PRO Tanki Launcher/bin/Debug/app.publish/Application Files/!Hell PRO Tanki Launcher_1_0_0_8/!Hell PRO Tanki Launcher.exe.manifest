@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="!Hell PRO Tanki Launcher.exe" version="1.0.0.8" publicKeyToken="7b907246ab9382dc" language="neutral" processorArchitecture="x86" type="win32" />
+  <description asmv2:iconFile="Project1_Icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="!Hell PRO Tanki Launcher" version="1.0.0.7" language="neutral" processorArchitecture="x86" />
+    <commandLine file="!Hell PRO Tanki Launcher.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="!Hell PRO Tanki Launcher.exe" size="2156544">
+      <assemblyIdentity name="!Hell PRO Tanki Launcher" version="1.0.0.7" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>mxC+Awh+97gtIMq1ow4PABzHYls=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Ionic.Zip.dll" size="462336">
+      <assemblyIdentity name="Ionic.Zip" version="1.9.1.8" publicKeyToken="EDBE51AD942A3F5C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>ihFAzrw59plO736N5GJ/t7cqLdk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="Project1_Icon.ico" size="372526">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>mUSeb4IHsROQQKuguyo385HdkLA=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=HellPC\Helldar" issuerKeyHash="abae7634dfc0d85e71c6ccbf6f8578506abb0141" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>iCM8FDh2ywZeuMx+Pc3NAbE+7GE=</DigestValue></Reference></SignedInfo><SignatureValue>CuC4PFyk6PTDuzKLsB4XldhO+Ein+zIb0gnd5+Av2B9vkBnWgFHAJqtlA5OUonOfpaOpcRRvDH5wmKPrVuC4qOZoHsnqxSdiCdlvaX1uU1hWuh48JCDbzfr4Xn2xYmMGQeB50MqA4Oe/5woYrCJaZtDiQQ2Ka1d1UmtNNxDO44Y=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>lUXlvUjkOyFVp2usB9bG5qluY0U53RpKp8DhGf9+CIhzqr7kmq9j8yI++r3MC92uUGwvsMyxQd0Z0gzkDrtjSIVBT2nmlZ4P9sS8+Hd5AxuICihd5pzCuXBbci0CG+sTFzzd1xlTnBZejY8figpd/WII2Q211l7GpUBy9ps2ICs=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="61ec3eb101cdcd3d7eccb85e06cb7638143c2388" Description="" Url=""><as:assemblyIdentity name="!Hell PRO Tanki Launcher.exe" version="1.0.0.8" publicKeyToken="7b907246ab9382dc" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=HellPC\Helldar</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>/jLt/2csXggKqiUrMncfGR9BHY0=</DigestValue></Reference></SignedInfo><SignatureValue>D5H7rHxJ0+cPGO78V7/4XeWr5JLtDv8LK/yv75JGCU1jIAcO+WMBxMqoXKysl8WkCw/x9QAYjl5mHdaWd1+9uitgqcvWGNDIlvcL3h+fZ1I+LkKc/kZb8SxsSdYCCn86Kyt0fG9igTPAvE067FlRTq248//hKsQV5GxcE/Hb+CE=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>lUXlvUjkOyFVp2usB9bG5qluY0U53RpKp8DhGf9+CIhzqr7kmq9j8yI++r3MC92uUGwvsMyxQd0Z0gzkDrtjSIVBT2nmlZ4P9sS8+Hd5AxuICihd5pzCuXBbci0CG+sTFzzd1xlTnBZejY8figpd/WII2Q211l7GpUBy9ps2ICs=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB0TCCATqgAwIBAgIQXxDISkwAcqVBEz8iXwi0kjANBgkqhkiG9w0BAQUFADAnMSUwIwYDVQQDHhwASABlAGwAbABQAEMAXABIAGUAbABsAGQAYQByMB4XDTE0MDMyMTE3MDk0NloXDTE1MDMyMTIzMDk0NlowJzElMCMGA1UEAx4cAEgAZQBsAGwAUABDAFwASABlAGwAbABkAGEAcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAlUXlvUjkOyFVp2usB9bG5qluY0U53RpKp8DhGf9+CIhzqr7kmq9j8yI++r3MC92uUGwvsMyxQd0Z0gzkDrtjSIVBT2nmlZ4P9sS8+Hd5AxuICihd5pzCuXBbci0CG+sTFzzd1xlTnBZejY8figpd/WII2Q211l7GpUBy9ps2ICsCAwEAATANBgkqhkiG9w0BAQUFAAOBgQBWKuwcLy02KjPvWisXQyiyuwRNIJrYOPxlQBRwhzk/RnQ0PNp/ZI9TUvYuhFeAsESlcKdpRFhg5NgQapY8UpJb712cwYh5nbTFxlm0QJpPlq9aUp6jDIid8xZbcFNW7/69Lkh80WyQmhJMiX3V/2vYgrhh3ehVU5PBxHN13yGoUg==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

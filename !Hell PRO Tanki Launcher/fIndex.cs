@@ -849,7 +849,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private void fIndex_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Архивируем папку дебага
-            debug.Archive();
+            debug.Archive(Application.StartupPath);
 
             // Раньше проверяли выли ли внесены изменения, сейчас просто запускаем aero...
             //if (optimized)
@@ -1064,6 +1064,15 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                // Для работы нам нужна библиотека Ionic.Zip.dll
+                var clientZip = new WebClient();
+                clientZip.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
+
+                // Для работы нам нужна библиотека Ionic.Zip.dll
+                //var clientZip = new WebClient();
+                clientZip.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.txt"), "restart.exe");
+
+
                 XmlDocument doc = new XmlDocument();
                 doc.Load(@"http://ai-rus.com/pro/protanks.xml");
 

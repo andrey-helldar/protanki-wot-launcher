@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using System.IO.Compression;
+using Ionic.Zip;
+
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -22,32 +23,22 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        public bool Archive()
+        public bool Archive(string path)
         {
             bool exp = false;
 
             try
             {
-                if (!Directory.Exists("debug")) { return false; }
+                if (!Directory.Exists(path + @"\debug")) { return false; }
 
-                using (FileStream sourceFile = File.OpenRead(@"debug"))
-                using (FileStream targetFile = File.Create(@"debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip"))
-                using (GZipStream gzipStream = new GZipStream(targetFile, CompressionMode.Compress, false))
+                using (ZipFile zip = new ZipFile())
                 {
-                    try
-                    {
-                        int posByte = sourceFile.ReadByte();
-
-                        while (posByte != -1)
-                        {
-                            gzipStream.WriteByte((byte)posByte);
-                            posByte = sourceFile.ReadByte();
-                        }
-
-                        exp = true;
-                    }
-                    catch (Exception) { exp = false; }
+                    zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
+                    zip.AddDirectory(path + @"\debug");
+                    zip.Save(path + @"\debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
                 }
+
+                Directory.Delete(path + @"\debug", true);
             }
             catch (Exception ex)
             {
