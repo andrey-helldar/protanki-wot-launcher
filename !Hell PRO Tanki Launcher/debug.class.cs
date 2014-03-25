@@ -16,7 +16,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (!Directory.Exists("debug")) { Directory.CreateDirectory("debug"); }
                 File.WriteAllText(@"debug\" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".debug", place + Environment.NewLine + "-------------------------------" + Environment.NewLine + mess, Encoding.UTF8);
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
                 //debug(ex.Message);
             }

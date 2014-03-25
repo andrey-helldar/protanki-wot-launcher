@@ -44,8 +44,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception)
                 {
-                    cbKillProcesses.Checked = true;
-                    cbAero.Checked = true;
+                    cbKillProcesses.Checked = false;
+                    cbAero.Checked = false;
                     cbNews.Checked = true;
                     cbVideo.Checked = true;
                 }
@@ -55,8 +55,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 //title = Application.ProductName;
                 version = Application.ProductVersion;
 
-                cbKillProcesses.Checked = true;
-                cbAero.Checked = true;
+                cbKillProcesses.Checked = false;
+                cbAero.Checked = false;
                 cbNews.Checked = true;
                 cbVideo.Checked = true;
             }
@@ -72,10 +72,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
             wr.WriteStartDocument();
             wr.WriteStartElement("pro");
-
-           /* wr.WriteStartElement("title", null);
-            wr.WriteString(title);
-            wr.WriteEndElement();*/
 
             wr.WriteStartElement("version", null);
             wr.WriteString(version);

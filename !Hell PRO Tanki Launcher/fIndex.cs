@@ -26,7 +26,8 @@ namespace _Hell_PRO_Tanki_Launcher
             sUpdateNews,
             youtubeChannel = "PROTankiWoT",
             sUpdateLink = "http://goo.gl/gr6pFl",
-            videoLink = "http://goo.gl/gr6pFl";
+            videoLink = "http://goo.gl/gr6pFl",
+            updateNotification = "";
 
         int verPack,
             verTanks,
@@ -210,6 +211,15 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     path = @"d:\Games\World_of_Tanks\";
                     sVerType = doc.GetElementsByTagName("type")[0].InnerText;
+
+                    try
+                    {
+                        updateNotification = doc.GetElementsByTagName("notification")[0].InnerText;
+                    }
+                    catch (Exception)
+                    {
+                        updateNotification = "";
+                    }
 
                     foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
                     {
@@ -477,8 +487,13 @@ namespace _Hell_PRO_Tanki_Launcher
                     pbNewVersion.Cursor = Cursors.Hand;
 
                     // Окно статуса обновлений
-                    fNewVersion.linkLabel1.Text = status;
-                    fNewVersion.ShowDialog();
+                    fNewVersion.llContent.Text = status;
+                    fNewVersion.llContent.Links[0].LinkData = videoLink;
+                    fNewVersion.llVersion.Text = sVerPack.ToString();
+                    if (updateNotification != sVerPack.ToString())
+                    {
+                        fNewVersion.ShowDialog();
+                    }
                 }
                 else
                 {
@@ -494,7 +509,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     pbNewVersion.Cursor = Cursors.Default;
 
                     // Окно статуса обновлений
-                    fNewVersion.linkLabel1.Text = status;
+                    fNewVersion.llContent.Text = status;
+                    fNewVersion.llVersion.Text = sVerPack.ToString();
                 }
 
                 //this.llContent.Text = status;

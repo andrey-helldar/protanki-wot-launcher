@@ -28,27 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.llContent = new System.Windows.Forms.LinkLabel();
             this.bDownload = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
             this.cbNotification = new System.Windows.Forms.CheckBox();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.llVersion = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
-            // linkLabel1
+            // llContent
             // 
-            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel1.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.linkLabel1.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.linkLabel1.Location = new System.Drawing.Point(12, 37);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(676, 290);
-            this.linkLabel1.TabIndex = 0;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
-            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llContent.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llContent.BackColor = System.Drawing.Color.Transparent;
+            this.llContent.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llContent.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llContent.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llContent.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llContent.Location = new System.Drawing.Point(12, 37);
+            this.llContent.Name = "llContent";
+            this.llContent.Size = new System.Drawing.Size(676, 290);
+            this.llContent.TabIndex = 0;
+            this.llContent.TabStop = true;
+            this.llContent.Text = "llContent";
+            this.llContent.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
             // bDownload
             // 
@@ -67,6 +69,7 @@
             this.bDownload.TabIndex = 1;
             this.bDownload.Text = "Скачать";
             this.bDownload.UseVisualStyleBackColor = false;
+            this.bDownload.Click += new System.EventHandler(this.bDownload_Click);
             // 
             // bCancel
             // 
@@ -98,16 +101,52 @@
             this.cbNotification.Text = "Не уведомлять меня об этой версии";
             this.cbNotification.UseVisualStyleBackColor = true;
             // 
+            // linkLabel2
+            // 
+            this.linkLabel2.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.linkLabel2.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.linkLabel2.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel2.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.linkLabel2.Location = new System.Drawing.Point(11, 5);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(314, 24);
+            this.linkLabel2.TabIndex = 4;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Обнаружена новая версия Мультипака:";
+            this.linkLabel2.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            // 
+            // llVersion
+            // 
+            this.llVersion.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVersion.AutoSize = true;
+            this.llVersion.BackColor = System.Drawing.Color.Transparent;
+            this.llVersion.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVersion.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llVersion.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llVersion.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVersion.Location = new System.Drawing.Point(331, 5);
+            this.llVersion.Name = "llVersion";
+            this.llVersion.Size = new System.Drawing.Size(66, 24);
+            this.llVersion.TabIndex = 5;
+            this.llVersion.TabStop = true;
+            this.llVersion.Text = "0.0.0.0";
+            this.llVersion.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            // 
             // fNewVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(700, 408);
+            this.Controls.Add(this.llVersion);
+            this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.cbNotification);
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bDownload);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.llContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "fNewVersion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -122,6 +161,8 @@
         private System.Windows.Forms.Button bDownload;
         private System.Windows.Forms.Button bCancel;
         private System.Windows.Forms.CheckBox cbNotification;
-        public System.Windows.Forms.LinkLabel linkLabel1;
+        public System.Windows.Forms.LinkLabel llContent;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        public System.Windows.Forms.LinkLabel llVersion;
     }
 }
