@@ -1145,15 +1145,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
                 {
-                    if (i >= 11 || showVideoTop > 360) { break; }
+                    if (i >= 8 || showVideoTop > 360) { break; }
 
                     youtubeDate.Add(xmlNode["published"].InnerText.Remove(10));
                     youtubeTitle.Add((xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText));
                     youtubeLink.Add(xmlNode["link"].Attributes["rel"].InnerText == "alternate" ? xmlNode["link"].Attributes["href"].InnerText : "");
 
                     bwVideo.ReportProgress(i);
-
-                    if (showVideoTop > 360) { break; }
 
                     ++i;
                 }
@@ -1178,7 +1176,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 labelDate.AutoSize = true;
                 labelDate.BackColor = Color.Transparent;
                 labelDate.ForeColor = Color.Silver;
-                labelDate.Font = new System.Drawing.Font("Sochi2014", 12f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                labelDate.Font = new System.Drawing.Font("Sochi2014", 11f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 labelDate.Text = formatDate(youtubeDate[e.ProgressPercentage]);
                 labelDate.Name = "llDateNews" + e.ProgressPercentage.ToString();
                 this.Controls.Add(labelDate);
@@ -1214,14 +1212,10 @@ namespace _Hell_PRO_Tanki_Launcher
                     label.SetBounds(labelDate.Width + 10, showVideoTop, 250, 40);
                     labelDate.Location = new Point(10, label.Location.Y);
 
-
-                    label.Text += "   (  " + showVideoTop + "  )";
                     showVideoTop += 50;
                 }
                 else
                 {
-
-                    label.Text += "   (  " + showVideoTop + "  )";
                     showVideoTop += 30;
                 }
             }
