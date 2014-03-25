@@ -162,6 +162,16 @@
     <None Include="Resources\Project1_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\FonUPD.jpg" />
+    <None Include="Resources\FonSetting1.jpg" />
+    <None Include="Resources\FonSetting.jpg" />
+    <None Include="Resources\Fon7.jpg" />
+    <None Include="Resources\Fon6.jpg" />
+    <None Include="Resources\Fon5.jpg" />
+    <None Include="Resources\Fon4.jpg" />
+    <None Include="Resources\Fon3.jpg" />
+    <None Include="Resources\Fon2.jpg" />
+    <None Include="Resources\Fon1.jpg" />
     <None Include="Resources\newVersion50.png" />
     <None Include="Resources\newVersion.png" />
     <None Include="Resources\good50.png" />

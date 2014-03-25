@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fIndex));
             this.bPlay = new System.Windows.Forms.Button();
             this.bLauncher = new System.Windows.Forms.Button();
             this.bUpdate = new System.Windows.Forms.Button();
@@ -58,6 +59,7 @@
             this.llActually = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbNewVersion)).BeginInit();
             this.SuspendLayout();
@@ -295,12 +297,12 @@
             this.llTitle.AutoSize = true;
             this.llTitle.BackColor = System.Drawing.Color.Transparent;
             this.llTitle.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.llTitle.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llTitle.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llTitle.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llTitle.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llTitle.Location = new System.Drawing.Point(189, 2);
             this.llTitle.Name = "llTitle";
-            this.llTitle.Size = new System.Drawing.Size(63, 19);
+            this.llTitle.Size = new System.Drawing.Size(67, 20);
             this.llTitle.TabIndex = 11;
             this.llTitle.TabStop = true;
             this.llTitle.Text = "Loading...";
@@ -321,9 +323,9 @@
             this.bSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSettings.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSettings.Location = new System.Drawing.Point(12, 413);
+            this.bSettings.Location = new System.Drawing.Point(12, 421);
             this.bSettings.Name = "bSettings";
-            this.bSettings.Size = new System.Drawing.Size(131, 35);
+            this.bSettings.Size = new System.Drawing.Size(131, 30);
             this.bSettings.TabIndex = 12;
             this.bSettings.Text = "Настройки";
             this.bSettings.UseVisualStyleBackColor = true;
@@ -420,12 +422,30 @@
             this.linkLabel3.Text = "Новости:";
             this.linkLabel3.VisitedLinkColor = System.Drawing.Color.Silver;
             // 
+            // llLoadingVideoData
+            // 
+            this.llLoadingVideoData.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llLoadingVideoData.AutoSize = true;
+            this.llLoadingVideoData.BackColor = System.Drawing.Color.Transparent;
+            this.llLoadingVideoData.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.llLoadingVideoData.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llLoadingVideoData.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llLoadingVideoData.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llLoadingVideoData.Location = new System.Drawing.Point(24, 88);
+            this.llLoadingVideoData.Name = "llLoadingVideoData";
+            this.llLoadingVideoData.Size = new System.Drawing.Size(182, 19);
+            this.llLoadingVideoData.TabIndex = 22;
+            this.llLoadingVideoData.TabStop = true;
+            this.llLoadingVideoData.Text = "Подождите, идет загрузка...";
+            this.llLoadingVideoData.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_3;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.llLoadingVideoData);
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.llActually);
@@ -484,6 +504,7 @@
         private System.Windows.Forms.LinkLabel llActually;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.LinkLabel llLoadingVideoData;
     }
 }
 

@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="!Hell PRO Tanki Launcher.exe" size="4010496">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="!Hell PRO Tanki Launcher.exe" size="2156032">
       <assemblyIdentity name="!Hell PRO Tanki Launcher" version="1.0.0.7" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>lks6KQ++4ds5qmOyCmUiCh+7744=</dsig:DigestValue>
+        <dsig:DigestValue>wjglohjNCseKqxov6/RAsbVaVBs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

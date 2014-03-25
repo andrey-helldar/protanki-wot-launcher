@@ -133,6 +133,36 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap back_settings1 {
+            get {
+                object obj = ResourceManager.GetObject("back_settings1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap back_settings2 {
+            get {
+                object obj = ResourceManager.GetObject("back_settings2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap back_updates {
+            get {
+                object obj = ResourceManager.GetObject("back_updates", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap good {
             get {
                 object obj = ResourceManager.GetObject("good", resourceCulture);
@@ -176,26 +206,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         internal static System.Drawing.Bitmap newVersion50 {
             get {
                 object obj = ResourceManager.GetObject("newVersion50", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap settings {
-            get {
-                object obj = ResourceManager.GetObject("settings", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Settings_back {
-            get {
-                object obj = ResourceManager.GetObject("Settings_back", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -65,38 +65,6 @@ namespace _Hell_PRO_Tanki_Launcher
             MessageBox.Show(this, err, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        [DllImport("dgi32.dll")]
-        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
-        FontFamily ff;
-        Font font;
-
-        private void CargoPrivateFontCollection()
-        {
-            // Create the byte array and get its length
-
-            byte[] fontArray = Properties.Resources.sochi;
-            int dataLength = Properties.Resources.sochi.Length;
-
-
-            // ASSIGN MEMORY AND COPY  BYTE[] ON THAT MEMORY ADDRESS
-            IntPtr ptrData = Marshal.AllocCoTaskMem(dataLength);
-            Marshal.Copy(fontArray, 0, ptrData, dataLength);
-
-
-            uint cFonts = 0;
-            AddFontMemResourceEx(ptrData, (uint)fontArray.Length, IntPtr.Zero, ref cFonts);
-
-            PrivateFontCollection pfc = new PrivateFontCollection();
-            //PASS THE FONT TO THE  PRIVATEFONTCOLLECTION OBJECT
-            pfc.AddMemoryFont(ptrData, dataLength);
-
-            //FREE THE  "UNSAFE" MEMORY
-            Marshal.FreeCoTaskMem(ptrData);
-
-            ff = pfc.Families[0];
-            font = new Font(ff, 15f, FontStyle.Bold);
-        }
-
         private void overLoad(bool view = true)
         {
             if (view)
@@ -128,10 +96,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 InitializeComponent();
 
-                // Загружаем шрифт
-                //CargoPrivateFontCollection();
-                //bSettings.Font = new Font(ff, 12f, FontStyle.Regular);
-
                 overLoad();
 
                 loadSettings();
@@ -139,7 +103,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 this.Text = xmlTitle + " v" + sVerModPack;
                 this.Icon = Properties.Resources.myicon;
 
-                llTitle.Text = xmlTitle + " (" + sVerType + ")";
+                llTitle.Text = xmlTitle + " (" + (sVerType == "full" ? "Расширенная версия" : "Базовая версия") + ")";
 
                 notifyIcon.Icon = Properties.Resources.myicon;
                 notifyIcon.Text = xmlTitle + " v" + sVerModPack;
@@ -527,6 +491,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     llActually.ActiveLinkColor = Color.Yellow;
                     llActually.LinkColor = Color.Yellow;
                     llActually.VisitedLinkColor = Color.Yellow;
+                    llActually.SetBounds(315 - (int)(llActually.Width / 2), llActually.Location.Y, 10, 10);
 
                     // Изменяем изображение иконки статуса обновлений
                     pbNewVersion.BackgroundImage = Properties.Resources.newVersion;
@@ -1050,7 +1015,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 // for (int i = 0; i < youtubeTitle.Count; i++)
                 // {
                 LinkLabel label = new LinkLabel();
-                label.SetBounds(190, 421, 100, 20);
+                label.SetBounds(190, 426, 100, 20);
                 label.AutoSize = true;
                 label.ActiveLinkColor = Color.FromArgb(243, 123, 16);
                 label.BackColor = Color.Transparent;
@@ -1170,6 +1135,15 @@ namespace _Hell_PRO_Tanki_Launcher
                 int topOffset = 70,
                     topPosition = 30;
 
+                // Так как начали выводить данные, проверяем существует ли контрол с текстом "ПОдождите, идет загрузка данных..."
+                try
+                {
+                    if (llLoadingVideoData.Text != "")
+                    {
+                        this.Controls.Remove(llLoadingVideoData);
+                    }
+                }catch{}
+
                 Label labelDate = new Label();
                 //labelDate.SetBounds(10, (e.ProgressPercentage + showVideoTop) * topPosition + topOffset, 10, 10);
                 labelDate.SetBounds(10, showVideoTop, 10, 10);
@@ -1226,6 +1200,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
+        // Форматируем дату для вывода в список новостей и видео
         private string formatDate(string dt)
         {
             try
