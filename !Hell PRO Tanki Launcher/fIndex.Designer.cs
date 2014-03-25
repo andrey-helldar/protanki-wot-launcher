@@ -356,6 +356,8 @@
             // 
             this.bwVideo.WorkerReportsProgress = true;
             this.bwVideo.WorkerSupportsCancellation = true;
+            this.bwVideo.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwVideo_DoWork);
+            this.bwVideo.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwVideo_ProgressChanged);
             this.bwVideo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwVideo_RunWorkerCompleted);
             // 
             // bwUpdateLauncher

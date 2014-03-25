@@ -43,10 +43,16 @@ namespace _Hell_PRO_Tanki_Launcher
             autoNews = true,
             autoVideo = true;
 
+        List<string> youtubeTitle = new List<string>();
+        List<string> youtubeLink = new List<string>();
+
         ProcessStartInfo psi;
 
         // Инициализируем окно статуса обновлений
         fNewVersion fNewVersion = new fNewVersion();
+
+        // Инициализируем класс дебага
+        debug debug = new debug();
 
 
         private void showError(string err)
@@ -54,19 +60,38 @@ namespace _Hell_PRO_Tanki_Launcher
             MessageBox.Show(this, err, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void overLoad(bool view = true)
+        {
+            if (view)
+            {
+                /*  Panel panel = new Panel();
+                  panel.SetBounds(0, 0, this.Width, this.Height);
+                  panel.BackColor = Color.Gray;
+                  panel.Name = "overLoadPanel";
+                  this.Controls.Add(panel);
+                 * */
+            }
+            else
+            {
+                // this.overLoadPanel.Hide();
+            }
+        }
+
         public fIndex()
         {
             try
             {
+                //Проверяем запущен ли процесс
+                // Если запущен, то закрываем все предыдущие, оставляя заново открытое окно
+                Process[] myProcesses = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
+                for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
+
                 // Проверяем установлен ли в системе нужный нам фраймворк
                 getFramework();
 
                 InitializeComponent();
 
-                //Проверяем запущен ли процесс
-                // Если запущен, то закрываем все предыдущие, оставляя заново открытое окно
-                Process[] myProcesses = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
-                for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
+                overLoad();
 
                 loadSettings();
 
@@ -97,9 +122,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 bwOptimize.WorkerReportsProgress = true;
                 bwOptimize.WorkerSupportsCancellation = true;
             }
-            catch (Exception ex0)
+            catch (Exception ex)
             {
-                showError(ex0.Message);
+                debug.Save("public fIndex()", ex.Message);
+                showError(ex.Message);
             }
         }
 
@@ -163,6 +189,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                debug.Save("public void getFramework()", ex.Message);
                 showError(ex.Message);
             }
         }
@@ -181,7 +208,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     //xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
                     xmlTitle = Application.ProductName;
 
-                    path = doc.GetElementsByTagName("path")[0].InnerText;
+                    path = @"d:\Games\World_of_Tanks\";
                     sVerType = doc.GetElementsByTagName("type")[0].InnerText;
 
                     foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
@@ -210,7 +237,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
                     else
                     {
-                       // checkTanks();
+                        // checkTanks();
                     }
                 }
                 else
@@ -229,6 +256,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                debug.Save("public void loadSettings()", ex.Message);
                 showError(ex.Message);
             }
         }
@@ -249,18 +277,19 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
                     }
-                   /* else
-                    {
-                        checkTanks();
-                    }*/
+                    /* else
+                     {
+                         checkTanks();
+                     }*/
                 }
-               /* else
-                {
-                    checkTanks();
-                }*/
+                /* else
+                 {
+                     checkTanks();
+                 }*/
             }
             catch (Exception ex)
             {
+                debug.Save("public void checkTanks()", ex.Message);
                 showError(ex.Message);
             }
         }
@@ -286,7 +315,12 @@ namespace _Hell_PRO_Tanki_Launcher
                     return -1;
                 }
             }
-            catch (Exception ex) { showError(ex.Message); return -1; }
+            catch (Exception ex)
+            {
+                debug.Save("private int getVersion()", ex.Message);
+                showError(ex.Message);
+                return -1;
+            }
         }
 
         // Выбираем изображение для установки фона
@@ -307,7 +341,12 @@ namespace _Hell_PRO_Tanki_Launcher
                     default: this.BackgroundImage = Properties.Resources.back_7; break;
                 }
             }
-            catch (Exception ex) { /*showError(ex.Message);*/ this.BackgroundImage = Properties.Resources.back_7; }
+            catch (Exception ex)
+            {
+                debug.Save("public void setBackground()", ex.Message);
+                /*showError(ex.Message);*/
+                this.BackgroundImage = Properties.Resources.back_7;
+            }
         }
 
         private void bExit_Click(object sender, EventArgs e)
@@ -360,6 +399,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                debug.Save("private void bwUpdater_DoWork(object sender, DoWorkEventArgs e)", ex.Message);
                 showError(ex.Message);
             }
         }
@@ -417,8 +457,16 @@ namespace _Hell_PRO_Tanki_Launcher
                         status += "Обнаружена новая версия клиента игры (" + sVerTanks.ToString() + ")!" + Environment.NewLine;
                         bUpdate.Enabled = true;
 
+                        // Отключаем кнопку запуска игры
+                        bPlay.Enabled = false;
+
                         //this.llContent.Location = new Point(30, 40);
                         //this.llContent.Size = new Size(595, 370);
+                    }
+                    else
+                    {
+                        // Включаем кнопку запуска игры
+                        bPlay.Enabled = true;
                     }
 
                     // Добавляем новость об изменениях в модпаке
@@ -452,9 +500,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 //this.llContent.Text = status;
                 notifyIcon.ShowBalloonTip(2000, xmlTitle, status, ToolTipIcon.Info);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Возникла ошибка обновления. Требуется перезапустить лаунчер модпака.");
+                debug.Save("private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", ex.Message);
+                MessageBox.Show("Возникла ошибка обновления. Лаунчер модпака будет перезапущен.");
                 Process.Start("restart.exe", Process.GetCurrentProcess().ProcessName);
                 Process.GetCurrentProcess().Kill();
             }
@@ -476,6 +525,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                debug.Save("private void bLauncher_Click(object sender, EventArgs e)", ex.Message);
                 showError(ex.Message);
             }
         }
@@ -496,6 +546,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                debug.Save("private void bPlay_Click(object sender, EventArgs e)", ex.Message);
                 showError(ex.Message);
             }
         }
@@ -634,7 +685,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     int processID = Process.GetCurrentProcess().SessionId;
 
                     // Расчитываем значение прогресс бара
-                    maxPercentUpdateStatus += myProcesses.Length * 2 - 2;
+                    maxPercentUpdateStatus += autoKill ? myProcesses.Length * 2 - 2 : myProcesses.Length - 1;
 
                     // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
                     string[] vipProcess = {
@@ -731,6 +782,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", ex.Message);
                 showError(ex.Message);
             }
         }
@@ -762,6 +814,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void fIndex_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Архивируем папку дебага
+            debug.Archive();
+
             // Раньше проверяли выли ли внесены изменения, сейчас просто запускаем aero...
             //if (optimized)
             //{
@@ -813,6 +868,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                debug.Save("private void saveLog(int index, string param)", ex.Message);
                 showError(ex.Message);
             }
         }
@@ -837,6 +893,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                debug.Save("private void saveLogNotCloseProcess(string param)", ex.Message);
                 showError(ex.Message);
             }
         }
@@ -889,6 +946,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                debug.Save("private void bwAero_DoWork(object sender, DoWorkEventArgs e)", ex.Message);
                 showError(ex.Message);
             }
         }
@@ -919,23 +977,10 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            try
+            /*try
             {
-                int i = 0;
-
-                XmlDocument doc = new XmlDocument();
-                doc.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
-
-                foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
+                for (int i = 0; i < youtubeTitle.Count; i++)
                 {
-                    if (i >= 12) { break; }
-
-                    /*str += xmlNode["title"].InnerText + "   :::   ";
-                    if (xmlNode["link"].Attributes["rel"].InnerText == "alternate")
-                    {
-                        str += xmlNode["link"].Attributes["href"].InnerText + Environment.NewLine;
-                    }*/
-
                     LinkLabel lebel = new LinkLabel();
                     lebel.SetBounds(10, i * 30 + 40, 100, 20);
                     lebel.AutoSize = true;
@@ -946,23 +991,17 @@ namespace _Hell_PRO_Tanki_Launcher
                     lebel.LinkColor = Color.FromArgb(243, 123, 16);
                     lebel.LinkBehavior = LinkBehavior.HoverUnderline;
                     lebel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                    lebel.Text = xmlNode["published"].InnerText.Remove(10) + ": ";
-                    lebel.Text += xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText;
-                    lebel.Name = "llNews" + (++i).ToString();
-                    if (xmlNode["link"].Attributes["rel"].InnerText == "alternate")
-                    {
-                        lebel.Links[0].LinkData = xmlNode["link"].Attributes["href"].InnerText;
-                        lebel.Click += new EventHandler(lebel_Click);
-                    }
+                    lebel.Text = youtubeTitle[i];
+                    lebel.Name = "llNews" + (i).ToString();
+                    lebel.Links[0].LinkData = youtubeLink[i];
+                    lebel.Click += new EventHandler(lebel_Click);
                     this.Controls.Add(lebel);
                 }
-
-                // MessageBox.Show(str);
             }
             catch (Exception ex)
             {
                 showError(ex.Message);
-            }
+            }*/
         }
 
         private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)
@@ -996,6 +1035,65 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", ex.Message);
+                showError(ex.Message);
+            }
+        }
+
+        private void bwVideo_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                int i = 0;
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
+
+                youtubeTitle.Clear();
+                youtubeLink.Clear();
+
+                foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
+                {
+                    if (i >= 12) { break; }
+
+                    youtubeTitle.Add(xmlNode["published"].InnerText.Remove(10) + ": " + (xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText));
+                    youtubeLink.Add(xmlNode["link"].Attributes["rel"].InnerText == "alternate" ? xmlNode["link"].Attributes["href"].InnerText : "");
+
+                    bwVideo.ReportProgress(i);
+
+                    ++i;
+                }
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void bwVideo_DoWork(object sender, DoWorkEventArgs e)", ex.Message);
+                showError(ex.Message);
+            }
+        }
+
+        private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            try
+            {
+                LinkLabel lebel = new LinkLabel();
+                lebel.SetBounds(10, e.ProgressPercentage * 30 + 40, 100, 20);
+                lebel.AutoSize = true;
+                lebel.ActiveLinkColor = Color.FromArgb(243, 123, 16);
+                lebel.BackColor = Color.Transparent;
+                lebel.ForeColor = Color.FromArgb(243, 123, 16);
+                lebel.VisitedLinkColor = Color.FromArgb(243, 123, 16);
+                lebel.LinkColor = Color.FromArgb(243, 123, 16);
+                lebel.LinkBehavior = LinkBehavior.HoverUnderline;
+                lebel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                lebel.Text = youtubeTitle[e.ProgressPercentage];
+                lebel.Name = "llNews" + e.ProgressPercentage.ToString();
+                lebel.Links[0].LinkData = youtubeLink[e.ProgressPercentage];
+                lebel.Click += new EventHandler(lebel_Click);
+                this.Controls.Add(lebel);
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)", ex.Message);
                 showError(ex.Message);
             }
         }

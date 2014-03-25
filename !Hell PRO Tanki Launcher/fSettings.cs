@@ -15,7 +15,6 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         string //title,
             version,
-            path,
             type = "full";
 
         public fSettings()
@@ -30,7 +29,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 doc.Load("settings.xml");
 
                 version = doc.GetElementsByTagName("version")[0].InnerText;
-                path = doc.GetElementsByTagName("path")[0].InnerText;
                 type = doc.GetElementsByTagName("type")[0].InnerText;
 
                 try
@@ -56,22 +54,12 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 //title = Application.ProductName;
                 version = Application.ProductVersion;
-                path = "";
 
                 cbKillProcesses.Checked = true;
                 cbAero.Checked = true;
                 cbNews.Checked = true;
                 cbVideo.Checked = true;
             }
-
-            tbPath.Text = path;
-        }
-
-        private void bBrowse_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.ShowDialog();
-            tbPath.Text = fbd.SelectedPath + @"\";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -91,10 +79,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
             wr.WriteStartElement("version", null);
             wr.WriteString(version);
-            wr.WriteEndElement();
-
-            wr.WriteStartElement("path", null);
-            wr.WriteString(tbPath.Text);
             wr.WriteEndElement();
 
             wr.WriteStartElement("type", null);
@@ -125,13 +109,6 @@ namespace _Hell_PRO_Tanki_Launcher
             this.MouseDown += delegate
             {
                 this.Capture = false;
-                var msg = Message.Create(this.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
-                this.WndProc(ref msg);
-            };
-
-            groupBox1.MouseDown += delegate
-            {
-                groupBox1.Capture = false;
                 var msg = Message.Create(this.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
                 this.WndProc(ref msg);
             };
