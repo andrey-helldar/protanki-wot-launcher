@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 using System.IO;
@@ -10,12 +11,17 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     class debug
     {
-        public void Save(string place, string mess)
+        public void Save(string func, string place, string mess)
         {
             try
             {
                 if (!Directory.Exists("debug")) { Directory.CreateDirectory("debug"); }
-                File.WriteAllText(@"debug\" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".debug", place + Environment.NewLine + "-------------------------------" + Environment.NewLine + mess, Encoding.UTF8);
+                File.WriteAllText(@"debug\" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".debug",
+                    func + Environment.NewLine + "-------------------------------" + Environment.NewLine +
+                    place + Environment.NewLine + "-------------------------------" + Environment.NewLine +
+                    mess, Encoding.UTF8);
+
+                MessageBox.Show(fIndex.ActiveForm, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception /*ex*/)
             {
@@ -42,7 +48,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                this.Save("public bool Archive()", ex.Message);
+                this.Save("public bool Archive()", "", ex.Message);
             }
 
             return exp;

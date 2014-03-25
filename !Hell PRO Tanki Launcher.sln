@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell PRO Tanki Launcher", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell PRO Tanki Installer", "!Hell PRO Tanki Installer\!Hell PRO Tanki Installer.csproj", "{90703D70-A6A4-42EE-A5BB-184BF08C1A31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Restart Software", "!Hell Restart Software\!Hell Restart Software.csproj", "{C732C803-5DF9-40FF-ABB0-E8D0CB491282}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell PRO Tanki Launcher WPF", "!Hell PRO Tanki Launcher WPF\!Hell PRO Tanki Launcher WPF.csproj", "{5014185D-AFCA-4D02-93D1-64F484F6223A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Process List", "!Hell Process List\!Hell Process List.csproj", "{AF9F8199-194C-4BFA-B49D-4BE012B0028A}"
@@ -25,10 +23,6 @@ Global
 		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Debug|x86.Build.0 = Debug|x86
 		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Release|x86.ActiveCfg = Release|x86
 		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Release|x86.Build.0 = Release|x86
-		{C732C803-5DF9-40FF-ABB0-E8D0CB491282}.Debug|x86.ActiveCfg = Debug|x86
-		{C732C803-5DF9-40FF-ABB0-E8D0CB491282}.Debug|x86.Build.0 = Debug|x86
-		{C732C803-5DF9-40FF-ABB0-E8D0CB491282}.Release|x86.ActiveCfg = Release|x86
-		{C732C803-5DF9-40FF-ABB0-E8D0CB491282}.Release|x86.Build.0 = Release|x86
 		{5014185D-AFCA-4D02-93D1-64F484F6223A}.Debug|x86.ActiveCfg = Debug|x86
 		{5014185D-AFCA-4D02-93D1-64F484F6223A}.Debug|x86.Build.0 = Debug|x86
 		{5014185D-AFCA-4D02-93D1-64F484F6223A}.Release|x86.ActiveCfg = Release|x86

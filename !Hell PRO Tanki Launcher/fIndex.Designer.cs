@@ -57,9 +57,8 @@
             this.bwVideo = new System.ComponentModel.BackgroundWorker();
             this.bwUpdateLauncher = new System.ComponentModel.BackgroundWorker();
             this.llActually = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
+            this.llLauncherVersion = new System.Windows.Forms.LinkLabel();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbNewVersion)).BeginInit();
             this.SuspendLayout();
@@ -289,7 +288,6 @@
             this.bwOptimize.WorkerSupportsCancellation = true;
             this.bwOptimize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwOptimize_DoWork);
             this.bwOptimize.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwOptimize_ProgressChanged);
-            this.bwOptimize.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwOptimize_RunWorkerCompleted);
             // 
             // llTitle
             // 
@@ -380,47 +378,13 @@
             this.llActually.ForeColor = System.Drawing.Color.Lime;
             this.llActually.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llActually.LinkColor = System.Drawing.Color.Lime;
-            this.llActually.Location = new System.Drawing.Point(189, 27);
+            this.llActually.Location = new System.Drawing.Point(189, 38);
             this.llActually.Name = "llActually";
             this.llActually.Size = new System.Drawing.Size(246, 20);
             this.llActually.TabIndex = 19;
             this.llActually.TabStop = true;
             this.llActually.Text = "Вы используете самые свежие моды!";
             this.llActually.VisitedLinkColor = System.Drawing.Color.Lime;
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.ActiveLinkColor = System.Drawing.Color.Silver;
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel2.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.linkLabel2.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel2.LinkColor = System.Drawing.Color.Silver;
-            this.linkLabel2.Location = new System.Drawing.Point(12, 52);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(53, 20);
-            this.linkLabel2.TabIndex = 20;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Видео:";
-            this.linkLabel2.VisitedLinkColor = System.Drawing.Color.Silver;
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.ActiveLinkColor = System.Drawing.Color.Silver;
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel3.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.linkLabel3.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.linkLabel3.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.linkLabel3.LinkColor = System.Drawing.Color.Silver;
-            this.linkLabel3.Location = new System.Drawing.Point(358, 51);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(66, 20);
-            this.linkLabel3.TabIndex = 21;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Новости:";
-            this.linkLabel3.VisitedLinkColor = System.Drawing.Color.Silver;
             // 
             // llLoadingVideoData
             // 
@@ -439,15 +403,31 @@
             this.llLoadingVideoData.Text = "Подождите, идет загрузка...";
             this.llLoadingVideoData.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
+            // llLauncherVersion
+            // 
+            this.llLauncherVersion.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llLauncherVersion.AutoSize = true;
+            this.llLauncherVersion.BackColor = System.Drawing.Color.Transparent;
+            this.llLauncherVersion.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.llLauncherVersion.Font = new System.Drawing.Font("Sochi2014", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llLauncherVersion.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llLauncherVersion.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llLauncherVersion.Location = new System.Drawing.Point(523, 4);
+            this.llLauncherVersion.Name = "llLauncherVersion";
+            this.llLauncherVersion.Size = new System.Drawing.Size(49, 18);
+            this.llLauncherVersion.TabIndex = 23;
+            this.llLauncherVersion.TabStop = true;
+            this.llLauncherVersion.Text = "0.0.0.0";
+            this.llLauncherVersion.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.llLauncherVersion);
             this.Controls.Add(this.llLoadingVideoData);
-            this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.llActually);
             this.Controls.Add(this.pbNewVersion);
             this.Controls.Add(this.llUpdateStatus);
@@ -502,9 +482,8 @@
         private System.ComponentModel.BackgroundWorker bwVideo;
         private System.ComponentModel.BackgroundWorker bwUpdateLauncher;
         private System.Windows.Forms.LinkLabel llActually;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel llLoadingVideoData;
+        private System.Windows.Forms.LinkLabel llLauncherVersion;
     }
 }
 
