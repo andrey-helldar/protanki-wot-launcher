@@ -337,7 +337,7 @@
             this.llUpdateStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llUpdateStatus.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llUpdateStatus.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llUpdateStatus.Location = new System.Drawing.Point(252, 421);
+            this.llUpdateStatus.Location = new System.Drawing.Point(344, 427);
             this.llUpdateStatus.Name = "llUpdateStatus";
             this.llUpdateStatus.Size = new System.Drawing.Size(0, 18);
             this.llUpdateStatus.TabIndex = 13;

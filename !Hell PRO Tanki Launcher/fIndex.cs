@@ -236,34 +236,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        // Если папка с танками не найдена, запускаем рекурсию, пока папка не будет указана верно
-        /*public void checkTanks()
-        {
-            try
-            {
-                if (File.Exists(path + "version.xml"))
-                {
-                    if (!bwUpdater.IsBusy)
-                    {
-                        this.bwUpdater.RunWorkerAsync();
-                    }
-                    else
-                    {
-                        Thread.Sleep(500);
-                        loadSettings();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
-                }
-            }
-            catch (Exception ex)
-            {
-                debug.Save("public void checkTanks()", "if (File.Exists(path + \"version.xml\"))", ex.Message);
-            }
-        }*/
-
 
         // Получаем версию танков
         private int getVersion()
@@ -1070,34 +1042,46 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)
         {
+            var client = new WebClient();
+            XmlDocument doc = new XmlDocument();
+
             try
             {
                 // Для работы нам нужна библиотека Ionic.Zip.dll
-                var clientZip = new WebClient();
-                clientZip.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
+                //var clientZIP = new WebClient();
+                if (!File.Exists("Ionic.Zip.dll"))
+                {
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
+                }
             }
             catch (Exception ex1)
             {
-                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "var clientZip = new WebClient();", ex1.Message);
+                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "if (!File.Exists(\"Ionic.Zip.dll\"))", ex1.Message);
             }
 
-            try
-            {
-                // Для работы нам нужен restart.exe
-                var clientRestart = new WebClient();
-                clientRestart.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.txt"), "restart.exe");
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "var clientRestart = new WebClient();", ex1.Message);
-            }
 
 
             try
             {
-                XmlDocument doc = new XmlDocument();
+                //XmlDocument doc = new XmlDocument();
                 doc.Load(@"http://ai-rus.com/pro/protanks.xml");
 
+                // Updater
+                double verUpdater = Convert.ToDouble(doc.GetElementsByTagName("updater")[0].InnerText.Replace(".", ""));
+                if (!File.Exists("updater.exe") || verUpdater < getFileVersion("updater.exe"))
+                {
+                    var client1 = new WebClient();
+                    client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.txt"), "updater.exe");
+                }
+
+                // Restarter
+                double verRestart = Convert.ToDouble(doc.GetElementsByTagName("restart")[0].InnerText.Replace(".", ""));
+                if (!File.Exists("restart.exe") || verRestart < getFileVersion("restart.exe"))
+                {
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.txt"), "restart.exe");
+                }
+
+                // Версия лаунчера
                 double ver = Convert.ToDouble(doc.GetElementsByTagName("version")[0].InnerText.Replace(".", "")),
                     thisVer = Convert.ToDouble(Application.ProductVersion.Replace(".", ""));
 
@@ -1105,14 +1089,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (File.Exists("hell-protanks-download")) { File.Delete("hell-protanks-download"); }
 
-                    var client = new WebClient();
+                    //var client = new WebClient();
                     client.DownloadFile(new Uri(@"http://ai-rus.com/pro/launcher.txt"), "hell-protanks-download");
-
-                    if (!File.Exists("updater.exe"))
-                    {
-                        var client1 = new WebClient();
-                        client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.txt"), "updater.exe");
-                    }
 
                     //MessageBox.Show(this, "Требуется перезапуск приложения для завершения обновления", "Обновление " + Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -1124,6 +1102,12 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex1.Message);
             }
+        }
+
+        private double getFileVersion(string filename)
+        {
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(filename);
+            return Convert.ToDouble(fvi.FileVersion.Replace(".", ""));
         }
 
         private void bwVideo_DoWork(object sender, DoWorkEventArgs e)
