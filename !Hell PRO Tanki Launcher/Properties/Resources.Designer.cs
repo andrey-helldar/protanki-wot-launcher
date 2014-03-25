@@ -199,5 +199,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] sochi {
+            get {
+                object obj = ResourceManager.GetObject("sochi", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

@@ -26,25 +26,32 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             bool exp = false;
 
-            if (!Directory.Exists("debug")) { return false; }
-
-            using (FileStream sourceFile = File.OpenRead(@"debug"))
-            using (FileStream targetFile = File.Create(@"debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip"))
-            using (GZipStream gzipStream = new GZipStream(targetFile, CompressionMode.Compress, false))
+            try
             {
-                try
+                if (!Directory.Exists("debug")) { return false; }
+
+                using (FileStream sourceFile = File.OpenRead(@"debug"))
+                using (FileStream targetFile = File.Create(@"debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip"))
+                using (GZipStream gzipStream = new GZipStream(targetFile, CompressionMode.Compress, false))
                 {
-                    int posByte = sourceFile.ReadByte();
-
-                    while (posByte != -1)
+                    try
                     {
-                        gzipStream.WriteByte((byte)posByte);
-                        posByte = sourceFile.ReadByte();
-                    }
+                        int posByte = sourceFile.ReadByte();
 
-                    exp = true;
+                        while (posByte != -1)
+                        {
+                            gzipStream.WriteByte((byte)posByte);
+                            posByte = sourceFile.ReadByte();
+                        }
+
+                        exp = true;
+                    }
+                    catch (Exception) { exp = false; }
                 }
-                catch (Exception) { exp = false; }
+            }
+            catch (Exception ex)
+            {
+                this.Save("public bool Archive()", ex.Message);
             }
 
             return exp;

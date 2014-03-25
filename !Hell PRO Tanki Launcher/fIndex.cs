@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -12,6 +13,7 @@ using System.IO;
 using System.Xml;
 using System.Threading;
 using Microsoft.Win32;
+using System.Runtime.InteropServices;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -45,7 +47,7 @@ namespace _Hell_PRO_Tanki_Launcher
             autoVideo = true;
 
         List<string> youtubeTitle = new List<string>();
-        List<string> youtubeLink = new List<string>();
+        List<string> youtubeLink = new List<string>();        
 
         ProcessStartInfo psi;
 
@@ -59,6 +61,38 @@ namespace _Hell_PRO_Tanki_Launcher
         private void showError(string err)
         {
             MessageBox.Show(this, err, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        [DllImport("dgi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
+        FontFamily ff;
+        Font font;
+
+        private void CargoPrivateFontCollection()
+        {
+            // Create the byte array and get its length
+
+            byte[] fontArray = Properties.Resources.sochi;
+            int dataLength = Properties.Resources.sochi.Length;
+
+
+            // ASSIGN MEMORY AND COPY  BYTE[] ON THAT MEMORY ADDRESS
+            IntPtr ptrData = Marshal.AllocCoTaskMem(dataLength);
+            Marshal.Copy(fontArray, 0, ptrData, dataLength);
+
+
+            uint cFonts = 0;
+            AddFontMemResourceEx(ptrData, (uint)fontArray.Length, IntPtr.Zero, ref cFonts);
+
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            //PASS THE FONT TO THE  PRIVATEFONTCOLLECTION OBJECT
+            pfc.AddMemoryFont(ptrData, dataLength);
+
+            //FREE THE  "UNSAFE" MEMORY
+            Marshal.FreeCoTaskMem(ptrData);
+
+            ff = pfc.Families[0];
+            font = new Font(ff, 15f, FontStyle.Bold);
         }
 
         private void overLoad(bool view = true)
@@ -91,6 +125,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 getFramework();
 
                 InitializeComponent();
+
+                // Загружаем шрифт
+                CargoPrivateFontCollection();
+                bSettings.Font = new Font(ff, 12f, FontStyle.Regular);
 
                 overLoad();
 

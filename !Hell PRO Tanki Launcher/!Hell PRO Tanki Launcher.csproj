@@ -132,6 +132,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\sochi.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="back\1.jpg" />
