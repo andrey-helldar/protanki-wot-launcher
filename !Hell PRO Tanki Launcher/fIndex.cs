@@ -34,7 +34,8 @@ namespace _Hell_PRO_Tanki_Launcher
         int verPack,
             verTanks,
             verModPack,
-            maxPercentUpdateStatus = 1;
+            maxPercentUpdateStatus = 1,
+            showVideoTop = 70;
 
         bool updPack = false,
             updTanks = false,
@@ -1144,13 +1145,15 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
                 {
-                    if (i >= 11) { break; }
+                    if (i >= 11 || showVideoTop > 360) { break; }
 
                     youtubeDate.Add(xmlNode["published"].InnerText.Remove(10));
                     youtubeTitle.Add((xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText));
                     youtubeLink.Add(xmlNode["link"].Attributes["rel"].InnerText == "alternate" ? xmlNode["link"].Attributes["href"].InnerText : "");
 
                     bwVideo.ReportProgress(i);
+
+                    if (showVideoTop > 360) { break; }
 
                     ++i;
                 }
@@ -1166,11 +1169,12 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                int topOffset = 60,
+                int topOffset = 70,
                     topPosition = 30;
 
                 Label labelDate = new Label();
-                labelDate.SetBounds(10, e.ProgressPercentage * topPosition + topOffset, 10, 10);
+                //labelDate.SetBounds(10, (e.ProgressPercentage + showVideoTop) * topPosition + topOffset, 10, 10);
+                labelDate.SetBounds(10, showVideoTop, 10, 10);
                 labelDate.AutoSize = true;
                 labelDate.BackColor = Color.Transparent;
                 labelDate.ForeColor = Color.Silver;
@@ -1190,18 +1194,35 @@ namespace _Hell_PRO_Tanki_Launcher
                 label.Name = "llNews" + e.ProgressPercentage.ToString();
                 label.Text = youtubeTitle[e.ProgressPercentage];
                 label.Links[0].LinkData = youtubeLink[e.ProgressPercentage];
-                label.SetBounds(labelDate.Width + 10, e.ProgressPercentage * topPosition + topOffset, 100, 20);
+                try
+                {
+                    label.SetBounds(labelDate.Width + 10, showVideoTop, 100, 20);
+                }
+                catch (Exception) { }
                 label.AutoSize = true;
                 label.Click += new EventHandler(label_Click);
                 this.Controls.Add(label);
+
+                //showVideoTop = 0;
 
                 if (label.Width > 250)
                 {
                     label.AutoSize = false;
                     label.Size = new Size(250, 40);
 
-                    label.SetBounds(labelDate.Width + 10, e.ProgressPercentage * topPosition + topOffset+20, 100, 20);
+                    //label.SetBounds(labelDate.Width + 10, (e.ProgressPercentage + showVideoTop) * topPosition + topOffset, 250, 40);
+                    label.SetBounds(labelDate.Width + 10, showVideoTop, 250, 40);
                     labelDate.Location = new Point(10, label.Location.Y);
+
+
+                    label.Text += "   (  " + showVideoTop + "  )";
+                    showVideoTop += 50;
+                }
+                else
+                {
+
+                    label.Text += "   (  " + showVideoTop + "  )";
+                    showVideoTop += 30;
                 }
             }
             catch (Exception ex)
