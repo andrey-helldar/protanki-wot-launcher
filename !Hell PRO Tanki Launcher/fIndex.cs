@@ -411,7 +411,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    updTanks = false;
+                    updTanks = verTanksClient < verTanksServer ? true : false;
                 }
 
                 //Проверяем апдейты на модпак
