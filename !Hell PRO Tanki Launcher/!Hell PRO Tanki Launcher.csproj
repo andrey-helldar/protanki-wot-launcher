@@ -28,7 +28,7 @@
     <ProductName>!Hell PRO Tanks Launcher</ProductName>
     <PublisherName>Andrey Helldar</PublisherName>
     <SuiteName>!Hell PRO Tanks Launcher</SuiteName>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

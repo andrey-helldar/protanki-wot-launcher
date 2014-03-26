@@ -60,6 +60,7 @@
             this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
             this.llLauncherVersion = new System.Windows.Forms.LinkLabel();
             this.bProcess = new System.Windows.Forms.Button();
+            this.pbDownload = new System.Windows.Forms.ProgressBar();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbNewVersion)).BeginInit();
             this.SuspendLayout();
@@ -439,12 +440,21 @@
             this.bProcess.UseVisualStyleBackColor = true;
             this.bProcess.Click += new System.EventHandler(this.bProcess_Click);
             // 
+            // pbDownload
+            // 
+            this.pbDownload.Location = new System.Drawing.Point(12, 405);
+            this.pbDownload.Name = "pbDownload";
+            this.pbDownload.Size = new System.Drawing.Size(629, 10);
+            this.pbDownload.TabIndex = 26;
+            this.pbDownload.Visible = false;
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.pbDownload);
             this.Controls.Add(this.bProcess);
             this.Controls.Add(this.llLauncherVersion);
             this.Controls.Add(this.llLoadingVideoData);
@@ -505,6 +515,7 @@
         private System.Windows.Forms.LinkLabel llLoadingVideoData;
         private System.Windows.Forms.LinkLabel llLauncherVersion;
         private System.Windows.Forms.Button bProcess;
+        private System.Windows.Forms.ProgressBar pbDownload;
     }
 }
 

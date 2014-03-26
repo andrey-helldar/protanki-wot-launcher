@@ -241,7 +241,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    MessageBox.Show("Файл настроек не обнаружен!" + Environment.NewLine + "Будут применены настройки по-умолчанию.");
+                    MessageBox.Show("Файл настроек не обнаружен!" + Environment.NewLine + "Будут применены настройки по-умолчанию и программа будет перезапущена.");
+
+                    var client = new WebClient();
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/settings.xml"), "settings.xml");
+
+                    Process.Start("restart.exe", "\""+Process.GetCurrentProcess().ProcessName+"\"");
+                    Process.GetCurrentProcess().Kill();
 
                     xmlTitle = Application.ProductName;
 
@@ -1091,7 +1097,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (!File.Exists("processes.exe") || getFileVersion("processes.exe") < verProcesses)
                 {
                     var client1 = new WebClient();
-                    client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/processes.txt"), "processes.exe");
+                    client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/processes.exe"), "processes.exe");
                 }
 
                 // Updater
@@ -1099,14 +1105,14 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (!File.Exists("updater.exe") || getFileVersion("updater.exe") < verUpdater)
                 {
                     var client1 = new WebClient();
-                    client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.txt"), "updater.exe");
+                    client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.exe"), "updater.exe");
                 }
 
                 // Restarter
                 double verRestart = Convert.ToDouble(doc.GetElementsByTagName("restart")[0].InnerText.Replace(".", ""));
                 if (!File.Exists("restart.exe") || getFileVersion("restart.exe") < verRestart)
                 {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.txt"), "restart.exe");
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.exe"), "restart.exe");
                 }
 
                 // Версия лаунчера
@@ -1117,13 +1123,15 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (File.Exists("hell-protanks-download")) { File.Delete("hell-protanks-download"); }
 
+                    pbDownload.Visible = true;
+
                     //var client = new WebClient();
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/launcher.txt"), "hell-protanks-download");
+                    client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(download_ProgressChanged);
+                    client.DownloadFileCompleted += new AsyncCompletedEventHandler(download_Completed);
+                    client.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "hell-protanks-download");
 
-                    //MessageBox.Show(this, "Требуется перезапуск приложения для завершения обновления", "Обновление " + Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    Process.Start("updater.exe", "hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"");
-                    Process.GetCurrentProcess().Kill();
+                    //Process.Start("updater.exe", "hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"");
+                    //Process.GetCurrentProcess().Kill();
                 }
             }
             catch (Exception ex1)
@@ -1265,6 +1273,31 @@ namespace _Hell_PRO_Tanki_Launcher
             else
             {
                 MessageBox.Show(this, "Исполняемый файл приложения не найден. Попробуйте перезапустить программу для автоматического устранения неисправности.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void download_ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            try
+            {
+                pbDownload.Value = e.ProgressPercentage;
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void download_ProgressChanged(object sender, DownloadProgressChangedEventArgs e)", "pbDownload.Value = e.ProgressPercentage;", ex.Message);
+            }
+        }
+
+        private void download_Completed(object sender, AsyncCompletedEventArgs e)
+        {
+            try
+            {
+            Process.Start("updater.exe", "hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"");
+            Process.GetCurrentProcess().Kill();
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"updater.exe\", \"hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"\");", ex.Message);
             }
         }
     }

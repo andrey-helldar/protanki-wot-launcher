@@ -1,0 +1,4 @@
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\bin\Release\restart.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\bin\Release\restart.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\obj\x86\Release\restart.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\obj\x86\Release\restart.pdb

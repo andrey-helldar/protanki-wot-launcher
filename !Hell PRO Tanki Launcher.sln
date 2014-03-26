@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell PRO Tanki Launcher WP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Process List", "!Hell Process List\!Hell Process List.csproj", "{AF9F8199-194C-4BFA-B49D-4BE012B0028A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Restarter", "!Hell Restarter\!Hell Restarter.csproj", "{F71575F4-D350-4667-BF5E-866354AF66DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -31,6 +33,10 @@ Global
 		{AF9F8199-194C-4BFA-B49D-4BE012B0028A}.Debug|x86.Build.0 = Debug|x86
 		{AF9F8199-194C-4BFA-B49D-4BE012B0028A}.Release|x86.ActiveCfg = Release|x86
 		{AF9F8199-194C-4BFA-B49D-4BE012B0028A}.Release|x86.Build.0 = Release|x86
+		{F71575F4-D350-4667-BF5E-866354AF66DA}.Debug|x86.ActiveCfg = Debug|x86
+		{F71575F4-D350-4667-BF5E-866354AF66DA}.Debug|x86.Build.0 = Debug|x86
+		{F71575F4-D350-4667-BF5E-866354AF66DA}.Release|x86.ActiveCfg = Release|x86
+		{F71575F4-D350-4667-BF5E-866354AF66DA}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
