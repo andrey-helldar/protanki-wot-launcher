@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
+using System.Net;
+using System.Threading;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -15,7 +19,22 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fIndex());
+            try
+            {
+                Application.Run(new fIndex());
+            }
+            catch (Exception)
+            {
+                if (!File.Exists("LanguagePack.dll"))
+                {
+                    var client = new WebClient();
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/LanguagePack.dll"), "LanguagePack.dll");
+
+                    Thread.Sleep(2000);
+
+                    Application.Run(new fIndex());
+                }
+            }
         }
     }
 }

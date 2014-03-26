@@ -14,11 +14,16 @@ using System.Xml;
 using System.Threading;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
+using Processes_Library;
+using _Hell_Language_Pack;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fIndex : Form
     {
+        //Подгружаем классы
+        fLanguage languagePack = new fLanguage();
+
         string xmlTitle = "",
             path = "",
             sVerType = "full",
@@ -73,10 +78,6 @@ namespace _Hell_PRO_Tanki_Launcher
         private void showError(string err)
         {
             MessageBox.Show(this, err, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void tooltip()
-        {
         }
 
         public fIndex()
@@ -765,40 +766,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     maxPercentUpdateStatus += autoKill ? myProcesses.Length * 2 - 2 : myProcesses.Length - 1;
 
                     // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
-                    string[] vipProcess = {
-                                      Process.GetCurrentProcess().ProcessName.ToString(),
-                                      "restart",
-                                      "WorldOfTanks", 
-                                      "WoTLauncher",
-                                      "devenv", // Visual Studio
-                                      "CCC", // ATI
-                                      "atieclxx", // ATI
-                                      "avpui", // Kaspersky
-                                      "conhost",
-                                      "explorer",
-                                      "MOM",
-                                      "taskeng",
-                                      "taskhost",
-                                      "RtkNGUI64",  // Realtek
-                                      "csrss",
-                                      "dwm",
-                                      "winlogon",
-                                      "iusb3mon",
-                                      "U3BoostSvr64",
-                                      "U3BoostSvr32",
-                                      "MKey",
-                                      "NvBackend", // NVIDIA
-                                      "nvstreamsvc",// NVIDIA
-                                      "NvTmru",// NVIDIA
-                                      "nvtray",// NVIDIA
-                                      "nvvsvc",// NVIDIA
-                                      "nvxdsync",// NVIDIA
-                                      "Skype",
-                                      "qip",
-                                      "icq",
-                                      "fraps"
-                                      };
-
+                    // Грузим библиотеку со списком процессов
+                    ProcessesLibrary proccessLibrary = new ProcessesLibrary();
 
                     // Передаем процессам инфу, что приложение должно закрыться
                     for (int i = 1; i < myProcesses.Length; i++)
@@ -808,7 +777,7 @@ namespace _Hell_PRO_Tanki_Launcher
                             // Расчитываем значение прогресс бара
                             bwOptimize.ReportProgress(++myProgressStatus);
 
-                            if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                            if (myProcesses[i].SessionId == processID && Array.IndexOf(proccessLibrary.Processes(), myProcesses[i].ProcessName.ToString()) == -1)
                             {
                                 saveLog(++myIndex, @"Start close normally -- " + myProcesses[i].ProcessName.ToString());
                                 myProcesses[i].CloseMainWindow();
@@ -839,7 +808,7 @@ namespace _Hell_PRO_Tanki_Launcher
                                 // Расчитываем значение прогресс бара
                                 bwOptimize.ReportProgress(++myProgressStatus);
 
-                                if (myProcesses[i].SessionId == processID && Array.IndexOf(vipProcess, myProcesses[i].ProcessName.ToString()) == -1)
+                                if (myProcesses[i].SessionId == processID && Array.IndexOf(proccessLibrary.Processes(), myProcesses[i].ProcessName.ToString()) == -1)
                                 {
                                     saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
                                     myProcesses[i].Kill();
@@ -1127,6 +1096,14 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 //XmlDocument doc = new XmlDocument();
                 doc.Load(@"http://ai-rus.com/pro/protanks.xml");
+
+                // Processes Library
+                double verProcessesDll = Convert.ToDouble(doc.GetElementsByTagName("processesLibrary")[0].InnerText.Replace(".", ""));
+                if (!File.Exists("ProcessesLibrary.dll") || getFileVersion("ProcessesLibrary.dll") < verProcessesDll)
+                {
+                    var client1 = new WebClient();
+                    client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/ProcessesLibrary.dll"), "ProcessesLibrary.dll");
+                }
 
                 // Process List
                 double verProcesses = Convert.ToDouble(doc.GetElementsByTagName("processes")[0].InnerText.Replace(".", ""));
@@ -1503,6 +1480,11 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void fIndex_Load(object sender, EventArgs e)
+        {
+            languagePack.toolTip(bOptimizePC);
         }
     }
 }

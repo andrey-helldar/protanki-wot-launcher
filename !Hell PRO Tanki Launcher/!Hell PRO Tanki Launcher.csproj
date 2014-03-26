@@ -25,11 +25,11 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <SupportUrl>http://ai-rus.com</SupportUrl>
-    <ProductName>!Hell PRO Tanks Launcher</ProductName>
+    <ProductName>!Hell PROTanks Launcher</ProductName>
     <PublisherName>Andrey Helldar</PublisherName>
-    <SuiteName>!Hell PRO Tanks Launcher</SuiteName>
-    <ApplicationRevision>18</ApplicationRevision>
-    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <SuiteName>!Hell PROTanks Launcher</SuiteName>
+    <ApplicationRevision>19</ApplicationRevision>
+    <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -174,13 +174,6 @@
     <None Include="Resources\FonUPD.jpg" />
     <None Include="Resources\FonSetting1.jpg" />
     <None Include="Resources\FonSetting.jpg" />
-    <None Include="Resources\newVersion50.png" />
-    <None Include="Resources\newVersion.png" />
-    <None Include="Resources\good50.png" />
-    <None Include="Resources\good.png" />
-    <None Include="Resources\Settings_back.jpg" />
-    <None Include="Resources\settings.png" />
-    <None Include="Resources\loading.gif" />
     <None Include="back\loading.gif" />
     <Content Include="Project1_Icon.ico" />
   </ItemGroup>
@@ -205,6 +198,24 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\!Hell Language Pack\!Hell Language Pack.csproj">
+      <Project>{7C499B3F-3E08-4DC7-AA10-19605BE83758}</Project>
+      <Name>!Hell Language Pack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\!Hell Process List\!Hell Process List.csproj">
+      <Project>{AF9F8199-194C-4BFA-B49D-4BE012B0028A}</Project>
+      <Name>!Hell Process List</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\!Hell Restarter\!Hell Restarter.csproj">
+      <Project>{F71575F4-D350-4667-BF5E-866354AF66DA}</Project>
+      <Name>!Hell Restarter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Processes Library\Processes Library.csproj">
+      <Project>{C89F98DD-CF7B-4B7B-AE2C-FBF49177B8A6}</Project>
+      <Name>Processes Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

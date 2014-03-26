@@ -556,6 +556,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fIndex";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fIndex_FormClosing);
+            this.Load += new System.EventHandler(this.fIndex_Load);
             this.contextMenu.ResumeLayout(false);
             this.pVideo.ResumeLayout(false);
             this.pVideo.PerformLayout();
