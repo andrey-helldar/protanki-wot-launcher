@@ -1450,10 +1450,5 @@ namespace _Hell_PRO_Tanki_Launcher
                 MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            debug.Delete(@"d:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug");
-        }
     }
 }

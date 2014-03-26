@@ -64,9 +64,8 @@
             this.llBlockCaption = new System.Windows.Forms.LinkLabel();
             this.bwNews = new System.ComponentModel.BackgroundWorker();
             this.pVideo = new System.Windows.Forms.Panel();
-            this.pNews = new System.Windows.Forms.Panel();
             this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pNews = new System.Windows.Forms.Panel();
             this.contextMenu.SuspendLayout();
             this.pVideo.SuspendLayout();
             this.SuspendLayout();
@@ -500,15 +499,6 @@
             this.pVideo.Size = new System.Drawing.Size(620, 290);
             this.pVideo.TabIndex = 30;
             // 
-            // pNews
-            // 
-            this.pNews.BackColor = System.Drawing.Color.Transparent;
-            this.pNews.Location = new System.Drawing.Point(407, 88);
-            this.pNews.Name = "pNews";
-            this.pNews.Size = new System.Drawing.Size(89, 46);
-            this.pNews.TabIndex = 31;
-            this.pNews.Visible = false;
-            // 
             // llLoadingVideoData
             // 
             this.llLoadingVideoData.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
@@ -526,15 +516,14 @@
             this.llLoadingVideoData.Text = "Подождите, идет загрузка...";
             this.llLoadingVideoData.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
-            // button1
+            // pNews
             // 
-            this.button1.Location = new System.Drawing.Point(546, 421);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.pNews.BackColor = System.Drawing.Color.Transparent;
+            this.pNews.Location = new System.Drawing.Point(407, 88);
+            this.pNews.Name = "pNews";
+            this.pNews.Size = new System.Drawing.Size(89, 46);
+            this.pNews.TabIndex = 31;
+            this.pNews.Visible = false;
             // 
             // fIndex
             // 
@@ -542,7 +531,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(860, 460);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.pNews);
             this.Controls.Add(this.pVideo);
             this.Controls.Add(this.llBlockCaption);
@@ -614,7 +602,6 @@
         private System.Windows.Forms.Panel pVideo;
         private System.Windows.Forms.Panel pNews;
         private System.Windows.Forms.LinkLabel llLoadingVideoData;
-        private System.Windows.Forms.Button button1;
     }
 }
 

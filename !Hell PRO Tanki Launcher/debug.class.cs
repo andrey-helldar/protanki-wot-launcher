@@ -35,6 +35,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
             try
             {
+                this.Delete(path);
+
                 if (!Directory.Exists(path + @"\temp")) { return false; }
                 if (!Directory.Exists(path + @"\debug")) { Directory.CreateDirectory(path + @"\debug"); }
 
@@ -49,25 +51,39 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                this.Save("public bool Archive()", "", ex.Message);
+                this.Save("public bool Archive()", "Debug mode", ex.Message);
             }
 
             return exp;
         }
 
-        public void Delete(string path)
+        private void Delete(string path)
         {
-            var info = new DirectoryInfo(path + @"\temp");
-
-            foreach (FileInfo file in info.GetFiles())
+            try
             {
-                DateTime now = DateTime.Now;
-                DateTime cf = File.GetCreationTime(file.FullName);
+                var info = new DirectoryInfo(path + @"\temp");
 
-                TimeSpan ts = now - cf;
+                foreach (FileInfo file in info.GetFiles())
+                {
+                    DateTime now = DateTime.Now;
+                    DateTime cf = File.GetCreationTime(file.FullName);
 
-                /* Удаляем все файлы, старше 3-х суток
-                 * 
+                    TimeSpan ts = now - cf;
+
+                    /* Удаляем все файлы, старше 3-х суток
+                     * 1 минута = 60 сек
+                     * 1 час = 60 минут = 3600 сек
+                     * 1 сутки = 24 часа = 86400 сек
+                     * 2 суток = 172800 сек
+                     * 3 суток = 259200 сек
+                     */
+
+                    if (ts.TotalSeconds > 259200) { File.Delete(file.FullName); }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Save("private void Delete(string path)", "Debug mode", ex.Message);
             }
         }
     }
