@@ -75,6 +75,10 @@ namespace _Hell_PRO_Tanki_Launcher
             MessageBox.Show(this, err, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void tooltip()
+        {
+        }
+
         public fIndex()
         {
             //Проверяем запущен ли процесс
