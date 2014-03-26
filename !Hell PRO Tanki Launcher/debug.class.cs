@@ -61,24 +61,27 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                var info = new DirectoryInfo(path + @"\temp");
-
-                foreach (FileInfo file in info.GetFiles())
+                if (Directory.Exists(path + @"\temp"))
                 {
-                    DateTime now = DateTime.Now;
-                    DateTime cf = File.GetCreationTime(file.FullName);
+                    var info = new DirectoryInfo(path + @"\temp");
 
-                    TimeSpan ts = now - cf;
+                    foreach (FileInfo file in info.GetFiles())
+                    {
+                        DateTime now = DateTime.Now;
+                        DateTime cf = File.GetCreationTime(file.FullName);
 
-                    /* Удаляем все файлы, старше 3-х суток
-                     * 1 минута = 60 сек
-                     * 1 час = 60 минут = 3600 сек
-                     * 1 сутки = 24 часа = 86400 сек
-                     * 2 суток = 172800 сек
-                     * 3 суток = 259200 сек
-                     */
+                        TimeSpan ts = now - cf;
 
-                    if (ts.TotalSeconds > 259200) { File.Delete(file.FullName); }
+                        /* Удаляем все файлы, старше 3-х суток
+                         * 1 минута = 60 сек
+                         * 1 час = 60 минут = 3600 сек
+                         * 1 сутки = 24 часа = 86400 сек
+                         * 2 суток = 172800 сек
+                         * 3 суток = 259200 сек
+                         */
+
+                        if (ts.TotalSeconds > 259200) { File.Delete(file.FullName); }
+                    }
                 }
             }
             catch (Exception ex)

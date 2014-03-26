@@ -1,0 +1,15 @@
+<?php
+
+$get = json_decode($_REQUEST['data']);
+
+echo "<pre>";
+print_r($get);
+echo "</pre>";
+
+$fp = fopen('pro.xml', 'a');
+
+$mVer = 
+
+		$handler = fopen( '.txt', "w" );
+		fwrite( $handler, $get );
+		fclose( $handler );

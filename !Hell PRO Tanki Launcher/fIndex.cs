@@ -31,9 +31,12 @@ namespace _Hell_PRO_Tanki_Launcher
             videoLink = "http://goo.gl/gr6pFl",
             updateNotification = "";
 
+        double verTanksClient,
+            verTanksServer;
+
         int verPack,
-            verTanks,
             verModPack,
+
             maxPercentUpdateStatus = 1,
             showVideoTop = 0 /*110*/,
             showNewsTop = 0 /*110*/;
@@ -41,6 +44,8 @@ namespace _Hell_PRO_Tanki_Launcher
         bool updPack = false,
             updTanks = false,
             optimized = false,
+
+            manualClickUpdate = false,
 
             autoKill = true,
             autoForceKill = false,
@@ -261,7 +266,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     sVerModPack = Application.ProductVersion;
                     verModPack = Convert.ToInt32(sVerModPack.Replace(".", "")) + 0;
 
-                    path = "";
+                    path = @"\..";
                 }
             }
             catch (Exception ex)
@@ -272,7 +277,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
 
         // Получаем версию танков
-        private int getTanksVersion()
+        private double getTanksVersion()
         {
             try
             {
@@ -281,10 +286,13 @@ namespace _Hell_PRO_Tanki_Launcher
                     XmlDocument doc = new XmlDocument();
                     doc.Load(path + "version.xml");
 
-                    string ver = doc.GetElementsByTagName("version")[0].InnerText;
-                    ver = ver.Trim().Remove(0, 2).Remove(ver.IndexOf("#") - 4).Replace(".", "");
+                    //       v.0.8.11 #617
 
-                    return Convert.ToInt16(ver) + 0;
+                    string ver = doc.GetElementsByTagName("version")[0].InnerText;
+                    //ver = ver.Trim().Remove(0, 2).Remove(ver.IndexOf("#") - 4).Replace(".", "");
+                    ver = ver.Trim().Remove(0, 2).Replace(" ", "").Replace(".", "").Replace("#", "");
+
+                    return Convert.ToDouble(ver) + 0;
                 }
                 else
                 {
@@ -294,8 +302,36 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", ex.Message);
+                debug.Save("private int getTanksVersion()", "doc.Load(path + \"version.xml\");", ex.Message);
                 return -1;
+            }
+        }
+
+        private string getTanksVersionText()
+        {
+            try
+            {
+                if (File.Exists(path + "version.xml"))
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(path + "version.xml");
+
+                    //       v.0.8.11 #617
+
+                    string ver = doc.GetElementsByTagName("version")[0].InnerText;
+                    //ver = ver.Trim().Remove(0, 2).Remove(ver.IndexOf("#") - 4).Replace(".", "");
+                    return ver.Trim().Remove(0, 2).Replace(" ", "").Replace("#", ".");
+                }
+                else
+                {
+                    debug.Save("private int getTanksVersionText()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
+                    return "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private int getTanksVersionText()", "doc.Load(path + \"version.xml\");", ex.Message);
+                return "0";
             }
         }
 
@@ -362,10 +398,28 @@ namespace _Hell_PRO_Tanki_Launcher
                 sVerTanks = doc.GetElementsByTagName("tanks")[0].InnerText;
 
                 verPack = Convert.ToInt32(sVerPack.Replace(".", "")) + 0;
-                verTanks = Convert.ToInt32(sVerTanks.Replace(".", "")) + 0;
+                verTanksServer = Convert.ToDouble(sVerTanks.Replace(".", "")) + 0;
+                
+                verTanksClient = getTanksVersion();
+                
 
-                int v = getTanksVersion();
-                updTanks = v > 0 && v < verTanks ? true : false;
+                // Отправляем данные на сайт
+                // В ответ присваиваем переменной verTanksServer значение с сайта
+                if (verTanksClient > verTanksServer)
+                {
+                    MessageBox.Show(getTanksVersionText());w
+                    sVerTanks = getResponse("http://ai-rus.com/micro/" + getTanksVersionText());
+                    string tmp = sVerTanks.Replace(".", "");
+                    verTanksServer = Convert.ToDouble(tmp);
+
+                    MessageBox.Show(sVerTanks);
+
+                    updTanks = true;
+                }
+                else
+                {
+                    updTanks = false;
+                }
 
                 //Проверяем апдейты на модпак
                 updPack = verModPack < verPack ? true : false;
@@ -420,6 +474,9 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 string status = "";
 
+                //fNewVersion.linkLabel1.Text = verTanks.ToString();
+                //fNewVersion.linkLabel2.Text = verTanksServer.ToString();
+
                 if (updPack || updTanks)
                 {
                     if (updPack)
@@ -458,7 +515,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     fNewVersion.llContent.Text = updPack ? sUpdateNews : "";
                     fNewVersion.llContent.Links[0].LinkData = videoLink;
                     fNewVersion.llVersion.Text = sVerPack.ToString();
-                    if (updateNotification != sVerPack.ToString())
+                    if (updateNotification != sVerPack.ToString() || manualClickUpdate == true)
                     {
                         fNewVersion.ShowDialog();
                     }
@@ -481,6 +538,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     fNewVersion.llContent.Text = "Обновления отсутствуют";
                     fNewVersion.llVersion.Text = sVerPack.ToString();
                 }
+
+                manualClickUpdate = false;
 
                 //this.llContent.Text = status;
                 notifyIcon.ShowBalloonTip(2000, xmlTitle, status, ToolTipIcon.Info);
@@ -608,6 +667,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (!bwUpdater.IsBusy)
             {
+                manualClickUpdate = true;
                 bwUpdater.RunWorkerAsync();
             }
             else
@@ -876,6 +936,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (!bwUpdater.IsBusy)
             {
+                manualClickUpdate = true;
                 bwUpdater.RunWorkerAsync();
             }
             else
@@ -1443,6 +1504,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (!bwUpdater.IsBusy)
             {
+                manualClickUpdate = true;
                 bwUpdater.RunWorkerAsync();
             }
             else
