@@ -52,7 +52,6 @@
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.bwAero = new System.ComponentModel.BackgroundWorker();
             this.bSettings = new System.Windows.Forms.Button();
-            this.llUpdateStatus = new System.Windows.Forms.LinkLabel();
             this.bwVideo = new System.ComponentModel.BackgroundWorker();
             this.bwUpdateLauncher = new System.ComponentModel.BackgroundWorker();
             this.llActually = new System.Windows.Forms.LinkLabel();
@@ -338,20 +337,6 @@
             this.bSettings.UseVisualStyleBackColor = true;
             this.bSettings.Click += new System.EventHandler(this.bSettings_Click);
             // 
-            // llUpdateStatus
-            // 
-            this.llUpdateStatus.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llUpdateStatus.AutoSize = true;
-            this.llUpdateStatus.BackColor = System.Drawing.Color.Transparent;
-            this.llUpdateStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.llUpdateStatus.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llUpdateStatus.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llUpdateStatus.Location = new System.Drawing.Point(344, 427);
-            this.llUpdateStatus.Name = "llUpdateStatus";
-            this.llUpdateStatus.Size = new System.Drawing.Size(0, 18);
-            this.llUpdateStatus.TabIndex = 13;
-            this.llUpdateStatus.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            // 
             // bwVideo
             // 
             this.bwVideo.WorkerReportsProgress = true;
@@ -467,20 +452,21 @@
             // 
             // llBlockCaption
             // 
-            this.llBlockCaption.ActiveLinkColor = System.Drawing.Color.LightGray;
+            this.llBlockCaption.ActiveLinkColor = System.Drawing.Color.WhiteSmoke;
             this.llBlockCaption.AutoSize = true;
             this.llBlockCaption.BackColor = System.Drawing.Color.Transparent;
             this.llBlockCaption.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.llBlockCaption.DisabledLinkColor = System.Drawing.Color.DarkGray;
             this.llBlockCaption.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llBlockCaption.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llBlockCaption.LinkColor = System.Drawing.Color.LightGray;
+            this.llBlockCaption.LinkColor = System.Drawing.Color.WhiteSmoke;
             this.llBlockCaption.Location = new System.Drawing.Point(28, 74);
             this.llBlockCaption.Name = "llBlockCaption";
             this.llBlockCaption.Size = new System.Drawing.Size(63, 24);
             this.llBlockCaption.TabIndex = 29;
             this.llBlockCaption.TabStop = true;
             this.llBlockCaption.Text = "Видео:";
-            this.llBlockCaption.VisitedLinkColor = System.Drawing.Color.LightGray;
+            this.llBlockCaption.VisitedLinkColor = System.Drawing.Color.WhiteSmoke;
             // 
             // bwNews
             // 
@@ -540,7 +526,6 @@
             this.Controls.Add(this.bProcess);
             this.Controls.Add(this.llLauncherVersion);
             this.Controls.Add(this.llActually);
-            this.Controls.Add(this.llUpdateStatus);
             this.Controls.Add(this.bSettings);
             this.Controls.Add(this.llTitle);
             this.Controls.Add(this.bOptimizePC);
@@ -589,7 +574,6 @@
         private System.Windows.Forms.LinkLabel llTitle;
         private System.ComponentModel.BackgroundWorker bwAero;
         private System.Windows.Forms.Button bSettings;
-        private System.Windows.Forms.LinkLabel llUpdateStatus;
         private System.ComponentModel.BackgroundWorker bwVideo;
         private System.ComponentModel.BackgroundWorker bwUpdateLauncher;
         private System.Windows.Forms.LinkLabel llActually;

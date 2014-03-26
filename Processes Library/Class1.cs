@@ -61,7 +61,8 @@ namespace Processes_Library
 				"winlogon",
 				"xPopups",
 				"xStarter",
-				"xStartUI"
+				"xStartUI",
+                "RaidCall"
             };
 
             return vipProcess;

@@ -120,7 +120,7 @@ namespace _Hell_PRO_Tanki_Launcher
             // Так как панель у нас убрана с видимой части, устанавливаем ее расположение динамически
             pNews.SetBounds(13, 109, 620, 290);
 
-            llUpdateStatus.Text = ""; // Убираем текст с метки статуса обновления
+            //llUpdateStatus.Text = ""; // Убираем текст с метки статуса обновления
 
             llVersion.Text = sVerModPack;
 
@@ -978,8 +978,15 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                if (pbDownload.Visible == false)
+                {
+                    pbDownload.Value = 0;
+                    pbDownload.Visible = true;
+                }
+
                 double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;
-                llUpdateStatus.Text = "Оптимизация завершена на: " + ((int)i).ToString() + "%";
+                //llUpdateStatus.Text = "Оптимизация завершена на: " + ((int)i).ToString() + "%";
+                pbDownload.Value = (int)i;
             }
             catch (Exception ex)
             {

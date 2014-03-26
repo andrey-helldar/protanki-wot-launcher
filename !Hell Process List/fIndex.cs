@@ -33,16 +33,29 @@ namespace _Hell_Process_List
         {
             clbProcesses.Items.Clear();
 
+            Process[] myProcesses = Process.GetProcesses();
             int processID = Process.GetCurrentProcess().SessionId;
 
-            ManagementObjectSearcher searcher1 = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Process");
+            /* ManagementObjectSearcher searcher1 = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Process");
 
-            foreach (ManagementObject queryObj in searcher1.Get())
+             foreach (ManagementObject queryObj in searcher1.Get())
+             {
+                 if (processID == Convert.ToInt32(queryObj["SessionId"].ToString()))
+                 {
+                     clbProcesses.Items.Add(queryObj["Name"].ToString().Replace(".exe", "") + "   ::  " + queryObj["WindowsVersion"].ToString());
+                 }
+             }*/
+
+            for (int i = 1; i < myProcesses.Length; i++)
             {
-                if (processID == Convert.ToInt32(queryObj["SessionId"].ToString()))
+                try
                 {
-                    clbProcesses.Items.Add(queryObj["Name"].ToString().Replace(".exe", ""));
+                    if (myProcesses[i].SessionId == processID)
+                    {
+                        clbProcesses.Items.Add(myProcesses[i].ProcessName + "      ::      " + myProcesses[i].MainModule.FileVersionInfo.FileDescription);
+                    }
                 }
+                catch (Exception) { }
             }
         }
 
