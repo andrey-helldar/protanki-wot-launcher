@@ -2,3 +2,7 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\bin\Debug\restart.
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\bin\Debug\restart.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\obj\x86\Debug\restart.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\obj\x86\Debug\restart.pdb
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Restarter\bin\Debug\restart.exe
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Restarter\bin\Debug\restart.pdb
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Restarter\obj\x86\Debug\restart.exe
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Restarter\obj\x86\Debug\restart.pdb

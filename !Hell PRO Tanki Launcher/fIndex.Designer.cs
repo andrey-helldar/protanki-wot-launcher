@@ -554,7 +554,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "fIndex";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "fIndex";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fIndex_FormClosing);
             this.contextMenu.ResumeLayout(false);
             this.pVideo.ResumeLayout(false);

@@ -381,15 +381,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                //bwUpdater.ReportProgress(0);
-
-                // Парсим сайт танков
-                /*string s = getResponse("http://worldoftanks.ru");
-                s = s.Remove(0, s.IndexOf("b-game-version") + 16);
-                s = s.Remove(s.IndexOf("</span>")).Replace(".","");             
-                 updates = getVersion() < (Convert.ToInt32(s)+0) ? true : false;*/
-
-                // Парсим сайт PRO Танки
+                // Парсим сайт PROТанки
                 XmlDocument doc = new XmlDocument();
                 //doc.Load(@"http://file.theaces.ru/mods/proupdate/updateFull.xml");
                 //doc.Load(@"pro.xml");
@@ -407,12 +399,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 // В ответ присваиваем переменной verTanksServer значение с сайта
                 if (verTanksClient > verTanksServer)
                 {
-                    MessageBox.Show(getTanksVersionText());w
                     sVerTanks = getResponse("http://ai-rus.com/micro/" + getTanksVersionText());
-                    string tmp = sVerTanks.Replace(".", "");
-                    verTanksServer = Convert.ToDouble(tmp);
-
-                    MessageBox.Show(sVerTanks);
+                    verTanksServer = Convert.ToDouble(sVerTanks.Replace(".", ""));
 
                     updTanks = true;
                 }
@@ -481,7 +469,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (updPack)
                     {
-                        status += "Обнаружена новая версия Мультипака (" + sVerPack.ToString() + ")!" + Environment.NewLine;
+                        status += "Обнаружена новая версия Мультипака (" + sVerPack.ToString() + ")" + Environment.NewLine;
                         bUpdate.Enabled = true;
 
                         videoLink = sUpdateLink;
@@ -489,7 +477,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     if (updTanks)
                     {
-                        status += "Обнаружена новая версия клиента игры (" + sVerTanks.ToString() + ")!" + Environment.NewLine;
+                        status += "Обнаружена новая версия клиента игры (" + sVerTanks.ToString() + ")" + Environment.NewLine;
                         bUpdate.Enabled = true;
 
                         // Отключаем кнопку запуска игры
