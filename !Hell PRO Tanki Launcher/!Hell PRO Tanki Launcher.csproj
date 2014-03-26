@@ -29,7 +29,7 @@
     <PublisherName>Andrey Helldar</PublisherName>
     <SuiteName>!Hell PRO Tanks Launcher</SuiteName>
     <ApplicationRevision>18</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -55,7 +55,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Project1_Icon.ico</ApplicationIcon>
+    <ApplicationIcon>PROTanks.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>90E9B17F21D96E140802E431CBF7CB125A108B40</ManifestCertificateThumbprint>
@@ -117,19 +117,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="!Hell PRO Tanki Launcher_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -162,19 +162,18 @@
     <None Include="back\interface.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Project1_Icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="PROTanks.ico" />
+    <None Include="Resources\PROTanks.ico" />
+    <None Include="Resources\back_7.jpg" />
+    <None Include="Resources\back_6.jpg" />
+    <None Include="Resources\back_5.jpg" />
+    <None Include="Resources\back_4.jpg" />
+    <None Include="Resources\back_3.jpg" />
+    <None Include="Resources\back_2.jpg" />
+    <None Include="Resources\back_1.jpg" />
     <None Include="Resources\FonUPD.jpg" />
     <None Include="Resources\FonSetting1.jpg" />
     <None Include="Resources\FonSetting.jpg" />
-    <None Include="Resources\Fon7.jpg" />
-    <None Include="Resources\Fon6.jpg" />
-    <None Include="Resources\Fon5.jpg" />
-    <None Include="Resources\Fon4.jpg" />
-    <None Include="Resources\Fon3.jpg" />
-    <None Include="Resources\Fon2.jpg" />
-    <None Include="Resources\Fon1.jpg" />
     <None Include="Resources\newVersion50.png" />
     <None Include="Resources\newVersion.png" />
     <None Include="Resources\good50.png" />
@@ -182,13 +181,6 @@
     <None Include="Resources\Settings_back.jpg" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\loading.gif" />
-    <None Include="Resources\7.jpg" />
-    <None Include="Resources\6.jpg" />
-    <None Include="Resources\5.jpg" />
-    <None Include="Resources\4.jpg" />
-    <None Include="Resources\3.jpg" />
-    <None Include="Resources\2.jpg" />
-    <None Include="Resources\1.jpg" />
     <None Include="back\loading.gif" />
     <Content Include="Project1_Icon.ico" />
   </ItemGroup>
