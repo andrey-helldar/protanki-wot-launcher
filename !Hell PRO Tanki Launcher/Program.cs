@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Net;
 using System.Threading;
+using System.Diagnostics;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -25,14 +26,20 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception)
             {
+                if (!File.Exists("restart.exe"))
+                {
+                    var client = new WebClient();
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.exe"), "restart.exe");
+                }
+
                 if (!File.Exists("LanguagePack.dll"))
                 {
                     var client = new WebClient();
                     client.DownloadFile(new Uri(@"http://ai-rus.com/pro/LanguagePack.dll"), "LanguagePack.dll");
 
-                    Thread.Sleep(2000);
-
-                    Application.Run(new fIndex());
+                    // Restart software
+                    Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
+                    Process.GetCurrentProcess().Kill();
                 }
             }
         }
