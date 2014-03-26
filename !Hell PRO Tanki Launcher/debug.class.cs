@@ -15,8 +15,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (!Directory.Exists("debug")) { Directory.CreateDirectory("debug"); }
-                File.WriteAllText(@"debug\" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".debug",
+                if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
+                File.WriteAllText(@"temp\" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".debug",
                     func + Environment.NewLine + "-------------------------------" + Environment.NewLine +
                     place + Environment.NewLine + "-------------------------------" + Environment.NewLine +
                     mess, Encoding.UTF8);
@@ -35,16 +35,17 @@ namespace _Hell_PRO_Tanki_Launcher
 
             try
             {
-                if (!Directory.Exists(path + @"\debug")) { return false; }
+                if (!Directory.Exists(path + @"\temp")) { return false; }
+                if (!Directory.Exists(path + @"\debug")) { Directory.CreateDirectory(path + @"\debug"); }
 
                 using (ZipFile zip = new ZipFile())
                 {
                     zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
-                    zip.AddDirectory(path + @"\debug");
-                    zip.Save(path + @"\debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
+                    zip.AddDirectory(path + @"\temp");
+                    zip.Save(path + @"\debug\debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
                 }
 
-                Directory.Delete(path + @"\debug", true);
+                Directory.Delete(path + @"\temp", true);
             }
             catch (Exception ex)
             {
@@ -52,6 +53,22 @@ namespace _Hell_PRO_Tanki_Launcher
             }
 
             return exp;
+        }
+
+        public void Delete(string path)
+        {
+            var info = new DirectoryInfo(path + @"\temp");
+
+            foreach (FileInfo file in info.GetFiles())
+            {
+                DateTime now = DateTime.Now;
+                DateTime cf = File.GetCreationTime(file.FullName);
+
+                TimeSpan ts = now - cf;
+
+                /* Удаляем все файлы, старше 3-х суток
+                 * 
+            }
         }
     }
 }

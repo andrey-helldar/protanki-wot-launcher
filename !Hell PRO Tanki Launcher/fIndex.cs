@@ -35,7 +35,8 @@ namespace _Hell_PRO_Tanki_Launcher
             verTanks,
             verModPack,
             maxPercentUpdateStatus = 1,
-            showVideoTop = 70;
+            showVideoTop = 0 /*110*/,
+            showNewsTop = 0 /*110*/;
 
         bool updPack = false,
             updTanks = false,
@@ -50,6 +51,10 @@ namespace _Hell_PRO_Tanki_Launcher
         List<string> youtubeTitle = new List<string>();
         List<string> youtubeLink = new List<string>();
         List<string> youtubeDate = new List<string>();
+
+        List<string> newsTitle = new List<string>();
+        List<string> newsLink = new List<string>();
+        List<string> newsDate = new List<string>();
 
         ProcessStartInfo psi;
 
@@ -99,6 +104,12 @@ namespace _Hell_PRO_Tanki_Launcher
             // Грузим видео с ютуба
             if (!bwVideo.IsBusy) { bwVideo.RunWorkerAsync(); }
 
+            // Грузим новости
+            if (!bwNews.IsBusy) { bwNews.RunWorkerAsync(); }
+
+            // Так как панель у нас убрана с видимой части, устанавливаем ее расположение динамически
+            pNews.SetBounds(13, 109, 620, 290);
+
             llUpdateStatus.Text = ""; // Убираем текст с метки статуса обновления
 
             llVersion.Text = sVerModPack;
@@ -109,11 +120,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             if (!bwUpdateLauncher.IsBusy) { bwUpdateLauncher.RunWorkerAsync(); }
 
-            bwUpdater.WorkerReportsProgress = true;
-            bwUpdater.WorkerSupportsCancellation = true;
-
-            bwOptimize.WorkerReportsProgress = true;
-            bwOptimize.WorkerSupportsCancellation = true;
+            if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
         }
 
         // Узнаем разряд системы
@@ -265,7 +272,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
 
         // Получаем версию танков
-        private int getVersion()
+        private int getTanksVersion()
         {
             try
             {
@@ -281,13 +288,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    debug.Save(" private int getVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
+                    debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
                     return -1;
                 }
             }
             catch (Exception ex)
             {
-                debug.Save(" private int getVersion()", "if (File.Exists(path + \"version.xml\"))", ex.Message);
+                debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", ex.Message);
                 return -1;
             }
         }
@@ -357,8 +364,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 verPack = Convert.ToInt32(sVerPack.Replace(".", "")) + 0;
                 verTanks = Convert.ToInt32(sVerTanks.Replace(".", "")) + 0;
 
-                int v = getVersion();
-                updTanks = v < 0 || v < verTanks ? true : false;
+                int v = getTanksVersion();
+                updTanks = v > 0 && v < verTanks ? true : false;
 
                 //Проверяем апдейты на модпак
                 updPack = verModPack < verPack ? true : false;
@@ -437,22 +444,18 @@ namespace _Hell_PRO_Tanki_Launcher
                         bPlay.Enabled = true;
                     }
 
-                    // Добавляем новость об изменениях в модпаке
-                    if (updPack) { status += Environment.NewLine + sUpdateNews; }
 
-                    llActually.Text = "Обнаружена новая версия!";
+                    llActually.Text = "Обнаружена новая версия мультипака!";
                     llActually.ForeColor = Color.Yellow;
                     llActually.ActiveLinkColor = Color.Yellow;
                     llActually.LinkColor = Color.Yellow;
                     llActually.VisitedLinkColor = Color.Yellow;
-                    llActually.SetBounds(315 - (int)(llActually.Width / 2), llActually.Location.Y, 10, 10);
-
-                    // Изменяем изображение иконки статуса обновлений
-                    pbNewVersion.BackgroundImage = Properties.Resources.newVersion;
-                    pbNewVersion.Cursor = Cursors.Hand;
+                    llActually.SetBounds(315+100 - (int)(llActually.Width / 2), llActually.Location.Y, 10, 10);
 
                     // Окно статуса обновлений
-                    fNewVersion.llContent.Text = status;
+                    fNewVersion.llCaption.Text = status;
+
+                    fNewVersion.llContent.Text = updPack ? sUpdateNews : "";
                     fNewVersion.llContent.Links[0].LinkData = videoLink;
                     fNewVersion.llVersion.Text = sVerPack.ToString();
                     if (updateNotification != sVerPack.ToString())
@@ -472,15 +475,10 @@ namespace _Hell_PRO_Tanki_Launcher
                         "Текущая версия Мультипака '" + sVerModPack + "'";
                     bUpdate.Enabled = false;
 
-                    //this.llContent.Location = new Point(150, 200);
-                    //this.llContent.Size = new Size(477, 100);
-
-                    // Изменяем изображение иконки статуса обновлений
-                    pbNewVersion.BackgroundImage = Properties.Resources.good;
-                    pbNewVersion.Cursor = Cursors.Default;
-
                     // Окно статуса обновлений
-                    fNewVersion.llContent.Text = status;
+                    fNewVersion.llCaption.Text = status;
+
+                    fNewVersion.llContent.Text = "Обновления отсутствуют";
                     fNewVersion.llVersion.Text = sVerPack.ToString();
                 }
 
@@ -1017,25 +1015,10 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void pbNewVersion_Click(object sender, EventArgs e)
-        {
-            // Если версия актуальна, то перепроверяем ее, иначе сразу открываем окно
-            if (pbNewVersion.BackgroundImage == Properties.Resources.good)
-            {
-                if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
-            }
-            else
-            {
-                fNewVersion.ShowDialog();
-            }
-        }
-
         private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try
             {
-                // for (int i = 0; i < youtubeTitle.Count; i++)
-                // {
                 LinkLabel label = new LinkLabel();
                 label.SetBounds(190, 426, 100, 20);
                 label.AutoSize = true;
@@ -1045,13 +1028,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 label.VisitedLinkColor = Color.FromArgb(243, 123, 16);
                 label.LinkColor = Color.FromArgb(243, 123, 16);
                 label.LinkBehavior = LinkBehavior.HoverUnderline;
-                label.Font = new System.Drawing.Font("Sochi2014", 12f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                label.Font = new Font("Sochi2014", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
                 label.Text = "Все видео";
                 label.Name = "llVideoAll";
                 label.Click += new EventHandler(bVideo_Click);
                 this.Controls.Add(label);
-                // }
 
+                bShowVideo.Enabled = true;
 
                 /*
                  * Теперь двигаем элементы перед выводом новостей
@@ -1161,7 +1144,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
                 {
-                    if (i >= 11 || showVideoTop > 360) { break; }
+                    if (i >= 10 || showVideoTop > 290) { break; }
 
                     youtubeDate.Add(xmlNode["published"].InnerText.Remove(10));
                     youtubeTitle.Add((xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText));
@@ -1180,38 +1163,38 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            // Так как начали выводить данные, проверяем существует ли контрол с текстом "ПОдождите, идет загрузка данных..."
             try
             {
-                // Так как начали выводить данные, проверяем существует ли контрол с текстом "ПОдождите, идет загрузка данных..."
-                try
+                if (llLoadingVideoData.Text != "")
                 {
-                    if (llLoadingVideoData.Text != "")
-                    {
-                        this.Controls.Remove(llLoadingVideoData);
-                    }
+                    this.pVideo.Controls.Remove(llLoadingVideoData);
                 }
-                catch { }
+            }
+            catch { }
+
+            try
+            {
 
                 Label labelDate = new Label();
-                //labelDate.SetBounds(10, (e.ProgressPercentage + showVideoTop) * topPosition + topOffset, 10, 10);
                 labelDate.SetBounds(10, showVideoTop, 10, 10);
                 labelDate.AutoSize = true;
                 labelDate.BackColor = Color.Transparent;
                 labelDate.ForeColor = Color.Silver;
-                labelDate.Font = new System.Drawing.Font("Sochi2014", 11f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                labelDate.Font = new Font("Sochi2014", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
                 labelDate.Text = formatDate(youtubeDate[e.ProgressPercentage]);
-                labelDate.Name = "llDateNews" + e.ProgressPercentage.ToString();
-                this.Controls.Add(labelDate);
+                labelDate.Name = "llDateVideo" + e.ProgressPercentage.ToString();
+                this.pVideo.Controls.Add(labelDate);
 
                 LinkLabel label = new LinkLabel();
-                label.Font = new System.Drawing.Font("Sochi2014", 12f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                label.Font = new Font("Sochi2014", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
                 label.ActiveLinkColor = Color.FromArgb(243, 123, 16);
                 label.BackColor = Color.Transparent;
                 label.ForeColor = Color.FromArgb(243, 123, 16);
                 label.VisitedLinkColor = Color.FromArgb(243, 123, 16);
                 label.LinkColor = Color.FromArgb(243, 123, 16);
                 label.LinkBehavior = LinkBehavior.HoverUnderline;
-                label.Name = "llNews" + e.ProgressPercentage.ToString();
+                label.Name = "llVideo" + e.ProgressPercentage.ToString();
                 label.Text = youtubeTitle[e.ProgressPercentage];
                 label.Links[0].LinkData = youtubeLink[e.ProgressPercentage];
                 try
@@ -1221,7 +1204,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 catch (Exception) { }
                 label.AutoSize = true;
                 label.Click += new EventHandler(label_Click);
-                this.Controls.Add(label);
+                this.pVideo.Controls.Add(label);
 
                 //showVideoTop = 0;
 
@@ -1299,6 +1282,178 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"updater.exe\", \"hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"\");", ex.Message);
             }
+        }
+
+        private void changeContent(bool video = true)
+        {
+            try
+            {
+                if (video)
+                {
+                    if (llBlockCaption.Text != "Видео:") // Исключаем повторное нажатие
+                    {
+                        bShowVideo.BackColor = Color.Black;
+                        bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
+
+                        bShowNews.BackColor = Color.FromArgb(28, 28, 28);
+                        bShowNews.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
+
+                        llBlockCaption.Text = "Видео:";
+
+                        pNews.Visible = false;
+                        pVideo.Visible = true;
+                    }
+                }
+                else
+                {
+                    if (llBlockCaption.Text != "Новости:") // Исключаем повторное нажатие
+                    {
+                        bShowVideo.BackColor = Color.FromArgb(28, 28, 28);
+                        bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
+
+                        bShowNews.BackColor = Color.Black;
+                        bShowNews.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
+
+                        llBlockCaption.Text = "Новости:";
+
+                        pVideo.Visible = false;
+                        pNews.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void changeContent(bool video = true)", "", ex.Message);
+            }
+        }
+
+        private void bShowVideo_Click(object sender, EventArgs e)
+        {
+            changeContent();
+        }
+
+        private void bShowNews_Click(object sender, EventArgs e)
+        {
+            changeContent(false);
+        }
+
+        private void bwNews_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                int i = 0;
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(@"https://gdata.youtube.com/feeds/api/users/sysadminInside/uploads");
+
+                newsTitle.Clear();
+                newsLink.Clear();
+                newsDate.Clear();
+
+                foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
+                {
+                    if (i >= 10 || showNewsTop > 290) { break; }
+
+                    newsDate.Add(xmlNode["published"].InnerText.Remove(10));
+                    newsTitle.Add((xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText));
+                    newsLink.Add(xmlNode["link"].Attributes["rel"].InnerText == "alternate" ? xmlNode["link"].Attributes["href"].InnerText : "");
+
+                    bwNews.ReportProgress(i);
+
+                    ++i;
+                }
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void bwNews_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
+            }
+        }
+
+        private void bwNews_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            try
+            {
+                Label labelNewsDate = new Label();
+                labelNewsDate.SetBounds(10, showNewsTop, 10, 10);
+                labelNewsDate.AutoSize = true;
+                labelNewsDate.BackColor = Color.Transparent;
+                labelNewsDate.ForeColor = Color.Silver;
+                labelNewsDate.Font = new Font("Sochi2014", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+                labelNewsDate.Text = formatDate(newsDate[e.ProgressPercentage]);
+                labelNewsDate.Name = "llDateNews" + e.ProgressPercentage.ToString();
+                this.pNews.Controls.Add(labelNewsDate);
+
+                LinkLabel labelNews = new LinkLabel();
+                labelNews.Font = new Font("Sochi2014", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+                labelNews.ActiveLinkColor = Color.FromArgb(243, 123, 16);
+                labelNews.BackColor = Color.Transparent;
+                labelNews.ForeColor = Color.FromArgb(243, 123, 16);
+                labelNews.VisitedLinkColor = Color.FromArgb(243, 123, 16);
+                labelNews.LinkColor = Color.FromArgb(243, 123, 16);
+                labelNews.LinkBehavior = LinkBehavior.HoverUnderline;
+                labelNews.Name = "llNews" + e.ProgressPercentage.ToString();
+                labelNews.Text = newsTitle[e.ProgressPercentage];
+                labelNews.Links[0].LinkData = newsLink[e.ProgressPercentage];
+                try
+                {
+                    labelNews.SetBounds(labelNewsDate.Width + 10, showNewsTop, 100, 20);
+                }
+                catch (Exception) { }
+                labelNews.AutoSize = true;
+                labelNews.Click += new EventHandler(label_Click);
+                this.pNews.Controls.Add(labelNews);
+
+                showNewsTop += 30;
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)", "Создание динамических полей", ex.Message);
+            }
+        }
+
+        private void bwNews_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                /*LinkLabel label = new LinkLabel();
+                label.SetBounds(190, 426, 100, 20);
+                label.AutoSize = true;
+                label.ActiveLinkColor = Color.FromArgb(243, 123, 16);
+                label.BackColor = Color.Transparent;
+                label.ForeColor = Color.FromArgb(243, 123, 16);
+                label.VisitedLinkColor = Color.FromArgb(243, 123, 16);
+                label.LinkColor = Color.FromArgb(243, 123, 16);
+                label.LinkBehavior = LinkBehavior.HoverUnderline;
+                label.Font = new Font("Sochi2014", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+                label.Text = "Все новости";
+                label.Name = "llNewsAll";
+                label.Click += new EventHandler(bVideo_Click);
+                this.Controls.Add(label);*/
+
+                //pNews.Visible = true;
+                bShowNews.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Добавление ссылки на все видео", ex.Message);
+            }
+        }
+
+        private void llActually_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (!bwUpdater.IsBusy)
+            {
+                bwUpdater.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            debug.Delete(@"d:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug");
         }
     }
 }

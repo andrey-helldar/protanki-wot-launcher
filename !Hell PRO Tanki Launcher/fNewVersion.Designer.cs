@@ -33,6 +33,7 @@
             this.bCancel = new System.Windows.Forms.Button();
             this.cbNotification = new System.Windows.Forms.CheckBox();
             this.llVersion = new System.Windows.Forms.LinkLabel();
+            this.llCaption = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // llContent
@@ -40,12 +41,12 @@
             this.llContent.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llContent.BackColor = System.Drawing.Color.Transparent;
             this.llContent.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llContent.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llContent.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llContent.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llContent.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llContent.Location = new System.Drawing.Point(12, 25);
+            this.llContent.Location = new System.Drawing.Point(12, 82);
             this.llContent.Name = "llContent";
-            this.llContent.Size = new System.Drawing.Size(676, 302);
+            this.llContent.Size = new System.Drawing.Size(676, 245);
             this.llContent.TabIndex = 0;
             this.llContent.TabStop = true;
             this.llContent.Text = "Загрузка данных...";
@@ -119,6 +120,23 @@
             this.llVersion.Visible = false;
             this.llVersion.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
+            // llCaption
+            // 
+            this.llCaption.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llCaption.AutoSize = true;
+            this.llCaption.BackColor = System.Drawing.Color.Transparent;
+            this.llCaption.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llCaption.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llCaption.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llCaption.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llCaption.Location = new System.Drawing.Point(12, 27);
+            this.llCaption.Name = "llCaption";
+            this.llCaption.Size = new System.Drawing.Size(151, 24);
+            this.llCaption.TabIndex = 6;
+            this.llCaption.TabStop = true;
+            this.llCaption.Text = "Загрузка данных...";
+            this.llCaption.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            // 
             // fNewVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,6 +145,7 @@
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_updates;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(700, 408);
+            this.Controls.Add(this.llCaption);
             this.Controls.Add(this.llVersion);
             this.Controls.Add(this.cbNotification);
             this.Controls.Add(this.bCancel);
@@ -148,5 +167,6 @@
         private System.Windows.Forms.CheckBox cbNotification;
         public System.Windows.Forms.LinkLabel llContent;
         public System.Windows.Forms.LinkLabel llVersion;
+        public System.Windows.Forms.LinkLabel llCaption;
     }
 }

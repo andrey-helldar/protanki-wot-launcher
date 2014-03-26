@@ -15,8 +15,6 @@ namespace _Hell_Process_List
 {
     public partial class fIndex : Form
     {
-        string filename = "";
-
         public fIndex()
         {
             InitializeComponent();
@@ -55,7 +53,17 @@ namespace _Hell_Process_List
 
         private void bwSave_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Данные успешно сохранены в файл " + filename + " папке с данной программой");
+            try
+            {
+                if (File.Exists("processes.log"))
+                    Process.Start("processes.log");
+                else
+                    MessageBox.Show("Файл \"processes.log\" не существует!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bwSave_DoWork(object sender, DoWorkEventArgs e)
@@ -68,11 +76,9 @@ namespace _Hell_Process_List
                 str += item.ToString() + Environment.NewLine;
             }
 
-            //if (File.Exists(".log")) { File.Delete(".log"); }
+            if (File.Exists("processes.log")) { File.Delete("processes.log"); }
 
-            filename = DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".log";
-
-            File.WriteAllText(filename, str);
+            File.WriteAllText("processes.log", str);
         }
     }
 }

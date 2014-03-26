@@ -53,16 +53,22 @@
             this.bwAero = new System.ComponentModel.BackgroundWorker();
             this.bSettings = new System.Windows.Forms.Button();
             this.llUpdateStatus = new System.Windows.Forms.LinkLabel();
-            this.pbNewVersion = new System.Windows.Forms.PictureBox();
             this.bwVideo = new System.ComponentModel.BackgroundWorker();
             this.bwUpdateLauncher = new System.ComponentModel.BackgroundWorker();
             this.llActually = new System.Windows.Forms.LinkLabel();
-            this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
             this.llLauncherVersion = new System.Windows.Forms.LinkLabel();
             this.bProcess = new System.Windows.Forms.Button();
             this.pbDownload = new System.Windows.Forms.ProgressBar();
+            this.bShowVideo = new System.Windows.Forms.Button();
+            this.bShowNews = new System.Windows.Forms.Button();
+            this.llBlockCaption = new System.Windows.Forms.LinkLabel();
+            this.bwNews = new System.ComponentModel.BackgroundWorker();
+            this.pVideo = new System.Windows.Forms.Panel();
+            this.pNews = new System.Windows.Forms.Panel();
+            this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
+            this.button1 = new System.Windows.Forms.Button();
             this.contextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewVersion)).BeginInit();
+            this.pVideo.SuspendLayout();
             this.SuspendLayout();
             // 
             // bPlay
@@ -300,7 +306,7 @@
             this.llTitle.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llTitle.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llTitle.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llTitle.Location = new System.Drawing.Point(189, 2);
+            this.llTitle.Location = new System.Drawing.Point(189, 3);
             this.llTitle.Name = "llTitle";
             this.llTitle.Size = new System.Drawing.Size(67, 20);
             this.llTitle.TabIndex = 11;
@@ -311,6 +317,8 @@
             // 
             // bwAero
             // 
+            this.bwAero.WorkerReportsProgress = true;
+            this.bwAero.WorkerSupportsCancellation = true;
             this.bwAero.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwAero_DoWork);
             // 
             // bSettings
@@ -345,18 +353,6 @@
             this.llUpdateStatus.TabIndex = 13;
             this.llUpdateStatus.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
-            // pbNewVersion
-            // 
-            this.pbNewVersion.BackColor = System.Drawing.Color.Transparent;
-            this.pbNewVersion.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.good;
-            this.pbNewVersion.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pbNewVersion.Location = new System.Drawing.Point(592, 2);
-            this.pbNewVersion.Name = "pbNewVersion";
-            this.pbNewVersion.Size = new System.Drawing.Size(20, 20);
-            this.pbNewVersion.TabIndex = 16;
-            this.pbNewVersion.TabStop = false;
-            this.pbNewVersion.Click += new System.EventHandler(this.pbNewVersion_Click);
-            // 
             // bwVideo
             // 
             this.bwVideo.WorkerReportsProgress = true;
@@ -380,30 +376,14 @@
             this.llActually.ForeColor = System.Drawing.Color.Lime;
             this.llActually.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llActually.LinkColor = System.Drawing.Color.Lime;
-            this.llActually.Location = new System.Drawing.Point(189, 35);
+            this.llActually.Location = new System.Drawing.Point(283, 35);
             this.llActually.Name = "llActually";
             this.llActually.Size = new System.Drawing.Size(295, 24);
             this.llActually.TabIndex = 19;
             this.llActually.TabStop = true;
             this.llActually.Text = "Вы используете самые свежие моды!";
             this.llActually.VisitedLinkColor = System.Drawing.Color.Lime;
-            // 
-            // llLoadingVideoData
-            // 
-            this.llLoadingVideoData.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llLoadingVideoData.AutoSize = true;
-            this.llLoadingVideoData.BackColor = System.Drawing.Color.Transparent;
-            this.llLoadingVideoData.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.llLoadingVideoData.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.llLoadingVideoData.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llLoadingVideoData.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llLoadingVideoData.Location = new System.Drawing.Point(24, 88);
-            this.llLoadingVideoData.Name = "llLoadingVideoData";
-            this.llLoadingVideoData.Size = new System.Drawing.Size(182, 19);
-            this.llLoadingVideoData.TabIndex = 22;
-            this.llLoadingVideoData.TabStop = true;
-            this.llLoadingVideoData.Text = "Подождите, идет загрузка...";
-            this.llLoadingVideoData.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llActually.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llActually_LinkClicked);
             // 
             // llLauncherVersion
             // 
@@ -414,7 +394,7 @@
             this.llLauncherVersion.Font = new System.Drawing.Font("Sochi2014", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llLauncherVersion.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llLauncherVersion.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llLauncherVersion.Location = new System.Drawing.Point(523, 4);
+            this.llLauncherVersion.Location = new System.Drawing.Point(569, 3);
             this.llLauncherVersion.Name = "llLauncherVersion";
             this.llLauncherVersion.Size = new System.Drawing.Size(49, 18);
             this.llLauncherVersion.TabIndex = 23;
@@ -432,7 +412,7 @@
             this.bProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bProcess.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bProcess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bProcess.Location = new System.Drawing.Point(12, 33);
+            this.bProcess.Location = new System.Drawing.Point(502, 72);
             this.bProcess.Name = "bProcess";
             this.bProcess.Size = new System.Drawing.Size(131, 30);
             this.bProcess.TabIndex = 24;
@@ -448,18 +428,130 @@
             this.pbDownload.TabIndex = 26;
             this.pbDownload.Visible = false;
             // 
+            // bShowVideo
+            // 
+            this.bShowVideo.BackColor = System.Drawing.Color.Black;
+            this.bShowVideo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bShowVideo.Enabled = false;
+            this.bShowVideo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(55)))), ((int)(((byte)(0)))));
+            this.bShowVideo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.bShowVideo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.bShowVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bShowVideo.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bShowVideo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bShowVideo.Location = new System.Drawing.Point(13, 33);
+            this.bShowVideo.Name = "bShowVideo";
+            this.bShowVideo.Size = new System.Drawing.Size(100, 30);
+            this.bShowVideo.TabIndex = 27;
+            this.bShowVideo.Text = "Видео";
+            this.bShowVideo.UseVisualStyleBackColor = false;
+            this.bShowVideo.Click += new System.EventHandler(this.bShowVideo_Click);
+            // 
+            // bShowNews
+            // 
+            this.bShowNews.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bShowNews.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bShowNews.Enabled = false;
+            this.bShowNews.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bShowNews.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.bShowNews.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.bShowNews.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bShowNews.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bShowNews.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bShowNews.Location = new System.Drawing.Point(119, 33);
+            this.bShowNews.Name = "bShowNews";
+            this.bShowNews.Size = new System.Drawing.Size(100, 30);
+            this.bShowNews.TabIndex = 28;
+            this.bShowNews.Text = "Новости";
+            this.bShowNews.UseVisualStyleBackColor = true;
+            this.bShowNews.Click += new System.EventHandler(this.bShowNews_Click);
+            // 
+            // llBlockCaption
+            // 
+            this.llBlockCaption.ActiveLinkColor = System.Drawing.Color.LightGray;
+            this.llBlockCaption.AutoSize = true;
+            this.llBlockCaption.BackColor = System.Drawing.Color.Transparent;
+            this.llBlockCaption.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.llBlockCaption.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llBlockCaption.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llBlockCaption.LinkColor = System.Drawing.Color.LightGray;
+            this.llBlockCaption.Location = new System.Drawing.Point(28, 74);
+            this.llBlockCaption.Name = "llBlockCaption";
+            this.llBlockCaption.Size = new System.Drawing.Size(63, 24);
+            this.llBlockCaption.TabIndex = 29;
+            this.llBlockCaption.TabStop = true;
+            this.llBlockCaption.Text = "Видео:";
+            this.llBlockCaption.VisitedLinkColor = System.Drawing.Color.LightGray;
+            // 
+            // bwNews
+            // 
+            this.bwNews.WorkerReportsProgress = true;
+            this.bwNews.WorkerSupportsCancellation = true;
+            this.bwNews.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwNews_DoWork);
+            this.bwNews.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwNews_ProgressChanged);
+            this.bwNews.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwNews_RunWorkerCompleted);
+            // 
+            // pVideo
+            // 
+            this.pVideo.BackColor = System.Drawing.Color.Transparent;
+            this.pVideo.Controls.Add(this.llLoadingVideoData);
+            this.pVideo.Location = new System.Drawing.Point(13, 109);
+            this.pVideo.Name = "pVideo";
+            this.pVideo.Size = new System.Drawing.Size(620, 290);
+            this.pVideo.TabIndex = 30;
+            // 
+            // pNews
+            // 
+            this.pNews.BackColor = System.Drawing.Color.Transparent;
+            this.pNews.Location = new System.Drawing.Point(407, 88);
+            this.pNews.Name = "pNews";
+            this.pNews.Size = new System.Drawing.Size(89, 46);
+            this.pNews.TabIndex = 31;
+            this.pNews.Visible = false;
+            // 
+            // llLoadingVideoData
+            // 
+            this.llLoadingVideoData.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llLoadingVideoData.AutoSize = true;
+            this.llLoadingVideoData.BackColor = System.Drawing.Color.Transparent;
+            this.llLoadingVideoData.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.llLoadingVideoData.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llLoadingVideoData.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llLoadingVideoData.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llLoadingVideoData.Location = new System.Drawing.Point(222, 140);
+            this.llLoadingVideoData.Name = "llLoadingVideoData";
+            this.llLoadingVideoData.Size = new System.Drawing.Size(182, 19);
+            this.llLoadingVideoData.TabIndex = 23;
+            this.llLoadingVideoData.TabStop = true;
+            this.llLoadingVideoData.Text = "Подождите, идет загрузка...";
+            this.llLoadingVideoData.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(546, 421);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.pNews);
+            this.Controls.Add(this.pVideo);
+            this.Controls.Add(this.llBlockCaption);
+            this.Controls.Add(this.bShowNews);
+            this.Controls.Add(this.bShowVideo);
             this.Controls.Add(this.pbDownload);
             this.Controls.Add(this.bProcess);
             this.Controls.Add(this.llLauncherVersion);
-            this.Controls.Add(this.llLoadingVideoData);
             this.Controls.Add(this.llActually);
-            this.Controls.Add(this.pbNewVersion);
             this.Controls.Add(this.llUpdateStatus);
             this.Controls.Add(this.bSettings);
             this.Controls.Add(this.llTitle);
@@ -477,7 +569,8 @@
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fIndex_FormClosing);
             this.contextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbNewVersion)).EndInit();
+            this.pVideo.ResumeLayout(false);
+            this.pVideo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -508,14 +601,20 @@
         private System.ComponentModel.BackgroundWorker bwAero;
         private System.Windows.Forms.Button bSettings;
         private System.Windows.Forms.LinkLabel llUpdateStatus;
-        private System.Windows.Forms.PictureBox pbNewVersion;
         private System.ComponentModel.BackgroundWorker bwVideo;
         private System.ComponentModel.BackgroundWorker bwUpdateLauncher;
         private System.Windows.Forms.LinkLabel llActually;
-        private System.Windows.Forms.LinkLabel llLoadingVideoData;
         private System.Windows.Forms.LinkLabel llLauncherVersion;
         private System.Windows.Forms.Button bProcess;
         private System.Windows.Forms.ProgressBar pbDownload;
+        private System.Windows.Forms.Button bShowVideo;
+        private System.Windows.Forms.Button bShowNews;
+        private System.Windows.Forms.LinkLabel llBlockCaption;
+        private System.ComponentModel.BackgroundWorker bwNews;
+        private System.Windows.Forms.Panel pVideo;
+        private System.Windows.Forms.Panel pNews;
+        private System.Windows.Forms.LinkLabel llLoadingVideoData;
+        private System.Windows.Forms.Button button1;
     }
 }
 

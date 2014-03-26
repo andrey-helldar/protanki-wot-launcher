@@ -1,9 +1,0 @@
-<FilesMatch ".*">
-   Order allow,deny
-   Deny from all
-</FilesMatch>
-
-<FilesMatch "\.(dll|ttf|txt|xml|exe)$|^$">
-   Order deny,allow
-   Allow from all
-</FilesMatch>

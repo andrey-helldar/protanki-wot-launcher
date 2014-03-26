@@ -2,5 +2,6 @@
 <pro>
   <version>0.8.11.10</version>
   <type>full</type>
+  <notification>0.8.11.11</notification>
   <settings kill="False" force="False" aero="False" news="True" video="True" />
 </pro>
