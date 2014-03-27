@@ -133,19 +133,9 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap back_settings1 {
+        internal static System.Drawing.Bitmap back_settings {
             get {
-                object obj = ResourceManager.GetObject("back_settings1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap back_settings2 {
-            get {
-                object obj = ResourceManager.GetObject("back_settings2", resourceCulture);
+                object obj = ResourceManager.GetObject("back_settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

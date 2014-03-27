@@ -56,7 +56,6 @@
             this.bwUpdateLauncher = new System.ComponentModel.BackgroundWorker();
             this.llActually = new System.Windows.Forms.LinkLabel();
             this.llLauncherVersion = new System.Windows.Forms.LinkLabel();
-            this.bProcess = new System.Windows.Forms.Button();
             this.pbDownload = new System.Windows.Forms.ProgressBar();
             this.bShowVideo = new System.Windows.Forms.Button();
             this.bShowNews = new System.Windows.Forms.Button();
@@ -386,24 +385,6 @@
             this.llLauncherVersion.Text = "0.0.0.0";
             this.llLauncherVersion.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
-            // bProcess
-            // 
-            this.bProcess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.bProcess.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bProcess.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.bProcess.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
-            this.bProcess.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.bProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bProcess.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bProcess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bProcess.Location = new System.Drawing.Point(502, 72);
-            this.bProcess.Name = "bProcess";
-            this.bProcess.Size = new System.Drawing.Size(131, 30);
-            this.bProcess.TabIndex = 24;
-            this.bProcess.Text = "Процессы";
-            this.bProcess.UseVisualStyleBackColor = true;
-            this.bProcess.Click += new System.EventHandler(this.bProcess_Click);
-            // 
             // pbDownload
             // 
             this.pbDownload.Location = new System.Drawing.Point(12, 405);
@@ -523,7 +504,6 @@
             this.Controls.Add(this.bShowNews);
             this.Controls.Add(this.bShowVideo);
             this.Controls.Add(this.pbDownload);
-            this.Controls.Add(this.bProcess);
             this.Controls.Add(this.llLauncherVersion);
             this.Controls.Add(this.llActually);
             this.Controls.Add(this.bSettings);
@@ -578,7 +558,6 @@
         private System.ComponentModel.BackgroundWorker bwUpdateLauncher;
         private System.Windows.Forms.LinkLabel llActually;
         private System.Windows.Forms.LinkLabel llLauncherVersion;
-        private System.Windows.Forms.Button bProcess;
         private System.Windows.Forms.ProgressBar pbDownload;
         private System.Windows.Forms.Button bShowVideo;
         private System.Windows.Forms.Button bShowNews;

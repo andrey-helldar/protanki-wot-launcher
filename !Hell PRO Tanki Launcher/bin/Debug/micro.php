@@ -1,15 +1,15 @@
 <?php
 
-$get = json_decode($_REQUEST['data']);
+//$get = json_decode($_REQUEST['data']);
+$get = $_REQUEST['data'];
 $verClient = str_replace(".", "", $get) + 0;
 
 $xml = simplexml_load_file("pro.xml");
 $verServer = str_replace(".", "", $xml->tanks) + 0;
 
 $buffer = $get ."  :: ".$verClient . " :: ".$verServer;
-/*
+
 if ($verClient > $verServer) {
-    // Если у клиента версия больше, чем на сервере, то записываем новое значение
     $xml->tanks = $get;    
     $buffer = $get;
 
@@ -38,6 +38,6 @@ if ($verClient > $verServer) {
     fclose($handle);
 } else {
     $buffer = $xml->tanks;
-}*/
+}
 
 echo $buffer;

@@ -9,13 +9,16 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
+using System.Web;
 using System.IO;
 using System.Xml;
 using System.Threading;
+using System.Security.Cryptography;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using Processes_Library;
 using _Hell_Language_Pack;
+using Newtonsoft.Json;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -263,7 +266,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     var client = new WebClient();
                     client.DownloadFile(new Uri(@"http://ai-rus.com/pro/settings.xml"), "settings.xml");
 
-                    Process.Start("restart.exe", "\""+Process.GetCurrentProcess().ProcessName+"\"");
+                    Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
                     Process.GetCurrentProcess().Kill();
 
                     xmlTitle = Application.ProductName;
@@ -396,15 +399,15 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 verPack = Convert.ToInt32(sVerPack.Replace(".", "")) + 0;
                 verTanksServer = Convert.ToDouble(sVerTanks.Replace(".", "")) + 0;
-                
+
                 verTanksClient = getTanksVersion();
-                
+
 
                 // Отправляем данные на сайт
                 // В ответ присваиваем переменной verTanksServer значение с сайта
                 if (verTanksClient > verTanksServer)
                 {
-                    sVerTanks = getResponse("http://ai-rus.com/micro/" + getTanksVersionText());
+                    sVerTanks = getResponse("http://ai-rus.com/wot/micro/" + getTanksVersionText());
                     verTanksServer = Convert.ToDouble(sVerTanks.Replace(".", ""));
 
                     updTanks = true;
@@ -500,7 +503,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     llActually.ActiveLinkColor = Color.Yellow;
                     llActually.LinkColor = Color.Yellow;
                     llActually.VisitedLinkColor = Color.Yellow;
-                    llActually.SetBounds(315+100 - (int)(llActually.Width / 2), llActually.Location.Y, 10, 10);
+                    llActually.SetBounds(315 + 100 - (int)(llActually.Width / 2), llActually.Location.Y, 10, 10);
 
                     // Окно статуса обновлений
                     fNewVersion.llCaption.Text = status;
@@ -1104,6 +1107,14 @@ namespace _Hell_PRO_Tanki_Launcher
                 //XmlDocument doc = new XmlDocument();
                 doc.Load(@"http://ai-rus.com/pro/protanks.xml");
 
+                // Newtonsoft.Json.dll
+                double verNewtonsoftJsonDll = Convert.ToDouble(doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText.Replace(".", ""));
+                if (!File.Exists("Newtonsoft.Json.dll") || getFileVersion("Newtonsoft.Json.dll") < verNewtonsoftJsonDll)
+                {
+                    var client1 = new WebClient();
+                    client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/Newtonsoft.Json.dll"), "Newtonsoft.Json.dll");
+                }
+
                 // Processes Library
                 double verProcessesDll = Convert.ToDouble(doc.GetElementsByTagName("processesLibrary")[0].InnerText.Replace(".", ""));
                 if (!File.Exists("ProcessesLibrary.dll") || getFileVersion("ProcessesLibrary.dll") < verProcessesDll)
@@ -1113,12 +1124,14 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
 
                 // Process List
-                double verProcesses = Convert.ToDouble(doc.GetElementsByTagName("processes")[0].InnerText.Replace(".", ""));
+                // Проект отключен. Функционал перенесен в раздел настроек
+                if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
+                /*double verProcesses = Convert.ToDouble(doc.GetElementsByTagName("processes")[0].InnerText.Replace(".", ""));
                 if (!File.Exists("processes.exe") || getFileVersion("processes.exe") < verProcesses)
                 {
                     var client1 = new WebClient();
                     client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/processes.exe"), "processes.exe");
-                }
+                }*/
 
                 // Updater
                 double verUpdater = Convert.ToDouble(doc.GetElementsByTagName("updater")[0].InnerText.Replace(".", ""));
@@ -1284,18 +1297,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void bProcess_Click(object sender, EventArgs e)
-        {
-            if (File.Exists("processes.exe"))
-            {
-                Process.Start("processes.exe");
-            }
-            else
-            {
-                MessageBox.Show(this, "Исполняемый файл приложения не найден. Попробуйте перезапустить программу для автоматического устранения неисправности.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private void download_ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             try
@@ -1312,8 +1313,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-            Process.Start("updater.exe", "hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"");
-            Process.GetCurrentProcess().Kill();
+                Process.Start("updater.exe", "hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"");
+                Process.GetCurrentProcess().Kill();
             }
             catch (Exception ex)
             {

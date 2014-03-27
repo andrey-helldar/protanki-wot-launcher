@@ -73,6 +73,9 @@
     <Reference Include="Ionic.Zip">
       <HintPath>.\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\!!other_dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -172,7 +175,6 @@
     <None Include="Resources\back_2.jpg" />
     <None Include="Resources\back_1.jpg" />
     <None Include="Resources\FonUPD.jpg" />
-    <None Include="Resources\FonSetting1.jpg" />
     <None Include="Resources\FonSetting.jpg" />
     <None Include="back\loading.gif" />
     <Content Include="Project1_Icon.ico" />
@@ -203,10 +205,6 @@
     <ProjectReference Include="..\!Hell Language Pack\!Hell Language Pack.csproj">
       <Project>{7C499B3F-3E08-4DC7-AA10-19605BE83758}</Project>
       <Name>!Hell Language Pack</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\!Hell Process List\!Hell Process List.csproj">
-      <Project>{AF9F8199-194C-4BFA-B49D-4BE012B0028A}</Project>
-      <Name>!Hell Process List</Name>
     </ProjectReference>
     <ProjectReference Include="..\!Hell Restarter\!Hell Restarter.csproj">
       <Project>{F71575F4-D350-4667-BF5E-866354AF66DA}</Project>
