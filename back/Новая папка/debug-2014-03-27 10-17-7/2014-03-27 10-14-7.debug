@@ -1,0 +1,5 @@
+﻿private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)
+-------------------------------
+XmlDocument doc = new XmlDocument();
+-------------------------------
+Удаленный сервер возвратил ошибку: (404) Не найден.
