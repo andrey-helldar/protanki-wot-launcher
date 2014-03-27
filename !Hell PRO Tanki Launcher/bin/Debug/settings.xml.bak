@@ -3,8 +3,4 @@
   <version>0.8.11.13</version>
   <type>full</type>
   <settings kill="False" force="False" aero="False" news="True" video="True" />
-  <processes>
-    <process name="2GISTrayNotifier  (Модуль оповещений 2ГИС)" />
-    <process name="ace_engine  ()" />
-  </processes>
 </pro>

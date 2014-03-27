@@ -38,19 +38,19 @@
             // 
             // llContent
             // 
-            this.llContent.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llContent.ActiveLinkColor = System.Drawing.Color.WhiteSmoke;
             this.llContent.BackColor = System.Drawing.Color.Transparent;
-            this.llContent.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llContent.DisabledLinkColor = System.Drawing.Color.Gray;
             this.llContent.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llContent.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llContent.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llContent.LinkColor = System.Drawing.Color.WhiteSmoke;
             this.llContent.Location = new System.Drawing.Point(12, 82);
             this.llContent.Name = "llContent";
             this.llContent.Size = new System.Drawing.Size(676, 245);
             this.llContent.TabIndex = 0;
             this.llContent.TabStop = true;
             this.llContent.Text = "Загрузка данных...";
-            this.llContent.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llContent.VisitedLinkColor = System.Drawing.Color.WhiteSmoke;
             // 
             // bDownload
             // 

@@ -21,7 +21,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     place + Environment.NewLine + "-------------------------------" + Environment.NewLine +
                     mess, Encoding.UTF8);
 
-                MessageBox.Show(fIndex.ActiveForm, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show(fIndex.ActiveForm, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception /*ex*/)
             {

@@ -64,6 +64,7 @@
             this.pVideo = new System.Windows.Forms.Panel();
             this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
             this.pNews = new System.Windows.Forms.Panel();
+            this.bwGetVipProcesses = new System.ComponentModel.BackgroundWorker();
             this.contextMenu.SuspendLayout();
             this.pVideo.SuspendLayout();
             this.SuspendLayout();
@@ -492,6 +493,12 @@
             this.pNews.TabIndex = 31;
             this.pNews.Visible = false;
             // 
+            // bwGetVipProcesses
+            // 
+            this.bwGetVipProcesses.WorkerReportsProgress = true;
+            this.bwGetVipProcesses.WorkerSupportsCancellation = true;
+            this.bwGetVipProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwGetVipProcesses_DoWork);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -566,6 +573,7 @@
         private System.Windows.Forms.Panel pVideo;
         private System.Windows.Forms.Panel pNews;
         private System.Windows.Forms.LinkLabel llLoadingVideoData;
+        private System.ComponentModel.BackgroundWorker bwGetVipProcesses;
     }
 }
 

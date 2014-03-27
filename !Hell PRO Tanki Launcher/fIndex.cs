@@ -69,6 +69,8 @@ namespace _Hell_PRO_Tanki_Launcher
         List<string> newsLink = new List<string>();
         List<string> newsDate = new List<string>();
 
+        List<string> processesList = new List<string>();
+
         ProcessStartInfo psi;
 
         // Инициализируем окно статуса обновлений
@@ -145,51 +147,51 @@ namespace _Hell_PRO_Tanki_Launcher
         // Скачиваем и устанавливаем необходимую версию .NET Framework
         public void getFramework()
         {
+            string mess = "";
+            List<string> frameworkLinks = new List<string>();
+
+            // v2.0.50727
+            /*var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727");
+            if (key) != null)
+            {
+                if ((int)key.GetValue("Install") != 1) { 
+                    mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;                        
+                    frameworkLinks.Add(isX64() ? "http://www.microsoft.com/ru-ru/download/details.aspx?id=6041" : "http://www.microsoft.com/ru-ru/download/details.aspx?id=1639");
+                }
+            }
+            else
+            {
+                mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
+            }*/
+
+
+            // v3.0.30729
+            /*var key30 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.0");
+            if (key30) != null)
+            {
+                if ((int)key30.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key30.GetValue("Version") + " not installed!" + Environment.NewLine; }
+            }
+            else
+            {
+                mess += ".NET Framework " + (string)key30.GetValue("Version") + " not installed!" + Environment.NewLine;
+            }*/
+
+
+            // v3.5
+            /*var key35 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5");
+            if (key35 != null)
+            {
+                if ((int)key35.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key35.GetValue("Version") + " not installed!" + Environment.NewLine; }
+            }
+            else
+            {
+                mess += ".NET Framework " + (string)key35.GetValue("Version") + " not installed!" + Environment.NewLine;
+            }*/
+
+
+            // v4.0
             try
             {
-                string mess = "";
-                List<string> frameworkLinks = new List<string>();
-
-                // v2.0.50727
-                /*var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727");
-                if (key) != null)
-                {
-                    if ((int)key.GetValue("Install") != 1) { 
-                        mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;                        
-                        frameworkLinks.Add(isX64() ? "http://www.microsoft.com/ru-ru/download/details.aspx?id=6041" : "http://www.microsoft.com/ru-ru/download/details.aspx?id=1639");
-                    }
-                }
-                else
-                {
-                    mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
-                }*/
-
-
-                // v3.0.30729
-                /*var key30 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.0");
-                if (key30) != null)
-                {
-                    if ((int)key30.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key30.GetValue("Version") + " not installed!" + Environment.NewLine; }
-                }
-                else
-                {
-                    mess += ".NET Framework " + (string)key30.GetValue("Version") + " not installed!" + Environment.NewLine;
-                }*/
-
-
-                // v3.5
-                /*var key35 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5");
-                if (key35 != null)
-                {
-                    if ((int)key35.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key35.GetValue("Version") + " not installed!" + Environment.NewLine; }
-                }
-                else
-                {
-                    mess += ".NET Framework " + (string)key35.GetValue("Version") + " not installed!" + Environment.NewLine;
-                }*/
-
-
-                // v4.0
                 var key40 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4.0\Client");
                 if (key40 != null)
                 {
@@ -203,7 +205,14 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     mess += ".NET Framework " + (string)key40.GetValue("Version") + " not installed!" + Environment.NewLine;
                 }
+            }
+            catch (Exception ex)
+            {
+                debug.Save("public void getFramework()", "v4.0", ex.Message);
+            }
 
+            try
+            {
                 if (mess.Length > 0)
                 {
                     MessageBox.Show(this, "Для корректной работы приложения требуется установка следующих пакетов:" + Environment.NewLine + mess + Environment.NewLine +
@@ -217,7 +226,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("public void getFramework()", "", ex.Message);
+                debug.Save("public void getFramework()", "Show message", ex.Message);
             }
         }
 
@@ -414,7 +423,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    updTanks = verTanksClient < verTanksServer ? true : false;
+                    updTanks = verTanksClient > -1 && verTanksClient < verTanksServer ? true : false;
                 }
 
                 //Проверяем апдейты на модпак
@@ -780,7 +789,7 @@ namespace _Hell_PRO_Tanki_Launcher
                             // Расчитываем значение прогресс бара
                             bwOptimize.ReportProgress(++myProgressStatus);
 
-                            if (myProcesses[i].SessionId == processID && Array.IndexOf(proccessLibrary.Processes(), myProcesses[i].ProcessName.ToString()) == -1)
+                            if (myProcesses[i].SessionId == processID && Array.IndexOf(proccessLibrary.Processes(), myProcesses[i].ProcessName.ToString()) == -1 && processesList.IndexOf(myProcesses[i].ProcessName.ToString()) == -1)
                             {
                                 saveLog(++myIndex, @"Start close normally -- " + myProcesses[i].ProcessName.ToString());
                                 myProcesses[i].CloseMainWindow();
@@ -811,7 +820,7 @@ namespace _Hell_PRO_Tanki_Launcher
                                 // Расчитываем значение прогресс бара
                                 bwOptimize.ReportProgress(++myProgressStatus);
 
-                                if (myProcesses[i].SessionId == processID && Array.IndexOf(proccessLibrary.Processes(), myProcesses[i].ProcessName.ToString()) == -1)
+                                if (myProcesses[i].SessionId == processID && Array.IndexOf(proccessLibrary.Processes(), myProcesses[i].ProcessName.ToString()) == -1 && processesList.IndexOf(myProcesses[i].ProcessName.ToString()) == -1)
                                 {
                                     saveLog(++myIndex, @"Start Kill -- " + myProcesses[i].ProcessName.ToString());
                                     myProcesses[i].Kill();
@@ -911,7 +920,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void saveLog(int index, string param)
         {
-            try
+          /*  try
             {
                 bool z = false;
 
@@ -934,7 +943,7 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 debug.Save("private void saveLog(int index, string param)", "", ex.Message);
-            }
+            }*/
         }
 
         private void saveLogNotCloseProcess(string param)
@@ -969,6 +978,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (fSettings.ShowDialog() == DialogResult.OK)
                 {
                     loadSettings();
+
+                    if (!bwGetVipProcesses.IsBusy) { bwGetVipProcesses.RunWorkerAsync(); }
                 }
             }
             catch (Exception ex)
@@ -1086,6 +1097,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             var client = new WebClient();
             XmlDocument doc = new XmlDocument();
+            doc.Load(@"http://ai-rus.com/pro/protanks.xml");
 
             try
             {
@@ -1104,9 +1116,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
             try
             {
-                //XmlDocument doc = new XmlDocument();
-                doc.Load(@"http://ai-rus.com/pro/protanks.xml");
-
                 // Newtonsoft.Json.dll
                 double verNewtonsoftJsonDll = Convert.ToDouble(doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText.Replace(".", ""));
                 if (!File.Exists("Newtonsoft.Json.dll") || getFileVersion("Newtonsoft.Json.dll") < verNewtonsoftJsonDll)
@@ -1114,7 +1123,14 @@ namespace _Hell_PRO_Tanki_Launcher
                     var client1 = new WebClient();
                     client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/Newtonsoft.Json.dll"), "Newtonsoft.Json.dll");
                 }
+            }
+            catch (Exception ex1)
+            {
+                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Newtonsoft.Json.dll", ex1.Message);
+            }
 
+            try
+            {
                 // Processes Library
                 double verProcessesDll = Convert.ToDouble(doc.GetElementsByTagName("processesLibrary")[0].InnerText.Replace(".", ""));
                 if (!File.Exists("ProcessesLibrary.dll") || getFileVersion("ProcessesLibrary.dll") < verProcessesDll)
@@ -1122,9 +1138,15 @@ namespace _Hell_PRO_Tanki_Launcher
                     var client1 = new WebClient();
                     client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/ProcessesLibrary.dll"), "ProcessesLibrary.dll");
                 }
+            }
+            catch (Exception ex1)
+            {
+                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Processes Library", ex1.Message);
+            }
 
+            try
+            {
                 // Process List
-                // Проект отключен. Функционал перенесен в раздел настроек
                 if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
                 /*double verProcesses = Convert.ToDouble(doc.GetElementsByTagName("processes")[0].InnerText.Replace(".", ""));
                 if (!File.Exists("processes.exe") || getFileVersion("processes.exe") < verProcesses)
@@ -1132,7 +1154,14 @@ namespace _Hell_PRO_Tanki_Launcher
                     var client1 = new WebClient();
                     client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/processes.exe"), "processes.exe");
                 }*/
+            }
+            catch (Exception ex1)
+            {
+                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Process List", ex1.Message);
+            }
 
+            try
+            {
                 // Updater
                 double verUpdater = Convert.ToDouble(doc.GetElementsByTagName("updater")[0].InnerText.Replace(".", ""));
                 if (!File.Exists("updater.exe") || getFileVersion("updater.exe") < verUpdater)
@@ -1140,20 +1169,37 @@ namespace _Hell_PRO_Tanki_Launcher
                     var client1 = new WebClient();
                     client1.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.exe"), "updater.exe");
                 }
+            }
+            catch (Exception ex1)
+            {
+                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Updater", ex1.Message);
+            }
 
+            try
+            {
                 // Restarter
                 double verRestart = Convert.ToDouble(doc.GetElementsByTagName("restart")[0].InnerText.Replace(".", ""));
                 if (!File.Exists("restart.exe") || getFileVersion("restart.exe") < verRestart)
                 {
                     client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.exe"), "restart.exe");
                 }
+            }
+            catch (Exception ex1)
+            {
+                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Restarter", ex1.Message);
+            }
 
+            try
+            {
                 // Версия лаунчера
                 double ver = Convert.ToDouble(doc.GetElementsByTagName("version")[0].InnerText.Replace(".", "")),
                     thisVer = Convert.ToDouble(Application.ProductVersion.Replace(".", ""));
 
                 if (thisVer < ver)
                 {
+                    MessageBox.Show(this, "Обнаружена новая версия лаунчера (" + doc.GetElementsByTagName("version")[0].InnerText + ")" + Environment.NewLine +
+                        "Приложение будет автоматически обновлено и перезапущено.", Application.ProductName + " v" + Application.ProductVersion, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     if (File.Exists("hell-protanks-download")) { File.Delete("hell-protanks-download"); }
 
                     pbDownload.Visible = true;
@@ -1169,7 +1215,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex1)
             {
-                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex1.Message);
+                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Версия лаунчера", ex1.Message);
             }
         }
 
@@ -1493,6 +1539,36 @@ namespace _Hell_PRO_Tanki_Launcher
         private void fIndex_Load(object sender, EventArgs e)
         {
             languagePack.toolTip(bOptimizePC);
+
+            if (!bwGetVipProcesses.IsBusy) { bwGetVipProcesses.RunWorkerAsync(); }
+        }
+
+        private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                string tmp = "";
+
+                if (File.Exists("settings.xml"))
+                {
+                    processesList.Clear();
+
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load("settings.xml");
+
+
+                    foreach (XmlNode xmlNode in doc.GetElementsByTagName("process"))
+                    {
+                        tmp = xmlNode.Attributes["name"].InnerText;
+
+                        processesList.Add(tmp.Remove(tmp.IndexOf("   (")));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
+            }
         }
     }
 }
