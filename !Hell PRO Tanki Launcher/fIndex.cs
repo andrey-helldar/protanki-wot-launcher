@@ -93,7 +93,8 @@ namespace _Hell_PRO_Tanki_Launcher
             for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
 
             // Проверяем установлен ли в системе нужный нам фраймворк
-            getFramework();
+            framework framework = new framework();
+            framework.Check();
 
             InitializeComponent();
 
@@ -142,92 +143,6 @@ namespace _Hell_PRO_Tanki_Launcher
         private bool isX64()
         {
             return Environment.Is64BitOperatingSystem ? true : false;
-        }
-
-        // Скачиваем и устанавливаем необходимую версию .NET Framework
-        public void getFramework()
-        {
-            string mess = "";
-            List<string> frameworkLinks = new List<string>();
-
-            // v2.0.50727
-            /*var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v2.0.50727");
-            if (key) != null)
-            {
-                if ((int)key.GetValue("Install") != 1) { 
-                    mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;                        
-                    frameworkLinks.Add(isX64() ? "http://www.microsoft.com/ru-ru/download/details.aspx?id=6041" : "http://www.microsoft.com/ru-ru/download/details.aspx?id=1639");
-                }
-            }
-            else
-            {
-                mess += ".NET Framework " + (string)key.GetValue("Version") + " not installed!" + Environment.NewLine;
-            }*/
-
-
-            // v3.0.30729
-            /*var key30 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.0");
-            if (key30) != null)
-            {
-                if ((int)key30.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key30.GetValue("Version") + " not installed!" + Environment.NewLine; }
-            }
-            else
-            {
-                mess += ".NET Framework " + (string)key30.GetValue("Version") + " not installed!" + Environment.NewLine;
-            }*/
-
-
-            // v3.5
-            /*var key35 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5");
-            if (key35 != null)
-            {
-                if ((int)key35.GetValue("Install") != 1) { mess += ".NET Framework " + (string)key35.GetValue("Version") + " not installed!" + Environment.NewLine; }
-            }
-            else
-            {
-                mess += ".NET Framework " + (string)key35.GetValue("Version") + " not installed!" + Environment.NewLine;
-            }*/
-
-
-            // v4.0
-            try
-            {
-                var key40 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4.0\Client");
-                if (key40 != null)
-                {
-                    if ((int)key40.GetValue("Install") != 1)
-                    {
-                        mess += ".NET Framework " + (string)key40.GetValue("Version") + " not installed!" + Environment.NewLine;
-                        frameworkLinks.Add("http://www.microsoft.com/ru-ru/download/details.aspx?id=24872");
-                    }
-                }
-                else
-                {
-                    mess += ".NET Framework " + (string)key40.GetValue("Version") + " not installed!" + Environment.NewLine;
-                }
-            }
-            catch (Exception ex)
-            {
-                debug.Save("public void getFramework()", "v4.0", ex.Message);
-            }
-
-            try
-            {
-                if (mess.Length > 0)
-                {
-                    MessageBox.Show(this, "Для корректной работы приложения требуется установка следующих пакетов:" + Environment.NewLine + mess + Environment.NewLine +
-                    "---------------------------------------------------" + Environment.NewLine +
-                    "ВНИМАНИЕ! После закрытия данного окна в Вашем браузере будут открыты ссылки на страницы для скачивания нужных Вам библиотек .NET Framework с сайта microsoft.com", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    foreach (string link in frameworkLinks)
-                    {
-                        Process.Start(link);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                debug.Save("public void getFramework()", "Show message", ex.Message);
-            }
         }
 
         // Загружаем настройки

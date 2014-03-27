@@ -22,7 +22,11 @@ namespace _Hell_PRO_Tanki_Launcher
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                Application.Run(new fIndex());
+                framework framework = new framework();
+                if (framework.Check())
+                {
+                    Application.Run(new fIndex());
+                }
             }
             catch (Exception)
             {
