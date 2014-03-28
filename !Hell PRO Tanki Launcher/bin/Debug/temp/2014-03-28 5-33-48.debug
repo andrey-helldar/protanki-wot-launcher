@@ -1,5 +1,0 @@
-﻿private void bSettings_Click(object sender, EventArgs e)
--------------------------------
-fSettings fSettings = new fSettings();
--------------------------------
-Не удалось привести тип объекта "System.Windows.Forms.ListViewItem" к типу "System.String".

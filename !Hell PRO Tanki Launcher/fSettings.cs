@@ -111,16 +111,16 @@ namespace _Hell_PRO_Tanki_Launcher
             if (lvProcessesUser.CheckedItems.Count > 0)
             {
                 wr.WriteStartElement("processes", null);
-                
-                for (int i = 0; i < lvProcessesUser.CheckedItems.Count; i++)
+
+                foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
                 {
-                        wr.WriteStartElement("process", null);
-                        wr.WriteAttributeString("name", lvProcessesUser.Items[i].Text);
-                        wr.WriteAttributeString("description", lvProcessesUser.Items[i].SubItems[1].Text);
-                        wr.WriteEndElement();
+                    wr.WriteStartElement("process", null);
+                    wr.WriteAttributeString("name", obj.Text);
+                    wr.WriteAttributeString("description", obj.SubItems[1].Text);
+                    wr.WriteEndElement();
                 }
 
-                    wr.WriteEndElement();
+                wr.WriteEndElement();
             }
 
             wr.WriteEndElement();
@@ -220,11 +220,11 @@ namespace _Hell_PRO_Tanki_Launcher
             myJsonData.Add(name);
             myJsonData.Add("TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6");
 
-            foreach (string str in lvProcessesUser.CheckedItems)
+            foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
             {
-                myJsonData.Add(str);
+                myJsonData.Add(obj.Text + "::" + obj.SubItems[1].Text);
             }
-            
+
             if (myJsonData.Count > 0)
             {
                 string json = JsonConvert.SerializeObject(myJsonData);

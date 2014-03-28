@@ -4,15 +4,14 @@
   <type>full</type>
   <settings kill="False" force="False" aero="False" news="True" video="True" />
   <processes>
-    <process name="2GISTrayNotifier" description="Модуль оповещений 2ГИС" />
-    <process name="AAM Updates Notifier" description="AAM Updates Notifier Application" />
     <process name="acrotray" description="AcroTray" />
-    <process name="AdobeARM" description="Adobe Reader and Acrobat Manager" />
     <process name="avpui" description="Kaspersky Anti-Virus" />
-    <process name="chrome" description="Google Chrome" />
-    <process name="cmd" description="Обработчик команд Windows" />
     <process name="devenv" description="Microsoft Visual Studio 2010" />
-    <process name="dmaster" description="Download Master" />
-    <process name="FamItrfc" description="Radmin component" />
+    <process name="IntelliTrace" description="IntelliTrace.exe" />
+    <process name="klwtblfs" description="WebToolBar component" />
+    <process name="plugin-nm-server" description="Kaspersky Anti-Virus Plugins Native Messaging Server" />
+    <process name="qip" description="QIP 2012" />
+    <process name="Skype" description="Skype" />
+    <process name="xStartUI" description="Routine computer tasks automation" />
   </processes>
 </pro>

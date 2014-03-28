@@ -4,6 +4,21 @@
   <type>full</type>
   <settings kill="False" force="False" aero="False" news="True" video="True" />
   <processes>
-    <process name="uTorrent" description="Nero StartSmart" />
+    <process name="ListViewItem: {avpui}" description="ListViewItem: {avpui}" />
+    <process name="ListViewItem: {devenv}" description="ListViewItem: {devenv}" />
+    <process name="ListViewItem: {IntelliTrace}" description="ListViewItem: {IntelliTrace}" />
+    <process name="ListViewItem: {klwtblfs}" description="ListViewItem: {klwtblfs}" />
+    <process name="ListViewItem: {plugin-nm-server}" description="ListViewItem: {plugin-nm-server}" />
+    <process name="ListViewItem: {qip}" description="ListViewItem: {qip}" />
+    <process name="ListViewItem: {Skype}" description="ListViewItem: {Skype}" />
+    <process name="ListViewItem: {xStartUI}" description="ListViewItem: {xStartUI}" />
+    <process name="2GISTrayNotifier" description="Модуль оповещений 2ГИС" />
+    <process name="AAM Updates Notifier" description="AAM Updates Notifier Application" />
+    <process name="acrotray" description="AcroTray" />
+    <process name="AdobeARM" description="Adobe Reader and Acrobat Manager" />
+    <process name="avpui" description="Kaspersky Anti-Virus" />
+    <process name="chrome" description="Google Chrome" />
+    <process name="cmd" description="Обработчик команд Windows" />
+    <process name="devenv" description="Microsoft Visual Studio 2010" />
   </processes>
 </pro>
