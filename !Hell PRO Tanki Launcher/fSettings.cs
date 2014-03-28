@@ -18,13 +18,13 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fSettings : Form
     {
+        ProcessesLibrary proccessLibrary = new ProcessesLibrary();
+
         string //title,
             version,
             type = "full";
 
         List<string> userProcesses = new List<string>();
-        List<string> listProcesses = new List<string>();
-        List<string> listProcessesDesc = new List<string>();
 
         public fSettings()
         {
@@ -148,8 +148,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUserProcesses_DoWork(object sender, DoWorkEventArgs e)
         {
-            listProcesses.Clear();
-            listProcessesDesc.Clear();
+            proccessLibrary.Clear();
 
             Process[] myProcesses = Process.GetProcesses();
             int processID = Process.GetCurrentProcess().SessionId;
@@ -173,7 +172,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUserProcesses_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            ProcessesLibrary proccessLibrary = new ProcessesLibrary();
 
             for (int i = 1; i < listProcesses.Count; i++)
             {

@@ -6,6 +6,44 @@ using System.Diagnostics;
 
 namespace Processes_Library
 {
+    public class pRange
+    {
+        public string Process, Description;
+        public pRange(string mProcess, string mDescription) { Process = mProcess; Description = mDescription; }
+        public pRange() { Process = ""; Description = ""; }
+    }
+
+    public class ProcessList
+    {
+        public string Process, Description;
+        public List<pRange> Range;
+        public List<List<pRange>> subRange;
+
+        public void Add(string process, string description)
+        {
+            try
+            {
+                if (Range.Count <= 0) { }
+            }
+            catch (Exception)
+            {
+                Range = new List<pRange>();
+                subRange = new List<List<pRange>>();
+            }
+
+            Range.Add(new pRange(process, description));
+            subRange.Add(Range);
+
+            Process = subRange[0][0].Process;
+            Description = subRange[0][0].Description;
+        }
+
+        public void Clear()
+        {
+            this.Range.Clear();
+        }
+    }
+
     public class ProcessesLibrary
     {
         public Array Processes()
