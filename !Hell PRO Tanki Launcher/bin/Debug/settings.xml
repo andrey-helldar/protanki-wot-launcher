@@ -3,8 +3,4 @@
   <version>0.8.11.13</version>
   <type>full</type>
   <settings kill="False" force="False" aero="False" news="True" video="True" />
-  <processes>
-    <process name="avpui   (Kaspersky Anti-Virus)" />
-    <process name="devenv   (Microsoft Visual Studio 2010)" />
-  </processes>
 </pro>

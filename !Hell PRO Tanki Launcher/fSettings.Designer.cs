@@ -39,8 +39,10 @@
             this.cbNews = new System.Windows.Forms.CheckBox();
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.clbProcessesUser = new System.Windows.Forms.CheckedListBox();
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
+            this.lvProcessesUser = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -63,7 +65,7 @@
             this.bSave.TabIndex = 1;
             this.bSave.Text = "Сохранить";
             this.bSave.UseVisualStyleBackColor = false;
-            this.bSave.Click += new System.EventHandler(this.button1_Click);
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
             // bCancel
             // 
@@ -82,7 +84,7 @@
             this.bCancel.TabIndex = 2;
             this.bCancel.Text = "Отмена";
             this.bCancel.UseVisualStyleBackColor = false;
-            this.bCancel.Click += new System.EventHandler(this.button2_Click);
+            this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
             // 
             // groupBox2
             // 
@@ -185,7 +187,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.clbProcessesUser);
+            this.groupBox1.Controls.Add(this.lvProcessesUser);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(336, 31);
             this.groupBox1.Name = "groupBox1";
@@ -194,21 +196,40 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Какие процессы НЕЛЬЗЯ закрывать:";
             // 
-            // clbProcessesUser
-            // 
-            this.clbProcessesUser.FormattingEnabled = true;
-            this.clbProcessesUser.Location = new System.Drawing.Point(6, 19);
-            this.clbProcessesUser.Name = "clbProcessesUser";
-            this.clbProcessesUser.Size = new System.Drawing.Size(395, 139);
-            this.clbProcessesUser.Sorted = true;
-            this.clbProcessesUser.TabIndex = 0;
-            // 
             // bwUserProcesses
             // 
             this.bwUserProcesses.WorkerReportsProgress = true;
             this.bwUserProcesses.WorkerSupportsCancellation = true;
             this.bwUserProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwUserProcesses_DoWork);
             this.bwUserProcesses.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwUserProcesses_RunWorkerCompleted);
+            // 
+            // lvProcessesUser
+            // 
+            this.lvProcessesUser.CheckBoxes = true;
+            this.lvProcessesUser.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.lvProcessesUser.FullRowSelect = true;
+            this.lvProcessesUser.GridLines = true;
+            this.lvProcessesUser.Location = new System.Drawing.Point(6, 19);
+            this.lvProcessesUser.MultiSelect = false;
+            this.lvProcessesUser.Name = "lvProcessesUser";
+            this.lvProcessesUser.ShowGroups = false;
+            this.lvProcessesUser.Size = new System.Drawing.Size(395, 145);
+            this.lvProcessesUser.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvProcessesUser.TabIndex = 1;
+            this.lvProcessesUser.UseCompatibleStateImageBehavior = false;
+            this.lvProcessesUser.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Процесс";
+            this.columnHeader1.Width = 131;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Описание";
+            this.columnHeader2.Width = 254;
             // 
             // fSettings
             // 
@@ -251,6 +272,8 @@
         private System.Windows.Forms.CheckBox cbForceClose;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.ComponentModel.BackgroundWorker bwUserProcesses;
-        private System.Windows.Forms.CheckedListBox clbProcessesUser;
+        private System.Windows.Forms.ListView lvProcessesUser;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

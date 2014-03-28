@@ -835,30 +835,30 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void saveLog(int index, string param)
         {
-          /*  try
-            {
-                bool z = false;
+            /*  try
+              {
+                  bool z = false;
 
-                if (z)
-                {
-                    if (!Directory.Exists("log")) { Directory.CreateDirectory("log"); }
+                  if (z)
+                  {
+                      if (!Directory.Exists("log")) { Directory.CreateDirectory("log"); }
 
-                    string myFile = @"log\" + index.ToString() + "__" + param + ".log";
+                      string myFile = @"log\" + index.ToString() + "__" + param + ".log";
 
-                    if (!File.Exists(myFile))
-                    {
-                        File.WriteAllText(myFile, param, Encoding.UTF8);
-                    }
-                    else
-                    {
-                        File.AppendAllText(myFile, Environment.NewLine + param, Encoding.UTF8);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                debug.Save("private void saveLog(int index, string param)", "", ex.Message);
-            }*/
+                      if (!File.Exists(myFile))
+                      {
+                          File.WriteAllText(myFile, param, Encoding.UTF8);
+                      }
+                      else
+                      {
+                          File.AppendAllText(myFile, Environment.NewLine + param, Encoding.UTF8);
+                      }
+                  }
+              }
+              catch (Exception ex)
+              {
+                  debug.Save("private void saveLog(int index, string param)", "", ex.Message);
+              }*/
         }
 
         private void saveLogNotCloseProcess(string param)
@@ -1476,7 +1476,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         tmp = xmlNode.Attributes["name"].InnerText;
 
-                        processesList.Add(tmp.Remove(tmp.IndexOf("   (")));
+                        processesList.Add(tmp.Remove(tmp.IndexOf("     (")));
                     }
                 }
             }

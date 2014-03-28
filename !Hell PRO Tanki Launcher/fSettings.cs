@@ -12,6 +12,7 @@ using System.Net;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
+using Processes_Library;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -23,6 +24,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         List<string> userProcesses = new List<string>();
         List<string> listProcesses = new List<string>();
+        List<string> listProcessesDesc = new List<string>();
 
         public fSettings()
         {
@@ -78,7 +80,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void bSave_Click(object sender, EventArgs e)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists("settings.xml")) { File.Delete(Application.StartupPath + "/settings.xml"); }
@@ -105,15 +107,16 @@ namespace _Hell_PRO_Tanki_Launcher
             wr.WriteAttributeString("video", cbVideo.Checked.ToString());
             wr.WriteEndElement();
 
-            if (clbProcessesUser.SelectedItems.Count > 0)
+            if (lvProcessesUser.SelectedItems.Count > 0)
             {
                 wr.WriteStartElement("processes", null);
 
-                foreach (string str in clbProcessesUser.CheckedItems)
+                for (int i = 0; i < lvProcessesUser.SelectedItems.Count; i++)
                 {
-                    wr.WriteStartElement("process", null);
-                    wr.WriteAttributeString("name", str);
-                    wr.WriteEndElement();
+                        wr.WriteStartElement("process", null);
+                        wr.WriteAttributeString("name", lvProcessesUser.SelectedItems[i].Text);
+                        wr.WriteAttributeString("description", lvProcessesUser.SelectedItems[i].SubItems[1].Text);
+                        wr.WriteEndElement();
                 }
 
                     wr.WriteEndElement();
@@ -128,7 +131,7 @@ namespace _Hell_PRO_Tanki_Launcher
             sendProcesses();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void bCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -141,25 +144,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 var msg = Message.Create(this.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
                 this.WndProc(ref msg);
             };
-        }
-
-        private void bwUserProcesses_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-
-            for (int i = 1; i < listProcesses.Count; i++)
-            {
-                try
-                {
-                    clbProcessesUser.Items.Add(listProcesses[i]);
-                    int pos = clbProcessesUser.Items.IndexOf(listProcesses[i]);
-
-                    if (userProcesses.IndexOf(listProcesses[i]) > -1)
-                    {
-                        clbProcessesUser.SetItemChecked(pos, true);
-                    }
-                }
-                catch (Exception) { }
-            }
         }
 
         private void bwUserProcesses_DoWork(object sender, DoWorkEventArgs e)
@@ -180,6 +164,26 @@ namespace _Hell_PRO_Tanki_Launcher
                             (myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim() != "" ? "   (" + myProcesses[i].MainModule.FileVersionInfo.FileDescription + ")" : "");
 
                         if (listProcesses.IndexOf(tmp) < 0 && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName) listProcesses.Add(tmp);
+                    }
+                }
+                catch (Exception) { }
+            }
+        }
+
+        private void bwUserProcesses_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ProcessesLibrary proccessLibrary = new ProcessesLibrary();
+
+            for (int i = 1; i < listProcesses.Count; i++)
+            {
+                try
+                {
+                    int pos = lvProcessesUser.Items.Add(listProcesses[i]).Index;
+
+                    if (userProcesses.IndexOf(listProcesses[i]) > -1 || Array.IndexOf(proccessLibrary.Processes(), listProcesses[i].Remove(listProcesses[i].IndexOf("   ("))) != -1)
+                    {
+                        lvProcessesUser.Items[pos].Checked = true;
+                        lvProcessesUser.Items[pos].BackColor = Color.Green;
                     }
                 }
                 catch (Exception) { }
@@ -209,7 +213,7 @@ namespace _Hell_PRO_Tanki_Launcher
             myJsonData.Add(name);
             myJsonData.Add("TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6");
 
-            foreach (string str in clbProcessesUser.CheckedItems)
+            foreach (string str in lvProcessesUser.CheckedItems)
             {
                 myJsonData.Add(str);
             }
