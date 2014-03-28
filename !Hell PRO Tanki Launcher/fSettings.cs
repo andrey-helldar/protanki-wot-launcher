@@ -110,12 +110,12 @@ namespace _Hell_PRO_Tanki_Launcher
             if (lvProcessesUser.SelectedItems.Count > 0)
             {
                 wr.WriteStartElement("processes", null);
-
-                for (int i = 0; i < lvProcessesUser.SelectedItems.Count; i++)
+                
+                for (int i = 0; i < lvProcessesUser.CheckedItems.Count; i++)
                 {
                         wr.WriteStartElement("process", null);
-                        wr.WriteAttributeString("name", lvProcessesUser.SelectedItems[i].Text);
-                        wr.WriteAttributeString("description", lvProcessesUser.SelectedItems[i].SubItems[1].Text);
+                        wr.WriteAttributeString("name", lvProcessesUser.CheckedItems.ToString());
+                        wr.WriteAttributeString("description", lvProcessesUser.Items[i].SubItems[1].Text);
                         wr.WriteEndElement();
                 }
 
@@ -163,7 +163,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         if (listProcesses.IndexOf(myProcesses[i].ProcessName) < 0 && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
                         {
                             listProcesses.Add(myProcesses[i].ProcessName);
-                            listProcessesDesc.Add(myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim() != "" ? myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim() : "---");
+                            listProcessesDesc.Add(myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim());
                         }
                     }
                 }
@@ -190,7 +190,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
 
                     // Глобальные процессы
-                    if (Array.IndexOf(proccessLibrary.Processes(), listProcesses[i]) != -1)
+                    if (Array.IndexOf(proccessLibrary.Processes(), listProcesses[i]) > -1)
                     {
                         lvProcessesUser.Items[pos].Checked = true;
                         lvProcessesUser.Items[pos].BackColor = Color.LightCoral;
