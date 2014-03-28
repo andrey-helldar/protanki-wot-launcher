@@ -23,7 +23,6 @@ namespace Processes_Library
 				"MKey",
 				"icq",
 				"fraps",
-				"AI Suite II",
 				"AsRoutineController",
 				"avpui",
 				"chrome",
@@ -47,6 +46,7 @@ namespace Processes_Library
 				"qip",
 				"RtkNGUI64",
 				"Skype",
+                "Skype ",
 				"taskeng",
 				"taskhost",
 				"TeamViewer",
@@ -62,7 +62,12 @@ namespace Processes_Library
 				"xPopups",
 				"xStarter",
 				"xStartUI",
-                "RaidCall"
+                "RaidCall",
+                "Overwolf",
+                "Cloud",
+                "magent",
+                "USBGuard",
+                "YCMMirage"
             };
 
             return vipProcess;
