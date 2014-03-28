@@ -149,7 +149,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bwUserProcesses_DoWork(object sender, DoWorkEventArgs e)
         {
             listProcesses.Clear();
-            string tmp = "";
+            listProcessesDesc.Clear();
 
             Process[] myProcesses = Process.GetProcesses();
             int processID = Process.GetCurrentProcess().SessionId;
@@ -160,10 +160,11 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (myProcesses[i].SessionId == processID)
                     {
-                        tmp = myProcesses[i].ProcessName +
-                            (myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim() != "" ? "   (" + myProcesses[i].MainModule.FileVersionInfo.FileDescription + ")" : "");
-
-                        if (listProcesses.IndexOf(tmp) < 0 && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName) listProcesses.Add(tmp);
+                        if (listProcesses.IndexOf(myProcesses[i].ProcessName) < 0 && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
+                        {
+                            listProcesses.Add(myProcesses[i].ProcessName);
+                            listProcessesDesc.Add(myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim() != "" ? myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim() : "---");
+                        }
                     }
                 }
                 catch (Exception) { }
@@ -179,11 +180,20 @@ namespace _Hell_PRO_Tanki_Launcher
                 try
                 {
                     int pos = lvProcessesUser.Items.Add(listProcesses[i]).Index;
+                    lvProcessesUser.Items[pos].SubItems.Add(listProcessesDesc[i]);
 
-                    if (userProcesses.IndexOf(listProcesses[i]) > -1 || Array.IndexOf(proccessLibrary.Processes(), listProcesses[i].Remove(listProcesses[i].IndexOf("   ("))) != -1)
+                    // Процессы юзера
+                    if (userProcesses.IndexOf(listProcesses[i]) > -1)
                     {
                         lvProcessesUser.Items[pos].Checked = true;
-                        lvProcessesUser.Items[pos].BackColor = Color.Green;
+                        lvProcessesUser.Items[pos].BackColor = Color.LightGreen;
+                    }
+
+                    // Глобальные процессы
+                    if (Array.IndexOf(proccessLibrary.Processes(), listProcesses[i]) != -1)
+                    {
+                        lvProcessesUser.Items[pos].Checked = true;
+                        lvProcessesUser.Items[pos].BackColor = Color.LightCoral;
                     }
                 }
                 catch (Exception) { }

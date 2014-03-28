@@ -39,10 +39,10 @@
             this.cbNews = new System.Windows.Forms.CheckBox();
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
             this.lvProcessesUser = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -196,13 +196,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Какие процессы НЕЛЬЗЯ закрывать:";
             // 
-            // bwUserProcesses
-            // 
-            this.bwUserProcesses.WorkerReportsProgress = true;
-            this.bwUserProcesses.WorkerSupportsCancellation = true;
-            this.bwUserProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwUserProcesses_DoWork);
-            this.bwUserProcesses.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwUserProcesses_RunWorkerCompleted);
-            // 
             // lvProcessesUser
             // 
             this.lvProcessesUser.CheckBoxes = true;
@@ -230,6 +223,13 @@
             // 
             this.columnHeader2.Text = "Описание";
             this.columnHeader2.Width = 254;
+            // 
+            // bwUserProcesses
+            // 
+            this.bwUserProcesses.WorkerReportsProgress = true;
+            this.bwUserProcesses.WorkerSupportsCancellation = true;
+            this.bwUserProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwUserProcesses_DoWork);
+            this.bwUserProcesses.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwUserProcesses_RunWorkerCompleted);
             // 
             // fSettings
             // 
