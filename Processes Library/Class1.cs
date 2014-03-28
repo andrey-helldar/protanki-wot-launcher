@@ -133,9 +133,6 @@ namespace Processes_Library
                 "Skype ",
 				"taskeng",
 				"taskhost",
-				"TeamViewer",
-				"tv_w32",
-				"tv_x64",
 				"U3BoostSvr64",
 				"U3BoostSvr32",
 				"winlogon",
@@ -144,7 +141,6 @@ namespace Processes_Library
 				"xStartUI",
                 "RaidCall",
                 "Overwolf",
-                "Cloud",
                 "magent",
                 "USBGuard",
                 "YCMMirage"

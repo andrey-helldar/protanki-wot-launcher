@@ -36,7 +36,9 @@ namespace _Hell_PRO_Tanki_Launcher
             youtubeChannel = "PROTankiWoT",
             sUpdateLink = "http://goo.gl/gr6pFl",
             videoLink = "http://goo.gl/gr6pFl",
-            updateNotification = "";
+            updateNotification = "",
+            
+            checksummLauncher;
 
         Version rVerLauncher,
             rVerModpack,
@@ -972,7 +974,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 //var clientZIP = new WebClient();
                 if (!File.Exists("Ionic.Zip.dll"))
                 {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
+                    //while (checksum("Ionic.Zip.dll", ))
+                    //{
+                        client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
+                    //}
                 }
             }
             catch (Exception ex1)
@@ -1037,6 +1042,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
             try
             {
+                //checksummLauncher = doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText;
+
                 rVerLauncher = new Version(doc.GetElementsByTagName("version")[0].InnerText);
                 lVerLauncher = new Version(Application.ProductVersion);
 
@@ -1201,6 +1208,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                //if (checksum("hell-protanks-download", checksummLauncher)) { MessageBox.Show("Checksumm: OK"); }
+
                 Process.Start("updater.exe", "hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"");
                 Process.GetCurrentProcess().Kill();
             }
@@ -1411,6 +1420,17 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 debug.Save("private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
+            }
+        }
+
+        private bool checksum(string filename, string summ)
+        {
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(filename))
+                {
+                    return md5.ComputeHash(stream).ToString() == summ ? true : false;
+                }
             }
         }
     }

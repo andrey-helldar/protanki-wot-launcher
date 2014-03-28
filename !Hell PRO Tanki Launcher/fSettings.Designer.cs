@@ -39,14 +39,14 @@
             this.cbNews = new System.Windows.Forms.CheckBox();
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.llGlobalProcesses = new System.Windows.Forms.LinkLabel();
+            this.llUserProcesses = new System.Windows.Forms.LinkLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lvProcessesUser = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.llUserProcesses = new System.Windows.Forms.LinkLabel();
-            this.llGlobalProcesses = new System.Windows.Forms.LinkLabel();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -202,7 +202,51 @@
             this.groupBox1.Size = new System.Drawing.Size(573, 292);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Какие процессы НЕЛЬЗЯ закрывать:";
+            this.groupBox1.Text = "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:";
+            // 
+            // llGlobalProcesses
+            // 
+            this.llGlobalProcesses.ActiveLinkColor = System.Drawing.Color.White;
+            this.llGlobalProcesses.AutoSize = true;
+            this.llGlobalProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llGlobalProcesses.LinkColor = System.Drawing.Color.White;
+            this.llGlobalProcesses.Location = new System.Drawing.Point(355, 266);
+            this.llGlobalProcesses.Name = "llGlobalProcesses";
+            this.llGlobalProcesses.Size = new System.Drawing.Size(180, 13);
+            this.llGlobalProcesses.TabIndex = 5;
+            this.llGlobalProcesses.TabStop = true;
+            this.llGlobalProcesses.Text = "Процессы из глобального списка";
+            this.llGlobalProcesses.VisitedLinkColor = System.Drawing.Color.White;
+            // 
+            // llUserProcesses
+            // 
+            this.llUserProcesses.ActiveLinkColor = System.Drawing.Color.White;
+            this.llUserProcesses.AutoSize = true;
+            this.llUserProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llUserProcesses.LinkColor = System.Drawing.Color.White;
+            this.llUserProcesses.Location = new System.Drawing.Point(72, 266);
+            this.llUserProcesses.Name = "llUserProcesses";
+            this.llUserProcesses.Size = new System.Drawing.Size(205, 13);
+            this.llUserProcesses.TabIndex = 4;
+            this.llUserProcesses.TabStop = true;
+            this.llUserProcesses.Text = "Процессы, выбранные пользователем";
+            this.llUserProcesses.VisitedLinkColor = System.Drawing.Color.White;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Plum;
+            this.panel2.Location = new System.Drawing.Point(324, 260);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(25, 25);
+            this.panel2.TabIndex = 3;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.LightGreen;
+            this.panel1.Location = new System.Drawing.Point(38, 260);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(25, 25);
+            this.panel1.TabIndex = 2;
             // 
             // lvProcessesUser
             // 
@@ -238,50 +282,6 @@
             this.bwUserProcesses.WorkerSupportsCancellation = true;
             this.bwUserProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwUserProcesses_DoWork);
             this.bwUserProcesses.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwUserProcesses_RunWorkerCompleted);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.LightGreen;
-            this.panel1.Location = new System.Drawing.Point(38, 260);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(25, 25);
-            this.panel1.TabIndex = 2;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Plum;
-            this.panel2.Location = new System.Drawing.Point(324, 260);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(25, 25);
-            this.panel2.TabIndex = 3;
-            // 
-            // llUserProcesses
-            // 
-            this.llUserProcesses.ActiveLinkColor = System.Drawing.Color.White;
-            this.llUserProcesses.AutoSize = true;
-            this.llUserProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llUserProcesses.LinkColor = System.Drawing.Color.White;
-            this.llUserProcesses.Location = new System.Drawing.Point(72, 266);
-            this.llUserProcesses.Name = "llUserProcesses";
-            this.llUserProcesses.Size = new System.Drawing.Size(205, 13);
-            this.llUserProcesses.TabIndex = 4;
-            this.llUserProcesses.TabStop = true;
-            this.llUserProcesses.Text = "Процессы, выбранные пользователем";
-            this.llUserProcesses.VisitedLinkColor = System.Drawing.Color.White;
-            // 
-            // llGlobalProcesses
-            // 
-            this.llGlobalProcesses.ActiveLinkColor = System.Drawing.Color.White;
-            this.llGlobalProcesses.AutoSize = true;
-            this.llGlobalProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llGlobalProcesses.LinkColor = System.Drawing.Color.White;
-            this.llGlobalProcesses.Location = new System.Drawing.Point(355, 266);
-            this.llGlobalProcesses.Name = "llGlobalProcesses";
-            this.llGlobalProcesses.Size = new System.Drawing.Size(180, 13);
-            this.llGlobalProcesses.TabIndex = 5;
-            this.llGlobalProcesses.TabStop = true;
-            this.llGlobalProcesses.Text = "Процессы из глобального списка";
-            this.llGlobalProcesses.VisitedLinkColor = System.Drawing.Color.White;
             // 
             // fSettings
             // 

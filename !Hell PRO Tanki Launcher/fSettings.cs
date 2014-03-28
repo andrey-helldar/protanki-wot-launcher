@@ -126,10 +126,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
                 {
-                    wr.WriteStartElement("process", null);
-                    wr.WriteAttributeString("name", obj.Text);
-                    wr.WriteAttributeString("description", obj.SubItems[1].Text);
-                    wr.WriteEndElement();
+                    if (obj.BackColor != Color.Plum)
+                    {
+                        wr.WriteStartElement("process", null);
+                        wr.WriteAttributeString("name", obj.Text);
+                        wr.WriteAttributeString("description", obj.SubItems[1].Text);
+                        wr.WriteEndElement();
+                    }
                 }
 
                 wr.WriteEndElement();
@@ -234,7 +237,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
             foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
             {
-                myJsonData.Add(obj.Text + "::" + obj.SubItems[1].Text);
+                if(obj.BackColor != Color.Plum) // Если процесс не является глобальным, то добавляем данные для вывода
+                    myJsonData.Add(obj.Text + "::" + obj.SubItems[1].Text);
             }
 
             if (myJsonData.Count > 0)
