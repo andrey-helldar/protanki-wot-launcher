@@ -43,6 +43,10 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.llUserProcesses = new System.Windows.Forms.LinkLabel();
+            this.llGlobalProcesses = new System.Windows.Forms.LinkLabel();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -59,7 +63,7 @@
             this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSave.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSave.Location = new System.Drawing.Point(216, 207);
+            this.bSave.Location = new System.Drawing.Point(127, 428);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 50);
             this.bSave.TabIndex = 1;
@@ -78,7 +82,7 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(387, 207);
+            this.bCancel.Location = new System.Drawing.Point(298, 428);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(150, 50);
             this.bCancel.TabIndex = 2;
@@ -136,9 +140,9 @@
             this.groupBox3.Controls.Add(this.cbVideo);
             this.groupBox3.Controls.Add(this.cbNews);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(12, 130);
+            this.groupBox3.Location = new System.Drawing.Point(336, 31);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(318, 71);
+            this.groupBox3.Size = new System.Drawing.Size(249, 93);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Другие:";
@@ -148,7 +152,7 @@
             this.cbVideo.AutoSize = true;
             this.cbVideo.Checked = true;
             this.cbVideo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbVideo.Location = new System.Drawing.Point(18, 42);
+            this.cbVideo.Location = new System.Drawing.Point(19, 55);
             this.cbVideo.Name = "cbVideo";
             this.cbVideo.Size = new System.Drawing.Size(165, 17);
             this.cbVideo.TabIndex = 1;
@@ -160,7 +164,7 @@
             this.cbNews.AutoSize = true;
             this.cbNews.Checked = true;
             this.cbNews.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbNews.Location = new System.Drawing.Point(18, 19);
+            this.cbNews.Location = new System.Drawing.Point(19, 32);
             this.cbNews.Name = "cbNews";
             this.cbNews.Size = new System.Drawing.Size(181, 17);
             this.cbNews.TabIndex = 0;
@@ -187,11 +191,15 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.llGlobalProcesses);
+            this.groupBox1.Controls.Add(this.llUserProcesses);
+            this.groupBox1.Controls.Add(this.panel2);
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.lvProcessesUser);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(336, 31);
+            this.groupBox1.Location = new System.Drawing.Point(12, 130);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(407, 170);
+            this.groupBox1.Size = new System.Drawing.Size(573, 292);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Какие процессы НЕЛЬЗЯ закрывать:";
@@ -208,7 +216,7 @@
             this.lvProcessesUser.MultiSelect = false;
             this.lvProcessesUser.Name = "lvProcessesUser";
             this.lvProcessesUser.ShowGroups = false;
-            this.lvProcessesUser.Size = new System.Drawing.Size(395, 145);
+            this.lvProcessesUser.Size = new System.Drawing.Size(561, 235);
             this.lvProcessesUser.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvProcessesUser.TabIndex = 1;
             this.lvProcessesUser.UseCompatibleStateImageBehavior = false;
@@ -217,12 +225,12 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Процесс";
-            this.columnHeader1.Width = 131;
+            this.columnHeader1.Width = 169;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Описание";
-            this.columnHeader2.Width = 254;
+            this.columnHeader2.Width = 380;
             // 
             // bwUserProcesses
             // 
@@ -231,13 +239,57 @@
             this.bwUserProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwUserProcesses_DoWork);
             this.bwUserProcesses.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwUserProcesses_RunWorkerCompleted);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.LightGreen;
+            this.panel1.Location = new System.Drawing.Point(38, 260);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(25, 25);
+            this.panel1.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Plum;
+            this.panel2.Location = new System.Drawing.Point(324, 260);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(25, 25);
+            this.panel2.TabIndex = 3;
+            // 
+            // llUserProcesses
+            // 
+            this.llUserProcesses.ActiveLinkColor = System.Drawing.Color.White;
+            this.llUserProcesses.AutoSize = true;
+            this.llUserProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llUserProcesses.LinkColor = System.Drawing.Color.White;
+            this.llUserProcesses.Location = new System.Drawing.Point(72, 266);
+            this.llUserProcesses.Name = "llUserProcesses";
+            this.llUserProcesses.Size = new System.Drawing.Size(205, 13);
+            this.llUserProcesses.TabIndex = 4;
+            this.llUserProcesses.TabStop = true;
+            this.llUserProcesses.Text = "Процессы, выбранные пользователем";
+            this.llUserProcesses.VisitedLinkColor = System.Drawing.Color.White;
+            // 
+            // llGlobalProcesses
+            // 
+            this.llGlobalProcesses.ActiveLinkColor = System.Drawing.Color.White;
+            this.llGlobalProcesses.AutoSize = true;
+            this.llGlobalProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llGlobalProcesses.LinkColor = System.Drawing.Color.White;
+            this.llGlobalProcesses.Location = new System.Drawing.Point(355, 266);
+            this.llGlobalProcesses.Name = "llGlobalProcesses";
+            this.llGlobalProcesses.Size = new System.Drawing.Size(180, 13);
+            this.llGlobalProcesses.TabIndex = 5;
+            this.llGlobalProcesses.TabStop = true;
+            this.llGlobalProcesses.Text = "Процессы из глобального списка";
+            this.llGlobalProcesses.VisitedLinkColor = System.Drawing.Color.White;
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_settings;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(755, 269);
+            this.ClientSize = new System.Drawing.Size(597, 490);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.llTitle);
             this.Controls.Add(this.groupBox3);
@@ -253,6 +305,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,5 +328,9 @@
         private System.Windows.Forms.ListView lvProcessesUser;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.LinkLabel llGlobalProcesses;
+        public System.Windows.Forms.LinkLabel llUserProcesses;
     }
 }

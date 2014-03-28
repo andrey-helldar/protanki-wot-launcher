@@ -23,6 +23,14 @@ namespace _Hell_Language_Pack
                     toolTip.SetToolTip(sender, "Оптимизировать Ваш ПК для поднятия FPS");
                     break;
 
+                case "llUserProcesses":
+                    toolTip.SetToolTip(sender, "Процессы, выбранные Вами, могут быть убраны из списка приоритета");
+                    break;
+
+                case "llGlobalProcesses":
+                    toolTip.SetToolTip(sender, "Процессы из глобального списка приоритетов не могут быть отключены. Даже при снятии галки они автоматически будут включены.");
+                    break;
+
                 default:
                     break;
             }

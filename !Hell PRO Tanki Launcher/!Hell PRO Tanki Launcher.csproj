@@ -167,6 +167,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PROTanks.ico" />
+    <Content Include="Resources\FonSetting.jpg" />
+    <Content Include="Resources\FonUPD.jpg" />
     <None Include="Resources\PROTanks.ico" />
     <None Include="Resources\back_7.jpg" />
     <None Include="Resources\back_6.jpg" />
@@ -175,8 +177,6 @@
     <None Include="Resources\back_3.jpg" />
     <None Include="Resources\back_2.jpg" />
     <None Include="Resources\back_1.jpg" />
-    <None Include="Resources\FonUPD.jpg" />
-    <None Include="Resources\FonSetting.jpg" />
     <None Include="back\loading.gif" />
     <Content Include="Project1_Icon.ico" />
   </ItemGroup>

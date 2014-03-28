@@ -44,9 +44,9 @@
             this.llContent.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llContent.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llContent.LinkColor = System.Drawing.Color.WhiteSmoke;
-            this.llContent.Location = new System.Drawing.Point(12, 82);
+            this.llContent.Location = new System.Drawing.Point(12, 66);
             this.llContent.Name = "llContent";
-            this.llContent.Size = new System.Drawing.Size(676, 245);
+            this.llContent.Size = new System.Drawing.Size(676, 261);
             this.llContent.TabIndex = 0;
             this.llContent.TabStop = true;
             this.llContent.Text = "Загрузка данных...";
@@ -129,7 +129,7 @@
             this.llCaption.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llCaption.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llCaption.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llCaption.Location = new System.Drawing.Point(12, 27);
+            this.llCaption.Location = new System.Drawing.Point(12, 16);
             this.llCaption.Name = "llCaption";
             this.llCaption.Size = new System.Drawing.Size(151, 24);
             this.llCaption.TabIndex = 6;

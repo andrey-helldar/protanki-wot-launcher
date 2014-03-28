@@ -24,7 +24,7 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fIndex : Form
     {
-        //Подгружаем классы
+        // ПОдгружаем классы
         fLanguage languagePack = new fLanguage();
 
         string xmlTitle = "",
@@ -690,7 +690,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     int processID = Process.GetCurrentProcess().SessionId;
 
                     // Расчитываем значение прогресс бара
-                    maxPercentUpdateStatus += autoKill ? myProcesses.Length * 2 - 2 : myProcesses.Length - 1;
+                    maxPercentUpdateStatus += autoForceKill ? myProcesses.Length * 2 - 2 : myProcesses.Length - 1;
 
                     // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
                     // Грузим библиотеку со списком процессов
@@ -1453,6 +1453,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void fIndex_Load(object sender, EventArgs e)
         {
+            // Главное окно
             languagePack.toolTip(bOptimizePC);
 
             if (!bwGetVipProcesses.IsBusy) { bwGetVipProcesses.RunWorkerAsync(); }

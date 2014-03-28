@@ -4,7 +4,6 @@
   <type>full</type>
   <settings kill="False" force="False" aero="False" news="True" video="True" />
   <processes>
-    <process name="acrotray" description="AcroTray" />
     <process name="avpui" description="Kaspersky Anti-Virus" />
     <process name="devenv" description="Microsoft Visual Studio 2010" />
     <process name="IntelliTrace" description="IntelliTrace.exe" />

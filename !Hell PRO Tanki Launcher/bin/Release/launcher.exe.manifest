@@ -4,7 +4,7 @@
   <description asmv2:iconFile="PROTanks.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="launcher" version="1.0.2.39" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="launcher" version="1.0.3.39" language="neutral" processorArchitecture="x86" />
     <commandLine file="launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -55,26 +55,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LanguagePack.dll" size="4608">
-      <assemblyIdentity name="LanguagePack" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LanguagePack.dll" size="5120">
+      <assemblyIdentity name="LanguagePack" version="1.0.0.2" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>T/hBAQr6RlDA2uIUHGlDykotgf8=</dsig:DigestValue>
+        <dsig:DigestValue>rqTLoD64EWKu3QsUNDfFFTyyhRM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1381376">
-      <assemblyIdentity name="launcher" version="1.0.2.39" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1371648">
+      <assemblyIdentity name="launcher" version="1.0.3.39" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>r9O2C4f3I3WX9UPv1gteM4krOsA=</dsig:DigestValue>
+        <dsig:DigestValue>xqQEzYPpZPddbCCX6/5fiJCVGO8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -91,14 +91,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="5632">
-      <assemblyIdentity name="ProcessesLibrary" version="1.0.0.3" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="6656">
+      <assemblyIdentity name="ProcessesLibrary" version="1.0.1.5" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>aFhttrt9ki/tErMEAMnzREdf+wQ=</dsig:DigestValue>
+        <dsig:DigestValue>v04MCFAqFrnU0qPmb27t6DVN2+o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -130,6 +130,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>q/Wwr23C+IjxiA9cXOs5fO3ptbI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\FonSetting.jpg" size="95759">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>0Ag57caoVxLnF6LSmqSxgCZvy+w=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\FonUPD.jpg" size="97787">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>COX69HTfWAZDh7Nr+KCz279mwnI=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

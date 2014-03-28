@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1384960">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1374208">
       <assemblyIdentity name="launcher" version="1.0.3.39" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Md+DhilyTuqCWiamvgzSAZZfMh0=</dsig:DigestValue>
+        <dsig:DigestValue>wc/kKrEIdoIM3nA5KXGTHZ3Bl3M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -130,6 +130,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>q/Wwr23C+IjxiA9cXOs5fO3ptbI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\FonSetting.jpg" size="95759">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>0Ag57caoVxLnF6LSmqSxgCZvy+w=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\FonUPD.jpg" size="97787">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>COX69HTfWAZDh7Nr+KCz279mwnI=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

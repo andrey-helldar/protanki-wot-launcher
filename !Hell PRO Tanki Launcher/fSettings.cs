@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 using Processes_Library;
+using _Hell_Language_Pack;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -30,6 +31,8 @@ namespace _Hell_PRO_Tanki_Launcher
         public fSettings()
         {
             InitializeComponent();
+
+            loadLang();
 
             moveForm();
 
@@ -79,6 +82,15 @@ namespace _Hell_PRO_Tanki_Launcher
                 cbNews.Checked = true;
                 cbVideo.Checked = true;
             }
+        }
+
+        private void loadLang()
+        {
+            fLanguage languagePack = new fLanguage();
+
+            // Окно настроек
+            languagePack.toolTip(llUserProcesses);
+            languagePack.toolTip(llUserProcesses);
         }
 
         private void bSave_Click(object sender, EventArgs e)
@@ -190,7 +202,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     if (Array.IndexOf(proccessLibrary.Processes(), processList.Range[i].Process) > -1)
                     {
                         lvProcessesUser.Items[pos].Checked = true;
-                        lvProcessesUser.Items[pos].BackColor = Color.LightCoral;
+                        lvProcessesUser.Items[pos].BackColor = Color.Plum;
                     }
                 }
                 catch (Exception) { }

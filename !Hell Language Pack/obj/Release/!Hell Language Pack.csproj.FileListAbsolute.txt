@@ -2,3 +2,7 @@ f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Language Pack\bin\Release\LanguagePack.pdb
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Language Pack\obj\Release\LanguagePack.dll
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Language Pack\obj\Release\LanguagePack.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Language Pack\bin\Release\LanguagePack.dll
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Language Pack\bin\Release\LanguagePack.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Language Pack\obj\Release\LanguagePack.dll
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Language Pack\obj\Release\LanguagePack.pdb
