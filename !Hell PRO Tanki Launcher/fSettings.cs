@@ -19,6 +19,7 @@ namespace _Hell_PRO_Tanki_Launcher
     public partial class fSettings : Form
     {
         ProcessesLibrary proccessLibrary = new ProcessesLibrary();
+        ProcessList processList = new ProcessList();
 
         string //title,
             version,
@@ -107,14 +108,14 @@ namespace _Hell_PRO_Tanki_Launcher
             wr.WriteAttributeString("video", cbVideo.Checked.ToString());
             wr.WriteEndElement();
 
-            if (lvProcessesUser.SelectedItems.Count > 0)
+            if (lvProcessesUser.CheckedItems.Count > 0)
             {
                 wr.WriteStartElement("processes", null);
                 
                 for (int i = 0; i < lvProcessesUser.CheckedItems.Count; i++)
                 {
                         wr.WriteStartElement("process", null);
-                        wr.WriteAttributeString("name", lvProcessesUser.CheckedItems.ToString());
+                        wr.WriteAttributeString("name", lvProcessesUser.Items[i].Text);
                         wr.WriteAttributeString("description", lvProcessesUser.Items[i].SubItems[1].Text);
                         wr.WriteEndElement();
                 }
@@ -148,7 +149,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUserProcesses_DoWork(object sender, DoWorkEventArgs e)
         {
-            proccessLibrary.Clear();
+            processList.Clear();
 
             Process[] myProcesses = Process.GetProcesses();
             int processID = Process.GetCurrentProcess().SessionId;
@@ -159,10 +160,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (myProcesses[i].SessionId == processID)
                     {
-                        if (listProcesses.IndexOf(myProcesses[i].ProcessName) < 0 && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
+                        if (processList.IndexOf(myProcesses[i].ProcessName) < 0 && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
                         {
-                            listProcesses.Add(myProcesses[i].ProcessName);
-                            listProcessesDesc.Add(myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim());
+                            processList.Add(myProcesses[i].ProcessName, myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim());
                         }
                     }
                 }
@@ -172,23 +172,22 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUserProcesses_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
-            for (int i = 1; i < listProcesses.Count; i++)
+            for (int i = 1; i < processList.Count(); i++)
             {
                 try
                 {
-                    int pos = lvProcessesUser.Items.Add(listProcesses[i]).Index;
-                    lvProcessesUser.Items[pos].SubItems.Add(listProcessesDesc[i]);
+                    int pos = lvProcessesUser.Items.Add(processList.Range[i].Process).Index;
+                    lvProcessesUser.Items[pos].SubItems.Add(processList.Range[i].Description);
 
                     // Процессы юзера
-                    if (userProcesses.IndexOf(listProcesses[i]) > -1)
+                    if (userProcesses.IndexOf(processList.Range[i].Process) > -1)
                     {
                         lvProcessesUser.Items[pos].Checked = true;
                         lvProcessesUser.Items[pos].BackColor = Color.LightGreen;
                     }
 
                     // Глобальные процессы
-                    if (Array.IndexOf(proccessLibrary.Processes(), listProcesses[i]) > -1)
+                    if (Array.IndexOf(proccessLibrary.Processes(), processList.Range[i].Process) > -1)
                     {
                         lvProcessesUser.Items[pos].Checked = true;
                         lvProcessesUser.Items[pos].BackColor = Color.LightCoral;

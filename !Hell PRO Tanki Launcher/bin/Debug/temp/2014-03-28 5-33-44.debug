@@ -1,0 +1,6 @@
+﻿private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)
+-------------------------------
+
+-------------------------------
+Значение StartIndex не может быть меньше нуля.
+Имя параметра: startIndex

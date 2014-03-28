@@ -38,9 +38,56 @@ namespace Processes_Library
             Description = subRange[0][0].Description;
         }
 
+        public List<pRange> View()
+        {
+            return Range;
+        }
+
         public void Clear()
         {
-            this.Range.Clear();
+            try
+            {
+                Range.Clear();
+            }
+            catch (Exception) { }
+        }
+
+        public int IndexOf(string str)
+        {
+            try
+            {
+                if (Range.Count > -1)
+                {
+                    for (int i = 0; i < Range.Count; i++)
+                    {
+                        if (Range[i].Process == str)
+                        {
+                            return i;
+                        }
+                    }
+                    return -1;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+        public int Count()
+        {
+            try
+            {
+                return Range.Count;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
     }
 
