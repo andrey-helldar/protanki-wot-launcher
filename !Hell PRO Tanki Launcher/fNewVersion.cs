@@ -22,6 +22,8 @@ namespace _Hell_PRO_Tanki_Launcher
             news,
             video;
 
+        List<string> processes = new List<string>();
+
         public fNewVersion()
         {
             InitializeComponent();
@@ -53,6 +55,17 @@ namespace _Hell_PRO_Tanki_Launcher
                     news = "True";
                     video = "True";
                 }
+
+                try
+                {
+                    processes.Clear();
+
+                    foreach (XmlNode xmlNode in doc.GetElementsByTagName("process"))
+                    {
+                        processes.Add(xmlNode.Attributes["name"].InnerText + "::" + xmlNode.Attributes["description"].InnerText);
+                    }
+                }
+                catch (Exception) { }
             }
             else
             {
@@ -69,7 +82,7 @@ namespace _Hell_PRO_Tanki_Launcher
             if (cbNotification.Checked)
             {
                 XmlDocument doc = new XmlDocument();
-                if (File.Exists("settings.xml")) { File.Delete(Application.StartupPath + "/settings.xml"); }
+                if (File.Exists("settings.xml")) { File.Delete("settings.xml"); }
 
                 XmlTextWriter wr = new XmlTextWriter("settings.xml", Encoding.UTF8);
                 wr.Formatting = Formatting.Indented;
@@ -96,6 +109,19 @@ namespace _Hell_PRO_Tanki_Launcher
                 wr.WriteAttributeString("news", news);
                 wr.WriteAttributeString("video", video);
                 wr.WriteEndElement();
+
+                if (processes.Count > 0)
+                {
+                    wr.WriteStartElement("processes", null);
+                    foreach (string str in processes)
+                    {
+                        wr.WriteStartElement("process", null);
+                        wr.WriteAttributeString("name", str.Remove(str.IndexOf("::")));
+                        wr.WriteAttributeString("description", str.Remove(0, str.IndexOf("::")+2));
+                        wr.WriteEndElement();
+                    }
+                    wr.WriteEndElement();
+                }
 
                 wr.WriteEndElement();
 

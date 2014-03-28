@@ -1,24 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <version>0.8.11.13</version>
+  <version>0.8.11.11</version>
   <type>full</type>
+  <notification>0.8.11.13</notification>
   <settings kill="False" force="False" aero="False" news="True" video="True" />
   <processes>
-    <process name="ListViewItem: {avpui}" description="ListViewItem: {avpui}" />
-    <process name="ListViewItem: {devenv}" description="ListViewItem: {devenv}" />
-    <process name="ListViewItem: {IntelliTrace}" description="ListViewItem: {IntelliTrace}" />
-    <process name="ListViewItem: {klwtblfs}" description="ListViewItem: {klwtblfs}" />
-    <process name="ListViewItem: {plugin-nm-server}" description="ListViewItem: {plugin-nm-server}" />
-    <process name="ListViewItem: {qip}" description="ListViewItem: {qip}" />
-    <process name="ListViewItem: {Skype}" description="ListViewItem: {Skype}" />
-    <process name="ListViewItem: {xStartUI}" description="ListViewItem: {xStartUI}" />
-    <process name="2GISTrayNotifier" description="Модуль оповещений 2ГИС" />
-    <process name="AAM Updates Notifier" description="AAM Updates Notifier Application" />
-    <process name="acrotray" description="AcroTray" />
-    <process name="AdobeARM" description="Adobe Reader and Acrobat Manager" />
-    <process name="avpui" description="Kaspersky Anti-Virus" />
-    <process name="chrome" description="Google Chrome" />
-    <process name="cmd" description="Обработчик команд Windows" />
-    <process name="devenv" description="Microsoft Visual Studio 2010" />
+    <process name="AsRoutineController" description="::ASUS Routine Controller" />
+    <process name="avpui" description="::Kaspersky Anti-Virus" />
+    <process name="devenv" description="::Microsoft Visual Studio 2010" />
+    <process name="IntelliTrace" description="::IntelliTrace.exe" />
+    <process name="iusb3mon" description="::Intel(R) USB 3.0 Monitor" />
+    <process name="klwtblfs" description="::WebToolBar component" />
+    <process name="MKey" description="::Universal Multimedia Keyboard Driver" />
+    <process name="NetiCtrlTray" description="::NetiCtrlTray" />
+    <process name="NetSvcHelp" description="::Network Service Help" />
+    <process name="NvBackend" description="::NVIDIA GeForce Experience Backend" />
+    <process name="NvTmru" description="::NVIDIA NvTmru Application" />
+    <process name="plugin-nm-server" description="::Kaspersky Anti-Virus Plugins Native Messaging Server" />
+    <process name="qip" description="::QIP 2012" />
+    <process name="xStartUI" description="::Routine computer tasks automation" />
   </processes>
 </pro>

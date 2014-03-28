@@ -28,8 +28,8 @@
     <ProductName>!Hell PROTanks Launcher</ProductName>
     <PublisherName>Andrey Helldar</PublisherName>
     <SuiteName>!Hell PROTanks Launcher</SuiteName>
-    <ApplicationRevision>19</ApplicationRevision>
-    <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
+    <ApplicationRevision>42</ApplicationRevision>
+    <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
