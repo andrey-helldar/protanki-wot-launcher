@@ -27,8 +27,6 @@ namespace _Hell_PRO_Tanki_Launcher
         // ПОдгружаем классы
         fLanguage languagePack = new fLanguage();
 
-        fNewVersion fNewVersion = new fNewVersion();
-
         string xmlTitle = "",
             path = "",
             sVerType = "full",
@@ -376,6 +374,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                fNewVersion fNewVersion = new fNewVersion();
+
                 string status = "";
 
                 if (updPack || updTanks)
@@ -418,6 +418,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     fNewVersion.llVersion.Text = rVerModpack.ToString();
                     if (updateNotification != rVerModpack.ToString() || manualClickUpdate == true)
                     {
+                        fNewVersion.cbNotification.Checked = updateNotification == rVerModpack.ToString() ? true : false;
                         fNewVersion.ShowDialog();
                     }
                 }
@@ -447,10 +448,12 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Возникла ошибка обновления. Лаунчер модпака будет перезапущен.", ex.Message);
+                /*debug.Save("private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Возникла ошибка обновления. Лаунчер модпака будет перезапущен.", ex.Message);
                 MessageBox.Show("Возникла ошибка обновления. Лаунчер модпака будет перезапущен.");
                 Process.Start("restart.exe", Process.GetCurrentProcess().ProcessName);
-                Process.GetCurrentProcess().Kill();
+                Process.GetCurrentProcess().Kill();*/
+
+                debug.Save("private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "", ex.Message);
             }
         }
 
@@ -1076,18 +1079,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (lVerLauncher < rVerLauncher)
                 {
-                    if (DialogResult.Yes == MessageBox.Show(this, "Обнаружена новая версия лаунчера (" + rVerLauncher.ToString() + ")" + Environment.NewLine +
-                        "Применить обновление сейчас?", Application.ProductName + " v" + Application.ProductVersion, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
-                    {
-
-                        if (File.Exists("hell-protanks-download")) { File.Delete("hell-protanks-download"); }
+                        if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
 
                         pbDownload.Visible = true;
 
                         client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(download_ProgressChanged);
                         client.DownloadFileCompleted += new AsyncCompletedEventHandler(download_Completed);
-                        client.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "hell-protanks-download");
-                    }
+                        client.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "launcher.update");
                 }
             }
             catch (Exception ex1)
@@ -1235,14 +1233,18 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                //if (checksum("hell-protanks-download", checksummLauncher)) { MessageBox.Show("Checksumm: OK"); }
+                if (DialogResult.Yes == MessageBox.Show(this, "Обнаружена новая версия лаунчера (" + rVerLauncher.ToString() + ")" + Environment.NewLine +
+                    "Применить обновление сейчас?", Application.ProductName + " v" + Application.ProductVersion, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                {
+                    //if (checksum("launcher.update", checksummLauncher)) { MessageBox.Show("Checksumm: OK"); }
 
-                Process.Start("updater.exe", "hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"");
-                Process.GetCurrentProcess().Kill();
+                    Process.Start("updater.exe", "launcher.update \"!Hell PRO Tanki Launcher.exe\"");
+                    Process.GetCurrentProcess().Kill();
+                }
             }
             catch (Exception ex)
             {
-                debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"updater.exe\", \"hell-protanks-download \"!Hell PRO Tanki Launcher.exe\"\");", ex.Message);
+                debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"updater.exe\", \"launcher.update \"!Hell PRO Tanki Launcher.exe\"\");", ex.Message);
             }
         }
 

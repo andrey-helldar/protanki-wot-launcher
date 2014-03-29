@@ -50,6 +50,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.bwSave = new System.ComponentModel.BackgroundWorker();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -67,7 +68,7 @@
             this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSave.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSave.Location = new System.Drawing.Point(127, 457);
+            this.bSave.Location = new System.Drawing.Point(128, 509);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 50);
             this.bSave.TabIndex = 1;
@@ -86,7 +87,7 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(298, 457);
+            this.bCancel.Location = new System.Drawing.Point(299, 509);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(150, 50);
             this.bCancel.TabIndex = 2;
@@ -195,6 +196,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.llGlobalProcesses);
             this.groupBox1.Controls.Add(this.llUserProcesses);
             this.groupBox1.Controls.Add(this.panel2);
@@ -203,7 +205,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(12, 159);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(573, 292);
+            this.groupBox1.Size = new System.Drawing.Size(573, 344);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:";
@@ -320,13 +322,23 @@
             this.bwSave.WorkerSupportsCancellation = true;
             this.bwSave.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwSave_RunWorkerCompleted);
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(6, 298);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(561, 47);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "ВНИМАНИЕ!!! В список исключений рекомендуется добавлять действительно важные прог" +
+    "раммы!";
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_settings;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(597, 522);
+            this.ClientSize = new System.Drawing.Size(597, 575);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.llTitle);
@@ -374,5 +386,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox cbPriority;
         private System.ComponentModel.BackgroundWorker bwSave;
+        private System.Windows.Forms.Label label1;
     }
 }

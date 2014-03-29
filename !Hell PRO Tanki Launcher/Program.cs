@@ -22,7 +22,19 @@ namespace _Hell_PRO_Tanki_Launcher
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
+                // Если файл настроек поврежден, то удаляем его
                 if (File.Exists("settings.xml") && new FileInfo("settings.xml").Length == 0) { File.Delete("settings.xml"); }
+
+                // Если в папке лежит уже скачанное обновление, то применяем его,
+                if (File.Exists("launcher.update"))
+                {
+                    // а перед этим, на всякий случай, сверяем версии файлов
+                    if (new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
+                    {
+                        Process.Start("updater.exe", "launcher.update \"!Hell PRO Tanki Launcher.exe\"");
+                        Process.GetCurrentProcess().Kill();
+                    }
+                }
 
                 framework framework = new framework();
                 if (framework.Check())
