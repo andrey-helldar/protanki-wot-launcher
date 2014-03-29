@@ -24,9 +24,12 @@ namespace _Hell_PRO_Tanki_Launcher
 
         string //title,
             version,
-            type = "full";
+            type = "full",
+            notification;
 
         List<string> userProcesses = new List<string>();
+
+        debug debug = new debug();
 
         public fSettings()
         {
@@ -41,8 +44,33 @@ namespace _Hell_PRO_Tanki_Launcher
                 XmlDocument doc = new XmlDocument();
                 doc.Load("settings.xml");
 
-                version = doc.GetElementsByTagName("version")[0].InnerText;
-                type = doc.GetElementsByTagName("type")[0].InnerText;
+                try
+                {
+                    version = doc.GetElementsByTagName("version")[0].InnerText;
+                    type = doc.GetElementsByTagName("type")[0].InnerText;
+                }
+                catch (Exception ex)
+                {
+                    debug.Save("public fSettings()", "get VERSION & TYPE", ex.Message);
+                }
+
+                try
+                {
+                    notification = doc.GetElementsByTagName("notification")[0].InnerText;
+                }
+                catch (Exception) { }
+
+                try
+                {
+                    // priority
+                    var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
+                    cbPriority.SelectedIndex = getPriority((int)key.GetValue("CpuPriorityClass"), false);                        
+                }
+                catch (Exception ex)
+                {
+                    cbPriority.SelectedIndex = 2;
+                    debug.Save("public fSettings()", "priority", ex.Message);
+                }
 
                 try
                 {
@@ -64,12 +92,14 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     if (!bwUserProcesses.IsBusy) { bwUserProcesses.RunWorkerAsync(); }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     cbKillProcesses.Checked = false;
                     cbAero.Checked = false;
                     cbNews.Checked = true;
                     cbVideo.Checked = true;
+
+                    debug.Save("public fSettings()", "foreach (XmlNode xmlNode in doc.GetElementsByTagName(\"settings\"))", ex.Message);
                 }
             }
             else
@@ -86,65 +116,23 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void loadLang()
         {
-            fLanguage languagePack = new fLanguage();
+            try
+            {
+                fLanguage languagePack = new fLanguage();
 
-            // Окно настроек
-            languagePack.toolTip(llUserProcesses);
-            languagePack.toolTip(llUserProcesses);
+                // Окно настроек
+                languagePack.toolTip(llUserProcesses);
+                languagePack.toolTip(llGlobalProcesses);
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void loadLang()", "", ex.Message);
+            }
         }
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            XmlDocument doc = new XmlDocument();
-            if (File.Exists("settings.xml")) { File.Delete(Application.StartupPath + "/settings.xml"); }
-
-            XmlTextWriter wr = new XmlTextWriter("settings.xml", Encoding.UTF8);
-            wr.Formatting = System.Xml.Formatting.Indented;
-
-            wr.WriteStartDocument();
-            wr.WriteStartElement("pro");
-
-            wr.WriteStartElement("version", null);
-            wr.WriteString(version);
-            wr.WriteEndElement();
-
-            wr.WriteStartElement("type", null);
-            wr.WriteString(type);
-            wr.WriteEndElement();
-
-            wr.WriteStartElement("settings", null);
-            wr.WriteAttributeString("kill", cbKillProcesses.Checked.ToString());
-            wr.WriteAttributeString("force", cbForceClose.Checked.ToString());
-            wr.WriteAttributeString("aero", cbAero.Checked.ToString());
-            wr.WriteAttributeString("news", cbNews.Checked.ToString());
-            wr.WriteAttributeString("video", cbVideo.Checked.ToString());
-            wr.WriteEndElement();
-
-            if (lvProcessesUser.CheckedItems.Count > 0)
-            {
-                wr.WriteStartElement("processes", null);
-
-                foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
-                {
-                    if (obj.BackColor != Color.Plum)
-                    {
-                        wr.WriteStartElement("process", null);
-                        wr.WriteAttributeString("name", obj.Text);
-                        wr.WriteAttributeString("description", obj.SubItems[1].Text);
-                        wr.WriteEndElement();
-                    }
-                }
-
-                wr.WriteEndElement();
-            }
-
-            wr.WriteEndElement();
-
-            wr.Flush();
-            wr.Close();
-
-            // Отправляем данные на сайт
-            sendProcesses();
+            if (!bwSave.IsBusy) { bwSave.RunWorkerAsync(); }
         }
 
         private void bCancel_Click(object sender, EventArgs e)
@@ -154,12 +142,19 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void moveForm()
         {
-            this.MouseDown += delegate
+            try
             {
-                this.Capture = false;
-                var msg = Message.Create(this.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
-                this.WndProc(ref msg);
-            };
+                this.MouseDown += delegate
+                {
+                    this.Capture = false;
+                    var msg = Message.Create(this.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
+                    this.WndProc(ref msg);
+                };
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void moveForm()", "", ex.Message);
+            }
         }
 
         private void bwUserProcesses_DoWork(object sender, DoWorkEventArgs e)
@@ -212,43 +207,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void sendProcesses()
-        {
-            List<string> myJsonData = new List<string>();
-
-            string name = Environment.MachineName +
-                Environment.UserName +
-                Environment.UserDomainName +
-                Environment.Version.ToString() +
-                Environment.OSVersion.ToString();
-
-            using (MD5 md5Hash = MD5.Create())
-            {
-                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(name));
-                StringBuilder sBuilder = new StringBuilder();
-                for (int i = 0; i < data.Length; i++) { sBuilder.Append(data[i].ToString("x2")); }
-
-                name = sBuilder.ToString();
-            }
-
-            myJsonData.Clear();
-            myJsonData.Add(name);
-            myJsonData.Add("TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6");
-
-            foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
-            {
-                if(obj.BackColor != Color.Plum) // Если процесс не является глобальным, то добавляем данные для вывода
-                    myJsonData.Add(obj.Text + "::" + obj.SubItems[1].Text);
-            }
-
-            if (myJsonData.Count > 0)
-            {
-                string json = JsonConvert.SerializeObject(myJsonData);
-
-                string answer = getResponse("http://ai-rus.com/wot/process/" + json);
-            }
-        }
-
         static string getResponse(string uri)
         {
             try
@@ -274,6 +232,143 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 MessageBox.Show(fIndex.ActiveForm, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
+            }
+        }
+
+        private void bwSave_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                if (File.Exists("settings.xml")) { File.Delete(Application.StartupPath + "/settings.xml"); }
+
+                XmlTextWriter wr = new XmlTextWriter("settings.xml", Encoding.UTF8);
+                wr.Formatting = System.Xml.Formatting.Indented;
+
+                wr.WriteStartDocument();
+                wr.WriteStartElement("pro");
+
+                wr.WriteStartElement("version", null);
+                wr.WriteString(version);
+                wr.WriteEndElement();
+
+                wr.WriteStartElement("type", null);
+                wr.WriteString(type);
+                wr.WriteEndElement();
+
+                wr.WriteStartElement("notification", null);
+                wr.WriteString(notification);
+                wr.WriteEndElement();                
+
+                wr.WriteStartElement("settings", null);
+                wr.WriteAttributeString("kill", cbKillProcesses.Checked.ToString());
+                wr.WriteAttributeString("force", cbForceClose.Checked.ToString());
+                wr.WriteAttributeString("aero", cbAero.Checked.ToString());
+                wr.WriteAttributeString("news", cbNews.Checked.ToString());
+                wr.WriteAttributeString("video", cbVideo.Checked.ToString());
+                wr.WriteEndElement();
+
+                if (lvProcessesUser.CheckedItems.Count > 0)
+                {
+                    wr.WriteStartElement("processes", null);
+
+                    foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
+                    {
+                        if (obj.BackColor != Color.Plum)
+                        {
+                            wr.WriteStartElement("process", null);
+                            wr.WriteAttributeString("name", obj.Text);
+                            wr.WriteAttributeString("description", obj.SubItems[1].Text);
+                            wr.WriteEndElement();
+                        }
+                    }
+
+                    wr.WriteEndElement();
+                }
+
+                wr.WriteEndElement();
+
+                wr.Flush();
+                wr.Close();
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void bwSave_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
+            }
+
+            // Сохраняем приоритет в реестр
+            var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions", true);
+            key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
+
+
+                // Отправляем данные на сайт
+                try
+                {
+                    List<string> myJsonData = new List<string>();
+
+                    string name = Environment.MachineName +
+                        Environment.UserName +
+                        Environment.UserDomainName +
+                        Environment.Version.ToString() +
+                        Environment.OSVersion.ToString();
+
+                    using (MD5 md5Hash = MD5.Create())
+                    {
+                        byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(name));
+                        StringBuilder sBuilder = new StringBuilder();
+                        for (int i = 0; i < data.Length; i++) { sBuilder.Append(data[i].ToString("x2")); }
+
+                        name = sBuilder.ToString();
+                    }
+
+                    myJsonData.Clear();
+                    myJsonData.Add(name);
+                    myJsonData.Add("TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6");
+
+                    foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
+                    {
+                        if (obj.BackColor != Color.Plum) // Если процесс не является глобальным, то добавляем данные для вывода
+                            myJsonData.Add(obj.Text + "::" + obj.SubItems[1].Text);
+                    }
+
+                    if (myJsonData.Count > 0)
+                    {
+                        string json = JsonConvert.SerializeObject(myJsonData);
+
+                        string answer = getResponse("http://ai-rus.com/wot/process/" + json);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    debug.Save("private void bwSave_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Send process", ex.Message);
+                }
+
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private int getPriority(int pr, bool save=true)
+        {
+            if (save)
+            {
+                switch (pr)
+                {
+                    case 0: return 3; //Высокий
+                    case 1: return 6; // Выше среднего
+                    case 3: return 5; // Ниже среднего
+                    case 4: return 1; // Низкий
+                    default: return 2; // Средний
+                }
+            }
+            else
+            {
+                switch (pr)
+                {
+                    case 3: return 0; //Высокий
+                    case 6: return 1; // Выше среднего
+                    case 5: return 3; // Ниже среднего
+                    case 1: return 4; // Низкий
+                    default: return 2; // Средний
+                }
             }
         }
     }

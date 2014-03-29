@@ -14,25 +14,23 @@ namespace _Hell_Restarter
         {
             try
             {
+                string process = args[0].Replace(".exe", "");
 
-                Console.WriteLine("Wait to closing " + args[0]);
-                Process[] myProcesses = Process.GetProcessesByName(args[0]);
+                Console.WriteLine("Wait to closing " + process + ".exe");
+                Process[] myProcesses = Process.GetProcessesByName(process);
                 for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
 
                 Thread.Sleep(500);
 
                 Console.WriteLine("Terminate process!");
-                while (Process.GetProcessesByName(args[0]).Length > 0)
+                while (Process.GetProcessesByName(process).Length > 0)
                 {
-                    Process[] myProcesses2 = Process.GetProcessesByName(args[0]);
+                    Process[] myProcesses2 = Process.GetProcessesByName(process);
                     for (int i = 1; i < myProcesses2.Length; i++) { myProcesses2[i].Kill(); }
                 }
 
-                Console.WriteLine("Restart "+args[0]);
-                Console.WriteLine("----------------------------------");
-                Process.Start(args[0]);
-
-                //Console.Read();
+                Console.WriteLine("Restart " + process + ".exe");
+                Process.Start(Directory.GetCurrentDirectory() + @"\" + process + ".exe");
             }
             catch (Exception ex)
             {

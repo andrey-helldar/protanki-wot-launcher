@@ -121,6 +121,7 @@ namespace Processes_Library
 				"NetiCtrlTray",
 				"NetSvcHelp",
 				"NvBackend",
+                "NvXDSync",
 				"nvstreamsvc",
 				"NvTmru",
 				"nvtray",
@@ -143,7 +144,11 @@ namespace Processes_Library
                 "Overwolf",
                 "magent",
                 "USBGuard",
-                "YCMMirage"
+                "YCMMirage",
+                "ccApp",
+                "SmcGui",
+                "AI Suite II",
+                "ICQ"
             };
 
             return vipProcess;

@@ -28,7 +28,7 @@ namespace _Hell_Language_Pack
                     break;
 
                 case "llGlobalProcesses":
-                    toolTip.SetToolTip(sender, "Процессы из глобального списка приоритетов не могут быть отключены. Даже при снятии галки они автоматически будут включены.");
+                    toolTip.SetToolTip(sender, "Процессы из глобального списка приоритетов не могут быть отключены."+Environment.NewLine+"Даже при снятии галки они автоматически будут включены.");
                     break;
 
                 default:

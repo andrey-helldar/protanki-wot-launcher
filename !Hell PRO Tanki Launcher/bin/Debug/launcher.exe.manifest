@@ -4,7 +4,7 @@
   <description asmv2:iconFile="PROTanks.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="launcher" version="1.0.4.46" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="launcher" version="1.0.5.52" language="neutral" processorArchitecture="x86" />
     <commandLine file="launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -56,25 +56,25 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LanguagePack.dll" size="5120">
-      <assemblyIdentity name="LanguagePack" version="1.0.0.3" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="LanguagePack" version="1.0.0.4" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>E026yfoFcre8i+EBt0fOTOlKleM=</dsig:DigestValue>
+        <dsig:DigestValue>0RN3+9Zjc5I43pZLQ6x3zn2uq6Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1374208">
-      <assemblyIdentity name="launcher" version="1.0.4.46" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1377792">
+      <assemblyIdentity name="launcher" version="1.0.5.52" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>JwQ2fSme2+HZL8FO/Tk3idqdCD0=</dsig:DigestValue>
+        <dsig:DigestValue>Xqnwsv/jZyVPMTFjzFBWWasKtMk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -91,26 +91,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="6656">
-      <assemblyIdentity name="ProcessesLibrary" version="1.0.1.6" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="7168">
+      <assemblyIdentity name="ProcessesLibrary" version="1.0.1.7" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>28vxlZpa/kTaaRVWuKfhWv/+GiI=</dsig:DigestValue>
+        <dsig:DigestValue>xq+del4Ty4no8IJm6LtgfP8nkkk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="restart.exe" size="5632">
-      <assemblyIdentity name="restart" version="1.0.0.4" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="restart" version="1.0.1.8" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>7DVQsJLAjh2npkaRM66AOSz1Zfc=</dsig:DigestValue>
+        <dsig:DigestValue>025zEoj2T//N5KL5YPWdM752huE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

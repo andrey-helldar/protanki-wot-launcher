@@ -84,13 +84,13 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 if (mess.Length > 0)
                 {
-                    MessageBox.Show(fIndex.ActiveForm, "Для корректной работы приложения требуется установка следующих пакетов:" + Environment.NewLine + mess + Environment.NewLine +
-                    "---------------------------------------------------" + Environment.NewLine +
-                    "ВНИМАНИЕ! После закрытия данного окна в Вашем браузере будут открыты ссылки на страницы для скачивания нужных Вам библиотек .NET Framework с сайта microsoft.com", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     foreach (string link in frameworkLinks)
                     {
                         Process.Start(link);
                     }
+                    MessageBox.Show(fIndex.ActiveForm, "Для корректной работы приложения требуется установка следующих пакетов .NET FRamework:" + Environment.NewLine + mess + Environment.NewLine +
+                    "---------------------------------------------------" + Environment.NewLine +
+                    "ВНИМАНИЕ! В Вашем браузере открыты ссылки на страницы для скачивания нужных Вам библиотек .NET Framework с сайта microsoft.com", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     return false;
                 }

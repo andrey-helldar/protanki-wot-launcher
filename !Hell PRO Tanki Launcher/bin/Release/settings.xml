@@ -2,6 +2,7 @@
 <pro>
   <version>0.8.11.10</version>
   <type>full</type>
-  <notification>0.8.11.11</notification>
+  <priority>2</priority>
   <settings kill="False" force="False" aero="False" news="True" video="True" />
+  <processes />
 </pro>

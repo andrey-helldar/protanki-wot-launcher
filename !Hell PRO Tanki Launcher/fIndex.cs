@@ -220,6 +220,33 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
+                    var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
+                    if (key != null)
+                    {
+                        if ((string)key.GetValue("InstallLocation") != "")
+                        {
+                            path = (string)key.GetValue("InstallLocation");
+
+                            if (File.Exists(path + "version.xml"))
+                            {
+                                XmlDocument doc = new XmlDocument();
+                                doc.Load(path + "version.xml");
+
+                                return new Version(doc.GetElementsByTagName("version")[0].InnerText.Trim().Remove(0, 2).Replace(" ", "").Replace("#", "."));
+                            }
+                            else
+                            {
+                                debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
+                                return new Version("0.0.0.0");
+                            }
+                        }
+                        else
+                        {
+                            debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
+                            return new Version("0.0.0.0");
+                        }
+                    }
+
                     debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
                     return new Version("0.0.0.0");
                 }

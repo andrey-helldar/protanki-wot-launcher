@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <version>0.8.11.11</version>
+  <version>0.8.11.13</version>
   <type>full</type>
+  <notification>0.8.11.14</notification>
   <settings kill="False" force="False" aero="False" news="True" video="True" />
   <processes>
     <process name="chrome" description="Google Chrome" />
-    <process name="Dropbox" description="Dropbox" />
-    <process name="thunderbird" description="Thunderbird" />
   </processes>
 </pro>

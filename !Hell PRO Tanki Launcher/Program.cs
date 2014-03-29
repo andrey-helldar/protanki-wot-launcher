@@ -22,10 +22,16 @@ namespace _Hell_PRO_Tanki_Launcher
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
+                if (File.Exists("settings.xml") && new FileInfo("settings.xml").Length == 0) { File.Delete("settings.xml"); }
+
                 framework framework = new framework();
                 if (framework.Check())
                 {
                     Application.Run(new fIndex());
+                }
+                else
+                {
+                    Process.GetCurrentProcess().Close();
                 }
             }
             catch (Exception)
