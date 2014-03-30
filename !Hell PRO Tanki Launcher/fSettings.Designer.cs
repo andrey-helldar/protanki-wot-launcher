@@ -39,6 +39,7 @@
             this.cbNews = new System.Windows.Forms.CheckBox();
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.llGlobalProcesses = new System.Windows.Forms.LinkLabel();
             this.llUserProcesses = new System.Windows.Forms.LinkLabel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -50,7 +51,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.bwSave = new System.ComponentModel.BackgroundWorker();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -104,7 +104,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(12, 29);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(318, 124);
+            this.groupBox2.Size = new System.Drawing.Size(300, 124);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Оптимизация ПК:";
@@ -145,9 +145,9 @@
             this.groupBox3.Controls.Add(this.cbVideo);
             this.groupBox3.Controls.Add(this.cbNews);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(336, 29);
+            this.groupBox3.Location = new System.Drawing.Point(318, 29);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(249, 65);
+            this.groupBox3.Size = new System.Drawing.Size(267, 65);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Другие:";
@@ -171,9 +171,9 @@
             this.cbNews.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbNews.Location = new System.Drawing.Point(19, 19);
             this.cbNews.Name = "cbNews";
-            this.cbNews.Size = new System.Drawing.Size(181, 17);
+            this.cbNews.Size = new System.Drawing.Size(225, 17);
             this.cbNews.TabIndex = 0;
-            this.cbNews.Text = "Уведомлять о новых новостях";
+            this.cbNews.Text = "Уведомлять о новых новостях c Twitter";
             this.cbNews.UseVisualStyleBackColor = true;
             // 
             // llTitle
@@ -209,6 +209,16 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(6, 298);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(561, 47);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "ВНИМАНИЕ!!! В список исключений рекомендуется добавлять действительно важные прог" +
+    "раммы!";
             // 
             // llGlobalProcesses
             // 
@@ -294,9 +304,9 @@
             this.groupBox4.BackColor = System.Drawing.Color.Transparent;
             this.groupBox4.Controls.Add(this.cbPriority);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(336, 101);
+            this.groupBox4.Location = new System.Drawing.Point(318, 101);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(249, 52);
+            this.groupBox4.Size = new System.Drawing.Size(267, 52);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Приоритет игры в системе:";
@@ -313,7 +323,7 @@
             "Низкий"});
             this.cbPriority.Location = new System.Drawing.Point(6, 19);
             this.cbPriority.Name = "cbPriority";
-            this.cbPriority.Size = new System.Drawing.Size(237, 21);
+            this.cbPriority.Size = new System.Drawing.Size(255, 21);
             this.cbPriority.TabIndex = 0;
             // 
             // bwSave
@@ -321,16 +331,6 @@
             this.bwSave.WorkerReportsProgress = true;
             this.bwSave.WorkerSupportsCancellation = true;
             this.bwSave.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwSave_RunWorkerCompleted);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(6, 298);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(561, 47);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "ВНИМАНИЕ!!! В список исключений рекомендуется добавлять действительно важные прог" +
-    "раммы!";
             // 
             // fSettings
             // 

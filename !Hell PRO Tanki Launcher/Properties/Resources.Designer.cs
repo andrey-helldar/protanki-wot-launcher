@@ -169,5 +169,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] start {
+            get {
+                object obj = ResourceManager.GetObject("start", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using Processes_Library;
 using _Hell_Language_Pack;
 using Newtonsoft.Json;
+using OAuth;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -160,9 +161,17 @@ namespace _Hell_PRO_Tanki_Launcher
                     //xmlTitle = doc.GetElementsByTagName("title")[0].InnerText;
                     //xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
                     xmlTitle = Application.ProductName;
-
-                    //path = @"d:\Games\World_of_Tanks\";
                     path = Application.StartupPath + @"\..\";
+                    
+                    var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
+                    if (key != null)
+                    {
+                        if ((string)key.GetValue("InstallLocation") != "")
+                        {
+                            path = (string)key.GetValue("InstallLocation");
+                        }
+                    }
+
 
                     try
                     {
@@ -513,7 +522,10 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
 
-                Process.Start(path + "WorldOfTanks.exe");
+                //Process.Start(path + "WorldOfTanks.exe");
+                if (File.Exists(@"..\s.bat")) { File.Delete(@"..\s.bat"); }
+                File.WriteAllBytes(@"..\s.bat", Properties.Resources.start);
+                Process.Start(@"..\s.bat");
 
                 if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
 
@@ -1335,27 +1347,8 @@ namespace _Hell_PRO_Tanki_Launcher
             // https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=AI_rus&exclude_replies=true
             try
             {
-                int i = 0;
+                /// Twitter
 
-                XmlDocument doc = new XmlDocument();
-                doc.Load(@"https://gdata.youtube.com/feeds/api/users/sysadminInside/uploads");
-
-                newsTitle.Clear();
-                newsLink.Clear();
-                newsDate.Clear();
-
-                foreach (XmlNode xmlNode in doc.GetElementsByTagName("entry"))
-                {
-                    if (i >= 10 || showNewsTop > 290) { break; }
-
-                    newsDate.Add(xmlNode["published"].InnerText.Remove(10));
-                    newsTitle.Add((xmlNode["title"].InnerText.IndexOf(" / PRO") >= 0 ? xmlNode["title"].InnerText.Remove(xmlNode["title"].InnerText.IndexOf(" / PRO")) : xmlNode["title"].InnerText));
-                    newsLink.Add(xmlNode["link"].Attributes["rel"].InnerText == "alternate" ? xmlNode["link"].Attributes["href"].InnerText : "");
-
-                    bwNews.ReportProgress(i);
-
-                    ++i;
-                }
             }
             catch (Exception ex)
             {

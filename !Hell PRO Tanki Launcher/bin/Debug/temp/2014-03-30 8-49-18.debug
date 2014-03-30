@@ -1,0 +1,5 @@
+﻿private void bwNews_DoWork(object sender, DoWorkEventArgs e)
+-------------------------------
+XmlDocument doc = new XmlDocument();
+-------------------------------
+Удаленный сервер возвратил ошибку: (403) Запрещено.

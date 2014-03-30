@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>_Hell_PRO_Tanki_Launcher</RootNamespace>
     <AssemblyName>launcher</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -108,7 +108,14 @@
     <Compile Include="fSettings.Designer.cs">
       <DependentUpon>fSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="fTwitter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fTwitter.Designer.cs">
+      <DependentUpon>fTwitter.cs</DependentUpon>
+    </Compile>
     <Compile Include="ini.class.cs" />
+    <Compile Include="OAuthBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="update_launcher.class.cs" />
@@ -121,12 +128,16 @@
     <EmbeddedResource Include="fSettings.resx">
       <DependentUpon>fSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fTwitter.resx">
+      <DependentUpon>fTwitter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="!Hell PRO Tanki Launcher_TemporaryKey.pfx" />
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,6 +153,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\sochi.ttf" />
+    <None Include="Resources\start.bat" />
   </ItemGroup>
   <ItemGroup>
     <None Include="back\1.jpg" />

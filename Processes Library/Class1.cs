@@ -148,7 +148,9 @@ namespace Processes_Library
                 "ccApp",
                 "SmcGui",
                 "AI Suite II",
-                "ICQ"
+                "ICQ",
+                "cmd",
+                ""
             };
 
             return vipProcess;

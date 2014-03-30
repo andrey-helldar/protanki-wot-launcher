@@ -7,6 +7,6 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     class update_launcher
     {
-
+        
     }
 }

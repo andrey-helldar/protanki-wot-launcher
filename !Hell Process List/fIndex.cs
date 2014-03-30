@@ -35,30 +35,17 @@ namespace _Hell_Process_List
 
             Process[] myProcesses = Process.GetProcesses();
             int processID = Process.GetCurrentProcess().SessionId;
-
-            string tmp = "";
-
-            ManagementObjectSearcher searcher1 = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Process");
-
-            /*foreach (ManagementObject queryObj in searcher1.Get())
-            {
-                if (processID == Convert.ToInt32(queryObj["SessionId"].ToString()))
-                {
-                    clbProcesses.Items.Add(queryObj["Name"].ToString().Replace(".exe", "") + "   ::  " + queryObj["WindowsVersion"].ToString());
-                }
-            }*/
-
+            
             for (int i = 1; i < myProcesses.Length; i++)
             {
                 try
                 {
-                    if (myProcesses[i].SessionId == processID)
+                    //if (myProcesses[i].SessionId == processID)
                     {
 
-                        tmp = myProcesses[i].ProcessName + "      ::      " + myProcesses[i].MainModule.FileVersionInfo.FileDescription;
+                        string tmp = myProcesses[i].ProcessName + "      ::      " + myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim();
 
-                        if (clbProcesses.Items.IndexOf(tmp) < 0)
-                            clbProcesses.Items.Add(myProcesses[i].ProcessName + "      ::      " + myProcesses[i].MainModule.FileVersionInfo.FileDescription);
+                        if (clbProcesses.Items.IndexOf(tmp) < 0) clbProcesses.Items.Add(tmp);
                     }
                 }
                 catch (Exception) { }
@@ -90,7 +77,8 @@ namespace _Hell_Process_List
 
             string str = "";
 
-            foreach (object item in clbProcesses.CheckedItems)
+            //foreach (object item in clbProcesses.CheckedItems)
+            foreach (object item in clbProcesses.Items)
             {
                 str += item.ToString() + Environment.NewLine;
             }
