@@ -182,7 +182,16 @@ namespace _Hell_PRO_Tanki_Launcher
                         autoVideo = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
                     }
 
-                    lVerModpack = new Version(doc.GetElementsByTagName("version")[0].InnerText);
+                    try
+                    {
+                        lVerModpack = new Version(new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version"));
+                        //lVerModpack = new Version(doc.GetElementsByTagName("version")[0].InnerText);
+                    }
+                    catch (Exception ex)
+                    {
+                        lVerModpack = new Version(doc.GetElementsByTagName("version")[0].InnerText);
+                        debug.Save("public void loadSettings()", "IniFile ini = new IniFile(\"config.ini\");", ex.Message);
+                    }
                 }
                 else
                 {

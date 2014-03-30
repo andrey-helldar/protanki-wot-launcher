@@ -108,6 +108,7 @@
     <Compile Include="fSettings.Designer.cs">
       <DependentUpon>fSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="ini.class.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="update_launcher.class.cs" />
