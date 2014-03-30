@@ -1081,11 +1081,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                         if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
 
-                        pbDownload.Visible = true;
-
-                        client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(download_ProgressChanged);
-                        client.DownloadFileCompleted += new AsyncCompletedEventHandler(download_Completed);
-                        client.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "launcher.update");
+                        WebClient client1 = new WebClient();
+                        client1.DownloadProgressChanged += new DownloadProgressChangedEventHandler(download_ProgressChanged);
+                        client1.DownloadFileCompleted += new AsyncCompletedEventHandler(download_Completed);
+                        client1.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "launcher.update");
                 }
             }
             catch (Exception ex1)
@@ -1221,6 +1220,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                pbDownload.Visible = true;
                 pbDownload.Value = e.ProgressPercentage;
             }
             catch (Exception ex)
@@ -1303,6 +1303,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwNews_DoWork(object sender, DoWorkEventArgs e)
         {
+            // https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=AI_rus&exclude_replies=true
             try
             {
                 int i = 0;

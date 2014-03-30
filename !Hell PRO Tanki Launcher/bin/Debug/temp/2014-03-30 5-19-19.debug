@@ -1,0 +1,5 @@
+﻿private void download_ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+-------------------------------
+pbDownload.Value = e.ProgressPercentage;
+-------------------------------
+Недопустимая операция в нескольких потоках: попытка доступа к элементу управления 'fIndex' не из того потока, в котором он был создан.
