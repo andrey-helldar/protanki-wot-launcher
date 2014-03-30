@@ -150,7 +150,8 @@ namespace Processes_Library
                 "AI Suite II",
                 "ICQ",
                 "cmd",
-                ""
+                "ts3client_win32",
+                "ts3client_win64"
             };
 
             return vipProcess;

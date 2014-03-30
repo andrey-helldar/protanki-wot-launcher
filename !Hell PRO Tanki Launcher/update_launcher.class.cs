@@ -22,6 +22,9 @@ namespace _Hell_PRO_Tanki_Launcher
         private Version remoteVersion,
             localVersion;
 
+                BackgroundWorker checkLibrary = new BackgroundWorker();
+            BackgroundWorker worker = new BackgroundWorker();
+
         private bool checksum(string filename, string summ)
         {
             try
@@ -46,12 +49,16 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 onlyCheck = onlycheck;
 
-                BackgroundWorker worker = new BackgroundWorker();
+                checkLibrary.WorkerReportsProgress = true;
+                checkLibrary.WorkerSupportsCancellation = true;
+                checkLibrary.DoWork += new DoWorkEventHandler(checkLibrary_DoWork);
+                checkLibrary.RunWorkerCompleted += new RunWorkerCompletedEventHandler(checkLibrary_RunWorkerCompleted);
+
                 worker.WorkerReportsProgress = true;
                 worker.WorkerSupportsCancellation = true;
-                worker.DoWork += new DoWorkEventHandler(this.worker_DoWork);
+                worker.DoWork += new DoWorkEventHandler(worker_DoWork);
 
-                if (!worker.IsBusy) { worker.RunWorkerAsync(); }
+                if (!checkLibrary.IsBusy) { checkLibrary.RunWorkerAsync(); }
             }
             catch (Exception) { }
         }
@@ -67,7 +74,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 remoteVersion = new Version(doc.GetElementsByTagName("version")[0].InnerText);
                 localVersion = new Version(Application.ProductVersion);
 
-                summ = this.checksum("launcher.update", doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText);
+                //summ = this.checksum("launcher.update", doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText);
 
                 //if (summ)
                 //{
@@ -134,14 +141,99 @@ namespace _Hell_PRO_Tanki_Launcher
                 else
                 {
                     if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
-                    if (!onlyCheck) this.Download();
+                    if (!onlyCheck) Download();
                 }
             }
             catch (Exception)
             {
                 if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
-                if (!onlyCheck) this.Download();
+                if (!onlyCheck) Download();
             }
+        }
+
+        private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var client = new WebClient();
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"http://ai-rus.com/pro/protanks.xml");
+
+            try
+            {
+                // Для работы нам нужна библиотека Ionic.Zip.dll
+                if (!File.Exists("Ionic.Zip.dll"))
+                {
+                        client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
+                }
+            }
+            catch (Exception ex1)
+            {
+                debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "if (!File.Exists(\"Ionic.Zip.dll\"))", ex1.Message);
+            }
+
+
+            try
+            {
+                // Newtonsoft.Json.dll
+                if (!File.Exists("Newtonsoft.Json.dll") || getFileVersion("Newtonsoft.Json.dll") < new Version(doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText))
+                {
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Newtonsoft.Json.dll"), "Newtonsoft.Json.dll");
+                }
+            }
+            catch (Exception ex1)
+            {
+                debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "Newtonsoft.Json.dll", ex1.Message);
+            }
+
+            try
+            {
+                // Processes Library
+                if (!File.Exists("ProcessesLibrary.dll") || getFileVersion("ProcessesLibrary.dll") < new Version(doc.GetElementsByTagName("processesLibrary")[0].InnerText))
+                {
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/ProcessesLibrary.dll"), "ProcessesLibrary.dll");
+                }
+            }
+            catch (Exception ex1)
+            {
+                debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "Processes Library", ex1.Message);
+            }
+
+             if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
+
+            try
+            {
+                // Updater
+                if (!File.Exists("updater.exe") || getFileVersion("updater.exe") < new Version(doc.GetElementsByTagName("updater")[0].InnerText))
+                {
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.exe"), "updater.exe");
+                }
+            }
+            catch (Exception ex1)
+            {
+                debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "Updater", ex1.Message);
+            }
+
+            try
+            {
+                // Restarter
+                if (!File.Exists("restart.exe") || getFileVersion("restart.exe") < new Version(doc.GetElementsByTagName("restart")[0].InnerText))
+                {
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.exe"), "restart.exe");
+                }
+            }
+            catch (Exception ex1)
+            {
+                debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "Restarter", ex1.Message);
+            }
+        }
+
+        private void checkLibrary_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (!worker.IsBusy) { worker.RunWorkerAsync(); }
+        }
+
+        private Version getFileVersion(string filename)
+        {
+            return new Version(FileVersionInfo.GetVersionInfo(filename).FileVersion);
         }
     }
 }

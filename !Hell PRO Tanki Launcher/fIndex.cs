@@ -1035,7 +1035,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)
         {
-            bwUpdateLauncher.ReportProgress(0);
+       /*     bwUpdateLauncher.ReportProgress(0);
 
             var client = new WebClient();
             XmlDocument doc = new XmlDocument();
@@ -1111,7 +1111,7 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex1)
             {
                 debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Restarter", ex1.Message);
-            }
+            }*/
 
             /*try
             {
@@ -1134,8 +1134,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Версия лаунчера", ex1.Message);
             }*/
 
-            update_launcher update = new update_launcher();
-            update.CheckLocal();
+       /*     update_launcher update = new update_launcher();
+            update.CheckLocal();*/
         }
 
         private Version getFileVersion(string filename)
@@ -1448,6 +1448,9 @@ namespace _Hell_PRO_Tanki_Launcher
             languagePack.toolTip(bOptimizePC);
 
             if (!bwGetVipProcesses.IsBusy) { bwGetVipProcesses.RunWorkerAsync(); }
+
+            update_launcher update = new update_launcher();
+            update.CheckLocal();
         }
 
         private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)
