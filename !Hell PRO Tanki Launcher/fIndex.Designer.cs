@@ -350,6 +350,7 @@
             this.bwUpdateLauncher.WorkerReportsProgress = true;
             this.bwUpdateLauncher.WorkerSupportsCancellation = true;
             this.bwUpdateLauncher.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwUpdateLauncher_DoWork);
+            this.bwUpdateLauncher.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwUpdateLauncher_ProgressChanged);
             this.bwUpdateLauncher.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwUpdateLauncher_RunWorkerCompleted);
             // 
             // llActually

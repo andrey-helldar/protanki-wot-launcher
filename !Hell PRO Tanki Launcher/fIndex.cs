@@ -120,7 +120,7 @@ namespace _Hell_PRO_Tanki_Launcher
             if (!bwVideo.IsBusy) { bwVideo.RunWorkerAsync(); }
 
             // Грузим новости
-            if (!bwNews.IsBusy) { bwNews.RunWorkerAsync(); }
+            //if (!bwNews.IsBusy) { bwNews.RunWorkerAsync(); }
 
             // Так как панель у нас убрана с видимой части, устанавливаем ее расположение динамически
             pNews.SetBounds(13, 109, 620, 290);
@@ -1489,6 +1489,15 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bwUpdateLauncher_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             pbDownload.Visible = false;
+        }
+
+        private void bwUpdateLauncher_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            try
+            {
+                pbDownload.Visible = true;
+            }
+            catch (Exception) { }
         }
     }
 }
