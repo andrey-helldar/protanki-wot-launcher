@@ -163,7 +163,24 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     //path = @"d:\Games\World_of_Tanks\";
                     path = Application.StartupPath + @"\..\";
-                    sVerType = doc.GetElementsByTagName("type")[0].InnerText;
+
+                    try
+                    {
+                        sVerType = doc.GetElementsByTagName("type")[0].InnerText;
+                    }
+                    catch (Exception ex)
+                    {
+                        try
+                        {
+                            sVerType = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower();
+                            debug.Save("public void loadSettings()", "sVerType = doc.GetElementsByTagName(\"type\")[0].InnerText;", ex.Message);
+                        }
+                        catch (Exception ex1)
+                        {
+                            sVerType = "full";
+                            debug.Save("public void loadSettings()", "Read from INI", ex1.Message);
+                        }
+                    }
 
                     try
                     {
@@ -1474,6 +1491,11 @@ namespace _Hell_PRO_Tanki_Launcher
                     return md5.ComputeHash(stream).ToString() == summ ? true : false;
                 }
             }
+        }
+
+        private void bwUpdateLauncher_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            pbDownload.Visible = false;
         }
     }
 }

@@ -4,9 +4,4 @@
   <type>full</type>
   <notification>0.8.11.14</notification>
   <settings kill="False" force="False" aero="False" news="True" video="True" />
-  <processes>
-    <process name="2GISTrayNotifier" description="Модуль оповещений 2ГИС" />
-    <process name="acrotray" description="AcroTray" />
-    <process name="AlertHelper" description="AlertHelper" />
-  </processes>
 </pro>
