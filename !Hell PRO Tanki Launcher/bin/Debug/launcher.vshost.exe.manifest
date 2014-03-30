@@ -4,7 +4,7 @@
   <description asmv2:iconFile="PROTanks.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="launcher" version="1.0.5.56" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="launcher" version="1.0.5.62" language="neutral" processorArchitecture="x86" />
     <commandLine file="launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1385984">
-      <assemblyIdentity name="launcher" version="1.0.5.56" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1387008">
+      <assemblyIdentity name="launcher" version="1.0.5.62" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YAHHa9T9ydvEVUcUr609LKf76YbSbF4UayZGz2Wcisk=</dsig:DigestValue>
+        <dsig:DigestValue>KSGetIzYVVrUrhsqzG7Biy1M7At8feTmmlm1dHt2BfY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -110,7 +110,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>FN0TNasiTw/aysgEW3Yrv6NLqeL2LYxSwgqWEZVQHCk=</dsig:DigestValue>
+        <dsig:DigestValue>P7gGGGBmIoLUduucJ9UF0CtmObUdtmTVEa6Z1+fv3jA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

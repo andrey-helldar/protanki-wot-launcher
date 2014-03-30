@@ -22,35 +22,13 @@ namespace _Hell_PRO_Tanki_Launcher
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                // Если файл настроек поврежден, то удаляем его
-                if (File.Exists("settings.xml") && new FileInfo("settings.xml").Length == 0) { File.Delete("settings.xml"); }
-
-                debug debug = new debug();
-                try
-                {
-                    // Если в папке лежит уже скачанное обновление, то применяем его,
-                    // а перед этим, на всякий случай, сверяем версии файлов
-                    if (File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
-                    {
-                        Process.Start("updater.exe", "launcher.update \"" + Process.GetCurrentProcess().ProcessName + "\"");
-                        Process.GetCurrentProcess().Kill();
-                    }
-                    else
-                    {
-                        if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Если файл поврежден, то удаляем его
-                    if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
-
-                    debug.Save("static void Main()", "if (File.Exists(\"launcher.update\"))", ex.Message);
-                }
 
                 framework framework = new framework();
                 if (framework.Check())
                 {
+                    update_launcher update = new update_launcher();
+                    update.CheckLocal(true);
+
                     Application.Run(new fIndex());
                 }
                 else

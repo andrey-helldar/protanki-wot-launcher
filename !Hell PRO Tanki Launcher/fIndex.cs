@@ -13,7 +13,6 @@ using System.Web;
 using System.IO;
 using System.Xml;
 using System.Threading;
-using System.Security.Cryptography;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using Processes_Library;
@@ -1114,10 +1113,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Restarter", ex1.Message);
             }
 
-            try
+            /*try
             {
-                //checksummLauncher = doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText;
-
                 rVerLauncher = new Version(doc.GetElementsByTagName("version")[0].InnerText);
                 lVerLauncher = new Version(Application.ProductVersion);
 
@@ -1130,11 +1127,15 @@ namespace _Hell_PRO_Tanki_Launcher
                         client1.DownloadFileCompleted += new AsyncCompletedEventHandler(download_Completed);
                         client1.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "launcher.update");
                 }
+
             }
             catch (Exception ex1)
             {
                 debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Версия лаунчера", ex1.Message);
-            }
+            }*/
+
+            update_launcher update = new update_launcher();
+            update.CheckLocal();
         }
 
         private Version getFileVersion(string filename)
@@ -1260,7 +1261,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void download_ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        /*private void download_ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             try
             {
@@ -1289,7 +1290,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"updater.exe\", \"launcher.update \"\"\" + Process.GetCurrentProcess().ProcessName + \"\"\");", ex.Message);
             }
-        }
+        }*/
 
         private void changeContent(bool video = true)
         {
@@ -1474,17 +1475,6 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 debug.Save("private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
-            }
-        }
-
-        private bool checksum(string filename, string summ)
-        {
-            using (var md5 = MD5.Create())
-            {
-                using (var stream = File.OpenRead(filename))
-                {
-                    return md5.ComputeHash(stream).ToString() == summ ? true : false;
-                }
             }
         }
 

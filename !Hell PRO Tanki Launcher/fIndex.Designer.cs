@@ -567,7 +567,6 @@
         private System.ComponentModel.BackgroundWorker bwUpdateLauncher;
         private System.Windows.Forms.LinkLabel llActually;
         private System.Windows.Forms.LinkLabel llLauncherVersion;
-        private System.Windows.Forms.ProgressBar pbDownload;
         private System.Windows.Forms.Button bShowVideo;
         private System.Windows.Forms.Button bShowNews;
         private System.Windows.Forms.LinkLabel llBlockCaption;
@@ -576,6 +575,7 @@
         private System.Windows.Forms.Panel pNews;
         private System.Windows.Forms.LinkLabel llLoadingVideoData;
         private System.ComponentModel.BackgroundWorker bwGetVipProcesses;
+        public System.Windows.Forms.ProgressBar pbDownload;
     }
 }
 
