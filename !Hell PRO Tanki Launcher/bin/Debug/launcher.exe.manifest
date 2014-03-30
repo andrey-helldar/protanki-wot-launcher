@@ -4,7 +4,7 @@
   <description asmv2:iconFile="PROTanks.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="launcher" version="1.0.5.55" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="launcher" version="1.0.5.54" language="neutral" processorArchitecture="x86" />
     <commandLine file="launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -68,13 +68,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1378304">
-      <assemblyIdentity name="launcher" version="1.0.5.55" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="launcher" version="1.0.5.54" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>7DyPl9w8CaoyBZZdi4SIG3/82BE=</dsig:DigestValue>
+        <dsig:DigestValue>59AYXoLkK4qV8YMp8GY1LV8p7tU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -92,13 +92,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="7168">
-      <assemblyIdentity name="ProcessesLibrary" version="1.0.1.7" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="ProcessesLibrary" version="1.0.1.8" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>xq+del4Ty4no8IJm6LtgfP8nkkk=</dsig:DigestValue>
+        <dsig:DigestValue>FgEICv5AmnhwK8ZfkgdkAtVb/2o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
