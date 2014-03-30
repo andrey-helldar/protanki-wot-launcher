@@ -25,15 +25,23 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Если файл настроек поврежден, то удаляем его
                 if (File.Exists("settings.xml") && new FileInfo("settings.xml").Length == 0) { File.Delete("settings.xml"); }
 
-                // Если в папке лежит уже скачанное обновление, то применяем его,
-                if (File.Exists("launcher.update"))
+                debug debug = new debug();
+                try
                 {
-                    // а перед этим, на всякий случай, сверяем версии файлов
-                    if (new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
+                    // Если в папке лежит уже скачанное обновление, то применяем его,
+                    if (File.Exists("launcher.update"))
                     {
-                        Process.Start("updater.exe", "launcher.update \"!Hell PRO Tanki Launcher.exe\"");
-                        Process.GetCurrentProcess().Kill();
+                        // а перед этим, на всякий случай, сверяем версии файлов
+                        if (new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
+                        {
+                            Process.Start("updater.exe", "launcher.update \"" + Process.GetCurrentProcess().ProcessName + "\"");
+                            Process.GetCurrentProcess().Kill();
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    debug.Save("static void Main()", "if (File.Exists(\"launcher.update\"))", ex.Message);
                 }
 
                 framework framework = new framework();

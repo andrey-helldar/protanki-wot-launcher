@@ -132,7 +132,11 @@ namespace _Hell_PRO_Tanki_Launcher
 
             moveForm();
 
-            if (!bwUpdateLauncher.IsBusy) { bwUpdateLauncher.RunWorkerAsync(); }
+            if (!bwUpdateLauncher.IsBusy)
+            {
+                pbDownload.Visible = true;
+                bwUpdateLauncher.RunWorkerAsync();
+            }
 
             if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
         }
@@ -1220,7 +1224,6 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                pbDownload.Visible = true;
                 pbDownload.Value = e.ProgressPercentage;
             }
             catch (Exception ex)
@@ -1238,13 +1241,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     //if (checksum("launcher.update", checksummLauncher)) { MessageBox.Show("Checksumm: OK"); }
 
-                    Process.Start("updater.exe", "launcher.update \"!Hell PRO Tanki Launcher.exe\"");
+                    Process.Start("updater.exe", "launcher.update \""+Process.GetCurrentProcess().ProcessName+".exe\"");
                     Process.GetCurrentProcess().Kill();
                 }
             }
             catch (Exception ex)
             {
-                debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"updater.exe\", \"launcher.update \"!Hell PRO Tanki Launcher.exe\"\");", ex.Message);
+                debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"updater.exe\", \"launcher.update \"\"\" + Process.GetCurrentProcess().ProcessName + \"\"\");", ex.Message);
             }
         }
 
