@@ -1036,6 +1036,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)
         {
+            bwUpdateLauncher.ReportProgress(0);
+
             var client = new WebClient();
             XmlDocument doc = new XmlDocument();
             doc.Load(@"http://ai-rus.com/pro/protanks.xml");
