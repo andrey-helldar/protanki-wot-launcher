@@ -16,25 +16,25 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         debug debug = new debug();
 
-        private bool summ;
         private bool onlyCheck = false;
 
         private Version remoteVersion,
             localVersion;
 
-                BackgroundWorker checkLibrary = new BackgroundWorker();
-            BackgroundWorker worker = new BackgroundWorker();
+        BackgroundWorker checkLibrary = new BackgroundWorker();
+        BackgroundWorker worker = new BackgroundWorker();
 
-        private bool checksum(string filename, string summ)
+        private bool Checksumm(string filename, string summ)
         {
             try
             {
-                using (var md5 = MD5.Create())
+                using (FileStream fs = File.OpenRead(filename))
                 {
-                    using (var stream = File.OpenRead(filename))
-                    {
-                        return md5.ComputeHash(stream).ToString() == summ ? true : false;
-                    }
+                    System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                    byte[] fileData = new byte[fs.Length];
+                    fs.Read(fileData, 0, (int)fs.Length);
+                    byte[] checkSumm = md5.ComputeHash(fileData);
+                    return BitConverter.ToString(checkSumm).Replace("-", String.Empty) == (summ).ToUpper() ? true : false;
                 }
             }
             catch (Exception)
@@ -43,7 +43,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        public void CheckLocal(bool onlycheck=false)
+        public void CheckLocal(bool onlycheck = false)
         {
             try
             {
@@ -74,9 +74,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 remoteVersion = new Version(doc.GetElementsByTagName("version")[0].InnerText);
                 localVersion = new Version(Application.ProductVersion);
 
-                //summ = this.checksum("launcher.update", doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText);
-
-                //if (summ)
+                //if (Checksumm("launcher.update", doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText))
                 //{
                     if (localVersion < remoteVersion)
                     {
@@ -87,7 +85,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         client1.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
                         client1.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "launcher.update");
                     }
-                /*}
+               /* }
                 else
                 {
                     if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
@@ -114,12 +112,12 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 //if (summ)
                 //{
-                    if (DialogResult.Yes == MessageBox.Show(fIndex.ActiveForm, "Обнаружена новая версия лаунчера (" + remoteVersion.ToString() + ")" + Environment.NewLine +
-                        "Применить обновление сейчас?", Application.ProductName + " v" + Application.ProductVersion, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
-                    {
-                        Process.Start("updater.exe", "launcher.update \"" + Process.GetCurrentProcess().ProcessName + ".exe\"");
-                        Process.GetCurrentProcess().Kill();
-                    }
+                if (DialogResult.Yes == MessageBox.Show(fIndex.ActiveForm, "Обнаружена новая версия лаунчера (" + remoteVersion.ToString() + ")" + Environment.NewLine +
+                    "Применить обновление сейчас?", Application.ProductName + " v" + Application.ProductVersion, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                {
+                    Process.Start("updater.exe", "launcher.update \"" + Process.GetCurrentProcess().ProcessName + ".exe\"");
+                    Process.GetCurrentProcess().Kill();
+                }
                 /*}
                 else
                 {
@@ -162,7 +160,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Для работы нам нужна библиотека Ionic.Zip.dll
                 if (!File.Exists("Ionic.Zip.dll"))
                 {
-                        client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
+                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
                 }
             }
             catch (Exception ex1)
@@ -197,7 +195,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "Processes Library", ex1.Message);
             }
 
-             if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
+            if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
 
             try
             {

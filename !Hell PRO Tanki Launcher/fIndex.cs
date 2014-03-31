@@ -1543,23 +1543,5 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception) { }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string str = string.Empty;
-
-            using (StreamReader reader = File.OpenText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
-            {
-                str = reader.ReadToEnd();
-            }
-
-            str = str.Replace("<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	0	</activeOption>",
-                "<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	1	</activeOption>");
-
-            using (StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
-            {
-                file.Write(str);
-            }
-        }
     }
 }
