@@ -31,12 +31,12 @@
             this.bSave = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbVideoQuality = new System.Windows.Forms.CheckBox();
             this.cbForceClose = new System.Windows.Forms.CheckBox();
             this.cbAero = new System.Windows.Forms.CheckBox();
             this.cbKillProcesses = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbVideo = new System.Windows.Forms.CheckBox();
-            this.cbNews = new System.Windows.Forms.CheckBox();
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cbProcessor = new System.Windows.Forms.ComboBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.bwSave = new System.ComponentModel.BackgroundWorker();
             this.groupBox2.SuspendLayout();
@@ -98,6 +99,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.cbVideoQuality);
             this.groupBox2.Controls.Add(this.cbForceClose);
             this.groupBox2.Controls.Add(this.cbAero);
             this.groupBox2.Controls.Add(this.cbKillProcesses);
@@ -107,12 +109,22 @@
             this.groupBox2.Size = new System.Drawing.Size(300, 124);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Оптимизация ПК:";
+            this.groupBox2.Text = "Оптимизация:";
+            // 
+            // cbVideoQuality
+            // 
+            this.cbVideoQuality.AutoSize = true;
+            this.cbVideoQuality.Location = new System.Drawing.Point(18, 90);
+            this.cbVideoQuality.Name = "cbVideoQuality";
+            this.cbVideoQuality.Size = new System.Drawing.Size(215, 17);
+            this.cbVideoQuality.TabIndex = 3;
+            this.cbVideoQuality.Text = "Уменьшить качество графики в игре";
+            this.cbVideoQuality.UseVisualStyleBackColor = true;
             // 
             // cbForceClose
             // 
             this.cbForceClose.AutoSize = true;
-            this.cbForceClose.Location = new System.Drawing.Point(18, 57);
+            this.cbForceClose.Location = new System.Drawing.Point(18, 44);
             this.cbForceClose.Name = "cbForceClose";
             this.cbForceClose.Size = new System.Drawing.Size(227, 17);
             this.cbForceClose.TabIndex = 2;
@@ -122,7 +134,7 @@
             // cbAero
             // 
             this.cbAero.AutoSize = true;
-            this.cbAero.Location = new System.Drawing.Point(18, 87);
+            this.cbAero.Location = new System.Drawing.Point(18, 67);
             this.cbAero.Name = "cbAero";
             this.cbAero.Size = new System.Drawing.Size(246, 17);
             this.cbAero.TabIndex = 1;
@@ -132,7 +144,7 @@
             // cbKillProcesses
             // 
             this.cbKillProcesses.AutoSize = true;
-            this.cbKillProcesses.Location = new System.Drawing.Point(18, 27);
+            this.cbKillProcesses.Location = new System.Drawing.Point(18, 21);
             this.cbKillProcesses.Name = "cbKillProcesses";
             this.cbKillProcesses.Size = new System.Drawing.Size(240, 17);
             this.cbKillProcesses.TabIndex = 0;
@@ -143,11 +155,10 @@
             // 
             this.groupBox3.BackColor = System.Drawing.Color.Transparent;
             this.groupBox3.Controls.Add(this.cbVideo);
-            this.groupBox3.Controls.Add(this.cbNews);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(318, 29);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(267, 65);
+            this.groupBox3.Size = new System.Drawing.Size(267, 48);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Другие:";
@@ -157,24 +168,12 @@
             this.cbVideo.AutoSize = true;
             this.cbVideo.Checked = true;
             this.cbVideo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbVideo.Location = new System.Drawing.Point(19, 42);
+            this.cbVideo.Location = new System.Drawing.Point(18, 21);
             this.cbVideo.Name = "cbVideo";
             this.cbVideo.Size = new System.Drawing.Size(165, 17);
             this.cbVideo.TabIndex = 1;
             this.cbVideo.Text = "Уведомлять о новых видео";
             this.cbVideo.UseVisualStyleBackColor = true;
-            // 
-            // cbNews
-            // 
-            this.cbNews.AutoSize = true;
-            this.cbNews.Checked = true;
-            this.cbNews.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbNews.Location = new System.Drawing.Point(19, 19);
-            this.cbNews.Name = "cbNews";
-            this.cbNews.Size = new System.Drawing.Size(225, 17);
-            this.cbNews.TabIndex = 0;
-            this.cbNews.Text = "Уведомлять о новых новостях c Twitter";
-            this.cbNews.UseVisualStyleBackColor = true;
             // 
             // llTitle
             // 
@@ -302,14 +301,24 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox4.Controls.Add(this.cbProcessor);
             this.groupBox4.Controls.Add(this.cbPriority);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(318, 101);
+            this.groupBox4.Location = new System.Drawing.Point(318, 83);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(267, 52);
+            this.groupBox4.Size = new System.Drawing.Size(267, 70);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Приоритет игры в системе:";
+            // 
+            // cbProcessor
+            // 
+            this.cbProcessor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProcessor.FormattingEnabled = true;
+            this.cbProcessor.Location = new System.Drawing.Point(6, 43);
+            this.cbProcessor.Name = "cbProcessor";
+            this.cbProcessor.Size = new System.Drawing.Size(255, 21);
+            this.cbProcessor.TabIndex = 1;
             // 
             // cbPriority
             // 
@@ -369,7 +378,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox cbKillProcesses;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.CheckBox cbNews;
         private System.Windows.Forms.CheckBox cbVideo;
         private System.Windows.Forms.LinkLabel llTitle;
         private System.Windows.Forms.CheckBox cbAero;
@@ -387,5 +395,7 @@
         private System.Windows.Forms.ComboBox cbPriority;
         private System.ComponentModel.BackgroundWorker bwSave;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbProcessor;
+        private System.Windows.Forms.CheckBox cbVideoQuality;
     }
 }

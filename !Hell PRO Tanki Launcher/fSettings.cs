@@ -74,12 +74,21 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 try
                 {
+                    foreach (XmlNode xmlNode in doc.GetElementsByTagName("game"))
+                    {
+                        cbVideoQuality.Checked = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
+                    }
+                }
+                catch (Exception) { }
+
+                try
+                {
                     foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
                     {
                         cbKillProcesses.Checked = xmlNode.Attributes["kill"].InnerText == "False" ? false : true;
                         cbForceClose.Checked = xmlNode.Attributes["force"].InnerText == "False" ? false : true;
                         cbAero.Checked = xmlNode.Attributes["aero"].InnerText == "False" ? false : true;
-                        cbNews.Checked = xmlNode.Attributes["news"].InnerText == "False" ? false : true;
+                        //cbNews.Checked = xmlNode.Attributes["news"].InnerText == "False" ? false : true;
                         cbVideo.Checked = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
                     }
 
@@ -96,7 +105,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     cbKillProcesses.Checked = false;
                     cbAero.Checked = false;
-                    cbNews.Checked = true;
+                    //cbNews.Checked = true;
                     cbVideo.Checked = true;
 
                     debug.Save("public fSettings()", "foreach (XmlNode xmlNode in doc.GetElementsByTagName(\"settings\"))", ex.Message);
@@ -109,8 +118,10 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 cbKillProcesses.Checked = false;
                 cbAero.Checked = false;
-                cbNews.Checked = true;
+                //cbNews.Checked = true;
                 cbVideo.Checked = true;
+
+                cbVideoQuality.Checked = false;
             }
         }
 
@@ -258,13 +269,17 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 wr.WriteStartElement("notification", null);
                 wr.WriteString(notification);
-                wr.WriteEndElement();                
+                wr.WriteEndElement();
+
+                wr.WriteStartElement("game", null);
+                wr.WriteAttributeString("video", cbVideoQuality.Checked.ToString());
+                wr.WriteEndElement();               
 
                 wr.WriteStartElement("settings", null);
                 wr.WriteAttributeString("kill", cbKillProcesses.Checked.ToString());
                 wr.WriteAttributeString("force", cbForceClose.Checked.ToString());
                 wr.WriteAttributeString("aero", cbAero.Checked.ToString());
-                wr.WriteAttributeString("news", cbNews.Checked.ToString());
+                //wr.WriteAttributeString("news", cbNews.Checked.ToString());
                 wr.WriteAttributeString("video", cbVideo.Checked.ToString());
                 wr.WriteEndElement();
 
@@ -290,6 +305,25 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 wr.Flush();
                 wr.Close();
+
+                if (cbVideoQuality.Checked)
+                {
+                    //  c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\
+                    string str = string.Empty;
+
+                    using (StreamReader reader = File.OpenText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
+                    {
+                        str = reader.ReadToEnd();
+                    }
+
+                    str = str.Replace("<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	0	</activeOption>",
+                        "<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	1	</activeOption>");
+
+                    using (StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
+                    {
+                        file.Write(str);
+                    }
+                }
             }
             catch (Exception ex)
             {

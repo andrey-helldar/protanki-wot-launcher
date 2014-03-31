@@ -8,14 +8,14 @@
     <framework targetVersion="4.0.3" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="launcher.exe.manifest" size="8414">
+    <dependentAssembly dependencyType="install" codebase="launcher.exe.manifest" size="8415">
       <assemblyIdentity name="launcher.exe" version="1.0.3.42" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+0jd4dr8UMYt+Sw1dKidAm7jUE2DZNX+EeH7/Nw3RnE=</dsig:DigestValue>
+        <dsig:DigestValue>26LuqUijIKhtABNrzZD7f0MEdIwnypP/pepLWsWyGXA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

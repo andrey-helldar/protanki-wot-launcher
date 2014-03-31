@@ -151,7 +151,12 @@ namespace Processes_Library
                 "ICQ",
                 "cmd",
                 "ts3client_win32",
-                "ts3client_win64"
+                "ts3client_win64",
+                "FamItrfc",
+                "NetMap",
+                "Cloud",
+                "YandexDisk",
+                "Dropbox"
             };
 
             return vipProcess;

@@ -34,15 +34,11 @@ namespace _Hell_PRO_Tanki_Launcher
             youtubeChannel = "PROTankiWoT",
             sUpdateLink = "http://goo.gl/gr6pFl",
             videoLink = "http://goo.gl/gr6pFl",
-            updateNotification = "",
-            
-            checksummLauncher;
+            updateNotification = "";
 
-        Version rVerLauncher,
-            rVerModpack,
+        Version rVerModpack,
             rVerTanks,
             // local version
-            lVerLauncher,
             lVerModpack,
             lVerTanks;
         
@@ -53,6 +49,8 @@ namespace _Hell_PRO_Tanki_Launcher
         bool updPack = false,
             updTanks = false,
             optimized = false,
+
+            optimizeVideo = false,
 
             manualClickUpdate = false,
 
@@ -197,6 +195,12 @@ namespace _Hell_PRO_Tanki_Launcher
                     catch (Exception)
                     {
                         updateNotification = "";
+                    }
+
+                    
+                     foreach (XmlNode xmlNode in doc.GetElementsByTagName("game"))
+                    {
+                        optimizeVideo = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
                     }
 
                     foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
@@ -642,6 +646,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (!bwOptimize.IsBusy)
                 {
                     optimized = true;
+
+                    pbDownload.Visible = true;
+                    pbDownload.Value = 0;
+
                     bwOptimize.RunWorkerAsync();
                 }
                 else
@@ -778,6 +786,54 @@ namespace _Hell_PRO_Tanki_Launcher
                             }
                         }
                     }
+                }
+
+                ///
+                /// Optimize game graphic
+                /// 
+                try
+                {
+                    if (optimizeVideo)
+                    {
+                        /// http://mirtankov.su/fps-test
+                        /// c:\Users\user\AppData\Roaming\Wargaming.net\WorldOfTanks\                        
+
+                        string str = string.Empty;
+
+                        using (StreamReader reader = File.OpenText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
+                        {
+                            str = reader.ReadToEnd();
+                        }
+
+                        str = str.Replace("<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	0	</activeOption>",
+                            "<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	1	</activeOption>");
+
+                        using (StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
+                        {
+                            file.Write(str);
+                        }
+                    }
+                    else
+                    {
+                        string str = string.Empty;
+
+                        using (StreamReader reader = File.OpenText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
+                        {
+                            str = reader.ReadToEnd();
+                        }
+
+                        str = str.Replace("<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	1	</activeOption>",
+                            "<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	0	</activeOption>");
+
+                        using (StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
+                        {
+                            file.Write(str);
+                        }
+                    }
+                }
+                catch (Exception ex1)
+                {
+                    debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", "if (optimizeVideo)", ex1.Message);
                 }
             }
             catch (Exception ex)
@@ -932,14 +988,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (pbDownload.Visible == false)
-                {
-                    pbDownload.Value = 0;
-                    pbDownload.Visible = true;
-                }
-
                 double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;
-                //llUpdateStatus.Text = "Оптимизация завершена на: " + ((int)i).ToString() + "%";
                 pbDownload.Value = (int)i;
             }
             catch (Exception ex)
@@ -1493,6 +1542,24 @@ namespace _Hell_PRO_Tanki_Launcher
                 pbDownload.Visible = true;
             }
             catch (Exception) { }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string str = string.Empty;
+
+            using (StreamReader reader = File.OpenText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
+            {
+                str = reader.ReadToEnd();
+            }
+
+            str = str.Replace("<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	0	</activeOption>",
+                "<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	1	</activeOption>");
+
+            using (StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
+            {
+                file.Write(str);
+            }
         }
     }
 }

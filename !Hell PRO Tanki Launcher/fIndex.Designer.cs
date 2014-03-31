@@ -65,6 +65,7 @@
             this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
             this.pNews = new System.Windows.Forms.Panel();
             this.bwGetVipProcesses = new System.ComponentModel.BackgroundWorker();
+            this.button1 = new System.Windows.Forms.Button();
             this.contextMenu.SuspendLayout();
             this.pVideo.SuspendLayout();
             this.SuspendLayout();
@@ -501,12 +502,23 @@
             this.bwGetVipProcesses.WorkerSupportsCancellation = true;
             this.bwGetVipProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwGetVipProcesses_DoWork);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(508, 415);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.pNews);
             this.Controls.Add(this.pVideo);
             this.Controls.Add(this.llBlockCaption);
@@ -576,6 +588,7 @@
         private System.Windows.Forms.LinkLabel llLoadingVideoData;
         private System.ComponentModel.BackgroundWorker bwGetVipProcesses;
         public System.Windows.Forms.ProgressBar pbDownload;
+        private System.Windows.Forms.Button button1;
     }
 }
 
