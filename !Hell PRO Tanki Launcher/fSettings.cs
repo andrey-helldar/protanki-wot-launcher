@@ -23,7 +23,7 @@ namespace _Hell_PRO_Tanki_Launcher
         ProcessList processList = new ProcessList();
 
         string //title,
-            version,
+            version = "0.0.0.0",
             type = "full",
             notification;
 
@@ -39,6 +39,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             moveForm();
 
+
             if (File.Exists("settings.xml"))
             {
                 XmlDocument doc = new XmlDocument();
@@ -47,11 +48,19 @@ namespace _Hell_PRO_Tanki_Launcher
                 try
                 {
                     version = doc.GetElementsByTagName("version")[0].InnerText;
+                }
+                catch (Exception ex)
+                {
+                    debug.Save("public fSettings()", "get VERSION", ex.Message);
+                }
+
+                try
+                {
                     type = doc.GetElementsByTagName("type")[0].InnerText;
                 }
                 catch (Exception ex)
                 {
-                    debug.Save("public fSettings()", "get VERSION & TYPE", ex.Message);
+                    debug.Save("public fSettings()", "get TYPE", ex.Message);
                 }
 
                 try
@@ -77,6 +86,17 @@ namespace _Hell_PRO_Tanki_Launcher
                     foreach (XmlNode xmlNode in doc.GetElementsByTagName("game"))
                     {
                         cbVideoQuality.Checked = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
+                        
+                        // Проверяем количество процессоров
+                        if (Environment.ProcessorCount > 1)
+                        {
+                            cbCPUAffinity.Checked = xmlNode.Attributes["affinity"].InnerText == "False" ? false : true;
+                        }
+                        else
+                        {
+                            cbCPUAffinity.Checked = false;
+                            cbCPUAffinity.Enabled = false;
+                        }
                     }
                 }
                 catch (Exception) { }
@@ -273,6 +293,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 wr.WriteStartElement("game", null);
                 wr.WriteAttributeString("video", cbVideoQuality.Checked.ToString());
+                wr.WriteAttributeString("affinity", cbCPUAffinity.Checked.ToString());
                 wr.WriteEndElement();               
 
                 wr.WriteStartElement("settings", null);
@@ -280,6 +301,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 wr.WriteAttributeString("force", cbForceClose.Checked.ToString());
                 wr.WriteAttributeString("aero", cbAero.Checked.ToString());
                 //wr.WriteAttributeString("news", cbNews.Checked.ToString());
+                wr.WriteAttributeString("news", "False");
                 wr.WriteAttributeString("video", cbVideo.Checked.ToString());
                 wr.WriteEndElement();
 
@@ -403,6 +425,19 @@ namespace _Hell_PRO_Tanki_Launcher
                     case 1: return 4; // Низкий
                     default: return 2; // Средний
                 }
+            }
+        }
+
+        private void bwSave_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                if (!File.Exists("preferences.xml"))
+                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml", "preferences.xml");
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void bwSave_DoWork(object sender, DoWorkEventArgs e)", "if (!File.Exists(\"preferences.xml\"))", ex.Message);
             }
         }
     }

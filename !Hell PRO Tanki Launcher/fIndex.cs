@@ -24,8 +24,7 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fIndex : Form
     {
-        // ПОдгружаем классы
-        fLanguage languagePack = new fLanguage();
+        fLanguage languagePack = new fLanguage();   // ПОдгружаем языковую библиотеку
 
         string xmlTitle = "",
             path = "",
@@ -41,16 +40,19 @@ namespace _Hell_PRO_Tanki_Launcher
             // local version
             lVerModpack,
             lVerTanks;
-        
-           int maxPercentUpdateStatus = 1,
-            showVideoTop = 0 /*110*/,
-            showNewsTop = 0 /*110*/;
+
+        int maxPercentUpdateStatus = 1,
+         showVideoTop = 0 /*110*/,
+         showNewsTop = 0 /*110*/;
 
         bool updPack = false,
             updTanks = false,
             optimized = false,
 
+            playGame = false,
+
             optimizeVideo = false,
+            optimizeAffinity = false,
 
             manualClickUpdate = false,
 
@@ -72,14 +74,10 @@ namespace _Hell_PRO_Tanki_Launcher
 
         ProcessStartInfo psi;
 
-        // Инициализируем класс дебага
-        debug debug = new debug();
+        debug debug = new debug();  // Инициализируем класс дебага
 
-
-        private void showError(string err)
-        {
-            MessageBox.Show(this, err, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        static extern bool ShowWindow(int hWnd, int nCmdShow);
 
         public fIndex()
         {
@@ -87,6 +85,15 @@ namespace _Hell_PRO_Tanki_Launcher
             // Если запущен, то закрываем все предыдущие, оставляя заново открытое окно
             Process[] myProcesses = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
             for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
+
+            /// Получаем Handle уже запущенного приложения
+            /// и используем его для разворачивания окна
+            if (myProcesses.Length > 1)
+            {
+                IntPtr hWnd = myProcesses[0].MainWindowHandle;
+                ShowWindow((int)hWnd, 1);
+            }
+
 
             // Проверяем установлен ли в системе нужный нам фраймворк
             framework framework = new framework();
@@ -159,7 +166,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     //xmlTitle = xmlTitle != "" ? xmlTitle : Application.ProductName;
                     xmlTitle = Application.ProductName;
                     path = Application.StartupPath + @"\..\";
-                    
+
                     var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
                     if (key != null)
                     {
@@ -197,10 +204,11 @@ namespace _Hell_PRO_Tanki_Launcher
                         updateNotification = "";
                     }
 
-                    
-                     foreach (XmlNode xmlNode in doc.GetElementsByTagName("game"))
+
+                    foreach (XmlNode xmlNode in doc.GetElementsByTagName("game"))
                     {
                         optimizeVideo = xmlNode.Attributes["video"].InnerText == "False" ? false : true;
+                        optimizeAffinity = xmlNode.Attributes["affinity"].InnerText == "False" ? false : true;
                     }
 
                     foreach (XmlNode xmlNode in doc.GetElementsByTagName("settings"))
@@ -347,7 +355,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Парсим сайт PROТанки
                 XmlDocument doc = new XmlDocument();
                 doc.Load(@"http://ai-rus.com/pro/pro.xml");
-                rVerModpack = new Version( doc.GetElementsByTagName("version")[0].InnerText);
+                rVerModpack = new Version(doc.GetElementsByTagName("version")[0].InnerText);
                 rVerTanks = new Version(doc.GetElementsByTagName("tanks")[0].InnerText);
 
                 lVerTanks = getTanksVersion();
@@ -356,7 +364,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 // В ответ присваиваем переменной verTanksServer значение с сайта
                 if (lVerTanks > rVerTanks)
                 {
-                    rVerTanks =new Version( getResponse("http://ai-rus.com/wot/micro/" + lVerTanks.ToString()));
+                    rVerTanks = new Version(getResponse("http://ai-rus.com/wot/micro/" + lVerTanks.ToString()));
 
                     updTanks = true;
                 }
@@ -523,13 +531,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
-
-                //Process.Start(path + "WorldOfTanks.exe");
-                if (File.Exists(@"..\s.bat")) { File.Delete(@"..\s.bat"); }
-                File.WriteAllBytes(@"..\s.bat", Properties.Resources.start);
-                Process.Start(@"..\s.bat");
-
+                if (!bwOptimize.IsBusy) { playGame = true; bwOptimize.RunWorkerAsync(); }
                 if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
 
                 Hide();
@@ -1025,7 +1027,6 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 debug.Save("private void bwAero_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
-                showError(ex.Message);
             }
         }
 
@@ -1084,83 +1085,83 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)
         {
-       /*     bwUpdateLauncher.ReportProgress(0);
+            /*     bwUpdateLauncher.ReportProgress(0);
 
-            var client = new WebClient();
-            XmlDocument doc = new XmlDocument();
-            doc.Load(@"http://ai-rus.com/pro/protanks.xml");
+                 var client = new WebClient();
+                 XmlDocument doc = new XmlDocument();
+                 doc.Load(@"http://ai-rus.com/pro/protanks.xml");
 
-            try
-            {
-                // Для работы нам нужна библиотека Ionic.Zip.dll
-                //var clientZIP = new WebClient();
-                if (!File.Exists("Ionic.Zip.dll"))
-                {
-                    //while (checksum("Ionic.Zip.dll", ))
-                    //{
-                        client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
-                    //}
-                }
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "if (!File.Exists(\"Ionic.Zip.dll\"))", ex1.Message);
-            }
+                 try
+                 {
+                     // Для работы нам нужна библиотека Ionic.Zip.dll
+                     //var clientZIP = new WebClient();
+                     if (!File.Exists("Ionic.Zip.dll"))
+                     {
+                         //while (checksum("Ionic.Zip.dll", ))
+                         //{
+                             client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
+                         //}
+                     }
+                 }
+                 catch (Exception ex1)
+                 {
+                     debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "if (!File.Exists(\"Ionic.Zip.dll\"))", ex1.Message);
+                 }
 
 
-            try
-            {
-                // Newtonsoft.Json.dll
-                if (!File.Exists("Newtonsoft.Json.dll") || getFileVersion("Newtonsoft.Json.dll") < new Version(doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText))
-                {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Newtonsoft.Json.dll"), "Newtonsoft.Json.dll");
-                }
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Newtonsoft.Json.dll", ex1.Message);
-            }
+                 try
+                 {
+                     // Newtonsoft.Json.dll
+                     if (!File.Exists("Newtonsoft.Json.dll") || getFileVersion("Newtonsoft.Json.dll") < new Version(doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText))
+                     {
+                         client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Newtonsoft.Json.dll"), "Newtonsoft.Json.dll");
+                     }
+                 }
+                 catch (Exception ex1)
+                 {
+                     debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Newtonsoft.Json.dll", ex1.Message);
+                 }
 
-            try
-            {
-                // Processes Library
-                if (!File.Exists("ProcessesLibrary.dll") || getFileVersion("ProcessesLibrary.dll") < new Version(doc.GetElementsByTagName("processesLibrary")[0].InnerText))
-                {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/ProcessesLibrary.dll"), "ProcessesLibrary.dll");
-                }
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Processes Library", ex1.Message);
-            }
+                 try
+                 {
+                     // Processes Library
+                     if (!File.Exists("ProcessesLibrary.dll") || getFileVersion("ProcessesLibrary.dll") < new Version(doc.GetElementsByTagName("processesLibrary")[0].InnerText))
+                     {
+                         client.DownloadFile(new Uri(@"http://ai-rus.com/pro/ProcessesLibrary.dll"), "ProcessesLibrary.dll");
+                     }
+                 }
+                 catch (Exception ex1)
+                 {
+                     debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Processes Library", ex1.Message);
+                 }
 
-             if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
+                  if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
 
-            try
-            {
-                // Updater
-                if (!File.Exists("updater.exe") || getFileVersion("updater.exe") < new Version(doc.GetElementsByTagName("updater")[0].InnerText))
-                {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.exe"), "updater.exe");
-                }
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Updater", ex1.Message);
-            }
+                 try
+                 {
+                     // Updater
+                     if (!File.Exists("updater.exe") || getFileVersion("updater.exe") < new Version(doc.GetElementsByTagName("updater")[0].InnerText))
+                     {
+                         client.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.exe"), "updater.exe");
+                     }
+                 }
+                 catch (Exception ex1)
+                 {
+                     debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Updater", ex1.Message);
+                 }
 
-            try
-            {
-                // Restarter
-                if (!File.Exists("restart.exe") || getFileVersion("restart.exe") < new Version(doc.GetElementsByTagName("restart")[0].InnerText))
-                {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.exe"), "restart.exe");
-                }
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Restarter", ex1.Message);
-            }*/
+                 try
+                 {
+                     // Restarter
+                     if (!File.Exists("restart.exe") || getFileVersion("restart.exe") < new Version(doc.GetElementsByTagName("restart")[0].InnerText))
+                     {
+                         client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.exe"), "restart.exe");
+                     }
+                 }
+                 catch (Exception ex1)
+                 {
+                     debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Restarter", ex1.Message);
+                 }*/
 
             /*try
             {
@@ -1183,8 +1184,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Версия лаунчера", ex1.Message);
             }*/
 
-       /*     update_launcher update = new update_launcher();
-            update.CheckLocal();*/
+            /*     update_launcher update = new update_launcher();
+                 update.CheckLocal();*/
         }
 
         private Version getFileVersion(string filename)
@@ -1192,6 +1193,11 @@ namespace _Hell_PRO_Tanki_Launcher
             return new Version(FileVersionInfo.GetVersionInfo(filename).FileVersion);
         }
 
+        /// <summary>
+        /// Читаем RSS-канал на ютубе
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bwVideo_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -1542,6 +1548,24 @@ namespace _Hell_PRO_Tanki_Launcher
                 pbDownload.Visible = true;
             }
             catch (Exception) { }
+        }
+
+        private void bwOptimize_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (playGame)
+            {
+                //Process.Start(path + "WorldOfTanks.exe");
+                if (File.Exists(@"..\s.bat")) { File.Delete(@"..\s.bat"); }
+                File.WriteAllBytes(@"..\s.bat", Properties.Resources.start);
+                Process.Start(@"..\s.bat");
+
+                // Устанавливаем соответствие процессов
+                if (optimizeAffinity)
+                {
+                    Process[] myProcesses = Process.GetProcessesByName("WorldOfTanks");
+                    for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].ProcessorAffinity = (IntPtr)2; }
+                }
+            }
         }
     }
 }

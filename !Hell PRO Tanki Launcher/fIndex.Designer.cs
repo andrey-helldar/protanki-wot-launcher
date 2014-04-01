@@ -294,6 +294,7 @@
             this.bwOptimize.WorkerSupportsCancellation = true;
             this.bwOptimize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwOptimize_DoWork);
             this.bwOptimize.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwOptimize_ProgressChanged);
+            this.bwOptimize.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwOptimize_RunWorkerCompleted);
             // 
             // llTitle
             // 

@@ -74,22 +74,15 @@ namespace _Hell_PRO_Tanki_Launcher
                 remoteVersion = new Version(doc.GetElementsByTagName("version")[0].InnerText);
                 localVersion = new Version(Application.ProductVersion);
 
-                //if (Checksumm("launcher.update", doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText))
-                //{
-                    if (localVersion < remoteVersion)
-                    {
-                        if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
-
-                        WebClient client1 = new WebClient();
-                        client1.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
-                        client1.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
-                        client1.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "launcher.update");
-                    }
-               /* }
-                else
+                if (localVersion < remoteVersion)
                 {
                     if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
-                }*/
+
+                    WebClient client1 = new WebClient();
+                    client1.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
+                    client1.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
+                    client1.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "launcher.update");
+                }
             }
             catch (Exception) { }
         }
