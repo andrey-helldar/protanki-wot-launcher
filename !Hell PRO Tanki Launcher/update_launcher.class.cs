@@ -158,32 +158,14 @@ namespace _Hell_PRO_Tanki_Launcher
             XmlDocument doc = new XmlDocument();
             doc.Load(url + "protanks.xml");
 
-            try
-            {
-                // Для работы нам нужна библиотека Ionic.Zip.dll
-                if (!File.Exists("Ionic.Zip.dll"))
-                {
-                    client.DownloadFile(new Uri(url + "Ionic.Zip.dll"), "Ionic.Zip.dll");
-                }
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "if (!File.Exists(\"Ionic.Zip.dll\"))", ex1.Message);
-            }
+            DownloadFile("Ionic.Zip.dll", "Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].InnerText, doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksumm"].InnerText);
+            DownloadFile("Newtonsoft.Json.dll", "Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText);
+            DownloadFile("ProcessesLibrary.dll", "ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksumm"].InnerText);
+            DownloadFile("Ionic.Zip.dll", "Ionic.Zip.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText);
+            DownloadFile("Ionic.Zip.dll", "Ionic.Zip.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText);
+            DownloadFile("Ionic.Zip.dll", "Ionic.Zip.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText);
 
 
-            try
-            {
-                // Newtonsoft.Json.dll
-                if (!File.Exists("Newtonsoft.Json.dll") || getFileVersion("Newtonsoft.Json.dll") < new Version(doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText))
-                {
-                    client.DownloadFile(new Uri(url + "Newtonsoft.Json.dll"), "Newtonsoft.Json.dll");
-                }
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "Newtonsoft.Json.dll", ex1.Message);
-            }
 
             try
             {
@@ -235,6 +217,40 @@ namespace _Hell_PRO_Tanki_Launcher
         private Version getFileVersion(string filename)
         {
             return new Version(FileVersionInfo.GetVersionInfo(filename).FileVersion);
+        }
+
+
+        /// Так как при скачивании файлов мы делаем много одинаковых операций по скачивании и проверке,
+        /// целесообразней завернуть все в 1 функцию и передавать ей параметры
+        /// 
+        private void DownloadFile(string localFile, string remoteFile, string xmlVersion, string xmlChecksumm)
+        {
+            try
+            {
+                // Для работы нам нужна библиотека Ionic.Zip.dll
+                if (!File.Exists(localFile) || new Version(FileVersionInfo.GetVersionInfo(localFile).FileVersion) < new Version(xmlVersion))
+                {
+                    using(var client = new WebClient()){
+
+                        client.DownloadFile(new Uri(url + remoteFile), localFile);
+                        
+                        if (!Checksumm(localFile, xmlChecksumm))
+                        {
+                            int errCount = 0;
+
+                            while (errCount < 3)
+                            {
+                                client.DownloadFile(new Uri(url + remoteFile), localFile);
+                                ++errCount;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                debug.Save("private void DownloadFile(string localFile, string remoteFile, string xmlVersion, string xmlChecksumm)", "Local file: " + localFile, ex.Message);
+            }
         }
     }
 }
