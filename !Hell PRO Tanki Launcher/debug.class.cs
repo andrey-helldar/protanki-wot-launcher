@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using System.Linq;
 using System.Text;
@@ -11,22 +12,20 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     class debug
     {
+        private BackgroundWorker workerSend = new BackgroundWorker();
+
+        /// <summary>
+        /// Сохраняем информацию обработчика в файл
+        /// </summary>
         public void Save(string func, string place, string mess)
         {
-            try
-            {
-                if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
-                File.WriteAllText(@"temp\" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".debug",
-                    func + Environment.NewLine + "-------------------------------" + Environment.NewLine +
-                    place + Environment.NewLine + "-------------------------------" + Environment.NewLine +
-                    mess, Encoding.UTF8);
+            if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
+            File.WriteAllText(@"temp\" + UserID() + "_-_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".debug",
+                func + Environment.NewLine + "-------------------------------" + Environment.NewLine +
+                place + Environment.NewLine + "-------------------------------" + Environment.NewLine +
+                mess, Encoding.UTF8);
 
-                //MessageBox.Show(fIndex.ActiveForm, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception /*ex*/)
-            {
-                //debug(ex.Message);
-            }
+            //MessageBox.Show(fIndex.ActiveForm, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public bool Archive(string path)
@@ -44,7 +43,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
                     zip.AddDirectory(path + @"\temp");
-                    zip.Save(path + @"\debug\debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
+                    zip.Save(path + @"\debug\" + UserID() + "_-_" + "debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
                 }
 
                 Directory.Delete(path + @"\temp", true);
@@ -87,6 +86,69 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 this.Save("private void Delete(string path)", "Debug mode", ex.Message);
+            }
+        }
+
+        public void Send()
+        {
+            workerSend.WorkerReportsProgress = true;
+            workerSend.WorkerSupportsCancellation = true;
+            workerSend.DoWork += new DoWorkEventHandler(workerSend_DoWork);
+
+            if (!workerSend.IsBusy) { workerSend.RunWorkerAsync(); }
+        }
+
+        private void workerSend_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (Directory.Exists("debug"))
+                using (System.Net.WebClient client = new System.Net.WebClient())
+                {
+                    var info = new DirectoryInfo("debug");
+
+                    foreach (FileInfo file in info.GetFiles())
+                    {
+                        try
+                        {
+                            client.UploadFile("http://ai-rus.com/pro/debug", file.FullName);
+                            File.Delete(file.FullName);
+                        }
+                        catch (Exception ex)
+                        {
+                            Save("private void workerSend_DoWork(object sender, DoWorkEventArgs e)", "Send debug files: " + file.FullName, ex.Message);
+                        }
+                    }
+                }
+        }
+
+        /// <summary>
+        /// Функция, определяющая уникальный идентификатор пользователя.
+        /// Нужна для удобства сортировки файлов на сайте
+        /// </summary>
+        /// <returns>
+        /// Если функция сработает без ошибок, то вернет кэш-сумму, являющуюся идентификатором,
+        /// иначе вернет нулевое значение (null)
+        /// </returns>
+        private string UserID()
+        {
+            try
+            {
+                string name = Environment.MachineName +
+                    Environment.UserName +
+                    Environment.UserDomainName +
+                    Environment.Version.ToString() +
+                    Environment.OSVersion.ToString();
+
+                using (System.Security.Cryptography.MD5 md5Hash = System.Security.Cryptography.MD5.Create())
+                {
+                    byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(name));
+                    StringBuilder sBuilder = new StringBuilder();
+                    for (int i = 0; i < data.Length; i++) { sBuilder.Append(data[i].ToString("x2")); }
+
+                    return sBuilder.ToString();
+                }
+            }catch(Exception ex){
+                Save("private string UserID()", "", ex.Message);
+                return null;
             }
         }
     }

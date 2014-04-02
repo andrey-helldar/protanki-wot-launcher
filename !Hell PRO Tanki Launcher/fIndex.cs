@@ -1506,6 +1506,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
             update_launcher update = new update_launcher();
             update.CheckLocal();
+
+            debug.Send(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
         }
 
         private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)
