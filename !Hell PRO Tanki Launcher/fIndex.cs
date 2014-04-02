@@ -1508,7 +1508,7 @@ namespace _Hell_PRO_Tanki_Launcher
             if (!bwGetVipProcesses.IsBusy) { bwGetVipProcesses.RunWorkerAsync(); }
 
             update_launcher update = new update_launcher();
-            update.CheckLocal();
+            update.CheckUpdates();
 
             debug.Send(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
         }

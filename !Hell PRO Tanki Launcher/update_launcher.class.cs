@@ -16,15 +16,33 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         debug debug = new debug();
 
-        private bool onlyCheck = false;
+        private bool onlyCheck = false,
+            nowUpdate = true;
 
         private string url = @"http://ai-rus.com/pro/";
 
-        private Version remoteVersion,
-            localVersion;
+        private Version remoteVersion;
 
-        BackgroundWorker checkLibrary = new BackgroundWorker();
-        BackgroundWorker worker = new BackgroundWorker();
+        BackgroundWorker downloadUpdates = new BackgroundWorker();
+
+        public void CheckUpdates(bool check = false)
+        {
+            try
+            {
+                onlyCheck = check;
+
+                downloadUpdates.WorkerReportsProgress = true;
+                downloadUpdates.WorkerSupportsCancellation = true;
+                downloadUpdates.DoWork += new DoWorkEventHandler(downloadUpdates_DoWork);
+                downloadUpdates.RunWorkerCompleted += new RunWorkerCompletedEventHandler(downloadUpdates_RunWorkerCompleted);
+
+                if (!downloadUpdates.IsBusy) { downloadUpdates.RunWorkerAsync(); }
+            }
+            catch (Exception ex)
+            {
+                debug.Save("public void CheckUpdates(bool check = false)", "", ex.Message);
+            }
+        }
 
         private bool Checksumm(string filename, string summ)
         {
@@ -43,50 +61,6 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 return false;
             }
-        }
-
-        public void CheckLocal(bool onlycheck = false)
-        {
-            try
-            {
-                onlyCheck = onlycheck;
-
-                checkLibrary.WorkerReportsProgress = true;
-                checkLibrary.WorkerSupportsCancellation = true;
-                checkLibrary.DoWork += new DoWorkEventHandler(checkLibrary_DoWork);
-                checkLibrary.RunWorkerCompleted += new RunWorkerCompletedEventHandler(checkLibrary_RunWorkerCompleted);
-
-                worker.WorkerReportsProgress = true;
-                worker.WorkerSupportsCancellation = true;
-                worker.DoWork += new DoWorkEventHandler(worker_DoWork);
-
-                if (!checkLibrary.IsBusy) { checkLibrary.RunWorkerAsync(); }
-            }
-            catch (Exception) { }
-        }
-
-        private void Download()
-        {
-            try
-            {
-                var client = new WebClient();
-                XmlDocument doc = new XmlDocument();
-                doc.Load(url + "protanks.xml");
-
-                remoteVersion = new Version(doc.GetElementsByTagName("version")[0].InnerText);
-                localVersion = new Version(Application.ProductVersion);
-
-                if (localVersion < remoteVersion)
-                {
-                    if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
-
-                    WebClient client1 = new WebClient();
-                    client1.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
-                    client1.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
-                    client1.DownloadFileAsync(new Uri(url + "launcher.exe"), "launcher.update");
-                }
-            }
-            catch (Exception) { }
         }
 
         private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -122,126 +96,80 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception) { }
         }
 
-        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        private void downloadUpdates_DoWork(object sender, DoWorkEventArgs e)
         {
-            try
+            using (var client = new WebClient())
             {
-                /// Здесь нужно внедрить использование функции Checksumm();
+                XmlDocument doc = new XmlDocument();
+                doc.Load(url + "protanks.xml");
 
-                if (File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
-                {
-                    Process.Start("updater.exe", "launcher.update \"Multipack Launcher\"");
-                    //Process.Start("updater.exe", "launcher.update \"" + Process.GetCurrentProcess().ProcessName + "\"");
-                    try
-                    {
-                        if (File.Exists("!Hell PRO Tanki Launcher.exe")) { File.Delete("!Hell PRO Tanki Launcher.exe"); }
-                    }
-                    catch (Exception) { }
-                    Process.GetCurrentProcess().Kill();
-                }
-                else
-                {
-                    if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
-                    if (!onlyCheck) Download();
-                }
-            }
-            catch (Exception)
-            {
-                if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
-                if (!onlyCheck) Download();
+                ///
+                /// Избавляемся от ненужных файлов
+                /// 
+                if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
+
+                /// 
+                /// Скачиваем необходимые файлы
+                /// 
+                DownloadFile("Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].InnerText, doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksumm"].InnerText);
+                DownloadFile("Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText);
+                DownloadFile("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksumm"].InnerText);
+                DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksumm"].InnerText);
+                DownloadFile("restart.exe", doc.GetElementsByTagName("restart")[0].InnerText, doc.GetElementsByTagName("restart")[0].Attributes["checksumm"].InnerText);
+                DownloadFile("updater.exe", doc.GetElementsByTagName("updater")[0].InnerText, doc.GetElementsByTagName("updater")[0].Attributes["checksumm"].InnerText);
+
+                /// 
+                /// А теперь проверяем обновления основного файла программы
+                /// и запускаем механизм обновления
+                /// 
+                DownloadFile("launcher.update", doc.GetElementsByTagName("version")[0].InnerText, doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText, true);
             }
         }
 
-        private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)
+        private void downloadUpdates_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            var client = new WebClient();
-            XmlDocument doc = new XmlDocument();
-            doc.Load(url + "protanks.xml");
+            /// 
+            /// На всякий случай, после того, как скачали обновление файла основной программы,
+            /// Запускаем процесс обновления, конечно, если пользователь разрешил нам немедленную установку
+            /// 
 
-            DownloadFile("Ionic.Zip.dll", "Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].InnerText, doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksumm"].InnerText);
-            DownloadFile("Newtonsoft.Json.dll", "Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText);
-            DownloadFile("ProcessesLibrary.dll", "ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksumm"].InnerText);
-            DownloadFile("Ionic.Zip.dll", "Ionic.Zip.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText);
-            DownloadFile("Ionic.Zip.dll", "Ionic.Zip.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText);
-            DownloadFile("Ionic.Zip.dll", "Ionic.Zip.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText);
-
-
-
-            try
+            if (File.Exists("launcher.update"))
             {
-                // Processes Library
-                if (!File.Exists("ProcessesLibrary.dll") || getFileVersion("ProcessesLibrary.dll") < new Version(doc.GetElementsByTagName("processesLibrary")[0].InnerText))
-                {
-                    client.DownloadFile(new Uri(url + "ProcessesLibrary.dll"), "ProcessesLibrary.dll");
-                }
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "Processes Library", ex1.Message);
-            }
-
-            if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
-
-            try
-            {
-                // Updater
-                if (!File.Exists("updater.exe") || getFileVersion("updater.exe") < new Version(doc.GetElementsByTagName("updater")[0].InnerText))
-                {
-                    client.DownloadFile(new Uri(url + "updater.exe"), "updater.exe");
-                }
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "Updater", ex1.Message);
-            }
-
-            try
-            {
-                // Restarter
-                if (!File.Exists("restart.exe") || getFileVersion("restart.exe") < new Version(doc.GetElementsByTagName("restart")[0].InnerText))
-                {
-                    client.DownloadFile(new Uri(url + "restart.exe"), "restart.exe");
-                }
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void checkLibrary_DoWork(object sender, DoWorkEventArgs e)", "Restarter", ex1.Message);
+                Process.Start("updater.exe", "launcher.update \"Multipack Launcher.exe\"");
+                Process.GetCurrentProcess().Kill();
             }
         }
 
-        private void checkLibrary_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (!worker.IsBusy) { worker.RunWorkerAsync(); }
-        }
 
-        private Version getFileVersion(string filename)
-        {
-            return new Version(FileVersionInfo.GetVersionInfo(filename).FileVersion);
-        }
-
-
+        /// 
         /// Так как при скачивании файлов мы делаем много одинаковых операций по скачивании и проверке,
         /// целесообразней завернуть все в 1 функцию и передавать ей параметры
         /// 
-        private void DownloadFile(string localFile, string remoteFile, string xmlVersion, string xmlChecksumm)
+        private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm, bool showMessageBeforeDownload = false)
         {
             try
             {
-                // Для работы нам нужна библиотека Ionic.Zip.dll
-                if (!File.Exists(localFile) || new Version(FileVersionInfo.GetVersionInfo(localFile).FileVersion) < new Version(xmlVersion))
+                if (!(File.Exists(filename)) || (File.Exists(filename) && new Version(FileVersionInfo.GetVersionInfo(filename).FileVersion) < new Version(xmlVersion)))
                 {
-                    using(var client = new WebClient()){
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadFile(new Uri(url + filename), filename);
 
-                        client.DownloadFile(new Uri(url + remoteFile), localFile);
-                        
-                        if (!Checksumm(localFile, xmlChecksumm))
+                        if (!Checksumm(filename, xmlChecksumm))
                         {
                             int errCount = 0;
 
                             while (errCount < 3)
                             {
-                                client.DownloadFile(new Uri(url + remoteFile), localFile);
-                                ++errCount;
+                                try
+                                {
+                                    client.DownloadFile(new Uri(url + filename), filename);
+                                    ++errCount;
+                                }
+                                catch (Exception ex1)
+                                {
+                                    debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)", "Filename: " + filename + Environment.NewLine + "Error count: " + errCount, ex1.Message);
+                                }
                             }
                         }
                     }
@@ -249,7 +177,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void DownloadFile(string localFile, string remoteFile, string xmlVersion, string xmlChecksumm)", "Local file: " + localFile, ex.Message);
+                debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)", "Filename: " + filename, ex.Message);
             }
         }
     }
