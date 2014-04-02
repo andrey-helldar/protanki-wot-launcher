@@ -99,8 +99,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
 
             // Проверяем установлен ли в системе нужный нам фраймворк
-            framework framework = new framework();
-            framework.Check();
+            //framework framework = new framework();
+            //framework.Check();
 
             InitializeComponent();
 

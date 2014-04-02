@@ -18,7 +18,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private bool onlyCheck = false;
 
-        private string url = @"http://ai-rus.com/pro/";
+        private string url = @"http://ai-rus.com/pro/",
+            checkSumm;
         private DialogResult enableUpdate = DialogResult.Yes;
 
         BackgroundWorker downloadUpdates = new BackgroundWorker();
@@ -58,6 +59,13 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                /// Часто возникает ошибка с файлом обновлений,
+                /// так что удаляем его
+                if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
+
+                enableUpdate = DialogResult.Yes;
+                onlyCheck = false;
+
                 debug.Save("public void CheckUpdates(bool check = false)", "onlyCheck", ex.Message);
             }
 
@@ -139,8 +147,23 @@ namespace _Hell_PRO_Tanki_Launcher
                 /// А теперь проверяем обновления основного файла программы
                 /// и запускаем механизм обновления
                 /// 
-                if (enableUpdate == DialogResult.Yes && !onlyCheck)
-                    DownloadFile("launcher.update", doc.GetElementsByTagName("version")[0].InnerText, doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText, Application.ProductName);
+                try
+                {
+                    if (enableUpdate == DialogResult.Yes && !onlyCheck)
+                    {
+                        checkSumm = doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText;
+                        DownloadFile("launcher.exe", doc.GetElementsByTagName("version")[0].InnerText, doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText, "launcher.update");
+                    }
+                    else
+                    {
+                        checkSumm = null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    checkSumm = null;
+                    debug.Save("private void downloadUpdates_DoWork(object sender, DoWorkEventArgs e)", "DownloadFile(\"launcher.exe\"", ex.Message);
+                }
             }
         }
 
@@ -150,12 +173,12 @@ namespace _Hell_PRO_Tanki_Launcher
             /// На всякий случай, после того, как скачали обновление файла основной программы,
             /// Запускаем процесс обновления, конечно, если пользователь разрешил нам немедленную установку
             /// 
-
-            if (File.Exists("launcher.update"))
-            {
-                Process.Start("updater.exe", "launcher.update \"Multipack Launcher.exe\" \"!Hell Multipack Launcher.exe\"");
-                Process.GetCurrentProcess().Kill();
-            }
+            if (checkSumm != null)
+                if (enableUpdate == DialogResult.Yes && !onlyCheck && File.Exists("launcher.update") && Checksumm("launcher.update", checkSumm))
+                {
+                    Process.Start("updater.exe", "launcher.update \"" + Application.ProductName + "\".exe \"!Hell Multipack Launcher.exe\"");
+                    Process.GetCurrentProcess().Kill();
+                }
         }
 
 
@@ -163,19 +186,21 @@ namespace _Hell_PRO_Tanki_Launcher
         /// Так как при скачивании файлов мы делаем много одинаковых операций по скачивании и проверке,
         /// целесообразней завернуть все в 1 функцию и передавать ей параметры
         /// 
-        private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm, string localFilename = null)
+        private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm, string localFile = null)
         {
             try
             {
-                localFilename = localFilename != null ? localFilename : filename;
+                localFile = localFile != null ? localFile : filename;
 
-                if (!(File.Exists(localFilename)) || new Version(FileVersionInfo.GetVersionInfo(localFilename).FileVersion) < new Version(xmlVersion))
+
+                if ((File.Exists(localFile) && new Version(FileVersionInfo.GetVersionInfo(localFile).FileVersion) < new Version(xmlVersion)) ||
+                    (!File.Exists(localFile) && new Version(Application.ProductVersion) < new Version(xmlVersion)))
                 {
                     using (var client = new WebClient())
                     {
-                        client.DownloadFile(new Uri(url + filename), localFilename);
+                        client.DownloadFile(new Uri(url + filename), localFile);
 
-                        if (!Checksumm(localFilename, xmlChecksumm))
+                        if (!Checksumm(localFile, xmlChecksumm))
                         {
                             int errCount = 0;
 
@@ -183,7 +208,7 @@ namespace _Hell_PRO_Tanki_Launcher
                             {
                                 try
                                 {
-                                    client.DownloadFile(new Uri(url + filename), localFilename);
+                                    client.DownloadFile(new Uri(url + filename), localFile);
                                     ++errCount;
                                 }
                                 catch (Exception ex1)
@@ -197,7 +222,11 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)", "Filename: " + filename, ex.Message);
+                debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)",
+                    "Filename: " + filename + Environment.NewLine +
+                    "Localname: " + (localFile != null ? localFile : "null") +
+                    "URL: " + url,
+                    ex.Message);
             }
         }
     }

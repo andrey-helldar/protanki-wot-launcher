@@ -1,5 +1,0 @@
-﻿private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)
--------------------------------
-Filename: launcher.update
--------------------------------
-Удаленный сервер возвратил ошибку: (403) Запрещено.
