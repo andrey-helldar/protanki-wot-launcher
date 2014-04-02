@@ -120,6 +120,10 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
+                /// Иногда данная ошибка возникает при некорректном файле настроек. Удаляем его
+                if (File.Exists("settings.xml")) { File.Delete("settings.xml"); }
+
+
                 debug.Save("public fIndex()", "Применение заголовков и иконок приложения", ex.Message);
             }
 
@@ -1510,7 +1514,7 @@ namespace _Hell_PRO_Tanki_Launcher
             update_launcher update = new update_launcher();
             update.CheckUpdates();
 
-            debug.Send(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
+            //debug.Send(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
         }
 
         private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)

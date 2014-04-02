@@ -22,7 +22,7 @@ namespace _Hell_PRO_Tanki_Launcher
         public void Save(string func, string place, string mess)
         {
             if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
-            File.WriteAllText(@"temp\" + UserID() + "_-_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".debug",
+            File.WriteAllText(@"temp\" + UserID() + "_-_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff") + ".debug",
                 func + Environment.NewLine + "-------------------------------" + Environment.NewLine +
                 place + Environment.NewLine + "-------------------------------" + Environment.NewLine +
                 mess, Encoding.UTF8);
