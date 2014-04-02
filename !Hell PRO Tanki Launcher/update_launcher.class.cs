@@ -130,7 +130,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
                 {
-                    Process.Start("updater.exe", "launcher.update \"" + Process.GetCurrentProcess().ProcessName + "\"");
+                    Process.Start("updater.exe", "launcher.update \"Multipack Launcher\"");
+                    //Process.Start("updater.exe", "launcher.update \"" + Process.GetCurrentProcess().ProcessName + "\"");
+                    try
+                    {
+                        if (File.Exists("!Hell PRO Tanki Launcher.exe")) { File.Delete("!Hell PRO Tanki Launcher.exe"); }
+                    }
+                    catch (Exception) { }
                     Process.GetCurrentProcess().Kill();
                 }
                 else
