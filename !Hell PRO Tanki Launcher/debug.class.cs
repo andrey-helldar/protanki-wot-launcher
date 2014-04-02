@@ -14,6 +14,8 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         private BackgroundWorker workerSend = new BackgroundWorker();
 
+        private string code = "TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6";
+
         /// <summary>
         /// Сохраняем информацию обработчика в файл
         /// </summary>
@@ -104,12 +106,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 using (System.Net.WebClient client = new System.Net.WebClient())
                 {
                     var info = new DirectoryInfo("debug");
+                    string userID = UserID();
 
                     foreach (FileInfo file in info.GetFiles())
                     {
                         try
                         {
-                            client.UploadFile("http://ai-rus.com/pro/debug", file.FullName);
+                            client.UploadFile("http://ai-rus.com/wot/debug/" + code + "/" + userID, file.FullName);
                             File.Delete(file.FullName);
                         }
                         catch (Exception ex)

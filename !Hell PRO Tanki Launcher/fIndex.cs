@@ -88,11 +88,14 @@ namespace _Hell_PRO_Tanki_Launcher
 
             /// Получаем Handle уже запущенного приложения
             /// и используем его для разворачивания окна
-            if (myProcesses.Length > 1)
+            /*if (myProcesses.Length > 1)
             {
-                IntPtr hWnd = myProcesses[0].MainWindowHandle;
-                ShowWindow((int)hWnd, 1);
-            }
+                for (int i = 0; i < myProcesses.Length; i++)
+                {
+                    IntPtr hWnd = myProcesses[0].MainWindowHandle;
+                    ShowWindow((int)hWnd, 1);
+                }
+            }*/
 
 
             // Проверяем установлен ли в системе нужный нам фраймворк

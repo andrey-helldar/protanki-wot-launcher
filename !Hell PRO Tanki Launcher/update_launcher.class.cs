@@ -18,6 +18,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private bool onlyCheck = false;
 
+        private string url = @"http://ai-rus.com/pro/";
+
         private Version remoteVersion,
             localVersion;
 
@@ -69,7 +71,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 var client = new WebClient();
                 XmlDocument doc = new XmlDocument();
-                doc.Load(@"http://ai-rus.com/pro/protanks.xml");
+                doc.Load(url + "protanks.xml");
 
                 remoteVersion = new Version(doc.GetElementsByTagName("version")[0].InnerText);
                 localVersion = new Version(Application.ProductVersion);
@@ -81,7 +83,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     WebClient client1 = new WebClient();
                     client1.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
                     client1.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
-                    client1.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "launcher.update");
+                    client1.DownloadFileAsync(new Uri(url + "launcher.exe"), "launcher.update");
                 }
             }
             catch (Exception) { }
@@ -124,6 +126,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                /// Здесь нужно внедрить использование функции Checksumm();
+
                 if (File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
                 {
                     Process.Start("updater.exe", "launcher.update \"" + Process.GetCurrentProcess().ProcessName + "\"");
@@ -146,14 +150,14 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             var client = new WebClient();
             XmlDocument doc = new XmlDocument();
-            doc.Load(@"http://ai-rus.com/pro/protanks.xml");
+            doc.Load(url + "protanks.xml");
 
             try
             {
                 // Для работы нам нужна библиотека Ionic.Zip.dll
                 if (!File.Exists("Ionic.Zip.dll"))
                 {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
+                    client.DownloadFile(new Uri(url + "Ionic.Zip.dll"), "Ionic.Zip.dll");
                 }
             }
             catch (Exception ex1)
@@ -167,7 +171,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Newtonsoft.Json.dll
                 if (!File.Exists("Newtonsoft.Json.dll") || getFileVersion("Newtonsoft.Json.dll") < new Version(doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText))
                 {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Newtonsoft.Json.dll"), "Newtonsoft.Json.dll");
+                    client.DownloadFile(new Uri(url + "Newtonsoft.Json.dll"), "Newtonsoft.Json.dll");
                 }
             }
             catch (Exception ex1)
@@ -180,7 +184,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Processes Library
                 if (!File.Exists("ProcessesLibrary.dll") || getFileVersion("ProcessesLibrary.dll") < new Version(doc.GetElementsByTagName("processesLibrary")[0].InnerText))
                 {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/ProcessesLibrary.dll"), "ProcessesLibrary.dll");
+                    client.DownloadFile(new Uri(url + "ProcessesLibrary.dll"), "ProcessesLibrary.dll");
                 }
             }
             catch (Exception ex1)
@@ -195,7 +199,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Updater
                 if (!File.Exists("updater.exe") || getFileVersion("updater.exe") < new Version(doc.GetElementsByTagName("updater")[0].InnerText))
                 {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.exe"), "updater.exe");
+                    client.DownloadFile(new Uri(url + "updater.exe"), "updater.exe");
                 }
             }
             catch (Exception ex1)
@@ -208,7 +212,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Restarter
                 if (!File.Exists("restart.exe") || getFileVersion("restart.exe") < new Version(doc.GetElementsByTagName("restart")[0].InnerText))
                 {
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.exe"), "restart.exe");
+                    client.DownloadFile(new Uri(url + "restart.exe"), "restart.exe");
                 }
             }
             catch (Exception ex1)
