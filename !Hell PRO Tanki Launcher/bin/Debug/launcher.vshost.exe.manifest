@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1391616">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1389568">
       <assemblyIdentity name="launcher" version="1.0.7.82" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>71eMIx+oWPRWoyW76wpjp9inQyUX7ZxAjBzrbUNgJSE=</dsig:DigestValue>
+        <dsig:DigestValue>93K5TNyti7K6YC9NNBbllCK8ciGqekpu9Y8YFw2aKeQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

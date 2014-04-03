@@ -246,8 +246,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     debug.Save("public void loadSettings()", "Файл настроек не обнаружен. Перезапускаем ПО", "");
 
-                    Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
-                    Process.GetCurrentProcess().Kill();
+                    //Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
+                    //Process.GetCurrentProcess().Kill();
 
                     xmlTitle = Application.ProductName;
 

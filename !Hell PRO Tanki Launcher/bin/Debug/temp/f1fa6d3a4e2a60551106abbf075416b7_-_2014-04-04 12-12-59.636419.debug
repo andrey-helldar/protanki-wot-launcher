@@ -1,9 +1,0 @@
-﻿private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)
--------------------------------
-Error download
-Filename: Ionic.Zip.dll
-Localname: Ionic.Zip.dll
-URL: http://ai-rus.com/pro/
--------------------------------
-Значение не может быть неопределенным.
-Имя параметра: input

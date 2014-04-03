@@ -1,8 +1,0 @@
-﻿private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)
--------------------------------
-Error download
-Filename: Newtonsoft.Json.dll
-Localname: Newtonsoft.Json.dll
-URL: http://ai-rus.com/pro/
--------------------------------
-Процесс не может получить доступ к файлу "f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Newtonsoft.Json.dll", так как этот файл используется другим процессом.

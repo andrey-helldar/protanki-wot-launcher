@@ -20,39 +20,18 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            try
+
+            framework framework = new framework();
+            if (framework.Check())
             {
+                update_launcher update = new update_launcher();
+                update.Check();
 
-                framework framework = new framework();
-                if (framework.Check())
-                {
-                    update_launcher update = new update_launcher();
-                    update.CheckUpdates();
-
-                    Application.Run(new fIndex());
-                }
-                else
-                {
-                    Process.GetCurrentProcess().Close();
-                }
+                Application.Run(new fIndex());
             }
-            catch (Exception)
+            else
             {
-                if (!File.Exists("restart.exe"))
-                {
-                    var client = new WebClient();
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.exe"), "restart.exe");
-                }
-
-                if (!File.Exists("LanguagePack.dll"))
-                {
-                    var client = new WebClient();
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/LanguagePack.dll"), "LanguagePack.dll");
-
-                    // Restart software
-                    Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
-                    Process.GetCurrentProcess().Kill();
-                }
+                Process.GetCurrentProcess().Close();
             }
         }
     }

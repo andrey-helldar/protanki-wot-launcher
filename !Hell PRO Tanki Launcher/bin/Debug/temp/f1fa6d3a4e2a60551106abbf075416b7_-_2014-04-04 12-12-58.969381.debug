@@ -1,5 +1,0 @@
-﻿private bool Checksumm(string filename, string summ)
--------------------------------
-Filename: updater.exe
--------------------------------
-Процесс не может получить доступ к файлу "f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\updater.exe", так как этот файл используется другим процессом.
