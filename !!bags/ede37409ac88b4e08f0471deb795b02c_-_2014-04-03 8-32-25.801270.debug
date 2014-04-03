@@ -1,0 +1,5 @@
+﻿private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+-------------------------------
+
+-------------------------------
+Ссылка на объект не указывает на экземпляр объекта.
