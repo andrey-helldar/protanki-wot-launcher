@@ -188,45 +188,55 @@ namespace _Hell_PRO_Tanki_Launcher
         /// 
         private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm, string localFile = null)
         {
+            localFile = localFile != null ? localFile : filename;
+
+            /// Проверяем размер файла. Если нулевой, то удаляем его
+            if (new FileInfo(localFile).Length == 0) { File.Delete(localFile); }
+
             try
             {
-                localFile = localFile != null ? localFile : filename;
-
-
-                if ((File.Exists(localFile) && new Version(FileVersionInfo.GetVersionInfo(localFile).FileVersion) < new Version(xmlVersion)) ||
-                    (!File.Exists(localFile) && new Version(Application.ProductVersion) < new Version(xmlVersion)))
+                if ((File.Exists(localFile) && new Version(FileVersionInfo.GetVersionInfo(localFile).FileVersion) < new Version(xmlVersion)) || !File.Exists(localFile))
                 {
                     using (var client = new WebClient())
                     {
                         client.DownloadFile(new Uri(url + filename), localFile);
 
-                        if (!Checksumm(localFile, xmlChecksumm))
-                        {
-                            int errCount = 0;
+                        int errCount = 0;
 
-                            while (errCount < 3)
+                        while (errCount < 3)
+                        {
+                            try
                             {
-                                try
-                                {
-                                    client.DownloadFile(new Uri(url + filename), localFile);
-                                    ++errCount;
-                                }
-                                catch (Exception ex1)
-                                {
-                                    debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)", "Filename: " + filename + Environment.NewLine + "Error cicle: " + errCount.ToString(), ex1.Message);
-                                }
+                                client.DownloadFile(new Uri(url + filename), localFile);
+                                ++errCount;
                             }
+                            catch (Exception ex)
+                            {
+                                debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)",
+                                    "Filename: " + filename + Environment.NewLine +
+                                    "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +
+                                    "URL: " + url,
+                                    ex.Message);
+                            }
+                        }
+
+                        if (!Checksumm(localFile, xmlChecksumm) && File.Exists(localFile))
+                        {
+                            File.Delete(localFile);
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex1)
             {
+                DownloadFile(filename, xmlVersion, xmlChecksumm, localFile);
+
                 debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)",
+                    "Error download" + Environment.NewLine +
                     "Filename: " + filename + Environment.NewLine +
-                    "Localname: " + (localFile != null ? localFile : "null") +
+                    "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +
                     "URL: " + url,
-                    ex.Message);
+                    ex1.Message);
             }
         }
     }
