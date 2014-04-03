@@ -1,0 +1,5 @@
+﻿private bool Checksumm(string filename, string summ)
+-------------------------------
+Filename: Ionic.Zip.dll
+-------------------------------
+Процесс не может получить доступ к файлу "f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Ionic.Zip.dll", так как этот файл используется другим процессом.
