@@ -35,32 +35,40 @@ namespace _Hell_PRO_Tanki_Launcher
                 /// Удаляем ненужные файлы
                 if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
 
-                if (!launcher)
-                {
-                    /// Если файлы имеют нулевой размер, то удаляем их
-                    if (File.Exists("settings.xml") && new FileInfo("settings.xml").Length == 0) { File.Delete("settings.xml"); }
-                    if (File.Exists("Ionic.Zip.dll") && new FileInfo("Ionic.Zip.dll").Length == 0) { File.Delete("Ionic.Zip.dll"); }
-                    if (File.Exists("restart.exe") && new FileInfo("restart.exe").Length == 0) { File.Delete("restart.exe"); }
-                    if (File.Exists("updater.exe") && new FileInfo("updater.exe").Length == 0) { File.Delete("updater.exe"); }
-                    if (File.Exists("Newtonsoft.Json.dll") && new FileInfo("Newtonsoft.Json.dll").Length == 0) { File.Delete("Newtonsoft.Json.dll"); }
-                    if (File.Exists("ProcessesLibrary.dll") && new FileInfo("ProcessesLibrary.dll").Length == 0) { File.Delete("ProcessesLibrary.dll"); }
-                    if (File.Exists("LanguagePack.dll") && new FileInfo("LanguagePack.dll").Length == 0) { File.Delete("LanguagePack.dll"); }
-                    if (File.Exists("launcher.update") && new FileInfo("launcher.update").Length == 0) { File.Delete("launcher.update"); }
+                /// Если файлы имеют нулевой размер, то удаляем их
+                if (File.Exists("settings.xml") && new FileInfo("settings.xml").Length == 0) { File.Delete("settings.xml"); }
+                if (File.Exists("Ionic.Zip.dll") && new FileInfo("Ionic.Zip.dll").Length == 0) { File.Delete("Ionic.Zip.dll"); }
+                if (File.Exists("restart.exe") && new FileInfo("restart.exe").Length == 0) { File.Delete("restart.exe"); }
+                if (File.Exists("updater.exe") && new FileInfo("updater.exe").Length == 0) { File.Delete("updater.exe"); }
+                if (File.Exists("Newtonsoft.Json.dll") && new FileInfo("Newtonsoft.Json.dll").Length == 0) { File.Delete("Newtonsoft.Json.dll"); }
+                if (File.Exists("ProcessesLibrary.dll") && new FileInfo("ProcessesLibrary.dll").Length == 0) { File.Delete("ProcessesLibrary.dll"); }
+                if (File.Exists("LanguagePack.dll") && new FileInfo("LanguagePack.dll").Length == 0) { File.Delete("LanguagePack.dll"); }
+                if (File.Exists("launcher.update") && new FileInfo("launcher.update").Length == 0) { File.Delete("launcher.update"); }
 
-                    /// Скачиваем необходимые файлы
+                if (!launcher) // Определяем будем запускать скачивание до обновления или после
+                {
                     var task1 = Task.Factory.StartNew(() => DownloadFile("Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].InnerText, doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksumm"].InnerText));
                     var task2 = Task.Factory.StartNew(() => DownloadFile("restart.exe", doc.GetElementsByTagName("restart")[0].InnerText, doc.GetElementsByTagName("restart")[0].Attributes["checksumm"].InnerText));
-                    var task3 = Task.Factory.StartNew(() => DownloadFile("updater.exe", doc.GetElementsByTagName("updater")[0].InnerText, doc.GetElementsByTagName("updater")[0].Attributes["checksumm"].InnerText));
-                    var task4 = Task.Factory.StartNew(() => DownloadFile("Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText));
-                    var task5 = Task.Factory.StartNew(() => DownloadFile("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksumm"].InnerText));
-                    var task6 = Task.Factory.StartNew(() => DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksumm"].InnerText));
 
-                    Task.WaitAll(task1, task2, task3, task4, task5, task6);
+                    Task.WaitAll(task1, task2);
                 }
                 else
                 {
                     try
                     {
+                        // Скачиваем необходимые файлы
+                        var task3 = Task.Factory.StartNew(() => DownloadFile("updater.exe", doc.GetElementsByTagName("updater")[0].InnerText, doc.GetElementsByTagName("updater")[0].Attributes["checksumm"].InnerText));
+                        var task4 = Task.Factory.StartNew(() => DownloadFile("Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText));
+                        var task5 = Task.Factory.StartNew(() => DownloadFile("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksumm"].InnerText));
+                        var task6 = Task.Factory.StartNew(() => DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksumm"].InnerText));
+
+                        Task.WaitAll(task3, task4, task5, task6);
+
+                        if (File.Exists("launcher.update") && !Checksumm("launcher.update", doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText))
+                        {
+                            File.Delete("launcher.update");
+                        }
+
                         if (File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
                         {
                             Process.Start("updater.exe", "launcher.update \"" + Application.ProductName + ".exe\"");
@@ -74,7 +82,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
                     catch (Exception ex1)
                     {
-                        debug.Save("public void Check(bool launcher = false)", "launcher.update", ex.Message);
+                        debug.Save("public void Check(bool launcher = false)", "launcher.update", ex1.Message);
                     }
                 }
             }
