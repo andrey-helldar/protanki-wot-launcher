@@ -20,14 +20,6 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\D
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\launcher.application
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\launcher.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\launcher.pdb
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\launcher.exe
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\launcher.exe.manifest
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\launcher.application
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\launcher.exe
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\launcher.pdb
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\launcher.exe.manifest
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\launcher.application
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\launcher.pdb
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\ProcessesLibrary.dll
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\ProcessesLibrary.pdb
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\LanguagePack.dll
@@ -42,7 +34,14 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\restart.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\Newtonsoft.Json.dll
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Newtonsoft.Json.dll
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\launcher.exe.config
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\_Hell_PRO_Tanki_Launcher.fTwitter.resources
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\launcher.exe.config
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\_Hell_PRO_Tanki_Launcher.fTwitter.resources
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Multipack Launcher.exe.config
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Multipack Launcher.exe.manifest
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Multipack Launcher.application
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Multipack Launcher.exe
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Multipack Launcher.pdb
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\Multipack Launcher.exe.manifest
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\Multipack Launcher.application
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\Multipack Launcher.exe
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\Multipack Launcher.pdb

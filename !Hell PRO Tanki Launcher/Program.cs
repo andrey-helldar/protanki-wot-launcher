@@ -28,6 +28,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 update.Check();
 
                 Application.Run(new fIndex());
+
+                update.Check(true); // Запускаем проверку обновлений лаунчера после инициализации приложения
             }
             else
             {

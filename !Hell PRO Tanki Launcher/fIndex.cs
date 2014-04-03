@@ -18,7 +18,6 @@ using System.Runtime.InteropServices;
 using Processes_Library;
 using _Hell_Language_Pack;
 using Newtonsoft.Json;
-using OAuth;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -131,7 +130,7 @@ namespace _Hell_PRO_Tanki_Launcher
             if (!bwVideo.IsBusy) { bwVideo.RunWorkerAsync(); }
 
             // Грузим новости
-            //if (!bwNews.IsBusy) { bwNews.RunWorkerAsync(); }
+            if (!bwNews.IsBusy) { bwNews.RunWorkerAsync(); }
 
             // Так как панель у нас убрана с видимой части, устанавливаем ее расположение динамически
             pNews.SetBounds(13, 109, 620, 290);
@@ -1411,15 +1410,33 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwNews_DoWork(object sender, DoWorkEventArgs e)
         {
-            // https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=AI_rus&exclude_replies=true
             try
             {
-                /// Twitter
+                int i = 0;
 
+                XmlDocument doc = new XmlDocument();
+                doc.Load(@"http://worldoftanks.ru/ru/rss/news/");
+
+                newsTitle.Clear();
+                newsLink.Clear();
+                newsDate.Clear();
+
+                foreach (XmlNode xmlNode in doc.GetElementsByTagName("item"))
+                {
+                    if (i >= 10 || showNewsTop > 290) { break; }
+
+                    newsDate.Add(xmlNode["pubDate"].InnerText);
+                    newsTitle.Add(xmlNode["title"].InnerText);
+                    newsLink.Add(xmlNode["link"].InnerText);
+
+                    bwNews.ReportProgress(i);
+
+                    ++i;
+                }
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwNews_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
+                debug.Save("private void bwVideo_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
             }
         }
 

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="launcher.exe" version="1.0.3.42" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
+  <asmv1:assemblyIdentity name="Multipack Launcher.exe" version="1.0.3.42" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
   <description asmv2:iconFile="PROTanks.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="launcher" version="1.0.7.83" language="neutral" processorArchitecture="x86" />
-    <commandLine file="launcher.exe" parameters="" />
+    <assemblyIdentity name="Multipack Launcher" version="1.0.7.84" language="neutral" processorArchitecture="x86" />
+    <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
     <security>
@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="launcher.exe" size="1389568">
-      <assemblyIdentity name="launcher" version="1.0.7.83" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="1383936">
+      <assemblyIdentity name="Multipack Launcher" version="1.0.7.84" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wo374eSiLIqgYphNCQbwUTzyBPRhJIKMvxkf0seZCN0=</dsig:DigestValue>
+        <dsig:DigestValue>C/k2dCLgxQQ8NbE7r69ghWaVt1PW6zoLj4r4KYNIW7E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -114,7 +114,7 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="launcher.exe.config" size="161">
+  <file name="Multipack Launcher.exe.config" size="161">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
