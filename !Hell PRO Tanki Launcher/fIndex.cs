@@ -239,10 +239,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    MessageBox.Show("Файл настроек не обнаружен!" + Environment.NewLine + "Будут применены настройки по-умолчанию и программа будет перезапущена.");
+                    //MessageBox.Show("Файл настроек не обнаружен!" + Environment.NewLine + "Будут применены настройки по-умолчанию и программа будет перезапущена.");
 
-                    var client = new WebClient();
-                    client.DownloadFile(new Uri(@"http://ai-rus.com/pro/settings.xml"), "settings.xml");
+                    //var client = new WebClient();
+                    //client.DownloadFile(new Uri(@"http://ai-rus.com/pro/settings.xml"), "settings.xml");
+
+                    debug.Save("public void loadSettings()", "Файл настроек не обнаружен. Перезапускаем ПО", "");
 
                     Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
                     Process.GetCurrentProcess().Kill();
@@ -1511,8 +1513,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
             if (!bwGetVipProcesses.IsBusy) { bwGetVipProcesses.RunWorkerAsync(); }
 
-            update_launcher update = new update_launcher();
-            update.CheckUpdates();
+            //update_launcher update = new update_launcher();
+            //update.CheckUpdates();
 
             //debug.Send(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
         }

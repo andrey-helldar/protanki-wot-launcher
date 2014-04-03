@@ -16,24 +16,15 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         debug debug = new debug();
 
-        private bool onlyCheck = false;
-
-        private string url = @"http://ai-rus.com/pro/",
-            checkSumm;
-        private DialogResult enableUpdate = DialogResult.Yes;
+        private string url = @"http://ai-rus.com/pro/";
+        private DialogResult enableUpdate = DialogResult.No;
 
         BackgroundWorker downloadUpdates = new BackgroundWorker();
 
-        public void CheckUpdates(bool check = false)
+        public void CheckUpdates()
         {
             try
             {
-                /// Если параметр onlyCheck включен, то проверяем обновления только
-                /// для файлов библиотек, минуя проверку обновлений основного приложения
-                onlyCheck = check;
-
-                if (!check)
-                {
                     /// Считываем версию основного файла приложения
                     /// Нужно для вывода окна с запросом обновления
                     XmlDocument doc = new XmlDocument();
@@ -41,7 +32,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     string xmlVer = doc.GetElementsByTagName("version")[0].InnerText;
 
                     if ((File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) < new Version(xmlVer)) ||
-                        (!File.Exists("launcher.update") && new Version(Application.ProductVersion) < new Version(xmlVer)))
+                        (new Version(Application.ProductVersion) < new Version(xmlVer)))
                     {
                         enableUpdate = MessageBox.Show(fIndex.ActiveForm,
                             "Обнаружена новая версия: " + xmlVer.ToString() + Environment.NewLine +
@@ -55,7 +46,6 @@ namespace _Hell_PRO_Tanki_Launcher
                         /// то есть не требует обновления, то удаляем его, если он существует
                         if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
                     }
-                }
             }
             catch (Exception ex)
             {
@@ -64,14 +54,20 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
 
                 enableUpdate = DialogResult.Yes;
-                onlyCheck = false;
 
-                debug.Save("public void CheckUpdates(bool check = false)", "onlyCheck", ex.Message);
+                debug.Save("public void CheckUpdates()", "onlyCheck", ex.Message);
             }
-
 
             try
             {
+                /// ПРоверяем файл настроек. Если его нет или он поврежден, то качаем новый
+                if (!File.Exists("settings.xml"))
+                {
+                    var client = new WebClient();
+                    client.DownloadFile(new Uri(url+"settings.xml"), "settings.xml");
+                }else if()
+
+
                 /// Создаем backgroundWorker и запускаем процедуру обновления файлов
                 downloadUpdates.WorkerReportsProgress = true;
                 downloadUpdates.WorkerSupportsCancellation = true;
@@ -82,7 +78,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("public void CheckUpdates(bool check = false)", "if (!downloadUpdates.IsBusy) { downloadUpdates.RunWorkerAsync(); }", ex.Message);
+                debug.Save("public void CheckUpdates()", "if (!downloadUpdates.IsBusy) { downloadUpdates.RunWorkerAsync(); }", ex.Message);
             }
         }
 
@@ -90,7 +86,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (File.Exists(filename))
+                if (File.Exists(filename) && summ != null)
                     using (FileStream fs = File.OpenRead(filename))
                     {
                         System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
@@ -109,7 +105,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        /*private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             try
             {
@@ -119,7 +115,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 debug.Save("private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)", "pbDownload.Value = e.ProgressPercentage;", ex.Message);
             }
-        }
+        }*/
 
         private void downloadUpdates_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -137,11 +133,11 @@ namespace _Hell_PRO_Tanki_Launcher
                 /// Скачиваем необходимые файлы
                 /// 
                 DownloadFile("Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].InnerText, doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksumm"].InnerText);
+                DownloadFile("restart.exe", doc.GetElementsByTagName("restart")[0].InnerText, doc.GetElementsByTagName("restart")[0].Attributes["checksumm"].InnerText);
+                DownloadFile("updater.exe", doc.GetElementsByTagName("updater")[0].InnerText, doc.GetElementsByTagName("updater")[0].Attributes["checksumm"].InnerText);
                 DownloadFile("Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText);
                 DownloadFile("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksumm"].InnerText);
                 DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksumm"].InnerText);
-                DownloadFile("restart.exe", doc.GetElementsByTagName("restart")[0].InnerText, doc.GetElementsByTagName("restart")[0].Attributes["checksumm"].InnerText);
-                DownloadFile("updater.exe", doc.GetElementsByTagName("updater")[0].InnerText, doc.GetElementsByTagName("updater")[0].Attributes["checksumm"].InnerText);
 
                 /// 
                 /// А теперь проверяем обновления основного файла программы
@@ -149,19 +145,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 /// 
                 try
                 {
-                    if (enableUpdate == DialogResult.Yes && !onlyCheck)
+                    if (enableUpdate == DialogResult.Yes)
                     {
-                        checkSumm = doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText;
                         DownloadFile("launcher.exe", doc.GetElementsByTagName("version")[0].InnerText, doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText, "launcher.update");
-                    }
-                    else
-                    {
-                        checkSumm = null;
                     }
                 }
                 catch (Exception ex)
                 {
-                    checkSumm = null;
                     debug.Save("private void downloadUpdates_DoWork(object sender, DoWorkEventArgs e)", "DownloadFile(\"launcher.exe\"", ex.Message);
                 }
             }
@@ -169,16 +159,41 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void downloadUpdates_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            bool md5error = false;
+            /// 
+            /// Проверяем контрольную сумму файлов
+            /// 
+            XmlDocument doc = new XmlDocument();
+            doc.Load(url + "protanks.xml");
+            if (!Checksumm("Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksumm"].InnerText)) { md5error = true; File.Delete("Ionic.Zip.dll"); }
+            if (!Checksumm("restart.exe", doc.GetElementsByTagName("restart")[0].Attributes["checksumm"].InnerText)) { md5error = true; File.Delete("restart.exe"); }
+            if (!Checksumm("updater.exe", doc.GetElementsByTagName("updater")[0].Attributes["checksumm"].InnerText)) { md5error = true; File.Delete("updater.exe"); }
+            if (!Checksumm("Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText)) { md5error = true; File.Delete("Newtonsoft.Json.dll"); }
+            if (!Checksumm("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksumm"].InnerText)) { md5error = true; File.Delete("ProcessesLibrary.dll"); }
+            if (!Checksumm("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].Attributes["checksumm"].InnerText)) { md5error = true; File.Delete("LanguagePack.dll"); }
+
             /// 
             /// На всякий случай, после того, как скачали обновление файла основной программы,
             /// Запускаем процесс обновления, конечно, если пользователь разрешил нам немедленную установку
             /// 
-            if (checkSumm != null)
-                if (enableUpdate == DialogResult.Yes && !onlyCheck && File.Exists("launcher.update") && Checksumm("launcher.update", checkSumm))
+            if (Checksumm("launcher.update", doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText))
+            {
+                if (enableUpdate == DialogResult.Yes && File.Exists("launcher.update"))
                 {
                     Process.Start("updater.exe", "launcher.update \"" + Application.ProductName + "\".exe \"!Hell Multipack Launcher.exe\"");
                     Process.GetCurrentProcess().Kill();
                 }
+            }
+            else
+            {
+                md5error = true;
+            }
+
+            if (md5error)
+            {
+                Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
+                Process.GetCurrentProcess().Kill();
+            }
         }
 
 

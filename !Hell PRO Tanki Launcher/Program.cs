@@ -27,7 +27,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (framework.Check())
                 {
                     update_launcher update = new update_launcher();
-                    update.CheckUpdates(true);
+                    update.CheckUpdates();
 
                     Application.Run(new fIndex());
                 }
