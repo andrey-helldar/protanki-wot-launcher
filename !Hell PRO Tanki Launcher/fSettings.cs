@@ -29,7 +29,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         List<string> userProcesses = new List<string>();
 
-        debug debug = new debug();
+        Debug Debug = new Debug();
 
         public fSettings()
         {
@@ -51,7 +51,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception ex)
                 {
-                    debug.Save("public fSettings()", "get VERSION", ex.Message);
+                    Debug.Save("public fSettings()", "get VERSION", ex.Message);
                 }
 
                 try
@@ -60,7 +60,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception ex)
                 {
-                    debug.Save("public fSettings()", "get TYPE", ex.Message);
+                    Debug.Save("public fSettings()", "get TYPE", ex.Message);
                 }
 
                 try
@@ -78,7 +78,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 catch (Exception ex)
                 {
                     cbPriority.SelectedIndex = 2;
-                    debug.Save("public fSettings()", "priority", ex.Message);
+                    Debug.Save("public fSettings()", "priority", ex.Message);
                 }
 
                 try
@@ -128,7 +128,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     //cbNews.Checked = true;
                     cbVideo.Checked = true;
 
-                    debug.Save("public fSettings()", "foreach (XmlNode xmlNode in doc.GetElementsByTagName(\"settings\"))", ex.Message);
+                    Debug.Save("public fSettings()", "foreach (XmlNode xmlNode in doc.GetElementsByTagName(\"settings\"))", ex.Message);
                 }
             }
             else
@@ -157,7 +157,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void loadLang()", "", ex.Message);
+                Debug.Save("private void loadLang()", "", ex.Message);
             }
         }
 
@@ -184,7 +184,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void moveForm()", "", ex.Message);
+                Debug.Save("private void moveForm()", "", ex.Message);
             }
         }
 
@@ -349,7 +349,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwSave_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
+                Debug.Save("private void bwSave_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
             }
 
             // Сохраняем приоритет в реестр
@@ -396,7 +396,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception ex)
                 {
-                    debug.Save("private void bwSave_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Send process", ex.Message);
+                    Debug.Save("private void bwSave_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Send process", ex.Message);
                 }
 
             this.DialogResult = DialogResult.OK;
@@ -437,7 +437,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwSave_DoWork(object sender, DoWorkEventArgs e)", "if (!File.Exists(\"preferences.xml\"))", ex.Message);
+                Debug.Save("private void bwSave_DoWork(object sender, DoWorkEventArgs e)", "if (!File.Exists(\"preferences.xml\"))", ex.Message);
             }
         }
     }

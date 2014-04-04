@@ -10,7 +10,7 @@ using Ionic.Zip;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
-    class debug
+    class Debug
     {
         private BackgroundWorker workerSend = new BackgroundWorker();
 
@@ -22,7 +22,7 @@ namespace _Hell_PRO_Tanki_Launcher
         public void Save(string func, string place, string mess)
         {
             if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
-            File.WriteAllText(@"temp\" + UserID() + "_-_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff") + ".debug",
+            File.WriteAllText(@"temp\" + UserID() + "_-_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff") + ".Debug",
                 func + Environment.NewLine + "-------------------------------" + Environment.NewLine +
                 place + Environment.NewLine + "-------------------------------" + Environment.NewLine +
                 mess, Encoding.UTF8);
@@ -39,13 +39,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 this.Delete(path);
 
                 if (!Directory.Exists(path + @"\temp")) { return false; }
-                if (!Directory.Exists(path + @"\debug")) { Directory.CreateDirectory(path + @"\debug"); }
+                if (!Directory.Exists(path + @"\Debug")) { Directory.CreateDirectory(path + @"\Debug"); }
 
                 using (ZipFile zip = new ZipFile())
                 {
                     zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
                     zip.AddDirectory(path + @"\temp");
-                    zip.Save(path + @"\debug\" + UserID() + "_-_" + "debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
+                    zip.Save(path + @"\Debug\" + UserID() + "_-_" + "Debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
                 }
 
                 Directory.Delete(path + @"\temp", true);
@@ -102,22 +102,22 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void workerSend_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (Directory.Exists("debug"))
+            if (Directory.Exists("Debug"))
                 using (System.Net.WebClient client = new System.Net.WebClient())
                 {
-                    var info = new DirectoryInfo("debug");
+                    var info = new DirectoryInfo("Debug");
                     string userID = UserID();
 
                     foreach (FileInfo file in info.GetFiles())
                     {
                         try
                         {
-                            client.UploadFile("http://ai-rus.com/wot/debug/" + code + "/" + userID, file.FullName);
+                            client.UploadFile("http://ai-rus.com/wot/Debug/" + code + "/" + userID, file.FullName);
                             File.Delete(file.FullName);
                         }
                         catch (Exception ex)
                         {
-                            Save("private void workerSend_DoWork(object sender, DoWorkEventArgs e)", "Send debug files: " + file.FullName, ex.Message);
+                            Save("private void workerSend_DoWork(object sender, DoWorkEventArgs e)", "Send Debug files: " + file.FullName, ex.Message);
                         }
                     }
                 }

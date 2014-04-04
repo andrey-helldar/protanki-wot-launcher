@@ -24,7 +24,7 @@ namespace _Hell_PRO_Tanki_Launcher
             framework framework = new framework();
             if (framework.Check())
             {
-                update_launcher update = new update_launcher();
+                UpdateLauncher update = new UpdateLauncher();
                 update.Check();
 
                 Application.Run(new fIndex());

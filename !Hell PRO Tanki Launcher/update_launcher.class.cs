@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
-    class update_launcher
+    class UpdateLauncher
     {
-        debug debug = new debug();
+        Debug Debug = new Debug();
 
         private string url = @"http://ai-rus.com/pro/";
         private ProgressBar downloadPercent = null;
@@ -49,9 +49,11 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (!launcher) // Определяем будем запускать скачивание до обновления или после
                 {
-                    var task1 = Task.Factory.StartNew(() => DownloadFile("Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].InnerText, doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksumm"].InnerText));
-                    var task2 = Task.Factory.StartNew(() => DownloadFile("restart.exe", doc.GetElementsByTagName("restart")[0].InnerText, doc.GetElementsByTagName("restart")[0].Attributes["checksumm"].InnerText));
-                    var task6 = Task.Factory.StartNew(() => DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksumm"].InnerText));
+
+
+                    var task1 = Task.Factory.StartNew(() => DownloadFile("Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].InnerText, doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksum"].InnerText));
+                    var task2 = Task.Factory.StartNew(() => DownloadFile("restart.exe", doc.GetElementsByTagName("restart")[0].InnerText, doc.GetElementsByTagName("restart")[0].Attributes["checksum"].InnerText));
+                    var task6 = Task.Factory.StartNew(() => DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksum"].InnerText));
 
                     Task.WaitAll(task1, task2, task6);
                 }
@@ -60,9 +62,9 @@ namespace _Hell_PRO_Tanki_Launcher
                     try
                     {
                         // Скачиваем необходимые файлы
-                        var task3 = Task.Factory.StartNew(() => DownloadFile("updater.exe", doc.GetElementsByTagName("updater")[0].InnerText, doc.GetElementsByTagName("updater")[0].Attributes["checksumm"].InnerText));
-                        var task4 = Task.Factory.StartNew(() => DownloadFile("Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText));
-                        var task5 = Task.Factory.StartNew(() => DownloadFile("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksumm"].InnerText));
+                        var task3 = Task.Factory.StartNew(() => DownloadFile("updater.exe", doc.GetElementsByTagName("updater")[0].InnerText, doc.GetElementsByTagName("updater")[0].Attributes["checksum"].InnerText));
+                        var task4 = Task.Factory.StartNew(() => DownloadFile("Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksum"].InnerText));
+                        var task5 = Task.Factory.StartNew(() => DownloadFile("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksum"].InnerText));
 
                         Task.WaitAll(task3, task4, task5);
                         
@@ -79,23 +81,23 @@ namespace _Hell_PRO_Tanki_Launcher
                                 downloadPercent.Value = 0;
                             }
 
-                            Task.Factory.StartNew(() => DownloadFile("launcher.exe", doc.GetElementsByTagName("version")[0].InnerText, doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText, "launcher.update", true)).Wait();
+                            Task.Factory.StartNew(() => DownloadFile("launcher.exe", doc.GetElementsByTagName("version")[0].InnerText, doc.GetElementsByTagName("version")[0].Attributes["checksum"].InnerText, "launcher.update", true)).Wait();
                         }
                         else if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
                     }
                     catch (Exception ex1)
                     {
-                        debug.Save("public void Check(bool launcher = false)", "launcher.update", ex1.Message);
+                        Debug.Save("public void Check(bool launcher = false)", "launcher.update", ex1.Message);
                     }
                 }
             }
             catch (Exception ex)
             {
-                debug.Save("public void Check(bool launcher = false)", "", ex.Message);
+                Debug.Save("public void Check(bool launcher = false)", "", ex.Message);
             }
         }
 
-        private bool Checksumm(string filename, string summ)
+        private bool Checksum(string filename, string summ)
         {
             try
             {
@@ -105,20 +107,20 @@ namespace _Hell_PRO_Tanki_Launcher
                         System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
                         byte[] fileData = new byte[fs.Length];
                         fs.Read(fileData, 0, (int)fs.Length);
-                        byte[] checkSumm = md5.ComputeHash(fileData);
-                        return BitConverter.ToString(checkSumm) == summ.ToUpper() ? true : false;
+                        byte[] checksum = md5.ComputeHash(fileData);
+                        return BitConverter.ToString(checksum) == summ.ToUpper();
                     }
                 else
                     return false;
             }
             catch (Exception ex)
             {
-                debug.Save("private bool Checksumm(string filename, string summ)", "Filename: " + filename, ex.Message);
+                Debug.Save("private bool checksum(string filename, string summ)", "Filename: " + filename, ex.Message);
                 return false;
             }
         }
 
-        private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm, string localFile = null, bool showStatus = false)
+        private void DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null, bool showStatus = false)
         {
             localFile = localFile != null ? localFile : filename;
 
@@ -133,9 +135,9 @@ namespace _Hell_PRO_Tanki_Launcher
                         try
                         {
                             if (showStatus && downloadPercent != null) { client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged); }
-                            client.DownloadFileAsync(new Uri(url + filename), localFile);
+                            client.DownloadFile(new Uri(url + filename), localFile);
 
-                            if (!Checksumm(localFile, xmlChecksumm) && File.Exists(localFile))
+                            if (!Checksum(localFile, xmlchecksum) && File.Exists(localFile))
                             {
                                 File.Delete(localFile);
                                 client.DownloadFile(new Uri(url + filename), localFile);
@@ -143,7 +145,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         }
                         catch (Exception ex)
                         {
-                            debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)",
+                            Debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlchecksum)",
                                 "Filename: " + filename + Environment.NewLine +
                                 "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +
                                 "URL: " + url,
@@ -154,7 +156,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex1)
             {
-                debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlChecksumm)",
+                Debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlchecksum)",
                     "Error download" + Environment.NewLine +
                     "Filename: " + filename + Environment.NewLine +
                     "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +

@@ -12,7 +12,7 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     class framework
     {
-        debug debug = new debug();
+        Debug Debug = new Debug();
 
         public bool Check()
         {
@@ -77,7 +77,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("public void getFramework()", "v4.0", ex.Message);
+                Debug.Save("public void getFramework()", "v4.0", ex.Message);
             }
 
             try
@@ -101,7 +101,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("public void getFramework()", "Show message", ex.Message);
+                Debug.Save("public void getFramework()", "Show message", ex.Message);
                 return false;
             }
         }

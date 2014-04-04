@@ -73,7 +73,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         ProcessStartInfo psi;
 
-        debug debug = new debug();  // Инициализируем класс дебага
+        Debug Debug = new Debug();  // Инициализируем класс дебага
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         static extern bool ShowWindow(int hWnd, int nCmdShow);
@@ -104,7 +104,7 @@ namespace _Hell_PRO_Tanki_Launcher
             InitializeComponent();
 
             /// Запускаем проверку обновлений лаунчера после инициализации приложения
-            update_launcher update = new update_launcher();
+            UpdateLauncher update = new UpdateLauncher();
             update.Check(true, pbDownload);
 
             loadSettings();
@@ -127,7 +127,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (File.Exists("settings.xml")) { File.Delete("settings.xml"); }
 
 
-                debug.Save("public fIndex()", "Применение заголовков и иконок приложения", ex.Message);
+                Debug.Save("public fIndex()", "Применение заголовков и иконок приложения", ex.Message);
             }
 
             // Грузим видео с ютуба
@@ -190,12 +190,12 @@ namespace _Hell_PRO_Tanki_Launcher
                         try
                         {
                             sVerType = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower();
-                            debug.Save("public void loadSettings()", "sVerType = doc.GetElementsByTagName(\"type\")[0].InnerText;", ex.Message);
+                            Debug.Save("public void loadSettings()", "sVerType = doc.GetElementsByTagName(\"type\")[0].InnerText;", ex.Message);
                         }
                         catch (Exception ex1)
                         {
                             sVerType = "full";
-                            debug.Save("public void loadSettings()", "Read from INI", ex1.Message);
+                            Debug.Save("public void loadSettings()", "Read from INI", ex1.Message);
                         }
                     }
 
@@ -231,7 +231,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     catch (Exception ex)
                     {
                         lVerModpack = new Version(doc.GetElementsByTagName("version")[0].InnerText);
-                        debug.Save("public void loadSettings()", "IniFile ini = new IniFile(\"config.ini\");", ex.Message);
+                        Debug.Save("public void loadSettings()", "IniFile ini = new IniFile(\"config.ini\");", ex.Message);
                     }
                 }
                 else
@@ -241,7 +241,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     //var client = new WebClient();
                     //client.DownloadFile(new Uri(@"http://ai-rus.com/pro/settings.xml"), "settings.xml");
 
-                    debug.Save("public void loadSettings()", "Файл настроек не обнаружен. Перезапускаем ПО", "");
+                    Debug.Save("public void loadSettings()", "Файл настроек не обнаружен. Перезапускаем ПО", "");
 
                     Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
                     Process.GetCurrentProcess().Kill();
@@ -255,7 +255,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("public fIndex()", "public void loadSettings()", ex.Message);
+                Debug.Save("public fIndex()", "public void loadSettings()", ex.Message);
             }
         }
 
@@ -290,24 +290,24 @@ namespace _Hell_PRO_Tanki_Launcher
                             }
                             else
                             {
-                                debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
+                                Debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
                                 return new Version("0.0.0.0");
                             }
                         }
                         else
                         {
-                            debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
+                            Debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
                             return new Version("0.0.0.0");
                         }
                     }
 
-                    debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
+                    Debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен." + Environment.NewLine + "Проверьте правильность установки модпака.");
                     return new Version("0.0.0.0");
                 }
             }
             catch (Exception ex)
             {
-                debug.Save("private int getTanksVersion()", "doc.Load(path + \"version.xml\");", ex.Message);
+                Debug.Save("private int getTanksVersion()", "doc.Load(path + \"version.xml\");", ex.Message);
                 return new Version("0.0.0.0");
             }
         }
@@ -332,7 +332,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("public void setBackground()", "", ex.Message);
+                Debug.Save("public void setBackground()", "", ex.Message);
                 this.BackgroundImage = Properties.Resources.back_7;
             }
         }
@@ -350,7 +350,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bVideo_Click(object sender, EventArgs e)", "", ex.Message);
+                Debug.Save("private void bVideo_Click(object sender, EventArgs e)", "", ex.Message);
             }
         }
 
@@ -394,7 +394,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwUpdater_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
+                Debug.Save("private void bwUpdater_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
             }
         }
 
@@ -505,12 +505,12 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                /*debug.Save("private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Возникла ошибка обновления. Лаунчер модпака будет перезапущен.", ex.Message);
+                /*Debug.Save("private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Возникла ошибка обновления. Лаунчер модпака будет перезапущен.", ex.Message);
                 MessageBox.Show("Возникла ошибка обновления. Лаунчер модпака будет перезапущен.");
                 Process.Start("restart.exe", Process.GetCurrentProcess().ProcessName);
                 Process.GetCurrentProcess().Kill();*/
 
-                debug.Save("private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "", ex.Message);
+                Debug.Save("private void bwUpdater_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "", ex.Message);
             }
         }
 
@@ -530,7 +530,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bLauncher_Click(object sender, EventArgs e)", "Process.Start(path + \"WoTLauncher.exe\");", ex.Message);
+                Debug.Save("private void bLauncher_Click(object sender, EventArgs e)", "Process.Start(path + \"WoTLauncher.exe\");", ex.Message);
             }
         }
 
@@ -547,7 +547,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bPlay_Click(object sender, EventArgs e)", "Process.Start(path + \"WorldOfTanks.exe\");", ex.Message);
+                Debug.Save("private void bPlay_Click(object sender, EventArgs e)", "Process.Start(path + \"WorldOfTanks.exe\");", ex.Message);
             }
         }
 
@@ -564,7 +564,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void moveForm()", "", ex.Message);
+                Debug.Save("private void moveForm()", "", ex.Message);
             }
         }
 
@@ -576,7 +576,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bUpdate_Click(object sender, EventArgs e)", "Process.Start(sUpdateLink);", ex.Message);
+                Debug.Save("private void bUpdate_Click(object sender, EventArgs e)", "Process.Start(sUpdateLink);", ex.Message);
             }
         }
 
@@ -588,7 +588,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)", "Process.Start(\"http://ai-rus.com\");", ex.Message);
+                Debug.Save("private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)", "Process.Start(\"http://ai-rus.com\");", ex.Message);
             }
         }
 
@@ -617,7 +617,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void видеоToolStripMenuItem_Click(object sender, EventArgs e)", "Process.Start(\"http://goo.gl/gr6pFl\");", ex.Message);
+                Debug.Save("private void видеоToolStripMenuItem_Click(object sender, EventArgs e)", "Process.Start(\"http://goo.gl/gr6pFl\");", ex.Message);
             }
         }
 
@@ -644,7 +644,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void toolStripMenuItem4_Click(object sender, EventArgs e)", "WindowState = FormWindowState.Normal;", ex.Message);
+                Debug.Save("private void toolStripMenuItem4_Click(object sender, EventArgs e)", "WindowState = FormWindowState.Normal;", ex.Message);
             }
         }
 
@@ -720,7 +720,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", "if (optimized || autoAero)", ex.Message);
+                Debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", "if (optimized || autoAero)", ex.Message);
             }
 
             try
@@ -842,12 +842,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception ex1)
                 {
-                    debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", "if (optimizeVideo)", ex1.Message);
+                    Debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", "if (optimizeVideo)", ex1.Message);
                 }
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
+                Debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
             }
         }
 
@@ -872,7 +872,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)", "fSettings fSettings = new fSettings();", ex.Message);
+                Debug.Save("private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)", "fSettings fSettings = new fSettings();", ex.Message);
             }
         }
 
@@ -886,14 +886,14 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void notifyIcon_Click(object sender, EventArgs e)", "WindowState = FormWindowState.Normal;", ex.Message);
+                Debug.Save("private void notifyIcon_Click(object sender, EventArgs e)", "WindowState = FormWindowState.Normal;", ex.Message);
             }
         }
 
         private void fIndex_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Архивируем папку дебага
-            debug.Archive(Application.StartupPath);
+            Debug.Archive(Application.StartupPath);
 
             try
             {
@@ -906,7 +906,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void fIndex_FormClosing(object sender, FormClosingEventArgs e)", "psi = new ProcessStartInfo(\"cmd\", @\"/c net start uxsms\");", ex.Message);
+                Debug.Save("private void fIndex_FormClosing(object sender, FormClosingEventArgs e)", "psi = new ProcessStartInfo(\"cmd\", @\"/c net start uxsms\");", ex.Message);
             }
         }
 
@@ -947,7 +947,7 @@ namespace _Hell_PRO_Tanki_Launcher
               }
               catch (Exception ex)
               {
-                  debug.Save("private void saveLog(int index, string param)", "", ex.Message);
+                  Debug.Save("private void saveLog(int index, string param)", "", ex.Message);
               }*/
         }
 
@@ -971,7 +971,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void saveLogNotCloseProcess(string param)", "if (!File.Exists(@\"log\not_closed_process.log\"))", ex.Message);
+                Debug.Save("private void saveLogNotCloseProcess(string param)", "if (!File.Exists(@\"log\not_closed_process.log\"))", ex.Message);
             }
         }
 
@@ -989,7 +989,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bSettings_Click(object sender, EventArgs e)", "fSettings fSettings = new fSettings();", ex.Message);
+                Debug.Save("private void bSettings_Click(object sender, EventArgs e)", "fSettings fSettings = new fSettings();", ex.Message);
             }
         }
 
@@ -1002,7 +1002,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwOptimize_ProgressChanged(object sender, ProgressChangedEventArgs e)", "double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;", ex.Message);
+                Debug.Save("private void bwOptimize_ProgressChanged(object sender, ProgressChangedEventArgs e)", "double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;", ex.Message);
             }
         }
 
@@ -1033,7 +1033,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwAero_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
+                Debug.Save("private void bwAero_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
             }
         }
 
@@ -1051,7 +1051,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void label_Click(object sender, EventArgs e)", "Process.Start((sender as LinkLabel).Links[0].LinkData.ToString());", ex.Message);
+                Debug.Save("private void label_Click(object sender, EventArgs e)", "Process.Start((sender as LinkLabel).Links[0].LinkData.ToString());", ex.Message);
             }
         }
 
@@ -1086,7 +1086,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Добавление ссылки на все видео", ex.Message);
+                Debug.Save("private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Добавление ссылки на все видео", ex.Message);
             }
         }
 
@@ -1128,7 +1128,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwVideo_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
+                Debug.Save("private void bwVideo_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
             }
         }
 
@@ -1198,7 +1198,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)", "Создание динамических полей", ex.Message);
+                Debug.Save("private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)", "Создание динамических полей", ex.Message);
             }
         }
 
@@ -1213,7 +1213,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private string formatDate(string dt)", "", ex.Message);
+                Debug.Save("private string formatDate(string dt)", "", ex.Message);
                 return "error";
             }
         }
@@ -1226,7 +1226,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void download_ProgressChanged(object sender, DownloadProgressChangedEventArgs e)", "pbDownload.Value = e.ProgressPercentage;", ex.Message);
+                Debug.Save("private void download_ProgressChanged(object sender, DownloadProgressChangedEventArgs e)", "pbDownload.Value = e.ProgressPercentage;", ex.Message);
             }
         }
 
@@ -1237,7 +1237,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (DialogResult.Yes == MessageBox.Show(this, "Обнаружена новая версия лаунчера (" + rVerLauncher.ToString() + ")" + Environment.NewLine +
                     "Применить обновление сейчас?", Application.ProductName + " v" + Application.ProductVersion, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
                 {
-                    //if (checksum("launcher.update", checksummLauncher)) { MessageBox.Show("Checksumm: OK"); }
+                    //if (checksum("launcher.update", checksumLauncher)) { MessageBox.Show("checksum: OK"); }
 
                     Process.Start("updater.exe", "launcher.update \""+Process.GetCurrentProcess().ProcessName+".exe\"");
                     Process.GetCurrentProcess().Kill();
@@ -1245,7 +1245,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"updater.exe\", \"launcher.update \"\"\" + Process.GetCurrentProcess().ProcessName + \"\"\");", ex.Message);
+                Debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"updater.exe\", \"launcher.update \"\"\" + Process.GetCurrentProcess().ProcessName + \"\"\");", ex.Message);
             }
         }*/
 
@@ -1288,7 +1288,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void changeContent(bool video = true)", "", ex.Message);
+                Debug.Save("private void changeContent(bool video = true)", "", ex.Message);
             }
         }
 
@@ -1330,7 +1330,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwVideo_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
+                Debug.Save("private void bwVideo_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
             }
         }
 
@@ -1372,7 +1372,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)", "Создание динамических полей", ex.Message);
+                Debug.Save("private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)", "Создание динамических полей", ex.Message);
             }
         }
 
@@ -1400,7 +1400,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Добавление ссылки на все видео", ex.Message);
+                Debug.Save("private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Добавление ссылки на все видео", ex.Message);
             }
         }
 
@@ -1424,10 +1424,10 @@ namespace _Hell_PRO_Tanki_Launcher
 
             if (!bwGetVipProcesses.IsBusy) { bwGetVipProcesses.RunWorkerAsync(); }
 
-            //update_launcher update = new update_launcher();
+            //UpdateLauncher update = new UpdateLauncher();
             //update.CheckUpdates();
 
-            //debug.Send(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
+            //Debug.Send(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
         }
 
         private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)
@@ -1454,7 +1454,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                debug.Save("private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
+                Debug.Save("private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
             }
         }
 
