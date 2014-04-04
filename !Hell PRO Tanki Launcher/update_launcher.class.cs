@@ -65,13 +65,6 @@ namespace _Hell_PRO_Tanki_Launcher
                         var task5 = Task.Factory.StartNew(() => DownloadFile("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksumm"].InnerText));
 
                         Task.WaitAll(task3, task4, task5);
-
-                        if (File.Exists("launcher.update") && !Checksumm("launcher.update", doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText))
-                        {
-                            File.Delete("launcher.update");
-                        }
-
-                        if (File.Exists("launcher.update")) debug.Save("public void Check(bool launcher = false)", "launcher.update: " + FileVersionInfo.GetVersionInfo("launcher.update"), "App: " + Application.ProductVersion);
                         
                         if (File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
                         {
