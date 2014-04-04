@@ -143,12 +143,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
             moveForm();
 
-            if (!bwUpdateLauncher.IsBusy)
-            {
-                pbDownload.Visible = true;
-                bwUpdateLauncher.RunWorkerAsync();
-            }
-
             if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); }
         }
 
@@ -245,8 +239,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     debug.Save("public void loadSettings()", "Файл настроек не обнаружен. Перезапускаем ПО", "");
 
-                    //Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
-                    //Process.GetCurrentProcess().Kill();
+                    Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
+                    Process.GetCurrentProcess().Kill();
 
                     xmlTitle = Application.ProductName;
 
@@ -363,6 +357,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Парсим сайт PROТанки
                 XmlDocument doc = new XmlDocument();
                 doc.Load(@"http://ai-rus.com/pro/pro.xml");
+
                 rVerModpack = new Version(doc.GetElementsByTagName("version")[0].InnerText);
                 rVerTanks = new Version(doc.GetElementsByTagName("tanks")[0].InnerText);
 
@@ -1091,111 +1086,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)
-        {
-            /*     bwUpdateLauncher.ReportProgress(0);
-
-                 var client = new WebClient();
-                 XmlDocument doc = new XmlDocument();
-                 doc.Load(@"http://ai-rus.com/pro/protanks.xml");
-
-                 try
-                 {
-                     // Для работы нам нужна библиотека Ionic.Zip.dll
-                     //var clientZIP = new WebClient();
-                     if (!File.Exists("Ionic.Zip.dll"))
-                     {
-                         //while (checksum("Ionic.Zip.dll", ))
-                         //{
-                             client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Ionic.Zip.dll"), "Ionic.Zip.dll");
-                         //}
-                     }
-                 }
-                 catch (Exception ex1)
-                 {
-                     debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "if (!File.Exists(\"Ionic.Zip.dll\"))", ex1.Message);
-                 }
-
-
-                 try
-                 {
-                     // Newtonsoft.Json.dll
-                     if (!File.Exists("Newtonsoft.Json.dll") || getFileVersion("Newtonsoft.Json.dll") < new Version(doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText))
-                     {
-                         client.DownloadFile(new Uri(@"http://ai-rus.com/pro/Newtonsoft.Json.dll"), "Newtonsoft.Json.dll");
-                     }
-                 }
-                 catch (Exception ex1)
-                 {
-                     debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Newtonsoft.Json.dll", ex1.Message);
-                 }
-
-                 try
-                 {
-                     // Processes Library
-                     if (!File.Exists("ProcessesLibrary.dll") || getFileVersion("ProcessesLibrary.dll") < new Version(doc.GetElementsByTagName("processesLibrary")[0].InnerText))
-                     {
-                         client.DownloadFile(new Uri(@"http://ai-rus.com/pro/ProcessesLibrary.dll"), "ProcessesLibrary.dll");
-                     }
-                 }
-                 catch (Exception ex1)
-                 {
-                     debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Processes Library", ex1.Message);
-                 }
-
-                  if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
-
-                 try
-                 {
-                     // Updater
-                     if (!File.Exists("updater.exe") || getFileVersion("updater.exe") < new Version(doc.GetElementsByTagName("updater")[0].InnerText))
-                     {
-                         client.DownloadFile(new Uri(@"http://ai-rus.com/pro/updater.exe"), "updater.exe");
-                     }
-                 }
-                 catch (Exception ex1)
-                 {
-                     debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Updater", ex1.Message);
-                 }
-
-                 try
-                 {
-                     // Restarter
-                     if (!File.Exists("restart.exe") || getFileVersion("restart.exe") < new Version(doc.GetElementsByTagName("restart")[0].InnerText))
-                     {
-                         client.DownloadFile(new Uri(@"http://ai-rus.com/pro/restart.exe"), "restart.exe");
-                     }
-                 }
-                 catch (Exception ex1)
-                 {
-                     debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Restarter", ex1.Message);
-                 }*/
-
-            /*try
-            {
-                rVerLauncher = new Version(doc.GetElementsByTagName("version")[0].InnerText);
-                lVerLauncher = new Version(Application.ProductVersion);
-
-                if (lVerLauncher < rVerLauncher)
-                {
-                        if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
-
-                        WebClient client1 = new WebClient();
-                        client1.DownloadProgressChanged += new DownloadProgressChangedEventHandler(download_ProgressChanged);
-                        client1.DownloadFileCompleted += new AsyncCompletedEventHandler(download_Completed);
-                        client1.DownloadFileAsync(new Uri(@"http://ai-rus.com/pro/launcher.exe"), "launcher.update");
-                }
-
-            }
-            catch (Exception ex1)
-            {
-                debug.Save("private void bwUpdateLauncher_DoWork(object sender, DoWorkEventArgs e)", "Версия лаунчера", ex1.Message);
-            }*/
-
-            /*     update_launcher update = new update_launcher();
-                 update.CheckLocal();*/
-        }
-
         private Version getFileVersion(string filename)
         {
             return new Version(FileVersionInfo.GetVersionInfo(filename).FileVersion);
@@ -1562,20 +1452,6 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 debug.Save("private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
             }
-        }
-
-        private void bwUpdateLauncher_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            pbDownload.Visible = false;
-        }
-
-        private void bwUpdateLauncher_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            try
-            {
-                pbDownload.Visible = true;
-            }
-            catch (Exception) { }
         }
 
         private void bwOptimize_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

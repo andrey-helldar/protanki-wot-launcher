@@ -28,12 +28,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (!File.Exists("settings.xml"))
                 {
-                    var client = new WebClient();
-                    Task.Factory.StartNew(() => client.DownloadFile(new Uri(url + "settings.xml"), "settings.xml")).Wait();
+                    using (var client = new WebClient())
+                        Task.Factory.StartNew(() => client.DownloadFile(new Uri(url + "settings.xml"), "settings.xml")).Wait();
                 }
 
                 /// Удаляем ненужные файлы
                 if (File.Exists("processes.exe")) { File.Delete("processes.exe"); }
+                if (File.Exists("!Hell PRO Tanki Launcher.exe")) { File.Delete("!Hell PRO Tanki Launcher.exe"); }
 
                 /// Если файлы имеют нулевой размер, то удаляем их
                 if (File.Exists("settings.xml") && new FileInfo("settings.xml").Length == 0) { File.Delete("settings.xml"); }
@@ -49,20 +50,23 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     var task1 = Task.Factory.StartNew(() => DownloadFile("Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].InnerText, doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksumm"].InnerText));
                     var task2 = Task.Factory.StartNew(() => DownloadFile("restart.exe", doc.GetElementsByTagName("restart")[0].InnerText, doc.GetElementsByTagName("restart")[0].Attributes["checksumm"].InnerText));
+                    var task6 = Task.Factory.StartNew(() => DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksumm"].InnerText));
 
-                    Task.WaitAll(task1, task2);
+                    Task.WaitAll(task1, task2, task6);
+                    debug.Save("public void Check(bool launcher = false)", "Task.WaitAll(task1, task2);", "Status: OK");
                 }
                 else
                 {
                     try
                     {
+                        debug.Save("public void Check(bool launcher = false)", "launcher.update", "Starting download");
+
                         // Скачиваем необходимые файлы
                         var task3 = Task.Factory.StartNew(() => DownloadFile("updater.exe", doc.GetElementsByTagName("updater")[0].InnerText, doc.GetElementsByTagName("updater")[0].Attributes["checksumm"].InnerText));
                         var task4 = Task.Factory.StartNew(() => DownloadFile("Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksumm"].InnerText));
                         var task5 = Task.Factory.StartNew(() => DownloadFile("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksumm"].InnerText));
-                        var task6 = Task.Factory.StartNew(() => DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksumm"].InnerText));
 
-                        Task.WaitAll(task3, task4, task5, task6);
+                        Task.WaitAll(task3, task4, task5);
 
                         if (File.Exists("launcher.update") && !Checksumm("launcher.update", doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText))
                         {
@@ -79,6 +83,8 @@ namespace _Hell_PRO_Tanki_Launcher
                             Task.Factory.StartNew(() => DownloadFile("launcher.exe", doc.GetElementsByTagName("version")[0].InnerText, doc.GetElementsByTagName("version")[0].Attributes["checksumm"].InnerText, "launcher.update")).Wait();
                         }
                         else if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
+
+                        debug.Save("public void Check(bool launcher = false)", "launcher.update", "Status: OK");
                     }
                     catch (Exception ex1)
                     {

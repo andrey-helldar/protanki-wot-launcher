@@ -53,7 +53,6 @@
             this.bwAero = new System.ComponentModel.BackgroundWorker();
             this.bSettings = new System.Windows.Forms.Button();
             this.bwVideo = new System.ComponentModel.BackgroundWorker();
-            this.bwUpdateLauncher = new System.ComponentModel.BackgroundWorker();
             this.llActually = new System.Windows.Forms.LinkLabel();
             this.llLauncherVersion = new System.Windows.Forms.LinkLabel();
             this.pbDownload = new System.Windows.Forms.ProgressBar();
@@ -346,14 +345,6 @@
             this.bwVideo.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwVideo_ProgressChanged);
             this.bwVideo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwVideo_RunWorkerCompleted);
             // 
-            // bwUpdateLauncher
-            // 
-            this.bwUpdateLauncher.WorkerReportsProgress = true;
-            this.bwUpdateLauncher.WorkerSupportsCancellation = true;
-            this.bwUpdateLauncher.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwUpdateLauncher_DoWork);
-            this.bwUpdateLauncher.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwUpdateLauncher_ProgressChanged);
-            this.bwUpdateLauncher.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwUpdateLauncher_RunWorkerCompleted);
-            // 
             // llActually
             // 
             this.llActually.ActiveLinkColor = System.Drawing.Color.Lime;
@@ -565,7 +556,6 @@
         private System.ComponentModel.BackgroundWorker bwAero;
         private System.Windows.Forms.Button bSettings;
         private System.ComponentModel.BackgroundWorker bwVideo;
-        private System.ComponentModel.BackgroundWorker bwUpdateLauncher;
         private System.Windows.Forms.LinkLabel llActually;
         private System.Windows.Forms.LinkLabel llLauncherVersion;
         private System.Windows.Forms.Button bShowVideo;
