@@ -103,6 +103,10 @@ namespace _Hell_PRO_Tanki_Launcher
 
             InitializeComponent();
 
+            /// Запускаем проверку обновлений лаунчера после инициализации приложения
+            update_launcher update = new update_launcher();
+            update.Check(true, pbDownload);
+
             loadSettings();
 
             try
