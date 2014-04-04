@@ -10,7 +10,6 @@ using System.IO;
 using System.Xml;
 using System.Net;
 using System.Diagnostics;
-using System.Security.Cryptography;
 using Newtonsoft.Json;
 using Processes_Library;
 using _Hell_Language_Pack;
@@ -368,7 +367,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         Environment.Version.ToString() +
                         Environment.OSVersion.ToString();
 
-                    using (MD5 md5Hash = MD5.Create())
+                    using (System.Security.Cryptography.MD5 md5Hash = System.Security.Cryptography.MD5.Create())
                     {
                         byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(name));
                         StringBuilder sBuilder = new StringBuilder();

@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.IO;
-using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Net;
@@ -20,6 +19,8 @@ namespace _Hell_PRO_Tanki_Launcher
         private string url = @"http://ai-rus.com/pro/";
         private ProgressBar downloadPercent = null;
 
+        bool finishDownload = false;
+
         public void Check(bool launcher = false, ProgressBar report = null)
         {
             try
@@ -30,7 +31,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (!File.Exists("settings.xml"))
                 {
                     using (var client = new WebClient())
+                    {
                         Task.Factory.StartNew(() => client.DownloadFile(new Uri(url + "settings.xml"), "settings.xml")).Wait();
+                        client.Dispose();
+                    }
                 }
 
                 /// Удаляем ненужные файлы
@@ -47,10 +51,15 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (File.Exists("LanguagePack.dll") && new FileInfo("LanguagePack.dll").Length == 0) { File.Delete("LanguagePack.dll"); }
                 if (File.Exists("launcher.update") && new FileInfo("launcher.update").Length == 0) { File.Delete("launcher.update"); }
 
+                CheckFile("Ionic.Zip.dll");
+                CheckFile("restart.exe");
+                CheckFile("updater.exe");
+                CheckFile("Newtonsoft.Json.dll");
+                CheckFile("ProcessesLibrary.dll");
+                CheckFile("LanguagePack.dll");
+
                 if (!launcher) // Определяем будем запускать скачивание до обновления или после
                 {
-
-
                     var task1 = Task.Factory.StartNew(() => DownloadFile("Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].InnerText, doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksum"].InnerText));
                     var task2 = Task.Factory.StartNew(() => DownloadFile("restart.exe", doc.GetElementsByTagName("restart")[0].InnerText, doc.GetElementsByTagName("restart")[0].Attributes["checksum"].InnerText));
                     var task6 = Task.Factory.StartNew(() => DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksum"].InnerText));
@@ -67,7 +76,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         var task5 = Task.Factory.StartNew(() => DownloadFile("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksum"].InnerText));
 
                         Task.WaitAll(task3, task4, task5);
-                        
+
                         if (File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
                         {
                             Process.Start("updater.exe", "launcher.update \"" + Application.ProductName + ".exe\"");
@@ -120,6 +129,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
+        //private void DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null, bool showStatus = false)
         private void DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null, bool showStatus = false)
         {
             localFile = localFile != null ? localFile : filename;
@@ -134,14 +144,22 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         try
                         {
-                            if (showStatus && downloadPercent != null) { client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged); }
-                            client.DownloadFile(new Uri(url + filename), localFile);
+                            if (showStatus && downloadPercent != null)
+                            {
+                                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
+                                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                                client.DownloadFileAsync(new Uri(url + filename), localFile);
+                            }
+                            else
+                                client.DownloadFile(new Uri(url + filename), localFile);
 
                             if (!Checksum(localFile, xmlchecksum) && File.Exists(localFile))
                             {
                                 File.Delete(localFile);
-                                client.DownloadFile(new Uri(url + filename), localFile);
+                                //client.DownloadFileAsync(new Uri(url + filename), localFile);
                             }
+
+                            client.Dispose();
                         }
                         catch (Exception ex)
                         {
@@ -165,9 +183,27 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            finishDownload = true;
+            throw new NotImplementedException();
+        }
+
         private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             downloadPercent.Value = e.ProgressPercentage;
+        }
+
+        private void CheckFile(string filename)
+        {
+            if (File.Exists(filename))
+            {
+                try
+                {
+                    string s = FileVersionInfo.GetVersionInfo(filename).FileVersion;
+                }
+                catch (Exception) { }
+            }
         }
     }
 }
