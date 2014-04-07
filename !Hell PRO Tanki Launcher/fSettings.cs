@@ -43,70 +43,45 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 XDocument doc = XDocument.Load("settings.xml");
 
-                try
-                {
-                    version = doc.Root.Element("version").Value;
-                }
-                catch (Exception ex)
-                {
-                    Debug.Save("public fSettings()", "get VERSION", ex.Message);
-                }
+                try { version = doc.Root.Element("version").Value; }
+                catch (Exception ex) { version = "0.0.0.0"; Debug.Save("public fSettings()", "get VERSION", ex.Message); }
+
+                try { type = doc.Root.Element("type").Value; }
+                catch (Exception ex) { type = "full"; Debug.Save("public fSettings()", "get TYPE", ex.Message); }
+
+                try { notification = doc.Root.Element("notification").Value; }
+                catch (Exception ex) { notification = ""; Debug.Save("public fSettings()", "notification", ex.Message); }
 
                 try
                 {
-                    type = doc.Root.Element("type").Value;
-                }
-                catch (Exception ex)
-                {
-                    Debug.Save("public fSettings()", "get TYPE", ex.Message);
-                }
-
-                try
-                {
-                    notification = doc.Root.Element("notification").Value;
-                }
-                catch (Exception) { }
-
-                try
-                {
-                    // priority
                     var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
                     cbPriority.SelectedIndex = getPriority((int)key.GetValue("CpuPriorityClass"), false);
                 }
-                catch (Exception ex)
-                {
-                    cbPriority.SelectedIndex = 2;
-                    Debug.Save("public fSettings()", "priority", ex.Message);
-                }
+                catch (Exception ex) { cbPriority.SelectedIndex = 2; Debug.Save("public fSettings()", "priority", ex.Message); Debug.Save("public fSettings()", "Priority", ex.Message); }
 
                 try
                 {
-                    cbVideoQuality.Checked = doc.Root.Element("game").Attribute("video").Value == "False" ? false : true;
+                    cbVideoQuality.Checked = doc.Root.Element("game").Attribute("video").Value == "True";
 
-                    // Проверяем количество el
-                    if (Environment.ProcessorCount > 1)
-                    {
-                        cbCPUAffinity.Checked = doc.Root.Element("game").Attribute("affinity").Value == "False" ? false : true;
-                    }
+                    if (Environment.ProcessorCount > 1) { cbCPUAffinity.Checked = doc.Root.Element("game").Attribute("affinity").Value == "True"; }
                     else
                     {
                         cbCPUAffinity.Checked = false;
                         cbCPUAffinity.Enabled = false;
                     }
                 }
-                catch (Exception) { }
+                catch (Exception)
+                {
+                    cbCPUAffinity.Checked = false;
+                    cbCPUAffinity.Enabled = false;
+                }
 
                 try
                 {
-                    cbKillProcesses.Checked = doc.Root.Element("settings").Attribute("kill").Value == "False" ? false : true;
-                    cbForceClose.Checked = doc.Root.Element("settings").Attribute("force").Value == "False" ? false : true;
-                    cbAero.Checked = doc.Root.Element("settings").Attribute("aero").Value == "False" ? false : true;
-                    cbVideo.Checked = doc.Root.Element("settings").Attribute("video").Value == "False" ? false : true;
-
-                    userProcesses.Clear();
-                    userProcesses.Add(doc.Root.Element("process").Attribute("name").Value);
-
-                    if (!bwUserProcesses.IsBusy) { bwUserProcesses.RunWorkerAsync(); }
+                    cbKillProcesses.Checked = doc.Root.Element("settings").Attribute("kill").Value == "True";
+                    cbForceClose.Checked = doc.Root.Element("settings").Attribute("force").Value == "True";
+                    cbAero.Checked = doc.Root.Element("settings").Attribute("aero").Value == "True";
+                    cbVideo.Checked = doc.Root.Element("settings").Attribute("video").Value == "True";
                 }
                 catch (Exception ex)
                 {
@@ -114,6 +89,18 @@ namespace _Hell_PRO_Tanki_Launcher
                     cbAero.Checked = false;
                     cbVideo.Checked = true;
 
+                    Debug.Save("public fSettings()", "cbKillProcesses.Checked", ex.Message);
+                }
+
+                try
+                {
+                    userProcesses.Clear();
+                    userProcesses.Add(doc.Root.Element("process").Attribute("name").Value);
+
+                    if (!bwUserProcesses.IsBusy) { bwUserProcesses.RunWorkerAsync(); }
+                }
+                catch (Exception ex)
+                {
                     Debug.Save("public fSettings()", "foreach (XElement el in doc.Root.Element(\"settings\"))", ex.Message);
                 }
             }
@@ -261,7 +248,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                         new XElement("version", version),
                         new XElement("type", type),
-                        new XElement("notification", notification),
+                        new XElement("notification", notification != "" ? notification : null),
 
                         new XElement("game",
                             new XAttribute("video", cbVideoQuality.Checked.ToString()),
@@ -279,6 +266,7 @@ namespace _Hell_PRO_Tanki_Launcher
                      )
               );
 
+                if (lvProcessesUser.CheckedItems.Count > 0)
                 foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
                 {
                     doc.Root.Element("processes").Add(
@@ -290,7 +278,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 doc.Save("settings.xml");
 
-                if (cbVideoQuality.Checked)
+                /*if (cbVideoQuality.Checked)
                 {
                     //  c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\
                     string str = string.Empty;
@@ -307,7 +295,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         file.Write(str);
                     }
-                }
+                }*/
             }
             catch (Exception ex)
             {

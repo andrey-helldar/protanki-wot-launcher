@@ -19,43 +19,46 @@ namespace _Hell_PRO_Tanki_Launcher
         /// <summary>
         /// Сохраняем информацию обработчика в файл
         /// </summary>
-        public void Save(string func, string place, string mess)
+        public void Save(string func, params string[] mess)
         {
-            if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
-            File.WriteAllText(@"temp\" + UserID() + "_-_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff") + ".Debug",
-                func + Environment.NewLine + "-------------------------------" + Environment.NewLine +
-                place + Environment.NewLine + "-------------------------------" + Environment.NewLine +
-                mess, Encoding.UTF8);
+            string split =  Environment.NewLine + "-------------------------------" + Environment.NewLine;
+            string result = func + split;
 
-            //MessageBox.Show(fIndex.ActiveForm, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            foreach(string str in mess){
+                result += str + split;
+            }            
+
+            if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
+            string filename = String.Format("{0}_-_{1}_{2}.debug", UserID(), Application.ProductVersion, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
+            File.WriteAllText(@"temp\" + filename, result, Encoding.UTF8);
+
+            //MessageBox.Show(fIndex.ActiveForm, result, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public bool Archive(string path)
+        public void Archive(string path)
         {
-            bool exp = false;
-
             try
             {
-                this.Delete(path);
+                Delete(path);
 
-                if (!Directory.Exists(path + @"\temp")) { return false; }
-                if (!Directory.Exists(path + @"\Debug")) { Directory.CreateDirectory(path + @"\Debug"); }
-
-                using (ZipFile zip = new ZipFile())
+                if (Directory.Exists(path + @"\temp"))
                 {
-                    zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
-                    zip.AddDirectory(path + @"\temp");
-                    zip.Save(path + @"\Debug\" + UserID() + "_-_" + "Debug-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
-                }
+                    if (!Directory.Exists(path + @"\debug")) { Directory.CreateDirectory(path + @"\debug"); }
 
-                Directory.Delete(path + @"\temp", true);
+                    using (ZipFile zip = new ZipFile())
+                    {
+                        zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
+                        zip.AddDirectory(path + @"\temp");
+                        zip.Save(path + @"\debug\" + UserID() + "_-_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
+                    }
+
+                    Directory.Delete(path + @"\temp", true);
+                }
             }
             catch (Exception ex)
             {
-                this.Save("public bool Archive()", "Debug mode", ex.Message);
+                Save("public bool Archive()", "Debug mode", ex.Message);
             }
-
-            return exp;
         }
 
         private void Delete(string path)
@@ -81,13 +84,13 @@ namespace _Hell_PRO_Tanki_Launcher
                          * 3 суток = 259200 сек
                          */
 
-                        if (ts.TotalSeconds > 259200) { File.Delete(file.FullName); }
+                        if (ts.TotalSeconds > 86400) { File.Delete(file.FullName); }
                     }
                 }
             }
             catch (Exception ex)
             {
-                this.Save("private void Delete(string path)", "Debug mode", ex.Message);
+                Save("private void Delete(string path)", "Debug mode", ex.Message);
             }
         }
 

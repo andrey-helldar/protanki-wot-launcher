@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pro>
+  <version>0.8.11.13</version>
+  <type>full</type>
+  <game video="False" affinity="False" />
+  <settings kill="False" force="False" aero="False" video="True" />
+  <processes />
+</pro>

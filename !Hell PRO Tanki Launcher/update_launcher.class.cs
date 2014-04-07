@@ -14,6 +14,11 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     class UpdateLauncher
     {
+        /// <summary>
+        /// Работаем с LINQ to XML
+        /// http://habrahabr.ru/post/24673/
+        /// </summary>
+        /// 
         Debug Debug = new Debug();
 
         private string url = @"http://ai-rus.com/pro/";
@@ -66,13 +71,13 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
                     catch (Exception ex1)
                     {
-                        Debug.Save("public void Check(bool launcher = false)", "launcher.update", ex1.Message);
+                        Debug.Save("public void Check()", "launcher.update", ex1.Message);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Debug.Save("public void Check(bool launcher = false)", "", ex.Message);
+                Debug.Save("public void Check()", "", ex.Message);
             }
         }
 
@@ -94,7 +99,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private bool checksum(string filename, string summ)", "Filename: " + filename, ex.Message);
+                Debug.Save("private bool checksum()", "Filename: " + filename, ex.Message);
                 return false;
             }
         }
@@ -132,7 +137,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         }
                         catch (Exception ex)
                         {
-                            Debug.Save("private async Task DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null)",
+                            Debug.Save("private async Task DownloadFile)",
                                 "Error download: EX" + Environment.NewLine +
                                 "Filename: " + filename + Environment.NewLine +
                                 "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +
@@ -144,7 +149,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex1)
             {
-                Debug.Save("private async Task DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null)",
+                Debug.Save("private async Task DownloadFile()",
                     "Error download: EX1" + Environment.NewLine +
                     "Filename: " + filename + Environment.NewLine +
                     "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +
