@@ -17,6 +17,9 @@ namespace _Hell_PRO_Tanki_Launcher
         Debug Debug = new Debug();
 
         private string url = @"http://ai-rus.com/pro/";
+        private ProgressBar downloadPercent = null;
+
+        bool finishDownload = false;
 
         public void Check(bool launcher = false, ProgressBar report = null)
         {
@@ -25,15 +28,28 @@ namespace _Hell_PRO_Tanki_Launcher
                 XmlDocument doc = new XmlDocument();
                 doc.Load(url + "protanks.xml");
 
-                DownloadSettings().Wait(); // Загружаем файл настроек
+                if (!File.Exists("settings.xml"))
+                {
+                    using (var client = new WebClient())
+                    {
+                        Task.Factory.StartNew(() => client.DownloadFile(new Uri(url + "settings.xml"), "settings.xml")).Wait();
+                        client.Dispose();
+                    }
+                }
 
-                DeleteFile("processes.exe \"!Hell PRO Tanki Launcher.exe\""); // Удаляем ненужные файлы
+                /// Удаляем ненужные файлы
+                DeleteFile("processes.exe");
+                DeleteFile("!Hell PRO Tanki Launcher.exe");
 
                 /// Если файлы имеют нулевой размер, то удаляем их
-                DeleteNullFile("settings.xml, Ionic.Zip.dll, restart.exe, updater.exe, Newtonsoft.Json.dll, ProcessesLibrary.dll, LanguagePack.dll, launcher.update");
+                DeleteNullFile("settings.xml Ionic.Zip.dll restart.exe updater.exe Newtonsoft.Json.dll ProcessesLibrary.dll LanguagePack.dll launcher.update");
 
-                // Проверяем целостность файлов
-                CheckFile("Ionic.Zip.dll, restart.exe, updater.exe, Newtonsoft.Json.dll, ProcessesLibrary.dll, LanguagePack.dll");
+                CheckFile("Ionic.Zip.dll");
+                CheckFile("restart.exe");
+                CheckFile("updater.exe");
+                CheckFile("Newtonsoft.Json.dll");
+                CheckFile("ProcessesLibrary.dll");
+                CheckFile("LanguagePack.dll");
 
                 if (!launcher) // Определяем будем запускать скачивание до обновления или после
                 {
@@ -41,7 +57,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     var task2 = DownloadFile("restart.exe", doc.GetElementsByTagName("restart")[0].InnerText, doc.GetElementsByTagName("restart")[0].Attributes["checksum"].InnerText);
                     var task3 = DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksum"].InnerText);
 
-                    Task.WaitAll(task1, task2, task3);
+                    await Task.WaitAll(task1, task2, task3);
                 }
                 else
                 {
@@ -61,7 +77,13 @@ namespace _Hell_PRO_Tanki_Launcher
                         }
                         else if (new Version(Application.ProductVersion) < new Version(doc.GetElementsByTagName("version")[0].InnerText))
                         {
-                            DownloadFile("launcher.exe", doc.GetElementsByTagName("version")[0].InnerText, doc.GetElementsByTagName("version")[0].Attributes["checksum"].InnerText, "launcher.update").Wait();
+                            if (report != null)
+                            {
+                                downloadPercent = report;
+                                downloadPercent.Value = 0;
+                            }
+
+                            Task.Factory.StartNew(() => DownloadFile("launcher.exe", doc.GetElementsByTagName("version")[0].InnerText, doc.GetElementsByTagName("version")[0].Attributes["checksum"].InnerText, "launcher.update", true)).Wait();
                         }
                         else if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
                     }
@@ -101,7 +123,7 @@ namespace _Hell_PRO_Tanki_Launcher
         }
 
         //private void DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null, bool showStatus = false)
-        private async Task DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null)
+        private async Task<int> DownloadFile(IProgress<int> progress, string filename, string xmlVersion, string xmlchecksum, string localFile = null, bool showStatus = false)
         {
             localFile = localFile != null ? localFile : filename;
 
@@ -115,21 +137,21 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         try
                         {
-                            int errorCount = 0;
+                            if (showStatus && downloadPercent != null)
+                            {
+                                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
+                                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                                client.DownloadFileAsync(new Uri(url + filename), localFile);
+                            }
+                            else
+                                client.DownloadFile(new Uri(url + filename), localFile);
 
-                            // Скачиваем файл
-                            await client.DownloadFileTaskAsync(new Uri(url + filename), localFile);
-
-                            // Проверяем контрольную сумму. Если она нарушена, применяем 3 попытки к скачиванию
                             if (!Checksum(localFile, xmlchecksum) && File.Exists(localFile))
                             {
-                                while (errorCount < 3)
-                                {
-                                    File.Delete(localFile);
-                                    await client.DownloadFileTaskAsync(new Uri(url + filename), localFile);
-                                    errorCount++;
-                                }
+                                File.Delete(localFile);
+                                //client.DownloadFileAsync(new Uri(url + filename), localFile);
                             }
+
                             client.Dispose();
                         }
                         catch (Exception ex)
@@ -154,41 +176,38 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private async Task DownloadSettings()
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            if (!File.Exists("settings.xml"))
+            finishDownload = true;
+            throw new NotImplementedException();
+        }
+
+        private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            downloadPercent.Value = e.ProgressPercentage;
+        }
+
+        private void CheckFile(string filename)
+        {
+            if (File.Exists(filename))
             {
-                using (var client = new WebClient())
+                try
                 {
-                    await client.DownloadFileTaskAsync(new Uri(url + "settings.xml"), "settings.xml");
-                    client.Dispose();
+                    string s = FileVersionInfo.GetVersionInfo(filename).FileVersion;
                 }
+                catch (Exception) { }
             }
         }
 
-        private void CheckFile(params string[] fileArr)
+        private void DeleteNullFile(string[] fileArr)
         {
-            foreach (string filename in fileArr)
-                if (File.Exists(filename))
-                {
-                    try
-                    {
-                        string s = FileVersionInfo.GetVersionInfo(filename).FileVersion;
-                    }
-                    catch (Exception) { }
-                }
+		foreach(string filename in fileArr)
+            if (File.Exists(filename) && new FileInfo(filename).Length == 0) { File.Delete(filename); }
         }
 
-        private void DeleteNullFile(params string[] fileParams)
+        private void DeleteFile(string filename)
         {
-            foreach (string filename in fileParams)
-                if (File.Exists(filename) && new FileInfo(filename).Length == 0) { File.Delete(filename); }
-        }
-
-        private void DeleteFile(params string[] fileArr)
-        {
-            foreach (string filename in fileArr)
-                if (File.Exists(filename)) { File.Delete(filename); }
+            if (File.Exists(filename)) { File.Delete(filename); }
         }
     }
 }

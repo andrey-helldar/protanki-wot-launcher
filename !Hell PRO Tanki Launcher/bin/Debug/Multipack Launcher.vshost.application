@@ -4,8 +4,7 @@
   <description asmv2:publisher="Andrey Helldar" co.v1:suiteName="!Hell PROTanks Launcher" asmv2:product="!Hell PROTanks Launcher" asmv2:supportUrl="http://ai-rus.com/" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" co.v1:createDesktopShortcut="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.0.3" profile="Client" supportedRuntime="4.0.30319" />
-    <framework targetVersion="4.0.3" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
     <dependentAssembly dependencyType="install" codebase="Multipack Launcher.exe.manifest" size="8474">
@@ -15,7 +14,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JjsjYRWQxBl6GipDfRuKSgb6q8Q/uNwEH+9prdxdACg=</dsig:DigestValue>
+        <dsig:DigestValue>HMtDChyx9ZhA+ZW8LFTwrvca6FMC0GWdcdQcqkqCJdY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
