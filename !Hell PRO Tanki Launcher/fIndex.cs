@@ -105,7 +105,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             /// Запускаем проверку обновлений лаунчера после инициализации приложения
             UpdateLauncher update = new UpdateLauncher();
-            update.Check(true, pbDownload);
+            update.Check(true);
 
             loadSettings();
 

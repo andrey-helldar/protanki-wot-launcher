@@ -7,7 +7,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Net;
-using System.Xml;
+using System.Xml.Linq;
 using System.Threading.Tasks;
 
 namespace _Hell_PRO_Tanki_Launcher
@@ -18,12 +18,11 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private string url = @"http://ai-rus.com/pro/";
 
-        public void Check(bool launcher = false, ProgressBar report = null)
+        public void Check(bool launcher = false)
         {
             try
             {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(url + "protanks.xml");
+                XDocument doc = XDocument.Load(url + "protanks.xml");
 
                 DownloadSettings().Wait(); // Загружаем файл настроек
 
@@ -37,31 +36,31 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (!launcher) // Определяем будем запускать скачивание до обновления или после
                 {
-                    var task1 = DownloadFile("Ionic.Zip.dll", doc.GetElementsByTagName("Ionic.Zip")[0].InnerText, doc.GetElementsByTagName("Ionic.Zip")[0].Attributes["checksum"].InnerText);
-                    var task2 = DownloadFile("restart.exe", doc.GetElementsByTagName("restart")[0].InnerText, doc.GetElementsByTagName("restart")[0].Attributes["checksum"].InnerText);
-                    var task3 = DownloadFile("LanguagePack.dll", doc.GetElementsByTagName("languagePack")[0].InnerText, doc.GetElementsByTagName("languagePack")[0].Attributes["checksum"].InnerText);
+                    var task1 = DownloadFile("Ionic.Zip.dll", doc.Root.Element("Ionic.Zip").Value, doc.Root.Element("Ionic.Zip").Attribute("checksum").Value);
+                    var task2 = DownloadFile("restart.exe", doc.Root.Element("restart").Value, doc.Root.Element("restart").Attribute("checksum").Value);
+                    var task3 = DownloadFile("LanguagePack.dll", doc.Root.Element("languagePack").Value, doc.Root.Element("languagePack").Attribute("checksum").Value);
 
-                    Task.WaitAll(task1, task2, task3);
+                    Task.WhenAll(task1, task2, task3);
                 }
                 else
                 {
                     try
                     {
                         // Скачиваем необходимые файлы
-                        var task4 = DownloadFile("updater.exe", doc.GetElementsByTagName("updater")[0].InnerText, doc.GetElementsByTagName("updater")[0].Attributes["checksum"].InnerText);
-                        var task5 = DownloadFile("Newtonsoft.Json.dll", doc.GetElementsByTagName("Newtonsoft.Json")[0].InnerText, doc.GetElementsByTagName("Newtonsoft.Json")[0].Attributes["checksum"].InnerText);
-                        var task6 = DownloadFile("ProcessesLibrary.dll", doc.GetElementsByTagName("processesLibrary")[0].InnerText, doc.GetElementsByTagName("processesLibrary")[0].Attributes["checksum"].InnerText);
+                        var task4 = DownloadFile("updater.exe", doc.Root.Element("updater").Value, doc.Root.Element("updater").Attribute("checksum").Value);
+                        var task5 = DownloadFile("Newtonsoft.Json.dll", doc.Root.Element("Newtonsoft.Json").Value, doc.Root.Element("Newtonsoft.Json").Attribute("checksum").Value);
+                        var task6 = DownloadFile("ProcessesLibrary.dll", doc.Root.Element("processesLibrary").Value, doc.Root.Element("processesLibrary").Attribute("checksum").Value);
 
-                        Task.WaitAll(task4, task5, task6);
+                        Task.WhenAll(task4, task5, task6);
 
                         if (File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
                         {
                             Process.Start("updater.exe", "launcher.update \"" + Application.ProductName + ".exe\"");
                             Process.GetCurrentProcess().Kill();
                         }
-                        else if (new Version(Application.ProductVersion) < new Version(doc.GetElementsByTagName("version")[0].InnerText))
+                        else if (new Version(Application.ProductVersion) < new Version(doc.Root.Element("version").Value))
                         {
-                            DownloadFile("launcher.exe", doc.GetElementsByTagName("version")[0].InnerText, doc.GetElementsByTagName("version")[0].Attributes["checksum"].InnerText, "launcher.update").Wait();
+                            DownloadFile("launcher.exe", doc.Root.Element("version").Value, doc.Root.Element("version").Attribute("checksum").Value, "launcher.update").Wait();
                         }
                         else if (File.Exists("launcher.update")) { File.Delete("launcher.update"); }
                     }
@@ -100,12 +99,11 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        //private void DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null, bool showStatus = false)
         private async Task DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null)
         {
             localFile = localFile != null ? localFile : filename;
 
-            if (File.Exists(localFile) && new FileInfo(localFile).Length == 0) { File.Delete(localFile); }
+            DeleteNullFile(localFile);
 
             try
             {
@@ -134,7 +132,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         }
                         catch (Exception ex)
                         {
-                            Debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlchecksum)",
+                            Debug.Save("private async Task DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null)",
+                                "Error download: EX" + Environment.NewLine +
                                 "Filename: " + filename + Environment.NewLine +
                                 "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +
                                 "URL: " + url,
@@ -145,8 +144,8 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex1)
             {
-                Debug.Save("private void DownloadFile(string filename, string xmlVersion, string xmlchecksum)",
-                    "Error download" + Environment.NewLine +
+                Debug.Save("private async Task DownloadFile(string filename, string xmlVersion, string xmlchecksum, string localFile = null)",
+                    "Error download: EX1" + Environment.NewLine +
                     "Filename: " + filename + Environment.NewLine +
                     "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +
                     "URL: " + url,
@@ -175,7 +174,10 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         string s = FileVersionInfo.GetVersionInfo(filename).FileVersion;
                     }
-                    catch (Exception) { }
+                    catch (Exception)
+                    {
+                        File.Delete(filename);
+                    }
                 }
         }
 
