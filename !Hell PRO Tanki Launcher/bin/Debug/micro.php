@@ -1,17 +1,25 @@
 <?php
 
-//$get = json_decode($_REQUEST['data']);
-$get = $_REQUEST['data'];
-$verClient = str_replace(".", "", $get) + 0;
+function Version($gServer, $gClient)
+{
+    $server = explode(".", $gServer);
+    $client = explode(".", $gClient);
+    
+    // ≈сли у клиента более нова€ верси€,
+    // то возвращаем TRUE
+    if($client[0] > $server[0]){ return true;
+    }elseif($client[1] > $server[1]){ return true;
+    }elseif($client[2] > $server[2]){ return true;
+    }elseif($client[3] > $server[3]){ return true;
+    }
+    return false;
+}
 
 $xml = simplexml_load_file("pro.xml");
-$verServer = str_replace(".", "", $xml->tanks) + 0;
 
-$buffer = $get ."  :: ".$verClient . " :: ".$verServer;
-
-if ($verClient > $verServer) {
-    $xml->tanks = $get;    
-    $buffer = $get;
+if (Version($xml->tanks, $_REQUEST['data'])) {
+    $xml->tanks = $_REQUEST['data'];    
+    $buffer = $xml->tanks;
 
     unlink("pro.xml");
 

@@ -20,3 +20,4 @@ f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher WPF\obj\x86\Debug\!Hell PRO Tanki Launcher WPF.g.resources
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher WPF\obj\x86\Debug\_Hell_PRO_Tanki_Launcher_WPF.Properties.Resources.resources
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher WPF\obj\x86\Debug\!Hell PRO Tanki Launcher WPF.csproj.GenerateResource.Cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher WPF\obj\x86\Debug\!Hell PRO Tanki Launcher WPF.csprojResolveAssemblyReference.cache

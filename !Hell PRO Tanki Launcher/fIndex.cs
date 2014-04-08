@@ -36,7 +36,7 @@ namespace _Hell_PRO_Tanki_Launcher
         Version rVerModpack,
             rVerTanks,
             // local version
-            lVerModpack,
+            lVerModpack = new Version("0.0.0.0"),
             lVerTanks;
 
         int maxPercentUpdateStatus = 1,
@@ -1088,13 +1088,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     //if (checksum("launcher.update", checksumLauncher)) { MessageBox.Show("checksum: OK"); }
 
-                    Process.Start("updater.exe", "launcher.update \""+Process.GetCurrentProcess().ProcessName+".exe\"");
+                    Process.Start("restart.exe", "launcher.update \""+Process.GetCurrentProcess().ProcessName+".exe\"");
                     Process.GetCurrentProcess().Kill();
                 }
             }
             catch (Exception ex)
             {
-                Debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"updater.exe\", \"launcher.update \"\"\" + Process.GetCurrentProcess().ProcessName + \"\"\");", ex.Message);
+                Debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"restart.exe\", \"launcher.update \"\"\" + Process.GetCurrentProcess().ProcessName + \"\"\");", ex.Message);
             }
         }*/
 

@@ -29,6 +29,17 @@ namespace _Hell_Restarter
                     for (int i = 1; i < myProcesses2.Length; i++) { myProcesses2[i].Kill(); }
                 }
 
+                try
+                {
+                    if (args[1] != null)
+                    {
+                        File.Move(args[0], args[1]);
+                        process = args[1].Replace(".exe", "");
+                    }
+                }
+                catch (Exception) { process = args[0].Replace(".exe", ""); }
+
+
                 Console.WriteLine("Restart " + process + ".exe");
                 Process.Start(Directory.GetCurrentDirectory() + @"\" + process + ".exe");
             }

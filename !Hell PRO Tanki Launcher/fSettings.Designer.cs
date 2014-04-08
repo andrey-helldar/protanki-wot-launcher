@@ -49,9 +49,8 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.cbPriority = new System.Windows.Forms.ComboBox();
-            this.bwSave = new System.ComponentModel.BackgroundWorker();
             this.cbCPUAffinity = new System.Windows.Forms.CheckBox();
+            this.cbPriority = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -311,6 +310,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Приоритет игры в системе:";
             // 
+            // cbCPUAffinity
+            // 
+            this.cbCPUAffinity.AutoSize = true;
+            this.cbCPUAffinity.Location = new System.Drawing.Point(6, 46);
+            this.cbCPUAffinity.Name = "cbCPUAffinity";
+            this.cbCPUAffinity.Size = new System.Drawing.Size(188, 17);
+            this.cbCPUAffinity.TabIndex = 1;
+            this.cbCPUAffinity.Text = "Перенести нагрузку с 1-го ядра";
+            this.cbCPUAffinity.UseVisualStyleBackColor = true;
+            // 
             // cbPriority
             // 
             this.cbPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -325,23 +334,6 @@
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(255, 21);
             this.cbPriority.TabIndex = 0;
-            // 
-            // bwSave
-            // 
-            this.bwSave.WorkerReportsProgress = true;
-            this.bwSave.WorkerSupportsCancellation = true;
-            this.bwSave.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwSave_DoWork);
-            this.bwSave.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwSave_RunWorkerCompleted);
-            // 
-            // cbCPUAffinity
-            // 
-            this.cbCPUAffinity.AutoSize = true;
-            this.cbCPUAffinity.Location = new System.Drawing.Point(6, 46);
-            this.cbCPUAffinity.Name = "cbCPUAffinity";
-            this.cbCPUAffinity.Size = new System.Drawing.Size(188, 17);
-            this.cbCPUAffinity.TabIndex = 1;
-            this.cbCPUAffinity.Text = "Перенести нагрузку с 1-го ядра";
-            this.cbCPUAffinity.UseVisualStyleBackColor = true;
             // 
             // fSettings
             // 
@@ -396,7 +388,6 @@
         public System.Windows.Forms.LinkLabel llUserProcesses;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox cbPriority;
-        private System.ComponentModel.BackgroundWorker bwSave;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox cbVideoQuality;
         private System.Windows.Forms.CheckBox cbCPUAffinity;

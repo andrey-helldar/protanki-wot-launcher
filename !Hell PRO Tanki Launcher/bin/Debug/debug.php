@@ -2,7 +2,7 @@
 
 if ($_REQUEST['uid'] & $_REQUEST['code'] == "TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6") {
     
-	if(!file_exists("debug/".$_REQUEST['uid'])){ mkdir("debug/".$_REQUEST['uid'], 0700); }
+	if(!file_exists("debug/".$_REQUEST['uid'])){ mkdir("debug/".$_REQUEST['uid'], 0722); }
 	
 	foreach($_FILES[] as $key => $value)
 	{

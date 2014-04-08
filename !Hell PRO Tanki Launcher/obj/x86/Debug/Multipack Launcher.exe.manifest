@@ -4,7 +4,7 @@
   <description asmv2:iconFile="PROTanks.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.0.7.92" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="Multipack Launcher" version="1.0.7.100" language="neutral" processorArchitecture="x86" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -55,26 +55,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LanguagePack.dll" size="5120">
-      <assemblyIdentity name="LanguagePack" version="1.0.0.4" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LanguagePack.dll" size="5632">
+      <assemblyIdentity name="LanguagePack" version="1.0.1.5" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>b5No3ozz+oCFqI8bChNdKrnzR0XXMp4/l12BYMhiBAA=</dsig:DigestValue>
+        <dsig:DigestValue>UWDfYWKdgzIHUCWvBcHE+3hTfQk8xo82WxBEjTM+d3U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="1384448">
-      <assemblyIdentity name="Multipack Launcher" version="1.0.7.92" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2407424">
+      <assemblyIdentity name="Multipack Launcher" version="1.0.7.100" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jKESJ6E2129cDkMYF1Zl7uopXn0uPXaMRKwX7CNhp0k=</dsig:DigestValue>
+        <dsig:DigestValue>A4jc76et3hVAyIDKkXk5Nfp6JrSGvv9NXMMBdnMKU/4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -92,25 +92,25 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="7168">
-      <assemblyIdentity name="ProcessesLibrary" version="1.0.1.9" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="ProcessesLibrary" version="1.0.2.11" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Tfw6kB12eBkQJin1QjYM2vbL6S6twkLkqs2EhRfU7RM=</dsig:DigestValue>
+        <dsig:DigestValue>ubQzsS9ChCpQvqeWcy5IK3arG0gDdLAVwTyGbMZmNHw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="restart.exe" size="5632">
-      <assemblyIdentity name="restart" version="1.0.1.9" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="restart" version="1.0.2.11" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Gh9+QSPX+rhu+FwUUiNw4B50txNxzE85wNsS6O/neCc=</dsig:DigestValue>
+        <dsig:DigestValue>mDP0wG8MSd05J8pnu9r9VMWvS7u8FitZ8ookDZdDh+c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -141,13 +141,13 @@
       <dsig:DigestValue>8uzxBJeylxYQAtyfkleNK3R9fmjO/bZgLdzFMo5HqBs=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Resources\FonSetting.jpg" size="95759">
+  <file name="Resources\FonSetting.jpg" size="154354">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>QQRgkt7ah8S0uk9ARAMQrmHhLY5upcsODqkSXD6hUeE=</dsig:DigestValue>
+      <dsig:DigestValue>dViVDHfUqhEkqUdHbdbOOjsyqwdwt9eA5rxg8n5MNwQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\FonUPD.jpg" size="97787">

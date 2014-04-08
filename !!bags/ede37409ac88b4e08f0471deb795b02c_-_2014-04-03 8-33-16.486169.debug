@@ -1,5 +1,0 @@
-﻿public void loadSettings()
--------------------------------
-sVerType = doc.GetElementsByTagName("type")[0].InnerText;
--------------------------------
-Ссылка на объект не указывает на экземпляр объекта.
