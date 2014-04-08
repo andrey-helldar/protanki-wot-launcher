@@ -199,9 +199,10 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (File.Exists(path + "version.xml"))
+                //if (File.Exists(path + "version.xml"))
+                if (File.Exists(@"..\version.xml"))
                 {
-                    XDocument doc = XDocument.Load("version.xml");
+                    XDocument doc = XDocument.Load(@"..\version.xml");
                     return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" ", "").Replace("#", "."));
                 }
                 else
@@ -211,21 +212,23 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         if ((string)key.GetValue("InstallLocation") != "")
                         {
-                            if (File.Exists((string)key.GetValue("InstallLocation") + "version.xml"))
+                            path = (string)key.GetValue("InstallLocation");
+
+                            if (File.Exists(path + "version.xml"))
                             {
-                                XDocument doc = XDocument.Load("version.xml");
+                                XDocument doc = XDocument.Load(path + "version.xml");
                                 return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" ", "").Replace("#", "."));
                             }
                         }
                     }
 
-                    Debug.Save("private int getTanksVersion()", "if (File.Exists(path + \"version.xml\"))", "Клиент игры не обнаружен.", path + "version.xml");
+                    Debug.Save("private Version getTanksVersion()", "Клиент игры не обнаружен в реестре.", path + "version.xml");
                     return new Version("0.0.0.0");
                 }
             }
             catch (Exception ex)
             {
-                Debug.Save("private int getTanksVersion()", "doc.Load(path + \"version.xml\");", ex.Message);
+                Debug.Save("private Version getTanksVersion()", "doc.Load(path + \"version.xml\");", ex.Message);
                 return new Version("0.0.0.0");
             }
         }

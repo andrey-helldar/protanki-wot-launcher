@@ -133,9 +133,9 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap back_settings {
+        internal static System.Drawing.Bitmap back_updates {
             get {
-                object obj = ResourceManager.GetObject("back_settings", resourceCulture);
+                object obj = ResourceManager.GetObject("back_updates", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap back_updates {
+        internal static System.Drawing.Bitmap FonSetting {
             get {
-                object obj = ResourceManager.GetObject("back_updates", resourceCulture);
+                object obj = ResourceManager.GetObject("FonSetting", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

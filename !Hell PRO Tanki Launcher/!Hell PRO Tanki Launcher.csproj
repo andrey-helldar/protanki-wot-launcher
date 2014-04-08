@@ -172,7 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PROTanks.ico" />
-    <Content Include="Resources\FonSetting.jpg" />
+    <None Include="Resources\FonSetting.jpg" />
     <Content Include="Resources\FonUPD.jpg" />
     <None Include="Resources\restart.exe" />
     <None Include="Resources\ProcessesLibrary.dll" />

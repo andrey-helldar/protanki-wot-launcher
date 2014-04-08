@@ -4,7 +4,7 @@
   <description asmv2:iconFile="PROTanks.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.0.7.97" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="Multipack Launcher" version="1.0.7.100" language="neutral" processorArchitecture="x86" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2354176">
-      <assemblyIdentity name="Multipack Launcher" version="1.0.7.97" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2407424">
+      <assemblyIdentity name="Multipack Launcher" version="1.0.7.100" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3WQ6TbKubSP97ExjGfUNwHDCqXdKwrwUjJfIaKkpci4=</dsig:DigestValue>
+        <dsig:DigestValue>A4jc76et3hVAyIDKkXk5Nfp6JrSGvv9NXMMBdnMKU/4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -104,13 +104,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="restart.exe" size="5632">
-      <assemblyIdentity name="restart" version="1.0.2.10" language="neutral" processorArchitecture="x86" />
+      <assemblyIdentity name="restart" version="1.0.2.11" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gFbZVcytnFgTC5HlK4IjgN5i7HSiZyKJ3geeAIloL9w=</dsig:DigestValue>
+        <dsig:DigestValue>mDP0wG8MSd05J8pnu9r9VMWvS7u8FitZ8ookDZdDh+c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -141,13 +141,13 @@
       <dsig:DigestValue>8uzxBJeylxYQAtyfkleNK3R9fmjO/bZgLdzFMo5HqBs=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Resources\FonSetting.jpg" size="95759">
+  <file name="Resources\FonSetting.jpg" size="154354">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>QQRgkt7ah8S0uk9ARAMQrmHhLY5upcsODqkSXD6hUeE=</dsig:DigestValue>
+      <dsig:DigestValue>dViVDHfUqhEkqUdHbdbOOjsyqwdwt9eA5rxg8n5MNwQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\FonUPD.jpg" size="97787">
