@@ -26,9 +26,9 @@ namespace _Hell_PRO_Tanki_Launcher
         fLanguage languagePack = new fLanguage();   // ПОдгружаем языковую библиотеку
 
         string path = "",
-            sVerType = "full",
-            sUpdateNews,
+            modType = "full",
             youtubeChannel = "PROTankiWoT",
+            sUpdateNews,
             sUpdateLink = "http://goo.gl/gr6pFl",
             videoLink = "http://goo.gl/gr6pFl",
             updateNotification = "";
@@ -96,7 +96,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 this.Text = Application.ProductName + " v" + lVerModpack.ToString();
                 this.Icon = Properties.Resources.myicon;
 
-                llTitle.Text = Application.ProductName + " (" + (sVerType == "full" ? "Расширенная версия" : "Базовая версия") + ")";
+                llTitle.Text = Application.ProductName + " (" + (modType == "full" ? "Расширенная версия" : "Базовая версия") + ")";
 
                 llLauncherVersion.Text = Application.ProductVersion;
 
@@ -135,26 +135,35 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     XDocument doc = XDocument.Load("settings.xml");
 
-                    path = Application.StartupPath + @"\..\";
+                    if (File.Exists(@"..\version.xml"))
+                    {
+                        path = Application.StartupPath + @"\..\";
+                    }
+                    else
+                    {
+                        var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
+                        path = key != null ? (string)key.GetValue("InstallLocation") : null;
+                    }
+                    if (path == null) {
+                        bPlay.Enabled = false;
+                        bLauncher.Enabled = false;
+                        MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
-                    var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
-                    if (key != null) { path = (string)key.GetValue("InstallLocation") != "" ? (string)key.GetValue("InstallLocation") : ""; }
-
-
-                    try { sVerType = doc.Root.Element("type").Value; }
+                    try { modType = doc.Root.Element("type").Value; }
                     catch (Exception)
                     {
                         try
                         {
                             if (File.Exists("config.ini"))
                             {
-                                sVerType = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower();
+                                modType = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower();
                             }
-                            else { sVerType = "full"; }
+                            else { modType = "full"; }
                         }
                         catch (Exception ex1)
                         {
-                            sVerType = "full";
+                            modType = "full";
                             Debug.Save("public void loadSettings()", "Read from INI", ex1.Message);
                         }
                     }
@@ -301,8 +310,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (updPack)
                 {
-                    sUpdateNews = doc.Root.Element(sVerType).Attribute("message").Value.Replace(":;", Environment.NewLine);
-                    sUpdateLink = doc.Root.Element(sVerType).Attribute("download").Value;
+                    sUpdateNews = doc.Root.Element(modType).Attribute("message").Value.Replace(":;", Environment.NewLine);
+                    sUpdateLink = doc.Root.Element(modType).Attribute("download").Value;
                 }
             }
             catch (Exception ex)

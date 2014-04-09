@@ -156,7 +156,9 @@ namespace Processes_Library
                 "NetMap",
                 "Cloud",
                 "YandexDisk",
-                "Dropbox"
+                "Dropbox",
+                "RazerImperatorSysTray",
+                "Volume2"
             };
 
             return vipProcess;

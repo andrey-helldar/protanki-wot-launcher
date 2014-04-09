@@ -25,7 +25,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         public void CheckProcessFile()
         {
-            if (Process.GetCurrentProcess().ProcessName != Application.ProductName)
+            if (Process.GetCurrentProcess().ProcessName != Application.ProductName && Process.GetCurrentProcess().ProcessName != Application.ProductName+".vshost")
             {
                 Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + ".exe\" \"" + Application.ProductName + ".exe\"");
                 Process.GetCurrentProcess().Kill();
