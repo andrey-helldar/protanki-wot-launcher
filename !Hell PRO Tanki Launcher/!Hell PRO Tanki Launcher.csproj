@@ -172,10 +172,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PROTanks.ico" />
+    <None Include="Resources\ProcessesLibrary.dll" />
     <None Include="Resources\FonSetting.jpg" />
     <Content Include="Resources\FonUPD.jpg" />
     <None Include="Resources\restart.exe" />
-    <None Include="Resources\ProcessesLibrary.dll" />
     <None Include="Resources\LanguagePack.dll" />
     <None Include="Resources\Newtonsoft.Json.dll" />
     <None Include="Resources\Ionic.Zip.dll" />

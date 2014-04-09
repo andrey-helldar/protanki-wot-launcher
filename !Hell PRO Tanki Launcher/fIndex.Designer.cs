@@ -64,7 +64,6 @@
             this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
             this.pNews = new System.Windows.Forms.Panel();
             this.bwGetVipProcesses = new System.ComponentModel.BackgroundWorker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.contextMenu.SuspendLayout();
             this.pVideo.SuspendLayout();
             this.SuspendLayout();
@@ -456,7 +455,6 @@
             // pVideo
             // 
             this.pVideo.BackColor = System.Drawing.Color.Transparent;
-            this.pVideo.Controls.Add(this.textBox1);
             this.pVideo.Controls.Add(this.llLoadingVideoData);
             this.pVideo.Location = new System.Drawing.Point(13, 109);
             this.pVideo.Name = "pVideo";
@@ -494,14 +492,6 @@
             this.bwGetVipProcesses.WorkerReportsProgress = true;
             this.bwGetVipProcesses.WorkerSupportsCancellation = true;
             this.bwGetVipProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwGetVipProcesses_DoWork);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(296, 18);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(321, 269);
-            this.textBox1.TabIndex = 24;
             // 
             // fIndex
             // 
@@ -577,7 +567,6 @@
         private System.Windows.Forms.LinkLabel llLoadingVideoData;
         private System.ComponentModel.BackgroundWorker bwGetVipProcesses;
         public System.Windows.Forms.ProgressBar pbDownload;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

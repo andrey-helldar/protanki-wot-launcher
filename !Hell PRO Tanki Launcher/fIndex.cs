@@ -24,8 +24,6 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fIndex : Form
     {
-        string aw = "";
-
         fLanguage languagePack = new fLanguage();   // ПОдгружаем языковую библиотеку
 
         string path = "",
@@ -439,7 +437,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
 
-                Hide();
+                //Hide();
                 WindowState = FormWindowState.Minimized;
                 this.ShowInTaskbar = true;
             }
@@ -456,7 +454,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (!bwOptimize.IsBusy) { playGame = true; bwOptimize.RunWorkerAsync(); }
                 if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
 
-                Hide();
+                //Hide();
                 WindowState = FormWindowState.Minimized;
                 this.ShowInTaskbar = true;
             }
@@ -924,8 +922,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            textBox1.Text = aw;
-
             try
             {
                 LinkLabel label = new LinkLabel();
@@ -981,52 +977,25 @@ namespace _Hell_PRO_Tanki_Launcher
                 youtubeLink.Clear();
                 youtubeDate.Clear();
 
-                aw = doc.Root.ToString();
+                XNamespace ns = "http://www.w3.org/2005/Atom";
 
-                var el = from entry in doc.Root.Descendants("entry")
-                         select new
-                         {
-                             Date = entry.Element("published").Value,
-                             Title = entry.Element("title").Value.IndexOf(" / PRO") >= 0 ? entry.Attribute("title").Value.Remove(entry.Attribute("title").Value.IndexOf(" / PRO")) : entry.Attribute("title").Value,
-                             Link = entry.Element("link").Attribute("href").Value
-                         };
+                foreach (XElement el in doc.Root.Elements(ns + "entry"))
+                {
+                    if (i > 10 || showVideoTop > 290) { break; }
 
-                foreach(var entry in el){
-                    if (i >= 10 || showVideoTop > 290) { break; }
+                    youtubeDate.Add(el.Element(ns + "published").Value.Remove(10));
+                    youtubeTitle.Add((el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value));
 
-                    youtubeDate.Add(entry.Date);
-                    youtubeTitle.Add(entry.Title);
-                    youtubeLink.Add(entry.Link);
+                    foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { youtubeLink.Add(subEl.Attribute("href").Value); break; } }
 
                     bwVideo.ReportProgress(++i);
                 }
-
-
-
-                /*foreach (XElement el in doc.Root.Elements("entry"))
-                {
-                    if (i >= 10 || showVideoTop > 290) { break; }
-
-                    youtubeDate.Add(el.Element("published").Value.Remove(10));
-                    youtubeTitle.Add((el.Element("title").Value.IndexOf(" / PRO") >= 0 ? el.Attribute("title").Value.Remove(el.Attribute("title").Value.IndexOf(" / PRO")) : el.Attribute("title").Value));
-
-                    foreach (XElement subEl in el.Elements("link"))
-                    {
-                        if (subEl.Attribute("rel").Value == "alternate")
-                        {
-                            youtubeLink.Add(subEl.Attribute("href").Value);
-                            break;
-                        }
-                    }
-
-                    bwVideo.ReportProgress(++i);
-                }*/
 
                 if (youtubeTitle.Count == 0) { bwVideo.ReportProgress(-1); }
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwVideo_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
+                Debug.Save("private void bwVideo_DoWork()", "XmlDocument doc = new XmlDocument();", ex.Message);
             }
         }
 
@@ -1213,9 +1182,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 newsLink.Clear();
                 newsDate.Clear();
 
-                foreach (XElement el in doc.Root.Elements("item"))
+                foreach (XElement el in doc.Root.Element("channel").Elements("item"))
                 {
-                    if (i >= 10 || showNewsTop > 290) { break; }
+                    if (i > 10 || showNewsTop > 290) { break; }
 
                     newsDate.Add(el.Element("pubDate").Value);
                     newsTitle.Add(el.Element("title").Value);
@@ -1360,31 +1329,5 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
             }
         }
-
-        /*private async Task LoadVideo()
-        {
-            try
-            {
-                int i = 0;
-
-                XDocument doc = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
-
-
-                foreach (XElement el in doc.Root.Elements("entry"))
-                {
-                    if (i >= 10 || showVideoTop > 290) { break; }
-
-                    youtubeDate.Add(el.Element("published").Value.Remove(10));
-                    youtubeTitle.Add((el.Element("title").Value.IndexOf(" / PRO") >= 0 ? el.Attribute("title").Value.Remove(el.Attribute("title").Value.IndexOf(" / PRO")) : el.Attribute("title").Value));
-                    youtubeLink.Add(el.Element("link").Attribute("rel").Value == "alternate" ? el.Element("link").Attribute("href").Value : "");
-
-                    bwVideo.ReportProgress(++i);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("private void bwVideo_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
-            }
-        }*/
     }
 }

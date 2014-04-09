@@ -1,0 +1,2304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:gd="http://schemas.google.com/g/2005" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml" xmlns:media="http://search.yahoo.com/mrss/" xmlns:openSearch="http://a9.com/-/spec/opensearchrss/1.0/" xmlns:yt="http://gdata.youtube.com/schemas/2007">
+   <id>http://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads</id>
+   <updated>2014-04-09T14:45:05.510Z</updated>
+   <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+   <title type="text">Uploads by PRO Tanki</title>
+   <logo>http://www.gstatic.com/youtube/img/logo.png</logo>
+   <link rel="related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/protankiwot" />
+   <link rel="alternate" type="text/html" href="https://www.youtube.com/channel/UCX3CVO5uiuB9U0aOe20YT1A/videos" />
+   <link rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads" />
+   <link rel="http://schemas.google.com/g/2005#batch" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/batch" />
+   <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads?start-index=1&amp;max-results=25" />
+   <link rel="next" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads?start-index=26&amp;max-results=25" />
+   <author>
+      <name>PRO Tanki</name>
+      <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+   </author>
+   <generator version="2.1" uri="http://gdata.youtube.com">YouTube data API</generator>
+   <openSearch:totalResults>112</openSearch:totalResults>
+   <openSearch:startIndex>1</openSearch:startIndex>
+   <openSearch:itemsPerPage>25</openSearch:itemsPerPage>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/HjFht_vTF_E</id>
+      <published>2014-04-05T05:49:56.000Z</published>
+      <updated>2014-04-09T14:44:53.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Идеальные настройки графики для патча 0.9.0 / Максимум FPS в World of Tanks</title>
+      <content type="text">Это видео получилось на целых 4 минуты короче предыдущего!!! :)
+Ну не могу я "галопом по Европам"... зато Вы видите... после настроек FPS стал в 2 раза выше у меня... и самое главное - Вы после этого видео будете понимать... чего Вы там вообще крутите :)
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=HjFht_vTF_E&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/HjFht_vTF_E/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=HjFht_vTF_E" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/HjFht_vTF_E" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/HjFht_vTF_E/comments" countHint="292" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/HjFht_vTF_E?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="1984" yt:format="5" />
+         <media:content url="rtsp://r2---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwnxF9P7t2ExHhMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="1984" yt:format="1" />
+         <media:content url="rtsp://r2---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwnxF9P7t2ExHhMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="1984" yt:format="6" />
+         <media:description type="plain">Это видео получилось на целых 4 минуты короче предыдущего!!! :)
+Ну не могу я "галопом по Европам"... зато Вы видите... после настроек FPS стал в 2 раза выше у меня... и самое главное - Вы после этого видео будете понимать... чего Вы там вообще крутите :)
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=HjFht_vTF_E&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/HjFht_vTF_E/0.jpg" height="360" width="480" time="00:16:32" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/HjFht_vTF_E/1.jpg" height="90" width="120" time="00:08:16" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/HjFht_vTF_E/2.jpg" height="90" width="120" time="00:16:32" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/HjFht_vTF_E/3.jpg" height="90" width="120" time="00:24:48" />
+         <media:title type="plain">Идеальные настройки графики для патча 0.9.0 / Максимум FPS в World of Tanks</media:title>
+         <yt:duration seconds="1984" />
+      </media:group>
+      <gd:rating average="4.9508476" max="5" min="1" numRaters="2360" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="50780" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/SFpaJvuNSo8</id>
+      <published>2014-04-04T17:02:09.000Z</published>
+      <updated>2014-04-09T14:09:21.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Розыгрыш: 75000 голды и игровые гаджеты / PROТанки World of Tanks</title>
+      <content type="text">Для участия в розыгрыше вам необходимо:
+✔1. Вступить в группу: https://vk.com/placeforpro
+✔2. Вступить в группу: https://vk.com/acesteam
+✔3. Подписаться: https://www.youtube.com/user/PROTankiWoT
+♥4. Поделиться этой новостью у себя на страничке vk.com!
+На этот раз в качестве призов у нас 75 000 голды и 3 девайса от Roccat предоставленные магазином.
+► Розыгрыш продлится до 01.05.2014
+Разыгрываться призы будут на стриме http://theaces.ru/ в 20.00 МСК!
+
+Скидка на всю продукцию в магазине http://place4.pro/ 10% с промо-кодом:
+P4P
+
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=SFpaJvuNSo8&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/SFpaJvuNSo8/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=SFpaJvuNSo8" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/SFpaJvuNSo8" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/SFpaJvuNSo8/comments" countHint="158" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/SFpaJvuNSo8?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="697" yt:format="5" />
+         <media:content url="rtsp://r8---sn-p5qlsu7l.c.youtube.com/CigLENy73wIaHwmPSo37JlpaSBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="697" yt:format="1" />
+         <media:content url="rtsp://r8---sn-p5qlsu7l.c.youtube.com/CigLENy73wIaHwmPSo37JlpaSBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="697" yt:format="6" />
+         <media:description type="plain">Для участия в розыгрыше вам необходимо:
+✔1. Вступить в группу: https://vk.com/placeforpro
+✔2. Вступить в группу: https://vk.com/acesteam
+✔3. Подписаться: https://www.youtube.com/user/PROTankiWoT
+♥4. Поделиться этой новостью у себя на страничке vk.com!
+На этот раз в качестве призов у нас 75 000 голды и 3 девайса от Roccat предоставленные магазином.
+► Розыгрыш продлится до 01.05.2014
+Разыгрываться призы будут на стриме http://theaces.ru/ в 20.00 МСК!
+
+Скидка на всю продукцию в магазине http://place4.pro/ 10% с промо-кодом:
+P4P
+
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=SFpaJvuNSo8&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/SFpaJvuNSo8/0.jpg" height="360" width="480" time="00:05:48.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/SFpaJvuNSo8/1.jpg" height="90" width="120" time="00:02:54.250" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/SFpaJvuNSo8/2.jpg" height="90" width="120" time="00:05:48.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/SFpaJvuNSo8/3.jpg" height="90" width="120" time="00:08:42.750" />
+         <media:title type="plain">Розыгрыш: 75000 голды и игровые гаджеты / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="697" />
+      </media:group>
+      <gd:rating average="4.8900237" max="5" min="1" numRaters="1273" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="22109" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/reTERwoIKyw</id>
+      <published>2014-04-04T04:31:10.000Z</published>
+      <updated>2014-04-09T14:32:43.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Объект 140 / Везучий Свертухан / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=reTERwoIKyw&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/reTERwoIKyw/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=reTERwoIKyw" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/reTERwoIKyw" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/reTERwoIKyw/comments" countHint="106" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/reTERwoIKyw?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="666" yt:format="5" />
+         <media:content url="rtsp://r3---sn-p5qlsu76.c.youtube.com/CigLENy73wIaHwksKwgKR8TkrRMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="666" yt:format="1" />
+         <media:content url="rtsp://r3---sn-p5qlsu76.c.youtube.com/CigLENy73wIaHwksKwgKR8TkrRMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="666" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=reTERwoIKyw&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/reTERwoIKyw/0.jpg" height="360" width="480" time="00:05:33" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/reTERwoIKyw/1.jpg" height="90" width="120" time="00:02:46.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/reTERwoIKyw/2.jpg" height="90" width="120" time="00:05:33" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/reTERwoIKyw/3.jpg" height="90" width="120" time="00:08:19.500" />
+         <media:title type="plain">Объект 140 / Везучий Свертухан / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="666" />
+      </media:group>
+      <gd:rating average="4.9582753" max="5" min="1" numRaters="1438" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="22984" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/Ft4Pr23WZ6Q</id>
+      <published>2014-04-03T04:52:46.000Z</published>
+      <updated>2014-04-09T14:35:29.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Сравнение Об.140 и Т-62А / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=Ft4Pr23WZ6Q&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/Ft4Pr23WZ6Q/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=Ft4Pr23WZ6Q" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/Ft4Pr23WZ6Q" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/Ft4Pr23WZ6Q/comments" countHint="163" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/Ft4Pr23WZ6Q?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="751" yt:format="5" />
+         <media:content url="rtsp://r3---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwmkZ9Ztrw_eFhMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="751" yt:format="1" />
+         <media:content url="rtsp://r3---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwmkZ9Ztrw_eFhMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="751" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=Ft4Pr23WZ6Q&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/Ft4Pr23WZ6Q/0.jpg" height="360" width="480" time="00:06:15.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/Ft4Pr23WZ6Q/1.jpg" height="90" width="120" time="00:03:07.750" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/Ft4Pr23WZ6Q/2.jpg" height="90" width="120" time="00:06:15.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/Ft4Pr23WZ6Q/3.jpg" height="90" width="120" time="00:09:23.250" />
+         <media:title type="plain">Сравнение Об.140 и Т-62А / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="751" />
+      </media:group>
+      <gd:rating average="4.9235363" max="5" min="1" numRaters="1674" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="26348" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/zG-ndjIwUb8</id>
+      <published>2014-04-02T19:38:26.000Z</published>
+      <updated>2014-04-09T12:43:00.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Процессор AMD / Дешево и быстро апгрейдим компьютер / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=zG-ndjIwUb8&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/zG-ndjIwUb8/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=zG-ndjIwUb8" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/zG-ndjIwUb8" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/zG-ndjIwUb8/comments" countHint="281" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/zG-ndjIwUb8?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="913" yt:format="5" />
+         <media:content url="rtsp://r2---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwm_UTAydqdvzBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="913" yt:format="1" />
+         <media:content url="rtsp://r2---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwm_UTAydqdvzBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="913" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=zG-ndjIwUb8&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/zG-ndjIwUb8/0.jpg" height="360" width="480" time="00:07:36.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/zG-ndjIwUb8/1.jpg" height="90" width="120" time="00:03:48.250" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/zG-ndjIwUb8/2.jpg" height="90" width="120" time="00:07:36.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/zG-ndjIwUb8/3.jpg" height="90" width="120" time="00:11:24.750" />
+         <media:title type="plain">Процессор AMD / Дешево и быстро апгрейдим компьютер / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="913" />
+      </media:group>
+      <gd:rating average="4.856315" max="5" min="1" numRaters="863" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="17762" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/CGHYuwu0r5s</id>
+      <published>2014-04-01T19:15:45.000Z</published>
+      <updated>2014-04-09T13:47:21.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">[ПРИКОЛ] СРОЧНО / ВАЖНЫЕ НОВОСТИ / PROТанки World of Tanks</title>
+      <content type="text">Срочно, срочно, срочно!
+Извините за качество, очень торопился, потому что очень важно успеть рассказать вам это как можно скорее!!!
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=CGHYuwu0r5s&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/CGHYuwu0r5s/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=CGHYuwu0r5s" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/CGHYuwu0r5s" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/CGHYuwu0r5s/comments" countHint="399" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/CGHYuwu0r5s?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="331" yt:format="5" />
+         <media:content url="rtsp://r4---sn-p5qlsu7s.c.youtube.com/CigLENy73wIaHwmbr7QLu9hhCBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="331" yt:format="1" />
+         <media:content url="rtsp://r4---sn-p5qlsu7s.c.youtube.com/CigLENy73wIaHwmbr7QLu9hhCBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="331" yt:format="6" />
+         <media:description type="plain">Срочно, срочно, срочно!
+Извините за качество, очень торопился, потому что очень важно успеть рассказать вам это как можно скорее!!!
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=CGHYuwu0r5s&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/CGHYuwu0r5s/0.jpg" height="360" width="480" time="00:02:45.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/CGHYuwu0r5s/1.jpg" height="90" width="120" time="00:01:22.750" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/CGHYuwu0r5s/2.jpg" height="90" width="120" time="00:02:45.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/CGHYuwu0r5s/3.jpg" height="90" width="120" time="00:04:08.250" />
+         <media:title type="plain">[ПРИКОЛ] СРОЧНО / ВАЖНЫЕ НОВОСТИ / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="331" />
+      </media:group>
+      <gd:rating average="3.973417" max="5" min="1" numRaters="2069" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="37965" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/KYLAuLCw0sU</id>
+      <published>2014-04-01T18:27:50.000Z</published>
+      <updated>2014-04-09T12:03:54.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Мортира КАРЛ / Стратегия нагиба / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=KYLAuLCw0sU&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/KYLAuLCw0sU/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=KYLAuLCw0sU" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/KYLAuLCw0sU" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/KYLAuLCw0sU/comments" countHint="79" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/KYLAuLCw0sU?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="857" yt:format="5" />
+         <media:content url="rtsp://r1---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwnF0rCwuMCCKRMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="857" yt:format="1" />
+         <media:content url="rtsp://r1---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwnF0rCwuMCCKRMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="857" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=KYLAuLCw0sU&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/KYLAuLCw0sU/0.jpg" height="360" width="480" time="00:07:08.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/KYLAuLCw0sU/1.jpg" height="90" width="120" time="00:03:34.250" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/KYLAuLCw0sU/2.jpg" height="90" width="120" time="00:07:08.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/KYLAuLCw0sU/3.jpg" height="90" width="120" time="00:10:42.750" />
+         <media:title type="plain">Мортира КАРЛ / Стратегия нагиба / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="857" />
+      </media:group>
+      <gd:rating average="4.8698373" max="5" min="1" numRaters="799" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="22135" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/DO83ZbtcAGM</id>
+      <published>2014-03-31T20:07:11.000Z</published>
+      <updated>2014-04-09T13:21:52.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">[ПРИКОЛ] Скрытый ЧитоБаг / Нагибаем на Т34 / PROТанки World of Tanks</title>
+      <content type="text">Каждый из нас мечтал нагибать противника безнаказанно.
+В данном видео мечты сбываются!
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Реплей, который показывает настоящий сценарий боя в тренировке:
+http://goo.gl/RXqxWP
+
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=DO83ZbtcAGM&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/DO83ZbtcAGM/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=DO83ZbtcAGM" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/DO83ZbtcAGM" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/DO83ZbtcAGM/comments" countHint="796" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/DO83ZbtcAGM?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="725" yt:format="5" />
+         <media:content url="rtsp://r1---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwljAFy7ZTfvDBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="725" yt:format="1" />
+         <media:content url="rtsp://r1---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwljAFy7ZTfvDBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="725" yt:format="6" />
+         <media:description type="plain">Каждый из нас мечтал нагибать противника безнаказанно.
+В данном видео мечты сбываются!
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Реплей, который показывает настоящий сценарий боя в тренировке:
+http://goo.gl/RXqxWP
+
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=DO83ZbtcAGM&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/DO83ZbtcAGM/0.jpg" height="360" width="480" time="00:06:02.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/DO83ZbtcAGM/1.jpg" height="90" width="120" time="00:03:01.250" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/DO83ZbtcAGM/2.jpg" height="90" width="120" time="00:06:02.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/DO83ZbtcAGM/3.jpg" height="90" width="120" time="00:09:03.750" />
+         <media:title type="plain">[ПРИКОЛ] Скрытый ЧитоБаг / Нагибаем на Т34 / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="725" />
+      </media:group>
+      <gd:rating average="4.879158" max="5" min="1" numRaters="2946" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="37076" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/TUIFLK9-_Jo</id>
+      <published>2014-03-28T06:27:59.000Z</published>
+      <updated>2014-04-09T14:04:03.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Т-62А / Азы выживания / PROТанки World of Tanks</title>
+      <content type="text">Всем приветы!
+Я не пропал... я пилю моды, пилю Мультипак и вообще активно стараюсь сделать Вашу игру более приятной... а в этом видео мы поговорим о том, как не стоять в кустах и при этом еще и умудриться выжить...
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=TUIFLK9-_Jo&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/TUIFLK9-_Jo/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=TUIFLK9-_Jo" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/TUIFLK9-_Jo" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/TUIFLK9-_Jo/comments" countHint="131" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/TUIFLK9-_Jo?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="831" yt:format="5" />
+         <media:content url="rtsp://r3---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwma_H6vLAVCTRMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="831" yt:format="1" />
+         <media:content url="rtsp://r3---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwma_H6vLAVCTRMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="831" yt:format="6" />
+         <media:description type="plain">Всем приветы!
+Я не пропал... я пилю моды, пилю Мультипак и вообще активно стараюсь сделать Вашу игру более приятной... а в этом видео мы поговорим о том, как не стоять в кустах и при этом еще и умудриться выжить...
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=TUIFLK9-_Jo&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/TUIFLK9-_Jo/0.jpg" height="360" width="480" time="00:06:55.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/TUIFLK9-_Jo/1.jpg" height="90" width="120" time="00:03:27.750" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/TUIFLK9-_Jo/2.jpg" height="90" width="120" time="00:06:55.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/TUIFLK9-_Jo/3.jpg" height="90" width="120" time="00:10:23.250" />
+         <media:title type="plain">Т-62А / Азы выживания / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="831" />
+      </media:group>
+      <gd:rating average="4.971693" max="5" min="1" numRaters="1837" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="28290" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/_XU8oIkin-E</id>
+      <published>2014-03-24T09:35:51.000Z</published>
+      <updated>2014-04-09T11:07:21.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Клан BROТанки / Первые блины абсолютной роты / PROТанки World of Tanks</title>
+      <content type="text">Всем привет!
+Что будет если взять обычных игроков Мира танков, популярного модо/вододела и топового полевого командира? Ответ очевиден... сюжет для очередного видосика :)
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=_XU8oIkin-E&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/_XU8oIkin-E/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=_XU8oIkin-E" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/_XU8oIkin-E" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/_XU8oIkin-E/comments" countHint="266" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/_XU8oIkin-E?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="1052" yt:format="5" />
+         <media:content url="rtsp://r1---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwnhnyKJoDx1_RMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="1052" yt:format="1" />
+         <media:content url="rtsp://r1---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwnhnyKJoDx1_RMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="1052" yt:format="6" />
+         <media:description type="plain">Всем привет!
+Что будет если взять обычных игроков Мира танков, популярного модо/вододела и топового полевого командира? Ответ очевиден... сюжет для очередного видосика :)
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=_XU8oIkin-E&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/_XU8oIkin-E/0.jpg" height="360" width="480" time="00:08:46" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/_XU8oIkin-E/1.jpg" height="90" width="120" time="00:04:23" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/_XU8oIkin-E/2.jpg" height="90" width="120" time="00:08:46" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/_XU8oIkin-E/3.jpg" height="90" width="120" time="00:13:09" />
+         <media:title type="plain">Клан BROТанки / Первые блины абсолютной роты / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="1052" />
+      </media:group>
+      <gd:rating average="4.8906064" max="5" min="1" numRaters="1682" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="29145" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/GGY7DYcrAUg</id>
+      <published>2014-03-23T06:19:26.000Z</published>
+      <updated>2014-04-09T12:30:57.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">КВ-2 / Ракоход / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=GGY7DYcrAUg&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/GGY7DYcrAUg/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=GGY7DYcrAUg" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/GGY7DYcrAUg" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/GGY7DYcrAUg/comments" countHint="270" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/GGY7DYcrAUg?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="836" yt:format="5" />
+         <media:content url="rtsp://r7---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwlIASuHDTtmGBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="836" yt:format="1" />
+         <media:content url="rtsp://r7---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwlIASuHDTtmGBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="836" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=GGY7DYcrAUg&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/GGY7DYcrAUg/0.jpg" height="360" width="480" time="00:06:58" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/GGY7DYcrAUg/1.jpg" height="90" width="120" time="00:03:29" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/GGY7DYcrAUg/2.jpg" height="90" width="120" time="00:06:58" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/GGY7DYcrAUg/3.jpg" height="90" width="120" time="00:10:27" />
+         <media:title type="plain">КВ-2 / Ракоход / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="836" />
+      </media:group>
+      <gd:rating average="4.9398026" max="5" min="1" numRaters="1927" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="31256" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/uUFMbGNIWTo</id>
+      <published>2014-03-22T05:47:46.000Z</published>
+      <updated>2014-04-08T16:44:26.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Камера Юши на стриме Глеборга / Тест обновления 0.8.11.1 / PROТанки World of Tanks</title>
+      <content type="text">Стрим глазами Глеборга тут:
+http://youtu.be/Vft4syVZ6X4
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=uUFMbGNIWTo&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/uUFMbGNIWTo/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=uUFMbGNIWTo" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/uUFMbGNIWTo" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/uUFMbGNIWTo/comments" countHint="128" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/uUFMbGNIWTo?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="7790" yt:format="5" />
+         <media:content url="rtsp://r2---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwk6WUhjbExBuRMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="7790" yt:format="1" />
+         <media:content url="rtsp://r2---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwk6WUhjbExBuRMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="7790" yt:format="6" />
+         <media:description type="plain">Стрим глазами Глеборга тут:
+http://youtu.be/Vft4syVZ6X4
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=uUFMbGNIWTo&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/uUFMbGNIWTo/0.jpg" height="360" width="480" time="01:04:55" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/uUFMbGNIWTo/1.jpg" height="90" width="120" time="00:32:27.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/uUFMbGNIWTo/2.jpg" height="90" width="120" time="01:04:55" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/uUFMbGNIWTo/3.jpg" height="90" width="120" time="01:37:22.500" />
+         <media:title type="plain">Камера Юши на стриме Глеборга / Тест обновления 0.8.11.1 / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="7790" />
+      </media:group>
+      <gd:rating average="4.91393" max="5" min="1" numRaters="883" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="27026" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/RDcM0jg3is0</id>
+      <published>2014-03-21T06:44:30.000Z</published>
+      <updated>2014-04-09T09:15:17.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">M26 Pershing / Першинг Против Стояния / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=RDcM0jg3is0&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/RDcM0jg3is0/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=RDcM0jg3is0" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/RDcM0jg3is0" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/RDcM0jg3is0/comments" countHint="175" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/RDcM0jg3is0?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="620" yt:format="5" />
+         <media:content url="rtsp://r2---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwnNijc40gw3RBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="620" yt:format="1" />
+         <media:content url="rtsp://r2---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwnNijc40gw3RBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="620" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=RDcM0jg3is0&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/RDcM0jg3is0/0.jpg" height="360" width="480" time="00:05:10" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/RDcM0jg3is0/1.jpg" height="90" width="120" time="00:02:35" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/RDcM0jg3is0/2.jpg" height="90" width="120" time="00:05:10" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/RDcM0jg3is0/3.jpg" height="90" width="120" time="00:07:45" />
+         <media:title type="plain">M26 Pershing / Першинг Против Стояния / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="620" />
+      </media:group>
+      <gd:rating average="4.935151" max="5" min="1" numRaters="1357" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="19838" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/TqSTch0rfOU</id>
+      <published>2014-03-20T10:03:26.000Z</published>
+      <updated>2014-04-09T13:18:54.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Leopard 1 / Хрустальный / PROТанки World of Tanks</title>
+      <content type="text">Голосовать за танки для обзора можно тут:
+http://youtu.be/WeklWpw4CD8
+================================
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=TqSTch0rfOU&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/TqSTch0rfOU/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=TqSTch0rfOU" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/TqSTch0rfOU" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/TqSTch0rfOU/comments" countHint="169" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/TqSTch0rfOU?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="783" yt:format="5" />
+         <media:content url="rtsp://r8---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwnlfCsdcpOkThMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="783" yt:format="1" />
+         <media:content url="rtsp://r8---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwnlfCsdcpOkThMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="783" yt:format="6" />
+         <media:description type="plain">Голосовать за танки для обзора можно тут:
+http://youtu.be/WeklWpw4CD8
+================================
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=TqSTch0rfOU&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/TqSTch0rfOU/0.jpg" height="360" width="480" time="00:06:31.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/TqSTch0rfOU/1.jpg" height="90" width="120" time="00:03:15.750" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/TqSTch0rfOU/2.jpg" height="90" width="120" time="00:06:31.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/TqSTch0rfOU/3.jpg" height="90" width="120" time="00:09:47.250" />
+         <media:title type="plain">Leopard 1 / Хрустальный / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="783" />
+      </media:group>
+      <gd:rating average="4.942801" max="5" min="1" numRaters="2028" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="40707" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/5oVYQr2I2HQ</id>
+      <published>2014-03-19T06:10:03.000Z</published>
+      <updated>2014-04-09T12:22:46.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">M18 Hellcat / Ну что? Нам тащить? / PROТанки World of Tanks</title>
+      <content type="text">Попробовал новый способ захвата видео и новый кодек... Ютуб не одобрил... есть артефакты в видео... пожалуй хватит экспериментов :)
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=5oVYQr2I2HQ&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/5oVYQr2I2HQ/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=5oVYQr2I2HQ" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/5oVYQr2I2HQ" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/5oVYQr2I2HQ/comments" countHint="211" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/5oVYQr2I2HQ?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="942" yt:format="5" />
+         <media:content url="rtsp://r1---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwl02Ii9QliF5hMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="942" yt:format="1" />
+         <media:content url="rtsp://r1---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwl02Ii9QliF5hMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="942" yt:format="6" />
+         <media:description type="plain">Попробовал новый способ захвата видео и новый кодек... Ютуб не одобрил... есть артефакты в видео... пожалуй хватит экспериментов :)
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=5oVYQr2I2HQ&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/5oVYQr2I2HQ/0.jpg" height="360" width="480" time="00:07:51" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/5oVYQr2I2HQ/1.jpg" height="90" width="120" time="00:03:55.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/5oVYQr2I2HQ/2.jpg" height="90" width="120" time="00:07:51" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/5oVYQr2I2HQ/3.jpg" height="90" width="120" time="00:11:46.500" />
+         <media:title type="plain">M18 Hellcat / Ну что? Нам тащить? / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="942" />
+      </media:group>
+      <gd:rating average="4.884956" max="5" min="1" numRaters="1808" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="34954" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/WeklWpw4CD8</id>
+      <published>2014-03-18T05:01:40.000Z</published>
+      <updated>2014-04-09T12:13:31.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Мой ангар / Голосуем за танки для видео / PROТанки World of Tanks</title>
+      <content type="text">Господа! Я экспериментирую с кодеками, и на этот раз Ютуб решил, что видео должно немного отставать от звука... таким образом запаролись новые залитые видосики. В данном видео это не сильно критично, а остальные я перекодирую и перезалью... жду голосования за танки!
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=WeklWpw4CD8&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/WeklWpw4CD8/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=WeklWpw4CD8" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/WeklWpw4CD8" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/WeklWpw4CD8/comments" countHint="698" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/WeklWpw4CD8?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="2421" yt:format="5" />
+         <media:content url="rtsp://r2---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwk_CDicWiXpWRMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="2421" yt:format="1" />
+         <media:content url="rtsp://r2---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwk_CDicWiXpWRMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="2421" yt:format="6" />
+         <media:description type="plain">Господа! Я экспериментирую с кодеками, и на этот раз Ютуб решил, что видео должно немного отставать от звука... таким образом запаролись новые залитые видосики. В данном видео это не сильно критично, а остальные я перекодирую и перезалью... жду голосования за танки!
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=WeklWpw4CD8&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/WeklWpw4CD8/0.jpg" height="360" width="480" time="00:20:10.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/WeklWpw4CD8/1.jpg" height="90" width="120" time="00:10:05.250" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/WeklWpw4CD8/2.jpg" height="90" width="120" time="00:20:10.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/WeklWpw4CD8/3.jpg" height="90" width="120" time="00:30:15.750" />
+         <media:title type="plain">Мой ангар / Голосуем за танки для видео / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="2421" />
+      </media:group>
+      <gd:rating average="4.936053" max="5" min="1" numRaters="1814" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="26128" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/AwrH75drrr4</id>
+      <published>2014-03-17T05:09:52.000Z</published>
+      <updated>2014-04-09T13:12:53.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Выбираем видеокарту и процессор / PROТанки World of Tanks</title>
+      <content type="text">Самый понятный тест в соотношении цена / отдача: http://goo.gl/YfgXtE
+Еще тесты по цена / отдача видеокарт:
+http://www.ixbt.com/video3/i0114-video.shtml
+Сравнительная таблица для процессоров:
+http://goo.gl/bL93gz
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=AwrH75drrr4&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/AwrH75drrr4/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=AwrH75drrr4" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/AwrH75drrr4" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/AwrH75drrr4/comments" countHint="277" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/AwrH75drrr4?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="1484" yt:format="5" />
+         <media:content url="rtsp://r2---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwm-rmuX78cKAxMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="1484" yt:format="1" />
+         <media:content url="rtsp://r2---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwm-rmuX78cKAxMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="1484" yt:format="6" />
+         <media:description type="plain">Самый понятный тест в соотношении цена / отдача: http://goo.gl/YfgXtE
+Еще тесты по цена / отдача видеокарт:
+http://www.ixbt.com/video3/i0114-video.shtml
+Сравнительная таблица для процессоров:
+http://goo.gl/bL93gz
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=AwrH75drrr4&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/AwrH75drrr4/0.jpg" height="360" width="480" time="00:12:22" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/AwrH75drrr4/1.jpg" height="90" width="120" time="00:06:11" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/AwrH75drrr4/2.jpg" height="90" width="120" time="00:12:22" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/AwrH75drrr4/3.jpg" height="90" width="120" time="00:18:33" />
+         <media:title type="plain">Выбираем видеокарту и процессор / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="1484" />
+      </media:group>
+      <gd:rating average="4.908854" max="5" min="1" numRaters="1536" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="23037" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/IJujWLYnKvM</id>
+      <published>2014-03-16T06:55:55.000Z</published>
+      <updated>2014-04-09T12:13:33.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">M26 Pershing / Чего стоим? Кого ждем? / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=IJujWLYnKvM&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/IJujWLYnKvM/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=IJujWLYnKvM" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/IJujWLYnKvM" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/IJujWLYnKvM/comments" countHint="346" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/IJujWLYnKvM?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="625" yt:format="5" />
+         <media:content url="rtsp://r5---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwnzKie2WKObIBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="625" yt:format="1" />
+         <media:content url="rtsp://r5---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwnzKie2WKObIBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="625" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=IJujWLYnKvM&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/IJujWLYnKvM/0.jpg" height="360" width="480" time="00:05:12.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/IJujWLYnKvM/1.jpg" height="90" width="120" time="00:02:36.250" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/IJujWLYnKvM/2.jpg" height="90" width="120" time="00:05:12.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/IJujWLYnKvM/3.jpg" height="90" width="120" time="00:07:48.750" />
+         <media:title type="plain">M26 Pershing / Чего стоим? Кого ждем? / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="625" />
+      </media:group>
+      <gd:rating average="4.9571047" max="5" min="1" numRaters="2238" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="20130" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/iaBeokUtaL8</id>
+      <published>2014-03-15T08:26:20.000Z</published>
+      <updated>2014-04-09T13:29:51.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">E-100 / Под дождем / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=iaBeokUtaL8&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/iaBeokUtaL8/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=iaBeokUtaL8" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/iaBeokUtaL8" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/iaBeokUtaL8/comments" countHint="816" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/iaBeokUtaL8?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="777" yt:format="5" />
+         <media:content url="rtsp://r5---sn-p5qlsu7z.c.youtube.com/CigLENy73wIaHwm_aC1Fol6giRMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="777" yt:format="1" />
+         <media:content url="rtsp://r5---sn-p5qlsu7z.c.youtube.com/CigLENy73wIaHwm_aC1Fol6giRMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="777" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=iaBeokUtaL8&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/iaBeokUtaL8/0.jpg" height="360" width="480" time="00:06:28.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/iaBeokUtaL8/1.jpg" height="90" width="120" time="00:03:14.250" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/iaBeokUtaL8/2.jpg" height="90" width="120" time="00:06:28.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/iaBeokUtaL8/3.jpg" height="90" width="120" time="00:09:42.750" />
+         <media:title type="plain">E-100 / Под дождем / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="777" />
+      </media:group>
+      <gd:rating average="4.890982" max="5" min="1" numRaters="2495" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="31796" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/UGGTq4P3N44</id>
+      <published>2014-03-14T05:31:08.000Z</published>
+      <updated>2014-04-09T10:45:18.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">ИС-4 / Недвижимость / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=UGGTq4P3N44&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/UGGTq4P3N44/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=UGGTq4P3N44" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/UGGTq4P3N44" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/UGGTq4P3N44/comments" countHint="321" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/UGGTq4P3N44?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="674" yt:format="5" />
+         <media:content url="rtsp://r4---sn-p5qlsu7z.c.youtube.com/CigLENy73wIaHwmON_eDq5NhUBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="674" yt:format="1" />
+         <media:content url="rtsp://r4---sn-p5qlsu7z.c.youtube.com/CigLENy73wIaHwmON_eDq5NhUBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="674" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=UGGTq4P3N44&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/UGGTq4P3N44/0.jpg" height="360" width="480" time="00:05:37" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/UGGTq4P3N44/1.jpg" height="90" width="120" time="00:02:48.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/UGGTq4P3N44/2.jpg" height="90" width="120" time="00:05:37" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/UGGTq4P3N44/3.jpg" height="90" width="120" time="00:08:25.500" />
+         <media:title type="plain">ИС-4 / Недвижимость / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="674" />
+      </media:group>
+      <gd:rating average="4.90286" max="5" min="1" numRaters="1853" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="26743" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/dNDd0oM_UX4</id>
+      <published>2014-03-12T05:41:51.000Z</published>
+      <updated>2014-04-09T10:44:56.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Т62-А / Стабильность - признак Мастерства / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=dNDd0oM_UX4&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/dNDd0oM_UX4/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=dNDd0oM_UX4" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/dNDd0oM_UX4" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/dNDd0oM_UX4/comments" countHint="201" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/dNDd0oM_UX4?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="601" yt:format="5" />
+         <media:content url="rtsp://r1---sn-p5qlsu76.c.youtube.com/CigLENy73wIaHwl-UT-D0t3QdBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="601" yt:format="1" />
+         <media:content url="rtsp://r1---sn-p5qlsu76.c.youtube.com/CigLENy73wIaHwl-UT-D0t3QdBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="601" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=dNDd0oM_UX4&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/dNDd0oM_UX4/0.jpg" height="360" width="480" time="00:05:00.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/dNDd0oM_UX4/1.jpg" height="90" width="120" time="00:02:30.250" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/dNDd0oM_UX4/2.jpg" height="90" width="120" time="00:05:00.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/dNDd0oM_UX4/3.jpg" height="90" width="120" time="00:07:30.750" />
+         <media:title type="plain">Т62-А / Стабильность - признак Мастерства / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="601" />
+      </media:group>
+      <gd:rating average="4.9433293" max="5" min="1" numRaters="1694" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="25081" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/PhCXKFJTX9o</id>
+      <published>2014-03-06T05:55:18.000Z</published>
+      <updated>2014-04-08T16:24:49.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Выбираем материнскую плату и оперативную память / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=PhCXKFJTX9o&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/PhCXKFJTX9o/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=PhCXKFJTX9o" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/PhCXKFJTX9o" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/PhCXKFJTX9o/comments" countHint="349" />
+      </gd:comments>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/PhCXKFJTX9o?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="1691" yt:format="5" />
+         <media:content url="rtsp://r8---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwnaX1NSKJcQPhMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="1691" yt:format="1" />
+         <media:content url="rtsp://r8---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwnaX1NSKJcQPhMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="1691" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=PhCXKFJTX9o&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/PhCXKFJTX9o/0.jpg" height="360" width="480" time="00:14:05.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/PhCXKFJTX9o/1.jpg" height="90" width="120" time="00:07:02.750" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/PhCXKFJTX9o/2.jpg" height="90" width="120" time="00:14:05.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/PhCXKFJTX9o/3.jpg" height="90" width="120" time="00:21:08.250" />
+         <media:title type="plain">Выбираем материнскую плату и оперативную память / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="1691" />
+      </media:group>
+      <gd:rating average="4.883085" max="5" min="1" numRaters="1608" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="28311" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/pD7qcfg2MZs</id>
+      <published>2014-03-05T09:14:21.000Z</published>
+      <updated>2014-04-09T10:44:17.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Об.261 / Однокнопочный рак / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=pD7qcfg2MZs&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/pD7qcfg2MZs/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=pD7qcfg2MZs" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/pD7qcfg2MZs" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/pD7qcfg2MZs/comments" countHint="1134" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/pD7qcfg2MZs?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="968" yt:format="5" />
+         <media:content url="rtsp://r3---sn-p5qlsu7l.c.youtube.com/CigLENy73wIaHwmbMTb4ceo-pBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="968" yt:format="1" />
+         <media:content url="rtsp://r3---sn-p5qlsu7l.c.youtube.com/CigLENy73wIaHwmbMTb4ceo-pBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="968" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=pD7qcfg2MZs&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/pD7qcfg2MZs/0.jpg" height="360" width="480" time="00:08:04" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/pD7qcfg2MZs/1.jpg" height="90" width="120" time="00:04:02" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/pD7qcfg2MZs/2.jpg" height="90" width="120" time="00:08:04" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/pD7qcfg2MZs/3.jpg" height="90" width="120" time="00:12:06" />
+         <media:title type="plain">Об.261 / Однокнопочный рак / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="968" />
+      </media:group>
+      <gd:rating average="4.612162" max="5" min="1" numRaters="2960" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="41635" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/5uxGibvRTlo</id>
+      <published>2014-03-03T18:26:11.000Z</published>
+      <updated>2014-04-09T12:13:43.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Об. 268 / Внезапно на фугасах / PROТанки World of Tanks</title>
+      <content type="text">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=5uxGibvRTlo&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/5uxGibvRTlo/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=5uxGibvRTlo" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/5uxGibvRTlo" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/5uxGibvRTlo/comments" countHint="104" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/5uxGibvRTlo?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="706" yt:format="5" />
+         <media:content url="rtsp://r4---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwlaTtG7iUbs5hMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="706" yt:format="1" />
+         <media:content url="rtsp://r4---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwlaTtG7iUbs5hMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="706" yt:format="6" />
+         <media:description type="plain">Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=5uxGibvRTlo&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/5uxGibvRTlo/0.jpg" height="360" width="480" time="00:05:53" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/5uxGibvRTlo/1.jpg" height="90" width="120" time="00:02:56.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/5uxGibvRTlo/2.jpg" height="90" width="120" time="00:05:53" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/5uxGibvRTlo/3.jpg" height="90" width="120" time="00:08:49.500" />
+         <media:title type="plain">Об. 268 / Внезапно на фугасах / PROТанки World of Tanks</media:title>
+         <yt:duration seconds="706" />
+      </media:group>
+      <gd:rating average="4.951829" max="5" min="1" numRaters="2242" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="38725" />
+   </entry>
+   <entry>
+      <id>http://gdata.youtube.com/feeds/api/videos/f5OIIVuGXqw</id>
+      <published>2014-02-26T05:37:42.000Z</published>
+      <updated>2014-04-08T19:52:07.000Z</updated>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video" />
+      <category scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Games" label="Gaming" />
+      <title type="text">Шаг 1 / Как выбрать компьютерный корпус и блок питания / PROТанки</title>
+      <content type="text">РАЗВЕРНИ ОПИСАНИЕ = УЗНАЙ БОЛЬШЕ:
+Про выбор корпуса:
+http://sonikelf.ru/vybiraem-pravilnyj-korpus-dlya-kompyutera-tonkosti-i-sekrety-pokupki/
+Про блок питания:
+http://sonikelf.ru/vsya-pravda-o-bloke-pitaniya-skupoj-platit-dvazhdy/
+
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</content>
+      <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=f5OIIVuGXqw&amp;feature=youtube_gdata" />
+      <link rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/videos/f5OIIVuGXqw/related" />
+      <link rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html" href="https://m.youtube.com/details?v=f5OIIVuGXqw" />
+      <link rel="self" type="application/atom+xml" href="https://gdata.youtube.com/feeds/api/users/PROTankiWoT/uploads/f5OIIVuGXqw" />
+      <author>
+         <name>PRO Tanki</name>
+         <uri>https://gdata.youtube.com/feeds/api/users/PROTankiWoT</uri>
+      </author>
+      <gd:comments>
+         <gd:feedLink rel="http://gdata.youtube.com/schemas/2007#comments" href="https://gdata.youtube.com/feeds/api/videos/f5OIIVuGXqw/comments" countHint="452" />
+      </gd:comments>
+      <georss:where>
+         <gml:Point>
+            <gml:pos>55.7506484985 37.6156082153</gml:pos>
+         </gml:Point>
+      </georss:where>
+      <yt:hd />
+      <media:group>
+         <media:category label="Gaming" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Games</media:category>
+         <media:content url="https://www.youtube.com/v/f5OIIVuGXqw?version=3&amp;f=user_uploads&amp;app=youtube_gdata" type="application/x-shockwave-flash" medium="video" isDefault="true" expression="full" duration="1142" yt:format="5" />
+         <media:content url="rtsp://r8---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwmsXoZbIYiTfxMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="1142" yt:format="1" />
+         <media:content url="rtsp://r8---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwmsXoZbIYiTfxMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" type="video/3gpp" medium="video" expression="full" duration="1142" yt:format="6" />
+         <media:description type="plain">РАЗВЕРНИ ОПИСАНИЕ = УЗНАЙ БОЛЬШЕ:
+Про выбор корпуса:
+http://sonikelf.ru/vybiraem-pravilnyj-korpus-dlya-kompyutera-tonkosti-i-sekrety-pokupki/
+Про блок питания:
+http://sonikelf.ru/vsya-pravda-o-bloke-pitaniya-skupoj-platit-dvazhdy/
+
+
+Скачать сборку модов для патча 0.8.11 (разверни описание):
+================================
+1. Базовая сборка модов (оптимальный размер и набор модов):
+http://youtu.be/Kl_gr1clMus
+================================
+2. Расширенная версия Мультипака - много классных модов! 
+http://youtu.be/BjZFIocR7B4
+================================
+3. ГРУППА ВКонтакте ВСТУПАЙ: 
+http://vk.com/protanki_wot
+================================
+4.Как установить Мультипак от PROТанки?
+http://youtu.be/46tJ8WeG8dw
+================================
+5.Видео о идеальных настройках графики:
+http://youtu.be/ed8LP8G31Qo
+================================
+Огромный выбор прицелов и модов тут:
+http://wow-clear.ru
+================================
+
+Ребята! Друзья!
+Просто Спасибо Вам За Просмотр И Комментарий!</media:description>
+         <media:keywords />
+         <media:player url="https://www.youtube.com/watch?v=f5OIIVuGXqw&amp;feature=youtube_gdata_player" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/f5OIIVuGXqw/0.jpg" height="360" width="480" time="00:09:31" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/f5OIIVuGXqw/1.jpg" height="90" width="120" time="00:04:45.500" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/f5OIIVuGXqw/2.jpg" height="90" width="120" time="00:09:31" />
+         <media:thumbnail url="https://i1.ytimg.com/vi/f5OIIVuGXqw/3.jpg" height="90" width="120" time="00:14:16.500" />
+         <media:title type="plain">Шаг 1 / Как выбрать компьютерный корпус и блок питания / PROТанки</media:title>
+         <yt:duration seconds="1142" />
+      </media:group>
+      <gd:rating average="4.925466" max="5" min="1" numRaters="2254" rel="http://schemas.google.com/g/2005#overall" />
+      <yt:statistics favoriteCount="0" viewCount="31544" />
+   </entry>
+</feed>
