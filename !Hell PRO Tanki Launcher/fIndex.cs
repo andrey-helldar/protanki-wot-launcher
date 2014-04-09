@@ -13,6 +13,7 @@ using System.Net;
 using System.Web;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using Processes_Library;
@@ -23,6 +24,8 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fIndex : Form
     {
+        string aw = "";
+
         fLanguage languagePack = new fLanguage();   // ПОдгружаем языковую библиотеку
 
         string path = "",
@@ -921,6 +924,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            textBox1.Text = aw;
+
             try
             {
                 LinkLabel label = new LinkLabel();
@@ -976,16 +981,48 @@ namespace _Hell_PRO_Tanki_Launcher
                 youtubeLink.Clear();
                 youtubeDate.Clear();
 
-                foreach(XElement el in doc.Root.Elements("entry"))
+                aw = doc.Root.ToString();
+
+                var el = from entry in doc.Root.Descendants("entry")
+                         select new
+                         {
+                             Date = entry.Element("published").Value,
+                             Title = entry.Element("title").Value.IndexOf(" / PRO") >= 0 ? entry.Attribute("title").Value.Remove(entry.Attribute("title").Value.IndexOf(" / PRO")) : entry.Attribute("title").Value,
+                             Link = entry.Element("link").Attribute("href").Value
+                         };
+
+                foreach(var entry in el){
+                    if (i >= 10 || showVideoTop > 290) { break; }
+
+                    youtubeDate.Add(entry.Date);
+                    youtubeTitle.Add(entry.Title);
+                    youtubeLink.Add(entry.Link);
+
+                    bwVideo.ReportProgress(++i);
+                }
+
+
+
+                /*foreach (XElement el in doc.Root.Elements("entry"))
                 {
                     if (i >= 10 || showVideoTop > 290) { break; }
 
                     youtubeDate.Add(el.Element("published").Value.Remove(10));
                     youtubeTitle.Add((el.Element("title").Value.IndexOf(" / PRO") >= 0 ? el.Attribute("title").Value.Remove(el.Attribute("title").Value.IndexOf(" / PRO")) : el.Attribute("title").Value));
-                    youtubeLink.Add(el.Element("link").Attribute("rel").Value == "alternate" ? el.Element("link").Attribute("href").Value : "");
+
+                    foreach (XElement subEl in el.Elements("link"))
+                    {
+                        if (subEl.Attribute("rel").Value == "alternate")
+                        {
+                            youtubeLink.Add(subEl.Attribute("href").Value);
+                            break;
+                        }
+                    }
 
                     bwVideo.ReportProgress(++i);
-                }
+                }*/
+
+                if (youtubeTitle.Count == 0) { bwVideo.ReportProgress(-1); }
             }
             catch (Exception ex)
             {
@@ -995,71 +1032,72 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            // Так как начали выводить данные, проверяем существует ли контрол с текстом "ПОдождите, идет загрузка данных..."
-            try
+            if (e.ProgressPercentage > -1)
             {
-                if (llLoadingVideoData.Text != "")
-                {
-                    this.pVideo.Controls.Remove(llLoadingVideoData);
-                }
-            }
-            catch { }
+                // Так как начали выводить данные, проверяем существует ли контрол с текстом "ПОдождите, идет загрузка данных..."
+                try { if (llLoadingVideoData.Text != "") { this.pVideo.Controls.Remove(llLoadingVideoData); } }
+                catch { }
 
-            try
-            {
-
-                Label labelDate = new Label();
-                labelDate.SetBounds(10, showVideoTop, 10, 10);
-                labelDate.AutoSize = true;
-                labelDate.BackColor = Color.Transparent;
-                labelDate.ForeColor = Color.Silver;
-                labelDate.Font = new Font("Sochi2014", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-                labelDate.Text = formatDate(youtubeDate[e.ProgressPercentage]);
-                labelDate.Name = "llDateVideo" + e.ProgressPercentage.ToString();
-                this.pVideo.Controls.Add(labelDate);
-
-                LinkLabel label = new LinkLabel();
-                label.Font = new Font("Sochi2014", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-                label.ActiveLinkColor = Color.FromArgb(243, 123, 16);
-                label.BackColor = Color.Transparent;
-                label.ForeColor = Color.FromArgb(243, 123, 16);
-                label.VisitedLinkColor = Color.FromArgb(243, 123, 16);
-                label.LinkColor = Color.FromArgb(243, 123, 16);
-                label.LinkBehavior = LinkBehavior.HoverUnderline;
-                label.Name = "llVideo" + e.ProgressPercentage.ToString();
-                label.Text = youtubeTitle[e.ProgressPercentage];
-                label.Links[0].LinkData = youtubeLink[e.ProgressPercentage];
                 try
                 {
-                    label.SetBounds(labelDate.Width + 10, showVideoTop, 100, 20);
-                }
-                catch (Exception) { }
-                label.AutoSize = true;
-                label.Click += new EventHandler(label_Click);
-                this.pVideo.Controls.Add(label);
 
-                //showVideoTop = 0;
+                    Label labelDate = new Label();
+                    labelDate.SetBounds(10, showVideoTop, 10, 10);
+                    labelDate.AutoSize = true;
+                    labelDate.BackColor = Color.Transparent;
+                    labelDate.ForeColor = Color.Silver;
+                    labelDate.Font = new Font("Sochi2014", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+                    labelDate.Text = formatDate(youtubeDate[e.ProgressPercentage]);
+                    labelDate.Name = "llDateVideo" + e.ProgressPercentage.ToString();
+                    this.pVideo.Controls.Add(labelDate);
 
-                /*if (label.Width > 250)
-                {
-                    label.AutoSize = false;
-                    label.Size = new Size(250, 40);
+                    LinkLabel label = new LinkLabel();
+                    label.Font = new Font("Sochi2014", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+                    label.ActiveLinkColor = Color.FromArgb(243, 123, 16);
+                    label.BackColor = Color.Transparent;
+                    label.ForeColor = Color.FromArgb(243, 123, 16);
+                    label.VisitedLinkColor = Color.FromArgb(243, 123, 16);
+                    label.LinkColor = Color.FromArgb(243, 123, 16);
+                    label.LinkBehavior = LinkBehavior.HoverUnderline;
+                    label.Name = "llVideo" + e.ProgressPercentage.ToString();
+                    label.Text = youtubeTitle[e.ProgressPercentage];
+                    label.Links[0].LinkData = youtubeLink[e.ProgressPercentage];
+                    try
+                    {
+                        label.SetBounds(labelDate.Width + 10, showVideoTop, 100, 20);
+                    }
+                    catch (Exception) { }
+                    label.AutoSize = true;
+                    label.Click += new EventHandler(label_Click);
+                    this.pVideo.Controls.Add(label);
 
-                    //label.SetBounds(labelDate.Width + 10, (e.ProgressPercentage + showVideoTop) * topPosition + topOffset, 250, 40);
-                    label.SetBounds(labelDate.Width + 10, showVideoTop, 250, 40);
-                    labelDate.Location = new Point(10, label.Location.Y);
+                    //showVideoTop = 0;
 
-                    showVideoTop += 50;
-                }
-                else
-                {
+                    /*if (label.Width > 250)
+                    {
+                        label.AutoSize = false;
+                        label.Size = new Size(250, 40);
+
+                        //label.SetBounds(labelDate.Width + 10, (e.ProgressPercentage + showVideoTop) * topPosition + topOffset, 250, 40);
+                        label.SetBounds(labelDate.Width + 10, showVideoTop, 250, 40);
+                        labelDate.Location = new Point(10, label.Location.Y);
+
+                        showVideoTop += 50;
+                    }
+                    else
+                    {
+                        showVideoTop += 30;
+                    }*/
                     showVideoTop += 30;
-                }*/
-                showVideoTop += 30;
+                }
+                catch (Exception ex)
+                {
+                    Debug.Save("private void bwVideo_ProgressChanged()", "Создание динамических полей", ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Debug.Save("private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)", "Создание динамических полей", ex.Message);
+                llLoadingVideoData.Text = "Видео не обнаружены...";
             }
         }
 
@@ -1322,5 +1360,31 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
             }
         }
+
+        /*private async Task LoadVideo()
+        {
+            try
+            {
+                int i = 0;
+
+                XDocument doc = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
+
+
+                foreach (XElement el in doc.Root.Elements("entry"))
+                {
+                    if (i >= 10 || showVideoTop > 290) { break; }
+
+                    youtubeDate.Add(el.Element("published").Value.Remove(10));
+                    youtubeTitle.Add((el.Element("title").Value.IndexOf(" / PRO") >= 0 ? el.Attribute("title").Value.Remove(el.Attribute("title").Value.IndexOf(" / PRO")) : el.Attribute("title").Value));
+                    youtubeLink.Add(el.Element("link").Attribute("rel").Value == "alternate" ? el.Element("link").Attribute("href").Value : "");
+
+                    bwVideo.ReportProgress(++i);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Save("private void bwVideo_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
+            }
+        }*/
     }
 }

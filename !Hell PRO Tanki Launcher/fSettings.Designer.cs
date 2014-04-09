@@ -49,7 +49,6 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.cbCPUAffinity = new System.Windows.Forms.CheckBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -68,7 +67,7 @@
             this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSave.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSave.Location = new System.Drawing.Point(128, 509);
+            this.bSave.Location = new System.Drawing.Point(128, 495);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 50);
             this.bSave.TabIndex = 1;
@@ -87,7 +86,7 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(299, 509);
+            this.bCancel.Location = new System.Drawing.Point(299, 495);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(150, 50);
             this.bCancel.TabIndex = 2;
@@ -105,7 +104,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(12, 29);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(300, 124);
+            this.groupBox2.Size = new System.Drawing.Size(300, 107);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Оптимизация:";
@@ -113,7 +112,7 @@
             // cbVideoQuality
             // 
             this.cbVideoQuality.AutoSize = true;
-            this.cbVideoQuality.Location = new System.Drawing.Point(18, 90);
+            this.cbVideoQuality.Location = new System.Drawing.Point(18, 84);
             this.cbVideoQuality.Name = "cbVideoQuality";
             this.cbVideoQuality.Size = new System.Drawing.Size(215, 17);
             this.cbVideoQuality.TabIndex = 3;
@@ -123,7 +122,7 @@
             // cbForceClose
             // 
             this.cbForceClose.AutoSize = true;
-            this.cbForceClose.Location = new System.Drawing.Point(18, 44);
+            this.cbForceClose.Location = new System.Drawing.Point(18, 42);
             this.cbForceClose.Name = "cbForceClose";
             this.cbForceClose.Size = new System.Drawing.Size(227, 17);
             this.cbForceClose.TabIndex = 2;
@@ -133,7 +132,7 @@
             // cbAero
             // 
             this.cbAero.AutoSize = true;
-            this.cbAero.Location = new System.Drawing.Point(18, 67);
+            this.cbAero.Location = new System.Drawing.Point(18, 63);
             this.cbAero.Name = "cbAero";
             this.cbAero.Size = new System.Drawing.Size(246, 17);
             this.cbAero.TabIndex = 1;
@@ -201,7 +200,7 @@
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.lvProcessesUser);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(12, 159);
+            this.groupBox1.Location = new System.Drawing.Point(12, 142);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(573, 344);
             this.groupBox1.TabIndex = 6;
@@ -300,25 +299,14 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox4.Controls.Add(this.cbCPUAffinity);
             this.groupBox4.Controls.Add(this.cbPriority);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
             this.groupBox4.Location = new System.Drawing.Point(318, 83);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(267, 70);
+            this.groupBox4.Size = new System.Drawing.Size(267, 53);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Приоритет игры в системе:";
-            // 
-            // cbCPUAffinity
-            // 
-            this.cbCPUAffinity.AutoSize = true;
-            this.cbCPUAffinity.Location = new System.Drawing.Point(6, 46);
-            this.cbCPUAffinity.Name = "cbCPUAffinity";
-            this.cbCPUAffinity.Size = new System.Drawing.Size(188, 17);
-            this.cbCPUAffinity.TabIndex = 1;
-            this.cbCPUAffinity.Text = "Перенести нагрузку с 1-го ядра";
-            this.cbCPUAffinity.UseVisualStyleBackColor = true;
             // 
             // cbPriority
             // 
@@ -341,7 +329,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.FonSetting;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(597, 575);
+            this.ClientSize = new System.Drawing.Size(597, 560);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.llTitle);
@@ -360,7 +348,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -390,6 +377,5 @@
         private System.Windows.Forms.ComboBox cbPriority;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox cbVideoQuality;
-        private System.Windows.Forms.CheckBox cbCPUAffinity;
     }
 }

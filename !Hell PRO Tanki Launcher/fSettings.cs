@@ -61,22 +61,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception ex) { cbPriority.SelectedIndex = 2; Debug.Save("public fSettings()", "Priority", ex.Message); }
 
-                try
-                {
-                    cbVideoQuality.Checked = doc.Root.Element("game").Attribute("video").Value == "True";
-
-                    if (Environment.ProcessorCount > 1) { cbCPUAffinity.Checked = doc.Root.Element("game").Attribute("affinity").Value == "True"; }
-                    else
-                    {
-                        cbCPUAffinity.Checked = false;
-                        cbCPUAffinity.Enabled = false;
-                    }
-                }
-                catch (Exception)
-                {
-                    cbCPUAffinity.Checked = false;
-                    cbCPUAffinity.Enabled = false;
-                }
+                try { cbVideoQuality.Checked = doc.Root.Element("game").Attribute("video").Value == "True"; }
+                catch (Exception) { cbVideoQuality.Checked = false; }
 
                 try
                 {
@@ -280,8 +266,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         new XElement("notification", notification != "" ? notification : null),
 
                         new XElement("game",
-                            new XAttribute("video", cbVideoQuality.Checked.ToString()),
-                            new XAttribute("affinity", cbCPUAffinity.Checked.ToString())
+                            new XAttribute("video", cbVideoQuality.Checked.ToString())
                             ),
 
                         new XElement("settings",
