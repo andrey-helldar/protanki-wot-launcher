@@ -70,6 +70,7 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Ionic.Zip">
       <HintPath>.\Ionic.Zip.dll</HintPath>
@@ -184,7 +185,6 @@
     <None Include="Resources\back_6.jpg" />
     <None Include="Resources\back_5.jpg" />
     <None Include="Resources\back_4.jpg" />
-    <None Include="Resources\back_3.jpg" />
     <None Include="Resources\back_2.jpg" />
     <None Include="Resources\back_1.jpg" />
     <None Include="back\loading.gif" />

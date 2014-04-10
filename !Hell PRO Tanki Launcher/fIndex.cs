@@ -252,7 +252,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     case "back_1": this.BackgroundImage = Properties.Resources.back_1; break;
                     case "back_2": this.BackgroundImage = Properties.Resources.back_2; break;
-                    case "back_3": this.BackgroundImage = Properties.Resources.back_3; break;
+                    //case "back_3": this.BackgroundImage = Properties.Resources.back_3; break;
                     case "back_4": this.BackgroundImage = Properties.Resources.back_4; break;
                     case "back_5": this.BackgroundImage = Properties.Resources.back_5; break;
                     case "back_6": this.BackgroundImage = Properties.Resources.back_6; break;
@@ -432,15 +432,13 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
                 if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
 
                 Process.Start(path + "WoTLauncher.exe");
 
-                if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
-
-                //Hide();
+                Hide();
                 WindowState = FormWindowState.Minimized;
-                this.ShowInTaskbar = true;
             }
             catch (Exception ex)
             {
@@ -454,10 +452,9 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 if (!bwOptimize.IsBusy) { playGame = true; bwOptimize.RunWorkerAsync(); }
                 if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
-
-                //Hide();
+                
+                Hide();
                 WindowState = FormWindowState.Minimized;
-                this.ShowInTaskbar = true;
             }
             catch (Exception ex)
             {
@@ -1329,6 +1326,21 @@ namespace _Hell_PRO_Tanki_Launcher
                     for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].ProcessorAffinity = (IntPtr)2; }
                 }
             }
+
+            CheckClosingGame(); // Запускаем утилиту проверки запущен ли клиент игры
+        }
+
+        private async Task CheckClosingGame()
+        {
+            await Task.Delay(playGame ? 5000 : 2000); // Если запускаем танки, ждем 5 сек, если лаунчер - 2
+
+            while (Process.GetProcessesByName("WorldOfTanks").Length > 0 || Process.GetProcessesByName("WoTLauncher").Length > 0)
+            {
+                await Task.Delay(2000);
+            }
+
+            Show();
+            WindowState = FormWindowState.Normal;
         }
     }
 }
