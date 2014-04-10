@@ -368,7 +368,6 @@ namespace _Hell_PRO_Tanki_Launcher
                     if (updTanks)
                     {
                         status += "Обнаружена новая версия клиента игры (" + rVerTanks.ToString() + ")" + Environment.NewLine;
-                        bUpdate.Enabled = true;
 
                         // Отключаем кнопку запуска игры
                         bPlay.Enabled = false;
@@ -581,6 +580,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)
         {
+            /// http://wow-clear.ru/stati-world-of-tanks/1305-redaktiruem-preferencesxml.html
+
             int myProgressStatus = 0;
 
             // Проверяем условие: если процесс оптимизации запущен вручную, или указан в настройках, то:
@@ -1290,7 +1291,7 @@ namespace _Hell_PRO_Tanki_Launcher
             //UpdateLauncher update = new UpdateLauncher();
             //update.CheckUpdates();
 
-            //Debug.Send(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
+            Debug.Send(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
         }
 
         private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)

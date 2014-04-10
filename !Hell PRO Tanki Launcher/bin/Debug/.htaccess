@@ -1,0 +1,9 @@
+<FilesMatch ".*">
+   Order allow,deny
+   Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(zip)$|^$">
+   Order deny,allow
+   Allow from all
+</FilesMatch>

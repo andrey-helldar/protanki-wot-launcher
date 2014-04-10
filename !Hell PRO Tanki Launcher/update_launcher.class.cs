@@ -195,8 +195,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private async Task SaveFromResources()
         {
-            await Task.Delay(1);
-
             if (!File.Exists("Ionic.Zip.dll")) { File.WriteAllBytes("Ionic.Zip.dll", Properties.Resources.IonicZip); }
             if (!File.Exists("LanguagePack.dll")) { File.WriteAllBytes("LanguagePack.dll", Properties.Resources.LanguagePack); }
             if (!File.Exists("restart.exe")) { File.WriteAllBytes("restart.exe", Properties.Resources.restart); }
