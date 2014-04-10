@@ -1,9 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <version>0.8.11.13</version>
+  <version>0.8.11.14</version>
   <type>full</type>
   <notification />
-  <game video="False" affinity="False" />
-  <settings kill="False" force="False" aero="False" news="True" video="True" />
-  <processes />
+  <game video="False" />
+  <settings kill="False" force="False" aero="False" video="True" />
+  <processes>
+    <process name="avpui" description="Kaspersky Anti-Virus" />
+    <process name="cmd" description="Обработчик команд Windows" />
+    <process name="devenv" description="Microsoft Visual Studio 2012" />
+    <process name="Dropbox" description="Dropbox" />
+    <process name="IntelliTrace" description="IntelliTrace.exe" />
+    <process name="klwtblfs" description="WebToolBar component" />
+    <process name="MKey" description="Universal Multimedia Keyboard Driver" />
+    <process name="Multipack Launcher.vshost" description="vshost32.exe" />
+    <process name="NvBackend" description="NVIDIA GeForce Experience Backend" />
+    <process name="plugin-nm-server" description="Kaspersky Anti-Virus Plugins Native Messaging Server" />
+    <process name="qip" description="QIP 2012" />
+    <process name="Skype" description="Skype" />
+  </processes>
 </pro>

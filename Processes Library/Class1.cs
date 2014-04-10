@@ -97,6 +97,7 @@ namespace Processes_Library
         {
             string[] vipProcess = {
                 Process.GetCurrentProcess().ProcessName.ToString(),
+                "Multipack Launcher.vshost",
 				"restart",
 				"WorldOfTanks",
 				"WoTLauncher",
@@ -158,7 +159,8 @@ namespace Processes_Library
                 "YandexDisk",
                 "Dropbox",
                 "RazerImperatorSysTray",
-                "Volume2"
+                "Volume2",
+                "egui"
             };
 
             return vipProcess;

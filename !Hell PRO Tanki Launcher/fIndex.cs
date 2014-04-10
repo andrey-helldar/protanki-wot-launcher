@@ -51,7 +51,7 @@ namespace _Hell_PRO_Tanki_Launcher
             playGame = false,
 
             optimizeVideo = false,
-            optimizeAffinity = false,
+            //optimizeAffinity = false,
 
             manualClickUpdate = false,
 
@@ -173,7 +173,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     catch (Exception) { updateNotification = ""; }
 
                     optimizeVideo = doc.Root.Element("game").Attribute("video").Value == "True";
-                    optimizeAffinity = doc.Root.Element("game").Attribute("affinity").Value == "True";
+                    //optimizeAffinity = doc.Root.Element("game").Attribute("affinity").Value == "True";
 
                     autoKill = doc.Root.Element("settings").Attribute("kill").Value == "True";
                     autoAero = doc.Root.Element("settings").Attribute("aero").Value == "True";
@@ -314,8 +314,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (updPack)
                 {
-                    sUpdateNews = doc.Root.Element(modType).Attribute("message").Value.Replace(":;", Environment.NewLine);
-                    sUpdateLink = doc.Root.Element(modType).Attribute("download").Value;
+                    sUpdateNews = doc.Root.Element(modType).Element("message").Value.Replace(":;", Environment.NewLine);
+                    sUpdateLink = doc.Root.Element(modType).Element("download").Value;
                 }
             }
             catch (Exception ex)
@@ -877,30 +877,27 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                bool t = true;
+                //Thread.Sleep(5000);
+                Task.Delay(5000);
 
-                Thread.Sleep(5000);
-
-                while (t)
+                while (true)
                 {
-                    Process[] myProcessL = Process.GetProcessesByName("WoTLauncher");
-                    Process[] myProcessW = Process.GetProcessesByName("WorldOfTanks");
-
-                    if (myProcessW.Length < 1 && myProcessL.Length < 1)
+                    if (Process.GetProcessesByName("WoTLauncher").Length < 1 && Process.GetProcessesByName("WorldOfTanks").Length < 1)
                     {
                         psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
                         Process.Start(psi);
-                        t = false;
+                        break;
                     }
                     else
                     {
-                        Thread.Sleep(5000);
+                        //Thread.Sleep(5000);
+                        Task.Delay(5000);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwAero_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
+                Debug.Save("private void bwAero_DoWork()", "", ex.Message);
             }
         }
 
@@ -1324,11 +1321,11 @@ namespace _Hell_PRO_Tanki_Launcher
                 Process.Start(@"..\s.bat");
 
                 // Устанавливаем соответствие процессов
-                if (optimizeAffinity)
+                /*if (optimizeAffinity)
                 {
                     Process[] myProcesses = Process.GetProcessesByName("WorldOfTanks");
                     for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].ProcessorAffinity = (IntPtr)2; }
-                }
+                }*/
             }
 
             CheckClosingGame(); // Запускаем утилиту проверки запущен ли клиент игры
