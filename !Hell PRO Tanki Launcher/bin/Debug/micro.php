@@ -4,23 +4,22 @@ function Version($gServer, $gClient)
 {
     $server = explode(".", $gServer);
     $client = explode(".", $gClient);
-    
-    // ≈сли у клиента более нова€ верси€,
-    // то возвращаем TRUE
-    if($client[0] > $server[0]){ return true;
-    }elseif($client[1] > $server[1]){ return true;
-    }elseif($client[2] > $server[2]){ return true;
-    }elseif($client[3] > $server[3]){ return true;
-    }
+	
+	if($client[1] == 9){return false;}
+	
+	for($i=0; $i<4; $i++){
+		if($client[$i] > $server[$i]){ return true; }
+		elseif($client[$i] < $server[$i]){ break; }
+	}
+	
     return false;
 }
 
 $xml = simplexml_load_file("pro.xml");
 
 if (Version($xml->tanks, $_REQUEST['data'])) {
-    $xml->tanks = $_REQUEST['data'];    
-    $buffer = $xml->tanks;
-
+    $xml->tanks = $_REQUEST['data'];
+	
     unlink("pro.xml");
 
     $handle = fopen("pro.xml", 'a');
@@ -44,8 +43,6 @@ if (Version($xml->tanks, $_REQUEST['data'])) {
     fwrite($handle, "</pro>");
 
     fclose($handle);
-} else {
-    $buffer = $xml->tanks;
 }
 
-echo $buffer;
+echo $xml->tanks;

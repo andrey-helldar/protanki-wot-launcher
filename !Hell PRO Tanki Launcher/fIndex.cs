@@ -205,7 +205,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
 
         // Получаем версию танков
-        private Version getTanksVersion()
+        private Version LocalTanksVersion()
         {
             try
             {
@@ -293,7 +293,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 rVerModpack = new Version(doc.Root.Element("version").Value);
                 rVerTanks = new Version(doc.Root.Element("tanks").Value);
 
-                lVerTanks = getTanksVersion();
+                lVerTanks = LocalTanksVersion();
 
                 // Отправляем данные на сайт
                 if (lVerTanks > rVerTanks)
@@ -380,7 +380,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
 
 
-                    llActually.Text = "Обнаружена новая версия мультипака!";
+                    llActually.Text = updPack ? "Обнаружена новая версия мультипака!" : "Обнаружена новая версия игры!";
                     llActually.ForeColor = Color.Yellow;
                     llActually.ActiveLinkColor = Color.Yellow;
                     llActually.LinkColor = Color.Yellow;
@@ -388,16 +388,17 @@ namespace _Hell_PRO_Tanki_Launcher
                     llActually.SetBounds(315 + 100 - (int)(llActually.Width / 2), llActually.Location.Y, 10, 10);
 
                     // Окно статуса обновлений
-                    fNewVersion.llCaption.Text = status;
+                    // отображаем если найдены обновы модпака
+                        fNewVersion.llCaption.Text = status;
 
-                    fNewVersion.llContent.Text = updPack ? sUpdateNews : "";
-                    fNewVersion.llContent.Links[0].LinkData = videoLink;
-                    fNewVersion.llVersion.Text = rVerModpack.ToString();
-                    if (updateNotification != rVerModpack.ToString() || manualClickUpdate == true)
-                    {
-                        fNewVersion.cbNotification.Checked = updateNotification == rVerModpack.ToString();
-                        fNewVersion.ShowDialog();
-                    }
+                        fNewVersion.llContent.Text = updPack ? sUpdateNews : "";
+                        fNewVersion.llContent.Links[0].LinkData = videoLink;
+                        fNewVersion.llVersion.Text = rVerModpack.ToString();
+                        if (updPack && (updateNotification != rVerModpack.ToString() || manualClickUpdate == true))
+                        {
+                            fNewVersion.cbNotification.Checked = updateNotification == rVerModpack.ToString();
+                            fNewVersion.ShowDialog();
+                        }
                 }
                 else
                 {
@@ -969,7 +970,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                int i = 0;
+                int i = -1;
 
                 XDocument doc = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
 
@@ -1174,7 +1175,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                int i = 0;
+                int i = -1;
 
                 XDocument doc = XDocument.Load(@"http://worldoftanks.ru/ru/rss/news/");
 
