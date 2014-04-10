@@ -2,6 +2,7 @@
 <pro>
   <version>0.8.11.13</version>
   <type>full</type>
+  <notification />
   <game video="False" affinity="False" />
   <settings kill="False" force="False" aero="False" news="True" video="True" />
   <processes />

@@ -373,8 +373,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 Debug.Save("private void bwSave_RunWorkerCompleted()", "Send processes", ex.Message);
             }
 
-            await Task.Delay(1);
-
             this.DialogResult = DialogResult.OK;
         }
     }

@@ -268,6 +268,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bExit_Click(object sender, EventArgs e)
         {
+            psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
+            Process.Start(psi);
+
             this.Close();
         }
 
@@ -1342,6 +1345,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
             Show();
             WindowState = FormWindowState.Normal;
+
+            psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
+            Process.Start(psi);
         }
     }
 }
