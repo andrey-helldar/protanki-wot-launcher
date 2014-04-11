@@ -4,8 +4,7 @@
   <type>full</type>
   <notification>0.8.11.16</notification>
   <info video="True" />
-  <settings kill="False" force="False" aero="False" video="False" />
-  <processes />
+  <settings kill="False" force="False" aero="False" video="True" />
   <youtube>
     <video>HjFht_vTF_E</video>
     <video>SFpaJvuNSo8</video>
@@ -31,5 +30,7 @@
     <video>PhCXKFJTX9o</video>
     <video>pD7qcfg2MZs</video>
     <video>5uxGibvRTlo</video>
+    <video>f5OIIVuGXqw</video>
   </youtube>
+  <processes />
 </pro>
