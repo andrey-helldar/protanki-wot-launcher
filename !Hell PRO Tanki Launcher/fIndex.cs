@@ -1009,26 +1009,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     );
 
                     bwVideo.ReportProgress(1);
-
-
-                    /*if (i < 10 || showVideoTop < 290)
-                    {
-                        //youtubeDate.Add(el.Element(ns + "published").Value.Remove(10));
-                       // youtubeTitle.Add((el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value));
-
-                        foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { youtubeLink.Add(subEl.Attribute("href").Value); break; } }
-                        bwVideo.ReportProgress(++i);
-                    }*/
-
-                    // Заполняем динамический массив
-                   // string link = "";
-                   // foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
-                   // YoutubeVideo.Add(el.Element(ns + "id").Value, el.Element(ns + "title").Value, el.Element(ns + "content").Value, link, el.Element(ns + "published").Value.Remove(10));
-
-                   // MessageBox.Show(YoutubeVideo.List[0].Title);
                 }
-
-                ShowMyData("bwVideo DoWork");
 
                 if (YoutubeVideo.Count() == 0) { bwVideo.ReportProgress(-1); }
             }
@@ -1042,13 +1023,11 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             int maxInForm = 10;
 
-            if (YoutubeVideo.Count() > 0 && (YoutubeVideo.Count() <= maxInForm || showVideoTop < 290))
+            if (YoutubeVideo.Count() > 0 && (YoutubeVideo.Count() < maxInForm || showVideoTop < 290))
             {
                 // Так как начали выводить данные, проверяем существует ли контрол с текстом "ПОдождите, идет загрузка данных..."
                 try { if (llLoadingVideoData.Text != "") { this.pVideo.Controls.Remove(llLoadingVideoData); } }
                 catch { }
-
-                ShowMyData("bwVideo Progress");
 
                 try
                 {
@@ -1414,10 +1393,12 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void ShowMyData(string s)
+        private void ShowMyData(string s=null)
         {
             try
             {
+                if (s == null) s = "no capt";
+
                 string aa = "";
                 foreach (var str in YoutubeVideo.List)
                 {
@@ -1428,35 +1409,6 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR VIEW LIST" + Environment.NewLine + Environment.NewLine + ex.Message);
-            }
-        }
-
-        private async Task LoadYoutube()
-        {
-            try
-            {
-                XDocument doc = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
-                XNamespace ns = "http://www.w3.org/2005/Atom";
-
-                foreach (XElement el in doc.Root.Elements(ns + "entry"))
-                {
-                    string link = "";
-                    foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
-
-                    YoutubeVideo.Add(
-                        el.Element(ns + "id").Value,
-                        (el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value),
-                        el.Element(ns + "content").Value.Remove(256),
-                        link,
-                        el.Element(ns + "published").Value.Remove(10)
-                    );
-                }
-
-                ShowVideoNotification(); // Запускаем уведомления
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("private async Task LoadYoutube()", ex.Message);
             }
         }
     }

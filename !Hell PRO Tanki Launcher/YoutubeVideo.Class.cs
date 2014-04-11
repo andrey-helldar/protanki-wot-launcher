@@ -15,11 +15,11 @@ namespace _Hell_PRO_Tanki_Launcher
 
     public class YoutubeVideo
     {
-        public string ID, Title, Content, Link,Date;
+        public string mID, mTitle, mContent, mLink, mDate;
         public List<VideoLoading> List;
         public List<List<VideoLoading>> Range;
 
-        public int Add(string id, string title, string content, string link, string date)
+        public void Add(string id, string title, string content, string link, string date)
         {
             try { if (List.Count <= 0) { } }
             catch (Exception)
@@ -28,16 +28,14 @@ namespace _Hell_PRO_Tanki_Launcher
                 Range = new List<List<VideoLoading>>();
             }
 
-            List.Add(new VideoLoading(ID, Title, Content, Link, Date));
+            List.Add(new VideoLoading(id, title, content, link, date));
             Range.Add(List);
 
-            ID = Range[0][0].ID;
-            Title = Range[0][0].Title;
-            Content = Range[0][0].Content;
-            Link = Range[0][0].Link;
-            Date = Range[0][0].Date;
-
-            return IndexOf(ID);
+            mID = Range[0][0].ID;
+            mTitle = Range[0][0].Title;
+            mContent = Range[0][0].Content;
+            mLink = Range[0][0].Link;
+            mDate = Range[0][0].Date;
         }
 
         public void Clear()
