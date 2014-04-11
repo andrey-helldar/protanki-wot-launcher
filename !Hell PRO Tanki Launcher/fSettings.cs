@@ -36,23 +36,17 @@ namespace _Hell_PRO_Tanki_Launcher
             InitializeComponent();
 
             loadLang();
-
             moveForm();
-
 
             if (File.Exists("settings.xml"))
             {
                 XDocument doc = XDocument.Load("settings.xml");
 
                 try { version = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version"); }
-                catch (Exception)
-                { version = doc.Root.Element("version").Value; }
+                catch (Exception) { version = doc.Root.Element("version") != null ? doc.Root.Element("version").Value : "0.0.0.0"; }
 
-                try { type = doc.Root.Element("type").Value; }
-                catch (Exception ex) { type = "full"; Debug.Save("public fSettings()", "type", ex.Message); }
-
-                try { notification = doc.Root.Element("notification").Value; }
-                catch (Exception) { notification = ""; }
+                type = doc.Root.Element("type") != null ? doc.Root.Element("type").Value : "full";
+                notification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : "";
 
                 try
                 {
@@ -61,40 +55,17 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception ex) { cbPriority.SelectedIndex = 2; Debug.Save("public fSettings()", "Priority", ex.Message); }
 
-                try { cbVideoQuality.Checked = doc.Root.Element("game").Attribute("video").Value == "True"; }
-                catch (Exception) { cbVideoQuality.Checked = false; }
+                cbVideo.Checked = doc.Root.Element("info") != null && doc.Root.Element("info").Attribute("video").Value == "True";
 
-                try
-                {
-                    cbKillProcesses.Checked = doc.Root.Element("settings").Attribute("kill").Value == "True";
-                    cbForceClose.Checked = doc.Root.Element("settings").Attribute("force").Value == "True";
-                    cbAero.Checked = doc.Root.Element("settings").Attribute("aero").Value == "True";
-                    cbVideo.Checked = doc.Root.Element("settings").Attribute("video").Value == "True";
-                }
-                catch (Exception ex)
-                {
-                    cbKillProcesses.Checked = false;
-                    cbAero.Checked = false;
-                    cbVideo.Checked = true;
+                cbKillProcesses.Checked = doc.Root.Element("settings") != null && doc.Root.Element("settings").Attribute("kill").Value == "True";
+                cbForceClose.Checked = doc.Root.Element("settings") != null && doc.Root.Element("settings").Attribute("force").Value == "True";
+                cbAero.Checked = doc.Root.Element("settings") != null && doc.Root.Element("settings").Attribute("aero").Value == "True";
+                cbVideoQuality.Checked = doc.Root.Element("settings") != null && doc.Root.Element("settings").Attribute("video").Value == "True";
 
-                    Debug.Save("public fSettings()", "cbKillProcesses.Checked", ex.Message);
-                }
-
-                try
-                { userProcesses.Clear(); foreach (XElement el in doc.Root.Element("processes").Elements("process")) { userProcesses.Add(el.Attribute("name").Value); } }
-                catch (Exception ex) { Debug.Save("public fSettings()", "foreach (XElement el in doc.Root.Element(\"processes\"))", ex.Message); }
+                userProcesses.Clear();
+                if (doc.Root.Element("processes") != null) foreach (XElement el in doc.Root.Element("processes").Elements("process")) { userProcesses.Add(el.Attribute("name").Value); }
 
                 if (!bwUserProcesses.IsBusy) { bwUserProcesses.RunWorkerAsync(); }
-            }
-            else
-            {
-                version = Application.ProductVersion;
-
-                cbKillProcesses.Checked = false;
-                cbAero.Checked = false;
-                cbVideo.Checked = true;
-
-                cbVideoQuality.Checked = false;
             }
         }
 
@@ -249,46 +220,46 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (!File.Exists("preferences.xml"))
-                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml", "preferences.xml");
-            }
-            catch (Exception ex) { Debug.Save("private void bwSave_DoWork(object sender, DoWorkEventArgs e)", "if (!File.Exists(\"preferences.xml\"))", ex.Message); }
+                XDocument doc = XDocument.Load("settings.xml");
 
+                if (doc.Root.Element("info") != null) { doc.Root.Element("info").Attribute("video").SetValue(cbVideo.Checked.ToString()); }
+                else { XElement el = new XElement("info", new XAttribute("video", cbVideo.Checked.ToString())); doc.Root.Add(el); }
 
-            try
-            {
-                XDocument doc = new XDocument(
-
-                    new XElement("pro",
-
-                        new XElement("version", version),
-                        new XElement("type", type),
-                        new XElement("notification", notification != "" ? notification : null),
-
-                        new XElement("game",
-                            new XAttribute("video", cbVideoQuality.Checked.ToString())
-                            ),
-
-                        new XElement("settings",
-                            new XAttribute("kill", cbKillProcesses.Checked.ToString()),
-                            new XAttribute("force", cbForceClose.Checked.ToString()),
-                            new XAttribute("aero", cbAero.Checked.ToString()),
-                            new XAttribute("video", cbVideo.Checked.ToString())
-                            ),
-
-                        new XElement("processes", null)
-                     )
-              );
+                if (doc.Root.Element("settings") != null)
+                {
+                    doc.Root.Element("settings").Attribute("kill").SetValue(cbKillProcesses.Checked.ToString());
+                    doc.Root.Element("settings").Attribute("force").SetValue(cbForceClose.Checked.ToString());
+                    doc.Root.Element("settings").Attribute("aero").SetValue(cbAero.Checked.ToString());
+                    doc.Root.Element("settings").Attribute("video").SetValue(cbVideoQuality.Checked.ToString());
+                }
+                else
+                {
+                    XElement el = new XElement("settings",
+                        new XAttribute("kill", cbKillProcesses.Checked.ToString()),
+                        new XAttribute("force", cbForceClose.Checked.ToString()),
+                        new XAttribute("aero", cbAero.Checked.ToString()),
+                        new XAttribute("video", cbVideoQuality.Checked.ToString())
+                        );
+                    doc.Root.Add(el);
+                }
 
                 if (lvProcessesUser.CheckedItems.Count > 0)
+                {
+                    // Удаляем элемент
+                    doc.Root.Element("processes").Remove();
+
+                    if (doc.Root.Element("processes") == null) { XElement el = new XElement("processes", null); doc.Root.Add(el); }
+
                     foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
                     {
-                        doc.Root.Element("processes").Add(
-                            new XElement("process",
-                                new XAttribute("name", obj.Text),
-                                new XAttribute("description", obj.SubItems[1].Text)
-                        ));
+                        if (obj.BackColor != Color.Plum)
+                            doc.Root.Element("processes").Add(
+                                new XElement("process",
+                                    new XAttribute("name", obj.Text),
+                                    new XAttribute("description", obj.SubItems[1].Text)
+                            ));
                     }
+                }
 
                 doc.Save("settings.xml");
 
@@ -374,6 +345,30 @@ namespace _Hell_PRO_Tanki_Launcher
             }
 
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void llRecoverySettings_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (File.Exists("preferences.xml"))
+            {
+                if (DialogResult.Yes == MessageBox.Show(this, "Вы действительно хотите восстановить файл прежний файл настроек игры?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                {
+                    File.Copy("preferences.xml", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml", true);
+                    MessageBox.Show(this, "Настройки успешно восстановлены", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void fSettings_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists("preferences.xml"))
+                    llRecoverySettings.Enabled = true;
+                else
+                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml", "preferences.xml");
+            }
+            catch (Exception ex) { Debug.Save("private void fSettings_Load()", ex.Message); }
         }
     }
 }

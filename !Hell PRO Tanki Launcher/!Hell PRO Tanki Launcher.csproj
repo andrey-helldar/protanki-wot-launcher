@@ -114,6 +114,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="update_launcher.class.cs" />
+    <Compile Include="YoutubeVideo.Class.cs" />
     <EmbeddedResource Include="fIndex.resx">
       <DependentUpon>fIndex.cs</DependentUpon>
     </EmbeddedResource>

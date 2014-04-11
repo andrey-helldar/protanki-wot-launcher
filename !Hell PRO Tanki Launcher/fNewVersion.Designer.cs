@@ -28,29 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.llContent = new System.Windows.Forms.LinkLabel();
             this.bDownload = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
             this.cbNotification = new System.Windows.Forms.CheckBox();
             this.llVersion = new System.Windows.Forms.LinkLabel();
             this.llCaption = new System.Windows.Forms.LinkLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.llContent = new System.Windows.Forms.LinkLabel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // llContent
-            // 
-            this.llContent.ActiveLinkColor = System.Drawing.Color.WhiteSmoke;
-            this.llContent.BackColor = System.Drawing.Color.Transparent;
-            this.llContent.DisabledLinkColor = System.Drawing.Color.Gray;
-            this.llContent.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.llContent.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llContent.LinkColor = System.Drawing.Color.WhiteSmoke;
-            this.llContent.Location = new System.Drawing.Point(12, 66);
-            this.llContent.Name = "llContent";
-            this.llContent.Size = new System.Drawing.Size(676, 261);
-            this.llContent.TabIndex = 0;
-            this.llContent.TabStop = true;
-            this.llContent.Text = "Загрузка данных...";
-            this.llContent.VisitedLinkColor = System.Drawing.Color.WhiteSmoke;
             // 
             // bDownload
             // 
@@ -137,6 +123,34 @@
             this.llCaption.Text = "Загрузка данных...";
             this.llCaption.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.llContent);
+            this.panel1.Location = new System.Drawing.Point(12, 64);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(676, 243);
+            this.panel1.TabIndex = 7;
+            // 
+            // llContent2
+            // 
+            this.llContent.ActiveLinkColor = System.Drawing.Color.WhiteSmoke;
+            this.llContent.AutoSize = true;
+            this.llContent.BackColor = System.Drawing.Color.Transparent;
+            this.llContent.DisabledLinkColor = System.Drawing.Color.Gray;
+            this.llContent.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llContent.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llContent.LinkColor = System.Drawing.Color.WhiteSmoke;
+            this.llContent.Location = new System.Drawing.Point(0, 0);
+            this.llContent.MaximumSize = new System.Drawing.Size(659, 1024);
+            this.llContent.Name = "llContent2";
+            this.llContent.Size = new System.Drawing.Size(120, 19);
+            this.llContent.TabIndex = 1;
+            this.llContent.TabStop = true;
+            this.llContent.Text = "Загрузка данных...";
+            this.llContent.VisitedLinkColor = System.Drawing.Color.WhiteSmoke;
+            // 
             // fNewVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,16 +159,18 @@
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_updates;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(700, 408);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.llCaption);
             this.Controls.Add(this.llVersion);
             this.Controls.Add(this.cbNotification);
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bDownload);
-            this.Controls.Add(this.llContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "fNewVersion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Обнаружена новая версия Мультипака";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,9 +180,10 @@
 
         private System.Windows.Forms.Button bDownload;
         private System.Windows.Forms.Button bCancel;
-        public System.Windows.Forms.LinkLabel llContent;
         public System.Windows.Forms.LinkLabel llVersion;
         public System.Windows.Forms.LinkLabel llCaption;
         public System.Windows.Forms.CheckBox cbNotification;
+        private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.LinkLabel llContent;
     }
 }

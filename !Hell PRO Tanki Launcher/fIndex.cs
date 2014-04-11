@@ -50,7 +50,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             playGame = false,
 
-            optimizeVideo = false,
+            //optimizeVideo = false,
             //optimizeAffinity = false,
 
             manualClickUpdate = false,
@@ -58,7 +58,9 @@ namespace _Hell_PRO_Tanki_Launcher
             autoKill = true,
             autoForceKill = false,
             autoAero = true,
-            autoVideo = true;
+            autoVideo = true,
+
+            tanksIsTest = false;
 
         List<string> youtubeTitle = new List<string>();
         List<string> youtubeLink = new List<string>();
@@ -69,6 +71,9 @@ namespace _Hell_PRO_Tanki_Launcher
         List<string> newsDate = new List<string>();
 
         List<string> processesList = new List<string>();
+
+        XDocument docYoutubeChannel = new XDocument();
+        YoutubeVideo YoutubeVideo = new YoutubeVideo();
 
         ProcessStartInfo psi;
 
@@ -145,7 +150,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
                         path = key != null ? (string)key.GetValue("InstallLocation") : null;
                     }
-                    if (path == null) {
+                    if (path == null)
+                    {
                         bPlay.Enabled = false;
                         bLauncher.Enabled = false;
                         MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -171,9 +177,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     try { updateNotification = doc.Root.Element("notification").Value; }
                     catch (Exception) { updateNotification = ""; }
-
-                    optimizeVideo = doc.Root.Element("game").Attribute("video").Value == "True";
-                    //optimizeAffinity = doc.Root.Element("game").Attribute("affinity").Value == "True";
 
                     autoKill = doc.Root.Element("settings").Attribute("kill").Value == "True";
                     autoAero = doc.Root.Element("settings").Attribute("aero").Value == "True";
@@ -209,11 +212,19 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                //if (File.Exists(path + "version.xml"))
                 if (File.Exists(@"..\version.xml"))
                 {
                     XDocument doc = XDocument.Load(@"..\version.xml");
-                    return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" ", "").Replace("#", "."));
+
+                    if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
+                    {
+                        tanksIsTest = true;
+                        return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
+                    }
+                    else
+                    {
+                        return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" ", "").Replace("#", "."));
+                    }
                 }
                 else
                 {
@@ -227,12 +238,20 @@ namespace _Hell_PRO_Tanki_Launcher
                             if (File.Exists(path + "version.xml"))
                             {
                                 XDocument doc = XDocument.Load(path + "version.xml");
-                                return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" ", "").Replace("#", "."));
+
+                                if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
+                                {
+                                    return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
+                                }
+                                else
+                                {
+                                    return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" ", "").Replace("#", "."));
+                                }
                             }
                         }
                     }
 
-                    Debug.Save("private Version getTanksVersion()", "Клиент игры не обнаружен в реестре.", path + "version.xml");
+                    Debug.Save("private Version getTanksVersion()", "Клиент игры не обнаружен в реестре.");
                     return new Version("0.0.0.0");
                 }
             }
@@ -290,18 +309,19 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                lVerTanks = LocalTanksVersion();
+
                 // Парсим сайт PROТанки
                 XDocument doc = XDocument.Load(@"http://ai-rus.com/pro/pro.xml");
 
                 rVerModpack = new Version(doc.Root.Element("version").Value);
-                rVerTanks = new Version(doc.Root.Element("tanks").Value);
+                rVerTanks = new Version(doc.Root.Element(!tanksIsTest ? "tanks" : "test").Value);
 
-                lVerTanks = LocalTanksVersion();
 
                 // Отправляем данные на сайт
                 if (lVerTanks > rVerTanks)
                 {
-                    rVerTanks = new Version(getResponse("http://ai-rus.com/wot/micro/" + lVerTanks.ToString()));
+                    rVerTanks = new Version(getResponse("http://ai-rus.com/wot/micro/" + lVerTanks.ToString() + "-" + tanksIsTest.ToString()));
                     updTanks = true;
                 }
                 else
@@ -391,16 +411,16 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     // Окно статуса обновлений
                     // отображаем если найдены обновы модпака
-                        fNewVersion.llCaption.Text = status;
+                    fNewVersion.llCaption.Text = status;
 
-                        fNewVersion.llContent.Text = updPack ? sUpdateNews : "";
-                        fNewVersion.llContent.Links[0].LinkData = videoLink;
-                        fNewVersion.llVersion.Text = rVerModpack.ToString();
-                        if (updPack && (updateNotification != rVerModpack.ToString() || manualClickUpdate == true))
-                        {
-                            fNewVersion.cbNotification.Checked = updateNotification == rVerModpack.ToString();
-                            fNewVersion.ShowDialog();
-                        }
+                    fNewVersion.llContent.Text = updPack ? sUpdateNews : "";
+                    fNewVersion.llContent.Links[0].LinkData = videoLink;
+                    fNewVersion.llVersion.Text = rVerModpack.ToString();
+                    if (updPack && (updateNotification != rVerModpack.ToString() || manualClickUpdate == true))
+                    {
+                        fNewVersion.cbNotification.Checked = updateNotification == rVerModpack.ToString();
+                        fNewVersion.ShowDialog();
+                    }
                 }
                 else
                 {
@@ -454,7 +474,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 if (!bwOptimize.IsBusy) { playGame = true; bwOptimize.RunWorkerAsync(); }
                 if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
-                
+
                 Hide();
                 WindowState = FormWindowState.Minimized;
             }
@@ -612,12 +632,12 @@ namespace _Hell_PRO_Tanki_Launcher
                                     Process.Start(psi);
                                     break;
 
-                                 default:
-                                     if (osInfo.Version.Major == 5 && osInfo.Version.Minor != 0)
-                                     {
-                                         // WinXP
-                                     }
-                                     break;
+                                default:
+                                    if (osInfo.Version.Major == 5 && osInfo.Version.Minor != 0)
+                                    {
+                                        // WinXP
+                                    }
+                                    break;
                             }
                             break;
                     }
@@ -641,7 +661,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     maxPercentUpdateStatus += autoForceKill ? myProcesses.Length * 2 - 2 : myProcesses.Length - 1; // Расчитываем значение прогресс бара                    
                     ProcessesLibrary proccessLibrary = new ProcessesLibrary();  // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
-                    
+
                     for (int i = 1; i < myProcesses.Length; i++) // Передаем процессам инфу, что приложение должно закрыться
                     {
                         try
@@ -697,7 +717,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 /// 
                 try
                 {
-                    if (optimizeVideo)
+                    if (autoVideo)
                     {
                         /// http://mirtankov.su/fps-test
                         /// c:\Users\user\AppData\Roaming\Wargaming.net\WorldOfTanks\                        
@@ -737,7 +757,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception ex1)
                 {
-                    Debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", "if (optimizeVideo)", ex1.Message);
+                    Debug.Save("private void bwOptimize_DoWork()", "if (autoVideo)", ex1.Message);
                 }
             }
             catch (Exception ex)
@@ -790,6 +810,9 @@ namespace _Hell_PRO_Tanki_Launcher
             // Архивируем папку дебага
             Debug.Archive(Application.StartupPath);
 
+            // Отключаем иконку в трее
+            this.ShowInTaskbar = false;
+
             try
             {
                 // Раньше проверяли выли ли внесены изменения, сейчас просто запускаем aero...
@@ -801,7 +824,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void fIndex_FormClosing(object sender, FormClosingEventArgs e)", "psi = new ProcessStartInfo(\"cmd\", @\"/c net start uxsms\");", ex.Message);
+                Debug.Save("private void fIndex_FormClosing()", "psi = new ProcessStartInfo(\"cmd\", @\"/c net start uxsms\");", ex.Message);
             }
         }
 
@@ -844,19 +867,12 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bSettings_Click(object sender, EventArgs e)
         {
-            try
+            fSettings fSettings = new fSettings();
+            if (fSettings.ShowDialog() == DialogResult.OK)
             {
-                fSettings fSettings = new fSettings();
-                if (fSettings.ShowDialog() == DialogResult.OK)
-                {
-                    loadSettings();
+                loadSettings();
 
-                    if (!bwGetVipProcesses.IsBusy) { bwGetVipProcesses.RunWorkerAsync(); }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("private void bSettings_Click()", "fSettings fSettings = new fSettings();", ex.Message);
+                if (!bwGetVipProcesses.IsBusy) { bwGetVipProcesses.RunWorkerAsync(); }
             }
         }
 
@@ -950,8 +966,11 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Добавление ссылки на все видео", ex.Message);
+                Debug.Save("private void bwVideo_RunWorkerCompleted()", "Добавление ссылки на все видео", ex.Message);
             }
+
+            // Запускаем функцию уведомлений о новых видео
+            ShowVideoNotification();
         }
 
         private Version getFileVersion(string filename)
@@ -970,7 +989,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 int i = -1;
 
-                XDocument doc = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
+                docYoutubeChannel = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
 
                 youtubeTitle.Clear();
                 youtubeLink.Clear();
@@ -978,23 +997,29 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 XNamespace ns = "http://www.w3.org/2005/Atom";
 
-                foreach (XElement el in doc.Root.Elements(ns + "entry"))
+                // Загружаем новости на форму
+                foreach (XElement el in docYoutubeChannel.Root.Elements(ns + "entry"))
                 {
-                    if (i > 10 || showVideoTop > 290) { break; }
+                    if (i < 10 || showVideoTop < 290)
+                    {
+                        youtubeDate.Add(el.Element(ns + "published").Value.Remove(10));
+                        youtubeTitle.Add((el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value));
 
-                    youtubeDate.Add(el.Element(ns + "published").Value.Remove(10));
-                    youtubeTitle.Add((el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value));
+                        foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { youtubeLink.Add(subEl.Attribute("href").Value); break; } }
+                        bwVideo.ReportProgress(++i);
+                    }
 
-                    foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { youtubeLink.Add(subEl.Attribute("href").Value); break; } }
-
-                    bwVideo.ReportProgress(++i);
+                    // Заполняем динамический массив
+                    string link = "";
+                    foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
+                    YoutubeVideo.Add(el.Element(ns + "id").Value, el.Element(ns + "title").Value, el.Element(ns + "content").Value, link);
                 }
 
                 if (youtubeTitle.Count == 0) { bwVideo.ReportProgress(-1); }
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwVideo_DoWork()", "XmlDocument doc = new XmlDocument();", ex.Message);
+                Debug.Save("private void bwVideo_DoWork()", ex.Message);
             }
         }
 
@@ -1345,6 +1370,25 @@ namespace _Hell_PRO_Tanki_Launcher
 
             psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
             Process.Start(psi);
+        }
+
+        private async Task ShowVideoNotification()
+        {
+            XDocument doc = XDocument.Load("settings.xml");
+            if (doc.Root.Element("youtube") != null) foreach (XElement el in doc.Root.Element("youtube").Elements("video")) { YoutubeVideo.Delete(el.Value); }
+
+            for (int i = 0; i < YoutubeVideo.Count(); i++)
+            {
+                notifyIcon.ShowBalloonTip(2000, YoutubeVideo.List[i].ID, YoutubeVideo.List[i].Content, ToolTipIcon.Info);
+                //notifyIcon.ShowBalloonTip(2000, "aaaaa", "bbbb", ToolTipIcon.Info);
+
+                //YoutubeVideo.Delete(YoutubeVideo.List[i].ID);
+                doc.Root.Element("youtube").Add(new XElement("video", YoutubeVideo.List[i].ID));
+
+                await Task.Delay(10000);
+            }
+
+            doc.Save("settings.xml");
         }
     }
 }

@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <version>0.8.11.13</version>
+  <version>0.8.11.14</version>
   <type>full</type>
-  <game video="False" />
-  <settings kill="False" force="False" aero="False" news="True" video="True" />
+  <notification>0.8.11.16</notification>
+  <info video="True" />
+  <settings kill="False" force="False" aero="False" video="False" />
+  <youtube>
+    <video />
+  </youtube>
   <processes />
 </pro>

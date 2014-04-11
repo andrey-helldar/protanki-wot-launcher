@@ -50,6 +50,7 @@
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
+            this.llRecoverySettings = new System.Windows.Forms.LinkLabel();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -67,7 +68,7 @@
             this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSave.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSave.Location = new System.Drawing.Point(128, 495);
+            this.bSave.Location = new System.Drawing.Point(147, 497);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 50);
             this.bSave.TabIndex = 1;
@@ -86,7 +87,7 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(299, 495);
+            this.bCancel.Location = new System.Drawing.Point(318, 497);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(150, 50);
             this.bCancel.TabIndex = 2;
@@ -318,10 +319,31 @@
             "Средний",
             "Ниже среднего",
             "Низкий"});
-            this.cbPriority.Location = new System.Drawing.Point(6, 19);
+            this.cbPriority.Location = new System.Drawing.Point(6, 20);
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(255, 21);
             this.cbPriority.TabIndex = 0;
+            // 
+            // llRecoverySettings
+            // 
+            this.llRecoverySettings.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llRecoverySettings.AutoSize = true;
+            this.llRecoverySettings.BackColor = System.Drawing.Color.Transparent;
+            this.llRecoverySettings.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.llRecoverySettings.DisabledLinkColor = System.Drawing.Color.Gray;
+            this.llRecoverySettings.Enabled = false;
+            this.llRecoverySettings.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llRecoverySettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llRecoverySettings.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llRecoverySettings.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llRecoverySettings.Location = new System.Drawing.Point(432, 9);
+            this.llRecoverySettings.Name = "llRecoverySettings";
+            this.llRecoverySettings.Size = new System.Drawing.Size(153, 19);
+            this.llRecoverySettings.TabIndex = 9;
+            this.llRecoverySettings.TabStop = true;
+            this.llRecoverySettings.Text = "Восстановить настройки";
+            this.llRecoverySettings.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llRecoverySettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRecoverySettings_LinkClicked);
             // 
             // fSettings
             // 
@@ -329,7 +351,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.FonSetting;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(597, 560);
+            this.ClientSize = new System.Drawing.Size(597, 559);
+            this.Controls.Add(this.llRecoverySettings);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.llTitle);
@@ -341,6 +364,7 @@
             this.Name = "fSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настройки...";
+            this.Load += new System.EventHandler(this.fSettings_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -377,5 +401,6 @@
         private System.Windows.Forms.ComboBox cbPriority;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox cbVideoQuality;
+        private System.Windows.Forms.LinkLabel llRecoverySettings;
     }
 }
