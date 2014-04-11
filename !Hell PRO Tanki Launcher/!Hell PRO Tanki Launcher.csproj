@@ -56,7 +56,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>PROTanks.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>90E9B17F21D96E140802E431CBF7CB125A108B40</ManifestCertificateThumbprint>
@@ -150,31 +151,7 @@
     <None Include="Resources\start.bat" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="back\1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="back\2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="back\3.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="back\4.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="back\5.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="back\6.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="back\7.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="back\interface.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="PROTanks.ico" />
+    <None Include="Resources\PROTanks.ico" />
     <None Include="Resources\ProcessesLibrary.dll" />
     <None Include="Resources\FonSetting.jpg" />
     <Content Include="Resources\FonUPD.jpg" />
@@ -182,15 +159,12 @@
     <None Include="Resources\LanguagePack.dll" />
     <None Include="Resources\Newtonsoft.Json.dll" />
     <None Include="Resources\Ionic.Zip.dll" />
-    <None Include="Resources\PROTanks.ico" />
     <None Include="Resources\back_7.jpg" />
     <None Include="Resources\back_6.jpg" />
     <None Include="Resources\back_5.jpg" />
     <None Include="Resources\back_4.jpg" />
     <None Include="Resources\back_2.jpg" />
     <None Include="Resources\back_1.jpg" />
-    <None Include="back\loading.gif" />
-    <Content Include="Project1_Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

@@ -3,7 +3,7 @@
   <version>0.8.11.14</version>
   <type>full</type>
   <notification>0.8.11.16</notification>
-  <settings kill="False" force="False" aero="False" video="True" />
+  <settings kill="False" force="False" aero="False" video="False" />
   <youtube>
     <video>HjFht_vTF_E</video>
     <video>SFpaJvuNSo8</video>
@@ -31,5 +31,6 @@
     <video>5uxGibvRTlo</video>
     <video>f5OIIVuGXqw</video>
   </youtube>
+  <info video="True" />
   <processes />
 </pro>

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Language Pack", "!Hel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormatXML", "FormatXML\FormatXML.csproj", "{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell MD5files", "!Hell MD5files\!Hell MD5files.csproj", "{57431204-4EE1-4CFC-B0C7-0AA79403B012}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,16 @@ Global
 		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|x86.ActiveCfg = Release|Any CPU
+		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

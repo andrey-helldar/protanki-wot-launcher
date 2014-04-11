@@ -36,11 +36,11 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                XDocument doc = XDocument.Load(url + "protanks.xml");
+                XDocument doc = XDocument.Load(url + "version.xml");
 
                 DownloadSettings().Wait(); // Загружаем файл настроек
 
-                Task.Factory.StartNew(() => DeleteFile("processes.exe \"!Hell PRO Tanki Launcher.exe\" updater.exe")).Wait(); // Удаляем ненужные файлы
+                Task.Factory.StartNew(() => DeleteFile("processes.exe", "!Hell PRO Tanki Launcher.exe", "updater.exe", "launcher.update")).Wait(); // Удаляем ненужные файлы
 
                 /// Если файлы имеют нулевой размер, то удаляем их
                 Task.Factory.StartNew(() => DeleteNullFile("settings.xml", "Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "LanguagePack.dll", "launcher.update")).Wait();
@@ -52,6 +52,15 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (!launcher) // Определяем будем запускать скачивание до обновления или после
                 {
+                    foreach (XElement el in doc.Root.Elements().Attributes("important"))
+                    {
+                        DownloadFile(
+                            el.Name + "."+el.Attribute("ext"),
+                            el.Value,
+                            el.Attribute("checksum")
+                            );
+                    }
+
                     var task1 = DownloadFile("Ionic.Zip.dll", doc.Root.Element("Ionic.Zip").Value, doc.Root.Element("Ionic.Zip").Attribute("checksum").Value);
                     var task2 = DownloadFile("restart.exe", doc.Root.Element("restart").Value, doc.Root.Element("restart").Attribute("checksum").Value);
                     var task3 = DownloadFile("LanguagePack.dll", doc.Root.Element("languagePack").Value, doc.Root.Element("languagePack").Attribute("checksum").Value);

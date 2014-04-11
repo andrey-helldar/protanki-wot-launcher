@@ -99,13 +99,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
             loadSettings();
 
-            notifyIcon.Icon = Properties.Resources.myicon;
+            notifyIcon.Icon = Properties.Resources.Icon;
             notifyIcon.Text = Application.ProductName + " v" + lVerModpack.ToString();
 
             try
             {
                 this.Text = Application.ProductName + " v" + lVerModpack.ToString();
-                this.Icon = Properties.Resources.myicon;
+                this.Icon = Properties.Resources.Icon;
 
                 llTitle.Text = Application.ProductName + " (" + (modType == "full" ? "Расширенная версия" : "Базовая версия") + ")";
                 llLauncherVersion.Text = Application.ProductVersion;
