@@ -38,7 +38,6 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.llVersion = new System.Windows.Forms.LinkLabel();
             this.bwUpdater = new System.ComponentModel.BackgroundWorker();
-            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.видеоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,6 +63,7 @@
             this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
             this.pNews = new System.Windows.Forms.Panel();
             this.bwGetVipProcesses = new System.ComponentModel.BackgroundWorker();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenu.SuspendLayout();
             this.pVideo.SuspendLayout();
             this.SuspendLayout();
@@ -202,13 +202,6 @@
             this.bwUpdater.WorkerSupportsCancellation = true;
             this.bwUpdater.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwUpdater_DoWork);
             this.bwUpdater.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwUpdater_RunWorkerCompleted);
-            // 
-            // notifyIcon
-            // 
-            this.notifyIcon.ContextMenuStrip = this.contextMenu;
-            this.notifyIcon.Text = "notifyIcon";
-            this.notifyIcon.Visible = true;
-            this.notifyIcon.Click += new System.EventHandler(this.notifyIcon_Click);
             // 
             // contextMenu
             // 
@@ -493,6 +486,13 @@
             this.bwGetVipProcesses.WorkerSupportsCancellation = true;
             this.bwGetVipProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwGetVipProcesses_DoWork);
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Text = "notifyIcon";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.BalloonTipClicked += new System.EventHandler(this.notifyIcon_BalloonTipClicked);
+            this.notifyIcon.Click += new System.EventHandler(this.notifyIcon_Click);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -541,7 +541,6 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel llVersion;
         private System.ComponentModel.BackgroundWorker bwUpdater;
-        private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem проверитьОбновленияToolStripMenuItem;
@@ -567,6 +566,7 @@
         private System.Windows.Forms.LinkLabel llLoadingVideoData;
         private System.ComponentModel.BackgroundWorker bwGetVipProcesses;
         public System.Windows.Forms.ProgressBar pbDownload;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
 

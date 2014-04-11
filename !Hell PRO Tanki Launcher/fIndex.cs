@@ -32,7 +32,9 @@ namespace _Hell_PRO_Tanki_Launcher
             sUpdateNews,
             sUpdateLink = "http://goo.gl/gr6pFl",
             videoLink = "http://goo.gl/gr6pFl",
-            updateNotification = "";
+            updateNotification = "",
+
+            notifyLink = "";
 
         Version rVerModpack,
             rVerTanks,
@@ -87,7 +89,6 @@ namespace _Hell_PRO_Tanki_Launcher
             Process[] myProcesses = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
             for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
 
-
             InitializeComponent();
 
             /// Запускаем проверку обновлений лаунчера после инициализации приложения
@@ -96,17 +97,16 @@ namespace _Hell_PRO_Tanki_Launcher
 
             loadSettings();
 
+            notifyIcon.Icon = Properties.Resources.myicon;
+            notifyIcon.Text = Application.ProductName + " v" + lVerModpack.ToString();
+
             try
             {
                 this.Text = Application.ProductName + " v" + lVerModpack.ToString();
                 this.Icon = Properties.Resources.myicon;
 
                 llTitle.Text = Application.ProductName + " (" + (modType == "full" ? "Расширенная версия" : "Базовая версия") + ")";
-
                 llLauncherVersion.Text = Application.ProductVersion;
-
-                notifyIcon.Icon = Properties.Resources.myicon;
-                notifyIcon.Text = Application.ProductName + " v" + lVerModpack.ToString();
             }
             catch (Exception ex)
             {
@@ -441,6 +441,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
 
                 manualClickUpdate = false;
+                notifyLink = null;
                 notifyIcon.ShowBalloonTip(2000, Application.ProductName, status, ToolTipIcon.Info);
             }
             catch (Exception ex)
@@ -790,27 +791,13 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void notifyIcon_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Show();
-                WindowState = FormWindowState.Normal;
-                this.ShowInTaskbar = true;
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("private void notifyIcon_Click()", "WindowState = FormWindowState.Normal;", ex.Message);
-            }
-        }
-
         private void fIndex_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Архивируем папку дебага
             Debug.Archive(Application.StartupPath);
 
             // Отключаем иконку в трее
-            this.ShowInTaskbar = false;
+            notifyIcon.Dispose();
 
             try
             {
@@ -986,12 +973,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                int i = -1;
                 XDocument doc = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
-
-                //youtubeTitle.Clear();
-                //youtubeLink.Clear();
-                //youtubeDate.Clear();
-
                 XNamespace ns = "http://www.w3.org/2005/Atom";
 
                 // Загружаем новости на форму
@@ -1001,14 +984,14 @@ namespace _Hell_PRO_Tanki_Launcher
                     foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
 
                     YoutubeVideo.Add(
-                        el.Element(ns + "id").Value,
+                        el.Element(ns + "id").Value.Remove(0, 42),
                         (el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value),
-                        el.Element(ns + "content").Value.Remove(256),
+                        el.Element(ns + "content").Value.Remove(256) + (el.Element(ns + "content").Value.Length > 256 ? "..." : ""),
                         link,
                         el.Element(ns + "published").Value.Remove(10)
                     );
 
-                    bwVideo.ReportProgress(1);
+                    bwVideo.ReportProgress(++i);
                 }
 
                 if (YoutubeVideo.Count() == 0) { bwVideo.ReportProgress(-1); }
@@ -1023,7 +1006,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             int maxInForm = 10;
 
-            if (YoutubeVideo.Count() > 0 && (YoutubeVideo.Count() < maxInForm || showVideoTop < 290))
+            if (e.ProgressPercentage > 0 && (e.ProgressPercentage < maxInForm || showVideoTop < 290))
             {
                 // Так как начали выводить данные, проверяем существует ли контрол с текстом "ПОдождите, идет загрузка данных..."
                 try { if (llLoadingVideoData.Text != "") { this.pVideo.Controls.Remove(llLoadingVideoData); } }
@@ -1031,15 +1014,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 try
                 {
-                    int pos = YoutubeVideo.Count() - 1;
-
                     Label labelDate = new Label();
                     labelDate.SetBounds(10, showVideoTop, 10, 10);
                     labelDate.AutoSize = true;
                     labelDate.BackColor = Color.Transparent;
                     labelDate.ForeColor = Color.Silver;
                     labelDate.Font = new Font("Sochi2014", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-                    labelDate.Text = formatDate(YoutubeVideo.List[pos].Date);
+                    labelDate.Text = formatDate(YoutubeVideo.List[e.ProgressPercentage].Date);
                     labelDate.Name = "llDateVideo" + e.ProgressPercentage.ToString();
                     this.pVideo.Controls.Add(labelDate);
 
@@ -1052,8 +1033,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     label.LinkColor = Color.FromArgb(243, 123, 16);
                     label.LinkBehavior = LinkBehavior.HoverUnderline;
                     label.Name = "llVideo" + e.ProgressPercentage.ToString();
-                    label.Text = YoutubeVideo.List[pos].Title;
-                    label.Links[0].LinkData = YoutubeVideo.List[pos].Link;
+                    label.Text = YoutubeVideo.List[e.ProgressPercentage].Title;
+                    label.Links[0].LinkData = YoutubeVideo.List[e.ProgressPercentage].Link;
                     try
                     {
                         label.SetBounds(labelDate.Width + 10, showVideoTop, 100, 20);
@@ -1377,38 +1358,48 @@ namespace _Hell_PRO_Tanki_Launcher
         private async Task ShowVideoNotification()
         {
             XDocument doc = XDocument.Load("settings.xml");
-            if (doc.Root.Element("youtube") != null) foreach (XElement el in doc.Root.Element("youtube").Elements("video")) { YoutubeVideo.Delete(el.Value); }
+
+            if (doc.Root.Element("youtube") != null) { foreach (var el in doc.Root.Element("youtube").Elements("video")) { YoutubeVideo.Delete(el.Value); } }
             else doc.Root.Add(new XElement("youtube", null));
 
-            for (int i = 0; i < YoutubeVideo.Count(); i++)
+            // Выводим список
+            foreach (var el in YoutubeVideo.List)
             {
-                notifyIcon.ShowBalloonTip(2000, YoutubeVideo.List[i].ID, YoutubeVideo.List[i].Content, ToolTipIcon.Info);
-                //notifyIcon.ShowBalloonTip(2000, "aaaaa", "bbbb", ToolTipIcon.Info);
+                notifyLink = el.Link;
+                notifyIcon.ShowBalloonTip(2000, el.Title, el.Content, ToolTipIcon.Info);
 
-                //YoutubeVideo.Delete(YoutubeVideo.List[i].ID);
-                doc.Root.Element("youtube").Add(new XElement("video", YoutubeVideo.List[i].ID));
+                doc.Root.Element("youtube").Add(new XElement("video", el.ID));
                 doc.Save("settings.xml");
 
-                await Task.Delay(10000);
+                //YoutubeVideo.Delete(el.ID);
+
+                await Task.Delay(5000);
             }
         }
 
-        private void ShowMyData(string s=null)
+        private void notifyIcon_Click(object sender, EventArgs e)
         {
             try
             {
-                if (s == null) s = "no capt";
-
-                string aa = "";
-                foreach (var str in YoutubeVideo.List)
-                {
-                    if (str.Title != null) aa += str.Title + Environment.NewLine;
-                }
-                MessageBox.Show(s + Environment.NewLine + Environment.NewLine + aa);
+                Show();
+                WindowState = FormWindowState.Normal;
+                this.ShowInTaskbar = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR VIEW LIST" + Environment.NewLine + Environment.NewLine + ex.Message);
+                Debug.Save("private void notifyIcon_Click()", "WindowState = FormWindowState.Normal;", ex.Message);
+            }
+        }
+
+        private void notifyIcon_BalloonTipClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (notifyLink != null) Process.Start(notifyLink);
+            }
+            catch (Exception ex)
+            {
+                Debug.Save("private void notifyIcon_BalloonTipClicked()", "Link: " + notifyLink, ex.Message);
             }
         }
     }

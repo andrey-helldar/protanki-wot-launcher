@@ -7,11 +7,9 @@
   <settings kill="False" force="False" aero="False" video="False" />
   <processes />
   <youtube>
-    <video>http://gdata.youtube.com/feeds/api/videos/HjFht_vTF_E</video>
-    <video>http://gdata.youtube.com/feeds/api/videos/HjFht_vTF_E</video>
-    <video>http://gdata.youtube.com/feeds/api/videos/SFpaJvuNSo8</video>
-    <video>http://gdata.youtube.com/feeds/api/videos/HjFht_vTF_E</video>
-    <video>http://gdata.youtube.com/feeds/api/videos/SFpaJvuNSo8</video>
-    <video>http://gdata.youtube.com/feeds/api/videos/reTERwoIKyw</video>
+    <video>HjFht_vTF_E</video>
+    <video>SFpaJvuNSo8</video>
+    <video>reTERwoIKyw</video>
+    <video>Ft4Pr23WZ6Q</video>
   </youtube>
 </pro>

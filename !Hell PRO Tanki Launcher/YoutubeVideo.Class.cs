@@ -60,7 +60,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 for (int i = 0; i < List.Count; i++)
                 {
-                    if (List[i].ID == id) { List.RemoveRange(i, 0); break; }
+                    if (List[i].ID == id) { List.RemoveAt(i); }
                 }
             }
         }
