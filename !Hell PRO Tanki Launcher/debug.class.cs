@@ -50,7 +50,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
                         zip.AddDirectory(path + @"\temp");
-                        zip.Save(path + @"\debug\" + UserID() + "_-_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
+                        zip.Save(path + @"\debug\" + UserID() + "_-_" + "_" + Application.ProductVersion + "_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
                     }
 
                     Directory.Delete(path + @"\temp", true);
@@ -58,7 +58,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Save("public bool Archive()", "Debug mode", ex.Message);
+                Save("public bool Archive()", ex.Message);
             }
         }
 

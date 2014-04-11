@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell PRO Tanki Launcher", "!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher.csproj", "{79E364F5-121C-4402-9295-D6836EB5A805}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell PRO Tanki Installer", "!Hell PRO Tanki Installer\!Hell PRO Tanki Installer.csproj", "{90703D70-A6A4-42EE-A5BB-184BF08C1A31}"
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processes Library", "Processes Library\Processes Library.csproj", "{C89F98DD-CF7B-4B7B-AE2C-FBF49177B8A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Language Pack", "!Hell Language Pack\!Hell Language Pack.csproj", "{7C499B3F-3E08-4DC7-AA10-19605BE83758}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormatXML", "FormatXML\FormatXML.csproj", "{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +97,16 @@ Global
 		{7C499B3F-3E08-4DC7-AA10-19605BE83758}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7C499B3F-3E08-4DC7-AA10-19605BE83758}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7C499B3F-3E08-4DC7-AA10-19605BE83758}.Release|x86.ActiveCfg = Release|Any CPU
+		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

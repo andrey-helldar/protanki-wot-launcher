@@ -1,0 +1,9 @@
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Debug\FormatXML.csprojResolveAssemblyReference.cache
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Debug\FormatXML.fFormatXML.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Debug\FormatXML.Properties.Resources.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Debug\FormatXML.csproj.GenerateResource.Cache
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\bin\Debug\FormatXML.exe.config
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\bin\Debug\FormatXML.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\bin\Debug\FormatXML.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Debug\FormatXML.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Debug\FormatXML.pdb
