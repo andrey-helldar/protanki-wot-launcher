@@ -264,7 +264,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 doc.Save("settings.xml");
 
                 //  c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\
-                string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml";
+                /*string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml";
                 XDocument docPref = XDocument.Load(pathPref);
 
                 foreach (XElement el in docPref.Root.Element("graphicsPreferences").Elements("entry"))
@@ -276,7 +276,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
                 }
 
-                docPref.Save(pathPref);
+                docPref.Save(pathPref);*/
             }
             catch (Exception ex) { Debug.Save("private void bwSave_DoWork()", ex.Message); }
 
@@ -325,7 +325,7 @@ namespace _Hell_PRO_Tanki_Launcher
                             myJsonData.Add(obj.Text + "::" + obj.SubItems[1].Text);
                     }
 
-                    if (myJsonData.Count > 0)
+                    if (myJsonData.Count > 2)
                     {
                         string json = JsonConvert.SerializeObject(myJsonData);
 
