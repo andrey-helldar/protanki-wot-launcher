@@ -62,9 +62,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
             tanksIsTest = false;
 
-        List<string> youtubeTitle = new List<string>();
-        List<string> youtubeLink = new List<string>();
-        List<string> youtubeDate = new List<string>();
+        //List<string> youtubeTitle = new List<string>();
+        //List<string> youtubeLink = new List<string>();
+        //List<string> youtubeDate = new List<string>();
 
         List<string> newsTitle = new List<string>();
         List<string> newsLink = new List<string>();
@@ -72,7 +72,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
         List<string> processesList = new List<string>();
 
-        XDocument docYoutubeChannel = new XDocument();
         YoutubeVideo YoutubeVideo = new YoutubeVideo();
 
         ProcessStartInfo psi;
@@ -987,35 +986,51 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                int i = -1;
+                XDocument doc = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
 
-                docYoutubeChannel = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
-
-                youtubeTitle.Clear();
-                youtubeLink.Clear();
-                youtubeDate.Clear();
+                //youtubeTitle.Clear();
+                //youtubeLink.Clear();
+                //youtubeDate.Clear();
 
                 XNamespace ns = "http://www.w3.org/2005/Atom";
 
                 // Загружаем новости на форму
-                foreach (XElement el in docYoutubeChannel.Root.Elements(ns + "entry"))
+                foreach (XElement el in doc.Root.Elements(ns + "entry"))
                 {
-                    if (i < 10 || showVideoTop < 290)
+                    string link = "";
+                    foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
+
+                    YoutubeVideo.Add(
+                        el.Element(ns + "id").Value,
+                        (el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value),
+                        el.Element(ns + "content").Value.Remove(256),
+                        link,
+                        el.Element(ns + "published").Value.Remove(10)
+                    );
+
+                    bwVideo.ReportProgress(1);
+
+
+                    /*if (i < 10 || showVideoTop < 290)
                     {
-                        youtubeDate.Add(el.Element(ns + "published").Value.Remove(10));
-                        youtubeTitle.Add((el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value));
+                        //youtubeDate.Add(el.Element(ns + "published").Value.Remove(10));
+                       // youtubeTitle.Add((el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value));
 
                         foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { youtubeLink.Add(subEl.Attribute("href").Value); break; } }
                         bwVideo.ReportProgress(++i);
-                    }
+                    }*/
 
                     // Заполняем динамический массив
-                    string link = "";
-                    foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
-                    YoutubeVideo.Add(el.Element(ns + "id").Value, el.Element(ns + "title").Value, el.Element(ns + "content").Value, link);
+                   // string link = "";
+                   // foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
+                   // YoutubeVideo.Add(el.Element(ns + "id").Value, el.Element(ns + "title").Value, el.Element(ns + "content").Value, link, el.Element(ns + "published").Value.Remove(10));
+
+                   // MessageBox.Show(YoutubeVideo.List[0].Title);
                 }
 
-                if (youtubeTitle.Count == 0) { bwVideo.ReportProgress(-1); }
+                ShowMyData("bwVideo DoWork");
+
+                if (YoutubeVideo.Count() == 0) { bwVideo.ReportProgress(-1); }
             }
             catch (Exception ex)
             {
@@ -1025,14 +1040,19 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            if (e.ProgressPercentage > -1)
+            int maxInForm = 10;
+
+            if (YoutubeVideo.Count() > 0 && (YoutubeVideo.Count() <= maxInForm || showVideoTop < 290))
             {
                 // Так как начали выводить данные, проверяем существует ли контрол с текстом "ПОдождите, идет загрузка данных..."
                 try { if (llLoadingVideoData.Text != "") { this.pVideo.Controls.Remove(llLoadingVideoData); } }
                 catch { }
 
+                ShowMyData("bwVideo Progress");
+
                 try
                 {
+                    int pos = YoutubeVideo.Count() - 1;
 
                     Label labelDate = new Label();
                     labelDate.SetBounds(10, showVideoTop, 10, 10);
@@ -1040,7 +1060,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     labelDate.BackColor = Color.Transparent;
                     labelDate.ForeColor = Color.Silver;
                     labelDate.Font = new Font("Sochi2014", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-                    labelDate.Text = formatDate(youtubeDate[e.ProgressPercentage]);
+                    labelDate.Text = formatDate(YoutubeVideo.List[pos].Date);
                     labelDate.Name = "llDateVideo" + e.ProgressPercentage.ToString();
                     this.pVideo.Controls.Add(labelDate);
 
@@ -1053,8 +1073,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     label.LinkColor = Color.FromArgb(243, 123, 16);
                     label.LinkBehavior = LinkBehavior.HoverUnderline;
                     label.Name = "llVideo" + e.ProgressPercentage.ToString();
-                    label.Text = youtubeTitle[e.ProgressPercentage];
-                    label.Links[0].LinkData = youtubeLink[e.ProgressPercentage];
+                    label.Text = YoutubeVideo.List[pos].Title;
+                    label.Links[0].LinkData = YoutubeVideo.List[pos].Link;
                     try
                     {
                         label.SetBounds(labelDate.Width + 10, showVideoTop, 100, 20);
@@ -1090,7 +1110,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             else
             {
-                llLoadingVideoData.Text = "Видео не обнаружены...";
+                llLoadingVideoData.Text = "Видео не обнаружено...";
             }
         }
 
@@ -1099,13 +1119,16 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                DateTime nd = DateTime.Parse(dt);
-
-                return nd.ToString("dd/MM").Replace(".", "/");
+                if (dt != null)
+                {
+                    DateTime nd = DateTime.Parse(dt);
+                    return nd.ToString("dd/MM").Replace(".", "/");
+                }
+                return "null";
             }
             catch (Exception ex)
             {
-                Debug.Save("private string formatDate(string dt)", "", ex.Message);
+                Debug.Save("private string formatDate(string dt)", dt, ex.Message);
                 return "error";
             }
         }
@@ -1376,6 +1399,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             XDocument doc = XDocument.Load("settings.xml");
             if (doc.Root.Element("youtube") != null) foreach (XElement el in doc.Root.Element("youtube").Elements("video")) { YoutubeVideo.Delete(el.Value); }
+            else doc.Root.Add(new XElement("youtube", null));
 
             for (int i = 0; i < YoutubeVideo.Count(); i++)
             {
@@ -1384,11 +1408,56 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 //YoutubeVideo.Delete(YoutubeVideo.List[i].ID);
                 doc.Root.Element("youtube").Add(new XElement("video", YoutubeVideo.List[i].ID));
+                doc.Save("settings.xml");
 
                 await Task.Delay(10000);
             }
+        }
 
-            doc.Save("settings.xml");
+        private void ShowMyData(string s)
+        {
+            try
+            {
+                string aa = "";
+                foreach (var str in YoutubeVideo.List)
+                {
+                    if (str.Title != null) aa += str.Title + Environment.NewLine;
+                }
+                MessageBox.Show(s + Environment.NewLine + Environment.NewLine + aa);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR VIEW LIST" + Environment.NewLine + Environment.NewLine + ex.Message);
+            }
+        }
+
+        private async Task LoadYoutube()
+        {
+            try
+            {
+                XDocument doc = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + youtubeChannel + "/uploads");
+                XNamespace ns = "http://www.w3.org/2005/Atom";
+
+                foreach (XElement el in doc.Root.Elements(ns + "entry"))
+                {
+                    string link = "";
+                    foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
+
+                    YoutubeVideo.Add(
+                        el.Element(ns + "id").Value,
+                        (el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value),
+                        el.Element(ns + "content").Value.Remove(256),
+                        link,
+                        el.Element(ns + "published").Value.Remove(10)
+                    );
+                }
+
+                ShowVideoNotification(); // Запускаем уведомления
+            }
+            catch (Exception ex)
+            {
+                Debug.Save("private async Task LoadYoutube()", ex.Message);
+            }
         }
     }
 }

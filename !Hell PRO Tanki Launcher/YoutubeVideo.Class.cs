@@ -8,33 +8,34 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public class VideoLoading
     {
-        public string ID, Title, Content, Link;
-        public VideoLoading(string mProcess, string mDescription, string mContent, string mLink) { ID = mProcess; Title = mDescription; Content = mContent; Link = mLink; }
-        public VideoLoading() { ID = ""; Title = ""; Content = ""; Link = ""; }
+        public string ID, Title, Content, Link, Date;
+        public VideoLoading(string mProcess, string mDescription, string mContent, string mLink, string mDate) { ID = mProcess; Title = mDescription; Content = mContent; Link = mLink; Date = mDate; }
+        public VideoLoading() { ID = ""; Title = ""; Content = ""; Link = ""; Date = ""; }
     }
 
     public class YoutubeVideo
     {
-        public string ID, Title, Content, Link;
+        public string ID, Title, Content, Link,Date;
         public List<VideoLoading> List;
-        private List<List<VideoLoading>> subList;
+        public List<List<VideoLoading>> Range;
 
-        public int Add(string id, string title, string content, string link)
+        public int Add(string id, string title, string content, string link, string date)
         {
             try { if (List.Count <= 0) { } }
             catch (Exception)
             {
                 List = new List<VideoLoading>();
-                subList = new List<List<VideoLoading>>();
+                Range = new List<List<VideoLoading>>();
             }
 
-            List.Add(new VideoLoading(ID, Title, Content, Link));
-            subList.Add(List);
+            List.Add(new VideoLoading(ID, Title, Content, Link, Date));
+            Range.Add(List);
 
-            ID = subList[0][0].ID;
-            Title = subList[0][0].Title;
-            Content = subList[0][0].Content;
-            Link = subList[0][0].Link;
+            ID = Range[0][0].ID;
+            Title = Range[0][0].Title;
+            Content = Range[0][0].Content;
+            Link = Range[0][0].Link;
+            Date = Range[0][0].Date;
 
             return IndexOf(ID);
         }
