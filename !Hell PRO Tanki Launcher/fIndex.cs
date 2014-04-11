@@ -1365,7 +1365,7 @@ namespace _Hell_PRO_Tanki_Launcher
             // Выводим список
             foreach (var el in YoutubeVideo.List)
             {
-                ShowVideoPause().Wait();
+                await Task.Factory.StartNew(() => ShowVideoPause());
 
                 notifyLink = el.Link;
                 notifyIcon.ShowBalloonTip(2000, el.Title, el.Content, ToolTipIcon.Info);
@@ -1374,18 +1374,16 @@ namespace _Hell_PRO_Tanki_Launcher
                 doc.Save("settings.xml");
 
                 //YoutubeVideo.Delete(el.ID);
-
-                await Task.Delay(5000);
             }
         }
 
-        private async Task ShowVideoPause()
+        private void ShowVideoPause()
         {
-            await Task.Delay(5000);
+            Thread.Sleep(5000);
 
             while (Process.GetProcessesByName("WorldOfTanks").Length > 0 || Process.GetProcessesByName("WoTLauncher").Length > 0)
             {
-                await Task.Delay(10000);
+                Thread.Sleep(5000);
             }
         }
 
