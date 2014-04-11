@@ -40,15 +40,15 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 DownloadSettings().Wait(); // Загружаем файл настроек
 
-                DeleteFile("processes.exe \"!Hell PRO Tanki Launcher.exe\" updater.exe"); // Удаляем ненужные файлы
+                Task.Factory.StartNew(() => DeleteFile("processes.exe \"!Hell PRO Tanki Launcher.exe\" updater.exe")).Wait(); // Удаляем ненужные файлы
 
                 /// Если файлы имеют нулевой размер, то удаляем их
-                DeleteNullFile("settings.xml", "Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "LanguagePack.dll", "launcher.update");
+                Task.Factory.StartNew(() => DeleteNullFile("settings.xml", "Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "LanguagePack.dll", "launcher.update")).Wait();
 
                 // Проверяем целостность файлов
                 CheckFile("Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "LanguagePack.dll");
 
-                SaveFromResources().Wait(); // Проверяем существуют ли файлы. Если нет - сохраняем из ресурсов
+                Task.Factory.StartNew(() => SaveFromResources()).Wait(); // Проверяем существуют ли файлы. Если нет - сохраняем из ресурсов
 
                 if (!launcher) // Определяем будем запускать скачивание до обновления или после
                 {
@@ -193,7 +193,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (File.Exists(filename)) { File.Delete(filename); }
         }
 
-        private async Task SaveFromResources()
+        private void SaveFromResources()
         {
             if (!File.Exists("Ionic.Zip.dll")) { File.WriteAllBytes("Ionic.Zip.dll", Properties.Resources.IonicZip); }
             if (!File.Exists("LanguagePack.dll")) { File.WriteAllBytes("LanguagePack.dll", Properties.Resources.LanguagePack); }

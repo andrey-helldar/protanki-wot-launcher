@@ -50,6 +50,8 @@ namespace _Hell_PRO_Tanki_Launcher
             updTanks = false,
             optimized = false,
 
+            showVideoNotify = true,
+
             playGame = false,
 
             //optimizeVideo = false,
@@ -140,10 +142,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     XDocument doc = XDocument.Load("settings.xml");
 
-                    if (File.Exists(@"..\version.xml"))
-                    {
-                        path = Application.StartupPath + @"\..\";
-                    }
+                    if (File.Exists(@"..\version.xml")) { path = Application.StartupPath + @"\..\"; }
                     else
                     {
                         var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
@@ -177,14 +176,17 @@ namespace _Hell_PRO_Tanki_Launcher
                     try { updateNotification = doc.Root.Element("notification").Value; }
                     catch (Exception) { updateNotification = ""; }
 
-                    autoKill = doc.Root.Element("settings").Attribute("kill").Value == "True";
-                    autoAero = doc.Root.Element("settings").Attribute("aero").Value == "True";
-                    autoVideo = doc.Root.Element("settings").Attribute("video").Value == "True";
+                    if (doc.Root.Element("info") != null) showVideoNotify = doc.Root.Element("info").Attribute("video").Value == "True";
 
-                    try
+                    if (doc.Root.Element("settings") != null)
                     {
-                        lVerModpack = new Version(new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version"));
+                        autoForceKill = doc.Root.Element("settings").Attribute("force").Value == "True";
+                        autoKill = doc.Root.Element("settings").Attribute("kill").Value == "True";
+                        autoAero = doc.Root.Element("settings").Attribute("aero").Value == "True";
+                        autoVideo = doc.Root.Element("settings").Attribute("video").Value == "True";
                     }
+
+                    try { lVerModpack = new Version(new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version")); }
                     catch (Exception ex)
                     {
                         lVerModpack = new Version(doc.Root.Element("version").Value);
@@ -648,7 +650,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", "if (optimized || autoAero)", ex.Message);
+                Debug.Save("private void bwOptimize_DoWork()", "if (optimized || autoAero)", ex.Message);
             }
 
             try
@@ -717,43 +719,19 @@ namespace _Hell_PRO_Tanki_Launcher
                 /// 
                 try
                 {
-                    if (autoVideo)
+                    string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml";
+                    XDocument docPref = XDocument.Load(pathPref);
+
+                    foreach (XElement el in docPref.Root.Element("graphicsPreferences").Elements("entry"))
                     {
-                        /// http://mirtankov.su/fps-test
-                        /// c:\Users\user\AppData\Roaming\Wargaming.net\WorldOfTanks\                        
-
-                        string str = string.Empty;
-
-                        using (StreamReader reader = File.OpenText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
+                        if (el.Element("label").Value.Trim() == "SHADER_VERSION_CAP")
                         {
-                            str = reader.ReadToEnd();
-                        }
-
-                        str = str.Replace("<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	0	</activeOption>",
-                            "<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	1	</activeOption>");
-
-                        using (StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
-                        {
-                            file.Write(str);
+                            el.Element("activeOption").SetValue(autoVideo ? "1" : "0");
+                            break;
                         }
                     }
-                    else
-                    {
-                        string str = string.Empty;
 
-                        using (StreamReader reader = File.OpenText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
-                        {
-                            str = reader.ReadToEnd();
-                        }
-
-                        str = str.Replace("<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	1	</activeOption>",
-                            "<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	0	</activeOption>");
-
-                        using (StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
-                        {
-                            file.Write(str);
-                        }
-                    }
+                    docPref.Save(pathPref);
                 }
                 catch (Exception ex1)
                 {
@@ -956,7 +934,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
 
             // Запускаем функцию уведомлений о новых видео
-            ShowVideoNotification();
+            if (showVideoNotify) Task.Factory.StartNew(() => ShowVideoNotification());
         }
 
         private Version getFileVersion(string filename)
@@ -1202,7 +1180,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwVideo_DoWork(object sender, DoWorkEventArgs e)", "XmlDocument doc = new XmlDocument();", ex.Message);
+                Debug.Save("private void bwVideo_DoWork()", "XmlDocument doc = new XmlDocument();", ex.Message);
             }
         }
 
@@ -1299,7 +1277,7 @@ namespace _Hell_PRO_Tanki_Launcher
             //UpdateLauncher update = new UpdateLauncher();
             //update.CheckUpdates();
 
-            Debug.Send(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
+            Task.Factory.StartNew(() => Debug.Send()).Wait(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
         }
 
         private void bwGetVipProcesses_DoWork(object sender, DoWorkEventArgs e)
@@ -1336,7 +1314,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }*/
             }
 
-            CheckClosingGame(); // Запускаем утилиту проверки запущен ли клиент игры
+            Task.Factory.StartNew(() => CheckClosingGame()); // Запускаем утилиту проверки запущен ли клиент игры
         }
 
         private async Task CheckClosingGame()
@@ -1368,19 +1346,17 @@ namespace _Hell_PRO_Tanki_Launcher
                 await Task.Factory.StartNew(() => ShowVideoPause());
 
                 notifyLink = el.Link;
-                notifyIcon.ShowBalloonTip(2000, el.Title, el.Content, ToolTipIcon.Info);
+                //notifyIcon.ShowBalloonTip(2000, el.Title, el.Content, ToolTipIcon.Info);
+                notifyIcon.ShowBalloonTip(2000, el.Title, "Посмотреть видео", ToolTipIcon.Info);
 
                 doc.Root.Element("youtube").Add(new XElement("video", el.ID));
                 doc.Save("settings.xml");
-
-                //YoutubeVideo.Delete(el.ID);
             }
         }
 
         private void ShowVideoPause()
         {
             Thread.Sleep(5000);
-
             while (Process.GetProcessesByName("WorldOfTanks").Length > 0 || Process.GetProcessesByName("WoTLauncher").Length > 0)
             {
                 Thread.Sleep(5000);
@@ -1397,7 +1373,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void notifyIcon_Click()", "WindowState = FormWindowState.Normal;", ex.Message);
+                Debug.Save("private void notifyIcon_Click()", ex.Message);
             }
         }
 

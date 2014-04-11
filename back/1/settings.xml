@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <version>0.8.11.14</version>
-  <type>full</type>
-  <notification>0.8.11.16</notification>
-  <info video="True" />
-  <settings kill="False" force="False" aero="False" video="False" />
-  <processes />
   <youtube>
     <video>HjFht_vTF_E</video>
     <video>SFpaJvuNSo8</video>
@@ -31,5 +25,9 @@
     <video>PhCXKFJTX9o</video>
     <video>pD7qcfg2MZs</video>
     <video>5uxGibvRTlo</video>
+    <video>f5OIIVuGXqw</video>
   </youtube>
+  <info video="True" />
+  <settings kill="True" force="False" aero="True" video="True" />
+  <processes />
 </pro>

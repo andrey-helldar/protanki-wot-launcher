@@ -87,7 +87,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            SaveSettings().Wait();
+            SaveSettings().Wait(); 
         }
 
         private void bCancel_Click(object sender, EventArgs e)
@@ -263,24 +263,20 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 doc.Save("settings.xml");
 
-                if (cbVideoQuality.Checked)
+                //  c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\
+                string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml";
+                XDocument docPref = XDocument.Load(pathPref);
+
+                foreach (XElement el in docPref.Root.Element("graphicsPreferences").Elements("entry"))
                 {
-                    //  c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\
-                    string str = string.Empty;
-
-                    using (StreamReader reader = File.OpenText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
+                    if (el.Element("label").Value.Trim() == "SHADER_VERSION_CAP")
                     {
-                        str = reader.ReadToEnd();
-                    }
-
-                    str = str.Replace("<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	0	</activeOption>",
-                        "<label>	SHADER_VERSION_CAP	</label>" + Environment.NewLine + "			<activeOption>	1	</activeOption>");
-
-                    using (StreamWriter file = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml"))
-                    {
-                        file.Write(str);
+                        el.Element("activeOption").SetValue(cbVideoQuality.Checked ? "1" : "0");
+                        break;
                     }
                 }
+
+                docPref.Save(pathPref);
             }
             catch (Exception ex) { Debug.Save("private void bwSave_DoWork()", ex.Message); }
 
@@ -290,12 +286,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions", true);
                 key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 var key = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
                 key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
-
-                Debug.Save("private void bwSave_RunWorkerCompleted()", "Create registry key", ex.Message);
             }
 
 

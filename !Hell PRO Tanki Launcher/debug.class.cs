@@ -95,7 +95,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        public async void Send()
+        public void Send()
         {
             if (Directory.Exists("Debug"))
             {
@@ -107,13 +107,13 @@ namespace _Hell_PRO_Tanki_Launcher
                     NameValueCollection nvc = new NameValueCollection();
                     nvc.Add("code", code);
                     nvc.Add("uid", userID);
-                    await HttpUploadFile("http://ai-rus.com/wot/debug/", file.FullName, "file", "application/x-zip-compressed", nvc);
+                    Task.Factory.StartNew(() => HttpUploadFile("http://ai-rus.com/wot/debug/", file.FullName, "file", "application/x-zip-compressed", nvc)).Wait();
                     File.Delete(file.FullName);
                 }
             }
         }
 
-        private async Task HttpUploadFile(string url, string file, string paramName, string contentType, System.Collections.Specialized.NameValueCollection nvc)
+        private void HttpUploadFile(string url, string file, string paramName, string contentType, System.Collections.Specialized.NameValueCollection nvc)
         {
             string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
             byte[] boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
