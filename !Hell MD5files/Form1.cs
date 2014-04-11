@@ -35,8 +35,12 @@ namespace _Hell_MD5files
             if (File.Exists(@"files\Multipack Launcher.exe")) { File.Move(@"files\Multipack Launcher.exe", @"files\launcher.exe"); }
 
             lvMD5.Items.Clear();
+            List<string> settings = new List<string>();
 
             if (!Directory.Exists("files")) { Directory.CreateDirectory("files"); }
+
+            XDocument doc = XDocument.Load("settings.xml");
+            foreach (XElement el in doc.Root.Elements()) { settings.Add(el.Name.ToString()); }
 
             var info = new DirectoryInfo("files");
 
@@ -47,6 +51,8 @@ namespace _Hell_MD5files
                 lvMD5.Items[i].SubItems.Add(file.Length.ToString());
                 lvMD5.Items[i].SubItems.Add(file.Extension.Replace(".",""));
                 lvMD5.Items[i].SubItems.Add(Checksum(file.FullName));
+
+                lvMD5.Items[i].Checked = settings.IndexOf(file.Name) > -1;
             }
         }
 
@@ -68,17 +74,24 @@ namespace _Hell_MD5files
         private void bSave_Click(object sender, EventArgs e)
         {
             XDocument doc = new XDocument(new XElement("ai.rus", null));
+            XDocument settings = new XDocument(new XElement("ai.rus", null));
 
             foreach(ListViewItem file in lvMD5.Items){
-                doc.Root.Add(new XElement(file.Text.Remove(file.Text.Length - 4),
+                string name = file.Text.Remove(file.Text.Length - 4);
+
+                doc.Root.Add(new XElement(name,
                     file.SubItems[1].Text,
                     new XAttribute("ext", file.SubItems[3].Text),
                     new XAttribute("checksum", file.SubItems[4].Text),
-                    new XAttribute("important", file.Checked.ToString())
+                    new XAttribute("important", file.Checked.ToString()),
+                    new XAttribute("user", (name != "FormatXML" && name != "settings" && name != "launcher"))
                 ));
+
+                if (file.Checked) { settings.Root.Add(new XElement(file.Text, null)); }
             }
 
             doc.Save("version.xml");
+            settings.Save("settings.xml");
         }
     }
 }

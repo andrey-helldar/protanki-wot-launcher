@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="Multipack Launcher.exe" version="1.0.3.42" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.0.9.140" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="Multipack Launcher" version="1.0.9.141" language="neutral" processorArchitecture="x86" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2259968">
-      <assemblyIdentity name="Multipack Launcher" version="1.0.9.140" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2260480">
+      <assemblyIdentity name="Multipack Launcher" version="1.0.9.141" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>v7TqErciU68IKGNo3SU2MrflA8o4ap3o6UL1s9HDsTg=</dsig:DigestValue>
+        <dsig:DigestValue>PfD2hq2dc8dNW4+eeE9w8Rzu+PojyebJqxJdeNZjkmY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

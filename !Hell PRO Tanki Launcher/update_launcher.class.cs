@@ -50,30 +50,25 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 Task.Factory.StartNew(() => SaveFromResources()).Wait(); // Проверяем существуют ли файлы. Если нет - сохраняем из ресурсов
 
+                Task[] tasks = new Task[doc.Root.Elements().Count()];
+                int i = -1;
+
                 if (!launcher) // Определяем будем запускать скачивание до обновления или после
                 {
-                    foreach (XElement el in doc.Root.Elements().Attributes("important"))
+                    foreach (XElement el in doc.Root.Elements())
                     {
-                        DownloadFile(
-                            el.Name + "."+el.Attribute("ext"),
-                            el.Value,
-                            el.Attribute("checksum")
-                            );
+                        if (el.Attribute("important").Value == "True" && el.Attribute("user").Value == "true")
+                            tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
                     }
-
-                    var task1 = DownloadFile("Ionic.Zip.dll", doc.Root.Element("Ionic.Zip").Value, doc.Root.Element("Ionic.Zip").Attribute("checksum").Value);
-                    var task2 = DownloadFile("restart.exe", doc.Root.Element("restart").Value, doc.Root.Element("restart").Attribute("checksum").Value);
-                    var task3 = DownloadFile("LanguagePack.dll", doc.Root.Element("languagePack").Value, doc.Root.Element("languagePack").Attribute("checksum").Value);
-
-                    Task.WhenAll(task1, task2, task3);
                 }
                 else
                 {
                     // Скачиваем необходимые файлы
-                    var task4 = DownloadFile("Newtonsoft.Json.dll", doc.Root.Element("Newtonsoft.Json").Value, doc.Root.Element("Newtonsoft.Json").Attribute("checksum").Value);
-                    var task5 = DownloadFile("ProcessesLibrary.dll", doc.Root.Element("processesLibrary").Value, doc.Root.Element("processesLibrary").Attribute("checksum").Value);
-
-                    Task.WhenAll(task4, task5);
+                    foreach (XElement el in doc.Root.Elements())
+                    {
+                        if (el.Attribute("important").Value == "False" && el.Attribute("user").Value == "true")
+                            tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
+                    }
 
                     /* try
                      {
@@ -90,6 +85,8 @@ namespace _Hell_PRO_Tanki_Launcher
                      }
                      catch (Exception ex1) { Debug.Save("public void Check()", "launcher.update", ex1.Message); }*/
                 }
+
+                Task.WhenAll(tasks);
 
                 CheckProcessFile();
             }
