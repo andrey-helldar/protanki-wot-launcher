@@ -117,7 +117,6 @@ namespace Processes_Library
 				"GitExtensions",
 				"IntelliTrace",
 				"iusb3mon",
-				"klwtblfs",
 				"ManagerCryptoFS",
 				"NetiCtrlTray",
 				"NetSvcHelp",
