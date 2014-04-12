@@ -25,9 +25,7 @@ namespace _Hell_PRO_Tanki_Launcher
     public partial class fIndex : Form
     {
         fLanguage languagePack = new fLanguage();   // ПОдгружаем языковую библиотеку
-
-        public bool commonTest = false;
-
+        
         string path = "",
             modType = "full",
             youtubeChannel = "PROTankiWoT",
@@ -57,9 +55,7 @@ namespace _Hell_PRO_Tanki_Launcher
             showVideoNotify = true,
 
             playGame = false,
-
-            //optimizeVideo = false,
-            //optimizeAffinity = false,
+            commonTest = false,
 
             manualClickUpdate = false,
 
@@ -67,9 +63,7 @@ namespace _Hell_PRO_Tanki_Launcher
             autoForceKill = false,
             autoAero = false,
             autoVideo = false,
-            autoWeak = false,
-
-            tanksIsTest = false;
+            autoWeak = false;
 
         List<string> newsTitle = new List<string>();
         List<string> newsLink = new List<string>();
@@ -113,8 +107,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                //if (File.Exists("settings.xml")) { File.Delete("settings.xml"); } // Иногда данная ошибка возникает при некорректном файле настроек. Удаляем его
-
                 Debug.Save("public fIndex()", "Применение заголовков и иконок приложения", ex.Message);
             }
 
@@ -184,7 +176,6 @@ namespace _Hell_PRO_Tanki_Launcher
                         autoVideo = ReadCheckStateBool(doc, "video");
                         autoWeak = ReadSettingsStatus(doc, "weak");
                     }
-                    MessageBox.Show(autoVideo.ToString());
 
                     try { lVerModpack = new Version(new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version")); }
                     catch (Exception ex)
@@ -243,7 +234,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
                     {
-                        tanksIsTest = true;
+                        commonTest = true;
                         return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
                     }
                     else
@@ -341,13 +332,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 XDocument doc = XDocument.Load(@"http://ai-rus.com/pro/pro.xml");
 
                 rVerModpack = new Version(doc.Root.Element("version").Value);
-                rVerTanks = new Version(doc.Root.Element(!tanksIsTest ? "tanks" : "test").Value);
+                rVerTanks = new Version(doc.Root.Element(!commonTest ? "tanks" : "test").Value);
 
 
                 // Отправляем данные на сайт
                 if (lVerTanks > rVerTanks)
                 {
-                    rVerTanks = new Version(getResponse("http://ai-rus.com/wot/micro/" + lVerTanks.ToString() + "-" + tanksIsTest.ToString()));
+                    rVerTanks = new Version(getResponse("http://ai-rus.com/wot/micro/" + lVerTanks.ToString() + "-" + commonTest.ToString()));
                     updTanks = true;
                 }
                 else

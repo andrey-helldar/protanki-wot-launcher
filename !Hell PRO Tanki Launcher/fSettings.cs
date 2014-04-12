@@ -27,6 +27,8 @@ namespace _Hell_PRO_Tanki_Launcher
             type = "full",
             notification;
 
+        bool commonTest = false;
+
         List<string> userProcesses = new List<string>();
 
         Debug Debug = new Debug();
@@ -369,11 +371,11 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void llRecoverySettings_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (File.Exists("preferences.xml"))
+            if (File.Exists("preferences" + (commonTest ? "_ct" : "") + ".xml"))
             {
                 if (DialogResult.Yes == MessageBox.Show(this, "Вы действительно хотите восстановить файл прежний файл настроек игры?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
                 {
-                    File.Copy("preferences.xml", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml", true);
+                    File.Copy("preferences" + (commonTest ? "_ct" : "") + ".xml", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences" + (commonTest ? "_ct" : "") + ".xml", true);
                     MessageBox.Show(this, "Настройки успешно восстановлены", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -383,10 +385,10 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (File.Exists("preferences.xml"))
+                if (File.Exists("preferences" + (commonTest ? "_ct" : "") + ".xml"))
                     llRecoverySettings.Enabled = true;
                 else
-                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml", "preferences.xml");
+                    File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences" + (commonTest ? "_ct" : "") + ".xml", "preferences" + (commonTest ? "_ct" : "") + ".xml");
             }
             catch (Exception ex) { Debug.Save("fSettings_Load()", ex.Message); }
         }

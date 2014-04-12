@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("AI RUS - Professional tech support")]
 [assembly: AssemblyProduct("Multipack Launcher")]
 [assembly: AssemblyCopyright("Copyright ©  2014 AI RUS - Professional tech support")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("AI RUS - Professional tech support")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.10.148")]
-[assembly: AssemblyFileVersion("1.0.10.148")]
+[assembly: AssemblyVersion("1.0.10.150")]
+[assembly: AssemblyFileVersion("1.0.10.150")]

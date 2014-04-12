@@ -56,7 +56,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\PROTanks.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\WOT.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>90E9B17F21D96E140802E431CBF7CB125A108B40</ManifestCertificateThumbprint>
@@ -150,8 +150,8 @@
     <None Include="Resources\start.bat" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\WOT.ico" />
     <None Include="Resources\ProcessesLibrary.dll" />
-    <None Include="Resources\PROTanks.ico" />
     <None Include="Resources\FonSetting.jpg" />
     <Content Include="Resources\FonUPD.jpg" />
     <None Include="Resources\restart.exe" />
