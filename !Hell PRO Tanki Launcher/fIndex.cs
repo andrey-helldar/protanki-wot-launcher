@@ -282,7 +282,7 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 this.BackgroundImage = Properties.Resources.back_7;
-                Debug.Save("public void setBackground()", "", ex.Message);
+                Debug.Save("public void setBackground()", ex.Message);
             }
         }
 
@@ -302,7 +302,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bVideo_Click()", "", ex.Message);
+                Debug.Save("private void bVideo_Click()", ex.Message);
             }
         }
 
@@ -448,7 +448,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwUpdater_RunWorkerCompleted()", "", ex.Message);
+                Debug.Save("private void bwUpdater_RunWorkerCompleted()", ex.Message);
             }
         }
 
@@ -456,7 +456,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
+                optimized = false;
+
                 if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
 
                 Process.Start(path + "WoTLauncher.exe");
@@ -464,26 +465,21 @@ namespace _Hell_PRO_Tanki_Launcher
                 Hide();
                 WindowState = FormWindowState.Minimized;
             }
-            catch (Exception ex)
-            {
-                Debug.Save("private void bLauncher_Click()", "Process.Start(path + \"WoTLauncher.exe\");", ex.Message);
-            }
+            catch (Exception ex)            {                Debug.Save("bLauncher_Click()", "Process.Start(path + \"WoTLauncher.exe\");", ex.Message);            }
         }
 
         private void bPlay_Click(object sender, EventArgs e)
         {
             try
             {
+                optimized = false;
+
                 if (!bwOptimize.IsBusy) { playGame = true; bwOptimize.RunWorkerAsync(); }
-                if (!bwAero.IsBusy) { bwAero.RunWorkerAsync(); }
 
                 Hide();
                 WindowState = FormWindowState.Minimized;
             }
-            catch (Exception ex)
-            {
-                Debug.Save("private void bPlay_Click()", "Process.Start(path + \"WorldOfTanks.exe\");", ex.Message);
-            }
+            catch (Exception ex)            {                Debug.Save("bPlay_Click()", "Process.Start(path + \"WorldOfTanks.exe\");", ex.Message);            }
         }
 
         private void moveForm()
@@ -499,7 +495,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void moveForm()", "", ex.Message);
+                Debug.Save("private void moveForm()", ex.Message);
             }
         }
 
@@ -605,11 +601,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)
         {
-            /// http://wow-clear.ru/stati-world-of-tanks/1305-redaktiruem-preferencesxml.html
-
             int myProgressStatus = 0;
 
-            // Проверяем условие: если процесс оптимизации запущен вручную, или указан в настройках, то:
             try
             {
                 if (optimized || autoAero)
@@ -624,14 +617,12 @@ namespace _Hell_PRO_Tanki_Launcher
                             {
                                 case 6:
                                     // Win7
-                                    psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
-                                    Process.Start(psi);
+                                    Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms")); // останавливаем aero
                                     break;
 
                                 case 7:
                                     // Win8
-                                    psi = new ProcessStartInfo("cmd", @"/c net stop uxsms"); // останавливаем aero
-                                    Process.Start(psi);
+                                    Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms")); // останавливаем aero
                                     break;
 
                                 default:
@@ -648,10 +639,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     bwOptimize.ReportProgress(++myProgressStatus);
                 }
             }
-            catch (Exception ex)
-            {
-                Debug.Save("private void bwOptimize_DoWork()", "if (optimized || autoAero)", ex.Message);
-            }
+            catch (Exception ex) { Debug.Save("bwOptimize_DoWork()", "if (optimized || autoAero)", ex.Message); }
 
             try
             {
@@ -659,57 +647,36 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     // Завершаем ненужные процессы путем перебора массива имен с условием отсутствия определенных условий
                     Process[] myProcesses = Process.GetProcesses();
-                    int processID = Process.GetCurrentProcess().SessionId;
+                    int sessionId = Process.GetCurrentProcess().SessionId;
 
                     maxPercentUpdateStatus += autoForceKill ? myProcesses.Length * 2 - 2 : myProcesses.Length - 1; // Расчитываем значение прогресс бара                    
-                    ProcessesLibrary proccessLibrary = new ProcessesLibrary();  // устанавливаем имена процессов, завершать которые НЕЛЬЗЯ
+                    ProcessesLibrary proccessLibrary = new ProcessesLibrary();  // получаем имена процессов, завершать которые НЕЛЬЗЯ
 
-                    for (int i = 1; i < myProcesses.Length; i++) // Передаем процессам инфу, что приложение должно закрыться
+                    bool kill = false;
+
+                    for (int i = 0; i < 2; i++)
                     {
-                        try
-                        {
-                            bwOptimize.ReportProgress(++myProgressStatus); // Инкрименируем значение прогресс бара
-
-                            if (myProcesses[i].SessionId == processID && Array.IndexOf(proccessLibrary.Processes(), myProcesses[i].ProcessName.ToString()) == -1 && processesList.IndexOf(myProcesses[i].ProcessName.ToString()) == -1)
-                            {
-                                myProcesses[i].CloseMainWindow();
-                            }
-                            else
-                            {
-                                saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + "   ||   SessionID : " + myProcesses[i].SessionId.ToString());
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.Save("private void bwOptimize_DoWork()", myProcesses[i].ProcessName.ToString(), ex.Message);
-                        }
-                    }
-
-
-                    if (autoForceKill)
-                    {
-                        Thread.Sleep(5000); // Ждем 5 секунд завершения, пока приложения нормально завершатся
-
-                        for (int i = 1; i < myProcesses.Length; i++) // Кто не успел - тот опоздал! Принудительно убиваем процесс
+                        foreach (var process in myProcesses)
                         {
                             try
                             {
-                                // Расчитываем значение прогресс бара
-                                bwOptimize.ReportProgress(++myProgressStatus);
+                                bwOptimize.ReportProgress(++myProgressStatus); // Инкрименируем значение прогресс бара
 
-                                if (myProcesses[i].SessionId == processID && Array.IndexOf(proccessLibrary.Processes(), myProcesses[i].ProcessName.ToString()) == -1 && processesList.IndexOf(myProcesses[i].ProcessName.ToString()) == -1)
+                                if (myProcesses[i].SessionId == sessionId &&
+                                    Array.IndexOf(proccessLibrary.Processes(), myProcesses[i].ProcessName.ToString()) == -1 &&
+                                    processesList.IndexOf(myProcesses[i].ProcessName.ToString()) == -1)
                                 {
-                                    myProcesses[i].Kill();
-                                }
-                                else
-                                {
-                                    saveLogNotCloseProcess(myProcesses[i].ProcessName.ToString() + " (kill)   ||   SessionID : " + myProcesses[i].SessionId.ToString());
+                                    if (!kill) myProcesses[i].CloseMainWindow(); else myProcesses[i].Kill();
                                 }
                             }
-                            catch (Exception ex)
-                            {
-                                Debug.Save("private void bwOptimize_DoWork()", myProcesses[i].ProcessName.ToString(), ex.Message);
-                            }
+                            catch (Exception ex) { Debug.Save("bwOptimize_DoWork()", "if (optimized || autoKill)", myProcesses[i].ProcessName.ToString(), "Kill: " + kill.ToString(), ex.Message); }
+                        }
+
+                        if (!autoForceKill || !optimized) { break; }
+                        else
+                        {
+                            kill = true;
+                            Thread.Sleep(5000); // Ждем 5 секунд завершения, пока приложения нормально завершатся
                         }
                     }
                 }
@@ -719,28 +686,54 @@ namespace _Hell_PRO_Tanki_Launcher
                 /// 
                 try
                 {
-                    string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml";
-                    XDocument docPref = XDocument.Load(pathPref);
-
-                    foreach (XElement el in docPref.Root.Element("graphicsPreferences").Elements("entry"))
+                    if (optimized || autoVideo)
                     {
-                        if (el.Element("label").Value.Trim() == "SHADER_VERSION_CAP")
-                        {
-                            el.Element("activeOption").SetValue(autoVideo ? "1" : "0");
-                            break;
-                        }
-                    }
+                        string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml";
+                        XDocument docPref = XDocument.Load(pathPref);
 
-                    docPref.Save(pathPref);
+                        foreach (XElement el in docPref.Root.Element("graphicsPreferences").Elements("entry"))
+                        {
+                            switch (el.Element("label").Value.Trim())
+                            {
+                                case "SHADER_VERSION_CAP": el.Element("activeOption").SetValue("	1	"); break;
+                                case "RENDER_PIPELINE": el.Element("activeOption").SetValue("	1	"); break;
+                                case "SHADOWS_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
+                                case "DECALS_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
+                                case "LIGHTING_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
+                                case "TEXTURE_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                case "TERRAIN_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
+                                case "SPEEDTREE_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                case "WATER_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                case "FAR_PLANE": el.Element("activeOption").SetValue("	3	"); break;
+                                case "FLORA_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
+                                case "OBJECT_LOD": el.Element("activeOption").SetValue("	3	"); break;
+                                case "VEHICLE_DUST_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
+                                case "VEHICLE_TRACES_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
+                                case "SMOKE_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
+                                case "SNIPER_MODE_EFFECTS_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                case "PS_USE_PERFORMANCER": el.Element("activeOption").SetValue("	0	"); break;
+                                case "EFFECTS_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
+                                case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
+                                case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
+                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                default: break;
+                            }
+                        }
+
+                        docPref.Root.Element("graphicsPreferences").Element("colorGradingStrength").Remove();
+                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue("	STAwCi4=	");
+
+                        docPref.Save(pathPref);
+                    }
                 }
                 catch (Exception ex1)
                 {
-                    Debug.Save("private void bwOptimize_DoWork()", "if (autoVideo)", ex1.Message);
+                    Debug.Save("bwOptimize_DoWork()", "if (optimized || autoVideo)", ex1.Message);
                 }
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)", "", ex.Message);
+                Debug.Save("bwOptimize_DoWork)", ex.Message);
             }
         }
 
@@ -805,30 +798,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void saveLogNotCloseProcess(string param)
-        {
-            try
-            {
-                bool z = false;
-
-                if (z)
-                {
-                    if (!File.Exists(@"log\not_closed_process.log"))
-                    {
-                        File.WriteAllText(@"log\not_closed_process.log", param, Encoding.UTF8);
-                    }
-                    else
-                    {
-                        File.AppendAllText(@"log\not_closed_process.log", Environment.NewLine + param, Encoding.UTF8);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("private void saveLogNotCloseProcess(string param)", "if (!File.Exists(@\"log\not_closed_process.log\"))", ex.Message);
-            }
-        }
-
         private void bSettings_Click(object sender, EventArgs e)
         {
             fSettings fSettings = new fSettings();
@@ -850,34 +819,6 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 Debug.Save("private void bwOptimize_ProgressChanged(object sender, ProgressChangedEventArgs e)", "double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;", ex.Message);
-            }
-        }
-
-        private void bwAero_DoWork(object sender, DoWorkEventArgs e)
-        {
-            try
-            {
-                //Thread.Sleep(5000);
-                Task.Delay(5000);
-
-                while (true)
-                {
-                    if (Process.GetProcessesByName("WoTLauncher").Length < 1 && Process.GetProcessesByName("WorldOfTanks").Length < 1)
-                    {
-                        psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
-                        Process.Start(psi);
-                        break;
-                    }
-                    else
-                    {
-                        //Thread.Sleep(5000);
-                        Task.Delay(5000);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("private void bwAero_DoWork()", "", ex.Message);
             }
         }
 
@@ -1141,7 +1082,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void changeContent(bool video = true)", "", ex.Message);
+                Debug.Save("private void changeContent(bool video = true)", ex.Message);
             }
         }
 
@@ -1290,7 +1231,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwGetVipProcesses_DoWork()", "", ex.Message);
+                Debug.Save("private void bwGetVipProcesses_DoWork()", ex.Message);
             }
         }
 

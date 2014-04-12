@@ -49,7 +49,6 @@
             this.bOptimizePC = new System.Windows.Forms.Button();
             this.bwOptimize = new System.ComponentModel.BackgroundWorker();
             this.llTitle = new System.Windows.Forms.LinkLabel();
-            this.bwAero = new System.ComponentModel.BackgroundWorker();
             this.bSettings = new System.Windows.Forms.Button();
             this.bwVideo = new System.ComponentModel.BackgroundWorker();
             this.llActually = new System.Windows.Forms.LinkLabel();
@@ -306,12 +305,6 @@
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llTitle.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTitle_LinkClicked);
             // 
-            // bwAero
-            // 
-            this.bwAero.WorkerReportsProgress = true;
-            this.bwAero.WorkerSupportsCancellation = true;
-            this.bwAero.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwAero_DoWork);
-            // 
             // bSettings
             // 
             this.bSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
@@ -552,7 +545,6 @@
         private System.ComponentModel.BackgroundWorker bwOptimize;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.LinkLabel llTitle;
-        private System.ComponentModel.BackgroundWorker bwAero;
         private System.Windows.Forms.Button bSettings;
         private System.ComponentModel.BackgroundWorker bwVideo;
         private System.Windows.Forms.LinkLabel llActually;
