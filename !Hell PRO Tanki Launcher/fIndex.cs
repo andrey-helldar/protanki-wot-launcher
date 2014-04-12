@@ -25,7 +25,7 @@ namespace _Hell_PRO_Tanki_Launcher
     public partial class fIndex : Form
     {
         fLanguage languagePack = new fLanguage();   // ПОдгружаем языковую библиотеку
-        
+
         string path = "",
             modType = "full",
             youtubeChannel = "PROTankiWoT",
@@ -55,6 +55,7 @@ namespace _Hell_PRO_Tanki_Launcher
             showVideoNotify = true,
 
             playGame = false,
+
             commonTest = false,
 
             manualClickUpdate = false,
@@ -83,7 +84,8 @@ namespace _Hell_PRO_Tanki_Launcher
         public fIndex()
         {
             //Проверяем запущен ли процесс
-            foreach(Process process in Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName)){
+            foreach (Process process in Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName))
+            {
                 if (process.SessionId != Process.GetCurrentProcess().SessionId) process.Kill();
             }
 
@@ -102,34 +104,21 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     XDocument doc = XDocument.Load("settings.xml");
 
-                    if (File.Exists(@"..\version.xml")) { path = Application.StartupPath + @"\..\"; }
-                    else
-                    {
-                        var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
-                        path = key != null ? (string)key.GetValue("InstallLocation") : null;
-                    }
-                    if (path == null)
-                    {
-                        bPlay.Enabled = false;
-                        bLauncher.Enabled = false;
-                        MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-
                     /// Читаем дату выпуска модпака
                     modpackDate = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "date");
 
-                        try
-                        {
-                            if (File.Exists("config.ini")) { modType = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower(); }
-                            else { modType = "full"; }
-                        }
-                        catch (Exception ex)
-                        {
-                            modType = "full";
-                            Debug.Save("loadSettings()", "Read from INI", ex.Message);
-                        }
+                    try
+                    {
+                        if (File.Exists("config.ini")) { modType = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower(); }
+                        else { modType = "full"; }
+                    }
+                    catch (Exception ex)
+                    {
+                        modType = "full";
+                        Debug.Save("loadSettings()", "Read from INI", ex.Message);
+                    }
 
-                    updateNotification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value: "";
+                    updateNotification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : "";
 
                     showVideoNotify = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false) : false;
 
@@ -193,9 +182,37 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (File.Exists(@"..\version.xml"))
+                XDocument docSettings = XDocument.Load("settings.xml");
+                // Ищем путь к танкам
+                if (docSettings.Root.Element("path") != null)
+                    path = docSettings.Root.Element("path").Value;
+                else
                 {
-                    XDocument doc = XDocument.Load(@"..\version.xml");
+                    if (File.Exists(@"..\version.xml")) { path = Application.StartupPath + @"\..\"; }
+                    else
+                    {
+                        var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
+                        path = key != null ? (string)key.GetValue("InstallLocation") : null;
+                    }
+                    if (path == null)
+                    {
+                        bPlay.Enabled = false;
+                        bLauncher.Enabled = false;
+                        MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    if (path != null)
+                    {
+                        docSettings.Root.Add(new XElement("path", path));
+                        docSettings.Save("settings.xml");
+                    }
+                }
+
+
+
+                if (File.Exists(path + "version.xml"))
+                {
+                    XDocument doc = XDocument.Load(path + "version.xml");
 
                     if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
                     {
@@ -293,7 +310,14 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 lVerTanks = LocalTanksVersion();
 
-                // Парсим сайт PROТанки
+                XDocument docSettings = XDocument.Load("settings.xml");
+                if (commonTest)
+                    if (docSettings.Root.Element("common.test") == null) docSettings.Root.Add(new XElement("common.test", null));
+                    else
+                        if (docSettings.Root.Element("common.test") != null) docSettings.Root.Element("common.test").Remove();
+
+                docSettings.Save("settings.xml");
+
                 XDocument doc = XDocument.Load(@"http://ai-rus.com/pro/pro.xml");
 
                 rVerModpack = new Version(doc.Root.Element("version").Value);
@@ -446,7 +470,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 Hide();
                 WindowState = FormWindowState.Minimized;
             }
-            catch (Exception ex)            {                Debug.Save("bLauncher_Click()", "Process.Start(path + \"WoTLauncher.exe\");", ex.Message);            }
+            catch (Exception ex) { Debug.Save("bLauncher_Click()", "Process.Start(path + \"WoTLauncher.exe\");", ex.Message); }
         }
 
         private void bPlay_Click(object sender, EventArgs e)
@@ -460,7 +484,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 Hide();
                 WindowState = FormWindowState.Minimized;
             }
-            catch (Exception ex)            {                Debug.Save("bPlay_Click()", "Process.Start(path + \"WorldOfTanks.exe\");", ex.Message);            }
+            catch (Exception ex) { Debug.Save("bPlay_Click()", "Process.Start(path + \"WorldOfTanks.exe\");", ex.Message); }
         }
 
         private void moveForm()
@@ -669,7 +693,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (optimized || autoVideo)
                     {
-                        string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences" + (commonTest?"_ct":"") + ".xml";
+                        string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences" + (commonTest ? "_ct" : "") + ".xml";
                         XDocument docPref = XDocument.Load(pathPref);
 
                         foreach (XElement el in docPref.Root.Element("graphicsPreferences").Elements("entry"))
@@ -677,26 +701,26 @@ namespace _Hell_PRO_Tanki_Launcher
                             switch (el.Element("label").Value.Trim())
                             {
                                 case "SHADER_VERSION_CAP": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	1	"); break;
-                                case "RENDER_PIPELINE": el.Element("activeOption").SetValue(autoWeak    ? "	1	" : "	0	"); break;
-                                case "SHADOWS_QUALITY": el.Element("activeOption").SetValue(autoWeak    ? "	4	" : "	2	"); break;
-                                case "DECALS_QUALITY": el.Element("activeOption").SetValue(autoWeak     ? "	4	" : "	2	"); break;
-                                case "LIGHTING_QUALITY": el.Element("activeOption").SetValue(autoWeak   ? "	4	" : "	2	"); break;
-                                case "TEXTURE_QUALITY": el.Element("activeOption").SetValue(autoWeak    ? "	3	" : "	2	"); break;
-                                case "TERRAIN_QUALITY": el.Element("activeOption").SetValue(autoWeak    ? "	4	" : "	2	"); break;
-                                case "SPEEDTREE_QUALITY": el.Element("activeOption").SetValue(autoWeak  ? "	3	" : "	2	"); break;
-                                case "WATER_QUALITY": el.Element("activeOption").SetValue(autoWeak      ? "	3	" : "	2	"); break;
-                                case "FAR_PLANE": el.Element("activeOption").SetValue(autoWeak          ? "	3	" : "	2	"); break;
-                                case "FLORA_QUALITY": el.Element("activeOption").SetValue(autoWeak      ? "	4	" : "	2	"); break;
-                                case "OBJECT_LOD": el.Element("activeOption").SetValue(autoWeak         ? "	3	" : "	2	"); break;
+                                case "RENDER_PIPELINE": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	0	"); break;
+                                case "SHADOWS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
+                                case "DECALS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
+                                case "LIGHTING_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
+                                case "TEXTURE_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
+                                case "TERRAIN_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
+                                case "SPEEDTREE_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
+                                case "WATER_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
+                                case "FAR_PLANE": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
+                                case "FLORA_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
+                                case "OBJECT_LOD": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
                                 case "VEHICLE_DUST_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
                                 case "VEHICLE_TRACES_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
-                                case "SMOKE_ENABLED": el.Element("activeOption").SetValue(autoWeak      ? "	0	" : "	1	"); break;
+                                case "SMOKE_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
                                 case "SNIPER_MODE_EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "PS_USE_PERFORMANCER": el.Element("activeOption").SetValue(autoWeak? "	0	" : "	0	"); break;
-                                case "EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak    ? "	4	" : "	2	"); break;
+                                case "PS_USE_PERFORMANCER": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	0	"); break;
+                                case "EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
                                 case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
                                 case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	2	"); break;
-                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue(autoWeak? "	3	" : "	3	"); break;
+                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	3	"); break;
                                 default: break;
                             }
                         }

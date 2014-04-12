@@ -48,6 +48,8 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 XDocument doc = XDocument.Load("settings.xml");
 
+                commonTest = doc.Root.Element("common.test") != null;
+
                 try { version = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version"); }
                 catch (Exception) { version = doc.Root.Element("version") != null ? doc.Root.Element("version").Value : "0.0.0.0"; }
 

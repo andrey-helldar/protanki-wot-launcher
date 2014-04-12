@@ -1,35 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
   <version>0.8.11.14</version>
-  <notification>0.8.11.16</notification>
-  <settings kill="False" force="False" aero="False" video="Unchecked" weak="False" />
-  <youtube>
-    <video>HjFht_vTF_E</video>
-    <video>SFpaJvuNSo8</video>
-    <video>reTERwoIKyw</video>
-    <video>Ft4Pr23WZ6Q</video>
-    <video>zG-ndjIwUb8</video>
-    <video>CGHYuwu0r5s</video>
-    <video>KYLAuLCw0sU</video>
-    <video>DO83ZbtcAGM</video>
-    <video>TUIFLK9-_Jo</video>
-    <video>_XU8oIkin-E</video>
-    <video>GGY7DYcrAUg</video>
-    <video>uUFMbGNIWTo</video>
-    <video>RDcM0jg3is0</video>
-    <video>TqSTch0rfOU</video>
-    <video>5oVYQr2I2HQ</video>
-    <video>WeklWpw4CD8</video>
-    <video>AwrH75drrr4</video>
-    <video>IJujWLYnKvM</video>
-    <video>iaBeokUtaL8</video>
-    <video>UGGTq4P3N44</video>
-    <video>dNDd0oM_UX4</video>
-    <video>PhCXKFJTX9o</video>
-    <video>pD7qcfg2MZs</video>
-    <video>5uxGibvRTlo</video>
-    <video>f5OIIVuGXqw</video>
-  </youtube>
+  <settings kill="False" force="False" aero="False" />
   <info video="True" />
   <processes />
 </pro>
