@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\PROTanks.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.0.10.146" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="Multipack Launcher" version="1.0.10.148" language="neutral" processorArchitecture="x86" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2297344">
-      <assemblyIdentity name="Multipack Launcher" version="1.0.10.146" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2299392">
+      <assemblyIdentity name="Multipack Launcher" version="1.0.10.148" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GplO3sysJaIr2jD+92ntV49+GixVI8+CdYbhHDbXSFE=</dsig:DigestValue>
+        <dsig:DigestValue>lI5yrFR5TybgWDBa0FJ+kROImENBS4UAHvMrW4plQnY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

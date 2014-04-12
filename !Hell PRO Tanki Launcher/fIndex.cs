@@ -26,6 +26,8 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         fLanguage languagePack = new fLanguage();   // ПОдгружаем языковую библиотеку
 
+        public bool commonTest = false;
+
         string path = "",
             modType = "full",
             youtubeChannel = "PROTankiWoT",
@@ -61,10 +63,11 @@ namespace _Hell_PRO_Tanki_Launcher
 
             manualClickUpdate = false,
 
-            autoKill = true,
+            autoKill = false,
             autoForceKill = false,
-            autoAero = true,
-            autoVideo = true,
+            autoAero = false,
+            autoVideo = false,
+            autoWeak = false,
 
             tanksIsTest = false;
 
@@ -158,53 +161,74 @@ namespace _Hell_PRO_Tanki_Launcher
                     /// Читаем дату выпуска модпака
                     modpackDate = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "date");
 
-                    try { modType = doc.Root.Element("type").Value; }
-                    catch (Exception)
-                    {
                         try
                         {
                             if (File.Exists("config.ini")) { modType = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower(); }
                             else { modType = "full"; }
                         }
-                        catch (Exception ex1)
+                        catch (Exception ex)
                         {
                             modType = "full";
-                            Debug.Save("public void loadSettings()", "Read from INI", ex1.Message);
+                            Debug.Save("loadSettings()", "Read from INI", ex.Message);
                         }
-                    }
 
-                    try { updateNotification = doc.Root.Element("notification").Value; }
-                    catch (Exception) { updateNotification = ""; }
+                    updateNotification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value: "";
 
-                    if (doc.Root.Element("info") != null) showVideoNotify = doc.Root.Element("info").Attribute("video").Value == "True";
+                    showVideoNotify = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false) : false;
 
                     if (doc.Root.Element("settings") != null)
                     {
-                        autoForceKill = doc.Root.Element("settings").Attribute("force").Value == "True";
-                        autoKill = doc.Root.Element("settings").Attribute("kill").Value == "True";
-                        autoAero = doc.Root.Element("settings").Attribute("aero").Value == "True";
-                        autoVideo = doc.Root.Element("settings").Attribute("video").Value == "True";
+                        autoForceKill = ReadSettingsStatus(doc, "force");
+                        autoKill = ReadSettingsStatus(doc, "kill");
+                        autoAero = ReadSettingsStatus(doc, "aero");
+                        autoVideo = ReadCheckStateBool(doc, "video");
+                        autoWeak = ReadSettingsStatus(doc, "weak");
                     }
+                    MessageBox.Show(autoVideo.ToString());
 
                     try { lVerModpack = new Version(new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version")); }
                     catch (Exception ex)
                     {
                         lVerModpack = new Version(doc.Root.Element("version").Value);
-                        Debug.Save("public void loadSettings()", "IniFile ini = new IniFile(\"config.ini\");", ex.Message);
+                        Debug.Save("loadSettings()", "IniFile ini = new IniFile(\"config.ini\");", ex.Message);
                     }
                 }
                 else
                 {
-                    Debug.Save("public void loadSettings()", "Файл настроек не обнаружен. Перезапускаем ПО");
+                    Debug.Save("loadSettings()", "Файл настроек не обнаружен. Перезапускаем ПО");
 
                     Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
-                    Process.GetCurrentProcess().Kill();
+                    Process.GetCurrentProcess().CloseMainWindow();
                 }
             }
             catch (Exception ex)
             {
-                Debug.Save("public fIndex()", "public void loadSettings()", ex.Message);
+                Debug.Save("loadSettings()", ex.Message);
             }
+        }
+
+        private bool ReadCheckStateBool(XDocument doc, string attr)
+        {
+            if (doc.Root.Element("settings") != null)
+                if (doc.Root.Element("settings").Attribute(attr) != null)
+                {
+                    switch (doc.Root.Element("settings").Attribute(attr).Value)
+                    {
+                        case "Checked": return true;
+                        case "Indeterminate": return true;
+                        default: return false;
+                    }
+                }
+            return false;
+        }
+
+        private bool ReadSettingsStatus(XDocument doc, string attr)
+        {
+            if (doc.Root.Element("settings") != null)
+                if (doc.Root.Element("settings").Attribute(attr) != null)
+                    if (doc.Root.Element("settings").Attribute(attr).Value == "True")
+                        return true;
+            return false;
         }
 
 
@@ -242,6 +266,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                                 if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
                                 {
+                                    commonTest = true;
                                     return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
                                 }
                                 else
@@ -252,13 +277,13 @@ namespace _Hell_PRO_Tanki_Launcher
                         }
                     }
 
-                    Debug.Save("private Version getTanksVersion()", "Клиент игры не обнаружен в реестре.");
+                    Debug.Save("getTanksVersion()", "Клиент игры не обнаружен в реестре.");
                     return new Version("0.0.0.0");
                 }
             }
             catch (Exception ex)
             {
-                Debug.Save("private Version getTanksVersion()", "doc.Load(path + \"version.xml\");", ex.Message);
+                Debug.Save("getTanksVersion()", "doc.Load(path + \"version.xml\");", ex.Message);
                 return new Version("0.0.0.0");
             }
         }
@@ -688,40 +713,42 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (optimized || autoVideo)
                     {
-                        string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences.xml";
+                        string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences" + (commonTest?"_ct":"") + ".xml";
                         XDocument docPref = XDocument.Load(pathPref);
 
                         foreach (XElement el in docPref.Root.Element("graphicsPreferences").Elements("entry"))
                         {
                             switch (el.Element("label").Value.Trim())
                             {
-                                case "SHADER_VERSION_CAP": el.Element("activeOption").SetValue("	1	"); break;
-                                case "RENDER_PIPELINE": el.Element("activeOption").SetValue("	1	"); break;
-                                case "SHADOWS_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
-                                case "DECALS_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
-                                case "LIGHTING_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
-                                case "TEXTURE_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
-                                case "TERRAIN_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
-                                case "SPEEDTREE_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
-                                case "WATER_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
-                                case "FAR_PLANE": el.Element("activeOption").SetValue("	3	"); break;
-                                case "FLORA_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
-                                case "OBJECT_LOD": el.Element("activeOption").SetValue("	3	"); break;
-                                case "VEHICLE_DUST_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
-                                case "VEHICLE_TRACES_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
-                                case "SMOKE_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
-                                case "SNIPER_MODE_EFFECTS_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
-                                case "PS_USE_PERFORMANCER": el.Element("activeOption").SetValue("	0	"); break;
-                                case "EFFECTS_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
-                                case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
-                                case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
-                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                case "SHADER_VERSION_CAP": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	1	"); break;
+                                case "RENDER_PIPELINE": el.Element("activeOption").SetValue(autoWeak    ? "	1	" : "	0	"); break;
+                                case "SHADOWS_QUALITY": el.Element("activeOption").SetValue(autoWeak    ? "	4	" : "	2	"); break;
+                                case "DECALS_QUALITY": el.Element("activeOption").SetValue(autoWeak     ? "	4	" : "	2	"); break;
+                                case "LIGHTING_QUALITY": el.Element("activeOption").SetValue(autoWeak   ? "	4	" : "	2	"); break;
+                                case "TEXTURE_QUALITY": el.Element("activeOption").SetValue(autoWeak    ? "	3	" : "	2	"); break;
+                                case "TERRAIN_QUALITY": el.Element("activeOption").SetValue(autoWeak    ? "	4	" : "	2	"); break;
+                                case "SPEEDTREE_QUALITY": el.Element("activeOption").SetValue(autoWeak  ? "	3	" : "	2	"); break;
+                                case "WATER_QUALITY": el.Element("activeOption").SetValue(autoWeak      ? "	3	" : "	2	"); break;
+                                case "FAR_PLANE": el.Element("activeOption").SetValue(autoWeak          ? "	3	" : "	2	"); break;
+                                case "FLORA_QUALITY": el.Element("activeOption").SetValue(autoWeak      ? "	4	" : "	2	"); break;
+                                case "OBJECT_LOD": el.Element("activeOption").SetValue(autoWeak         ? "	3	" : "	2	"); break;
+                                case "VEHICLE_DUST_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
+                                case "VEHICLE_TRACES_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
+                                case "SMOKE_ENABLED": el.Element("activeOption").SetValue(autoWeak      ? "	0	" : "	1	"); break;
+                                case "SNIPER_MODE_EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
+                                case "PS_USE_PERFORMANCER": el.Element("activeOption").SetValue(autoWeak? "	0	" : "	0	"); break;
+                                case "EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak    ? "	4	" : "	2	"); break;
+                                case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
+                                case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	2	"); break;
+                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue(autoWeak? "	3	" : "	3	"); break;
                                 default: break;
                             }
                         }
 
-                        docPref.Root.Element("graphicsPreferences").Element("colorGradingStrength").Remove();
-                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue("	STAwCi4=	");
+                        docPref.Root.Element("devicePreferences").Element("customAAMode").SetValue(autoWeak ? "	1	" : "	0	");
+                        docPref.Root.Element("devicePreferences").Element("drrScale").SetValue(autoWeak ? "	0.500000	" : "	0.900000	");
+                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAwCi4=	" : "	STAKLg==	");
+                        docPref.Root.Element("scriptsPreferences").Element("fov").SetValue(autoWeak ? "	80.000000	" : "	80.000000	");
 
                         docPref.Save(pathPref);
                     }

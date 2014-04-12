@@ -51,6 +51,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.llRecoverySettings = new System.Windows.Forms.LinkLabel();
+            this.cbVideoQualityWeak = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -68,7 +69,7 @@
             this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSave.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSave.Location = new System.Drawing.Point(147, 497);
+            this.bSave.Location = new System.Drawing.Point(136, 516);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 50);
             this.bSave.TabIndex = 1;
@@ -87,7 +88,7 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(318, 497);
+            this.bCancel.Location = new System.Drawing.Point(307, 516);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(150, 50);
             this.bCancel.TabIndex = 2;
@@ -98,6 +99,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.cbVideoQualityWeak);
             this.groupBox2.Controls.Add(this.cbVideoQuality);
             this.groupBox2.Controls.Add(this.cbForceClose);
             this.groupBox2.Controls.Add(this.cbAero);
@@ -105,7 +107,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(12, 29);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(300, 107);
+            this.groupBox2.Size = new System.Drawing.Size(300, 131);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Оптимизация:";
@@ -118,7 +120,9 @@
             this.cbVideoQuality.Size = new System.Drawing.Size(215, 17);
             this.cbVideoQuality.TabIndex = 3;
             this.cbVideoQuality.Text = "Уменьшить качество графики в игре";
+            this.cbVideoQuality.ThreeState = true;
             this.cbVideoQuality.UseVisualStyleBackColor = true;
+            this.cbVideoQuality.Click += new System.EventHandler(this.cbVideoQuality_Click);
             // 
             // cbForceClose
             // 
@@ -157,7 +161,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(318, 29);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(267, 48);
+            this.groupBox3.Size = new System.Drawing.Size(267, 59);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Другие:";
@@ -167,7 +171,7 @@
             this.cbVideo.AutoSize = true;
             this.cbVideo.Checked = true;
             this.cbVideo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbVideo.Location = new System.Drawing.Point(18, 21);
+            this.cbVideo.Location = new System.Drawing.Point(18, 25);
             this.cbVideo.Name = "cbVideo";
             this.cbVideo.Size = new System.Drawing.Size(165, 17);
             this.cbVideo.TabIndex = 1;
@@ -201,7 +205,7 @@
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.lvProcessesUser);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(12, 142);
+            this.groupBox1.Location = new System.Drawing.Point(12, 166);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(573, 344);
             this.groupBox1.TabIndex = 6;
@@ -211,9 +215,9 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(6, 298);
+            this.label1.Location = new System.Drawing.Point(6, 300);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(561, 47);
+            this.label1.Size = new System.Drawing.Size(544, 41);
             this.label1.TabIndex = 6;
             this.label1.Text = "ВНИМАНИЕ!!! В список исключений рекомендуется добавлять действительно важные прог" +
     "раммы!";
@@ -224,7 +228,7 @@
             this.llGlobalProcesses.AutoSize = true;
             this.llGlobalProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llGlobalProcesses.LinkColor = System.Drawing.Color.White;
-            this.llGlobalProcesses.Location = new System.Drawing.Point(355, 266);
+            this.llGlobalProcesses.Location = new System.Drawing.Point(355, 273);
             this.llGlobalProcesses.Name = "llGlobalProcesses";
             this.llGlobalProcesses.Size = new System.Drawing.Size(180, 13);
             this.llGlobalProcesses.TabIndex = 5;
@@ -238,7 +242,7 @@
             this.llUserProcesses.AutoSize = true;
             this.llUserProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llUserProcesses.LinkColor = System.Drawing.Color.White;
-            this.llUserProcesses.Location = new System.Drawing.Point(72, 266);
+            this.llUserProcesses.Location = new System.Drawing.Point(72, 273);
             this.llUserProcesses.Name = "llUserProcesses";
             this.llUserProcesses.Size = new System.Drawing.Size(205, 13);
             this.llUserProcesses.TabIndex = 4;
@@ -249,7 +253,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Plum;
-            this.panel2.Location = new System.Drawing.Point(324, 260);
+            this.panel2.Location = new System.Drawing.Point(324, 267);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(25, 25);
             this.panel2.TabIndex = 3;
@@ -257,7 +261,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightGreen;
-            this.panel1.Location = new System.Drawing.Point(38, 260);
+            this.panel1.Location = new System.Drawing.Point(38, 267);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(25, 25);
             this.panel1.TabIndex = 2;
@@ -274,7 +278,7 @@
             this.lvProcessesUser.MultiSelect = false;
             this.lvProcessesUser.Name = "lvProcessesUser";
             this.lvProcessesUser.ShowGroups = false;
-            this.lvProcessesUser.Size = new System.Drawing.Size(561, 235);
+            this.lvProcessesUser.Size = new System.Drawing.Size(561, 242);
             this.lvProcessesUser.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvProcessesUser.TabIndex = 1;
             this.lvProcessesUser.UseCompatibleStateImageBehavior = false;
@@ -283,12 +287,12 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Процесс";
-            this.columnHeader1.Width = 169;
+            this.columnHeader1.Width = 170;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Описание";
-            this.columnHeader2.Width = 380;
+            this.columnHeader2.Width = 365;
             // 
             // bwUserProcesses
             // 
@@ -302,9 +306,9 @@
             this.groupBox4.BackColor = System.Drawing.Color.Transparent;
             this.groupBox4.Controls.Add(this.cbPriority);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(318, 83);
+            this.groupBox4.Location = new System.Drawing.Point(318, 100);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(267, 53);
+            this.groupBox4.Size = new System.Drawing.Size(267, 60);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Приоритет игры в системе:";
@@ -319,7 +323,7 @@
             "Средний",
             "Ниже среднего",
             "Низкий"});
-            this.cbPriority.Location = new System.Drawing.Point(6, 20);
+            this.cbPriority.Location = new System.Drawing.Point(6, 24);
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(255, 21);
             this.cbPriority.TabIndex = 0;
@@ -345,13 +349,24 @@
             this.llRecoverySettings.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llRecoverySettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRecoverySettings_LinkClicked);
             // 
+            // cbVideoQualityWeak
+            // 
+            this.cbVideoQualityWeak.AutoSize = true;
+            this.cbVideoQualityWeak.Location = new System.Drawing.Point(42, 107);
+            this.cbVideoQualityWeak.Name = "cbVideoQualityWeak";
+            this.cbVideoQualityWeak.Size = new System.Drawing.Size(158, 17);
+            this.cbVideoQualityWeak.TabIndex = 4;
+            this.cbVideoQualityWeak.Text = "Очень слабый компьютер";
+            this.cbVideoQualityWeak.UseVisualStyleBackColor = true;
+            this.cbVideoQualityWeak.Click += new System.EventHandler(this.cbVideoQualityVeryLow_Click);
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.FonSetting;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(597, 559);
+            this.ClientSize = new System.Drawing.Size(597, 581);
             this.Controls.Add(this.llRecoverySettings);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
@@ -402,5 +417,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox cbVideoQuality;
         private System.Windows.Forms.LinkLabel llRecoverySettings;
+        private System.Windows.Forms.CheckBox cbVideoQualityWeak;
     }
 }
