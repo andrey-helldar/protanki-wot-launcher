@@ -83,46 +83,11 @@ namespace _Hell_PRO_Tanki_Launcher
         public fIndex()
         {
             //Проверяем запущен ли процесс
-            Process[] myProcesses = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName);
-            for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
+            foreach(Process process in Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName)){
+                if (process.SessionId != Process.GetCurrentProcess().SessionId) process.Kill();
+            }
 
             InitializeComponent();
-
-            /// Запускаем проверку обновлений лаунчера после инициализации приложения
-            UpdateLauncher update = new UpdateLauncher();
-            update.Check(true);
-
-            loadSettings();
-
-            notifyIcon.Icon = Properties.Resources.Icon;
-            notifyIcon.Text = Application.ProductName + " v" + lVerModpack.ToString();
-
-            try
-            {
-                this.Text = Application.ProductName + " v" + lVerModpack.ToString();
-                this.Icon = Properties.Resources.Icon;
-
-                llTitle.Text = Application.ProductName + " (" + (modType == "full" ? "Расширенная версия" : "Базовая версия") + ")";
-                llLauncherVersion.Text = Application.ProductVersion;
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("public fIndex()", "Применение заголовков и иконок приложения", ex.Message);
-            }
-
-            if (!bwVideo.IsBusy) { bwVideo.RunWorkerAsync(); } // Грузим видео с ютуба
-            if (!bwNews.IsBusy) { bwNews.RunWorkerAsync(); } // Грузим новости с WG
-
-            pNews.SetBounds(13, 109, 620, 290); // Так как панель у нас убрана с видимой части, устанавливаем ее расположение динамически
-
-            llVersion.Text = lVerModpack.ToString();
-
-            setBackground();
-            moveForm();
-
-            if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); } // Запускаем проверку обновлений модпака и клиента игры
-
-            Task.Factory.StartNew(() => update.CountUsers(lVerModpack.ToString(), modType, youtubeChannel)); // Отправляем на сайт инфу о запуске лаунчера
         }
 
         // Узнаем разряд системы
@@ -180,8 +145,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     try { lVerModpack = new Version(new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version")); }
                     catch (Exception ex)
                     {
-                        lVerModpack = new Version(doc.Root.Element("version").Value);
-                        Debug.Save("loadSettings()", "IniFile ini = new IniFile(\"config.ini\");", ex.Message);
+                        lVerModpack = new Version("0.0.0.0");
+                        Debug.Save("loadSettings()", "Error read \"config.ini\"", ex.Message);
                     }
                 }
                 else
@@ -1228,6 +1193,43 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void fIndex_Load(object sender, EventArgs e)
         {
+
+            /// Запускаем проверку обновлений лаунчера после инициализации приложения
+            UpdateLauncher update = new UpdateLauncher();
+            update.Check(true);
+
+            loadSettings();
+
+            notifyIcon.Icon = Properties.Resources.Icon;
+            notifyIcon.Text = Application.ProductName + " v" + lVerModpack.ToString();
+
+            try
+            {
+                this.Text = Application.ProductName + " v" + lVerModpack.ToString();
+                this.Icon = Properties.Resources.Icon;
+
+                llTitle.Text = Application.ProductName + " (" + (modType == "full" ? "Расширенная версия" : "Базовая версия") + ")";
+                llLauncherVersion.Text = Application.ProductVersion;
+            }
+            catch (Exception ex)
+            {
+                Debug.Save("public fIndex()", "Применение заголовков и иконок приложения", ex.Message);
+            }
+
+            if (!bwVideo.IsBusy) { bwVideo.RunWorkerAsync(); } // Грузим видео с ютуба
+            if (!bwNews.IsBusy) { bwNews.RunWorkerAsync(); } // Грузим новости с WG
+
+            pNews.SetBounds(13, 109, 620, 290); // Так как панель у нас убрана с видимой части, устанавливаем ее расположение динамически
+
+            llVersion.Text = lVerModpack.ToString();
+
+            setBackground();
+            moveForm();
+
+            if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); } // Запускаем проверку обновлений модпака и клиента игры
+
+            Task.Factory.StartNew(() => update.CountUsers(lVerModpack.ToString(), modType, youtubeChannel)); // Отправляем на сайт инфу о запуске лаунчера
+
             // Главное окно
             languagePack.toolTip(bOptimizePC);
 

@@ -150,8 +150,8 @@
     <None Include="Resources\start.bat" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\WOT.ico" />
     <None Include="Resources\ProcessesLibrary.dll" />
+    <None Include="Resources\WOT.ico" />
     <None Include="Resources\FonSetting.jpg" />
     <Content Include="Resources\FonUPD.jpg" />
     <None Include="Resources\restart.exe" />

@@ -159,7 +159,9 @@ namespace Processes_Library
                 "Dropbox",
                 "RazerImperatorSysTray",
                 "Volume2",
-                "egui"
+                "egui",
+                "AvastUI",
+                "WoTLogger3"
             };
 
             return vipProcess;
