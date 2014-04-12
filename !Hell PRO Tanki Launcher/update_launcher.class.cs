@@ -25,7 +25,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         public void CheckProcessFile()
         {
-            if (Process.GetCurrentProcess().ProcessName != Application.ProductName && Process.GetCurrentProcess().ProcessName != Application.ProductName+".vshost")
+            if (Process.GetCurrentProcess().ProcessName != Application.ProductName && Process.GetCurrentProcess().ProcessName != Application.ProductName + ".vshost")
             {
                 Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + ".exe\" \"" + Application.ProductName + ".exe\"");
                 Process.GetCurrentProcess().Kill();
@@ -206,6 +206,29 @@ namespace _Hell_PRO_Tanki_Launcher
             if (!File.Exists("restart.exe")) { File.WriteAllBytes("restart.exe", Properties.Resources.restart); }
             if (!File.Exists("Newtonsoft.Json.dll")) { File.WriteAllBytes("Newtonsoft.Json.dll", Properties.Resources.Newtonsoft_Json); }
             if (!File.Exists("ProcessesLibrary.dll")) { File.WriteAllBytes("ProcessesLibrary.dll", Properties.Resources.ProcessesLibrary); }
+        }
+
+        public async Task CountUsers(string mpack = "0.0.0.0", string mtype = "null", string youtube = "null")
+        {
+            await Task.Delay(15000);
+
+            string code = Debug.code,
+                uid = Debug.UserID();
+
+            string uri = String.Format("http://ai-rus.com/wot/count/{0}/{1}/{2}/{3}/{4}/{5}",
+                code != "" ? code : "",
+                uid != "" ? uid : "null",
+                mpack,
+                mtype,
+                Application.ProductVersion,
+                youtube);
+
+            try
+            {
+                WebRequest req = WebRequest.Create(uri);
+                WebResponse resp = req.GetResponse();
+            }
+            catch (WebException ex) { Debug.Save("CountUsers()", ex.Message); }
         }
     }
 }

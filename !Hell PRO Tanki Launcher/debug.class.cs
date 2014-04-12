@@ -15,7 +15,7 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     class Debug
     {
-        private string code = "TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6";
+        public string code = "TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6";
 
         /// <summary>
         /// Сохраняем информацию обработчика в файл
@@ -183,7 +183,7 @@ namespace _Hell_PRO_Tanki_Launcher
         /// Если функция сработает без ошибок, то вернет кэш-сумму, являющуюся идентификатором,
         /// иначе вернет нулевое значение (null)
         /// </returns>
-        private string UserID()
+        public string UserID()
         {
             try
             {
@@ -202,7 +202,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     return sBuilder.ToString();
                 }
             }catch(Exception ex){
-                Save("private string UserID()", "", ex.Message);
+                Save("private string UserID()", ex.Message);
                 return null;
             }
         }

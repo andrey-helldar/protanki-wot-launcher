@@ -34,7 +34,9 @@ namespace _Hell_PRO_Tanki_Launcher
             videoLink = "http://goo.gl/gr6pFl",
             updateNotification = "",
 
-            notifyLink = "";
+            notifyLink = "",
+
+            modpackDate = "1970-1-1";
 
         Version rVerModpack,
             rVerTanks,
@@ -65,10 +67,6 @@ namespace _Hell_PRO_Tanki_Launcher
             autoVideo = true,
 
             tanksIsTest = false;
-
-        //List<string> youtubeTitle = new List<string>();
-        //List<string> youtubeLink = new List<string>();
-        //List<string> youtubeDate = new List<string>();
 
         List<string> newsTitle = new List<string>();
         List<string> newsLink = new List<string>();
@@ -128,6 +126,8 @@ namespace _Hell_PRO_Tanki_Launcher
             moveForm();
 
             if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); } // Запускаем проверку обновлений модпака и клиента игры
+
+            Task.Factory.StartNew(() => update.CountUsers(lVerModpack.ToString(), modType, youtubeChannel)); // Отправляем на сайт инфу о запуске лаунчера
         }
 
         // Узнаем разряд системы
@@ -155,15 +155,15 @@ namespace _Hell_PRO_Tanki_Launcher
                         MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
+                    /// Читаем дату выпуска модпака
+                    modpackDate = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "date");
+
                     try { modType = doc.Root.Element("type").Value; }
                     catch (Exception)
                     {
                         try
                         {
-                            if (File.Exists("config.ini"))
-                            {
-                                modType = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower();
-                            }
+                            if (File.Exists("config.ini")) { modType = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower(); }
                             else { modType = "full"; }
                         }
                         catch (Exception ex1)
@@ -1274,9 +1274,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
             if (!bwGetVipProcesses.IsBusy) { bwGetVipProcesses.RunWorkerAsync(); }
 
-            //UpdateLauncher update = new UpdateLauncher();
-            //update.CheckUpdates();
-
             Task.Factory.StartNew(() => Debug.Send()).Wait(); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
         }
 
@@ -1301,17 +1298,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (playGame)
             {
-                //Process.Start(path + "WorldOfTanks.exe");
-                if (File.Exists(@"..\s.bat")) { File.Delete(@"..\s.bat"); }
-                File.WriteAllBytes(@"..\s.bat", Properties.Resources.start);
+                if (!File.Exists(@"..\s.bat")) { File.WriteAllBytes(@"..\s.bat", Properties.Resources.start); }
                 Process.Start(@"..\s.bat");
-
-                // Устанавливаем соответствие процессов
-                /*if (optimizeAffinity)
-                {
-                    Process[] myProcesses = Process.GetProcessesByName("WorldOfTanks");
-                    for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].ProcessorAffinity = (IntPtr)2; }
-                }*/
             }
 
             Task.Factory.StartNew(() => CheckClosingGame()); // Запускаем утилиту проверки запущен ли клиент игры
@@ -1323,7 +1311,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             while (Process.GetProcessesByName("WorldOfTanks").Length > 0 || Process.GetProcessesByName("WoTLauncher").Length > 0)
             {
-                await Task.Delay(2000);
+                await Task.Delay(5000);
             }
 
             Show();
@@ -1337,8 +1325,14 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             XDocument doc = XDocument.Load("settings.xml");
 
-            if (doc.Root.Element("youtube") != null) { foreach (var el in doc.Root.Element("youtube").Elements("video")) { YoutubeVideo.Delete(el.Value); } }
+            if (doc.Root.Element("youtube") != null)
+            {
+                foreach (var el in doc.Root.Element("youtube").Elements("video")) { YoutubeVideo.Delete(el.Value); }
+            }
             else doc.Root.Add(new XElement("youtube", null));
+
+            // Перед выводом уведомлений проверяем даты. Все лишние удаляем
+            foreach (var el in YoutubeVideo.List) { if (!ParseDate(modpackDate, el.Date)) { YoutubeVideo.Delete(el.ID); } }
 
             // Выводим список
             foreach (var el in YoutubeVideo.List)
@@ -1346,7 +1340,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 await Task.Factory.StartNew(() => ShowVideoPause());
 
                 notifyLink = el.Link;
-                //notifyIcon.ShowBalloonTip(2000, el.Title, el.Content, ToolTipIcon.Info);
                 notifyIcon.ShowBalloonTip(2000, el.Title, "Посмотреть видео", ToolTipIcon.Info);
 
                 doc.Root.Element("youtube").Add(new XElement("video", el.ID));
@@ -1387,6 +1380,18 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 Debug.Save("private void notifyIcon_BalloonTipClicked()", "Link: " + notifyLink, ex.Message);
             }
+        }
+
+        private bool ParseDate(string packDate = null, string newsDate = null)
+        {
+            if (packDate != null && newsDate != null)
+            {
+                /// Если дата новости старее даты выпуска модпака,
+                /// то выводим в результат "false" как запрет на вывод.
+                /// Во всех иных случаях выводим "true"
+                if (DateTime.Parse(newsDate) < DateTime.Parse(packDate)) { return false; }
+            }
+            return true;
         }
     }
 }
