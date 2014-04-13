@@ -120,7 +120,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            SaveSettings().Wait(); 
+            if (cbVideoQuality.Checked)
+                MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!" + Environment.NewLine + Environment.NewLine +
+                "Настройки графики применяются только при сохранении информации в окне настоек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
+                "При автоматической оптимизации настройки графики не изменяются.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            SaveSettings().Wait();
         }
 
         private void bCancel_Click(object sender, EventArgs e)
@@ -321,6 +327,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 var key = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
                 key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
             }
+
+            // Изменяем файл настроек игры
+            OptimizeGraphic OptimizeGraphic = new OptimizeGraphic();
+            Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, cbVideoQualityWeak.Checked)).Wait();
 
 
             // Отправляем данные на сайт

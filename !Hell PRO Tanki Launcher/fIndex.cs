@@ -186,31 +186,10 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                XDocument docSettings = XDocument.Load("settings.xml");
-                // Ищем путь к танкам
-                if (docSettings.Root.Element("path") != null)
-                    if (File.Exists(@"..\version.xml"))
-                        path = docSettings.Root.Element("path").Value;
-                    else
-                        path = GetTanksRegistry();
-                else
-                {
-                    if (File.Exists(@"..\version.xml")) { path = Application.StartupPath + @"\..\"; }
-                    else
-                    {
-                        path = GetTanksRegistry();
-                    }
-                }
+                path = File.Exists(@"..\version.xml") ? CorrectPath(Application.StartupPath, -1) : GetTanksRegistry();
 
                 if (path != null && File.Exists(path + "version.xml"))
                 {
-                    if (docSettings.Root.Element("path") != null)
-                        docSettings.Root.Element("path").SetValue(path);
-                    else
-                        docSettings.Root.Add(new XElement("path", path));
-                    docSettings.Save("settings.xml");
-
-
                     XDocument doc = XDocument.Load(path + "version.xml");
 
                     if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
@@ -240,6 +219,17 @@ namespace _Hell_PRO_Tanki_Launcher
                 MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return new Version("0.0.0.0");
             }
+        }
+
+        private string CorrectPath(string sourcePath, int remove=0)
+        {
+            string[] temp = sourcePath.Split('\\');
+            string newPath = "";
+
+            for (int i = 0; i < temp.Length + remove; i++)
+                newPath += temp[i] + @"\";
+
+            return newPath;
         }
 
         // Выбираем изображение для установки фона
@@ -590,7 +580,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             int myProgressStatus = 0;
 
-            /*try
+            try
             {
                 if (optimized || autoAero)
                 {
@@ -626,11 +616,11 @@ namespace _Hell_PRO_Tanki_Launcher
                     bwOptimize.ReportProgress(++myProgressStatus);
                 }
             }
-            catch (Exception ex) { Debug.Save("bwOptimize_DoWork()", "if (optimized || autoAero)", ex.Message); }*/
+            catch (Exception ex) { Debug.Save("bwOptimize_DoWork()", "if (optimized || autoAero)", ex.Message); }
 
             try
             {
-                /*if (optimized || autoKill)
+                if (optimized || autoKill)
                 {
                     // Завершаем ненужные процессы путем перебора массива имен с условием отсутствия определенных условий
                     Process[] myProcesses = Process.GetProcesses();
@@ -667,112 +657,18 @@ namespace _Hell_PRO_Tanki_Launcher
                         }
                     }
                 }
-                catch (Exception ex) { Debug.Save("bwOptimize_DoWork()", "if (optimized || autoKill)", ex.Message); }*/
 
                 ///
                 /// Optimize game graphic
                 /// 
                 try
                 {
-                    commonTest = true;
-
                     if (optimized)
                     {
-                        string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences" + (commonTest ? "_ct" : "") + ".xml";
-                        XDocument docPref = XDocument.Load(pathPref);
+                        MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        MessageBox.Show(pathPref);
-
-                        if (docPref.Root.Element("graphicsPreferences") != null)
-                        foreach (XElement el in docPref.Root.Element("graphicsPreferences").Elements("entry"))
-                        {
-                            if (el.Element("label") != null)
-                            switch (el.Element("label").Value.Trim())
-                            {
-                                case "SHADER_VERSION_CAP": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	1	"); break;
-                                case "RENDER_PIPELINE": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	0	"); break;
-                                case "SHADOWS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "DECALS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "LIGHTING_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "TEXTURE_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "TERRAIN_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "SPEEDTREE_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "WATER_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "FAR_PLANE": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "FLORA_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "OBJECT_LOD": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "VEHICLE_DUST_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
-                                case "VEHICLE_TRACES_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
-                                case "SMOKE_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
-                                case "SNIPER_MODE_EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "PS_USE_PERFORMANCER": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	0	"); break;
-                                case "EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
-                                case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	2	"); break;
-                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	1	"); break;
-                                default: break;
-                            }
-                        }
-
-                        if (docPref.Root.Element("devicePreferencesdevicePreferences").Element("windowedwindowed") != null)
-                            docPref.Root.Element("devicePreferencesdevicePreferences").Element("windowedwindowed").SetValue("	false	");
-
-                        if (docPref.Root.Element("devicePreferencesdevicePreferences").Element("waitVSyncwaitVSync") != null)
-                            docPref.Root.Element("devicePreferencesdevicePreferences").Element("waitVSyncwaitVSync").SetValue("	false	");
-
-                        if(docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersion")!=null)
-                            docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersion").SetValue(autoWeak ? "	0	" : "	0	");
-
-                        if (docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersionMinor") != null)
-                        docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersionMinor").SetValue(autoWeak ? "	0	" : "	0	");
-
-                        if (docPref.Root.Element("devicePreferences").Element("customAAMode") != null)
-                        docPref.Root.Element("devicePreferences").Element("customAAMode").SetValue(autoWeak ? "	1	" : "	0	");
-
-                        if (docPref.Root.Element("devicePreferences").Element("drrScale") != null)
-                        docPref.Root.Element("devicePreferences").Element("drrScale").SetValue(autoWeak ? "	0.500000	" : "	0.900000	");
-
-                        if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs") != null)
-                            if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer") != null)
-                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAwCi4=	" : "	STAKLg==	");
-
-                        if (docPref.Root.Element("scriptsPreferences").Element("fov") != null)
-                        docPref.Root.Element("scriptsPreferences").Element("fov").SetValue(autoWeak ? "	80.000000	" : "	80.000000	");
-
-                        if (docPref.Root.Element("scriptsPreferences").Element("loginPage") != null)
-                            if (docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper") != null)
-                        docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper").SetValue(autoWeak ? "	false	" : "	true	");
-
-                        if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs") != null)
-                            if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer") != null)
-                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAKLg==	" : "	STAKLg==	");
-
-                        if (autoWeak && docPref.Root.Element("devicePreferences") != null)
-                            if (docPref.Root.Element("devicePreferences").Element("aspectRatio") != null)
-                            switch (docPref.Root.Element("devicePreferences").Element("aspectRatio").Value.Trim())
-                            {
-                                case "1.777778":
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
-                                    break;
-
-                                case "1.600000":
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("960");
-                                    break;
-
-                                case "1.900000":
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
-                                    break;
-
-                                default:
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1024");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
-                                    break;
-                            }
-
-                        docPref.Save(pathPref);
+                        OptimizeGraphic OptimizeGraphic = new OptimizeGraphic();
+                        Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, autoWeak)).Wait();
                     }
                 }
                 catch (Exception ex1)

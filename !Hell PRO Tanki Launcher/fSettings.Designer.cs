@@ -31,6 +31,7 @@
             this.bSave = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbVideoQualityWeak = new System.Windows.Forms.CheckBox();
             this.cbVideoQuality = new System.Windows.Forms.CheckBox();
             this.cbForceClose = new System.Windows.Forms.CheckBox();
             this.cbAero = new System.Windows.Forms.CheckBox();
@@ -51,7 +52,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.llRecoverySettings = new System.Windows.Forms.LinkLabel();
-            this.cbVideoQualityWeak = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -69,7 +69,7 @@
             this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSave.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSave.Location = new System.Drawing.Point(136, 516);
+            this.bSave.Location = new System.Drawing.Point(138, 505);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 50);
             this.bSave.TabIndex = 1;
@@ -88,7 +88,7 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(307, 516);
+            this.bCancel.Location = new System.Drawing.Point(309, 505);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(150, 50);
             this.bCancel.TabIndex = 2;
@@ -107,15 +107,26 @@
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(12, 29);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(300, 131);
+            this.groupBox2.Size = new System.Drawing.Size(300, 125);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Оптимизация:";
             // 
+            // cbVideoQualityWeak
+            // 
+            this.cbVideoQualityWeak.AutoSize = true;
+            this.cbVideoQualityWeak.Location = new System.Drawing.Point(42, 103);
+            this.cbVideoQualityWeak.Name = "cbVideoQualityWeak";
+            this.cbVideoQualityWeak.Size = new System.Drawing.Size(158, 17);
+            this.cbVideoQualityWeak.TabIndex = 4;
+            this.cbVideoQualityWeak.Text = "Очень слабый компьютер";
+            this.cbVideoQualityWeak.UseVisualStyleBackColor = true;
+            this.cbVideoQualityWeak.Click += new System.EventHandler(this.cbVideoQualityVeryLow_Click);
+            // 
             // cbVideoQuality
             // 
             this.cbVideoQuality.AutoSize = true;
-            this.cbVideoQuality.Location = new System.Drawing.Point(18, 84);
+            this.cbVideoQuality.Location = new System.Drawing.Point(18, 80);
             this.cbVideoQuality.Name = "cbVideoQuality";
             this.cbVideoQuality.Size = new System.Drawing.Size(215, 17);
             this.cbVideoQuality.TabIndex = 3;
@@ -127,7 +138,7 @@
             // cbForceClose
             // 
             this.cbForceClose.AutoSize = true;
-            this.cbForceClose.Location = new System.Drawing.Point(18, 42);
+            this.cbForceClose.Location = new System.Drawing.Point(18, 38);
             this.cbForceClose.Name = "cbForceClose";
             this.cbForceClose.Size = new System.Drawing.Size(227, 17);
             this.cbForceClose.TabIndex = 2;
@@ -137,7 +148,7 @@
             // cbAero
             // 
             this.cbAero.AutoSize = true;
-            this.cbAero.Location = new System.Drawing.Point(18, 63);
+            this.cbAero.Location = new System.Drawing.Point(18, 59);
             this.cbAero.Name = "cbAero";
             this.cbAero.Size = new System.Drawing.Size(246, 17);
             this.cbAero.TabIndex = 1;
@@ -147,7 +158,7 @@
             // cbKillProcesses
             // 
             this.cbKillProcesses.AutoSize = true;
-            this.cbKillProcesses.Location = new System.Drawing.Point(18, 21);
+            this.cbKillProcesses.Location = new System.Drawing.Point(18, 17);
             this.cbKillProcesses.Name = "cbKillProcesses";
             this.cbKillProcesses.Size = new System.Drawing.Size(240, 17);
             this.cbKillProcesses.TabIndex = 0;
@@ -161,7 +172,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(318, 29);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(267, 59);
+            this.groupBox3.Size = new System.Drawing.Size(267, 55);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Другие:";
@@ -205,7 +216,7 @@
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.lvProcessesUser);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(12, 166);
+            this.groupBox1.Location = new System.Drawing.Point(12, 155);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(573, 344);
             this.groupBox1.TabIndex = 6;
@@ -306,9 +317,9 @@
             this.groupBox4.BackColor = System.Drawing.Color.Transparent;
             this.groupBox4.Controls.Add(this.cbPriority);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(318, 100);
+            this.groupBox4.Location = new System.Drawing.Point(318, 90);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(267, 60);
+            this.groupBox4.Size = new System.Drawing.Size(267, 64);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Приоритет игры в системе:";
@@ -323,7 +334,7 @@
             "Средний",
             "Ниже среднего",
             "Низкий"});
-            this.cbPriority.Location = new System.Drawing.Point(6, 24);
+            this.cbPriority.Location = new System.Drawing.Point(6, 26);
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(255, 21);
             this.cbPriority.TabIndex = 0;
@@ -349,24 +360,13 @@
             this.llRecoverySettings.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llRecoverySettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRecoverySettings_LinkClicked);
             // 
-            // cbVideoQualityWeak
-            // 
-            this.cbVideoQualityWeak.AutoSize = true;
-            this.cbVideoQualityWeak.Location = new System.Drawing.Point(42, 107);
-            this.cbVideoQualityWeak.Name = "cbVideoQualityWeak";
-            this.cbVideoQualityWeak.Size = new System.Drawing.Size(158, 17);
-            this.cbVideoQualityWeak.TabIndex = 4;
-            this.cbVideoQualityWeak.Text = "Очень слабый компьютер";
-            this.cbVideoQualityWeak.UseVisualStyleBackColor = true;
-            this.cbVideoQualityWeak.Click += new System.EventHandler(this.cbVideoQualityVeryLow_Click);
-            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.FonSetting;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(597, 581);
+            this.ClientSize = new System.Drawing.Size(597, 571);
             this.Controls.Add(this.llRecoverySettings);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
