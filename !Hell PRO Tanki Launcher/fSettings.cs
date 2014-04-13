@@ -330,7 +330,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             // Изменяем файл настроек игры
             OptimizeGraphic OptimizeGraphic = new OptimizeGraphic();
-            Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, cbVideoQualityWeak.Checked)).Wait();
+            Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, cbVideoQuality.Checked, cbVideoQualityWeak.Checked)).Wait();
 
 
             // Отправляем данные на сайт

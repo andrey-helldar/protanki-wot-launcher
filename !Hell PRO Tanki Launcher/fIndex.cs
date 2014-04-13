@@ -64,6 +64,7 @@ namespace _Hell_PRO_Tanki_Launcher
             autoKill = false,
             autoForceKill = false,
             autoAero = false,
+            autoVideo = false,
             autoWeak = false;
 
         List<string> newsTitle = new List<string>();
@@ -127,8 +128,11 @@ namespace _Hell_PRO_Tanki_Launcher
                         autoForceKill = ReadSettingsStatus(doc, "force");
                         autoKill = ReadSettingsStatus(doc, "kill");
                         autoAero = ReadSettingsStatus(doc, "aero");
+                        autoVideo = ReadCheckStateBool(doc, "video");
                         autoWeak = ReadSettingsStatus(doc, "weak");
                     }
+
+                    if (doc.Root.Element("common.test") != null) commonTest = true;
 
                     try { lVerModpack = new Version(new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version")); }
                     catch (Exception ex)
@@ -668,7 +672,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         OptimizeGraphic OptimizeGraphic = new OptimizeGraphic();
-                        Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, autoWeak)).Wait();
+                        Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, autoVideo, autoWeak)).Wait();
                     }
                 }
                 catch (Exception ex1)
