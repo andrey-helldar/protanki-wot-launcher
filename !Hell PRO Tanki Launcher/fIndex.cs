@@ -14,6 +14,7 @@ using System.Web;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Reflection;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using Processes_Library;
@@ -176,6 +177,11 @@ namespace _Hell_PRO_Tanki_Launcher
             return false;
         }
 
+        private string GetTanksRegistry()
+        {
+            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
+            return key != null ? (string)key.GetValue("InstallLocation") : null;
+        }
 
         // Получаем версию танков
         private Version LocalTanksVersion()
@@ -185,33 +191,28 @@ namespace _Hell_PRO_Tanki_Launcher
                 XDocument docSettings = XDocument.Load("settings.xml");
                 // Ищем путь к танкам
                 if (docSettings.Root.Element("path") != null)
-                    path = docSettings.Root.Element("path").Value;
+                    if (File.Exists(@"..\version.xml"))
+                        path = docSettings.Root.Element("path").Value;
+                    else
+                        path = GetTanksRegistry();
                 else
                 {
                     if (File.Exists(@"..\version.xml")) { path = Application.StartupPath + @"\..\"; }
                     else
                     {
-                        var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
-                        path = key != null ? (string)key.GetValue("InstallLocation") : null;
-                    }
-                    if (path == null)
-                    {
-                        bPlay.Enabled = false;
-                        bLauncher.Enabled = false;
-                        MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-
-                    if (path != null)
-                    {
-                        docSettings.Root.Add(new XElement("path", path));
-                        docSettings.Save("settings.xml");
+                        path = GetTanksRegistry();
                     }
                 }
 
-
-
-                if (File.Exists(path + "version.xml"))
+                if (path != null && File.Exists(path + "version.xml"))
                 {
+                    if (docSettings.Root.Element("path") != null)
+                        docSettings.Root.Element("path").SetValue(path);
+                    else
+                        docSettings.Root.Add(new XElement("path", path));
+                    docSettings.Save("settings.xml");
+
+
                     XDocument doc = XDocument.Load(path + "version.xml");
 
                     if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
@@ -226,37 +227,19 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
-                    if (key != null)
-                    {
-                        if ((string)key.GetValue("InstallLocation") != "")
-                        {
-                            path = (string)key.GetValue("InstallLocation");
-
-                            if (File.Exists(path + "version.xml"))
-                            {
-                                XDocument doc = XDocument.Load(path + "version.xml");
-
-                                if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
-                                {
-                                    commonTest = true;
-                                    return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
-                                }
-                                else
-                                {
-                                    return new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" ", "").Replace("#", "."));
-                                }
-                            }
-                        }
-                    }
-
                     Debug.Save("getTanksVersion()", "Клиент игры не обнаружен в реестре.");
+                    bPlay.Enabled = false;
+                    bLauncher.Enabled = false;
+                    MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return new Version("0.0.0.0");
                 }
             }
             catch (Exception ex)
             {
                 Debug.Save("getTanksVersion()", "doc.Load(path + \"version.xml\");", ex.Message);
+                bPlay.Enabled = false;
+                bLauncher.Enabled = false;
+                MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return new Version("0.0.0.0");
             }
         }
@@ -720,38 +703,57 @@ namespace _Hell_PRO_Tanki_Launcher
                                 case "EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
                                 case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	1	"); break;
                                 case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	2	"); break;
-                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	3	"); break;
+                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	1	"); break;
                                 default: break;
                             }
                         }
 
+                        XDocSetValue(docPref, "devicePreferences", (autoWeak ? "	0	" : "	0	"), "graphicsSettingsVersion");
+                        XDocSetValue(docPref, "devicePreferences", (autoWeak ? "	1	" : "	0	"), "customAAMode");
+                        XDocSetValue(docPref, "devicePreferences", (autoWeak ? "	0.500000	" : "	0.900000	"), "drrScale");
+
+                        XDocSetValue(docPref, "scriptsPreferences", (autoWeak ? "	STAwCi4=	" : "	STAKLg==	"), "replayPrefs", "fpsPerfomancer");
+                        XDocSetValue(docPref, "scriptsPreferences", (autoWeak ? "	80.000000	" : "	80.000000	"), "fov");
+                        XDocSetValue(docPref, "scriptsPreferences", (autoWeak ? "	false	" : "	true	"), "loginPage", "showLoginWallpaper");
+                        XDocSetValue(docPref, "scriptsPreferences", (autoWeak ? "	STAKLg==	" : "	STAKLg==	"), "replayPrefs", "fpsPerfomancer");
+
+                        /*docPref.Root.Element("devicePreferences").Element("graphicsSettingsVersion").SetValue(autoWeak ? "	0	" : "	0	");
                         docPref.Root.Element("devicePreferences").Element("customAAMode").SetValue(autoWeak ? "	1	" : "	0	");
                         docPref.Root.Element("devicePreferences").Element("drrScale").SetValue(autoWeak ? "	0.500000	" : "	0.900000	");
                         docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAwCi4=	" : "	STAKLg==	");
                         docPref.Root.Element("scriptsPreferences").Element("fov").SetValue(autoWeak ? "	80.000000	" : "	80.000000	");
                         docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper").SetValue(autoWeak ? "	false	" : "	true	");
+                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAKLg==	" : "	STAKLg==	");*/
 
                         if (autoWeak)
                             switch (docPref.Root.Element("devicePreferences").Element("aspectRatio").Value.Trim())
                             {
                                 case "1.777778":
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
+                                    /*docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");*/
+                                    XDocSetValue(docPref, "devicePreferences", ("1280"), "fullscreenWidth");
+                                    XDocSetValue(docPref, "devicePreferences", ("768"), "fullscreenHeight");
                                     break;
 
                                 case "1.600000":
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("960");
+                                    /*docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("960");*/
+                                    XDocSetValue(docPref, "devicePreferences", ("1280"), "fullscreenWidth");
+                                    XDocSetValue(docPref, "devicePreferences", ("960"), "fullscreenHeight");
                                     break;
 
                                 case "1.900000":
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
+                                    /*docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");*/
+                                    XDocSetValue(docPref, "devicePreferences", ("1280"), "fullscreenWidth");
+                                    XDocSetValue(docPref, "devicePreferences", ("768"), "fullscreenHeight");
                                     break;
 
                                 default:
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1024");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
+                                    /*docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1024");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");*/
+                                    XDocSetValue(docPref, "devicePreferences", ("1024"), "fullscreenWidth");
+                                    XDocSetValue(docPref, "devicePreferences", ("768"), "fullscreenHeight");
                                     break;
                             }
 
@@ -767,6 +769,26 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 Debug.Save("bwOptimize_DoWork)", ex.Message);
             }
+        }
+
+        private XDocument XDocSetValue(XDocument doc, string elem, string value, string elem1 = null, string elem2 = null, string elem3 = null)
+        {
+            if (doc.Root.Element(elem) != null)
+                if (doc.Root.Element(elem).Element(elem1) != null)
+                {
+                    if (doc.Root.Element(elem).Element(elem1).Element(elem2).Element(elem3) != null)
+                    {
+                        doc.Root.Element(elem).Element(elem1).Element(elem2).Element(elem3).SetValue(value);
+                        return doc;
+                    }
+                    else if (doc.Root.Element(elem).Element(elem1).Element(elem2) != null)
+                    {
+                        doc.Root.Element(elem).Element(elem1).Element(elem2).SetValue(value);
+                        return doc;
+                    }
+                    else doc.Root.Element(elem).Element(elem1).SetValue(value);
+                }
+            return doc;
         }
 
         private void llContent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

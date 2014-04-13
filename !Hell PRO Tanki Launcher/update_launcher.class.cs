@@ -40,7 +40,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 DownloadSettings().Wait(); // Загружаем файл настроек
 
-                Task.Factory.StartNew(() => DeleteFile("processes.exe", "!Hell PRO Tanki Launcher.exe", "updater.exe", "launcher.update")).Wait(); // Удаляем ненужные файлы
+                //Task.Factory.StartNew(() => DeleteFile("processes.exe", "!Hell PRO Tanki Launcher.exe", "updater.exe", "launcher.update")).Wait(); // Удаляем ненужные файлы
 
                 /// Если файлы имеют нулевой размер, то удаляем их
                 Task.Factory.StartNew(() => DeleteNullFile("settings.xml", "Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "LanguagePack.dll", "launcher.update")).Wait();
