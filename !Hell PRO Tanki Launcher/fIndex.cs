@@ -730,6 +730,10 @@ namespace _Hell_PRO_Tanki_Launcher
                         docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAwCi4=	" : "	STAKLg==	");
                         docPref.Root.Element("scriptsPreferences").Element("fov").SetValue(autoWeak ? "	80.000000	" : "	80.000000	");
 
+                        switch (docPref.Root.Element("devicePreferences").Element("aspectRatio").Value.Trim())
+                        {
+                        }
+
                         docPref.Save(pathPref);
                     }
                 }
