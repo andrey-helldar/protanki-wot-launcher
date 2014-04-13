@@ -729,10 +729,31 @@ namespace _Hell_PRO_Tanki_Launcher
                         docPref.Root.Element("devicePreferences").Element("drrScale").SetValue(autoWeak ? "	0.500000	" : "	0.900000	");
                         docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAwCi4=	" : "	STAKLg==	");
                         docPref.Root.Element("scriptsPreferences").Element("fov").SetValue(autoWeak ? "	80.000000	" : "	80.000000	");
+                        docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper").SetValue(autoWeak ? "	false	" : "	true	");
 
-                        switch (docPref.Root.Element("devicePreferences").Element("aspectRatio").Value.Trim())
-                        {
-                        }
+                        if (autoWeak)
+                            switch (docPref.Root.Element("devicePreferences").Element("aspectRatio").Value.Trim())
+                            {
+                                case "1.777778":
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
+                                    break;
+
+                                case "1.600000":
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("960");
+                                    break;
+
+                                case "1.900000":
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
+                                    break;
+
+                                default:
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1024");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
+                                    break;
+                            }
 
                         docPref.Save(pathPref);
                     }
