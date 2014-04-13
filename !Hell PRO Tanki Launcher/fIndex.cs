@@ -64,7 +64,6 @@ namespace _Hell_PRO_Tanki_Launcher
             autoKill = false,
             autoForceKill = false,
             autoAero = false,
-            autoVideo = false,
             autoWeak = false;
 
         List<string> newsTitle = new List<string>();
@@ -128,7 +127,6 @@ namespace _Hell_PRO_Tanki_Launcher
                         autoForceKill = ReadSettingsStatus(doc, "force");
                         autoKill = ReadSettingsStatus(doc, "kill");
                         autoAero = ReadSettingsStatus(doc, "aero");
-                        autoVideo = ReadCheckStateBool(doc, "video");
                         autoWeak = ReadSettingsStatus(doc, "weak");
                     }
 
@@ -569,7 +567,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bOptimizePC_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." + Environment.NewLine + "Вы хотите продолжить?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (DialogResult.Yes == MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." +
+                Environment.NewLine + "Вы хотите продолжить?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
             {
                 if (!bwOptimize.IsBusy)
                 {
@@ -591,7 +590,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             int myProgressStatus = 0;
 
-            try
+            /*try
             {
                 if (optimized || autoAero)
                 {
@@ -627,11 +626,11 @@ namespace _Hell_PRO_Tanki_Launcher
                     bwOptimize.ReportProgress(++myProgressStatus);
                 }
             }
-            catch (Exception ex) { Debug.Save("bwOptimize_DoWork()", "if (optimized || autoAero)", ex.Message); }
+            catch (Exception ex) { Debug.Save("bwOptimize_DoWork()", "if (optimized || autoAero)", ex.Message); }*/
 
             try
             {
-                if (optimized || autoKill)
+                /*if (optimized || autoKill)
                 {
                     // Завершаем ненужные процессы путем перебора массива имен с условием отсутствия определенных условий
                     Process[] myProcesses = Process.GetProcesses();
@@ -668,19 +667,26 @@ namespace _Hell_PRO_Tanki_Launcher
                         }
                     }
                 }
+                catch (Exception ex) { Debug.Save("bwOptimize_DoWork()", "if (optimized || autoKill)", ex.Message); }*/
 
                 ///
                 /// Optimize game graphic
                 /// 
                 try
                 {
-                    if (optimized || autoVideo)
+                    commonTest = true;
+
+                    if (optimized)
                     {
                         string pathPref = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences" + (commonTest ? "_ct" : "") + ".xml";
                         XDocument docPref = XDocument.Load(pathPref);
 
+                        MessageBox.Show(pathPref);
+
+                        if (docPref.Root.Element("graphicsPreferences") != null)
                         foreach (XElement el in docPref.Root.Element("graphicsPreferences").Elements("entry"))
                         {
+                            if (el.Element("label") != null)
                             switch (el.Element("label").Value.Trim())
                             {
                                 case "SHADER_VERSION_CAP": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	1	"); break;
@@ -708,52 +714,61 @@ namespace _Hell_PRO_Tanki_Launcher
                             }
                         }
 
-                        XDocSetValue(docPref, "devicePreferences", (autoWeak ? "	0	" : "	0	"), "graphicsSettingsVersion");
-                        XDocSetValue(docPref, "devicePreferences", (autoWeak ? "	1	" : "	0	"), "customAAMode");
-                        XDocSetValue(docPref, "devicePreferences", (autoWeak ? "	0.500000	" : "	0.900000	"), "drrScale");
+                        if (docPref.Root.Element("devicePreferencesdevicePreferences").Element("windowedwindowed") != null)
+                            docPref.Root.Element("devicePreferencesdevicePreferences").Element("windowedwindowed").SetValue("	false	");
 
-                        XDocSetValue(docPref, "scriptsPreferences", (autoWeak ? "	STAwCi4=	" : "	STAKLg==	"), "replayPrefs", "fpsPerfomancer");
-                        XDocSetValue(docPref, "scriptsPreferences", (autoWeak ? "	80.000000	" : "	80.000000	"), "fov");
-                        XDocSetValue(docPref, "scriptsPreferences", (autoWeak ? "	false	" : "	true	"), "loginPage", "showLoginWallpaper");
-                        XDocSetValue(docPref, "scriptsPreferences", (autoWeak ? "	STAKLg==	" : "	STAKLg==	"), "replayPrefs", "fpsPerfomancer");
+                        if (docPref.Root.Element("devicePreferencesdevicePreferences").Element("waitVSyncwaitVSync") != null)
+                            docPref.Root.Element("devicePreferencesdevicePreferences").Element("waitVSyncwaitVSync").SetValue("	false	");
 
-                        /*docPref.Root.Element("devicePreferences").Element("graphicsSettingsVersion").SetValue(autoWeak ? "	0	" : "	0	");
+                        if(docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersion")!=null)
+                            docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersion").SetValue(autoWeak ? "	0	" : "	0	");
+
+                        if (docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersionMinor") != null)
+                        docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersionMinor").SetValue(autoWeak ? "	0	" : "	0	");
+
+                        if (docPref.Root.Element("devicePreferences").Element("customAAMode") != null)
                         docPref.Root.Element("devicePreferences").Element("customAAMode").SetValue(autoWeak ? "	1	" : "	0	");
-                        docPref.Root.Element("devicePreferences").Element("drrScale").SetValue(autoWeak ? "	0.500000	" : "	0.900000	");
-                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAwCi4=	" : "	STAKLg==	");
-                        docPref.Root.Element("scriptsPreferences").Element("fov").SetValue(autoWeak ? "	80.000000	" : "	80.000000	");
-                        docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper").SetValue(autoWeak ? "	false	" : "	true	");
-                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAKLg==	" : "	STAKLg==	");*/
 
-                        if (autoWeak)
+                        if (docPref.Root.Element("devicePreferences").Element("drrScale") != null)
+                        docPref.Root.Element("devicePreferences").Element("drrScale").SetValue(autoWeak ? "	0.500000	" : "	0.900000	");
+
+                        if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs") != null)
+                            if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer") != null)
+                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAwCi4=	" : "	STAKLg==	");
+
+                        if (docPref.Root.Element("scriptsPreferences").Element("fov") != null)
+                        docPref.Root.Element("scriptsPreferences").Element("fov").SetValue(autoWeak ? "	80.000000	" : "	80.000000	");
+
+                        if (docPref.Root.Element("scriptsPreferences").Element("loginPage") != null)
+                            if (docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper") != null)
+                        docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper").SetValue(autoWeak ? "	false	" : "	true	");
+
+                        if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs") != null)
+                            if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer") != null)
+                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAKLg==	" : "	STAKLg==	");
+
+                        if (autoWeak && docPref.Root.Element("devicePreferences") != null)
+                            if (docPref.Root.Element("devicePreferences").Element("aspectRatio") != null)
                             switch (docPref.Root.Element("devicePreferences").Element("aspectRatio").Value.Trim())
                             {
                                 case "1.777778":
-                                    /*docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");*/
-                                    XDocSetValue(docPref, "devicePreferences", ("1280"), "fullscreenWidth");
-                                    XDocSetValue(docPref, "devicePreferences", ("768"), "fullscreenHeight");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
                                     break;
 
                                 case "1.600000":
-                                    /*docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("960");*/
-                                    XDocSetValue(docPref, "devicePreferences", ("1280"), "fullscreenWidth");
-                                    XDocSetValue(docPref, "devicePreferences", ("960"), "fullscreenHeight");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("960");
                                     break;
 
                                 case "1.900000":
-                                    /*docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");*/
-                                    XDocSetValue(docPref, "devicePreferences", ("1280"), "fullscreenWidth");
-                                    XDocSetValue(docPref, "devicePreferences", ("768"), "fullscreenHeight");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1280");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
                                     break;
 
                                 default:
-                                    /*docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1024");
-                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");*/
-                                    XDocSetValue(docPref, "devicePreferences", ("1024"), "fullscreenWidth");
-                                    XDocSetValue(docPref, "devicePreferences", ("768"), "fullscreenHeight");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenWidth").SetValue("1024");
+                                    docPref.Root.Element("devicePreferences").Element("fullscreenHeight").SetValue("768");
                                     break;
                             }
 
@@ -769,26 +784,6 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 Debug.Save("bwOptimize_DoWork)", ex.Message);
             }
-        }
-
-        private XDocument XDocSetValue(XDocument doc, string elem, string value, string elem1 = null, string elem2 = null, string elem3 = null)
-        {
-            if (doc.Root.Element(elem) != null)
-                if (doc.Root.Element(elem).Element(elem1) != null)
-                {
-                    if (doc.Root.Element(elem).Element(elem1).Element(elem2).Element(elem3) != null)
-                    {
-                        doc.Root.Element(elem).Element(elem1).Element(elem2).Element(elem3).SetValue(value);
-                        return doc;
-                    }
-                    else if (doc.Root.Element(elem).Element(elem1).Element(elem2) != null)
-                    {
-                        doc.Root.Element(elem).Element(elem1).Element(elem2).SetValue(value);
-                        return doc;
-                    }
-                    else doc.Root.Element(elem).Element(elem1).SetValue(value);
-                }
-            return doc;
         }
 
         private void llContent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
