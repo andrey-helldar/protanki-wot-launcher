@@ -60,7 +60,6 @@
             this.pVideo = new System.Windows.Forms.Panel();
             this.llLoadingVideoData = new System.Windows.Forms.LinkLabel();
             this.pNews = new System.Windows.Forms.Panel();
-            this.bwGetVipProcesses = new System.ComponentModel.BackgroundWorker();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.pbWarning = new System.Windows.Forms.PictureBox();
             this.contextMenu.SuspendLayout();
@@ -474,12 +473,6 @@
             this.pNews.TabIndex = 31;
             this.pNews.Visible = false;
             // 
-            // bwGetVipProcesses
-            // 
-            this.bwGetVipProcesses.WorkerReportsProgress = true;
-            this.bwGetVipProcesses.WorkerSupportsCancellation = true;
-            this.bwGetVipProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwGetVipProcesses_DoWork);
-            // 
             // notifyIcon
             // 
             this.notifyIcon.Text = "notifyIcon";
@@ -571,7 +564,6 @@
         private System.Windows.Forms.Panel pVideo;
         private System.Windows.Forms.Panel pNews;
         private System.Windows.Forms.LinkLabel llLoadingVideoData;
-        private System.ComponentModel.BackgroundWorker bwGetVipProcesses;
         public System.Windows.Forms.ProgressBar pbDownload;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.PictureBox pbWarning;

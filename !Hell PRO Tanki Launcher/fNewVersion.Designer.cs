@@ -133,7 +133,7 @@
             this.panel1.Size = new System.Drawing.Size(676, 243);
             this.panel1.TabIndex = 7;
             // 
-            // llContent2
+            // llContent
             // 
             this.llContent.ActiveLinkColor = System.Drawing.Color.WhiteSmoke;
             this.llContent.AutoSize = true;
@@ -144,7 +144,7 @@
             this.llContent.LinkColor = System.Drawing.Color.WhiteSmoke;
             this.llContent.Location = new System.Drawing.Point(0, 0);
             this.llContent.MaximumSize = new System.Drawing.Size(659, 1024);
-            this.llContent.Name = "llContent2";
+            this.llContent.Name = "llContent";
             this.llContent.Size = new System.Drawing.Size(120, 19);
             this.llContent.TabIndex = 1;
             this.llContent.TabStop = true;
@@ -167,6 +167,8 @@
             this.Controls.Add(this.bDownload);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "fNewVersion";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Обнаружена новая версия Мультипака";
             this.panel1.ResumeLayout(false);

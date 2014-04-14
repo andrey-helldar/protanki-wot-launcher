@@ -23,7 +23,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private string url = @"http://ai-rus.com/pro/";
 
-        public void CheckProcessFile()
+        public async Task CheckProcessFile()
         {
             if (Process.GetCurrentProcess().ProcessName != Application.ProductName && Process.GetCurrentProcess().ProcessName != Application.ProductName + ".vshost")
             {
@@ -32,10 +32,12 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        public void Check(bool launcher = false)
+        public async Task Check(bool launcher = false)
         {
             try
             {
+                CheckProcessFile().Wait();
+
                 XDocument doc = XDocument.Load(url + "version.xml");
 
                 DownloadSettings().Wait(); // Загружаем файл настроек
@@ -87,8 +89,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
 
                 Task.WhenAll(tasks);
-
-                CheckProcessFile();
             }
             catch (Exception ex) { Debug.Save("public void Check()", ex.Message); }
         }
@@ -206,6 +206,7 @@ namespace _Hell_PRO_Tanki_Launcher
             if (!File.Exists("restart.exe")) { File.WriteAllBytes("restart.exe", Properties.Resources.restart); }
             if (!File.Exists("Newtonsoft.Json.dll")) { File.WriteAllBytes("Newtonsoft.Json.dll", Properties.Resources.Newtonsoft_Json); }
             if (!File.Exists("ProcessesLibrary.dll")) { File.WriteAllBytes("ProcessesLibrary.dll", Properties.Resources.ProcessesLibrary); }
+            if (!File.Exists("settings.xml")) { File.WriteAllText("settings.xml", Properties.Resources.Settings); }
         }
 
         public async Task CountUsers(string mpack = "0.0.0.0", string mtype = "null", string youtube = "null")

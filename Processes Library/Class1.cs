@@ -52,29 +52,18 @@ namespace Processes_Library
             catch (Exception) { }
         }
 
-        public int IndexOf(string str)
+        public bool IndexOf(string str)
         {
             try
             {
-                if (Range.Count > -1)
-                {
-                    for (int i = 0; i < Range.Count; i++)
-                    {
-                        if (Range[i].Process == str)
-                        {
-                            return i;
-                        }
-                    }
-                    return -1;
+                foreach(var pr in Range){
+                    if (pr.Process == str) return true;
                 }
-                else
-                {
-                    return -1;
-                }
+                return false;
             }
             catch (Exception)
             {
-                return -1;
+                return false;
             }
         }
 
@@ -162,7 +151,12 @@ namespace Processes_Library
                 "egui",
                 "AvastUI",
                 "WoTLogger3",
-                "InputPersonalization"
+                "InputPersonalization",
+                "s",
+                "s.bat",
+                "TOTALCMD",
+                "TOTALCMD32",
+                "TOTALCMD64"
             };
 
             return vipProcess;

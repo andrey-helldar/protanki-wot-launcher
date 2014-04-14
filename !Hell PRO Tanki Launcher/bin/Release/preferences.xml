@@ -1,0 +1,334 @@
+<root>
+  <graphicsPreferences>
+    <graphicsSettingsVersion>	0	</graphicsSettingsVersion>
+    <deviceGUID>	D7B71E3E.11CF5141.038E7A11.35C4C21C	</deviceGUID>
+    <entry>
+      <label>	RENDER_PIPELINE	</label>
+      <activeOption>	0	</activeOption>
+    </entry>
+    <entry>
+      <label>	SHADOWS_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	DECALS_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	LIGHTING_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	COLOR_GRADING_TECHNIQUE	</label>
+      <activeOption>	0	</activeOption>
+    </entry>
+    <entry>
+      <label>	SHADER_VERSION_CAP	</label>
+      <activeOption>	1	</activeOption>
+    </entry>
+    <entry>
+      <label>	TEXTURE_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	MORPH_VERTICES	</label>
+      <activeOption>	0	</activeOption>
+    </entry>
+    <entry>
+      <label>	TERRAIN_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	SPEEDTREE_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	WATER_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	FOOT_PRINTS	</label>
+      <activeOption>	0	</activeOption>
+    </entry>
+    <entry>
+      <label>	FAR_PLANE	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	FLORA_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	OBJECT_LOD	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	VEHICLE_DUST_ENABLED	</label>
+      <activeOption>	0	</activeOption>
+    </entry>
+    <entry>
+      <label>	VEHICLE_TRACES_ENABLED	</label>
+      <activeOption>	0	</activeOption>
+    </entry>
+    <entry>
+      <label>	SMOKE_ENABLED	</label>
+      <activeOption>	0	</activeOption>
+    </entry>
+    <entry>
+      <label>	SNIPER_MODE_EFFECTS_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	PS_USE_PERFORMANCER	</label>
+      <activeOption>	0	</activeOption>
+    </entry>
+    <entry>
+      <label>	EFFECTS_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	SNIPER_MODE_GRASS_ENABLED	</label>
+      <activeOption>	0	</activeOption>
+    </entry>
+    <entry>
+      <label>	SNIPER_MODE_SWINGING_ENABLED	</label>
+      <activeOption>	1	</activeOption>
+    </entry>
+    <entry>
+      <label>	POST_PROCESSING_QUALITY	</label>
+      <activeOption>	2	</activeOption>
+    </entry>
+    <entry>
+      <label>	MOTION_BLUR_QUALITY	</label>
+      <activeOption>	3	</activeOption>
+    </entry>
+    <ParticlSystemNoRenderGroup>	65535	</ParticlSystemNoRenderGroup>
+  </graphicsPreferences>
+  <devicePreferences>
+    <adapterOrdinal>	0	</adapterOrdinal>
+    <windowed>	false	</windowed>
+    <isWindowMaximized>	false	</isWindowMaximized>
+    <waitVSync>	false	</waitVSync>
+    <customAAMode>	0	</customAAMode>
+    <tripleBuffering>	true	</tripleBuffering>
+    <multisamplingType>	0	</multisamplingType>
+    <multisamplingQuality>	0	</multisamplingQuality>
+    <aspectRatio>	1.777778	</aspectRatio>
+    <gammaCorrection>	1.000000	</gammaCorrection>
+    <useAlternateFrameTimer>	false	</useAlternateFrameTimer>
+    <textureQualityMemoryBlock>	0	</textureQualityMemoryBlock>
+    <windowedWidth>	1024	</windowedWidth>
+    <windowedHeight>	768	</windowedHeight>
+    <fullscreenWidth>1280</fullscreenWidth>
+    <fullscreenHeight>768</fullscreenHeight>
+  </devicePreferences>
+  <scriptsPreferences>
+    <soundPrefs>
+      <masterVolume>	0.500000	</masterVolume>
+      <volume_micVivox>	0.400000	</volume_micVivox>
+      <volume_vehicles>	1.000000	</volume_vehicles>
+      <volume_masterFadeVivox>	0.500000	</volume_masterFadeVivox>
+      <volume_gui>	1.000000	</volume_gui>
+      <volume_masterVivox>	1.000000	</volume_masterVivox>
+      <volume_music>	0.000000	</volume_music>
+      <volume_effects>	1.000000	</volume_effects>
+      <volume_ambient>	1.000000	</volume_ambient>
+      <volume_voice>	1.000000	</volume_voice>
+      <soundMode>	default	</soundMode>
+    </soundPrefs>
+    <replayPrefs>
+      <replayEnabled>	STEKLg==	</replayEnabled>
+      <useServerAim>	STAwCi4=	</useServerAim>
+      <minimapAlpha>	STAKLg==	</minimapAlpha>
+      <enablePostMortemEffect>	STAwCi4=	</enablePostMortemEffect>
+      <enablePostMortemDelay>	STAxCi4=	</enablePostMortemDelay>
+      <showVehiclesCounter>	STAxCi4=	</showVehiclesCounter>
+      <dynamicCamera>	STAxCi4=	</dynamicCamera>
+      <horStabilizationSnp>	KEkwMQpJMDEKdHAxCi4=	</horStabilizationSnp>
+      <enableOlFilter>	STAxCi4=	</enableOlFilter>
+      <enableSpamFilter>	STAwCi4=	</enableSpamFilter>
+      <datetimeIdx>	STIKLg==	</datetimeIdx>
+      <invitesFromFriendsOnly>	STAwCi4=	</invitesFromFriendsOnly>
+      <storeReceiverInBattle>	STAwCi4=	</storeReceiverInBattle>
+      <disableBattleChat>	STAwCi4=	</disableBattleChat>
+      <ppShowLevels>	STAxCi4=	</ppShowLevels>
+      <gameplayMask>	STE1Ci4=	</gameplayMask>
+      <fpsPerfomancer>	STAKLg==	</fpsPerfomancer>
+      <alternativeVoices>	STAKLg==	</alternativeVoices>
+      <mouseHorzInvert>	STAwCi4=	</mouseHorzInvert>
+      <mouseVertInvert>	STAwCi4=	</mouseVertInvert>
+      <backDraftInvert>	STAwCi4=	</backDraftInvert>
+      <CMD_MOVE_FORWARD>	STg3Ci4=	</CMD_MOVE_FORWARD>
+      <CMD_MOVE_BACKWARD>	STgzCi4=	</CMD_MOVE_BACKWARD>
+      <CMD_ROTATE_LEFT>	STY1Ci4=	</CMD_ROTATE_LEFT>
+      <CMD_ROTATE_RIGHT>	STY4Ci4=	</CMD_ROTATE_RIGHT>
+      <CMD_CM_VEHICLE_SWITCH_AUTOROTATION>	STg4Ci4=	</CMD_CM_VEHICLE_SWITCH_AUTOROTATION>
+      <CMD_INCREMENT_CRUISE_MODE>	STgyCi4=	</CMD_INCREMENT_CRUISE_MODE>
+      <CMD_DECREMENT_CRUISE_MODE>	STcwCi4=	</CMD_DECREMENT_CRUISE_MODE>
+      <CMD_STOP_UNTIL_FIRE>	STMyCi4=	</CMD_STOP_UNTIL_FIRE>
+      <CMD_CM_SHOOT>	STAKLg==	</CMD_CM_SHOOT>
+      <CMD_CM_LOCK_TARGET>	STEKLg==	</CMD_CM_LOCK_TARGET>
+      <CMD_CM_LOCK_TARGET_OFF>	STY5Ci4=	</CMD_CM_LOCK_TARGET_OFF>
+      <CMD_CM_ALTERNATE_MODE>	STE2Ci4=	</CMD_CM_ALTERNATE_MODE>
+      <CMD_RELOAD_PARTIAL_CLIP>	STY3Ci4=	</CMD_RELOAD_PARTIAL_CLIP>
+      <CMD_TOGGLE_GUI>	STg2Ci4=	</CMD_TOGGLE_GUI>
+      <CMD_RADIAL_MENU_SHOW>	STkwCi4=	</CMD_RADIAL_MENU_SHOW>
+      <CMD_AMMO_CHOICE_1>	STQ5Ci4=	</CMD_AMMO_CHOICE_1>
+      <CMD_AMMO_CHOICE_2>	STUwCi4=	</CMD_AMMO_CHOICE_2>
+      <CMD_AMMO_CHOICE_3>	STUxCi4=	</CMD_AMMO_CHOICE_3>
+      <CMD_AMMO_CHOICE_4>	STUyCi4=	</CMD_AMMO_CHOICE_4>
+      <CMD_AMMO_CHOICE_5>	STUzCi4=	</CMD_AMMO_CHOICE_5>
+      <CMD_AMMO_CHOICE_6>	STU0Ci4=	</CMD_AMMO_CHOICE_6>
+      <CMD_AMMO_CHOICE_7>	STU1Ci4=	</CMD_AMMO_CHOICE_7>
+      <CMD_AMMO_CHOICE_8>	STU2Ci4=	</CMD_AMMO_CHOICE_8>
+      <CMD_CHAT_SHORTCUT_ATTACK>	STg0Ci4=	</CMD_CHAT_SHORTCUT_ATTACK>
+      <CMD_CHAT_SHORTCUT_BACKTOBASE>	STExNQou	</CMD_CHAT_SHORTCUT_BACKTOBASE>
+      <CMD_CHAT_SHORTCUT_POSITIVE>	STQKLg==	</CMD_CHAT_SHORTCUT_POSITIVE>
+      <CMD_CHAT_SHORTCUT_NEGATIVE>	STExNwou	</CMD_CHAT_SHORTCUT_NEGATIVE>
+      <CMD_CHAT_SHORTCUT_HELPME>	STUKLg==	</CMD_CHAT_SHORTCUT_HELPME>
+      <CMD_CHAT_SHORTCUT_RELOAD>	STExOQou	</CMD_CHAT_SHORTCUT_RELOAD>
+      <CMD_CM_CAMERA_ROTATE_UP>	STM4Ci4=	</CMD_CM_CAMERA_ROTATE_UP>
+      <CMD_CM_CAMERA_ROTATE_DOWN>	STQwCi4=	</CMD_CM_CAMERA_ROTATE_DOWN>
+      <CMD_CM_CAMERA_ROTATE_LEFT>	STM3Ci4=	</CMD_CM_CAMERA_ROTATE_LEFT>
+      <CMD_CM_CAMERA_ROTATE_RIGHT>	STM5Ci4=	</CMD_CM_CAMERA_ROTATE_RIGHT>
+      <CMD_VOICECHAT_MUTE>	STgxCi4=	</CMD_VOICECHAT_MUTE>
+      <CMD_LOGITECH_SWITCH_VIEW>	STQ1Ci4=	</CMD_LOGITECH_SWITCH_VIEW>
+      <CMD_MINIMAP_SIZE_UP>	STE4Nwou	</CMD_MINIMAP_SIZE_UP>
+      <CMD_MINIMAP_SIZE_DOWN>	STE4OQou	</CMD_MINIMAP_SIZE_DOWN>
+      <CMD_MINIMAP_VISIBLE>	STc3Ci4=	</CMD_MINIMAP_VISIBLE>
+      <arcade>	KGRwMQpTJ3JlbG9hZGVyVGltZXInCnAyCkkxMDAKc1MnZ3VuVGFnVHlwZScKcDMKSTAKc1MnY2VudHJhbFRhZycKcDQKSTkwCnNTJ2d1blRhZycKcDUKSTkwCnNTJ2NlbnRyYWxUYWdUeXBlJwpwNgpJMApzUydtaXhpbmdUeXBlJwpwNwpJMApzUyduZXRUeXBlJwpwOApJMApzUydtaXhpbmcnCnA5Ckk5MApzUydjYXNzZXR0ZScKcDEwCkk5MApzUydyZWxvYWRlcicKcDExCkk5MApzUyduZXQnCnAxMgpJOTAKc1MnY29uZGl0aW9uJwpwMTMKSTkwCnMu	</arcade>
+      <sniper>	KGRwMQpTJ3JlbG9hZGVyVGltZXInCnAyCkkxMDAKc1MnZ3VuVGFnVHlwZScKcDMKSTAKc1MnY2VudHJhbFRhZycKcDQKSTkwCnNTJ2d1blRhZycKcDUKSTkwCnNTJ2NlbnRyYWxUYWdUeXBlJwpwNgpJMApzUydtaXhpbmdUeXBlJwpwNwpJMApzUyduZXRUeXBlJwpwOApJMApzUydtaXhpbmcnCnA5Ckk5MApzUydjYXNzZXR0ZScKcDEwCkk5MApzUydyZWxvYWRlcicKcDExCkk5MApzUyduZXQnCnAxMgpJOTAKc1MnY29uZGl0aW9uJwpwMTMKSTkwCnMu	</sniper>
+      <enemy>	KGRwMQpTJ21hcmtlckJhc2VIcCcKcDIKSTAKc1MnbWFya2VyQmFzZVBsYXllck5hbWUnCnAzCkkwMQpzUydtYXJrZXJBbHRQbGF5ZXJOYW1lJwpwNApJMDAKc1MnbWFya2VyQmFzZUhwSW5kaWNhdG9yJwpwNQpJMDAKc1MnbWFya2VyQWx0SHBJbmRpY2F0b3InCnA2CkkwMQpzUydtYXJrZXJCYXNlSWNvbicKcDcKSTAwCnNTJ21hcmtlckJhc2VEYW1hZ2UnCnA4CkkwMQpzUydtYXJrZXJCYXNlVmVoaWNsZU5hbWUnCnA5CkkwMApzUydtYXJrZXJBbHRJY29uJwpwMTAKSTAxCnNTJ21hcmtlckJhc2VMZXZlbCcKcDExCkkwMApzUydtYXJrZXJBbHREYW1hZ2UnCnAxMgpJMDEKc1MnbWFya2VyQWx0VmVoaWNsZU5hbWUnCnAxMwpJMDEKc1MnbWFya2VyQWx0TGV2ZWwnCnAxNApJMDEKc1MnbWFya2VyQWx0SHAnCnAxNQpJMQpzLg==	</enemy>
+      <dead>	KGRwMQpTJ21hcmtlckJhc2VIcCcKcDIKSTAKc1MnbWFya2VyQmFzZVBsYXllck5hbWUnCnAzCkkwMQpzUydtYXJrZXJBbHRQbGF5ZXJOYW1lJwpwNApJMDAKc1MnbWFya2VyQmFzZUhwSW5kaWNhdG9yJwpwNQpJMDAKc1MnbWFya2VyQWx0SHBJbmRpY2F0b3InCnA2CkkwMQpzUydtYXJrZXJCYXNlSWNvbicKcDcKSTAwCnNTJ21hcmtlckJhc2VEYW1hZ2UnCnA4CkkwMQpzUydtYXJrZXJCYXNlVmVoaWNsZU5hbWUnCnA5CkkwMApzUydtYXJrZXJBbHRJY29uJwpwMTAKSTAxCnNTJ21hcmtlckJhc2VMZXZlbCcKcDExCkkwMApzUydtYXJrZXJBbHREYW1hZ2UnCnAxMgpJMDEKc1MnbWFya2VyQWx0VmVoaWNsZU5hbWUnCnAxMwpJMDEKc1MnbWFya2VyQWx0TGV2ZWwnCnAxNApJMDEKc1MnbWFya2VyQWx0SHAnCnAxNQpJMQpzLg==	</dead>
+      <ally>	KGRwMQpTJ21hcmtlckJhc2VIcCcKcDIKSTAKc1MnbWFya2VyQmFzZVBsYXllck5hbWUnCnAzCkkwMQpzUydtYXJrZXJBbHRQbGF5ZXJOYW1lJwpwNApJMDAKc1MnbWFya2VyQmFzZUhwSW5kaWNhdG9yJwpwNQpJMDAKc1MnbWFya2VyQWx0SHBJbmRpY2F0b3InCnA2CkkwMQpzUydtYXJrZXJCYXNlSWNvbicKcDcKSTAwCnNTJ21hcmtlckJhc2VEYW1hZ2UnCnA4CkkwMQpzUydtYXJrZXJCYXNlVmVoaWNsZU5hbWUnCnA5CkkwMApzUydtYXJrZXJBbHRJY29uJwpwMTAKSTAxCnNTJ21hcmtlckJhc2VMZXZlbCcKcDExCkkwMApzUydtYXJrZXJBbHREYW1hZ2UnCnAxMgpJMDEKc1MnbWFya2VyQWx0VmVoaWNsZU5hbWUnCnAxMwpJMDEKc1MnbWFya2VyQWx0TGV2ZWwnCnAxNApJMDEKc1MnbWFya2VyQWx0SHAnCnAxNQpJMQpzLg==	</ally>
+    </replayPrefs>
+    <vibration>
+      <gain>	1.000000	</gain>
+      <enabled_by_user>	true	</enabled_by_user>
+      <groups>
+        <engine>
+          <enabled>	true	</enabled>
+          <gain>	1.000000	</gain>
+        </engine>
+        <acceleration>
+          <enabled>	true	</enabled>
+          <gain>	1.000000	</gain>
+        </acceleration>
+        <shots>
+          <enabled>	true	</enabled>
+          <gain>	1.000000	</gain>
+        </shots>
+        <hits>
+          <enabled>	true	</enabled>
+          <gain>	1.000000	</gain>
+        </hits>
+        <damage>
+          <enabled>	true	</enabled>
+          <gain>	1.000000	</gain>
+        </damage>
+        <gui>
+          <enabled>	true	</enabled>
+          <gain>	1.000000	</gain>
+        </gui>
+        <collisions>
+          <enabled>	true	</enabled>
+          <gain>	1.000000	</gain>
+        </collisions>
+      </groups>
+    </vibration>
+    <accounts>
+      <version>	8	</version>
+      <account>
+        <login />
+        <settings />
+      </account>
+      <account>
+        <login>	First_Helldar	</login>
+        <settings>
+          <quests>	KGRwMApTJ3Zpc2l0ZWQnCnAxCih0c1MnbmFWaXNpdGVkJwpwMgoodHNTJ2xhc3RWaXNpdFRpbWUnCnAzCkktMQpzLg==	</quests>
+          <unitWindow>	KGRwMApTJ3NlbGVjdGVkTGlzdFZlaGljbGVzJwpwMQoobHAyCkk0MzUzCmFJMTA0MQphSTUyOQphSTM4NTcKYUk2NjU3CmFJNTQ1CmFJNjk0NQphSTg5NzcKYUkyODQ5CmFJMTQxNDUKYXNTJ3NlbGVjdGVkSW50cm9WZWhpY2xlcycKcDMKKGxwNApJMjg0OQphc1MnaXNPcGVuZWQnCnA1CkkwMQpzLg==	</unitWindow>
+        </settings>
+        <favorites>
+          <current>	STY1Ci4=	</current>
+        </favorites>
+        <filters>
+          <inventory_vehicle>	KGxwMApMNkwKYVMnbGlnaHRUYW5rJwpwMQphUydtZWRpdW1UYW5rJwpwMgphUydoZWF2eVRhbmsnCnAzCmFTJ2F0LXNwZycKcDQKYVMnc3BnJwpwNQphUydhbGwnCnA2CmFTJ2xvY2tlZCcKcDcKYVMnYnJvY2tlbicKcDgKYS4=	</inventory_vehicle>
+          <inventory_current>	KEYtMS4wClMnbW9kdWxlJwpwMAp0cDEKLg==	</inventory_current>
+          <inventory_equipment>	KGxwMApTJ215VmVoaWNsZXMnCnAxCmFTJzE0MTQ1JwpwMgphLg==	</inventory_equipment>
+          <inventory_optionalDevice>	KGxwMApTJ290aGVyVmVoaWNsZXMnCnAxCmFTJzE0MTQ1JwpwMgphLg==	</inventory_optionalDevice>
+          <inventory_shell>	KGxwMApMNEwKYVMnQVJNT1JfUElFUkNJTkcnCnAxCmFTJ0FSTU9SX1BJRVJDSU5HX0NSJwpwMgphUydIT0xMT1dfQ0hBUkdFJwpwMwphUydISUdIX0VYUExPU0lWRScKcDQKYVMnb3RoZXJHdW5zJwpwNQphUycxNDE0NScKcDYKYS4=	</inventory_shell>
+          <inventory_module>	KGxwMApMNUwKYVMndmVoaWNsZUd1bicKcDEKYVMndmVoaWNsZVR1cnJldCcKcDIKYVMndmVoaWNsZUVuZ2luZScKcDMKYVMndmVoaWNsZUNoYXNzaXMnCnA0CmFTJ3ZlaGljbGVSYWRpbycKcDUKYVMnbXlWZWhpY2xlcycKcDYKYVMnMTQxNDUnCnA3CmFMMEwKYS4=	</inventory_module>
+          <shop_vehicle>	KGxwMApMNkwKYVMnbGlnaHRUYW5rJwpwMQphUydtZWRpdW1UYW5rJwpwMgphUydoZWF2eVRhbmsnCnAzCmFTJ2F0LXNwZycKcDQKYVMnc3BnJwpwNQphUydhbGwnCnA2CmFTJ2xvY2tlZCcKcDcKYS4=	</shop_vehicle>
+          <barracks_filter>	KGRwMApTJ3RhbmtUeXBlJwpwMQpTJ05vbmUnCnAyCnNTJ25hdGlvbklEJwpwMwpOc1Mncm9sZScKcDQKUydOb25lJwpwNQpzUydsb2NhdGlvbicKcDYKUydiYXJyYWNrcycKcDcKc1MnbmF0aW9uJwpwOApGLTEuMApzLg==	</barracks_filter>
+        </filters>
+      </account>
+    </accounts>
+    <loginInfo>
+      <login>	AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABoaJxo3nSUWlIdIyV5Mg+gQAAAACAAAAAAAQZgAAAAEAACAAAACnU/4OnR3ft8LwumDWFiBg7wQEykC5Hq3uPa1ji8S3rQAAAAAOgAAAAAIAACAAAAC/zqU0Hb7R/NDg3QNJTMEfgkELCtBLB/7YrtudPJj5dCAAAACQOnesgRmhPbKPXv+0DTuJeH/E23RUmNggCy5wY1mUfUAAAACVnO8+kfBE4SmFeuPXLIY9WoDoUGTXaj+FA32ODWs/0rZLUxGMBdF6+9K+NsDElR2NhPp5IhqxC4Ijmz8FIpxD	</login>
+      <rememberPwd>	true	</rememberPwd>
+      <host>	login.p4.worldoftanks.net:20014	</host>
+      <token2>	12:2732865:1866123092945381177:200358610005117532933249107583556528662	</token2>
+      <salt>	AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABoaJxo3nSUWlIdIyV5Mg+gQAAAACAAAAAAAQZgAAAAEAACAAAADqz+VMPlqU822B/BDp/oKuGr/m4jIjB8+X4c3EmWEVLAAAAAAOgAAAAAIAACAAAAA75R1nxXUQaafe7VQtm4AqVMjUdzxdUhDsrw70EJo6UDAAAAAjudAptS6d4AwaMA1aEfEkRK7EVtEx/UXCw2AL/ZZOmonq0hLEjACGw9rcaYFzZpBAAAAAmEpdvJYAKdbJgilh4nzYc9wozqak7z/yzsmr+TvBoPCUjFWYPmYYODfulvmompY/OZ51j8vEC6rugbrgiFanoQ==	</salt>
+      <peripheryLifeTime>	KEkxMDQKRjEzOTcwNTAzMDUuMjk1CnRwMAou	</peripheryLifeTime>
+    </loginInfo>
+    <loginPage>
+      <lastLoginBgImage>	back_5_without_sparks	</lastLoginBgImage>
+      <showLoginWallpaper>	true	</showLoginWallpaper>
+    </loginPage>
+    <showFPS>	true	</showFPS>
+    <windowsStoredData>
+      <mask>	3	</mask>
+      <rev>	0	</rev>
+      <records>
+        <record>	KEkxCkkxClMnY3liZXJTcG9ydC91bml0V2luZG93JwpwMQpJNDgzCkkxNTkKSS0xCkktMQp0cDIKLg==	</record>
+        <record>	KEkxCkkyCkktMzQKSTM2NApJNjI4Ckk4MjMKSTQxNAp0cDEKLg==	</record>
+        <record>	KEkyCkkxClMnbWVzc2VuZ2VyL2NvbnRhY3RzV2luZG93JwpwMQpJMTE1Ckk2MjcKSTI4OQpJNDA4CnRwMgou	</record>
+        <record>	KEkyCkkxClMncHJiX3dpbmRvd3Mvbm90aWZpY2F0aW9uSW52aXRlc1dpbmRvdycKcDEKSTE1MTAKSTcwNQpJMzMwCkkzMzAKdHAyCi4=	</record>
+      </records>
+    </windowsStoredData>
+    <controlMode>
+      <sniperMode>
+        <camera>
+          <horzInvert>	false	</horzInvert>
+          <vertInvert>	false	</vertInvert>
+          <keySensitivity>	1.000000	</keySensitivity>
+          <sensitivity>	1.000000	</sensitivity>
+          <scrollSensitivity>	1.000000	</scrollSensitivity>
+          <zoom>	1.600000	</zoom>
+        </camera>
+      </sniperMode>
+      <arcadeMode>
+        <camera>
+          <horzInvert>	false	</horzInvert>
+          <vertInvert>	false	</vertInvert>
+          <keySensitivity>	1.000000	</keySensitivity>
+          <sensitivity>	1.000000	</sensitivity>
+          <scrollSensitivity>	1.000000	</scrollSensitivity>
+          <startDist>	20.000000	</startDist>
+          <startAngle>	60.000000	</startAngle>
+        </camera>
+      </arcadeMode>
+      <strategicMode>
+        <camera>
+          <keySensitivity>	1.000000	</keySensitivity>
+          <sensitivity>	1.000000	</sensitivity>
+          <scrollSensitivity>	5.000000	</scrollSensitivity>
+          <camDist>	60.000000	</camDist>
+        </camera>
+      </strategicMode>
+    </controlMode>
+    <enableVoIP>	true	</enableVoIP>
+    <captureDevice>	Default System Device	</captureDevice>
+    <commandMapping>
+      <CMD_CHAT_SHORTCUT_POSITIVE>
+        <fireKey>	KEY_MOUSE4	</fireKey>
+        <satelliteKeys />
+      </CMD_CHAT_SHORTCUT_POSITIVE>
+      <CMD_CHAT_SHORTCUT_HELPME>
+        <fireKey>	KEY_MOUSE5	</fireKey>
+        <satelliteKeys />
+      </CMD_CHAT_SHORTCUT_HELPME>
+    </commandMapping>
+  </scriptsPreferences>
+  <consoleHistory />
+</root>

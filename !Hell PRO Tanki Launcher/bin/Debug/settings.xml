@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <settings kill="False" force="False" aero="False" />
+  <settings kill="True" force="False" aero="True" video="Indeterminate" weak="False" />
   <info video="True" />
-  <processes />
+  <processes>
+    <process name="chrome" description="Google Chrome" />
+    <process name="iexplore" description="Internet Explorer" />
+    <process name="notepad++" description="Notepad++ : a free (GNU) source code editor" />
+    <process name="punto" description="Punto Switcher" />
+    <process name="uTorrent" description="µTorrent" />
+  </processes>
 </pro>

@@ -164,7 +164,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (myProcesses[i].SessionId == processID)
                     {
-                        if (ProcessList.IndexOf(myProcesses[i].ProcessName) < 0 && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
+                        if (!ProcessList.IndexOf(myProcesses[i].ProcessName) && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
                         {
                             ProcessList.Add(myProcesses[i].ProcessName, myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim());
                         }

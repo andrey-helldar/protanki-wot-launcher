@@ -160,6 +160,7 @@
     <None Include="Resources\start.bat" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\settings.xml" />
     <None Include="Resources\warning.png" />
     <None Include="Resources\ProcessesLibrary.dll" />
     <None Include="Resources\WOT.ico" />
