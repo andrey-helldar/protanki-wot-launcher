@@ -9,4 +9,5 @@
     <process name="punto" description="Punto Switcher" />
     <process name="uTorrent" description="µTorrent" />
   </processes>
+  <common.test />
 </pro>

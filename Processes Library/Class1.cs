@@ -6,18 +6,18 @@ using System.Diagnostics;
 
 namespace Processes_Library
 {
-    public class pRange
+    public class Range
     {
         public string Process, Description;
-        public pRange(string mProcess, string mDescription) { Process = mProcess; Description = mDescription; }
-        public pRange() { Process = ""; Description = ""; }
+        public Range(string mProcess, string mDescription) { Process = mProcess; Description = mDescription; }
+        public Range() { Process = ""; Description = ""; }
     }
 
     public class ProcessList
     {
-        public string Process, Description;
-        public List<pRange> Range;
-        public List<List<pRange>> subRange;
+        public string mProcess, mDescription;
+        public List<Range> Range;
+        public List<List<Range>> subRange;
 
         public void Add(string process, string description)
         {
@@ -27,18 +27,18 @@ namespace Processes_Library
             }
             catch (Exception)
             {
-                Range = new List<pRange>();
-                subRange = new List<List<pRange>>();
+                Range = new List<Range>();
+                subRange = new List<List<Range>>();
             }
 
-            Range.Add(new pRange(process, description));
+            Range.Add(new Range(process, description));
             subRange.Add(Range);
 
             Process = subRange[0][0].Process;
             Description = subRange[0][0].Description;
         }
 
-        public List<pRange> View()
+        public List<Range> View()
         {
             return Range;
         }
@@ -77,19 +77,6 @@ namespace Processes_Library
             {
                 return 0;
             }
-        }
-
-        /// <summary>
-        ////Массив используется для закрытия приложений
-        /// </summary>
-        private string[] processes;
-        public void AddProcess(string name)
-        {
-            processes[processes.Length] = name;
-        }
-        public Array ViewProcesses()
-        {
-            return processes;
         }
     }
 

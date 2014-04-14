@@ -630,6 +630,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     bool kill = false;
 
+                    MessageBox.Show(ProcessList.Count().ToString());
+
                     for (int i = 0; i < 2; i++)
                     {
                         foreach (var process in Process.GetProcesses())
@@ -640,7 +642,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                                 if (process.SessionId == sessionId &&
                                     Array.IndexOf(proccessLibrary.Processes(), process.ProcessName) == -1 &&
-                                    Array.IndexOf(ProcessList.ViewProcesses(), process.ProcessName) == -1)
+                                    !ProcessList.IndexOf(process.ProcessName))
                                 {
                                     if (!kill) process.CloseMainWindow(); else process.Kill();
                                 }
@@ -1207,7 +1209,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     //ProcessList.processes;
                     XDocument doc = XDocument.Load("settings.xml");
                     //foreach (XElement el in doc.Root.Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
-                    foreach (XElement el in doc.Root.Elements("process")) { ProcessList.AddProcess(el.Attribute("name").Value); }
+                    foreach (XElement el in doc.Root.Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
                 }
             }
             catch (Exception ex)
