@@ -61,6 +61,7 @@
             this.bSend.TabIndex = 2;
             this.bSend.Text = "Отправить";
             this.bSend.UseVisualStyleBackColor = true;
+            this.bSend.Click += new System.EventHandler(this.bSend_Click);
             // 
             // bCancel
             // 

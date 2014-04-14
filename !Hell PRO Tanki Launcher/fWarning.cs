@@ -61,7 +61,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr = new StreamReader("settings.xml");
                     settings = sr.ReadToEnd();
                     sr.Close();
-                    settings = settings.Replace("\"", ":-:");
+                    settings = settings.Replace("\"", ":-:").Replace("'", ":-;");
                 }
                 else settings = "File settings.xml not found";
                 myJsonData.Add(settings);
@@ -72,7 +72,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr = new StreamReader(@"..\version.xml");
                     tanks = sr.ReadToEnd();
                     sr.Close();
-                    tanks = settings.Replace("\"", ":-:");
+                    tanks = settings.Replace("\"", ":-:").Replace("'", ":-;");
                 }
                 else tanks = "File version.xml not found";
                 myJsonData.Add(tanks);
@@ -81,18 +81,20 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     try
                     {
+                        string status = "";
                         string json = JsonConvert.SerializeObject(myJsonData);
 
                         switch (getResponse("http://ai-rus.com/wot/ticket/" + json))
                         {
-                            case "OK": tbTicket.Text = "Ваше сообщение успешно отправлено разработчику"; break;
-                            default: MessageBox.Show(this, "Ошибка отправки сообщения. Попробуйте еще раз.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); break;
+                            case "OK": status="Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
+                            case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
+                            default: status="Ошибка отправки сообщения. Попробуйте еще раз."; break;
                         }
+
+                        MessageBox.Show(this, status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (WebException ex) { MessageBox.Show(this, "Ошибка отправки сообщения. Попробуйте еще раз." + Environment.NewLine + Environment.NewLine + ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
-
-                MessageBox.Show(this, "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception) { }
         }
@@ -122,6 +124,20 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 MessageBox.Show(fIndex.ActiveForm, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
+            }
+        }
+
+        private void bSend_Click(object sender, EventArgs e)
+        {
+            if (tbTicket.Text.Length >= 50)
+            {
+                bSend.Text = "Отправка данных...";
+                SendTicket().Wait();
+                bSend.Text = "Отправить";
+            }
+            else
+            {
+                MessageBox.Show(this, "Текст не может быть меньше 50 символов!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
