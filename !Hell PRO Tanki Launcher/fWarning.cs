@@ -31,6 +31,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                string aw = "";
+
                 string code = new Debug().code;
 
                 List<string> myJsonData = new List<string>();
@@ -61,7 +63,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr = new StreamReader("settings.xml");
                     settings = sr.ReadToEnd();
                     sr.Close();
-                    settings = settings.Replace("\"", ":-:").Replace("'", ":-;");
+                    settings = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;");
                 }
                 else settings = "File settings.xml not found";
                 myJsonData.Add(settings);
@@ -72,7 +74,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr = new StreamReader(@"..\version.xml");
                     tanks = sr.ReadToEnd();
                     sr.Close();
-                    tanks = settings.Replace("\"", ":-:").Replace("'", ":-;");
+                    tanks = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;");
                 }
                 else tanks = "File version.xml not found";
                 myJsonData.Add(tanks);
@@ -84,7 +86,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         string status = "";
                         string json = JsonConvert.SerializeObject(myJsonData);
 
-                        switch (getResponse("http://ai-rus.com/wot/ticket/" + json))
+                        aw = getResponse("http://ai-rus.com/wot/ticket/",json);
+                        switch (aw)
                         {
                             case "OK": status="Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
                             case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
@@ -92,6 +95,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         }
 
                         MessageBox.Show(this, status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(this, aw, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (WebException ex) { MessageBox.Show(this, "Ошибка отправки сообщения. Попробуйте еще раз." + Environment.NewLine + Environment.NewLine + ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
@@ -99,26 +103,28 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception) { }
         }
 
-        private static string getResponse(string uri)
+        private static string getResponse(string uri, string data=null)
         {
             try
             {
-                StringBuilder sb = new StringBuilder();
-                byte[] buf = new byte[8192];
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                Stream resStream = response.GetResponseStream();
-                int count = 0;
-                do
+                var body = Encoding.UTF8.GetBytes(data);
+                var request = (HttpWebRequest)WebRequest.Create(uri);
+
+                request.Method = "POST";
+                request.ContentType = "application/json";
+                request.ContentLength = body.Length;
+
+                using (Stream stream = request.GetRequestStream())
                 {
-                    count = resStream.Read(buf, 0, buf.Length);
-                    if (count != 0)
-                    {
-                        sb.Append(Encoding.Default.GetString(buf, 0, count));
-                    }
+                    stream.Write(body, 0, body.Length);
+                    stream.Close();
                 }
-                while (count > 0);
-                return sb.ToString();
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    response.Close();
+                    return "check site";
+                }
             }
             catch (Exception ex)
             {
@@ -129,7 +135,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bSend_Click(object sender, EventArgs e)
         {
-            if (tbTicket.Text.Length >= 50)
+            if (tbTicket.Text.Length >= 0)
             {
                 bSend.Text = "Отправка данных...";
                 SendTicket().Wait();
