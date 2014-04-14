@@ -630,8 +630,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     bool kill = false;
 
-                    XDocument docLog = new XDocument(new XElement("root", null));
-
                     for (int i = 0; i < 2; i++)
                     {
                         foreach (var process in Process.GetProcesses())
@@ -642,15 +640,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
                                 if (process.SessionId == sessionId &&
                                     Array.IndexOf(proccessLibrary.Processes(), process.ProcessName) == -1 &&
-                                    !ProcessList.IndexOf(process.ProcessName))
+                                    Array.IndexOf(ProcessList.ViewProcesses(), process.ProcessName) == -1)
                                 {
                                     if (!kill) process.CloseMainWindow(); else process.Kill();
-                                    docLog.Root.Add(new XElement("process",
-                                        new XElement("step", i.ToString()),
-                                        new XElement("name", process.ProcessName),
-                                        new XElement("sessionId", sessionId),
-                                        new XElement("process.SessionId", process.SessionId)
-                                    ));
                                 }
                             }
                             catch (Exception ex) { Debug.Save("bwOptimize_DoWork()", "if (autoOptimizePC || autoKill)", process.ProcessName.ToString(), "Kill: " + kill.ToString(), ex.Message); }
@@ -663,8 +655,6 @@ namespace _Hell_PRO_Tanki_Launcher
                             Thread.Sleep(5000); // Ждем 5 секунд завершения, пока приложения нормально завершатся, затем повторяем цикл
                         }
                     }
-
-                    docLog.Save("log.xml");
                 }
 
                 ///
@@ -766,7 +756,7 @@ namespace _Hell_PRO_Tanki_Launcher
             try
             {
                 double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;
-                pbDownload.Value = (int)i;
+                pbDownload.Value = (int)i <= pbDownload.Value ? (int)i : pbDownload.Value;
             }
             catch (Exception ex)
             {
@@ -1214,9 +1204,10 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 if (File.Exists("settings.xml"))
                 {
-                    ProcessList.Clear();
+                    //ProcessList.processes;
                     XDocument doc = XDocument.Load("settings.xml");
-                    foreach (XElement el in doc.Root.Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
+                    //foreach (XElement el in doc.Root.Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
+                    foreach (XElement el in doc.Root.Elements("process")) { ProcessList.AddProcess(el.Attribute("name").Value); }
                 }
             }
             catch (Exception ex)

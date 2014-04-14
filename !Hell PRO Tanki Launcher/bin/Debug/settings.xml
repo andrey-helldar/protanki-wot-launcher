@@ -3,9 +3,9 @@
   <settings kill="True" force="False" aero="True" video="Indeterminate" weak="False" />
   <info video="True" />
   <processes>
+    <process name="AIMP3" description="AIMP3" />
     <process name="chrome" description="Google Chrome" />
     <process name="iexplore" description="Internet Explorer" />
-    <process name="notepad++" description="Notepad++ : a free (GNU) source code editor" />
     <process name="punto" description="Punto Switcher" />
     <process name="uTorrent" description="µTorrent" />
   </processes>

@@ -78,6 +78,19 @@ namespace Processes_Library
                 return 0;
             }
         }
+
+        /// <summary>
+        ////Массив используется для закрытия приложений
+        /// </summary>
+        private string[] processes;
+        public void AddProcess(string name)
+        {
+            processes[processes.Length] = name;
+        }
+        public Array ViewProcesses()
+        {
+            return processes;
+        }
     }
 
     public class ProcessesLibrary

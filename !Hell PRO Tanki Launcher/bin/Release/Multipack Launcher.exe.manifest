@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.0.10.160" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="Multipack Launcher" version="1.0.10.161" language="neutral" processorArchitecture="x86" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2168320">
-      <assemblyIdentity name="Multipack Launcher" version="1.0.10.160" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2168832">
+      <assemblyIdentity name="Multipack Launcher" version="1.0.10.161" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6m++fBVp7kEMZ+KP3G6RFvhdHfdGAsU0SPFfv8p8qa8=</dsig:DigestValue>
+        <dsig:DigestValue>DzldLI/Ax5aV2tn5mh/Q4k2ISYjDu7wWma3OHLAc9As=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -92,13 +92,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="7680">
-      <assemblyIdentity name="ProcessesLibrary" version="1.0.3.19" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="ProcessesLibrary" version="1.0.4.21" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>HqeITtpGpxrv//TcX/POV7I3YDCUqipzVzQuTkcNa8w=</dsig:DigestValue>
+        <dsig:DigestValue>5iIiyhypS85B/1f6k4b/5r3YcEmOxNPvVlPIWW4nE20=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
