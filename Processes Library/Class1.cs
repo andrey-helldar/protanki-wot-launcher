@@ -8,46 +8,46 @@ namespace Processes_Library
 {
     public class Range
     {
-        public string Process, Description;
-        public Range(string mProcess, string mDescription) { Process = mProcess; Description = mDescription; }
-        public Range() { Process = ""; Description = ""; }
+        public string Name, Description;
+        public Range(string mName, string mDescription) { Name = mName; Description = mDescription; }
+        public Range() { Name = ""; Description = ""; }
     }
 
     public class ProcessList
     {
-        public string mProcess, mDescription;
-        public List<Range> Range;
+        public string mName, mDescription;
+        public List<Range> List;
         public List<List<Range>> subRange;
 
-        public void Add(string process, string description)
+        public void Add(string name, string description)
         {
             try
             {
-                if (Range.Count <= 0) { }
+                if (List.Count <= 0) { }
             }
             catch (Exception)
             {
-                Range = new List<Range>();
+                List = new List<Range>();
                 subRange = new List<List<Range>>();
             }
 
-            Range.Add(new Range(process, description));
-            subRange.Add(Range);
+            List.Add(new Range(name, description));
+            subRange.Add(List);
 
-            Process = subRange[0][0].Process;
-            Description = subRange[0][0].Description;
+            mName = subRange[0][0].Name;
+            mDescription = subRange[0][0].Description;
         }
 
         public List<Range> View()
         {
-            return Range;
+            return List;
         }
 
         public void Clear()
         {
             try
             {
-                Range.Clear();
+                List.Clear();
             }
             catch (Exception) { }
         }
@@ -56,8 +56,9 @@ namespace Processes_Library
         {
             try
             {
-                foreach(var pr in Range){
-                    if (pr.Process == str) return true;
+                foreach (var pr in List)
+                {
+                    if (pr.Name == str) return true;
                 }
                 return false;
             }
@@ -71,7 +72,7 @@ namespace Processes_Library
         {
             try
             {
-                return Range.Count;
+                return List.Count;
             }
             catch (Exception)
             {

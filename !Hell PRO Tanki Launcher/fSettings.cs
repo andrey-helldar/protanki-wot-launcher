@@ -180,18 +180,18 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 try
                 {
-                    int pos = lvProcessesUser.Items.Add(ProcessList.Range[i].Process).Index;
-                    lvProcessesUser.Items[pos].SubItems.Add(ProcessList.Range[i].Description);
+                    int pos = lvProcessesUser.Items.Add(ProcessList.List[i].Name).Index;
+                    lvProcessesUser.Items[pos].SubItems.Add(ProcessList.List[i].Description);
 
                     // Процессы юзера
-                    if (userProcesses.IndexOf(ProcessList.Range[i].Process) > -1)
+                    if (userProcesses.IndexOf(ProcessList.List[i].Name) > -1)
                     {
                         lvProcessesUser.Items[pos].Checked = true;
                         lvProcessesUser.Items[pos].BackColor = Color.LightGreen;
                     }
 
                     // Глобальные процессы
-                    if (Array.IndexOf(ProccessLibrary.Processes(), ProcessList.Range[i].Process) > -1)
+                    if (Array.IndexOf(ProccessLibrary.Processes(), ProcessList.List[i].Name) > -1)
                     {
                         lvProcessesUser.Items[pos].Checked = true;
                         lvProcessesUser.Items[pos].BackColor = Color.Plum;

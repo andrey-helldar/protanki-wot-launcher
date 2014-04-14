@@ -429,7 +429,11 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 autoOptimizePC = false;
 
-                if (!bwOptimize.IsBusy) { bwOptimize.RunWorkerAsync(); }
+                if (!bwOptimize.IsBusy)
+                {
+                    GetVipProcesses().Wait();
+                    bwOptimize.RunWorkerAsync();
+                }
 
                 Process.Start(pathToTanks + "WoTLauncher.exe");
 
@@ -445,7 +449,12 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 autoOptimizePC = false;
 
-                if (!bwOptimize.IsBusy) { playGame = true; bwOptimize.RunWorkerAsync(); }
+                if (!bwOptimize.IsBusy)
+                {
+                    GetVipProcesses().Wait();
+                    playGame = true;
+                    bwOptimize.RunWorkerAsync();
+                }
 
                 Hide();
                 WindowState = FormWindowState.Minimized;
@@ -561,6 +570,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     autoOptimizePC = true;
 
+                    GetVipProcesses().Wait();
+
                     pbDownload.Visible = true;
                     pbDownload.Value = 0;
 
@@ -576,8 +587,6 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)
         {
             int myProgressStatus = 0;
-
-            GetVipProcesses().Wait();
 
             try
             {
