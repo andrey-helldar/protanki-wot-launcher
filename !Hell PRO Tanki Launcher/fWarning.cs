@@ -19,7 +19,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             InitializeComponent();
 
-            this.Text = Application.ProductName + " v"+Application.ProductVersion;
+            this.Text = Application.ProductName + " v" + Application.ProductVersion;
         }
 
         private void bCancel_Click(object sender, EventArgs e)
@@ -52,8 +52,30 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 myJsonData.Add(code);
                 myJsonData.Add(name);
+                myJsonData.Add("PROTanki");
                 myJsonData.Add(Application.ProductVersion);
-                myJsonData.Add();
+
+                string settings;
+                if (File.Exists("settings.xml"))
+                {
+                    StreamReader sr = new StreamReader("settings.xml");
+                    settings = sr.ReadToEnd();
+                    sr.Close();
+                    settings = settings.Replace("\"", ":-:");
+                }
+                else settings = "File settings.xml not found";
+                myJsonData.Add(settings);
+
+                string tanks;
+                if (File.Exists(@"..\version.xml"))
+                {
+                    StreamReader sr = new StreamReader(@"..\version.xml");
+                    tanks = sr.ReadToEnd();
+                    sr.Close();
+                    tanks = settings.Replace("\"", ":-:");
+                }
+                else tanks = "File version.xml not found";
+                myJsonData.Add(tanks);
 
                 if (myJsonData.Count > 2)
                 {
@@ -61,13 +83,46 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         string json = JsonConvert.SerializeObject(myJsonData);
 
-                        WebRequest req = WebRequest.Create("http://ai-rus.com/wot/ticket/" + json);
-                        WebResponse resp = req.GetResponse();
+                        switch (getResponse("http://ai-rus.com/wot/ticket/" + json))
+                        {
+                            case "OK": tbTicket.Text = "Ваше сообщение успешно отправлено разработчику"; break;
+                            default: MessageBox.Show(this, "Ошибка отправки сообщения. Попробуйте еще раз.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); break;
+                        }
                     }
-                    catch (WebException) { }
+                    catch (WebException ex) { MessageBox.Show(this, "Ошибка отправки сообщения. Попробуйте еще раз." + Environment.NewLine + Environment.NewLine + ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
+
+                MessageBox.Show(this, "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception) { }
+        }
+
+        private static string getResponse(string uri)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                byte[] buf = new byte[8192];
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream resStream = response.GetResponseStream();
+                int count = 0;
+                do
+                {
+                    count = resStream.Read(buf, 0, buf.Length);
+                    if (count != 0)
+                    {
+                        sb.Append(Encoding.Default.GetString(buf, 0, count));
+                    }
+                }
+                while (count > 0);
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(fIndex.ActiveForm, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
         }
     }
 }
