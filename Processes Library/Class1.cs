@@ -161,7 +161,8 @@ namespace Processes_Library
                 "Volume2",
                 "egui",
                 "AvastUI",
-                "WoTLogger3"
+                "WoTLogger3",
+                "InputPersonalization"
             };
 
             return vipProcess;

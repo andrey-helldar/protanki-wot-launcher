@@ -62,8 +62,10 @@
             this.pNews = new System.Windows.Forms.Panel();
             this.bwGetVipProcesses = new System.ComponentModel.BackgroundWorker();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.pbWarning = new System.Windows.Forms.PictureBox();
             this.contextMenu.SuspendLayout();
             this.pVideo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWarning)).BeginInit();
             this.SuspendLayout();
             // 
             // bPlay
@@ -485,12 +487,25 @@
             this.notifyIcon.BalloonTipClicked += new System.EventHandler(this.notifyIcon_BalloonTipClicked);
             this.notifyIcon.Click += new System.EventHandler(this.notifyIcon_Click);
             // 
+            // pbWarning
+            // 
+            this.pbWarning.BackColor = System.Drawing.Color.Transparent;
+            this.pbWarning.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.Warning;
+            this.pbWarning.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbWarning.Location = new System.Drawing.Point(149, 419);
+            this.pbWarning.Name = "pbWarning";
+            this.pbWarning.Size = new System.Drawing.Size(32, 32);
+            this.pbWarning.TabIndex = 32;
+            this.pbWarning.TabStop = false;
+            this.pbWarning.Click += new System.EventHandler(this.pbWarning_Click);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.pbWarning);
             this.Controls.Add(this.pNews);
             this.Controls.Add(this.pVideo);
             this.Controls.Add(this.llBlockCaption);
@@ -518,6 +533,7 @@
             this.contextMenu.ResumeLayout(false);
             this.pVideo.ResumeLayout(false);
             this.pVideo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWarning)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -558,6 +574,7 @@
         private System.ComponentModel.BackgroundWorker bwGetVipProcesses;
         public System.Windows.Forms.ProgressBar pbDownload;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.PictureBox pbWarning;
     }
 }
 

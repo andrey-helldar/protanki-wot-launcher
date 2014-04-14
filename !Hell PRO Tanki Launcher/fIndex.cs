@@ -101,15 +101,14 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (File.Exists("settings.xml"))
+                if (File.Exists("config.ini"))
                 {
-                    XDocument doc = XDocument.Load("settings.xml");
-
+                    try
+                    {
                     /// Читаем дату выпуска модпака
                     modpackDate = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "date");
 
-                    try
-                    {
+                        /// Читаем тип модпака
                         if (File.Exists("config.ini")) { modType = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower(); }
                         else { modType = "full"; }
                     }
@@ -119,6 +118,21 @@ namespace _Hell_PRO_Tanki_Launcher
                         Debug.Save("loadSettings()", "Read from INI", ex.Message);
                     }
 
+                    /// Получаем версию модпака
+                    lVerModpack = new Version(new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version"));
+                }
+                else
+                {
+                    MessageBox.Show(this, "Модпак не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lVerModpack = null;
+                    Debug.Save("loadSettings()", "File not found \"config.ini\"");
+                }
+
+                /// Загружаем настройки
+                if (File.Exists("settings.xml"))
+                {
+                    XDocument doc = XDocument.Load("settings.xml");
+                    
                     updateNotification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : "";
 
                     showVideoNotify = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false) : false;
@@ -133,13 +147,6 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
 
                     if (doc.Root.Element("common.test") != null) commonTest = true;
-
-                    try { lVerModpack = new Version(new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version")); }
-                    catch (Exception ex)
-                    {
-                        lVerModpack = new Version("0.0.0.0");
-                        Debug.Save("loadSettings()", "Error read \"config.ini\"", ex.Message);
-                    }
                 }
                 else
                 {
@@ -186,7 +193,7 @@ namespace _Hell_PRO_Tanki_Launcher
         }
 
         // Получаем версию танков
-        private Version LocalTanksVersion()
+        private async Task<Version> LocalTanksVersion()
         {
             try
             {
@@ -208,7 +215,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    Debug.Save("getTanksVersion()", "Клиент игры не обнаружен в реестре.");
+                    Debug.Save("LocalTanksVersion()", "Клиент игры не обнаружен в реестре.");
                     bPlay.Enabled = false;
                     bLauncher.Enabled = false;
                     MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -217,7 +224,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("getTanksVersion()", "doc.Load(path + \"version.xml\");", ex.Message);
+                Debug.Save("LocalTanksVersion()", "doc.Load(\"" + path + "version.xml\");", ex.Message);
                 bPlay.Enabled = false;
                 bLauncher.Enabled = false;
                 MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -283,8 +290,6 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                lVerTanks = LocalTanksVersion();
-
                 XDocument docSettings = XDocument.Load("settings.xml");
                 if (commonTest)
                     if (docSettings.Root.Element("common.test") == null) docSettings.Root.Add(new XElement("common.test", null));
@@ -321,7 +326,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwUpdater_DoWork()", ex.Message);
+                Debug.Save("bwUpdater_DoWork()", ex.Message);
             }
         }
 
@@ -1159,7 +1164,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void fIndex_Load(object sender, EventArgs e)
         {
-
             /// Запускаем проверку обновлений лаунчера после инициализации приложения
             UpdateLauncher update = new UpdateLauncher();
             update.Check(true);
@@ -1188,6 +1192,8 @@ namespace _Hell_PRO_Tanki_Launcher
             pNews.SetBounds(13, 109, 620, 290); // Так как панель у нас убрана с видимой части, устанавливаем ее расположение динамически
 
             llVersion.Text = lVerModpack.ToString();
+
+            lVerTanks = LocalTanksVersion().Result;
 
             setBackground();
             moveForm();
@@ -1319,6 +1325,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (DateTime.Parse(newsDate) < DateTime.Parse(packDate)) { return false; }
             }
             return true;
+        }
+
+        private void pbWarning_Click(object sender, EventArgs e)
+        {
+            fWarning fWarning = new fWarning();
+            fWarning.ShowDialog();
         }
     }
 }

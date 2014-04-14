@@ -215,7 +215,7 @@ namespace _Hell_PRO_Tanki_Installer
 
         private void CargoEtiqueta(Font font)
         {
-            float size = 11f;
+            //float size = 11f;
             FontStyle fontStyle = FontStyle.Regular;
 
             bPROsite.Font = new Font(ff, 20, fontStyle);
