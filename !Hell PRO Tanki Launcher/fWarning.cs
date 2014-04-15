@@ -86,8 +86,9 @@ namespace _Hell_PRO_Tanki_Launcher
                      {
                          string json = JsonConvert.SerializeObject(myJsonData);
 
-                         string answer = POST("http://ai-rus.com/wot/ticket/", "data=" + json);
                          string status = "";
+
+                         string answer = POST("http://ai-rus.com/wot/ticket/", "data=" + json);
 
                          switch (answer)
                          {
@@ -96,7 +97,7 @@ namespace _Hell_PRO_Tanki_Launcher
                              default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;
                          }
 
-                         MessageBox.Show(this, answer+Environment.NewLine+ status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                         MessageBox.Show(this, answer+Environment.NewLine+Environment.NewLine+ status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                      }
                      catch (WebException ex) { MessageBox.Show(this, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
                  }
@@ -113,8 +114,8 @@ namespace _Hell_PRO_Tanki_Launcher
             System.Net.WebRequest req = System.Net.WebRequest.Create(Url);
             req.Method = "POST";
             req.Timeout = 100000;
-            req.ContentType = "application/x-www-form-urlencoded";
-            byte[] sentData = Encoding.GetEncoding(1251).GetBytes(Data);
+            req.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+            byte[] sentData = Encoding.GetEncoding("Utf-8").GetBytes(Data);
             req.ContentLength = sentData.Length;
             System.IO.Stream sendStream = req.GetRequestStream();
             sendStream.Write(sentData, 0, sentData.Length);
