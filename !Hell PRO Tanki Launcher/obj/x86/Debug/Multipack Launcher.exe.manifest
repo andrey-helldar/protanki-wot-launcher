@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2278400">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2279424">
       <assemblyIdentity name="Multipack Launcher" version="1.0.11.168" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ss3EVcBF2SWx8+SVisRgZGFCz+njkcd2iX+8c425Ips=</dsig:DigestValue>
+        <dsig:DigestValue>GDIEihokEVQw6EvIIMnrLrhSsS6FYyHI5FWFPhGWUZQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

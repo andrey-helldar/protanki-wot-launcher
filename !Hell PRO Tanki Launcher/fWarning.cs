@@ -30,7 +30,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private async Task SendTicket()
         {
             try
-            {                
+            {
                 string name = Environment.MachineName +
                         Environment.UserName +
                         Environment.UserDomainName +
@@ -54,7 +54,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 myJsonData.Add("PROTanki");
                 myJsonData.Add(Application.ProductName + " " + Application.ProductVersion);
 
-                text += tbTicket.Text+"[br][br][hr]";
+                text += tbTicket.Text + "[br][br][hr]";
 
                 string settings;
                 if (File.Exists("settings.xml"))
@@ -65,46 +65,46 @@ namespace _Hell_PRO_Tanki_Launcher
                     settings = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
                 }
                 else settings = "File settings.xml not found";
-                text += "[b]settings.xml[/b][br]"+settings+"[br][br][hr]";
+                text += "[b]settings.xml[/b][br]" + settings + "[br][br][hr]";
 
-                 string tanks;
-                 if (File.Exists(@"..\version.xml"))
-                 {
-                     StreamReader sr = new StreamReader(@"..\version.xml");
-                     tanks = sr.ReadToEnd();
-                     sr.Close();
-                     tanks = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
-                 }
-                 else tanks = "File version.xml not found";
-                  text += "[b]version.xml[/b][br]"+ tanks;
+                string tanks;
+                if (File.Exists(@"..\version.xml"))
+                {
+                    StreamReader sr = new StreamReader(@"..\version.xml");
+                    tanks = sr.ReadToEnd();
+                    sr.Close();
+                    tanks = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
+                }
+                else tanks = "File version.xml not found";
+                text += "[b]version.xml[/b][br]" + tanks;
 
-                  myJsonData.Add(text);
+                myJsonData.Add(text);
+                myJsonData.Add(rbBug.Checked ? "bug" : "wish");
 
-                 if (myJsonData.Count > 2)
-                 {
-                     try
-                     {
-                         string json = JsonConvert.SerializeObject(myJsonData);
+                if (myJsonData.Count > 2)
+                {
+                    try
+                    {
+                        string json = JsonConvert.SerializeObject(myJsonData);
 
-                         string status = "";
+                        string status = "";
 
-                         string answer = POST("http://ai-rus.com/wot/ticket/", "data=" + json);
+                        //string answer = POST("http://ai-rus.com/wot/ticket/", "data=" + json);
+                        switch (POST("http://ai-rus.com/wot/ticket/", "data=" + json))
+                        {
+                            case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
+                            case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
+                            default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;
+                        }
 
-                         switch (answer)
-                         {
-                             case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
-                             case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
-                             default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;
-                         }
-
-                         MessageBox.Show(this, answer+Environment.NewLine+Environment.NewLine+ status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                     }
-                     catch (WebException ex) { MessageBox.Show(this, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
-                 }
-                 else
-                 {
-                     MessageBox.Show(this, "Ошибка отправки данных. Попробуйте чуть познее...", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                 }
+                        MessageBox.Show(this, /*answer+Environment.NewLine+Environment.NewLine+ */status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (WebException ex) { MessageBox.Show(this, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                }
+                else
+                {
+                    MessageBox.Show(this, "Ошибка отправки данных. Попробуйте чуть познее...", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception) { }
         }
@@ -123,7 +123,6 @@ namespace _Hell_PRO_Tanki_Launcher
             System.Net.WebResponse res = req.GetResponse();
             System.IO.Stream ReceiveStream = res.GetResponseStream();
             System.IO.StreamReader sr = new System.IO.StreamReader(ReceiveStream, Encoding.UTF8);
-            //Кодировка указывается в зависимости от кодировки ответа сервера
             Char[] read = new Char[256];
             int count = sr.Read(read, 0, 256);
             string Out = String.Empty;

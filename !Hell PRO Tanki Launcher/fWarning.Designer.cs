@@ -32,11 +32,14 @@
             this.tbTicket = new System.Windows.Forms.TextBox();
             this.bSend = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
+            this.rbWish = new System.Windows.Forms.RadioButton();
+            this.rbBug = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(671, 46);
@@ -48,7 +51,8 @@
             // 
             this.tbTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(9)))), ((int)(((byte)(0)))));
             this.tbTicket.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbTicket.ForeColor = System.Drawing.Color.White;
+            this.tbTicket.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbTicket.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.tbTicket.Location = new System.Drawing.Point(16, 58);
             this.tbTicket.Multiline = true;
             this.tbTicket.Name = "tbTicket";
@@ -65,10 +69,10 @@
             this.bSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSend.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSend.Location = new System.Drawing.Point(196, 299);
+            this.bSend.Location = new System.Drawing.Point(437, 299);
             this.bSend.Name = "bSend";
             this.bSend.Size = new System.Drawing.Size(120, 34);
-            this.bSend.TabIndex = 2;
+            this.bSend.TabIndex = 4;
             this.bSend.Text = "Отправить";
             this.bSend.UseVisualStyleBackColor = false;
             this.bSend.Click += new System.EventHandler(this.bSend_Click);
@@ -83,13 +87,41 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(358, 299);
+            this.bCancel.Location = new System.Drawing.Point(563, 299);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(120, 34);
-            this.bCancel.TabIndex = 3;
+            this.bCancel.TabIndex = 5;
             this.bCancel.Text = "Выход";
             this.bCancel.UseVisualStyleBackColor = false;
             this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
+            // 
+            // rbWish
+            // 
+            this.rbWish.AutoSize = true;
+            this.rbWish.BackColor = System.Drawing.Color.Transparent;
+            this.rbWish.Checked = true;
+            this.rbWish.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rbWish.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.rbWish.Location = new System.Drawing.Point(16, 304);
+            this.rbWish.Name = "rbWish";
+            this.rbWish.Size = new System.Drawing.Size(177, 24);
+            this.rbWish.TabIndex = 2;
+            this.rbWish.TabStop = true;
+            this.rbWish.Text = "Пожелание к лаунчеру";
+            this.rbWish.UseVisualStyleBackColor = false;
+            // 
+            // rbBug
+            // 
+            this.rbBug.AutoSize = true;
+            this.rbBug.BackColor = System.Drawing.Color.Transparent;
+            this.rbBug.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rbBug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.rbBug.Location = new System.Drawing.Point(219, 304);
+            this.rbBug.Name = "rbBug";
+            this.rbBug.Size = new System.Drawing.Size(137, 24);
+            this.rbBug.TabIndex = 3;
+            this.rbBug.Text = "Найдена ошибка";
+            this.rbBug.UseVisualStyleBackColor = false;
             // 
             // fWarning
             // 
@@ -98,6 +130,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(23)))), ((int)(((byte)(0)))));
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.fWarning;
             this.ClientSize = new System.Drawing.Size(695, 340);
+            this.Controls.Add(this.rbBug);
+            this.Controls.Add(this.rbWish);
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bSend);
             this.Controls.Add(this.tbTicket);
@@ -122,5 +156,7 @@
         private System.Windows.Forms.TextBox tbTicket;
         private System.Windows.Forms.Button bSend;
         private System.Windows.Forms.Button bCancel;
+        private System.Windows.Forms.RadioButton rbWish;
+        private System.Windows.Forms.RadioButton rbBug;
     }
 }
