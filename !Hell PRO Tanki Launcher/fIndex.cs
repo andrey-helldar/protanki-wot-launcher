@@ -643,8 +643,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     bool kill = false;
 
-                    MessageBox.Show(ProcessList.Count().ToString());
-
                     for (int i = 0; i < 2; i++)
                     {
                         foreach (var process in Process.GetProcesses())
