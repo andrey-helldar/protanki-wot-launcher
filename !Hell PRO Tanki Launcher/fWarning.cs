@@ -83,10 +83,23 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     try
                     {
-                        string status = "";
+                        //string json;
                         string json = JsonConvert.SerializeObject(myJsonData);
 
-                        aw = getResponse("http://ai-rus.com/wot/ticket/",json);
+                        //string url = "http://ai-rus.com/wot/ticket/";
+                        //string result = getResponse("http://ai-rus.com/wot/ticket/" + json);
+                        string result;
+
+                        
+
+
+
+
+
+                        MessageBox.Show(result + Environment.NewLine + Environment.NewLine + json);
+                        /*
+                        //aw = getResponse("http://ai-rus.com/wot/ticket/",json);
+                        aw = getResponse("http://ai-rus.com/engine/modules/wot/ticket.php", json);
                         switch (aw)
                         {
                             case "OK": status="Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
@@ -95,36 +108,34 @@ namespace _Hell_PRO_Tanki_Launcher
                         }
 
                         MessageBox.Show(this, status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MessageBox.Show(this, aw, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(this, aw, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);*/
                     }
-                    catch (WebException ex) { MessageBox.Show(this, "Ошибка отправки сообщения. Попробуйте еще раз." + Environment.NewLine + Environment.NewLine + ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                    catch (WebException ex) { MessageBox.Show(this, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
             }
             catch (Exception) { }
         }
 
-        private static string getResponse(string uri, string data=null)
+        static string getResponse(string uri)
         {
             try
             {
-                var body = Encoding.UTF8.GetBytes(data);
-                var request = (HttpWebRequest)WebRequest.Create(uri);
-
-                request.Method = "POST";
-                request.ContentType = "application/json";
-                request.ContentLength = body.Length;
-
-                using (Stream stream = request.GetRequestStream())
+                StringBuilder sb = new StringBuilder();
+                byte[] buf = new byte[8192];
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream resStream = response.GetResponseStream();
+                int count = 0;
+                do
                 {
-                    stream.Write(body, 0, body.Length);
-                    stream.Close();
+                    count = resStream.Read(buf, 0, buf.Length);
+                    if (count != 0)
+                    {
+                        sb.Append(Encoding.Default.GetString(buf, 0, count));
+                    }
                 }
-
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                {
-                    response.Close();
-                    return "check site";
-                }
+                while (count > 0);
+                return sb.ToString();
             }
             catch (Exception ex)
             {

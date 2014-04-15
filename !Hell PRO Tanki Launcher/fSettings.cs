@@ -63,7 +63,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception ex) { cbPriority.SelectedIndex = 2; Debug.Save("public fSettings()", "Priority", ex.Message); }
 
-                cbVideo.Checked = doc.Root.Element("info") == null || doc.Root.Element("info").Attribute("video").Value == "True";
+                cbVideo.Checked = doc.Root.Element("info") == null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false;
 
                 cbKillProcesses.Checked = ReadSettingsStatus(doc, "kill");
                 cbForceClose.Checked = ReadSettingsStatus(doc, "force");
@@ -101,7 +101,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     switch (doc.Root.Element("settings").Attribute(attr).Value)
                     {
-                        case "Checked": return CheckState.Checked; 
+                        case "Checked": return CheckState.Checked;
                         case "Indeterminate": return CheckState.Indeterminate;
                         default: return CheckState.Unchecked;
                     }

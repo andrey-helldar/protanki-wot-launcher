@@ -1217,8 +1217,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     //ProcessList.processes;
                     XDocument doc = XDocument.Load("settings.xml");
-                    //foreach (XElement el in doc.Root.Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
-                    foreach (XElement el in doc.Root.Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
+                    if (doc.Root.Element("processes") != null)
+                    foreach (XElement el in doc.Root.Element("processes").Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
                 }
             }
             catch (Exception ex)
