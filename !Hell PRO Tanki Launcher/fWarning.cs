@@ -30,11 +30,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private async Task SendTicket()
         {
             try
-            {
-                string aw = "";
-
-                string code = new Debug().code;
-                
+            {                
                 string name = Environment.MachineName +
                         Environment.UserName +
                         Environment.UserDomainName +
@@ -53,11 +49,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 myJsonData.Clear();
                 string text = "";
 
-                myJsonData.Add(code);
+                myJsonData.Add(new Debug().code);
                 myJsonData.Add(name);
                 myJsonData.Add("PROTanki");
                 myJsonData.Add(Application.ProductName + " " + Application.ProductVersion);
-                myJsonData.Add(tbTicket.Text+"[br][hr]");
+
+                text += tbTicket.Text+"[br][br][hr]";
 
                 string settings;
                 if (File.Exists("settings.xml"))
@@ -68,7 +65,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     settings = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
                 }
                 else settings = "File settings.xml not found";
-                myJsonData.Add("[b]settings.xml[/b][br]" + Environment.NewLine + settings+Environment.NewLine+Environment.NewLine+"[hr]");
+                text += "[b]settings.xml[/b][br]"+settings+"[br][br][hr]";
 
                  string tanks;
                  if (File.Exists(@"..\version.xml"))
@@ -79,13 +76,17 @@ namespace _Hell_PRO_Tanki_Launcher
                      tanks = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
                  }
                  else tanks = "File version.xml not found";
-                 myJsonData.Add("[b]version.xml[/b][br]" + Environment.NewLine + tanks);
+                  text += "[b]version.xml[/b][br]"+ tanks;
+
+                  myJsonData.Add(text);
 
                  if (myJsonData.Count > 2)
                  {
                      try
                      {
-                         string answer = POST("http://ai-rus.com/wot/ticket/", "data=" + JsonConvert.SerializeObject(myJsonData));
+                         string json = JsonConvert.SerializeObject(myJsonData);
+
+                         string answer = POST("http://ai-rus.com/wot/ticket/", "data=" + json);
                          string status = "";
 
                          switch (answer)
