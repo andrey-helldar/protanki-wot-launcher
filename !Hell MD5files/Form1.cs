@@ -32,6 +32,12 @@ namespace _Hell_MD5files
 
         private async Task GetFiles()
         {
+            if (File.Exists(@"files\Multipack Launcher.exe") &&
+                File.Exists(@"files\launcher.exe"))
+            {
+                File.Delete(@"files\launcher.exe");
+            }
+
             if (File.Exists(@"files\Multipack Launcher.exe")) { File.Move(@"files\Multipack Launcher.exe", @"files\launcher.exe"); }
 
             lvMD5.Items.Clear();
@@ -46,13 +52,16 @@ namespace _Hell_MD5files
 
             foreach (FileInfo file in info.GetFiles())
             {
-                int i = lvMD5.Items.Add(file.Name).Index;
-                lvMD5.Items[i].SubItems.Add(FileVersionInfo.GetVersionInfo(file.FullName).FileVersion);
-                lvMD5.Items[i].SubItems.Add(file.Length.ToString());
-                lvMD5.Items[i].SubItems.Add(file.Extension.Replace(".",""));
-                lvMD5.Items[i].SubItems.Add(Checksum(file.FullName));
+                if (file.Name != "version.xml" && file.Name != "version")
+                {
+                    int i = lvMD5.Items.Add(file.Name).Index;
+                    lvMD5.Items[i].SubItems.Add(FileVersionInfo.GetVersionInfo(file.FullName).FileVersion);
+                    lvMD5.Items[i].SubItems.Add(file.Length.ToString());
+                    lvMD5.Items[i].SubItems.Add(file.Extension.Replace(".", ""));
+                    lvMD5.Items[i].SubItems.Add(Checksum(file.FullName));
 
-                lvMD5.Items[i].Checked = settings.IndexOf(file.Name) > -1;
+                    lvMD5.Items[i].Checked = settings.IndexOf(file.Name) > -1;
+                }
             }
         }
 
@@ -90,8 +99,10 @@ namespace _Hell_MD5files
                 if (file.Checked) { settings.Root.Add(new XElement(file.Text, null)); }
             }
 
-            doc.Save("version.xml");
+            doc.Save(@"files\version.xml");
             settings.Save("settings.xml");
+
+            MessageBox.Show("OK");
         }
     }
 }

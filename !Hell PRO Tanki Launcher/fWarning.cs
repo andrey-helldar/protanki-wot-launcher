@@ -34,10 +34,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 string aw = "";
 
                 string code = new Debug().code;
-
-                List<string> myJsonData = new List<string>();
-                myJsonData.Clear();
-
+                
                 string name = Environment.MachineName +
                         Environment.UserName +
                         Environment.UserDomainName +
@@ -52,10 +49,15 @@ namespace _Hell_PRO_Tanki_Launcher
                     name = sBuilder.ToString();
                 }
 
+                List<string> myJsonData = new List<string>();
+                myJsonData.Clear();
+                string text = "";
+
                 myJsonData.Add(code);
                 myJsonData.Add(name);
                 myJsonData.Add("PROTanki");
-                myJsonData.Add(Application.ProductVersion);
+                myJsonData.Add(Application.ProductName + " " + Application.ProductVersion);
+                myJsonData.Add(tbTicket.Text+"[br][hr]");
 
                 string settings;
                 if (File.Exists("settings.xml"))
@@ -63,66 +65,91 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr = new StreamReader("settings.xml");
                     settings = sr.ReadToEnd();
                     sr.Close();
-                    settings = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;");
+                    settings = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
                 }
                 else settings = "File settings.xml not found";
-                myJsonData.Add(settings);
+                myJsonData.Add("[b]settings.xml[/b][br]" + Environment.NewLine + settings+Environment.NewLine+Environment.NewLine+"[hr]");
 
-                string tanks;
-                if (File.Exists(@"..\version.xml"))
-                {
-                    StreamReader sr = new StreamReader(@"..\version.xml");
-                    tanks = sr.ReadToEnd();
-                    sr.Close();
-                    tanks = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;");
-                }
-                else tanks = "File version.xml not found";
-                myJsonData.Add(tanks);
+                 string tanks;
+                 if (File.Exists(@"..\version.xml"))
+                 {
+                     StreamReader sr = new StreamReader(@"..\version.xml");
+                     tanks = sr.ReadToEnd();
+                     sr.Close();
+                     tanks = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
+                 }
+                 else tanks = "File version.xml not found";
+                 myJsonData.Add("[b]version.xml[/b][br]" + Environment.NewLine + tanks);
 
-                if (myJsonData.Count > 2)
-                {
-                    try
-                    {
-                        //string json;
-                        string json = JsonConvert.SerializeObject(myJsonData);
+                 if (myJsonData.Count > 2)
+                 {
+                     try
+                     {
+                         string answer = POST("http://ai-rus.com/wot/ticket/", "data=" + JsonConvert.SerializeObject(myJsonData));
+                         string status = "";
 
-                        //string url = "http://ai-rus.com/wot/ticket/";
-                        //string result = getResponse("http://ai-rus.com/wot/ticket/" + json);
-                        string result;
+                         switch (answer)
+                         {
+                             case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
+                             case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
+                             default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;
+                         }
 
-                        
-
-
-
-
-
-                        MessageBox.Show(result + Environment.NewLine + Environment.NewLine + json);
-                        /*
-                        //aw = getResponse("http://ai-rus.com/wot/ticket/",json);
-                        aw = getResponse("http://ai-rus.com/engine/modules/wot/ticket.php", json);
-                        switch (aw)
-                        {
-                            case "OK": status="Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
-                            case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
-                            default: status="Ошибка отправки сообщения. Попробуйте еще раз."; break;
-                        }
-
-                        MessageBox.Show(this, status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MessageBox.Show(this, aw, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);*/
-                    }
-                    catch (WebException ex) { MessageBox.Show(this, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
-                }
+                         MessageBox.Show(this, answer+Environment.NewLine+ status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                     }
+                     catch (WebException ex) { MessageBox.Show(this, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                 }
+                 else
+                 {
+                     MessageBox.Show(this, "Ошибка отправки данных. Попробуйте чуть познее...", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                 }
             }
             catch (Exception) { }
         }
 
-        static string getResponse(string uri)
+        private static string POST(string Url, string Data)
+        {
+            System.Net.WebRequest req = System.Net.WebRequest.Create(Url);
+            req.Method = "POST";
+            req.Timeout = 100000;
+            req.ContentType = "application/x-www-form-urlencoded";
+            byte[] sentData = Encoding.GetEncoding(1251).GetBytes(Data);
+            req.ContentLength = sentData.Length;
+            System.IO.Stream sendStream = req.GetRequestStream();
+            sendStream.Write(sentData, 0, sentData.Length);
+            sendStream.Close();
+            System.Net.WebResponse res = req.GetResponse();
+            System.IO.Stream ReceiveStream = res.GetResponseStream();
+            System.IO.StreamReader sr = new System.IO.StreamReader(ReceiveStream, Encoding.UTF8);
+            //Кодировка указывается в зависимости от кодировки ответа сервера
+            Char[] read = new Char[256];
+            int count = sr.Read(read, 0, 256);
+            string Out = String.Empty;
+            while (count > 0)
+            {
+                String str = new String(read, 0, count);
+                Out += str;
+                count = sr.Read(read, 0, 256);
+            }
+            return Out;
+        }
+
+        static string getResponse(string uri, string json)
         {
             try
             {
+                var body = Encoding.UTF8.GetBytes(json);
+
                 StringBuilder sb = new StringBuilder();
                 byte[] buf = new byte[8192];
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+
+                using (Stream stream = request.GetRequestStream())
+                {
+                    stream.Write(body, 0, body.Length);
+                    stream.Close();
+                }
+
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream resStream = response.GetResponseStream();
                 int count = 0;

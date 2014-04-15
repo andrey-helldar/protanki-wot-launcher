@@ -157,7 +157,9 @@ namespace Processes_Library
                 "s.bat",
                 "TOTALCMD",
                 "TOTALCMD32",
-                "TOTALCMD64"
+                "TOTALCMD64",
+                "AIMP3",
+                "winamp"
             };
 
             return vipProcess;

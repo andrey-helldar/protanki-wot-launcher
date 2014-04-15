@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pro>
+  <version>wef</version>
+  <tanks>0.0.0.0</tanks>
+  <full>
+    <message>уа</message>
+    <download>wef</download>
+  </full>
+  <base>
+    <message>wef</message>
+    <download>wef</download>
+  </base>
+</pro>

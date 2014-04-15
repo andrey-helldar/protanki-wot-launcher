@@ -153,24 +153,31 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bwUserProcesses_DoWork(object sender, DoWorkEventArgs e)
         {
-            ProcessList.Clear();
-
-            Process[] myProcesses = Process.GetProcesses();
-            int processID = Process.GetCurrentProcess().SessionId;
-
-            for (int i = 1; i < myProcesses.Length; i++)
+            try
             {
-                try
+                ProcessList.Clear();
+
+                Process[] myProcesses = Process.GetProcesses();
+                int processID = Process.GetCurrentProcess().SessionId;
+
+                for (int i = 1; i < myProcesses.Length; i++)
                 {
-                    if (myProcesses[i].SessionId == processID)
+                    try
                     {
-                        if (!ProcessList.IndexOf(myProcesses[i].ProcessName) && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
+                        if (myProcesses[i].SessionId == processID)
                         {
-                            ProcessList.Add(myProcesses[i].ProcessName, myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim());
+                            if (!ProcessList.IndexOf(myProcesses[i].ProcessName) && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
+                            {
+                                ProcessList.Add(myProcesses[i].ProcessName, myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim());
+                            }
                         }
                     }
+                    catch (Exception ex) { Debug.Save("bwUserProcesses_DoWork()", myProcesses[i].ProcessName, ex.Message); }
                 }
-                catch (Exception) { }
+            }
+            catch (Exception ex0)
+            {
+                Debug.Save("bwUserProcesses_DoWork()", ex0.Message);
             }
         }
 
@@ -197,7 +204,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         lvProcessesUser.Items[pos].BackColor = Color.Plum;
                     }
                 }
-                catch (Exception) { }
+                catch (Exception ex) { Debug.Save("bwUserProcesses_RunWorkerCompleted()", ex.Message); }
             }
         }
 

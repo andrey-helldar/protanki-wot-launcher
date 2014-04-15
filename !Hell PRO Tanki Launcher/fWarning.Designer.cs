@@ -42,10 +42,13 @@
             this.label1.Size = new System.Drawing.Size(671, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "Если у Вас возникли проблемы в работе лаунчера или есть какие-либо пожелания, Вы " +
-    "можете заполнить форму ниже и отправить сообщение разработчику";
+    "можете заполнить форму ниже и отправить сообщение разработчику:";
             // 
             // tbTicket
             // 
+            this.tbTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(9)))), ((int)(((byte)(0)))));
+            this.tbTicket.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbTicket.ForeColor = System.Drawing.Color.White;
             this.tbTicket.Location = new System.Drawing.Point(16, 58);
             this.tbTicket.Multiline = true;
             this.tbTicket.Name = "tbTicket";
@@ -54,24 +57,38 @@
             // 
             // bSend
             // 
-            this.bSend.ForeColor = System.Drawing.Color.Black;
+            this.bSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bSend.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bSend.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bSend.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.bSend.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.bSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bSend.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bSend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.bSend.Location = new System.Drawing.Point(196, 299);
             this.bSend.Name = "bSend";
             this.bSend.Size = new System.Drawing.Size(120, 34);
             this.bSend.TabIndex = 2;
             this.bSend.Text = "Отправить";
-            this.bSend.UseVisualStyleBackColor = true;
+            this.bSend.UseVisualStyleBackColor = false;
             this.bSend.Click += new System.EventHandler(this.bSend_Click);
             // 
             // bCancel
             // 
-            this.bCancel.ForeColor = System.Drawing.Color.Black;
+            this.bCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.bCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bCancel.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.bCancel.Location = new System.Drawing.Point(358, 299);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(120, 34);
             this.bCancel.TabIndex = 3;
             this.bCancel.Text = "Выход";
-            this.bCancel.UseVisualStyleBackColor = true;
+            this.bCancel.UseVisualStyleBackColor = false;
             this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
             // 
             // fWarning
@@ -79,13 +96,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(23)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(695, 341);
+            this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.fWarning;
+            this.ClientSize = new System.Drawing.Size(695, 340);
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bSend);
             this.Controls.Add(this.tbTicket);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.White;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "fWarning";

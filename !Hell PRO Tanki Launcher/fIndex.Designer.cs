@@ -490,6 +490,7 @@
             this.pbWarning.Size = new System.Drawing.Size(32, 32);
             this.pbWarning.TabIndex = 32;
             this.pbWarning.TabStop = false;
+            this.pbWarning.Visible = false;
             this.pbWarning.Click += new System.EventHandler(this.pbWarning_Click);
             // 
             // fIndex

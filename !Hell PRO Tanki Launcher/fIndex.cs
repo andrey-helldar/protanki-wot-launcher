@@ -287,7 +287,11 @@ namespace _Hell_PRO_Tanki_Launcher
                 XDocument doc = XDocument.Load(@"http://ai-rus.com/pro/pro.xml");
 
                 remoteModVersion = new Version(doc.Root.Element("version").Value);
-                remoteTanksVersion = new Version(doc.Root.Element(!commonTest ? "tanks" : "test").Value);
+
+                if (doc.Root.Element(!commonTest ? "tanks" : "test") != null)
+                    remoteTanksVersion = new Version(doc.Root.Element(!commonTest ? "tanks" : "test").Value);
+                else
+                    remoteTanksVersion = new Version("0.0.0.0");
 
 
                 // Отправляем данные на сайт
