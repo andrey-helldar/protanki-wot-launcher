@@ -72,7 +72,7 @@
             this.bSave.Location = new System.Drawing.Point(138, 505);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 50);
-            this.bSave.TabIndex = 1;
+            this.bSave.TabIndex = 8;
             this.bSave.Text = "Сохранить";
             this.bSave.UseVisualStyleBackColor = false;
             this.bSave.Click += new System.EventHandler(this.bSave_Click);
@@ -91,7 +91,7 @@
             this.bCancel.Location = new System.Drawing.Point(309, 505);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(150, 50);
-            this.bCancel.TabIndex = 2;
+            this.bCancel.TabIndex = 9;
             this.bCancel.Text = "Отмена";
             this.bCancel.UseVisualStyleBackColor = false;
             this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
@@ -138,10 +138,10 @@
             // cbForceClose
             // 
             this.cbForceClose.AutoSize = true;
-            this.cbForceClose.Location = new System.Drawing.Point(18, 38);
+            this.cbForceClose.Location = new System.Drawing.Point(42, 36);
             this.cbForceClose.Name = "cbForceClose";
             this.cbForceClose.Size = new System.Drawing.Size(227, 17);
-            this.cbForceClose.TabIndex = 2;
+            this.cbForceClose.TabIndex = 1;
             this.cbForceClose.Text = "Принудительно завершать приложения";
             this.cbForceClose.UseVisualStyleBackColor = true;
             // 
@@ -151,7 +151,7 @@
             this.cbAero.Location = new System.Drawing.Point(18, 59);
             this.cbAero.Name = "cbAero";
             this.cbAero.Size = new System.Drawing.Size(246, 17);
-            this.cbAero.TabIndex = 1;
+            this.cbAero.TabIndex = 2;
             this.cbAero.Text = "Отключать Windows Aero при запуске игры";
             this.cbAero.UseVisualStyleBackColor = true;
             // 
@@ -185,7 +185,7 @@
             this.cbVideo.Location = new System.Drawing.Point(18, 25);
             this.cbVideo.Name = "cbVideo";
             this.cbVideo.Size = new System.Drawing.Size(165, 17);
-            this.cbVideo.TabIndex = 1;
+            this.cbVideo.TabIndex = 5;
             this.cbVideo.Text = "Уведомлять о новых видео";
             this.cbVideo.UseVisualStyleBackColor = true;
             // 
@@ -291,7 +291,7 @@
             this.lvProcessesUser.ShowGroups = false;
             this.lvProcessesUser.Size = new System.Drawing.Size(561, 242);
             this.lvProcessesUser.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvProcessesUser.TabIndex = 1;
+            this.lvProcessesUser.TabIndex = 7;
             this.lvProcessesUser.UseCompatibleStateImageBehavior = false;
             this.lvProcessesUser.View = System.Windows.Forms.View.Details;
             // 
@@ -337,7 +337,7 @@
             this.cbPriority.Location = new System.Drawing.Point(6, 26);
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(255, 21);
-            this.cbPriority.TabIndex = 0;
+            this.cbPriority.TabIndex = 6;
             // 
             // llRecoverySettings
             // 
