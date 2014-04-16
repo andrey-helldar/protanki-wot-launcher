@@ -227,9 +227,9 @@
             // 
             this.label1.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.label1.Location = new System.Drawing.Point(6, 300);
+            this.label1.Location = new System.Drawing.Point(6, 295);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(544, 41);
+            this.label1.Size = new System.Drawing.Size(561, 41);
             this.label1.TabIndex = 6;
             this.label1.Text = "ВНИМАНИЕ!!! В список исключений рекомендуется добавлять действительно важные прог" +
     "раммы!";
