@@ -3,8 +3,5 @@
   <info video="True" />
   <settings kill="True" force="False" aero="True" video="Unchecked" weak="False" />
   <notification>0.9.0.0</notification>
-  <processes>
-    <process name="acrotray" description="AcroTray" />
-    <process name="AdobeARM" description="Adobe Reader and Acrobat Manager" />
-  </processes>
+  <processes />
 </pro>

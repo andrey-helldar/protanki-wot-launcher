@@ -226,6 +226,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.label1.Location = new System.Drawing.Point(6, 300);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(544, 41);
@@ -237,11 +238,13 @@
             // 
             this.llGlobalProcesses.ActiveLinkColor = System.Drawing.Color.White;
             this.llGlobalProcesses.AutoSize = true;
+            this.llGlobalProcesses.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llGlobalProcesses.ForeColor = System.Drawing.Color.White;
             this.llGlobalProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llGlobalProcesses.LinkColor = System.Drawing.Color.White;
-            this.llGlobalProcesses.Location = new System.Drawing.Point(355, 273);
+            this.llGlobalProcesses.Location = new System.Drawing.Point(351, 273);
             this.llGlobalProcesses.Name = "llGlobalProcesses";
-            this.llGlobalProcesses.Size = new System.Drawing.Size(180, 13);
+            this.llGlobalProcesses.Size = new System.Drawing.Size(199, 15);
             this.llGlobalProcesses.TabIndex = 5;
             this.llGlobalProcesses.TabStop = true;
             this.llGlobalProcesses.Text = "Процессы из глобального списка";
@@ -251,11 +254,13 @@
             // 
             this.llUserProcesses.ActiveLinkColor = System.Drawing.Color.White;
             this.llUserProcesses.AutoSize = true;
+            this.llUserProcesses.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llUserProcesses.ForeColor = System.Drawing.Color.White;
             this.llUserProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llUserProcesses.LinkColor = System.Drawing.Color.White;
-            this.llUserProcesses.Location = new System.Drawing.Point(72, 273);
+            this.llUserProcesses.Location = new System.Drawing.Point(49, 273);
             this.llUserProcesses.Name = "llUserProcesses";
-            this.llUserProcesses.Size = new System.Drawing.Size(205, 13);
+            this.llUserProcesses.Size = new System.Drawing.Size(233, 15);
             this.llUserProcesses.TabIndex = 4;
             this.llUserProcesses.TabStop = true;
             this.llUserProcesses.Text = "Процессы, выбранные пользователем";
@@ -264,7 +269,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Plum;
-            this.panel2.Location = new System.Drawing.Point(324, 267);
+            this.panel2.Location = new System.Drawing.Point(312, 267);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(25, 25);
             this.panel2.TabIndex = 3;
@@ -272,7 +277,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightGreen;
-            this.panel1.Location = new System.Drawing.Point(38, 267);
+            this.panel1.Location = new System.Drawing.Point(18, 267);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(25, 25);
             this.panel1.TabIndex = 2;

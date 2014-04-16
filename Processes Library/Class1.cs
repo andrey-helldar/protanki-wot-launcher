@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
@@ -85,7 +86,14 @@ namespace Processes_Library
 
         public async Task<string> Send(string json)
         {
-            return POST("http://ai-rus.com/wot/processes/", "data=" + json);
+            try
+            {
+                return POST("http://ai-rus.com/wot/processes/", "data=" + json);
+            }
+            catch (Exception)
+            {
+                return "FAIL";
+            }
         }
 
         private static string POST(string Url, string Data)

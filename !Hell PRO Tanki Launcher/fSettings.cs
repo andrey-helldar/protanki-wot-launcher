@@ -62,7 +62,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception ex) { cbPriority.SelectedIndex = 2; Debug.Save("public fSettings()", "Priority", ex.Message); }
 
-                cbVideo.Checked = doc.Root.Element("info") == null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false;
+                cbVideo.Checked = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false;
 
                 cbKillProcesses.Checked = ReadSettingsStatus(doc, "kill");
                 cbForceClose.Checked = ReadSettingsStatus(doc, "force");
@@ -352,13 +352,12 @@ namespace _Hell_PRO_Tanki_Launcher
                     foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
                     {
                         if (obj.BackColor != Color.Plum) // Если процесс не является глобальным, то добавляем данные для вывода
-                            myJsonData.Add(obj.Text + ":" + obj.SubItems[1].Text);
+                            myJsonData.Add(obj.Text + "|" + obj.SubItems[1].Text);
                     }
 
                     string json = JsonConvert.SerializeObject(myJsonData);
 
-                    Task<string> status = ProcessList.Send(json).Wait();
-                    MessageBox.Show(status.Result);
+                    ProcessList.Send(json).Wait();
                 }
             }
             catch (Exception ex)
