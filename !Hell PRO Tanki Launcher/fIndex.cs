@@ -202,7 +202,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 else
                 {
                     Debug.Save("tanksVersion()", "Клиент игры не обнаружен в реестре.");
-                    bPlay.Enabled = false;
+                    //bPlay.Enabled = false;
                     bLauncher.Enabled = false;
                     MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return new Version("0.0.0.0");
@@ -211,7 +211,7 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 Debug.Save("tanksVersion()", "doc.Load(\"" + pathToTanks + "version.xml\");", ex.Message);
-                bPlay.Enabled = false;
+                //bPlay.Enabled = false;
                 bLauncher.Enabled = false;
                 MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return new Version("0.0.0.0");
@@ -393,12 +393,12 @@ namespace _Hell_PRO_Tanki_Launcher
                         status += "Обнаружена новая версия клиента игры (" + remoteTanksVersion.ToString() + ")" + Environment.NewLine;
 
                         // Отключаем кнопку запуска игры
-                        bPlay.Enabled = false;
+                        //bPlay.Enabled = false;
                     }
                     else
                     {
                         // Включаем кнопку запуска игры
-                        bPlay.Enabled = true;
+                        //bPlay.Enabled = true;
                     }
 
 
@@ -476,12 +476,24 @@ namespace _Hell_PRO_Tanki_Launcher
             try
             {
                 autoOptimizePC = false;
+                GetVipProcesses().Wait();
 
-                if (!bwOptimize.IsBusy)
+                if (!tanksUpdates)
                 {
-                    GetVipProcesses().Wait();
-                    playGame = true;
-                    bwOptimize.RunWorkerAsync();
+                    if (!bwOptimize.IsBusy)
+                    {
+                        playGame = true;
+                        bwOptimize.RunWorkerAsync();
+                    }
+                }
+                else
+                {
+                    if (!bwOptimize.IsBusy)
+                    {
+                        bwOptimize.RunWorkerAsync();
+                    }
+
+                    Process.Start(pathToTanks + "WoTLauncher.exe");
                 }
 
                 Hide();
