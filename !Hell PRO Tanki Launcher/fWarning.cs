@@ -15,6 +15,9 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fWarning : Form
     {
+        string sendText = String.Empty,
+            sendStatus = String.Empty;
+
         public fWarning()
         {
             InitializeComponent();
@@ -47,14 +50,15 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 List<string> myJsonData = new List<string>();
                 myJsonData.Clear();
-                string text = "";
 
                 myJsonData.Add(new Debug().code);
                 myJsonData.Add(name);
                 myJsonData.Add("PROTanki");
                 myJsonData.Add(Application.ProductName + " " + Application.ProductVersion);
 
-                text += tbTicket.Text + "[br][br][hr]";
+                string text = tbTicket.Text.Trim() + "[br][br][hr]";
+
+                sendText = tbTicket.Text.Trim();
 
                 string settings;
                 if (File.Exists("settings.xml"))
@@ -73,7 +77,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr = new StreamReader(@"..\version.xml");
                     tanks = sr.ReadToEnd();
                     sr.Close();
-                    tanks = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
+                    tanks = tanks.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
                 }
                 else tanks = "File version.xml not found";
                 text += "[b]version.xml[/b][br]" + tanks;
@@ -89,8 +93,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                         string status = "";
 
-                        //string answer = POST("http://ai-rus.com/wot/ticket/", "data=" + json);
-                        switch (POST("http://ai-rus.com/wot/ticket/", "data=" + json))
+                        sendStatus = POST("http://ai-rus.com/wot/ticket/", "data=" + json);
+                        switch (sendStatus)
                         {
                             case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
                             case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
@@ -135,54 +139,24 @@ namespace _Hell_PRO_Tanki_Launcher
             return Out;
         }
 
-        static string getResponse(string uri, string json)
-        {
-            try
-            {
-                var body = Encoding.UTF8.GetBytes(json);
-
-                StringBuilder sb = new StringBuilder();
-                byte[] buf = new byte[8192];
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-
-                using (Stream stream = request.GetRequestStream())
-                {
-                    stream.Write(body, 0, body.Length);
-                    stream.Close();
-                }
-
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                Stream resStream = response.GetResponseStream();
-                int count = 0;
-                do
-                {
-                    count = resStream.Read(buf, 0, buf.Length);
-                    if (count != 0)
-                    {
-                        sb.Append(Encoding.Default.GetString(buf, 0, count));
-                    }
-                }
-                while (count > 0);
-                return sb.ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(fIndex.ActiveForm, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return null;
-            }
-        }
-
         private void bSend_Click(object sender, EventArgs e)
         {
-            if (tbTicket.Text.Length >= 0)
+            int symbolsCount = 50;
+            string mess = String.Empty;
+
+            if (tbTicket.Text.Length < symbolsCount) { mess += "Текст не может быть меньше " + symbolsCount.ToString() + " символов!" + Environment.NewLine + Environment.NewLine; }
+
+            if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += "Вы уже отправляли данное сообщение."; }
+
+            if (mess == String.Empty)
             {
-                bSend.Text = "Отправка данных...";
+                bSend.Text = "Отправка...";
                 SendTicket().Wait();
                 bSend.Text = "Отправить";
             }
             else
             {
-                MessageBox.Show(this, "Текст не может быть меньше 50 символов!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

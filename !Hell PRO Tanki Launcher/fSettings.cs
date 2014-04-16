@@ -21,6 +21,7 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         ProcessesLibrary ProccessLibrary = new ProcessesLibrary();
         ProcessList ProcessList = new ProcessList();
+        Debug Debug = new Debug();
 
         string //title,
             version = "0.0.0.0",
@@ -30,8 +31,6 @@ namespace _Hell_PRO_Tanki_Launcher
         bool commonTest = false;
 
         List<string> userProcesses = new List<string>();
-
-        Debug Debug = new Debug();
 
         public fSettings()
         {
@@ -276,6 +275,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                bSave.Text = "Сохранение";
+
                 XDocument doc = XDocument.Load("settings.xml");
 
                 if (doc.Root.Element("info") != null) { doc.Root.Element("info").Attribute("video").SetValue(cbVideo.Checked.ToString()); }
@@ -346,38 +347,18 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (lvProcessesUser.CheckedItems.Count > 0)
                 {
                     List<string> myJsonData = new List<string>();
-
-                    string name = Environment.MachineName +
-                        Environment.UserName +
-                        Environment.UserDomainName +
-                        Environment.Version.ToString() +
-                        Environment.OSVersion.ToString();
-
-                    using (System.Security.Cryptography.MD5 md5Hash = System.Security.Cryptography.MD5.Create())
-                    {
-                        byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(name));
-                        StringBuilder sBuilder = new StringBuilder();
-                        for (int i = 0; i < data.Length; i++) { sBuilder.Append(data[i].ToString("x2")); }
-
-                        name = sBuilder.ToString();
-                    }
-
-                    myJsonData.Clear();
-                    myJsonData.Add(name);
-                    myJsonData.Add("TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6");
-
+                    myJsonData.Add(Debug.code);
+                    
                     foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
                     {
                         if (obj.BackColor != Color.Plum) // Если процесс не является глобальным, то добавляем данные для вывода
-                            myJsonData.Add(obj.Text + "::" + obj.SubItems[1].Text);
+                            myJsonData.Add(obj.Text + ":" + obj.SubItems[1].Text);
                     }
 
-                    if (myJsonData.Count > 2)
-                    {
-                        string json = JsonConvert.SerializeObject(myJsonData);
+                    string json = JsonConvert.SerializeObject(myJsonData);
 
-                        string answer = getResponse("http://ai-rus.com/wot/process/" + json);
-                    }
+                    Task<string> status = ProcessList.Send(json).Wait();
+                    MessageBox.Show(status.Result);
                 }
             }
             catch (Exception ex)
@@ -385,6 +366,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 Debug.Save("bwSave_RunWorkerCompleted()", "Send processes", ex.Message);
             }
 
+            bSave.Text = "Сохранить";
             this.DialogResult = DialogResult.OK;
         }
 
@@ -404,6 +386,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                bSave.Text = "Сохранить";
+
                 if (File.Exists("preferences" + (commonTest ? "_ct" : "") + ".xml"))
                     llRecoverySettings.Enabled = true;
                 else

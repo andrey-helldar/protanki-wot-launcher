@@ -124,7 +124,15 @@ namespace _Hell_PRO_Tanki_Launcher
             wr.KeepAlive = true;
             wr.Credentials = System.Net.CredentialCache.DefaultCredentials;
 
-            Stream rs = wr.GetRequestStream();
+            Stream rs;
+            try
+            {
+                rs = wr.GetRequestStream();
+            }
+            catch (WebException)
+            {
+                rs = wr.GetRequestStream();
+            }
 
             string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}";
             foreach (string key in nvc.Keys)
