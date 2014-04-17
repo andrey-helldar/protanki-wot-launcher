@@ -52,6 +52,7 @@
             this.gbPriority = new System.Windows.Forms.GroupBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.llRecoverySettings = new System.Windows.Forms.LinkLabel();
+            this.cbBalanceCPU = new System.Windows.Forms.CheckBox();
             this.gbOptimization.SuspendLayout();
             this.gbOther.SuspendLayout();
             this.gbProcesses.SuspendLayout();
@@ -320,6 +321,7 @@
             // gbPriority
             // 
             this.gbPriority.BackColor = System.Drawing.Color.Transparent;
+            this.gbPriority.Controls.Add(this.cbBalanceCPU);
             this.gbPriority.Controls.Add(this.cbPriority);
             this.gbPriority.ForeColor = System.Drawing.Color.White;
             this.gbPriority.Location = new System.Drawing.Point(318, 90);
@@ -339,7 +341,7 @@
             "Средний",
             "Ниже среднего",
             "Низкий"});
-            this.cbPriority.Location = new System.Drawing.Point(6, 26);
+            this.cbPriority.Location = new System.Drawing.Point(6, 17);
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(255, 21);
             this.cbPriority.TabIndex = 6;
@@ -364,6 +366,16 @@
             this.llRecoverySettings.Text = "Восстановить настройки";
             this.llRecoverySettings.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llRecoverySettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRecoverySettings_LinkClicked);
+            // 
+            // cbBalanceCPU
+            // 
+            this.cbBalanceCPU.AutoSize = true;
+            this.cbBalanceCPU.Location = new System.Drawing.Point(6, 42);
+            this.cbBalanceCPU.Name = "cbBalanceCPU";
+            this.cbBalanceCPU.Size = new System.Drawing.Size(165, 17);
+            this.cbBalanceCPU.TabIndex = 7;
+            this.cbBalanceCPU.Text = "Распределить нагрузку ЦП";
+            this.cbBalanceCPU.UseVisualStyleBackColor = true;
             // 
             // fSettings
             // 
@@ -394,6 +406,7 @@
             this.gbProcesses.ResumeLayout(false);
             this.gbProcesses.PerformLayout();
             this.gbPriority.ResumeLayout(false);
+            this.gbPriority.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,5 +438,6 @@
         private System.Windows.Forms.CheckBox cbVideoQuality;
         private System.Windows.Forms.LinkLabel llRecoverySettings;
         private System.Windows.Forms.CheckBox cbVideoQualityWeak;
+        private System.Windows.Forms.CheckBox cbBalanceCPU;
     }
 }

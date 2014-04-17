@@ -31,67 +31,89 @@ namespace _Hell_Language_Pack
                     toolTip.SetToolTip(sender, "Процессы из глобального списка приоритетов не могут быть отключены." + Environment.NewLine + "Даже при снятии галки они автоматически будут включены.");
                     break;
 
-                default:
-                    break;
+                default: break;
+                    
             }
         }
 
-        public string InterfaceLanguage(Control sender, string lang)
+        public void InterfaceLanguage(string formName, Control sender, string lang)
         {
-            switch (sender.Name)
+            switch (formName)
             {
-                    // Главная форма
-                case "bPlay": sender.Text = lang == "ru" ? "Играть" : "Play"; break;
-                case "bLauncher": sender.Text = lang == "ru" ? "Лаунчер" : "Launcher"; break;
-                case "bUpdate": sender.Text = lang == "ru" ? "Обновить" : "Update"; break;
-                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
-                case "bOptimizePC": sender.Text = lang == "ru" ? "Оптимизировать" : "Optimize"; break;
-                case "bExit": sender.Text = lang == "ru" ? "Выход" : "Exit"; break;
-                case "bShowVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
-                case "bShowNews": sender.Text = lang == "ru" ? "Новости" : "News"; break;
-                case "bSettings": sender.Text = lang == "ru" ? "Настройки" : "Settings"; break;
-                case "llBlockCaption": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
-                case "llLoadingVideoData": sender.Text = lang == "ru" ? "Подождите, идет загрузка..." : "Please, wait..."; break;
-                case "llActually": sender.Text = lang == "ru" ? "Вы используете самые свежие моды!" : "Video"; break;
+                // Главная форма
+                case "fIndex":
+                    switch (sender.Name)
+                    {
+                        case "bPlay": sender.Text = lang == "ru" ? "Играть" : "Play";
+                        case "bLauncher": sender.Text = lang == "ru" ? "Лаунчер" : "Launcher";
+                        case "bUpdate": sender.Text = lang == "ru" ? "Обновить" : "Update";
+                        case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; 
+                        case "bOptimizePC": sender.Text = lang == "ru" ? "Оптимизировать" : "Optimize";
+                        case "bExit": sender.Text = lang == "ru" ? "Выход" : "Exit"; 
+                        case "bShowVideo": sender.Text = lang == "ru" ? "Видео" : "Video";
+                        case "bShowNews": sender.Text = lang == "ru" ? "Новости" : "News"; 
+                        case "bSettings": sender.Text = lang == "ru" ? "Настройки" : "Settings"; 
+                        case "llBlockCaption": sender.Text = lang == "ru" ? "Видео" : "Video";
+                        case "llLoadingVideoData": sender.Text = lang == "ru" ? "Подождите, идет загрузка..." : "Please, wait...";
+                        case "llActually": sender.Text = lang == "ru" ? "Вы используете самые свежие моды!" : "Video";
+                        default: return null;
+                    }
 
-
+                case "fSettings":
                     // Форма настроек
-                case "llTitle": sender.Text = lang == "ru" ? "Настройки..." : "Settings..."; break;
-                case "gbOptimization": sender.Text = lang == "ru" ? "Оптимизация:" : "Optimize:"; break;
-                case "cbKillProcesses": sender.Text = lang == "ru" ? "Закрывать приложения при запуске игры" : "Close processes with start game"; break;
-                case "cbForceClose": sender.Text = lang == "ru" ? "Принудительно завершать приложения" : "Force closing processes"; break;
-                case "cbAero": sender.Text = lang == "ru" ? "Отключать Windows Aero при запуске игры" : "Disable Windows Aero with start game"; break;
-                case "cbVideoQuality": sender.Text = lang == "ru" ? "Уменьшить качество графики в игре" : ; break;
-                case "cbVideoQualityWeak": sender.Text = lang == "ru" ? "Очень слабый компьютер" : ; break;
+                    switch (sender.Name)
+                    {
+                        case "llTitle": sender.Text = lang == "ru" ? "Настройки..." : "Settings..."; 
+                        case "gbOptimization": sender.Text = lang == "ru" ? "Оптимизация:" : "Optimize:"; 
+                        case "cbKillProcesses": sender.Text = lang == "ru" ? "Закрывать приложения при запуске игры" : "Close processes with start game"; 
+                        case "cbForceClose": sender.Text = lang == "ru" ? "Принудительно завершать приложения" : "Force closing processes"; 
+                        case "cbAero": sender.Text = lang == "ru" ? "Отключать Windows Aero при запуске игры" : "Disable Windows Aero with start game"; 
+                        case "cbVideoQuality": sender.Text = lang == "ru" ? "Уменьшить качество графики в игре" : "Reduce the quality of the graphics in the game"; 
+                        case "cbVideoQualityWeak": sender.Text = lang == "ru" ? "Очень слабый компьютер" : "Very weak computer"; 
 
-                case "gbOther": sender.Text = lang == "ru" ? "Уведомлять о новых видео:" : ; break;
-                case "gbPriority": sender.Text = lang == "ru" ? "Приоритет игры в системе:" : ; break;
-                case "gbProcesses": sender.Text = lang == "ru" ? "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:" : ; break;
-                case "lvProcessesUser": sender = lang == "ru" ?  :; break;
-                case "llUserProcesses": sender.Text = lang == "ru" ? "Процессы, выбранные пользователем" : ; break;
-                case "llGlobalProcesses": sender.Text = lang == "ru" ? "Процессы из глобального списка" :; break;
-                case "lDescProcesses": sender.Text = lang == "ru" ? "ВНИМАНИЕ!!! В список исключений рекомендуется добавлять действительно важные программы!" : ; break;
-                case "bSave": sender.Text = lang == "ru" ? "Сохранить" : "Save & Exit"; break;
-                case "bCancel": sender.Text = lang == "ru" ? "Отмена" : "Cancel"; break;
-                case "llRecoverySettings": sender.Text = lang == "ru" ? "Восстановить настройки..." : "Recovery game settings..."; break;
+                        case "gbOther": sender.Text = lang == "ru" ? "Уведомлять о новых видео:" : "Notify new video"; 
+                        case "gbPriority": sender.Text = lang == "ru" ? "Приоритет игры в системе:" : "Priority game in system";
+                        case "cbBalanceCPU": sender.Text = lang == "ru" ? "Распределить нагрузку ЦП" : "CPU load distribution";
+                        case "gbProcesses": sender.Text = lang == "ru" ? "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:" : "What processes must NOT CLOSE when the game starts"; 
+                        case "lvProcessesUser":
+                            ListView listView = new ListView();
+                            listView.Columns[0].Text = lang == "ru" ? "Процесс" : "Process";
+                            listView.Columns[1].Text = lang == "ru" ? "Описание" : "Description";
+                            
+                        case "llUserProcesses": sender.Text = lang == "ru" ? "Процессы, выбранные пользователем" : "Processes selected by the user"; 
+                        case "llGlobalProcesses": sender.Text = lang == "ru" ? "Процессы из глобального списка" : "Processes from the global list"; 
+                        case "lDescProcesses": sender.Text = lang == "ru" ? "ВНИМАНИЕ!!! В список исключений рекомендуется добавлять действительно важные программы!" : "WARNING! In the list of exceptions is recommended to add the really important programs!"; 
+                        case "bSave": sender.Text = lang == "ru" ? "Сохранить" : "Save & Exit"; 
+                        case "bCancel": sender.Text = lang == "ru" ? "Отмена" : "Cancel"; 
+                        case "llRecoverySettings": sender.Text = lang == "ru" ? "Восстановить настройки..." : "Recovery game settings..."; 
+                        default: return null;
+                    }
+                    
 
+                // Форма уведомления о новых версиях
+                case "fNewVersion":
+                    switch (sender.Name)
+                    {
+                        case "bDownload": sender.Text = lang == "ru" ? "Скачать" : "Download"; 
+                        case "bCancel": sender.Text = lang == "ru" ? "Не надо" : "Cancel"; 
+                        case "cbNotification": sender.Text = lang == "ru" ? "Не уведомлять меня об этой версии" : "Do not notify me about this version"; 
+                        default: return null;
+                    }
 
-                    // Форма уведомления о новых версиях
-                case "bDownload": sender.Text = lang == "ru" ? "Скачать" : "Download"; break;
-                case "bCancel": sender.Text = lang == "ru" ? "Не надо" : "Cancel"; break;
-                case "cbNotification": sender.Text = lang == "ru" ? "Не уведомлять меня об этой версии" : ; break;
+                // Форма отправки тикетов
+                case "fWarning":
+                    switch (sender.Name)
+                    {
+                        case "lDesc": sender.Text = lang == "ru" ? "Если у Вас возникли проблемы в работе лаунчера или есть какие-либо пожелания, Вы можете заполнить форму ниже и отправить сообщение разработчику:" : "If you have any problems in the launcher or have any comments, you can fill out the form below and send a message to the developer"; 
+                        case "rbWish": sender.Text = lang == "ru" ? "Пожелание к лаунчеру" : "Wishing to launcher"; 
+                        case "rbBug": sender.Text = lang == "ru" ? "Найдена ошибка" : "Found error"; 
+                        case "bSend": sender.Text = lang == "ru" ? "Отправить" : "Send"; 
+                        case "bCancel": sender.Text = lang == "ru" ? "Выход" : "Cancel"; 
+                        default: return null;
+                    }
 
-
-                    // Форма отправки тикетов
-                case "lDesc": sender.Text = lang == "ru" ? "Если у Вас возникли проблемы в работе лаунчера или есть какие-либо пожелания, Вы можете заполнить форму ниже и отправить сообщение разработчику:" : ; break;
-                case "rbWish": sender.Text = lang == "ru" ? "Пожелание к лаунчеру" : ; break;
-                case "rbBug": sender.Text = lang == "ru" ? "Найдена ошибка" : ; break;
-                case "bSend": sender.Text = lang == "ru" ? "Отправить" : "Send"; break;
-                case "bCancel": sender.Text = lang == "ru" ? "Выход" : "Cancel"; break;
-                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
-                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                default: return null;
             }
-
         }
     }
 }

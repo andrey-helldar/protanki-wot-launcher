@@ -41,7 +41,9 @@ namespace _Hell_PRO_Tanki_Launcher
             videoLink = "http://goo.gl/gr6pFl",
             updateNotification = "",
 
-            notifyLink = "";
+            notifyLink = "",
+            
+            lang = "ru";
 
         Version remoteModVersion = new Version("0.0.0.0"),
             remoteTanksVersion = new Version("0.0.0.0"),
@@ -1372,6 +1374,14 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             fWarning fWarning = new fWarning();
             fWarning.ShowDialog();
+        }
+
+        private async Task SetInterfaceLanguage()
+        {
+            foreach (Control control in this.Controls)
+            {
+                languagePack.InterfaceLanguage("fIndex", control, lang);
+            }
         }
     }
 }
