@@ -121,6 +121,7 @@
     <Compile Include="OptimizeGraphic.Class.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendPost.Class.cs" />
     <Compile Include="update_launcher.class.cs" />
     <Compile Include="YoutubeVideo.Class.cs" />
     <EmbeddedResource Include="fIndex.resx">

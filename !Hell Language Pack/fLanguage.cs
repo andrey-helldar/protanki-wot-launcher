@@ -28,12 +28,59 @@ namespace _Hell_Language_Pack
                     break;
 
                 case "llGlobalProcesses":
-                    toolTip.SetToolTip(sender, "Процессы из глобального списка приоритетов не могут быть отключены."+Environment.NewLine+"Даже при снятии галки они автоматически будут включены.");
+                    toolTip.SetToolTip(sender, "Процессы из глобального списка приоритетов не могут быть отключены." + Environment.NewLine + "Даже при снятии галки они автоматически будут включены.");
                     break;
 
                 default:
                     break;
             }
+        }
+
+        public string InterfaceLanguage(Control sender, string lang)
+        {
+            switch (sender.Name)
+            {
+                case "bPlay": sender.Text = lang == "ru" ? "Играть" : "Play"; break;
+                case "bLauncher": sender.Text = lang == "ru" ? "Лаунчер" : "Launcher"; break;
+                case "bUpdate": sender.Text = lang == "ru" ? "Обновить" : "Update"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bOptimizePC": sender.Text = lang == "ru" ? "Оптимизировать" : "Optimize"; break;
+                case "bExit": sender.Text = lang == "ru" ? "Выход" : "Exit"; break;
+                case "bShowVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bShowNews": sender.Text = lang == "ru" ? "Новости" : "News"; break;
+                case "bSettings": sender.Text = lang == "ru" ? "Настройки" : "Settings"; break;
+                case "llBlockCaption": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "llLoadingVideoData": sender.Text = lang == "ru" ? "Подождите, идет загрузка..." : "Please, wait..."; break;
+                case "llActually": sender.Text = lang == "ru" ? "Вы используете самые свежие моды!" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+                case "bVideo": sender.Text = lang == "ru" ? "Видео" : "Video"; break;
+            }
+
         }
     }
 }
