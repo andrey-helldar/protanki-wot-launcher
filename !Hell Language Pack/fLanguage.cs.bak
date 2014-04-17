@@ -8,7 +8,7 @@ namespace _Hell_Language_Pack
 {
     public class fLanguage
     {
-        public void toolTip(Control sender, string lang = null)
+        public void toolTip(Control sender)
         {
             ToolTip toolTip = new ToolTip();
 
@@ -20,19 +20,19 @@ namespace _Hell_Language_Pack
             switch (sender.Name)
             {
                 case "bOptimizePC":
-                    toolTip.SetToolTip(sender, lang == "ru" ? "Оптимизировать Ваш ПК для поднятия FPS" : "");
+                    toolTip.SetToolTip(sender, "Оптимизировать Ваш ПК для поднятия FPS");
                     break;
 
                 case "llUserProcesses":
-                    toolTip.SetToolTip(sender, lang == "ru" ? "Процессы, выбранные Вами, могут быть убраны из списка приоритета" : "");
+                    toolTip.SetToolTip(sender, "Процессы, выбранные Вами, могут быть убраны из списка приоритета");
                     break;
 
                 case "llGlobalProcesses":
-                    toolTip.SetToolTip(sender, lang == "ru" ? "Процессы из глобального списка приоритетов не могут быть отключены." + Environment.NewLine + "Даже при снятии галки они автоматически будут включены." : "");
+                    toolTip.SetToolTip(sender, "Процессы из глобального списка приоритетов не могут быть отключены." + Environment.NewLine + "Даже при снятии галки они автоматически будут включены.");
                     break;
 
                 default: break;
-
+                    
             }
         }
 

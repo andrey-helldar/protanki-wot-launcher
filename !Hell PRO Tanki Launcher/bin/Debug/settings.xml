@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
   <info video="True" />
-  <settings kill="True" force="False" aero="True" video="Unchecked" weak="False" />
+  <settings kill="False" force="False" aero="False" video="Unchecked" weak="False" balance="False" />
   <notification>0.9.0.0</notification>
   <processes />
 </pro>

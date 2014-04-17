@@ -70,7 +70,8 @@ namespace _Hell_PRO_Tanki_Launcher
             autoForceKill = false,
             autoAero = false,
             autoVideo = false,
-            autoWeak = false;
+            autoWeak = false,
+            autoCPU = true;
 
         List<string> newsTitle = new List<string>();
         List<string> newsLink = new List<string>();
@@ -113,6 +114,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         modpackDate = new IniFile(pathINI).IniReadValue("new", "date");
                         modpackType = new IniFile(pathINI).IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower();
                         modpackVersion = new Version(new IniFile(pathINI).IniReadValue("new", "version"));
+                        lang = new IniFile(pathINI).IniReadValue("new", "languages");
                     }
                     catch (Exception ex)
                     {
@@ -141,6 +143,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         autoAero = doc.Root.Element("settings").Attribute("aero").Value == "True";
                         autoVideo = ReadCheckStateBool(doc, "video");
                         autoWeak = doc.Root.Element("settings").Attribute("weak").Value == "True";
+                        autoCPU = doc.Root.Element("settings").Attribute("balance").Value == "True";
                     }
 
                     if (doc.Root.Element("common.test") != null) commonTest = true;
@@ -302,7 +305,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    tanksUpdates = tanksVersion > new Version("0.0.0.0") && tanksVersion < remoteTanksVersion;
+                    //tanksUpdates = tanksVersion > new Version("0.0.0.0") && tanksVersion < remoteTanksVersion;
+                    tanksUpdates = false;
                 }
 
                 //Проверяем апдейты на модпак
@@ -378,7 +382,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 fNewVersion fNewVersion = new fNewVersion();
 
-                string status = "";
+                string status = String.Empty;
 
                 if (modpackUpdates || tanksUpdates)
                 {
@@ -433,7 +437,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     llActually.VisitedLinkColor = Color.Lime;
 
                     status = "Вы используете самые свежие моды." + Environment.NewLine +
-                        "Текущая версия Мультипака '" + modpackVersion.ToString() + "'";
+                        "Текущая версия Мультипака: " + modpackVersion.ToString() + Environment.NewLine +
+                        "Текущая версия клиента игры: " + tanksVersion.ToString();
                     bUpdate.Enabled = false;
 
                     // Окно статуса обновлений
@@ -445,7 +450,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 manualClickUpdate = false;
                 notifyLink = null;
-                notifyIcon.ShowBalloonTip(2000, Application.ProductName, status, ToolTipIcon.Info);
+                if (status != String.Empty) notifyIcon.ShowBalloonTip(2000, Application.ProductName, status, ToolTipIcon.Info);
             }
             catch (Exception ex)
             {
@@ -1246,6 +1251,8 @@ namespace _Hell_PRO_Tanki_Launcher
             setBackground();
             moveForm();
 
+            SetInterfaceLanguage();
+
             Task.Factory.StartNew(() => Debug.Send()); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
         }
 
@@ -1380,7 +1387,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             foreach (Control control in this.Controls)
             {
-                languagePack.InterfaceLanguage("fIndex", control, lang);
+                control.Text = languagePack.InterfaceLanguage("fIndex", control, lang);
             }
         }
     }
