@@ -30,17 +30,17 @@
         {
             this.bSave = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbOptimization = new System.Windows.Forms.GroupBox();
             this.cbVideoQualityWeak = new System.Windows.Forms.CheckBox();
             this.cbVideoQuality = new System.Windows.Forms.CheckBox();
             this.cbForceClose = new System.Windows.Forms.CheckBox();
             this.cbAero = new System.Windows.Forms.CheckBox();
             this.cbKillProcesses = new System.Windows.Forms.CheckBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbOther = new System.Windows.Forms.GroupBox();
             this.cbVideo = new System.Windows.Forms.CheckBox();
             this.llTitle = new System.Windows.Forms.LinkLabel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.gbProcesses = new System.Windows.Forms.GroupBox();
+            this.lDescProcesses = new System.Windows.Forms.Label();
             this.llGlobalProcesses = new System.Windows.Forms.LinkLabel();
             this.llUserProcesses = new System.Windows.Forms.LinkLabel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -49,13 +49,13 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gbPriority = new System.Windows.Forms.GroupBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.llRecoverySettings = new System.Windows.Forms.LinkLabel();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.gbOptimization.SuspendLayout();
+            this.gbOther.SuspendLayout();
+            this.gbProcesses.SuspendLayout();
+            this.gbPriority.SuspendLayout();
             this.SuspendLayout();
             // 
             // bSave
@@ -96,21 +96,21 @@
             this.bCancel.UseVisualStyleBackColor = false;
             this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
             // 
-            // groupBox2
+            // gbOptimization
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox2.Controls.Add(this.cbVideoQualityWeak);
-            this.groupBox2.Controls.Add(this.cbVideoQuality);
-            this.groupBox2.Controls.Add(this.cbForceClose);
-            this.groupBox2.Controls.Add(this.cbAero);
-            this.groupBox2.Controls.Add(this.cbKillProcesses);
-            this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(12, 29);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(300, 125);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Оптимизация:";
+            this.gbOptimization.BackColor = System.Drawing.Color.Transparent;
+            this.gbOptimization.Controls.Add(this.cbVideoQualityWeak);
+            this.gbOptimization.Controls.Add(this.cbVideoQuality);
+            this.gbOptimization.Controls.Add(this.cbForceClose);
+            this.gbOptimization.Controls.Add(this.cbAero);
+            this.gbOptimization.Controls.Add(this.cbKillProcesses);
+            this.gbOptimization.ForeColor = System.Drawing.Color.White;
+            this.gbOptimization.Location = new System.Drawing.Point(12, 29);
+            this.gbOptimization.Name = "gbOptimization";
+            this.gbOptimization.Size = new System.Drawing.Size(300, 125);
+            this.gbOptimization.TabIndex = 3;
+            this.gbOptimization.TabStop = false;
+            this.gbOptimization.Text = "Оптимизация:";
             // 
             // cbVideoQualityWeak
             // 
@@ -165,17 +165,17 @@
             this.cbKillProcesses.Text = "Закрывать приложения при запуске игры";
             this.cbKillProcesses.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // gbOther
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox3.Controls.Add(this.cbVideo);
-            this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(318, 29);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(267, 55);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Другие:";
+            this.gbOther.BackColor = System.Drawing.Color.Transparent;
+            this.gbOther.Controls.Add(this.cbVideo);
+            this.gbOther.ForeColor = System.Drawing.Color.White;
+            this.gbOther.Location = new System.Drawing.Point(318, 29);
+            this.gbOther.Name = "gbOther";
+            this.gbOther.Size = new System.Drawing.Size(267, 55);
+            this.gbOther.TabIndex = 4;
+            this.gbOther.TabStop = false;
+            this.gbOther.Text = "Другие:";
             // 
             // cbVideo
             // 
@@ -206,32 +206,32 @@
             this.llTitle.Text = "Настройки...";
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
-            // groupBox1
+            // gbProcesses
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.llGlobalProcesses);
-            this.groupBox1.Controls.Add(this.llUserProcesses);
-            this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Controls.Add(this.lvProcessesUser);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(12, 155);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(573, 344);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:";
+            this.gbProcesses.BackColor = System.Drawing.Color.Transparent;
+            this.gbProcesses.Controls.Add(this.lDescProcesses);
+            this.gbProcesses.Controls.Add(this.llGlobalProcesses);
+            this.gbProcesses.Controls.Add(this.llUserProcesses);
+            this.gbProcesses.Controls.Add(this.panel2);
+            this.gbProcesses.Controls.Add(this.panel1);
+            this.gbProcesses.Controls.Add(this.lvProcessesUser);
+            this.gbProcesses.ForeColor = System.Drawing.Color.White;
+            this.gbProcesses.Location = new System.Drawing.Point(12, 155);
+            this.gbProcesses.Name = "gbProcesses";
+            this.gbProcesses.Size = new System.Drawing.Size(573, 344);
+            this.gbProcesses.TabIndex = 6;
+            this.gbProcesses.TabStop = false;
+            this.gbProcesses.Text = "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:";
             // 
-            // label1
+            // lDescProcesses
             // 
-            this.label1.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.label1.Location = new System.Drawing.Point(6, 295);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(561, 41);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "ВНИМАНИЕ!!! В список исключений рекомендуется добавлять действительно важные прог" +
+            this.lDescProcesses.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lDescProcesses.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.lDescProcesses.Location = new System.Drawing.Point(6, 295);
+            this.lDescProcesses.Name = "lDescProcesses";
+            this.lDescProcesses.Size = new System.Drawing.Size(561, 41);
+            this.lDescProcesses.TabIndex = 6;
+            this.lDescProcesses.Text = "ВНИМАНИЕ!!! В список исключений рекомендуется добавлять действительно важные прог" +
     "раммы!";
             // 
             // llGlobalProcesses
@@ -317,17 +317,17 @@
             this.bwUserProcesses.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwUserProcesses_DoWork);
             this.bwUserProcesses.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwUserProcesses_RunWorkerCompleted);
             // 
-            // groupBox4
+            // gbPriority
             // 
-            this.groupBox4.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox4.Controls.Add(this.cbPriority);
-            this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(318, 90);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(267, 64);
-            this.groupBox4.TabIndex = 7;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Приоритет игры в системе:";
+            this.gbPriority.BackColor = System.Drawing.Color.Transparent;
+            this.gbPriority.Controls.Add(this.cbPriority);
+            this.gbPriority.ForeColor = System.Drawing.Color.White;
+            this.gbPriority.Location = new System.Drawing.Point(318, 90);
+            this.gbPriority.Name = "gbPriority";
+            this.gbPriority.Size = new System.Drawing.Size(267, 64);
+            this.gbPriority.TabIndex = 7;
+            this.gbPriority.TabStop = false;
+            this.gbPriority.Text = "Приоритет игры в системе:";
             // 
             // cbPriority
             // 
@@ -373,11 +373,11 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(597, 571);
             this.Controls.Add(this.llRecoverySettings);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbPriority);
+            this.Controls.Add(this.gbProcesses);
             this.Controls.Add(this.llTitle);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gbOther);
+            this.Controls.Add(this.gbOptimization);
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -387,13 +387,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Настройки...";
             this.Load += new System.EventHandler(this.fSettings_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
+            this.gbOptimization.ResumeLayout(false);
+            this.gbOptimization.PerformLayout();
+            this.gbOther.ResumeLayout(false);
+            this.gbOther.PerformLayout();
+            this.gbProcesses.ResumeLayout(false);
+            this.gbProcesses.PerformLayout();
+            this.gbPriority.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,14 +403,14 @@
 
         private System.Windows.Forms.Button bSave;
         private System.Windows.Forms.Button bCancel;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbOptimization;
         private System.Windows.Forms.CheckBox cbKillProcesses;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbOther;
         private System.Windows.Forms.CheckBox cbVideo;
         private System.Windows.Forms.LinkLabel llTitle;
         private System.Windows.Forms.CheckBox cbAero;
         private System.Windows.Forms.CheckBox cbForceClose;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbProcesses;
         private System.ComponentModel.BackgroundWorker bwUserProcesses;
         private System.Windows.Forms.ListView lvProcessesUser;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -419,9 +419,9 @@
         private System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.LinkLabel llGlobalProcesses;
         public System.Windows.Forms.LinkLabel llUserProcesses;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gbPriority;
         private System.Windows.Forms.ComboBox cbPriority;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lDescProcesses;
         private System.Windows.Forms.CheckBox cbVideoQuality;
         private System.Windows.Forms.LinkLabel llRecoverySettings;
         private System.Windows.Forms.CheckBox cbVideoQualityWeak;

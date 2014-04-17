@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lDesc = new System.Windows.Forms.Label();
             this.tbTicket = new System.Windows.Forms.TextBox();
             this.bSend = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
@@ -36,15 +36,15 @@
             this.rbBug = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
-            // label1
+            // lDesc
             // 
-            this.label1.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(671, 46);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Если у Вас возникли проблемы в работе лаунчера или есть какие-либо пожелания, Вы " +
+            this.lDesc.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.lDesc.Location = new System.Drawing.Point(12, 9);
+            this.lDesc.Name = "lDesc";
+            this.lDesc.Size = new System.Drawing.Size(671, 46);
+            this.lDesc.TabIndex = 0;
+            this.lDesc.Text = "Если у Вас возникли проблемы в работе лаунчера или есть какие-либо пожелания, Вы " +
     "можете заполнить форму ниже и отправить сообщение разработчику:";
             // 
             // tbTicket
@@ -135,7 +135,7 @@
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bSend);
             this.Controls.Add(this.tbTicket);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lDesc);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -152,7 +152,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lDesc;
         private System.Windows.Forms.TextBox tbTicket;
         private System.Windows.Forms.Button bSend;
         private System.Windows.Forms.Button bCancel;
