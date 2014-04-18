@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("!Hell Language Pack")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("!Hell Language Pack for !Hell Multipack Launcher")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("AI RUS - Professional tech support")]
 [assembly: AssemblyProduct("!Hell Language Pack")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright ©  2014 AI RUS - Professional tech support")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.2.7")]
-[assembly: AssemblyFileVersion("1.0.2.7")]
+[assembly: AssemblyVersion("1.0.2.9")]
+[assembly: AssemblyFileVersion("1.0.2.9")]

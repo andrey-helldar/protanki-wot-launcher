@@ -294,26 +294,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 remoteModVersion = new Version(doc.Root.Element("version").Value);
                 remoteTanksVersion = new Version(SendPOST.Send("http://ai-rus.com/wot/version/", "code=" + Debug.code + "&user=" + Debug.UserID() + "&version=" + tanksVersion.ToString() + "&test=" + (commonTest ? "1" : "0")));
-
-                MessageBox.Show("tanksVersion = " + tanksVersion.ToString() + Environment.NewLine + "remoteTanksVersion = " + remoteTanksVersion.ToString());
-
-
-                // Отправляем данные на сайт
-                if (tanksVersion > remoteTanksVersion)
-                {
-                    //remoteTanksVersion = new Version(getResponse("http://ai-rus.com/wot/micro/" + tanksVersion.ToString() + "-" + commonTest.ToString()));
-                    //string sa = POST("http://ai-rus.com/wot/version/", "code="+Debug.code+"&version=" + tanksVersion.ToString() + "&test=" + (commonTest ? "1" : "0"));
-                    //MessageBox.Show(sa);
-                    tanksUpdates = true;
-                }
-                else
-                {
-                    //tanksUpdates = tanksVersion > new Version("0.0.0.0") && tanksVersion < remoteTanksVersion;
-                    tanksUpdates = false;
-                }
-
-                //Проверяем апдейты на модпак
-                modpackUpdates = modpackVersion < remoteModVersion;
+                                
+                tanksUpdates = tanksVersion < remoteTanksVersion; // Сравниваем версии танков
+                modpackUpdates = modpackVersion < remoteModVersion; // Сравниваем версии мультипака
 
                 if (modpackUpdates)
                 {
@@ -828,10 +811,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 label.LinkColor = Color.FromArgb(243, 123, 16);
                 label.LinkBehavior = LinkBehavior.HoverUnderline;
                 label.Font = new Font("Sochi2014", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-                label.Text = "Все видео";
+                //label.Text = "Все видео";
+                label.Text = "test";
                 label.Name = "llVideoAll";
                 label.Click += new EventHandler(bVideo_Click);
                 this.Controls.Add(label);
+                label.Text = languagePack.DynamicLanguage("llVideoAll", lang);
 
                 bShowVideo.Enabled = true;
 
@@ -1362,7 +1347,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private async Task SetInterfaceLanguage()
         {
             foreach (Control control in this.Controls)
-                control.Text = languagePack.InterfaceLanguage("fIndex", control, lang);
+                control.Text = languagePack.InterfaceLanguage("fIndex", control, lang, modpackType);
         }
     }
 }

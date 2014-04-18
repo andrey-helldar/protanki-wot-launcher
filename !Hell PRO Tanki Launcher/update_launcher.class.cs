@@ -51,27 +51,23 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Проверяем целостность файлов
                 CheckFile("Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "LanguagePack.dll");
 
-                Task.Factory.StartNew(() => SaveFromResources()).Wait(); // Проверяем существуют ли файлы. Если нет - сохраняем из ресурсов
+                await SaveFromResources(); // Проверяем существуют ли файлы. Если нет - сохраняем из ресурсов
 
-                Task[] tasks = new Task[doc.Root.Elements().Count()];
+                Task[] tasks = new Task[doc.Root.Elements().Count() + 1];
                 int i = -1;
 
                 if (!launcher) // Определяем будем запускать скачивание до обновления или после
                 {
                     foreach (XElement el in doc.Root.Elements())
-                    {
                         if (el.Attribute("important").Value == "True" && el.Attribute("user").Value == "true")
                             tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
-                    }
                 }
                 else
                 {
                     // Скачиваем необходимые файлы
                     foreach (XElement el in doc.Root.Elements())
-                    {
                         if (el.Attribute("important").Value == "False" && el.Attribute("user").Value == "true")
                             tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
-                    }
 
                     /* try
                      {
@@ -88,6 +84,7 @@ namespace _Hell_PRO_Tanki_Launcher
                      }
                      catch (Exception ex1) { Debug.Save("public void Check()", "launcher.update", ex1.Message); }*/
                 }
+                foreach (Task task in tasks) task.Start();
 
                 Task.WhenAll(tasks);
             }
@@ -143,6 +140,7 @@ namespace _Hell_PRO_Tanki_Launcher
                                     if (!Checksum(localFile, xmlChecksum) && File.Exists(localFile))
                                     {
                                         DeleteFile(localFile);
+                                        await Task.Delay(1000);
                                         await client.DownloadFileTaskAsync(new Uri(url + filename), localFile);
                                         errorCount++;
                                     }
@@ -150,14 +148,18 @@ namespace _Hell_PRO_Tanki_Launcher
                                 }
                             client.Dispose();
                         }
-                        catch (Exception ex)
+                        catch (WebException ex)
                         {
-                            Debug.Save("private async Task DownloadFile)",
+                            Debug.Save("private async Task DownloadFile()",
                                 "Error download: EX" + Environment.NewLine +
                                 "Filename: " + filename + Environment.NewLine +
                                 "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +
                                 "URL: " + url,
                                 ex.Message);
+                        }
+                        finally
+                        {
+                            client.DownloadFileAsync(new Uri(url + filename), localFile);
                         }
                     }
                 }
@@ -200,7 +202,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (File.Exists(filename)) { File.Delete(filename); }
         }
 
-        private void SaveFromResources()
+        private async Task SaveFromResources()
         {
             if (!File.Exists("Ionic.Zip.dll")) { File.WriteAllBytes("Ionic.Zip.dll", Properties.Resources.IonicZip); }
             if (!File.Exists("LanguagePack.dll")) { File.WriteAllBytes("LanguagePack.dll", Properties.Resources.LanguagePack); }

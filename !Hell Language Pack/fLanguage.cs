@@ -8,7 +8,7 @@ namespace _Hell_Language_Pack
 {
     public class fLanguage
     {
-        public void toolTip(Control sender, string lang = null)
+        public void toolTip(Control sender, string lang = "ru")
         {
             ToolTip toolTip = new ToolTip();
 
@@ -36,7 +36,7 @@ namespace _Hell_Language_Pack
             }
         }
 
-        public string InterfaceLanguage(string formName, Control sender, string lang)
+        public string InterfaceLanguage(string formName, Control sender, string lang, string type = "base")
         {
             switch (formName)
             {
@@ -44,6 +44,11 @@ namespace _Hell_Language_Pack
                 case "fIndex":
                     switch (sender.Name)
                     {
+                        case "llTitle":
+                            if (lang == "ru")
+                                return Application.ProductName + " (" + (type == "full" ? "Расширенная версия" : "Базовая версия") + ")";
+                            else
+                                return Application.ProductName + " (" + (type == "full" ? "Full" : "Base") + ")";
                         case "bPlay": return lang == "ru" ? "Играть" : "Play";
                         case "bLauncher": return lang == "ru" ? "Лаунчер" : "Launcher";
                         case "bUpdate": return lang == "ru" ? "Обновить" : "Update";
@@ -114,6 +119,15 @@ namespace _Hell_Language_Pack
                     }
 
                 default: return sender.Text;
+            }
+        }
+
+        public string DynamicLanguage(string controlName, string lang)
+        {
+            switch (controlName)
+            {
+                case "llVideoAll": return lang == "ru" ? "Все видео" : "All videos";
+                default: return String.Empty;
             }
         }
     }
