@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
+using System.Diagnostics;
 using Newtonsoft.Json;
 
 namespace _Hell_PRO_Tanki_Launcher
@@ -74,9 +75,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 string tanks;
                 if (File.Exists(@"..\version.xml"))
                 {
-                    StreamReader sr = new StreamReader(@"..\version.xml");
-                    tanks = sr.ReadToEnd();
-                    sr.Close();
+                    StreamReader sr1 = new StreamReader(@"..\version.xml");
+                    tanks = sr1.ReadToEnd();
+                    sr1.Close();
                     tanks = tanks.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
                 }
                 else tanks = "File version.xml not found";
@@ -133,6 +134,11 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 MessageBox.Show(this, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void lMessAboutNewVersion_Click(object sender, EventArgs e)
+        {
+            Process.Start(@"http://vk.com/topic-58816477_29818765");
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -32,6 +34,42 @@ namespace _Hell_PRO_Tanki_Launcher
                 count = sr.Read(read, 0, 256);
             }
             return Out;
+        }
+
+        public async Task CountUsers(string productName = "Multipack Launcher", string productVersion = "0.0.0.0", string packVersion = "0.0.0.0",
+            string packType = "null", string youtube = "null", string lang="ru")
+        {
+            Debug Debug = new Debug();
+
+            try
+            {
+                await Task.Delay(10000);
+
+                List<string> myJsonData = new List<string>();
+
+                myJsonData.Add(Debug.code);     //  0 Authorization Code
+                myJsonData.Add(Debug.UserID()); //  1 User ID
+                myJsonData.Add(youtube);        //  2 Youtube Channel
+                myJsonData.Add(packType);       //  3 Modpack type
+                myJsonData.Add(packVersion);    //  4 Modpack version
+                myJsonData.Add(productName);    //  5 Application.ProductName
+                myJsonData.Add(productVersion); //  6 Application.ProductVersion
+                myJsonData.Add(lang);           //  7 Language mod pack
+
+
+                string json = JsonConvert.SerializeObject(myJsonData);
+                Send("http://ai-rus.com/wot/users/", "data=" + json);
+            }
+            catch (WebException ex)
+            {
+                Debug.Save("CountUsers()",
+                    "productName: " + productName,
+                    "productVersion: " + productVersion,
+                    "packVersion: " + packVersion,
+                    "packType: " + packType,
+                    "youtube: " + youtube,
+                    ex.Message);
+            }
         }
     }
 }

@@ -27,6 +27,7 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         fLanguage languagePack = new fLanguage();
         YoutubeVideo YoutubeVideo = new YoutubeVideo();
+        SendPOST SendPOST = new SendPOST();
         Debug Debug = new Debug();
         ProcessList ProcessList = new ProcessList();
 
@@ -42,7 +43,7 @@ namespace _Hell_PRO_Tanki_Launcher
             updateNotification = "",
 
             notifyLink = "",
-            
+
             lang = "ru";
 
         Version remoteModVersion = new Version("0.0.0.0"),
@@ -78,7 +79,7 @@ namespace _Hell_PRO_Tanki_Launcher
         List<string> newsDate = new List<string>();
 
         ProcessStartInfo psi;
-        
+
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         static extern bool ShowWindow(int hWnd, int nCmdShow);
 
@@ -131,7 +132,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (File.Exists("settings.xml"))
                 {
                     XDocument doc = XDocument.Load("settings.xml");
-                    
+
                     updateNotification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : "";
 
                     showVideoNotify = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false) : false;
@@ -150,7 +151,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    MessageBox.Show(this, "Файл настроек не обнаружен!"+Environment.NewLine+"Программа будет автоматически перезапущена. Во время перезапуска будет применен стандартная конфигурация", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, "Файл настроек не обнаружен!" + Environment.NewLine + "Программа будет автоматически перезапущена. Во время перезапуска будет применен стандартная конфигурация", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
                     Process.GetCurrentProcess().CloseMainWindow();
@@ -223,7 +224,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private string CorrectPath(string sourcePath, int remove=0)
+        private string CorrectPath(string sourcePath, int remove = 0)
         {
             string[] temp = sourcePath.Split('\\');
             string newPath = "";
@@ -292,8 +293,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 XDocument doc = XDocument.Load(@"http://ai-rus.com/pro/pro.xml");
 
                 remoteModVersion = new Version(doc.Root.Element("version").Value);
-                remoteTanksVersion = new Version(POST("http://ai-rus.com/wot/version/", "code=" + Debug.code + "&user=" + Debug.UserID() + "&version=" + tanksVersion.ToString() + "&test=" + (commonTest ? "1" : "0")));
-                
+                remoteTanksVersion = new Version(SendPOST.Send("http://ai-rus.com/wot/version/", "code=" + Debug.code + "&user=" + Debug.UserID() + "&version=" + tanksVersion.ToString() + "&test=" + (commonTest ? "1" : "0")));
+
+                MessageBox.Show("tanksVersion = " + tanksVersion.ToString() + Environment.NewLine + "remoteTanksVersion = " + remoteTanksVersion.ToString());
+
 
                 // Отправляем данные на сайт
                 if (tanksVersion > remoteTanksVersion)
@@ -323,33 +326,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 Debug.Save("bwUpdater_DoWork()", ex.Message);
             }
         }
-
-        private static string POST(string Url, string Data)
-        {
-            System.Net.WebRequest req = System.Net.WebRequest.Create(Url);
-            req.Method = "POST";
-            req.Timeout = 100000;
-            req.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
-            byte[] sentData = Encoding.GetEncoding("Utf-8").GetBytes(Data);
-            req.ContentLength = sentData.Length;
-            System.IO.Stream sendStream = req.GetRequestStream();
-            sendStream.Write(sentData, 0, sentData.Length);
-            sendStream.Close();
-            System.Net.WebResponse res = req.GetResponse();
-            System.IO.Stream ReceiveStream = res.GetResponseStream();
-            System.IO.StreamReader sr = new System.IO.StreamReader(ReceiveStream, Encoding.UTF8);
-            Char[] read = new Char[256];
-            int count = sr.Read(read, 0, 256);
-            string Out = String.Empty;
-            while (count > 0)
-            {
-                String str = new String(read, 0, count);
-                Out += str;
-                count = sr.Read(read, 0, 256);
-            }
-            return Out;
-        }
-
 
         static string getResponse(string uri)
         {
@@ -720,7 +696,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (autoOptimizePC)
                     {
-                        OptimizeGraphic OptimizeGraphic = new OptimizeGraphic();                        
+                        OptimizeGraphic OptimizeGraphic = new OptimizeGraphic();
                         Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, autoVideo, autoWeak)).Wait();
                     }
                 }
@@ -1241,7 +1217,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); } // Запускаем проверку обновлений модпака и клиента игры
 
-            Task.Factory.StartNew(() => update.CountUsers(modpackVersion.ToString(), modpackType, youtubeChannel)); // Отправляем на сайт инфу о запуске лаунчера
+            Task.Factory.StartNew(() =>SendPOST.CountUsers(Application.ProductName, Application.ProductVersion, modpackVersion.ToString(), modpackType, youtubeChannel, lang)); // Отправляем на сайт инфу о запуске лаунчера
 
             // Главное окно
             languagePack.toolTip(bOptimizePC);
@@ -1265,7 +1241,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     //ProcessList.processes;
                     XDocument doc = XDocument.Load("settings.xml");
                     if (doc.Root.Element("processes") != null)
-                    foreach (XElement el in doc.Root.Element("processes").Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
+                        foreach (XElement el in doc.Root.Element("processes").Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
                 }
             }
             catch (Exception ex)
@@ -1386,9 +1362,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private async Task SetInterfaceLanguage()
         {
             foreach (Control control in this.Controls)
-            {
                 control.Text = languagePack.InterfaceLanguage("fIndex", control, lang);
-            }
         }
     }
 }
