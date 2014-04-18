@@ -157,10 +157,6 @@ namespace _Hell_PRO_Tanki_Launcher
                                 "URL: " + url,
                                 ex.Message);
                         }
-                        finally
-                        {
-                            client.DownloadFileAsync(new Uri(url + filename), localFile);
-                        }
                     }
                 }
             }

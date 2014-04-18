@@ -2,5 +2,6 @@
 <ai.rus>
   <Ionic.Zip.dll />
   <LanguagePack.dll />
+  <ProcessesLibrary.dll />
   <restart.exe />
 </ai.rus>
