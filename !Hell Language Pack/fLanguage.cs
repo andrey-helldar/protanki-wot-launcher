@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace _Hell_Language_Pack
 {
-    public class fLanguage
+    public class LanguagePack
     {
         public void toolTip(Control sender, string lang = "ru")
         {
@@ -40,7 +40,7 @@ namespace _Hell_Language_Pack
             }
         }
 
-        public string InterfaceLanguage(string formName, Control sender, string lang, string type = "base")
+        public string InterfaceLanguage(string formName, Control sender, string lang="ru", string type = "base")
         {
             switch (formName)
             {

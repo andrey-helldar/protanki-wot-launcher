@@ -21,7 +21,7 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         ProcessesLibrary ProccessLibrary = new ProcessesLibrary();
         ProcessList ProcessList = new ProcessList();
-        fLanguage languagePack = new fLanguage();
+        LanguagePack LanguagePack = new LanguagePack();
         Debug Debug = new Debug();
 
         string //title,
@@ -85,10 +85,10 @@ namespace _Hell_PRO_Tanki_Launcher
             try
             {
                 foreach (Control control in this.Controls)
-                    control.Text = languagePack.InterfaceLanguage("fSettings", control, lang);
+                    control.Text = LanguagePack.InterfaceLanguage("fSettings", control, lang);
 
-                languagePack.toolTip(llUserProcesses);
-                languagePack.toolTip(llGlobalProcesses);
+                LanguagePack.toolTip(llUserProcesses);
+                LanguagePack.toolTip(llGlobalProcesses);
             }
             catch (Exception ex)
             {

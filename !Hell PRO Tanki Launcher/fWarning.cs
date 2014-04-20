@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using _Hell_Language_Pack;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -35,25 +36,13 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                string name = Environment.MachineName +
-                        Environment.UserName +
-                        Environment.UserDomainName +
-                        Environment.Version.ToString() +
-                        Environment.OSVersion.ToString();
-
-                using (System.Security.Cryptography.MD5 md5Hash = System.Security.Cryptography.MD5.Create())
-                {
-                    byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(name));
-                    StringBuilder sBuilder = new StringBuilder();
-                    for (int i = 0; i < data.Length; i++) { sBuilder.Append(data[i].ToString("x2")); }
-                    name = sBuilder.ToString();
-                }
+                Debug Debug = new Debug();
 
                 List<string> myJsonData = new List<string>();
                 myJsonData.Clear();
 
-                myJsonData.Add(new Debug().code);
-                myJsonData.Add(name);
+                myJsonData.Add(Debug.code);
+                myJsonData.Add(Debug.UserID());
                 myJsonData.Add("PROTanki");
                 myJsonData.Add(Application.ProductName + " " + Application.ProductVersion);
 
@@ -85,6 +74,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 myJsonData.Add(text);
                 myJsonData.Add(rbBug.Checked ? "bug" : "wish");
+                myJsonData.Add(tbEmail.Text.Trim() != "" ? tbEmail.Text.Trim() : "0");
 
                 if (myJsonData.Count > 2)
                 {
@@ -103,7 +93,7 @@ namespace _Hell_PRO_Tanki_Launcher
                             default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;
                         }
 
-                        MessageBox.Show(this, /*answer+Environment.NewLine+Environment.NewLine+ */status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(this, status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (WebException ex) { MessageBox.Show(this, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
@@ -127,8 +117,12 @@ namespace _Hell_PRO_Tanki_Launcher
             if (mess == String.Empty)
             {
                 bSend.Text = "Отправка...";
+                bSend.Enabled = false;
+
                 SendTicket().Wait();
+
                 bSend.Text = "Отправить";
+                bSend.Enabled = true;
 
                 Close();
             }
@@ -141,6 +135,16 @@ namespace _Hell_PRO_Tanki_Launcher
         private void lMessAboutNewVersion_Click(object sender, EventArgs e)
         {
             Process.Start(@"http://vk.com/topic-58816477_29818765");
+        }
+
+        private async Task SetInterfaceLanguage()
+        {
+            XDoc
+
+            LanguagePack LanguagePack = new LanguagePack();
+
+            foreach (Control control in this.Controls)
+                control.Text = new LanguagePack().InterfaceLanguage("fWarning", control, lang);
         }
     }
 }

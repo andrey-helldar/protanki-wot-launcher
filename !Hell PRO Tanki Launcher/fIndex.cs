@@ -25,7 +25,7 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fIndex : Form
     {
-        fLanguage languagePack = new fLanguage();
+        LanguagePack LanguagePack = new LanguagePack();
         YoutubeVideo YoutubeVideo = new YoutubeVideo();
         SendPOST SendPOST = new SendPOST();
         Debug Debug = new Debug();
@@ -348,7 +348,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     if (modpackUpdates)
                     {
                         //status += "Обнаружена новая версия Мультипака (" + remoteModVersion.ToString() + ")" + Environment.NewLine;
-                        status += languagePack.DynamicLanguage("llActuallyNewMods", lang) + "(" + remoteModVersion.ToString() + ")" + Environment.NewLine;
+                        status += LanguagePack.DynamicLanguage("llActuallyNewMods", lang) + "(" + remoteModVersion.ToString() + ")" + Environment.NewLine;
                         bUpdate.Enabled = true;
 
                         videoLink = newVersionLink;
@@ -357,7 +357,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     if (tanksUpdates)
                     {
                         //status += "Обнаружена новая версия клиента игры (" + remoteTanksVersion.ToString() + ")" + Environment.NewLine;
-                        status += languagePack.DynamicLanguage("llActuallyNewGame", lang) + "(" + remoteTanksVersion.ToString() + ")" + Environment.NewLine;
+                        status += LanguagePack.DynamicLanguage("llActuallyNewGame", lang) + "(" + remoteTanksVersion.ToString() + ")" + Environment.NewLine;
 
                         // Отключаем кнопку запуска игры
                         //bPlay.Enabled = false;
@@ -371,8 +371,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     //llActually.Text = modpackUpdates ? "Обнаружена новая версия мультипака!" : "Обнаружена новая версия игры!";
                     llActually.Text = modpackUpdates ?
-                        languagePack.DynamicLanguage("llActuallyNewMods", lang) + "!" :
-                        languagePack.DynamicLanguage("llActuallyNewGame", lang)+"!";
+                        LanguagePack.DynamicLanguage("llActuallyNewMods", lang) + "!" :
+                        LanguagePack.DynamicLanguage("llActuallyNewGame", lang)+"!";
                     llActually.ForeColor = Color.Yellow;
                     llActually.ActiveLinkColor = Color.Yellow;
                     llActually.LinkColor = Color.Yellow;
@@ -395,7 +395,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 else
                 {
                     //llActually.Text = "Вы используете самые свежие моды!";
-                    llActually.Text = languagePack.DynamicLanguage("llActuallyActually", lang) + "!";
+                    llActually.Text = LanguagePack.DynamicLanguage("llActuallyActually", lang) + "!";
                     llActually.ForeColor = Color.Lime;
                     llActually.ActiveLinkColor = Color.Lime;
                     llActually.LinkColor = Color.Lime;
@@ -404,16 +404,16 @@ namespace _Hell_PRO_Tanki_Launcher
                     /*status = "Вы используете самые свежие моды." + Environment.NewLine +
                         "Текущая версия Мультипака: " + modpackVersion.ToString() + Environment.NewLine +
                         "Текущая версия клиента игры: " + tanksVersion.ToString();*/
-                    status = languagePack.DynamicLanguage("llActuallyActually", lang) + Environment.NewLine +
-                        languagePack.DynamicLanguage("llActuallyThisVerMods", lang) + modpackVersion.ToString() + Environment.NewLine +
-                        languagePack.DynamicLanguage("llActuallyThisVerGame", lang) + tanksVersion.ToString();
+                    status = LanguagePack.DynamicLanguage("llActuallyActually", lang) + Environment.NewLine +
+                        LanguagePack.DynamicLanguage("llActuallyThisVerMods", lang) + modpackVersion.ToString() + Environment.NewLine +
+                        LanguagePack.DynamicLanguage("llActuallyThisVerGame", lang) + tanksVersion.ToString();
                     bUpdate.Enabled = false;
 
                     // Окно статуса обновлений
                     fNewVersion.llCaption.Text = status;
 
                     //fNewVersion.llContent.Text = "Обновления отсутствуют";
-                    fNewVersion.llContent.Text = languagePack.DynamicLanguage("noUpdates", lang);
+                    fNewVersion.llContent.Text = LanguagePack.DynamicLanguage("noUpdates", lang);
                     fNewVersion.llVersion.Text = modpackVersion.ToString();
                 }
 
@@ -816,7 +816,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 label.Name = "llVideoAll";
                 label.Click += new EventHandler(bVideo_Click);
                 this.Controls.Add(label);
-                label.Text = languagePack.DynamicLanguage("llVideoAll", lang);
+                label.Text = LanguagePack.DynamicLanguage("llVideoAll", lang);
 
                 bShowVideo.Enabled = true;
 
@@ -1205,7 +1205,7 @@ namespace _Hell_PRO_Tanki_Launcher
             Task.Factory.StartNew(() =>SendPOST.CountUsers(Application.ProductName, Application.ProductVersion, modpackVersion.ToString(), modpackType, youtubeChannel, lang)); // Отправляем на сайт инфу о запуске лаунчера
 
             // Главное окно
-            languagePack.toolTip(bOptimizePC);
+            LanguagePack.toolTip(bOptimizePC);
 
             GetVipProcesses();
 
@@ -1463,7 +1463,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private async Task SetInterfaceLanguage()
         {
             foreach (Control control in this.Controls)
-                control.Text = languagePack.InterfaceLanguage("fIndex", control, lang, modpackType);
+                control.Text = LanguagePack.InterfaceLanguage("fIndex", control, lang, modpackType);
         }
     }
 }

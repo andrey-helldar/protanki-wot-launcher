@@ -47,3 +47,4 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\D
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\_Hell_PRO_Tanki_Launcher.fWarning.resources
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\_Hell_PRO_Tanki_Launcher.fWarning.resources
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\_Hell_PRO_Tanki_Launcher.fLoader.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\_Hell_PRO_Tanki_Launcher.fLoader.resources

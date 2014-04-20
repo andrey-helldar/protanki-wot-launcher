@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lMessAboutNewVersion.Text" xml:space="preserve">
-    <value>ВНИМАНИЕ!!! Перед отправкой сообщений вида "постоянно вылетает окно "ОБНАРУЖЕНА НОВАЯ ВЕРСИЯ ИГРЫ! но ни какой новой версии нет", просьба прочесть обсуждения в ВК в группе PROТанки, посвященному проблемам с лаунчером. Возможно, Ваша проблема уже была озвучена другим пользователем. Перейти на страницу можно ЗДЕСЬ.</value>
-  </data>
 </root>

@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fWarning));
             this.lDesc = new System.Windows.Forms.Label();
             this.tbTicket = new System.Windows.Forms.TextBox();
             this.bSend = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
             this.rbWish = new System.Windows.Forms.RadioButton();
             this.rbBug = new System.Windows.Forms.RadioButton();
-            this.lMessAboutNewVersion = new System.Windows.Forms.Label();
+            this.lEmail = new System.Windows.Forms.Label();
+            this.tbEmail = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lDesc
@@ -58,7 +58,7 @@
             this.tbTicket.Location = new System.Drawing.Point(16, 58);
             this.tbTicket.Multiline = true;
             this.tbTicket.Name = "tbTicket";
-            this.tbTicket.Size = new System.Drawing.Size(667, 235);
+            this.tbTicket.Size = new System.Drawing.Size(667, 207);
             this.tbTicket.TabIndex = 1;
             // 
             // bSend
@@ -71,7 +71,7 @@
             this.bSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSend.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSend.Location = new System.Drawing.Point(437, 393);
+            this.bSend.Location = new System.Drawing.Point(437, 305);
             this.bSend.Name = "bSend";
             this.bSend.Size = new System.Drawing.Size(120, 34);
             this.bSend.TabIndex = 4;
@@ -89,7 +89,7 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(563, 393);
+            this.bCancel.Location = new System.Drawing.Point(563, 305);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(120, 34);
             this.bCancel.TabIndex = 5;
@@ -104,7 +104,7 @@
             this.rbWish.Checked = true;
             this.rbWish.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rbWish.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.rbWish.Location = new System.Drawing.Point(16, 398);
+            this.rbWish.Location = new System.Drawing.Point(16, 310);
             this.rbWish.Name = "rbWish";
             this.rbWish.Size = new System.Drawing.Size(177, 24);
             this.rbWish.TabIndex = 2;
@@ -118,24 +118,36 @@
             this.rbBug.BackColor = System.Drawing.Color.Transparent;
             this.rbBug.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rbBug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.rbBug.Location = new System.Drawing.Point(219, 398);
+            this.rbBug.Location = new System.Drawing.Point(219, 310);
             this.rbBug.Name = "rbBug";
             this.rbBug.Size = new System.Drawing.Size(137, 24);
             this.rbBug.TabIndex = 3;
             this.rbBug.Text = "Найдена ошибка";
             this.rbBug.UseVisualStyleBackColor = false;
             // 
-            // lMessAboutNewVersion
+            // lEmail
             // 
-            this.lMessAboutNewVersion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lMessAboutNewVersion.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lMessAboutNewVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.lMessAboutNewVersion.Location = new System.Drawing.Point(12, 302);
-            this.lMessAboutNewVersion.Name = "lMessAboutNewVersion";
-            this.lMessAboutNewVersion.Size = new System.Drawing.Size(671, 88);
-            this.lMessAboutNewVersion.TabIndex = 6;
-            this.lMessAboutNewVersion.Text = resources.GetString("lMessAboutNewVersion.Text");
-            this.lMessAboutNewVersion.Click += new System.EventHandler(this.lMessAboutNewVersion_Click);
+            this.lEmail.AutoSize = true;
+            this.lEmail.BackColor = System.Drawing.Color.Transparent;
+            this.lEmail.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lEmail.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.lEmail.Location = new System.Drawing.Point(12, 273);
+            this.lEmail.Name = "lEmail";
+            this.lEmail.Size = new System.Drawing.Size(45, 20);
+            this.lEmail.TabIndex = 7;
+            this.lEmail.Text = "Email:";
+            // 
+            // tbEmail
+            // 
+            this.tbEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(9)))), ((int)(((byte)(0)))));
+            this.tbEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbEmail.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.tbEmail.Location = new System.Drawing.Point(79, 271);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(604, 28);
+            this.tbEmail.TabIndex = 8;
             // 
             // fWarning
             // 
@@ -143,8 +155,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(23)))), ((int)(((byte)(0)))));
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.fWarning;
-            this.ClientSize = new System.Drawing.Size(695, 441);
-            this.Controls.Add(this.lMessAboutNewVersion);
+            this.ClientSize = new System.Drawing.Size(695, 351);
+            this.Controls.Add(this.tbEmail);
+            this.Controls.Add(this.lEmail);
             this.Controls.Add(this.rbBug);
             this.Controls.Add(this.rbWish);
             this.Controls.Add(this.bCancel);
@@ -173,6 +186,7 @@
         private System.Windows.Forms.Button bCancel;
         private System.Windows.Forms.RadioButton rbWish;
         private System.Windows.Forms.RadioButton rbBug;
-        private System.Windows.Forms.Label lMessAboutNewVersion;
+        private System.Windows.Forms.Label lEmail;
+        private System.Windows.Forms.TextBox tbEmail;
     }
 }
