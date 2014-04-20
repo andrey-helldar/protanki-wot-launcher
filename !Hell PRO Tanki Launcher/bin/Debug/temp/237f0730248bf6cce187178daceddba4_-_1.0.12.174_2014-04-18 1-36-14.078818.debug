@@ -1,9 +1,0 @@
-﻿private async Task DownloadFile()
--------------------------------
-Error download: EX
-Filename: LanguagePack.dll
-Localname: LanguagePack.dll
-URL: http://ai-rus.com/pro/
--------------------------------
-Исключение во время запроса WebClient.
--------------------------------

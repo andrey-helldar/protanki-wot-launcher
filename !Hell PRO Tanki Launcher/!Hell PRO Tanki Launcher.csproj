@@ -40,20 +40,22 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\WOT.ico</ApplicationIcon>
@@ -98,6 +100,12 @@
     <Compile Include="fIndex.Designer.cs">
       <DependentUpon>fIndex.cs</DependentUpon>
     </Compile>
+    <Compile Include="fLoader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fLoader.Designer.cs">
+      <DependentUpon>fLoader.cs</DependentUpon>
+    </Compile>
     <Compile Include="fNewVersion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +134,9 @@
     <Compile Include="YoutubeVideo.Class.cs" />
     <EmbeddedResource Include="fIndex.resx">
       <DependentUpon>fIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fLoader.resx">
+      <DependentUpon>fLoader.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fNewVersion.resx">
       <DependentUpon>fNewVersion.cs</DependentUpon>
