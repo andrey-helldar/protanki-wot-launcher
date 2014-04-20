@@ -129,6 +129,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 bSend.Text = "Отправка...";
                 SendTicket().Wait();
                 bSend.Text = "Отправить";
+
+                Close();
             }
             else
             {

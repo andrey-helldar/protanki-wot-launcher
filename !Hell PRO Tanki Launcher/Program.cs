@@ -21,17 +21,16 @@ namespace _Hell_PRO_Tanki_Launcher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // Запускаем прелоадер
             fLoader fLoader = new fLoader();
+            fLoader.Show();
 
-            Application.Run(fLoader); // Запускаем прелоадер
-
-           /* UpdateLauncher update = new UpdateLauncher(); // Инициализируем обновление библиотек
+            UpdateLauncher update = new UpdateLauncher(); // Инициализируем обновление библиотек
             update.Check().Wait();
 
             fLoader.Close();
 
-            Application.Run(new fIndex()); // Запускаем основную форму
-            * */
+            Application.Run(new fIndex());
         }
     }
 }

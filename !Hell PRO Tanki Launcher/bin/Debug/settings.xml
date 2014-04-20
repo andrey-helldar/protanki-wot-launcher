@@ -2,6 +2,6 @@
 <pro>
   <info video="True" />
   <settings kill="False" force="False" aero="False" video="Unchecked" weak="False" balance="False" />
-  <notification>0.9.0.0</notification>
+  <notification>0.9.0.3</notification>
   <processes />
 </pro>

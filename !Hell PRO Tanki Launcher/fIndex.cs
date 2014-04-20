@@ -347,7 +347,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (modpackUpdates)
                     {
-                        status += "Обнаружена новая версия Мультипака (" + remoteModVersion.ToString() + ")" + Environment.NewLine;
+                        //status += "Обнаружена новая версия Мультипака (" + remoteModVersion.ToString() + ")" + Environment.NewLine;
+                        status += languagePack.DynamicLanguage("llActuallyNewMods", lang) + "(" + remoteModVersion.ToString() + ")" + Environment.NewLine;
                         bUpdate.Enabled = true;
 
                         videoLink = newVersionLink;
@@ -355,7 +356,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     if (tanksUpdates)
                     {
-                        status += "Обнаружена новая версия клиента игры (" + remoteTanksVersion.ToString() + ")" + Environment.NewLine;
+                        //status += "Обнаружена новая версия клиента игры (" + remoteTanksVersion.ToString() + ")" + Environment.NewLine;
+                        status += languagePack.DynamicLanguage("llActuallyNewGame", lang) + "(" + remoteTanksVersion.ToString() + ")" + Environment.NewLine;
 
                         // Отключаем кнопку запуска игры
                         //bPlay.Enabled = false;
@@ -367,7 +369,10 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
 
 
-                    llActually.Text = modpackUpdates ? "Обнаружена новая версия мультипака!" : "Обнаружена новая версия игры!";
+                    //llActually.Text = modpackUpdates ? "Обнаружена новая версия мультипака!" : "Обнаружена новая версия игры!";
+                    llActually.Text = modpackUpdates ?
+                        languagePack.DynamicLanguage("llActuallyNewMods", lang) + "!" :
+                        languagePack.DynamicLanguage("llActuallyNewGame", lang)+"!";
                     llActually.ForeColor = Color.Yellow;
                     llActually.ActiveLinkColor = Color.Yellow;
                     llActually.LinkColor = Color.Yellow;
@@ -389,21 +394,26 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    llActually.Text = "Вы используете самые свежие моды!";
+                    //llActually.Text = "Вы используете самые свежие моды!";
+                    llActually.Text = languagePack.DynamicLanguage("llActuallyActually", lang) + "!";
                     llActually.ForeColor = Color.Lime;
                     llActually.ActiveLinkColor = Color.Lime;
                     llActually.LinkColor = Color.Lime;
                     llActually.VisitedLinkColor = Color.Lime;
 
-                    status = "Вы используете самые свежие моды." + Environment.NewLine +
+                    /*status = "Вы используете самые свежие моды." + Environment.NewLine +
                         "Текущая версия Мультипака: " + modpackVersion.ToString() + Environment.NewLine +
-                        "Текущая версия клиента игры: " + tanksVersion.ToString();
+                        "Текущая версия клиента игры: " + tanksVersion.ToString();*/
+                    status = languagePack.DynamicLanguage("llActuallyActually", lang) + Environment.NewLine +
+                        languagePack.DynamicLanguage("llActuallyThisVerMods", lang) + modpackVersion.ToString() + Environment.NewLine +
+                        languagePack.DynamicLanguage("llActuallyThisVerGame", lang) + tanksVersion.ToString();
                     bUpdate.Enabled = false;
 
                     // Окно статуса обновлений
                     fNewVersion.llCaption.Text = status;
 
-                    fNewVersion.llContent.Text = "Обновления отсутствуют";
+                    //fNewVersion.llContent.Text = "Обновления отсутствуют";
+                    fNewVersion.llContent.Text = languagePack.DynamicLanguage("noUpdates", lang);
                     fNewVersion.llVersion.Text = modpackVersion.ToString();
                 }
 
@@ -998,7 +1008,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 if (video)
                 {
-                    if (llBlockCaption.Text != "Видео:") // Исключаем повторное нажатие
+                    if (llBlockCaption.Text != "Видео:" && llBlockCaption.Text != "Video:") // Исключаем повторное нажатие
                     {
                         bShowVideo.BackColor = Color.Black;
                         bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
@@ -1006,7 +1016,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         bShowNews.BackColor = Color.FromArgb(28, 28, 28);
                         bShowNews.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
 
-                        llBlockCaption.Text = "Видео:";
+                        llBlockCaption.Text = lang == "ru" ? "Видео:" : "Video:";
 
                         pNews.Visible = false;
                         pVideo.Visible = true;
@@ -1014,7 +1024,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    if (llBlockCaption.Text != "Новости:") // Исключаем повторное нажатие
+                    if (llBlockCaption.Text != "Новости:" && llBlockCaption.Text != "News:") // Исключаем повторное нажатие
                     {
                         bShowVideo.BackColor = Color.FromArgb(28, 28, 28);
                         bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
@@ -1022,7 +1032,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         bShowNews.BackColor = Color.Black;
                         bShowNews.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
 
-                        llBlockCaption.Text = "Новости:";
+                        llBlockCaption.Text = lang == "ru" ? "Новости:" : "News:";
 
                         pVideo.Visible = false;
                         pNews.Visible = true;

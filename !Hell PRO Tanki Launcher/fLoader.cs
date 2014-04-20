@@ -16,18 +16,5 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             InitializeComponent();
         }
-
-        private void fLoader_Load(object sender, EventArgs e)
-        {
-            UpdateLauncher update = new UpdateLauncher(); // Инициализируем обновление библиотек
-            update.Check().Wait();
-
-            Visible = false;
-
-            fIndex fIndex = new fIndex();
-            fIndex.Show();
-
-            //Close();
-        }
     }
 }

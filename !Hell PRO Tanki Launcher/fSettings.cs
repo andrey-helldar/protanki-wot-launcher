@@ -84,9 +84,9 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                fLanguage languagePack = new fLanguage();
+                foreach (Control control in this.Controls)
+                    control.Text = languagePack.InterfaceLanguage("fSettings", control, lang);
 
-                // Окно настроек
                 languagePack.toolTip(llUserProcesses);
                 languagePack.toolTip(llGlobalProcesses);
             }
@@ -398,15 +398,6 @@ namespace _Hell_PRO_Tanki_Launcher
                     File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\preferences" + (commonTest ? "_ct" : "") + ".xml", "preferences" + (commonTest ? "_ct" : "") + ".xml");
             }
             catch (Exception ex) { Debug.Save("fSettings_Load()", ex.Message); }
-
-            try
-            {
-                SetInterfaceLanguage();
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("fSettings_Load()", "Apply Language", ex.Message);
-            }
         }
 
         private bool EnableAero()
@@ -432,12 +423,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 cbVideoQuality.CheckState = CheckState.Checked;
             else
                 cbVideoQuality.CheckState = CheckState.Indeterminate;
-        }
-
-        private async Task SetInterfaceLanguage()
-        {
-            foreach (Control control in this.Controls)
-                control.Text = languagePack.InterfaceLanguage("fSettings", control, lang);
         }
     }
 }
