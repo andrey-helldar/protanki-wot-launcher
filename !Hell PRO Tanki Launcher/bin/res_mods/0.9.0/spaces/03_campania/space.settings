@@ -1,0 +1,74 @@
+<space.settings>
+  <timeOfDay>system/data/sky03_Campania.xml</timeOfDay>
+  <skyGradientDome>system/data/sky03_Campania.xml</skyGradientDome>
+  <flora>spaces/03_campania/flora.xml</flora>
+  <bounds>
+    <minX>	-4	</minX>
+    <maxX>	3	</maxX>
+    <minY>	-4	</minY>
+    <maxY>	3	</maxY>
+  </bounds>
+  <terrain>
+    <version>	200	</version>
+    <lodMapSize>	256	</lodMapSize>
+    <aoMapSize>	256	</aoMapSize>
+    <heightMapSize>	64	</heightMapSize>
+    <normalMapSize>	256	</normalMapSize>
+    <holeMapSize>	64	</holeMapSize>
+    <shadowMapSize>	128	</shadowMapSize>
+    <blendMapSize>	256	</blendMapSize>
+    <lodInfo>
+      <startBias>	0.800000	</startBias>
+      <endBias>	0.990000	</endBias>
+      <lodDistances>
+      <distance0>50.0</distance0>
+      <distance1>150.0</distance1>
+      <distance2>312.0</distance2>
+      <distance3>875.0</distance3>
+      <distance4>1375.0</distance4>
+      <distance5>2125.0</distance5>
+      <distance6>2875.0</distance6>
+      <distance7>3625.0</distance7>
+      <distance8>7375.0</distance8>
+    </lodDistances>
+    <lodTextureStart>100.0</lodTextureStart>
+    <lodTextureDistance>200.0</lodTextureDistance>
+    <blendPreloadDistance>100.0</blendPreloadDistance>
+    <lodNormalStart>300.0</lodNormalStart>
+    <lodNormalDistance>300.0</lodNormalDistance>
+    <normalPreloadDistance>100.0</normalPreloadDistance>
+    <bumpFadingStart>25.0</bumpFadingStart>
+    <bumpFadingDistance>50.0</bumpFadingDistance>
+    <defaultHeightMapLod>	1	</defaultHeightMapLod>
+    <detailHeightMapDistance>700.0</detailHeightMapDistance>
+      <server>
+        <heightMapLod>	0	</heightMapLod>
+      </server>
+    </lodInfo>
+    <soundOcclusion>
+      <directOcclusion>	0.000000	</directOcclusion>
+      <reverbOcclusion>	0.000000	</reverbOcclusion>
+    </soundOcclusion>
+  </terrain>
+  <skyDomePartition>	0	</skyDomePartition>
+  <farPlane>
+    <max>	1500.000000	</max>
+    <high>	1000.000000	</high>
+    <medium>	775.000000	</medium>
+    <low>	675.000000	</low>
+  </farPlane>
+  <windSpeed>	0.000000 0.000000	</windSpeed>
+  <windGustiness>	0.000000	</windGustiness>
+  <floraWindFactor>	0.500000	</floraWindFactor>
+  <skyWorld>
+    <row0>	1.000000 0.000000 0.000000	</row0>
+    <row1>	0.000000 1.000000 0.000000	</row1>
+    <row2>	0.000000 0.000000 1.000000	</row2>
+    <row3>	0.000000 0.000000 0.000000	</row3>
+  </skyWorld>
+  <decals>
+    <fadeStart>	150.000000	</fadeStart>
+    <fadeEnd>	250.000000	</fadeEnd>
+  </decals>
+  <skyDome>maps/skyboxes/03_Campania_sky/skydome/skybox.visual</skyDome>
+</space.settings>

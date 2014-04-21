@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using Processes_Library;
 using _Hell_Language_Pack;
 using Newtonsoft.Json;
+using Ionic.Zip;
 
 namespace _Hell_PRO_Tanki_Launcher
 {

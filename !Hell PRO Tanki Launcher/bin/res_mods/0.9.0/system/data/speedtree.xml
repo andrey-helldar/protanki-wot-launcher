@@ -1,0 +1,29 @@
+<speedtree.xml>
+  <lodMode>	-2	</lodMode>
+  <lodNear>	45	</lodNear>
+  <lodFar>	220	</lodFar>
+  <lods>
+    <MAX>1.0f</MAX>
+    <HIGH>0.8f</HIGH>
+    <MEDIUM>0.6f</MEDIUM>
+    <LOW>0.2f</LOW>
+  </lods>
+  <lod0Yardstick>	40	</lod0Yardstick>
+  <lod0Variance>	1	</lod0Variance>
+  <speedWindINI>system/data/speedwind.ini</speedWindINI>
+  <billboardOptimiser>
+    <fxFile>shaders/speedtree/billboards_opt.fx</fxFile>
+    <mipBias>-1</mipBias>
+    <enabled>	true	</enabled>
+    <textureAtlas>
+      <minSize>	128	</minSize>
+      <maxSize>	2048	</maxSize>
+      <mipLevels>	2	</mipLevels>
+      <save>	false	</save>
+    </textureAtlas>
+    <buffers>
+      <framesToRecycle>	5	</framesToRecycle>
+      <framesToDelete>	100	</framesToDelete>
+    </buffers>
+  </billboardOptimiser>
+</speedtree.xml>

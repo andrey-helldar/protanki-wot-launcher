@@ -1,0 +1,76 @@
+<space.settings>
+  <timeOfDay>system/data/sky51_asia.xml</timeOfDay>
+  <skyGradientDome>system/data/sky51_asia.xml</skyGradientDome>
+  <flora>spaces/51_asia/flora.xml</flora>
+  <bounds>
+    <minX>	-7	</minX>
+    <maxX>	6	</maxX>
+    <minY>	-7	</minY>
+    <maxY>	6	</maxY>
+  </bounds>
+  <terrain>
+    <version>	200	</version>
+    <lodMapSize>	256	</lodMapSize>
+    <aoMapSize>	256	</aoMapSize>
+    <heightMapSize>	64	</heightMapSize>
+    <normalMapSize>	256	</normalMapSize>
+    <holeMapSize>	64	</holeMapSize>
+    <shadowMapSize>	128	</shadowMapSize>
+    <blendMapSize>	256	</blendMapSize>
+    <lodInfo>
+      <startBias>	0.800000	</startBias>
+      <endBias>	0.990000	</endBias>
+      <lodDistances>
+      <distance0>50.0</distance0>
+      <distance1>150.0</distance1>
+      <distance2>312.0</distance2>
+      <distance3>875.0</distance3>
+      <distance4>1375.0</distance4>
+      <distance5>2125.0</distance5>
+      <distance6>2875.0</distance6>
+      <distance7>3625.0</distance7>
+      <distance8>7375.0</distance8>
+    </lodDistances>
+    <lodTextureStart>100.0</lodTextureStart>
+    <lodTextureDistance>200.0</lodTextureDistance>
+    <blendPreloadDistance>100.0</blendPreloadDistance>
+    <lodNormalStart>300.0</lodNormalStart>
+    <lodNormalDistance>300.0</lodNormalDistance>
+    <normalPreloadDistance>100.0</normalPreloadDistance>
+    <bumpFadingStart>25.0</bumpFadingStart>
+    <bumpFadingDistance>50.0</bumpFadingDistance>
+    <defaultHeightMapLod>	2	</defaultHeightMapLod>
+    <detailHeightMapDistance>700.0</detailHeightMapDistance>
+      <server>
+        <heightMapLod>	0	</heightMapLod>
+      </server>
+    </lodInfo>
+    <soundOcclusion>
+      <directOcclusion>	0.000000	</directOcclusion>
+      <reverbOcclusion>	0.000000	</reverbOcclusion>
+    </soundOcclusion>
+  </terrain>
+  <skyDomePartition>	0	</skyDomePartition>
+  <windSpeed>	0.000000 0.000000	</windSpeed>
+  <windGustiness>	0.000000	</windGustiness>
+  <floraWindFactor>	0.500000	</floraWindFactor>
+  <startPosition>	-322.851000 42.630540 -229.199800	</startPosition>
+  <startDirection>	0.000345 0.389999 0.973184	</startDirection>
+  <skyWorld>
+    <row0>	-0.109387 0.000000 0.993999	</row0>
+    <row1>	0.000000 1.000000 0.000000	</row1>
+    <row2>	-0.993999 0.000000 -0.109387	</row2>
+    <row3>	0.000000 0.000000 0.000000	</row3>
+  </skyWorld>
+  <decals>
+    <fadeStart>	200.000000	</fadeStart>
+    <fadeEnd>	250.000000	</fadeEnd>
+  </decals>
+  <skyDome>maps/skyboxes/51_asia_sky/skydome/skybox.visual</skyDome>
+  <farPlane>
+    <max>	1500.000000	</max>
+    <high>	1000.000000	</high>
+    <medium>	775.000000	</medium>
+    <low>	675.000000	</low>
+  </farPlane>
+</space.settings>

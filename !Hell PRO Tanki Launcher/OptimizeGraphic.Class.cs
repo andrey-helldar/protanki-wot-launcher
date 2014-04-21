@@ -11,7 +11,7 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     class OptimizeGraphic
     {
-        public void Optimize(bool commonTest = false, bool autoVideo=false, bool autoWeak = false)
+        public void Optimize(bool commonTest = false, bool autoVideo = false, bool autoWeak = false)
         {
             if (autoVideo)
             {
@@ -107,7 +107,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (docPref.Root.Element("scriptsPreferences").Element("loginPage") != null)
                     if (docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper") != null)
                         docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper").SetValue(autoWeak ? "	false	" : "	true	");
-                
+
                 if (autoWeak && docPref.Root.Element("devicePreferences") != null)
                     if (docPref.Root.Element("devicePreferences").Element("aspectRatio") != null)
                         switch (docPref.Root.Element("devicePreferences").Element("aspectRatio").Value.Trim())
@@ -145,21 +145,42 @@ namespace _Hell_PRO_Tanki_Launcher
                 sw.Write(content);
                 sw.Close();
 
+                /********************************************
+                 * Распаковываем архив с улучшениями графики
+                 * *****************************************/
+                UnzipResMods().Wait();
+            }
+        }
 
-                /* ********************************************
-                 *  Добавляем мод по оптимизации графики
-                 *  ******************************************/
-                if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
+        private async Task UnzipResMods()
+        {
+            /* ********************************************
+             *  http://goo.gl/xLwuLq
+             *  ******************************************/
+            if (!Directory.Exists("temp")) Directory.CreateDirectory("temp");
+            else if (File.Exists(@"temp\res_mods.zip")) File.Delete(@"temp\res_mods.zip");
 
-                    using (ZipFile zip = new ZipFile())
-                    {
-                        zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
-                        zip.ExtractExistingFile = 
-                        zip.AddDirectory(path + @"\temp");
-                        zip.Save(path + @"\debug\" + UserID() + "_-_" + "_" + Application.ProductVersion + "_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
-                    }
+            File.WriteAllBytes(@"temp\res_mods.zip", Properties.Resources.res_mods);
 
-                    Directory.Delete(path + @"\temp", true);
+            using (ZipFile zip = ZipFile.Read(@"temp\res_mods.zip"))
+            {
+                try
+                {
+                    zip.ExtractAll(@"..\", ExtractExistingFileAction.OverwriteSilently);
+                    zip.Dispose();
+                }
+                catch (Exception)
+                {
+                    // Если возникла ошибка (обычно если файлы *.tmp найдены),
+                    // то удаляем их и запускаем заново функцию
+                    string[] files = Directory.GetFiles(@"..\res_mods\", "*.tmp", SearchOption.AllDirectories);
+                    foreach (string file in files)
+                        try { if (File.Exists(file)) File.Delete(file); }
+                        finally { }
+
+                    // И перезапускаем функцию
+                    UnzipResMods().Wait();
+                }
             }
         }
     }
