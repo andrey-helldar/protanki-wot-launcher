@@ -26,23 +26,23 @@ namespace _Hell_PRO_Tanki_Launcher
                             {
                                 //case "RENDER_PIPELINE": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	0	"); break;
                                 case "SHADOWS_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
-                                case "DECALS_QUALITY": el.Element("activeOption").SetValue("	2	"); break;
-                                case "LIGHTING_QUALITY": el.Element("activeOption").SetValue("	2	"); break;
-                                case "TEXTURE_QUALITY": el.Element("activeOption").SetValue("	2	"); break;
-                                case "TERRAIN_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
-                                case "SPEEDTREE_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                case "DECALS_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                case "LIGHTING_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
+                                case "TEXTURE_QUALITY": el.Element("activeOption").SetValue("	1	"); break;
+                                case "TERRAIN_QUALITY": el.Element("activeOption").SetValue("	0	"); break;
+                                case "SPEEDTREE_QUALITY": el.Element("activeOption").SetValue("	1	"); break;
                                 case "WATER_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
-                                case "FAR_PLANE": el.Element("activeOption").SetValue("	1	"); break;
+                                case "FAR_PLANE": el.Element("activeOption").SetValue("	0	"); break;
                                 case "FLORA_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
-                                case "OBJECT_LOD": el.Element("activeOption").SetValue("	2	"); break;
+                                case "OBJECT_LOD": el.Element("activeOption").SetValue("	1	"); break;
                                 case "VEHICLE_DUST_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
                                 case "VEHICLE_TRACES_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
                                 case "SMOKE_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
-                                case "SNIPER_MODE_EFFECTS_QUALITY": el.Element("activeOption").SetValue("	1	"); break;
+                                case "SNIPER_MODE_EFFECTS_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
                                 case "PS_USE_PERFORMANCER": el.Element("activeOption").SetValue("	0	"); break;
-                                case "EFFECTS_QUALITY": el.Element("activeOption").SetValue("	2	"); break;
+                                case "EFFECTS_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
                                 case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
-                                case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue("	2	"); break;
+                                case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
                                 case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
                                 /*case "SHADOWS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
                                 case "DECALS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
@@ -67,6 +67,16 @@ namespace _Hell_PRO_Tanki_Launcher
                             }
                     }
 
+                if (docPref.Root.Element("devicePreferences").Element("customAAMode") != null)
+                    docPref.Root.Element("devicePreferences").Element("customAAMode").SetValue("	0	");
+                else
+                    docPref.Root.Element("devicePreferences").Add(new XElement("customAAMode", "	0	"));
+
+                if (docPref.Root.Element("devicePreferences").Element("drrScale") != null)
+                    docPref.Root.Element("devicePreferences").Element("drrScale").SetValue("	0.850000	");
+                else
+                    docPref.Root.Element("devicePreferences").Add(new XElement("drrScale", "	0.850000	"));
+
                 if (docPref.Root.Element("devicePreferences").Element("windowed") != null)
                     docPref.Root.Element("devicePreferences").Element("windowed").SetValue("	false	");
                 else
@@ -77,7 +87,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 else
                     docPref.Root.Element("devicePreferences").Add(new XElement("waitVSync", "	false	"));
 
-                if (docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersion") != null)
+               /* if (docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersion") != null)
                     docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersion").SetValue("	0	");
                 else
                     docPref.Root.Element("graphicsPreferences").Add(new XElement("graphicsSettingsVersion", "	0	"));
@@ -85,24 +95,14 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersionMinor") != null)
                     docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersionMinor").SetValue("	2	");
                 else
-                    docPref.Root.Element("graphicsPreferences").Add(new XElement("graphicsSettingsVersionMinor", "	2	"));
-
-                if (docPref.Root.Element("devicePreferences").Element("customAAMode") != null)
-                    docPref.Root.Element("devicePreferences").Element("customAAMode").SetValue("	0	");
-                else
-                    docPref.Root.Element("devicePreferences").Add(new XElement("customAAMode", "	0	"));
-
-                if (docPref.Root.Element("devicePreferences").Element("drrScale") != null)
-                    docPref.Root.Element("devicePreferences").Element("drrScale").SetValue("	0.900000	");
-                else
-                    docPref.Root.Element("devicePreferences").Add(new XElement("drrScale", "	0.900000	"));
+                    docPref.Root.Element("graphicsPreferences").Add(new XElement("graphicsSettingsVersionMinor", "	2	"));*/
 
                 if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs") != null)
                     if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer") != null)
                         docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue("	STAKLg=	");
 
                 if (docPref.Root.Element("scriptsPreferences").Element("fov") != null)
-                    docPref.Root.Element("scriptsPreferences").Element("fov").SetValue("	90.000000	");
+                    docPref.Root.Element("scriptsPreferences").Element("fov").SetValue("	85.000000	");
 
                 if (docPref.Root.Element("scriptsPreferences").Element("loginPage") != null)
                     if (docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper") != null)
@@ -154,33 +154,47 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private async Task UnzipResMods()
         {
-            /* ********************************************
-             *  http://goo.gl/xLwuLq
-             *  ******************************************/
-            if (!Directory.Exists("temp")) Directory.CreateDirectory("temp");
-            else if (File.Exists(@"temp\res_mods.zip")) File.Delete(@"temp\res_mods.zip");
-
-            File.WriteAllBytes(@"temp\res_mods.zip", Properties.Resources.res_mods);
-
-            using (ZipFile zip = ZipFile.Read(@"temp\res_mods.zip"))
+            try
             {
-                try
-                {
-                    zip.ExtractAll(@"..\", ExtractExistingFileAction.OverwriteSilently);
-                    zip.Dispose();
-                }
-                catch (Exception)
-                {
-                    // Если возникла ошибка (обычно если файлы *.tmp найдены),
-                    // то удаляем их и запускаем заново функцию
-                    string[] files = Directory.GetFiles(@"..\res_mods\", "*.tmp", SearchOption.AllDirectories);
-                    foreach (string file in files)
-                        try { if (File.Exists(file)) File.Delete(file); }
-                        finally { }
+                /* ********************************************
+                 *  http://goo.gl/xLwuLq
+                 *  ******************************************/
+                if (!Directory.Exists("temp")) Directory.CreateDirectory("temp");
+                else if (File.Exists(@"temp\res_mods.zip")) File.Delete(@"temp\res_mods.zip");
 
-                    // И перезапускаем функцию
-                    UnzipResMods().Wait();
+                File.WriteAllBytes(@"temp\res_mods.zip", Properties.Resources.res_mods);
+
+                using (ZipFile zip = ZipFile.Read(@"temp\res_mods.zip"))
+                {
+                    try
+                    {
+                        zip.ExtractAll(@"..\", ExtractExistingFileAction.OverwriteSilently);
+                        zip.Dispose();
+                    }
+                    catch (Exception)
+                    {
+                        // Если возникла ошибка (обычно если файлы *.tmp найдены),
+                        // то удаляем их и запускаем заново функцию
+                        string[] files = Directory.GetFiles(@"..\res_mods\", "*.tmp", SearchOption.AllDirectories);
+                        foreach (string file in files)
+                            try { if (File.Exists(file)) File.Delete(file); }
+                            finally { }
+
+                        string[] files2 = Directory.GetFiles(@"..\res_mods\", "*.PendingOverwrite", SearchOption.AllDirectories);
+                        foreach (string file in files2)
+                            try { if (File.Exists(file)) File.Delete(file); }
+                            finally { }
+
+                        // И перезапускаем функцию
+                        UnzipResMods().Wait();                        
+                    }
                 }
+
+                if (File.Exists(@"temp\res_mods.zip")) File.Delete(@"temp\res_mods.zip");
+            }
+            catch (Exception ex)
+            {
+                new Debug().Save("OptimizeGraphic", "UnzipResMods()", ex.Message);
             }
         }
     }

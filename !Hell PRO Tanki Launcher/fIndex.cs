@@ -1206,8 +1206,6 @@ namespace _Hell_PRO_Tanki_Launcher
             moveForm();
 
             SetInterfaceLanguage();
-
-            Task.Factory.StartNew(() => Debug.Send()); // Если имеются какие-либо файлы дебага, то отправляем их на сайт
         }
 
         private async Task GetVipProcesses()

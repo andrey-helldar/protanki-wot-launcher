@@ -14,11 +14,11 @@
 		</entry>
 		<entry>
 			<label>	DECALS_QUALITY	</label>
-			<activeOption>	2	</activeOption>
+			<activeOption>	3	</activeOption>
 		</entry>
 		<entry>
 			<label>	LIGHTING_QUALITY	</label>
-			<activeOption>	2	</activeOption>
+			<activeOption>	4	</activeOption>
 		</entry>
 		<entry>
 			<label>	COLOR_GRADING_TECHNIQUE	</label>
@@ -30,7 +30,7 @@
 		</entry>
 		<entry>
 			<label>	TEXTURE_QUALITY	</label>
-			<activeOption>	2	</activeOption>
+			<activeOption>	1	</activeOption>
 		</entry>
 		<entry>
 			<label>	CONTENT_QUALITY	</label>
@@ -42,11 +42,11 @@
 		</entry>
 		<entry>
 			<label>	TERRAIN_QUALITY	</label>
-			<activeOption>	3	</activeOption>
+			<activeOption>	0	</activeOption>
 		</entry>
 		<entry>
 			<label>	SPEEDTREE_QUALITY	</label>
-			<activeOption>	3	</activeOption>
+			<activeOption>	1	</activeOption>
 		</entry>
 		<entry>
 			<label>	WATER_QUALITY	</label>
@@ -58,7 +58,7 @@
 		</entry>
 		<entry>
 			<label>	FAR_PLANE	</label>
-			<activeOption>	1	</activeOption>
+			<activeOption>	0	</activeOption>
 		</entry>
 		<entry>
 			<label>	FLORA_QUALITY	</label>
@@ -66,7 +66,7 @@
 		</entry>
 		<entry>
 			<label>	OBJECT_LOD	</label>
-			<activeOption>	2	</activeOption>
+			<activeOption>	1	</activeOption>
 		</entry>
 		<entry>
 			<label>	VEHICLE_DUST_ENABLED	</label>
@@ -82,7 +82,7 @@
 		</entry>
 		<entry>
 			<label>	SNIPER_MODE_EFFECTS_QUALITY	</label>
-			<activeOption>	1	</activeOption>
+			<activeOption>	3	</activeOption>
 		</entry>
 		<entry>
 			<label>	PS_USE_PERFORMANCER	</label>
@@ -90,7 +90,7 @@
 		</entry>
 		<entry>
 			<label>	EFFECTS_QUALITY	</label>
-			<activeOption>	2	</activeOption>
+			<activeOption>	3	</activeOption>
 		</entry>
 		<entry>
 			<label>	SNIPER_MODE_GRASS_ENABLED	</label>
@@ -102,7 +102,7 @@
 		</entry>
 		<entry>
 			<label>	POST_PROCESSING_QUALITY	</label>
-			<activeOption>	2	</activeOption>
+			<activeOption>	4	</activeOption>
 		</entry>
 		<entry>
 			<label>	MOTION_BLUR_QUALITY	</label>
@@ -122,7 +122,7 @@
 		<multisamplingQuality>	0	</multisamplingQuality>
 		<aspectRatio>	1.777778	</aspectRatio>
 		<gammaCorrection>	1.000000	</gammaCorrection>
-		<drrScale>	0.900000	</drrScale>
+		<drrScale>	0.850000	</drrScale>
 		<useAlternateFrameTimer>	false	</useAlternateFrameTimer>
 		<textureQualityMemoryBlock>	3000	</textureQualityMemoryBlock>
 		<windowedWidth>	1024	</windowedWidth>
@@ -146,7 +146,7 @@
 			<soundMode>	default	</soundMode>
 		</soundPrefs>
 		<replayPrefs>
-			<replayEnabled>	STAKLg==	</replayEnabled>
+			<replayEnabled>	STEKLg==	</replayEnabled>
 			<useServerAim>	STAKLg==	</useServerAim>
 			<minimapAlpha>	STAKLg==	</minimapAlpha>
 			<enablePostMortemEffect>	STAKLg==	</enablePostMortemEffect>
@@ -247,15 +247,15 @@
 			</groups>
 		</vibration>
 		<loginInfo>
-			<login>	AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABoaJxo3nSUWlIdIyV5Mg+gQAAAACAAAAAAAQZgAAAAEAACAAAAA7igaqjinc/ZRQjukU2+0afcXcRcUfZET/avxkZ/hcxQAAAAAOgAAAAAIAACAAAAAOvAd94DpVRcd0Ce5iWBgKBYx6DR9XaJBp2l8LSJow7CAAAACiGacd/kbVDc2BckuOdGuCxc4u7HVIhBYyO6S7L9amqkAAAABtgeQSGcN/rvJr3Oufn/yGV6fEm8XV3M1K6jAkkATnbHbBu9kGP8nDVSDWuxTDu7ac/EpPgayxARCRKraiiys4	</login>
+			<login>	AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABoaJxo3nSUWlIdIyV5Mg+gQAAAACAAAAAAAQZgAAAAEAACAAAAAwrms8L4W9Au5rY4n81tSxxQcg2eLYmJgqzPQeebXUJwAAAAAOgAAAAAIAACAAAABQta8nx6+UWsN/CFxaIA8qNpcdzzbI4yYDZyz7/SNMuCAAAADqXSsuJXHQhmPaNflIFWNkyYMNaTATSeVdtzqDNan6PUAAAACJuRRuWkDzjz72afhSWMru2lL1YOU0A8mOieBSPbuWh+Ac3ensa0HRc0MAgYTw4TW5kQoxJR91vNp27ePIkCa9	</login>
 			<rememberPwd>	true	</rememberPwd>
 			<host>	login.p4.worldoftanks.net:20014	</host>
-			<token2>	12:2732865:6474827850217512919:135496497113693227788445180581736226870	</token2>
+			<token2>	12:2732865:6474827850217512919:40063049027700476023783916053595175593	</token2>
 			<salt>	AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABoaJxo3nSUWlIdIyV5Mg+gQAAAACAAAAAAAQZgAAAAEAACAAAACVu8CoHQwUuv4qrw/q3ppOe7LAWmXA0OhEw+ahWmVJTwAAAAAOgAAAAAIAACAAAACEKyr5cAzGL6Zx13JcOiJ9UW2Kvsy0xdBKY8IdMMBNJzAAAAANhTbOcInrjRKREfP1n76RFb2ufVSO+FcCGPdTCkbtOOWaJksHixlqcYFhrf1R505AAAAABXcu6El8Ao6Xzh2Rf9zgOj8tEOMWXdPnXeOI06IHi2nAVEwNiyUJs6I9rwTStyS8ZaCY2IWzfvlwQ5P8o44sXA==	</salt>
-			<peripheryLifeTime>	KEkxMDQKRjEzOTc5MTg3MzAuMTc5CnRwMAou	</peripheryLifeTime>
+			<peripheryLifeTime>	KEkxMDQKRjEzOTgwNzA2ODIuODk5CnRwMAou	</peripheryLifeTime>
 		</loginInfo>
 		<loginPage>
-			<lastLoginBgImage>	back_29_without_sparks	</lastLoginBgImage>
+			<lastLoginBgImage>	back_4_without_sparks	</lastLoginBgImage>
 			<showLoginWallpaper>	true	</showLoginWallpaper>
 		</loginPage>
 		<accounts>
@@ -266,8 +266,16 @@
 					<quests>	KGRwMApTJ3Zpc2l0ZWQnCnAxCih0c1MnbmFWaXNpdGVkJwpwMgoodHNTJ2xhc3RWaXNpdFRpbWUnCnAzCkktMQpzLg==	</quests>
 				</settings>
 				<favorites>
-					<current>	STY1Ci4=	</current>
+					<current>	STY3Ci4=	</current>
 				</favorites>
+				<filters>
+					<inventory_vehicle>	KGxwMApMNkwKYVMnbGlnaHRUYW5rJwpwMQphUydtZWRpdW1UYW5rJwpwMgphUydoZWF2eVRhbmsnCnAzCmFTJ2F0LXNwZycKcDQKYVMnc3BnJwpwNQphUydhbGwnCnA2CmFTJ2xvY2tlZCcKcDcKYVMnYnJvY2tlbicKcDgKYS4=	</inventory_vehicle>
+					<inventory_current>	KEYtMS4wClMnbW9kdWxlJwpwMAp0cDEKLg==	</inventory_current>
+					<inventory_equipment>	KGxwMApTJ215VmVoaWNsZXMnCnAxCmFTJzE0MTQ1JwpwMgphLg==	</inventory_equipment>
+					<inventory_optionalDevice>	KGxwMApTJ215VmVoaWNsZXMnCnAxCmFTJzE0MTQ1JwpwMgphLg==	</inventory_optionalDevice>
+					<inventory_shell>	KGxwMApMNEwKYVMnQVJNT1JfUElFUkNJTkcnCnAxCmFTJ0FSTU9SX1BJRVJDSU5HX0NSJwpwMgphUydIT0xMT1dfQ0hBUkdFJwpwMwphUydISUdIX0VYUExPU0lWRScKcDQKYVMnbXlWZWhpY2xlc0ludmVudG9yeUd1bnMnCnA1CmFTJzE0MTQ1JwpwNgphLg==	</inventory_shell>
+					<inventory_module>	KGxwMApMNUwKYVMndmVoaWNsZUd1bicKcDEKYVMndmVoaWNsZVR1cnJldCcKcDIKYVMndmVoaWNsZUVuZ2luZScKcDMKYVMndmVoaWNsZUNoYXNzaXMnCnA0CmFTJ3ZlaGljbGVSYWRpbycKcDUKYVMnbXlWZWhpY2xlcycKcDYKYVMnMTQxNDUnCnA3CmFMMEwKYS4=	</inventory_module>
+				</filters>
 			</account>
 		</accounts>
 		<captureDevice>	Default System Device	</captureDevice>
@@ -279,7 +287,7 @@
 					<keySensitivity>	1.000000	</keySensitivity>
 					<sensitivity>	1.000000	</sensitivity>
 					<scrollSensitivity>	1.000000	</scrollSensitivity>
-					<startDist>	2.000000	</startDist>
+					<startDist>	10.000000	</startDist>
 					<startAngle>	60.000000	</startAngle>
 				</camera>
 			</arcadeMode>
@@ -288,7 +296,7 @@
 					<keySensitivity>	1.000000	</keySensitivity>
 					<sensitivity>	1.000000	</sensitivity>
 					<scrollSensitivity>	1.000000	</scrollSensitivity>
-					<camDist>	0.000000	</camDist>
+					<camDist>	150.000000	</camDist>
 				</camera>
 			</strategicMode>
 			<sniperMode>
@@ -298,7 +306,7 @@
 					<keySensitivity>	1.000000	</keySensitivity>
 					<sensitivity>	1.000000	</sensitivity>
 					<scrollSensitivity>	1.000000	</scrollSensitivity>
-					<zoom>	20.799999	</zoom>
+					<zoom>	8.000000	</zoom>
 				</camera>
 			</sniperMode>
 		</controlMode>
@@ -306,8 +314,12 @@
 		<windowsStoredData>
 			<mask>	3	</mask>
 			<rev>	0	</rev>
+			<records>
+				<record>	KEkxCkkyCkktNzAKSTQ0NApJMjE1CkktMQpJLTEKdHAxCi4=	</record>
+				<record>	KEkyCkkxClMnbWVzc2VuZ2VyL2NvbnRhY3RzV2luZG93JwpwMQpJMTE1Ckk2MjcKSTI4OQpJNDA4CnRwMgou	</record>
+			</records>
 		</windowsStoredData>
-		<fov>	105.000000	</fov>
+		<fov>	85.000000	</fov>
 	</scriptsPreferences>
 	<consoleHistory />
 </root>

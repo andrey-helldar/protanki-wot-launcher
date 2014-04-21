@@ -133,6 +133,10 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 SendTicket().Wait();
 
+                // Если имеются какие-либо файлы дебага, то отправляем их
+                Debug Debug = new Debug();
+                Task.Factory.StartNew(() => Debug.Send()).Wait();
+
                 //bSend.Text = "Отправить";
                 bSend.Text = LanguagePack.DynamicLanguage("send", lang);
                 bSend.Enabled = true;

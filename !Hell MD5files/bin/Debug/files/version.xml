@@ -3,9 +3,9 @@
   <FormatXML ext="exe" checksum="3910F6A4FCB4BD72B96441362ADD7960" important="False" user="false">1.0.0.0</FormatXML>
   <Ionic.Zip ext="dll" checksum="6DED8FCBF5F1D9E422B327CA51625E24" important="True" user="true">1.9.1.8</Ionic.Zip>
   <LanguagePack ext="dll" checksum="2B42AE1CF4033B8964044CEA71F36D7D" important="True" user="true">1.0.2.16</LanguagePack>
-  <launcher ext="exe" checksum="2129A7362A783E33ACC3554C3C3D5911" important="False" user="false">1.0.12.184</launcher>
+  <launcher ext="exe" checksum="3A7962E9E1AC58E962C3142B0983528D" important="False" user="false">1.0.12.189</launcher>
   <Newtonsoft.Json ext="dll" checksum="5619E5D4B93E544C7B9174C062F6C40B" important="False" user="true">6.0.1.17001</Newtonsoft.Json>
   <ProcessesLibrary ext="dll" checksum="1561CC26FE335AE5CCEE2B451C465DAA" important="True" user="true">1.0.6.29</ProcessesLibrary>
-  <restart ext="exe" checksum="02D9D806C0AF8B0F3AFB16AA6D62B98B" important="True" user="true">1.0.2.11</restart>
+  <restart ext="exe" checksum="F55F475FB2FB927A49E34438525FAFBB" important="True" user="true">1.0.2.12</restart>
   <settings ext="xml" checksum="0AB43809B97BC126F49F212BA52E8417" important="False" user="false"></settings>
 </ai.rus>
