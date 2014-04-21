@@ -27,7 +27,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             UpdateLauncher update = new UpdateLauncher(); // Инициализируем обновление библиотек
             update.Check().Wait();
-
+            
             fLoader.Close();
 
             Application.Run(new fIndex());

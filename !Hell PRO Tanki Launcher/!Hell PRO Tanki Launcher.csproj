@@ -175,6 +175,7 @@
     <None Include="Resources\start.bat" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\splash.jpg" />
     <None Include="Resources\ProcessesLibrary.dll" />
     <None Include="Resources\fWarning.jpg" />
     <None Include="Resources\settings.xml" />

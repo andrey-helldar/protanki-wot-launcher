@@ -1,9 +1,0 @@
-﻿private async Task DownloadFile()
--------------------------------
-Error download: EX1
-Filename: ProcessesLibrary.dll
-Localname: ProcessesLibrary.dll
-URL: http://ai-rus.com/pro/
--------------------------------
-Отказано в доступе по пути "D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\ProcessesLibrary.dll".
--------------------------------

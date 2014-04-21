@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace _Hell_Language_Pack
 {
-    public class fLanguage
+    public class LanguagePack
     {
         public void toolTip(Control sender, string lang = "ru")
         {
@@ -40,11 +40,13 @@ namespace _Hell_Language_Pack
             }
         }
 
-        public string InterfaceLanguage(string formName, Control sender, string lang, string type = "base")
+        public string InterfaceLanguage(string formName, Control sender, string lang = "en", string type = "base")
         {
             switch (formName)
             {
-                // Главная форма
+                /* ************************
+                 *         fIndex
+                 * ***********************/
                 case "fIndex":
                     switch (sender.Name)
                     {
@@ -64,12 +66,14 @@ namespace _Hell_Language_Pack
                         case "bSettings": return lang == "ru" ? "Настройки" : "Settings";
                         case "llBlockCaption": return lang == "ru" ? "Видео:" : "Video:";
                         case "llLoadingVideoData": return lang == "ru" ? "Подождите, идет загрузка..." : "Downloading, please, wait...";
-                        case "llActually": return lang == "ru" ? "Вы используете самые свежие моды!" : "You are using the latest mods!";
+
                         default: return sender.Text;
                     }
 
+                /* ************************
+                 *         fSettings
+                 * ***********************/
                 case "fSettings":
-                    // Форма настроек
                     switch (sender.Name)
                     {
                         case "llTitle": return lang == "ru" ? "Настройки..." : "Settings...";
@@ -80,16 +84,11 @@ namespace _Hell_Language_Pack
                         case "cbVideoQuality": return lang == "ru" ? "Уменьшить качество графики в игре" : "Reduce the quality of the graphics in the game";
                         case "cbVideoQualityWeak": return lang == "ru" ? "Очень слабый компьютер" : "Very weak computer";
 
-                        case "gbOther": return lang == "ru" ? "Уведомлять о новых видео:" : "Notify about new videos";
+                        case "gbOther": return lang == "ru" ? "Другие:" : "Other settings:";
+                        case "cbVideo": return lang == "ru" ? "Уведомлять о новых видео:" : "Notify about new videos";
                         case "gbPriority": return lang == "ru" ? "Приоритет игры в системе:" : "Priority of the game in system";
                         case "cbBalanceCPU": return lang == "ru" ? "Распределить нагрузку ЦП" : "CPU load balancing";
                         case "gbProcesses": return lang == "ru" ? "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:" : "This processes must BE ACTIVE when the game starts";
-                        case "lvProcessesUser":
-                            ListView listView = new ListView();
-                            listView.Columns[0].Text = lang == "ru" ? "Процесс" : "Process";
-                            listView.Columns[1].Text = lang == "ru" ? "Описание" : "Description";
-                            return sender.Text;
-
                         case "llUserProcesses": return lang == "ru" ? "Процессы, выбранные пользователем" : "Processes selected by the user";
                         case "llGlobalProcesses": return lang == "ru" ? "Процессы из глобального списка" : "Processes from the global list";
                         case "lDescProcesses": return lang == "ru" ?
@@ -102,7 +101,9 @@ namespace _Hell_Language_Pack
                     }
 
 
-                // Форма уведомления о новых версиях
+                /* ************************
+                 *       fNewVersion
+                 * ***********************/
                 case "fNewVersion":
                     switch (sender.Name)
                     {
@@ -112,7 +113,9 @@ namespace _Hell_Language_Pack
                         default: return sender.Text;
                     }
 
-                // Форма отправки тикетов
+                /* ************************
+                 *         fWarning
+                 * ***********************/
                 case "fWarning":
                     switch (sender.Name)
                     {
@@ -130,12 +133,95 @@ namespace _Hell_Language_Pack
             }
         }
 
-        public string DynamicLanguage(string controlName, string lang)
+        public string DynamicLanguage(string controlName, string lang = "en", string additionalText = "")
         {
             switch (controlName)
             {
+                /* ************************
+                 *         fIndex
+                 * ***********************/
                 case "llVideoAll": return lang == "ru" ? "Все видео" : "All videos";
-                default: return String.Empty;
+                case "llActuallyActually": return lang == "ru" ? "Вы используете самые свежие моды" : "You are using the latest mods";
+                case "llActuallyNewMods": return lang == "ru" ? "Обнаружена новая версия Мультипака" : "Available new Multipack version";1
+                case "llActuallyNewGame": return lang == "ru" ? "Обнаружена новая версия игры" : "Available new game version";1
+                case "llActuallyThisVerMods": return lang == "ru" ? "Текущая версия Мультипака: " : "This Multipack version: ";1
+                case "llActuallyThisVerGame": return lang == "ru" ? "Текущая версия клиента игры: " : "This WOT version: ";1
+                case "noMods": return lang == "ru" ? "Мультипак не обнаружен!" : "Multipack not found!";1
+                case "noTanks": return lang == "ru" ? "Клиент игры не обнаружен!" : "\"World of Tanks\" not found!";1
+                case "noUpdates": return lang == "ru" ? "Обновления отсутствуют" : "No updates available";1
+
+                case "checkUpdates": return lang == "ru" ? "Подождите, предыдущая проверка обновлений не завершена" : "";1
+                case "reEnterPass": return lang == "ru" ? "Также, после применения настроек графики в игре требуется заново ввести логин/пароль!" : "";1
+
+                case "noSettings": return lang == "ru" ?
+                    "Файл настроек не обнаружен!" + Environment.NewLine + "Лаунчер будет автоматически перезапущена. Во время перезапуска будет применена стандартная конфигурация" :
+                    "Launcher has been restart. When restart has been apply default configuration";1
+
+                case "video": return lang == "ru" ? "Видео:" : "Video:";
+                case "news": return lang == "ru" ? "Новости:" : "News:";
+
+                case "tsShow": return lang == "ru" ? "Главное окно" : "Main window";1
+                case "tsVideo": return lang == "ru" ? "Видео" : "Video";
+                case "tsCheckUpdates": return lang == "ru" ? "Проверить обновления" : "Check updates";
+                case "tsSettings": return lang == "ru" ? "Настройки" : "Settings";
+                case "tsExit": return lang == "ru" ? "Выход" : "Exit";
+
+                /* ************************
+                 *         fWarning
+                 * ***********************/
+                case "thanks": return lang == "ru" ?
+                    "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время" :
+                    "";1
+                case "hacking": return lang == "ru" ?
+                    "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже." :
+                    "";1
+                case "error": return lang == "ru" ?
+                    "Ошибка отправки сообщения. Попробуйте еще раз." :
+                    "";1
+                case "symbolLength": return lang == "ru" ?
+                    "Текст не может быть меньше " + additionalText + " символов!" :
+                    "";1
+                case "messAreSended": return lang == "ru" ?
+                    "Вы уже отправляли данное сообщение." :
+                    "";1
+                case "sending": return lang == "ru" ? "Отправка..." : "Sending...";
+                case "send": return lang == "ru" ? "Отправить" : "Send";
+                case "save": return lang == "ru" ? "Сохранить" : "Save";
+
+                /* ************************
+                 *         fSettings
+                 * ***********************/
+                case "optimizeTitle": return lang == "ru" ? "Оптимизация" : "Optimize";
+                case "updatingTitle": return lang == "ru" ? "Обновление" : "Updating";
+
+
+                case "lvProcessesUser0": return lang == "ru" ? "Процесс" : "Process";
+                case "lvProcessesUser1": return lang == "ru" ? "Описание" : "Description";
+
+                case "priority0": return lang == "ru" ? "Высокий" : "High";
+                case "priority1": return lang == "ru" ? "Выше среднего" : "Above average";1
+                case "priority2": return lang == "ru" ? "Средний" : "Average";1
+                case "priority3": return lang == "ru" ? "Ниже среднего" : "Below the average";1
+                case "priority4": return lang == "ru" ? "Низкий" : "Low";
+
+                case "reEnterLoginPass": return lang == "ru" ?
+                "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!" + Environment.NewLine + Environment.NewLine +
+                "Настройки графики применяются только при сохранении информации в окне настоек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
+                "При автоматической оптимизации настройки графики остаются без изменений." :
+                "";1
+                case "optimize": return lang == "ru" ?
+                "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." + additionalText +
+                Environment.NewLine + Environment.NewLine + "Вы хотите продолжить?" :
+                "";1
+                case "wait": return lang == "ru" ? "Подождите завершения предыдущей операции" : "";1
+
+                case "admin": return lang == "ru" ?
+                "ВНИМАНИЕ!!!" + Environment.NewLine + "Для выполнения данной операции требуются права администратора!" :
+                "";1
+
+                case "viewVideo": return lang == "ru" ? "Посмотреть видео" : "Show video";1
+
+                default: return "null";
             }
         }
     }
