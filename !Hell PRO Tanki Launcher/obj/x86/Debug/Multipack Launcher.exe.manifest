@@ -55,26 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LanguagePack.dll" size="20992">
-      <assemblyIdentity name="LanguagePack" version="1.0.2.16" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SSx7wZF+8F49XSE2G5pjOmlPq+GaHVo6BCbf3rtFSc0=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2610176">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2621952">
       <assemblyIdentity name="Multipack Launcher" version="1.0.12.190" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>RBk/nf0HeQjeSlsw+Fy8LE+Am7Tl4VwO5C3b/6AX4w8=</dsig:DigestValue>
+        <dsig:DigestValue>kOPdcv0boo4HWja8LKXuABxb11l6KcE4pm33AINopmw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -14,8 +14,6 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Relea
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Release\!Hell PRO Tanki Launcher.csprojResolveAssemblyReference.cache
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Release\ProcessesLibrary.dll
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Release\ProcessesLibrary.pdb
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Release\LanguagePack.dll
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Release\LanguagePack.pdb
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Release\restart.exe
 f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Release\restart.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Release\LanguagePack.dll

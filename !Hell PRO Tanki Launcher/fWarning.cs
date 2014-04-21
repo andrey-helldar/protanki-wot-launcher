@@ -12,13 +12,12 @@ using System.Net;
 using System.IO;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using _Hell_Language_Pack;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fWarning : Form
     {
-        LanguagePack LanguagePack = new LanguagePack();
+        Language Language = new Language();
 
         string sendText = String.Empty,
             sendStatus = String.Empty,
@@ -96,9 +95,9 @@ namespace _Hell_PRO_Tanki_Launcher
                             /*case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
                             case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
                             default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;*/
-                            case "OK": status = LanguagePack.DynamicLanguage("thanks", lang); break;
-                            case "Hacking attempt!": status = LanguagePack.DynamicLanguage("hacking", lang); break;
-                            default: status = LanguagePack.DynamicLanguage("error", lang); break;
+                            case "OK": status = Language.DynamicLanguage("thanks", lang); break;
+                            case "Hacking attempt!": status = Language.DynamicLanguage("hacking", lang); break;
+                            default: status = Language.DynamicLanguage("error", lang); break;
                         }
 
                         MessageBox.Show(this, status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -108,7 +107,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 else
                 {
                     //MessageBox.Show(this, "Ошибка отправки данных. Попробуйте чуть познее...", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show(this, LanguagePack.DynamicLanguage("error", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, Language.DynamicLanguage("error", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception) { }
@@ -120,15 +119,15 @@ namespace _Hell_PRO_Tanki_Launcher
             string mess = String.Empty;
 
             //if (tbTicket.Text.Length < symbolsCount) { mess += "Текст не может быть меньше " + symbolsCount.ToString() + " символов!" + Environment.NewLine + Environment.NewLine; }
-            if (tbTicket.Text.Length < symbolsCount) { mess += LanguagePack.DynamicLanguage("symbolLength", lang, symbolsCount.ToString()) + Environment.NewLine + Environment.NewLine; }
+            if (tbTicket.Text.Length < symbolsCount) { mess += Language.DynamicLanguage("symbolLength", lang, symbolsCount.ToString()) + Environment.NewLine + Environment.NewLine; }
 
             //if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += "Вы уже отправляли данное сообщение."; }
-            if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += LanguagePack.DynamicLanguage("messAreSended", lang); }
+            if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += Language.DynamicLanguage("messAreSended", lang); }
 
             if (mess == String.Empty)
             {
                 //bSend.Text = "Отправка...";
-                bSend.Text = LanguagePack.DynamicLanguage("sending", lang);
+                bSend.Text = Language.DynamicLanguage("sending", lang);
                 bSend.Enabled = false;
 
                 SendTicket().Wait();
@@ -138,7 +137,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 Task.Factory.StartNew(() => Debug.Send()).Wait();
 
                 //bSend.Text = "Отправить";
-                bSend.Text = LanguagePack.DynamicLanguage("send", lang);
+                bSend.Text = Language.DynamicLanguage("send", lang);
                 bSend.Enabled = true;
 
                 Close();
@@ -157,7 +156,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private async Task SetInterfaceLanguage()
         {
             foreach (Control control in this.Controls)
-                control.Text = new LanguagePack().InterfaceLanguage("fWarning", control, lang);
+                control.Text = new Language().InterfaceLanguage("fWarning", control, lang);
         }
 
         private void fWarning_Load(object sender, EventArgs e)

@@ -9,14 +9,13 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.IO;
 using System.Diagnostics;
-using _Hell_Language_Pack;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fNewVersion : Form
     {
         Debug Debug = new Debug();
-        LanguagePack LanguagePack = new LanguagePack();
+        Language Language = new Language();
 
         string lang = "en";
 
@@ -68,9 +67,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 var cb = control as CheckBox;
 
                 if (cb != null)
-                    cb.Text = LanguagePack.InterfaceLanguage("fNewVersion", cb, lang);
+                    cb.Text = Language.InterfaceLanguage("fNewVersion", cb, lang);
                 else
-                    control.Text = LanguagePack.InterfaceLanguage("fNewVersion", control, lang);
+                    control.Text = Language.InterfaceLanguage("fNewVersion", control, lang);
             }
             catch (Exception ex)
             {

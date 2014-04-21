@@ -13,7 +13,6 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Processes_Library;
-using _Hell_Language_Pack;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -21,7 +20,7 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         ProcessesLibrary ProccessLibrary = new ProcessesLibrary();
         ProcessList ProcessList = new ProcessList();
-        LanguagePack LanguagePack = new LanguagePack();
+        Language Language = new Language();
         Debug Debug = new Debug();
 
         string //title,
@@ -43,6 +42,18 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             foreach (Control control in this.Controls)
                 SetLanguageControl(control);
+            
+            // Нагрузка на ЦП
+            if (!File.Exists(@"..\res_mods\engine_config.xml"))
+            {
+                bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU1", lang);
+                bBalanceCPU.BackgroundImage = Properties.Resources.lamp_on;
+            }
+            else
+            {
+                bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU0", lang);
+                bBalanceCPU.BackgroundImage = Properties.Resources.lamp_off;
+            }
         }
 
         private void SetLanguageControl(Control control)
@@ -62,28 +73,28 @@ namespace _Hell_PRO_Tanki_Launcher
 
                         if (cb != null)
                         {
-                            cb.Text = LanguagePack.InterfaceLanguage("fSettings", cb, lang);
-                            LanguagePack.toolTip(cb, lang);
+                            cb.Text = Language.InterfaceLanguage("fSettings", cb, lang);
+                            Language.toolTip(cb, lang);
                         }
                         else
                         {
-                            control.Text = LanguagePack.InterfaceLanguage("fSettings", control, lang);
-                            LanguagePack.toolTip(control, lang);
+                            control.Text = Language.InterfaceLanguage("fSettings", control, lang);
+                            Language.toolTip(control, lang);
                         }
                     }
                     else
                     {
                         cbPriority.Items.Clear();
                         for (int i = 0; i < 5; i++)
-                            cbPriority.Items.Add(LanguagePack.DynamicLanguage("priority" + i.ToString(), lang));
+                            cbPriority.Items.Add(Language.DynamicLanguage("priority" + i.ToString(), lang));
                     }
                 }
                 else
                 {
                     if (control.Name == "lvProcessesUser")
                     {
-                        lvProcessesUser.Columns[0].Text = LanguagePack.DynamicLanguage("lvProcessesUser0", lang);
-                        lvProcessesUser.Columns[1].Text = LanguagePack.DynamicLanguage("lvProcessesUser1", lang);
+                        lvProcessesUser.Columns[0].Text = Language.DynamicLanguage("lvProcessesUser0", lang);
+                        lvProcessesUser.Columns[1].Text = Language.DynamicLanguage("lvProcessesUser1", lang);
                     }
                 }
             }
@@ -124,7 +135,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 "Настройки графики применяются только при сохранении информации в окне настоек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
                 "При автоматической оптимизации настройки графики остаются без изменений.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);*/
-                MessageBox.Show(this, LanguagePack.DynamicLanguage("reEnterLoginPass", lang),
+                MessageBox.Show(this, Language.DynamicLanguage("reEnterLoginPass", lang),
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             SaveSettings().Wait();
@@ -343,7 +354,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show(this, LanguagePack.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, Language.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
 
@@ -440,22 +451,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (!bwUserProcesses.IsBusy) { bwUserProcesses.RunWorkerAsync(); }
             }
 
-            // Нагрузка на ЦП
-            if (!File.Exists(@"..\res_mods\engine_config.xml"))
-            {
-                bBalanceCPU.Text = "Нагрузка ЦП распределена";
-                bBalanceCPU.BackgroundImage = Properties.Resources.lamp_on;
-            }
-            else
-            {
-                bBalanceCPU.Text = "Нагрузка ЦП не распределена";
-                bBalanceCPU.BackgroundImage = Properties.Resources.lamp_off;
-            }
-
             try
             {
                 //bSave.Text = "Сохранить";
-                bSave.Text = LanguagePack.DynamicLanguage("save", lang);
+                bSave.Text = Language.DynamicLanguage("save", lang);
 
                 if (File.Exists("preferences" + (commonTest ? "_ct" : "") + ".xml"))
                     llRecoverySettings.Enabled = true;
@@ -496,13 +495,13 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 if (File.Exists(@"..\res_mods\engine_config.xml"))
                 {
-                    bBalanceCPU.Text = "Нагрузка ЦП распределена";
+                    bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU1", lang);
                     bBalanceCPU.BackgroundImage = Properties.Resources.lamp_on;
                     File.Delete(@"..\res_mods\engine_config.xml");
                 }
                 else
                 {
-                    bBalanceCPU.Text = "Нагрузка ЦП не распределена";
+                    bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU0", lang);
                     bBalanceCPU.BackgroundImage = Properties.Resources.lamp_off;
                     File.WriteAllText(@"..\res_mods\engine_config.xml", Properties.Resources.engine_config);
                 }

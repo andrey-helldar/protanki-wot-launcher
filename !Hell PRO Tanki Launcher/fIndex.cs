@@ -18,7 +18,6 @@ using System.Reflection;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using Processes_Library;
-using _Hell_Language_Pack;
 using Newtonsoft.Json;
 using Ionic.Zip;
 
@@ -26,7 +25,7 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fIndex : Form
     {
-        LanguagePack LanguagePack = new LanguagePack();
+        Language Language = new Language();
         YoutubeVideo YoutubeVideo = new YoutubeVideo();
         SendPOST SendPOST = new SendPOST();
         Debug Debug = new Debug();
@@ -124,7 +123,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     Debug.Save("fIndex", "loadSettings()", "File not found \"config.ini\"");
                     //MessageBox.Show(this, "Модпак не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show(this, LanguagePack.DynamicLanguage("noMods", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, Language.DynamicLanguage("noMods", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 // Загружаем настройки
@@ -153,7 +152,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     /* MessageBox.Show(this, "Файл настроек не обнаружен!" + Environment.NewLine +
                          "Программа будет автоматически перезапущена. Во время перезапуска будет применена стандартная конфигурация",
                          Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);*/
-                    MessageBox.Show(this, LanguagePack.DynamicLanguage("noSettings", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, Language.DynamicLanguage("noSettings", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
                     Process.GetCurrentProcess().CloseMainWindow();
@@ -194,7 +193,7 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 Debug.Save("fIndex", "GetTanksRegistry()", ex.Message);
-                //MessageBox.Show(this, LanguagePack.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(this, Language.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
         }
@@ -224,7 +223,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     //bPlay.Enabled = false;
                     bLauncher.Enabled = false;
                     //MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show(this, LanguagePack.DynamicLanguage("noTanks", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, Language.DynamicLanguage("noTanks", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return new Version("0.0.0.0");
                 }
             }
@@ -234,7 +233,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 //bPlay.Enabled = false;
                 bLauncher.Enabled = false;
                 //MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show(this, LanguagePack.DynamicLanguage("noTanks", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Language.DynamicLanguage("noTanks", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return new Version("0.0.0.0");
             }
         }
@@ -376,7 +375,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     if (modpackUpdates)
                     {
                         //status += "Обнаружена новая версия Мультипака (" + remoteModVersion.ToString() + ")" + Environment.NewLine;
-                        status += LanguagePack.DynamicLanguage("llActuallyNewMods", lang) + ": " + remoteModVersion.ToString() + Environment.NewLine;
+                        status += Language.DynamicLanguage("llActuallyNewMods", lang) + ": " + remoteModVersion.ToString() + Environment.NewLine;
                         bUpdate.Enabled = true;
 
                         videoLink = newVersionLink;
@@ -385,7 +384,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     if (tanksUpdates)
                     {
                         //status += "Обнаружена новая версия клиента игры (" + remoteTanksVersion.ToString() + ")" + Environment.NewLine;
-                        status += LanguagePack.DynamicLanguage("llActuallyNewGame", lang) + ": " + remoteTanksVersion.ToString() + Environment.NewLine;
+                        status += Language.DynamicLanguage("llActuallyNewGame", lang) + ": " + remoteTanksVersion.ToString() + Environment.NewLine;
 
                         // Отключаем кнопку запуска игры
                         //bPlay.Enabled = false;
@@ -399,8 +398,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     //llActually.Text = modpackUpdates ? "Обнаружена новая версия мультипака!" : "Обнаружена новая версия игры!";
                     llActually.Text = modpackUpdates ?
-                        LanguagePack.DynamicLanguage("llActuallyNewMods", lang) :
-                        LanguagePack.DynamicLanguage("llActuallyNewGame", lang);
+                        Language.DynamicLanguage("llActuallyNewMods", lang) :
+                        Language.DynamicLanguage("llActuallyNewGame", lang);
                     llActually.ForeColor = Color.Yellow;
                     llActually.ActiveLinkColor = Color.Yellow;
                     llActually.LinkColor = Color.Yellow;
@@ -423,7 +422,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 else
                 {
                     //llActually.Text = "Вы используете самые свежие моды!";
-                    llActually.Text = LanguagePack.DynamicLanguage("llActuallyActually", lang);
+                    llActually.Text = Language.DynamicLanguage("llActuallyActually", lang);
                     llActually.ForeColor = Color.Lime;
                     llActually.ActiveLinkColor = Color.Lime;
                     llActually.LinkColor = Color.Lime;
@@ -432,16 +431,16 @@ namespace _Hell_PRO_Tanki_Launcher
                     /*status = "Вы используете самые свежие моды." + Environment.NewLine +
                         "Текущая версия Мультипака: " + modpackVersion.ToString() + Environment.NewLine +
                         "Текущая версия клиента игры: " + tanksVersion.ToString();*/
-                    status = LanguagePack.DynamicLanguage("llActuallyActually", lang) + Environment.NewLine +
-                        LanguagePack.DynamicLanguage("llActuallyThisVerMods", lang) + modpackVersion.ToString() + Environment.NewLine +
-                        LanguagePack.DynamicLanguage("llActuallyThisVerGame", lang) + tanksVersion.ToString();
+                    status = Language.DynamicLanguage("llActuallyActually", lang) + Environment.NewLine +
+                        Language.DynamicLanguage("llActuallyThisVerMods", lang) + modpackVersion.ToString() + Environment.NewLine +
+                        Language.DynamicLanguage("llActuallyThisVerGame", lang) + tanksVersion.ToString();
                     bUpdate.Enabled = false;
 
                     // Окно статуса обновлений
                     fNewVersion.llCaption.Text = status;
 
                     //fNewVersion.llContent.Text = "Обновления отсутствуют";
-                    fNewVersion.llContent.Text = LanguagePack.DynamicLanguage("noUpdates", lang);
+                    fNewVersion.llContent.Text = Language.DynamicLanguage("noUpdates", lang);
                     fNewVersion.llVersion.Text = modpackVersion.ToString();
                 }
 
@@ -546,7 +545,7 @@ namespace _Hell_PRO_Tanki_Launcher
             else
             {
                 //MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show(this, LanguagePack.DynamicLanguage("checkUpdates", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -572,7 +571,7 @@ namespace _Hell_PRO_Tanki_Launcher
             else
             {
                 // MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show(this, LanguagePack.DynamicLanguage("checkUpdates", lang), LanguagePack.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Language.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -593,11 +592,11 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bOptimizePC_Click(object sender, EventArgs e)
         {
             //string addMess = autoVideo ? Environment.NewLine + Environment.NewLine + "Также, после применения настроек графики в игре требуется заново ввести логин/пароль!" : "";
-            string addMess = autoVideo ? Environment.NewLine + Environment.NewLine + LanguagePack.DynamicLanguage("reEnterPass", lang) : "";
+            string addMess = autoVideo ? Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("reEnterPass", lang) : "";
 
             /*if (DialogResult.Yes == MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." + addMess +
                 Environment.NewLine + Environment.NewLine + "Вы хотите продолжить?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))*/
-            if (DialogResult.Yes == MessageBox.Show(this, LanguagePack.DynamicLanguage("optimize", lang), Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+            if (DialogResult.Yes == MessageBox.Show(this, Language.DynamicLanguage("optimize", lang), Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
             {
                 if (!bwOptimize.IsBusy)
                 {
@@ -613,7 +612,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 else
                 {
                     //MessageBox.Show(this, "Подождите завершения предыдущей операции", "Оптимизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show(this, LanguagePack.DynamicLanguage("wait", lang), LanguagePack.DynamicLanguage("optimizeTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, Language.DynamicLanguage("wait", lang), Language.DynamicLanguage("optimizeTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -720,7 +719,7 @@ namespace _Hell_PRO_Tanki_Launcher
             else
             {
                 // MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show(this, LanguagePack.DynamicLanguage("checkUpdates", lang), LanguagePack.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Language.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -770,7 +769,7 @@ namespace _Hell_PRO_Tanki_Launcher
             else
             {
                 // MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show(this, LanguagePack.DynamicLanguage("checkUpdates", lang), LanguagePack.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Language.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -835,7 +834,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 label.Name = "llVideoAll";
                 label.Click += new EventHandler(bVideo_Click);
                 this.Controls.Add(label);
-                label.Text = LanguagePack.DynamicLanguage("llVideoAll", lang);
+                label.Text = Language.DynamicLanguage("llVideoAll", lang);
 
                 bShowVideo.Enabled = true;
 
@@ -997,7 +996,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (video)
                 {
                     //if (llBlockCaption.Text != "Видео:" && llBlockCaption.Text != "Video:") // Исключаем повторное нажатие
-                    if (llBlockCaption.Text != LanguagePack.DynamicLanguage("video", lang)) // Исключаем повторное нажатие
+                    if (llBlockCaption.Text != Language.DynamicLanguage("video", lang)) // Исключаем повторное нажатие
                     {
                         bShowVideo.BackColor = Color.Black;
                         bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
@@ -1006,7 +1005,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         bShowNews.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
 
                         //llBlockCaption.Text = lang == "ru" ? "Видео:" : "Video:";
-                        llBlockCaption.Text = LanguagePack.DynamicLanguage("video", lang);
+                        llBlockCaption.Text = Language.DynamicLanguage("video", lang);
 
                         pNews.Visible = false;
                         pVideo.Visible = true;
@@ -1015,7 +1014,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 else
                 {
                     //if (llBlockCaption.Text != "Новости:" && llBlockCaption.Text != "News:") // Исключаем повторное нажатие
-                    if (llBlockCaption.Text != LanguagePack.DynamicLanguage("news", lang)) // Исключаем повторное нажатие
+                    if (llBlockCaption.Text != Language.DynamicLanguage("news", lang)) // Исключаем повторное нажатие
                     {
                         bShowVideo.BackColor = Color.FromArgb(28, 28, 28);
                         bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
@@ -1024,7 +1023,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         bShowNews.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
 
                         //llBlockCaption.Text = lang == "ru" ? "Новости:" : "News:";
-                        llBlockCaption.Text = LanguagePack.DynamicLanguage("news", lang);
+                        llBlockCaption.Text = Language.DynamicLanguage("news", lang);
 
                         pVideo.Visible = false;
                         pNews.Visible = true;
@@ -1156,7 +1155,7 @@ namespace _Hell_PRO_Tanki_Launcher
             else
             {
                 //MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show(this, LanguagePack.DynamicLanguage("checkUpdates", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1198,7 +1197,7 @@ namespace _Hell_PRO_Tanki_Launcher
             Task.Factory.StartNew(() => SendPOST.CountUsers(Application.ProductName, Application.ProductVersion, modpackVersion.ToString(), modpackType, Debug.Youtube, lang)); // Отправляем на сайт инфу о запуске лаунчера
 
             // Главное окно
-            LanguagePack.toolTip(bOptimizePC);
+            Language.toolTip(bOptimizePC);
 
             GetVipProcesses();
 
@@ -1283,7 +1282,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     notifyLink = el.Link;
                     //notifyIcon.ShowBalloonTip(5000, el.Title, "Посмотреть видео", ToolTipIcon.Info);
-                    notifyIcon.ShowBalloonTip(5000, el.Title, LanguagePack.DynamicLanguage("viewVideo", lang), ToolTipIcon.Info);
+                    notifyIcon.ShowBalloonTip(5000, el.Title, Language.DynamicLanguage("viewVideo", lang), ToolTipIcon.Info);
 
                     doc.Root.Element("youtube").Add(new XElement("video", el.ID));
                     doc.Save("settings.xml");
@@ -1513,15 +1512,15 @@ namespace _Hell_PRO_Tanki_Launcher
         private async Task SetInterfaceLanguage()
         {
             /*foreach (Control control in this.Controls)
-                control.Text = LanguagePack.InterfaceLanguage("fIndex", control, lang, modpackType);*/
+                control.Text = Language.InterfaceLanguage("fIndex", control, lang, modpackType);*/
             foreach (Control control in this.Controls)
                 SetLanguageControl(control);
 
-            tsShow.Text = LanguagePack.DynamicLanguage("tsShow", lang);
-            tsVideo.Text = LanguagePack.DynamicLanguage("tsVideo", lang);
-            tsCheckUpdates.Text = LanguagePack.DynamicLanguage("tsCheckUpdates", lang);
-            tsSettings.Text = LanguagePack.DynamicLanguage("tsSettings", lang);
-            tsExit.Text = LanguagePack.DynamicLanguage("tsExit", lang);
+            tsShow.Text = Language.DynamicLanguage("tsShow", lang);
+            tsVideo.Text = Language.DynamicLanguage("tsVideo", lang);
+            tsCheckUpdates.Text = Language.DynamicLanguage("tsCheckUpdates", lang);
+            tsSettings.Text = Language.DynamicLanguage("tsSettings", lang);
+            tsExit.Text = Language.DynamicLanguage("tsExit", lang);
         }
 
         private void SetLanguageControl(Control control)
@@ -1537,13 +1536,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (cb != null)
                 {
-                    cb.Text = LanguagePack.InterfaceLanguage("fIndex", cb, lang, modpackType);
-                    LanguagePack.toolTip(cb, lang);
+                    cb.Text = Language.InterfaceLanguage("fIndex", cb, lang, modpackType);
+                    Language.toolTip(cb, lang);
                 }
                 else
                 {
-                    control.Text = LanguagePack.InterfaceLanguage("fIndex", control, lang, modpackType);
-                    LanguagePack.toolTip(control, lang);
+                    control.Text = Language.InterfaceLanguage("fIndex", control, lang, modpackType);
+                    Language.toolTip(control, lang);
                 }
             }
             catch (Exception ex)

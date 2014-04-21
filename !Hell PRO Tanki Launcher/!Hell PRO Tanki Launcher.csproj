@@ -128,6 +128,7 @@
       <DependentUpon>fWarning.cs</DependentUpon>
     </Compile>
     <Compile Include="ini.class.cs" />
+    <Compile Include="Language.Class.cs" />
     <Compile Include="OptimizeGraphic.Class.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -225,10 +226,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\!Hell Language Pack\!Hell Language Pack.csproj">
-      <Project>{7c499b3f-3e08-4dc7-aa10-19605be83758}</Project>
-      <Name>!Hell Language Pack</Name>
-    </ProjectReference>
     <ProjectReference Include="..\!Hell Restarter\!Hell Restarter.csproj">
       <Project>{f71575f4-d350-4667-bf5e-866354af66da}</Project>
       <Name>!Hell Restarter</Name>

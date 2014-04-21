@@ -43,13 +43,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 DownloadSettings().Wait(); // Загружаем файл настроек
 
-                //Task.Factory.StartNew(() => DeleteFile("processes.exe", "!Hell PRO Tanki Launcher.exe", "updater.exe", "launcher.update")).Wait(); // Удаляем ненужные файлы
+                Task.Factory.StartNew(() => DeleteFile("LanguagePack.dll")).Wait(); // Удаляем ненужные файлы
 
                 /// Если файлы имеют нулевой размер, то удаляем их
-                Task.Factory.StartNew(() => DeleteNullFile("settings.xml", "Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "LanguagePack.dll", "launcher.update")).Wait();
+                Task.Factory.StartNew(() => DeleteNullFile("settings.xml", "Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "launcher.update")).Wait();
 
                 // Проверяем целостность файлов
-                CheckFile("Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "LanguagePack.dll");
+                CheckFile("Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll");
 
                 await SaveFromResources(); // Проверяем существуют ли файлы. Если нет - сохраняем из ресурсов
 
@@ -201,7 +201,6 @@ namespace _Hell_PRO_Tanki_Launcher
         private async Task SaveFromResources()
         {
             if (!File.Exists("Ionic.Zip.dll")) { File.WriteAllBytes("Ionic.Zip.dll", Properties.Resources.IonicZip); }
-            if (!File.Exists("LanguagePack.dll")) { File.WriteAllBytes("LanguagePack.dll", Properties.Resources.LanguagePack); }
             if (!File.Exists("restart.exe")) { File.WriteAllBytes("restart.exe", Properties.Resources.restart); }
             if (!File.Exists("Newtonsoft.Json.dll")) { File.WriteAllBytes("Newtonsoft.Json.dll", Properties.Resources.Newtonsoft_Json); }
             if (!File.Exists("ProcessesLibrary.dll")) { File.WriteAllBytes("ProcessesLibrary.dll", Properties.Resources.ProcessesLibrary); }
