@@ -54,15 +54,23 @@ namespace _Hell_PRO_Tanki_Launcher
             return List.Count;
         }
 
+        /// <summary>
+        /// Запускаем процессрекурсии на удаление
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(string id)
         {
-            if (List.Count > -1)
+            try
             {
-                for (int i = 0; i < List.Count; i++)
+                if (List.Count > -1)
                 {
-                    if (List[i].ID == id) { List.RemoveAt(i); }
+                    for (int i = 0; i < List.Count; i++)
+                    {
+                        if (List[i].ID == id) { List.RemoveAt(i); }
+                    }
                 }
             }
+            catch (Exception) { Delete(id); }
         }
     }
 }

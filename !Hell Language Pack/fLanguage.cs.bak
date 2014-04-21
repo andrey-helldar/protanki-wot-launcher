@@ -160,11 +160,11 @@ namespace _Hell_Language_Pack
                 case "video": return lang == "ru" ? "Видео:" : "Video:";
                 case "news": return lang == "ru" ? "Новости:" : "News:";
 
-                case "tsShow": return lang == "ru" ? "Главное окно" : "Main window";
-                case "tsVideo": return lang == "ru" ? "Видео" : "Video";
-                case "tsCheckUpdates": return lang == "ru" ? "Проверить обновления" : "Check updates";
-                case "tsSettings": return lang == "ru" ? "Настройки" : "Settings";
-                case "tsExit": return lang == "ru" ? "Выход" : "Exit";
+                        case "tsShow": return lang == "ru" ? "Главное окно" : "Main window";
+                        case "tsVideo": return lang == "ru" ? "Видео" : "Video";
+                        case "tsCheckUpdates": return lang == "ru" ? "Проверить обновления" : "Check updates";
+                        case "tsSettings": return lang == "ru" ? "Настройки" : "Settings";
+                        case "tsExit": return lang == "ru" ? "Выход" : "Exit";
 
                 /* ************************
                  *         fWarning
@@ -218,8 +218,6 @@ namespace _Hell_Language_Pack
                 case "admin": return lang == "ru" ?
                 "ВНИМАНИЕ!!!" + Environment.NewLine + "Для выполнения данной операции требуются права администратора!" :
                 "";
-
-                case "viewVideo": return lang == "ru" ? "Посмотреть видео" : "Show video";
 
                 default: return "null";
             }

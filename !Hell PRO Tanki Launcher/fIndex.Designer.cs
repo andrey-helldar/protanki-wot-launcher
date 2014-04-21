@@ -38,13 +38,13 @@
             this.llVersion = new System.Windows.Forms.LinkLabel();
             this.bwUpdater = new System.ComponentModel.BackgroundWorker();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.видеоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsShow = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsVideo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.проверитьОбновленияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsCheckUpdates = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsExit = new System.Windows.Forms.ToolStripMenuItem();
             this.bOptimizePC = new System.Windows.Forms.Button();
             this.bwOptimize = new System.ComponentModel.BackgroundWorker();
             this.llTitle = new System.Windows.Forms.LinkLabel();
@@ -205,60 +205,60 @@
             // contextMenu
             // 
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem4,
-            this.видеоToolStripMenuItem,
+            this.tsShow,
+            this.tsVideo,
             this.toolStripMenuItem2,
-            this.проверитьОбновленияToolStripMenuItem,
-            this.настройкиToolStripMenuItem,
+            this.tsCheckUpdates,
+            this.tsSettings,
             this.toolStripMenuItem3,
-            this.toolStripMenuItem1});
+            this.tsExit});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.Size = new System.Drawing.Size(205, 126);
             // 
-            // toolStripMenuItem4
+            // tsShow
             // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(204, 22);
-            this.toolStripMenuItem4.Text = "Главное окно";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            this.tsShow.Name = "tsShow";
+            this.tsShow.Size = new System.Drawing.Size(204, 22);
+            this.tsShow.Text = "Главное окно";
+            this.tsShow.Click += new System.EventHandler(this.tsShow_Click);
             // 
-            // видеоToolStripMenuItem
+            // tsVideo
             // 
-            this.видеоToolStripMenuItem.Name = "видеоToolStripMenuItem";
-            this.видеоToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.видеоToolStripMenuItem.Text = "Видео";
-            this.видеоToolStripMenuItem.Click += new System.EventHandler(this.видеоToolStripMenuItem_Click);
+            this.tsVideo.Name = "tsVideo";
+            this.tsVideo.Size = new System.Drawing.Size(204, 22);
+            this.tsVideo.Text = "Видео";
+            this.tsVideo.Click += new System.EventHandler(this.tsVideo_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(201, 6);
             // 
-            // проверитьОбновленияToolStripMenuItem
+            // tsCheckUpdates
             // 
-            this.проверитьОбновленияToolStripMenuItem.Name = "проверитьОбновленияToolStripMenuItem";
-            this.проверитьОбновленияToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.проверитьОбновленияToolStripMenuItem.Text = "Проверить обновления";
-            this.проверитьОбновленияToolStripMenuItem.Click += new System.EventHandler(this.проверитьОбновленияToolStripMenuItem_Click);
+            this.tsCheckUpdates.Name = "tsCheckUpdates";
+            this.tsCheckUpdates.Size = new System.Drawing.Size(204, 22);
+            this.tsCheckUpdates.Text = "Проверить обновления";
+            this.tsCheckUpdates.Click += new System.EventHandler(this.tsCheckUpdates_Click);
             // 
-            // настройкиToolStripMenuItem
+            // tsSettings
             // 
-            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.настройкиToolStripMenuItem.Text = "Настройки";
-            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
+            this.tsSettings.Name = "tsSettings";
+            this.tsSettings.Size = new System.Drawing.Size(204, 22);
+            this.tsSettings.Text = "Настройки";
+            this.tsSettings.Click += new System.EventHandler(this.tsSettings_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(201, 6);
             // 
-            // toolStripMenuItem1
+            // tsExit
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 22);
-            this.toolStripMenuItem1.Text = "Выход";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.tsExit.Name = "tsExit";
+            this.tsExit.Size = new System.Drawing.Size(204, 22);
+            this.tsExit.Text = "Выход";
+            this.tsExit.Click += new System.EventHandler(this.bExit_Click);
             // 
             // bOptimizePC
             // 
@@ -475,6 +475,7 @@
             // 
             // notifyIcon
             // 
+            this.notifyIcon.ContextMenuStrip = this.contextMenu;
             this.notifyIcon.Text = "notifyIcon";
             this.notifyIcon.Visible = true;
             this.notifyIcon.BalloonTipClicked += new System.EventHandler(this.notifyIcon_BalloonTipClicked);
@@ -543,15 +544,15 @@
         private System.Windows.Forms.LinkLabel llVersion;
         private System.ComponentModel.BackgroundWorker bwUpdater;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem проверитьОбновленияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsExit;
+        private System.Windows.Forms.ToolStripMenuItem tsCheckUpdates;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem видеоToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsVideo;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem tsShow;
         private System.Windows.Forms.Button bOptimizePC;
         private System.ComponentModel.BackgroundWorker bwOptimize;
-        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsSettings;
         private System.Windows.Forms.LinkLabel llTitle;
         private System.Windows.Forms.Button bSettings;
         private System.ComponentModel.BackgroundWorker bwVideo;

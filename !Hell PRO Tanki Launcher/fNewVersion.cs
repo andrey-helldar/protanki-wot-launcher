@@ -59,21 +59,21 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                        foreach (Control c in control.Controls)
-                        {
-                            SetLanguageControl(c);
-                        }
+                foreach (Control c in control.Controls)
+                {
+                    SetLanguageControl(c);
+                }
 
-                        var cb = control as CheckBox;
+                var cb = control as CheckBox;
 
-                        if (cb != null)
-                            cb.Text = LanguagePack.InterfaceLanguage("fSettings", cb, lang);
-                        else
-                            control.Text = LanguagePack.InterfaceLanguage("fSettings", control, lang);
+                if (cb != null)
+                    cb.Text = LanguagePack.InterfaceLanguage("fNewVersion", cb, lang);
+                else
+                    control.Text = LanguagePack.InterfaceLanguage("fNewVersion", control, lang);
             }
             catch (Exception ex)
             {
-                Debug.Save("fSettings", "UncheckAllCheckBoxes()", ex.Message);
+                Debug.Save("fNewVersion", "UncheckAllCheckBoxes()", ex.Message);
             }
         }
     }
