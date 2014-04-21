@@ -145,16 +145,16 @@ namespace _Hell_Language_Pack
                 case "llActuallyNewGame": return lang == "ru" ? "Обнаружена новая версия игры" : "Available new game version";
                 case "llActuallyThisVerMods": return lang == "ru" ? "Текущая версия Мультипака: " : "This Multipack version: ";
                 case "llActuallyThisVerGame": return lang == "ru" ? "Текущая версия клиента игры: " : "This WOT version: ";
-                case "noMods": return lang == "ru" ? "Мультипак не обнаружен!" : "Multipack not found!";1
-                case "noTanks": return lang == "ru" ? "Клиент игры не обнаружен!" : "\"World of Tanks\" not found!";1
-                case "noUpdates": return lang == "ru" ? "Обновления отсутствуют" : "No updates available";1
+                case "noMods": return lang == "ru" ? "Мультипак не обнаружен!" : "Multipack not found!";
+                case "noTanks": return lang == "ru" ? "Клиент игры не обнаружен!" : "\"World of Tanks\" not found!";
+                case "noUpdates": return lang == "ru" ? "Обновления отсутствуют" : "No updates available";
 				
-                case "checkUpdates": return lang == "ru" ? "Подождите, предыдущая проверка обновлений не завершена" : "";1
-                case "reEnterPass": return lang == "ru" ? "Также, после применения настроек графики в игре требуется заново ввести логин/пароль!" : "";1
+                case "checkUpdates": return lang == "ru" ? "Подождите, предыдущая проверка обновлений не завершена" : "";
+                case "reEnterPass": return lang == "ru" ? "Также, после применения настроек графики в игре требуется заново ввести логин/пароль!" : "";
 				
 				case "noSettings": return lang == "ru" ?
 					"Файл настроек не обнаружен!" + Environment.NewLine + "Лаунчер будет автоматически перезапущена. Во время перезапуска будет применена стандартная конфигурация" :
-					"Launcher has been restart. When restart has been apply default configuration";1
+					"Launcher has been restart. When restart has been apply default configuration";
 					
 					case "video": return lang == "ru" ? "Видео:" : "Video:";
 					case "news": return lang == "ru" ? "Новости:" : "News:";
@@ -164,19 +164,19 @@ namespace _Hell_Language_Pack
                  * ***********************/
                 case "thanks": return lang == "ru" ?
                     "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время" :
-                    "";1
+                    "";
                 case "hacking": return lang == "ru" ?
                     "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже." :
-                    "";1
+                    "";
                 case "error": return lang == "ru" ?
                     "Ошибка отправки сообщения. Попробуйте еще раз." :
-                    "";1
+                    "";
                 case "symbolLength": return lang == "ru" ?
                     "Текст не может быть меньше " + additionalText + " символов!" :
-                    "";1
+                    "";
                 case "messAreSended": return lang == "ru" ?
                     "Вы уже отправляли данное сообщение." :
-                    "";1
+                    "";
                 case "sending": return lang == "ru" ? "Отправка..." : "Sending...";
                 case "send": return lang == "ru" ? "Отправить" : "Send";
                 case "save": return lang == "ru" ? "Сохранить" : "Save";
@@ -192,25 +192,25 @@ namespace _Hell_Language_Pack
                 case "lvProcessesUser1": return lang == "ru" ? "Описание" : "Description";
 
                 case "priority0": return lang == "ru" ? "Высокий" : "High";
-                case "priority1": return lang == "ru" ? "Выше среднего" : "Above average";1
-                case "priority2": return lang == "ru" ? "Средний" : "Average";1
-                case "priority3": return lang == "ru" ? "Ниже среднего" : "Below the average";1
+                case "priority1": return lang == "ru" ? "Выше среднего" : "Above average";
+                case "priority2": return lang == "ru" ? "Средний" : "Average";
+                case "priority3": return lang == "ru" ? "Ниже среднего" : "Below the average";
                 case "priority4": return lang == "ru" ? "Низкий" : "Low";
 
                 case "reEnterLoginPass": return lang == "ru" ?
                 "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!" + Environment.NewLine + Environment.NewLine +
                 "Настройки графики применяются только при сохранении информации в окне настоек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
                 "При автоматической оптимизации настройки графики остаются без изменений." :
-                "";1				
+                "";			
                 case "optimize": return lang == "ru" ?
                 "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." + additionalText +
                 Environment.NewLine + Environment.NewLine + "Вы хотите продолжить?" :
-                "";1		
-                case "wait": return lang == "ru" ? "Подождите завершения предыдущей операции" : "";1
+                "";
+                case "wait": return lang == "ru" ? "Подождите завершения предыдущей операции" : "";
 				
                 case "admin": return lang == "ru" ?
                 "ВНИМАНИЕ!!!" + Environment.NewLine + "Для выполнения данной операции требуются права администратора!" :
-                "";1
+                "";
 
                 default: return "null";
             }

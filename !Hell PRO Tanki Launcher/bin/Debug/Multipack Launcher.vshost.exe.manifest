@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LanguagePack.dll" size="16384">
-      <assemblyIdentity name="LanguagePack" version="1.0.2.12" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LanguagePack.dll" size="19968">
+      <assemblyIdentity name="LanguagePack" version="1.0.2.13" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>bRcpf9KfJSE4ZXlyy84jOBeA+4FWTZ9M7XO0M+6qPwo=</dsig:DigestValue>
+        <dsig:DigestValue>HpUnhICdakkPMGAcVdPMTiB41KQFXvIyWSezKo4HaD0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -74,7 +74,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fZVQPLab8mlHI/7VgrF5mZFJeXrowBweoKvkCwlAliE=</dsig:DigestValue>
+        <dsig:DigestValue>UIfJvxlKKk8tmkIyGY1nSsLzjJ+CJJihUxD5iEkpj1w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
