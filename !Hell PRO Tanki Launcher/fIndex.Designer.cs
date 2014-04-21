@@ -298,10 +298,10 @@
             this.llTitle.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llTitle.Location = new System.Drawing.Point(189, 3);
             this.llTitle.Name = "llTitle";
-            this.llTitle.Size = new System.Drawing.Size(67, 20);
+            this.llTitle.Size = new System.Drawing.Size(73, 20);
             this.llTitle.TabIndex = 1;
             this.llTitle.TabStop = true;
-            this.llTitle.Text = "Loading...";
+            this.llTitle.Text = "Загрузка...";
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llTitle.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTitle_LinkClicked);
             // 

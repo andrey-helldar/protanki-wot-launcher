@@ -63,6 +63,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     cbPriority.SelectedIndex = getPriority((int)key.GetValue("CpuPriorityClass"), false);
                 }
                 catch (Exception ex) { cbPriority.SelectedIndex = 2; Debug.Save("public fSettings()", "Priority", ex.Message); }
+                finally { cbPriority.SelectedIndex = 2; }
 
                 cbVideo.Checked = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false;
 
@@ -86,37 +87,49 @@ namespace _Hell_PRO_Tanki_Launcher
         private void loadLang()
         {
             foreach (Control control in this.Controls)
-                UncheckAllCheckBoxes(control);
+                SetLanguageControl(control);
         }
 
-        private void UncheckAllCheckBoxes(Control control)
+        private void SetLanguageControl(Control control)
         {
             try
             {
                 if (control.Name != "lvProcessesUser")
                 {
-                    foreach (Control c in control.Controls)
+                    if (control.Name != "cbPriority")
                     {
-                        UncheckAllCheckBoxes(c);
-                    }
+                        foreach (Control c in control.Controls)
+                        {
+                            SetLanguageControl(c);
+                        }
 
-                    var cb = control as CheckBox;
+                        var cb = control as CheckBox;
 
-                    if (cb != null)
-                    {
-                        cb.Text = LanguagePack.InterfaceLanguage("fSettings", cb, lang);
-                        LanguagePack.toolTip(cb, lang);
+                        if (cb != null)
+                        {
+                            cb.Text = LanguagePack.InterfaceLanguage("fSettings", cb, lang);
+                            LanguagePack.toolTip(cb, lang);
+                        }
+                        else
+                        {
+                            control.Text = LanguagePack.InterfaceLanguage("fSettings", control, lang);
+                            LanguagePack.toolTip(control, lang);
+                        }
                     }
                     else
                     {
-                        control.Text = LanguagePack.InterfaceLanguage("fSettings", control, lang);
-                        LanguagePack.toolTip(control, lang);
+                        cbPriority.Items.Clear();
+                        for (int i = 0; i < 5; i++)
+                            cbPriority.Items.Add(LanguagePack.DynamicLanguage("priority" + i.ToString(), lang));
                     }
                 }
                 else
                 {
-                    lvProcessesUser.Columns[0].Text = LanguagePack.DynamicLanguage("lvProcessesUser0", lang);
-                    lvProcessesUser.Columns[1].Text = LanguagePack.DynamicLanguage("lvProcessesUser1", lang);
+                    if (control.Name == "lvProcessesUser")
+                    {
+                        lvProcessesUser.Columns[0].Text = LanguagePack.DynamicLanguage("lvProcessesUser0", lang);
+                        lvProcessesUser.Columns[1].Text = LanguagePack.DynamicLanguage("lvProcessesUser1", lang);
+                    }
                 }
             }
             catch (Exception ex)
@@ -152,9 +165,11 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bSave_Click(object sender, EventArgs e)
         {
             if (cbVideoQuality.Checked)
-                MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!" + Environment.NewLine + Environment.NewLine +
+                /*MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!" + Environment.NewLine + Environment.NewLine +
                 "Настройки графики применяются только при сохранении информации в окне настоек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
-                "При автоматической оптимизации настройки графики не изменяются.",
+                "При автоматической оптимизации настройки графики остаются без изменений.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);*/
+                MessageBox.Show(this, LanguagePack.DynamicLanguage("reEnterLoginPass", lang),
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             SaveSettings().Wait();
@@ -366,8 +381,15 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception)
             {
-                var key = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
-                key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
+                try
+                {
+                    var key = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
+                    key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, LanguagePack.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
 
             // Изменяем файл настроек игры
@@ -419,7 +441,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                bSave.Text = "Сохранить";
+                //bSave.Text = "Сохранить";
+                bSave.Text = LanguagePack.DynamicLanguage("save", lang);
 
                 if (File.Exists("preferences" + (commonTest ? "_ct" : "") + ".xml"))
                     llRecoverySettings.Enabled = true;

@@ -9,11 +9,17 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.IO;
 using System.Diagnostics;
+using _Hell_Language_Pack;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fNewVersion : Form
     {
+        Debug Debug = new Debug();
+        LanguagePack LanguagePack = new LanguagePack();
+
+        string lang = "en";
+
         public fNewVersion()
         {
             InitializeComponent();
@@ -38,6 +44,37 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             Process.Start(llContent.Links[0].LinkData.ToString());
             Close();
+        }
+
+        private void fNewVersion_Load(object sender, EventArgs e)
+        {
+            XDocument doc = XDocument.Load("settings.xml");
+            if (doc.Root.Element("language") != null) { lang = doc.Root.Element("language").Value; }
+
+            foreach (Control control in this.Controls)
+                SetLanguageControl(control);
+        }
+
+        private void SetLanguageControl(Control control)
+        {
+            try
+            {
+                        foreach (Control c in control.Controls)
+                        {
+                            SetLanguageControl(c);
+                        }
+
+                        var cb = control as CheckBox;
+
+                        if (cb != null)
+                            cb.Text = LanguagePack.InterfaceLanguage("fSettings", cb, lang);
+                        else
+                            control.Text = LanguagePack.InterfaceLanguage("fSettings", control, lang);
+            }
+            catch (Exception ex)
+            {
+                Debug.Save("fSettings", "UncheckAllCheckBoxes()", ex.Message);
+            }
         }
     }
 }

@@ -125,7 +125,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 else
                 {
                     Debug.Save("loadSettings()", "File not found \"config.ini\"");
-                    MessageBox.Show(this, "Модпак не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show(this, "Модпак не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, LanguagePack.DynamicLanguage("noMods", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 // Загружаем настройки
@@ -166,7 +167,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    MessageBox.Show(this, "Файл настроек не обнаружен!" + Environment.NewLine + "Программа будет автоматически перезапущена. Во время перезапуска будет применен стандартная конфигурация", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    /* MessageBox.Show(this, "Файл настроек не обнаружен!" + Environment.NewLine +
+                         "Программа будет автоматически перезапущена. Во время перезапуска будет применен стандартная конфигурация",
+                         Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);*/
+                    MessageBox.Show(this, LanguagePack.DynamicLanguage("noSettings", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + "\"");
                     Process.GetCurrentProcess().CloseMainWindow();
@@ -222,10 +226,11 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    Debug.Save("tanksVersion()", "Клиент игры не обнаружен в реестре.");
+                    //Debug.Save("tanksVersion()", "Клиент игры не обнаружен в реестре.");
                     //bPlay.Enabled = false;
                     bLauncher.Enabled = false;
-                    MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, LanguagePack.DynamicLanguage("noTanks", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);                   
                     return new Version("0.0.0.0");
                 }
             }
@@ -234,7 +239,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 Debug.Save("tanksVersion()", "doc.Load(\"" + pathToTanks + "version.xml\");", ex.Message);
                 //bPlay.Enabled = false;
                 bLauncher.Enabled = false;
-                MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(this, "Клиент игры не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, LanguagePack.DynamicLanguage("noTanks", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);  
                 return new Version("0.0.0.0");
             }
         }
@@ -289,7 +295,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bVideo_Click()", ex.Message);
+                Debug.Save("fIndex","bVideo_Click()", videoLink, ex.Message);
             }
         }
 
@@ -321,7 +327,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("bwUpdater_DoWork()", ex.Message);
+                Debug.Save("fIndex","bwUpdater_DoWork()", ex.Message);
             }
         }
 
@@ -387,7 +393,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     //llActually.Text = modpackUpdates ? "Обнаружена новая версия мультипака!" : "Обнаружена новая версия игры!";
                     llActually.Text = modpackUpdates ?
                         LanguagePack.DynamicLanguage("llActuallyNewMods", lang) + "!" :
-                        LanguagePack.DynamicLanguage("llActuallyNewGame", lang)+"!";
+                        LanguagePack.DynamicLanguage("llActuallyNewGame", lang) + "!";
                     llActually.ForeColor = Color.Yellow;
                     llActually.ActiveLinkColor = Color.Yellow;
                     llActually.LinkColor = Color.Yellow;
@@ -438,7 +444,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwUpdater_RunWorkerCompleted()", ex.Message);
+                Debug.Save("fIndex", "bwUpdater_RunWorkerCompleted()", ex.Message);
             }
         }
 
@@ -496,7 +502,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void moveForm()", ex.Message);
+                Debug.Save("fIndex","moveForm()", ex.Message);
             }
         }
 
@@ -508,7 +514,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bUpdate_Click()", "newVersionLink = " + newVersionLink, ex.Message);
+                Debug.Save("fIndex","bUpdate_Click()", "newVersionLink = " + newVersionLink, ex.Message);
             }
         }
 
@@ -520,7 +526,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void linkLabel1_LinkClicked()", "Process.Start(\"http://ai-rus.com\");", ex.Message);
+                Debug.Save("fIndex","linkLabel1_LinkClicked()", "Process.Start(\"http://ai-rus.com\");", ex.Message);
             }
         }
 
@@ -537,7 +543,8 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             else
             {
-                MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, LanguagePack.DynamicLanguage("checkUpdates", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);                
             }
         }
 
@@ -549,7 +556,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void видеоToolStripMenuItem_Click()", "Process.Start(\"http://goo.gl/gr6pFl\");", ex.Message);
+                Debug.Save("видеоToolStripMenuItem_Click()", "Process.Start(\"http://goo.gl/gr6pFl\");", ex.Message);
             }
         }
 
@@ -562,7 +569,8 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             else
             {
-                MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, LanguagePack.DynamicLanguage("checkUpdates", lang), LanguagePack.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -570,22 +578,24 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                Show();
+                //Show();
                 WindowState = FormWindowState.Normal;
-                this.ShowInTaskbar = true;
+                //this.ShowInTaskbar = true;
             }
             catch (Exception ex)
             {
-                Debug.Save("private void toolStripMenuItem4_Click()", "WindowState = FormWindowState.Normal;", ex.Message);
+                Debug.Save("toolStripMenuItem4_Click()", "WindowState = FormWindowState.Normal;", ex.Message);
             }
         }
 
         private void bOptimizePC_Click(object sender, EventArgs e)
         {
-            string addMess = autoVideo ? Environment.NewLine + Environment.NewLine + "Также, после применения настроек графики в игре требуется заново ввести логин/пароль!" : "";
+            //string addMess = autoVideo ? Environment.NewLine + Environment.NewLine + "Также, после применения настроек графики в игре требуется заново ввести логин/пароль!" : "";
+            string addMess = autoVideo ? Environment.NewLine + Environment.NewLine + LanguagePack.DynamicLanguage("reEnterPass", lang) : "";
 
-            if (DialogResult.Yes == MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." + addMess +
-                Environment.NewLine + Environment.NewLine + "Вы хотите продолжить?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+            /*if (DialogResult.Yes == MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." + addMess +
+                Environment.NewLine + Environment.NewLine + "Вы хотите продолжить?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))*/
+            if (DialogResult.Yes == MessageBox.Show(this, LanguagePack.DynamicLanguage("optimize", lang), Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
             {
                 if (!bwOptimize.IsBusy)
                 {
@@ -600,7 +610,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    MessageBox.Show(this, "Подождите завершения предыдущей операции", "Оптимизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show(this, "Подождите завершения предыдущей операции", "Оптимизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, LanguagePack.DynamicLanguage("wait", lang), LanguagePack.DynamicLanguage("optimizeTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -621,21 +632,10 @@ namespace _Hell_PRO_Tanki_Launcher
                         case System.PlatformID.Win32NT:
                             switch (osInfo.Version.Major)
                             {
-                                case 6:
-                                    // Win7
-                                    Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms")); // останавливаем aero
-                                    break;
-
-                                case 7:
-                                    // Win8
-                                    Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms")); // останавливаем aero
-                                    break;
+                                case 5:/* THIS IS WINDOWS XP!!! AAAAAAAAAAAA!!!!!! */ break;
 
                                 default:
-                                    if (osInfo.Version.Major == 5 && osInfo.Version.Minor != 0)
-                                    {
-                                        // WinXP
-                                    }
+                                    Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms")); // останавливаем aero
                                     break;
                             }
                             break;
@@ -645,7 +645,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     bwOptimize.ReportProgress(++myProgressStatus);
                 }
             }
-            catch (Exception ex) { Debug.Save("bwOptimize_DoWork()", "if (autoOptimizePC || autoAero)", ex.Message); }
+            catch (Exception ex) { Debug.Save("fIndex", "bwOptimize_DoWork()", "if (autoOptimizePC || autoAero)", ex.Message); }
 
             try
             {
@@ -717,7 +717,8 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             else
             {
-                MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, LanguagePack.DynamicLanguage("checkUpdates", lang), LanguagePack.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -730,7 +731,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void настройкиToolStripMenuItem_Click()", "fSettings fSettings = new fSettings();", ex.Message);
+                Debug.Save("настройкиToolStripMenuItem_Click()", "fSettings fSettings = new fSettings();", ex.Message);
             }
         }
 
@@ -753,7 +754,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void fIndex_FormClosing()", "psi = new ProcessStartInfo(\"cmd\", @\"/c net start uxsms\");", ex.Message);
+                Debug.Save("fIndex_FormClosing()", "psi = new ProcessStartInfo(\"cmd\", @\"/c net start uxsms\");", ex.Message);
             }
         }
 
@@ -766,7 +767,8 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             else
             {
-                MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, LanguagePack.DynamicLanguage("checkUpdates", lang), LanguagePack.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -790,7 +792,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwOptimize_ProgressChanged(object sender, ProgressChangedEventArgs e)", "double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;", ex.Message);
+                Debug.Save("bwOptimize_ProgressChanged(object sender, ProgressChangedEventArgs e)", "double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;", ex.Message);
             }
         }
 
@@ -808,7 +810,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void label_Click()", "Process.Start((sender as LinkLabel).Links[0].LinkData.ToString());", ex.Message);
+                Debug.Save("label_Click()", "Process.Start((sender as LinkLabel).Links[0].LinkData.ToString());", ex.Message);
             }
         }
 
@@ -845,7 +847,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwVideo_RunWorkerCompleted()", "Добавление ссылки на все видео", ex.Message);
+                Debug.Save("bwVideo_RunWorkerCompleted()", "Добавление ссылки на все видео", ex.Message);
             }
 
             // Запускаем функцию уведомлений о новых видео
@@ -891,7 +893,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwVideo_DoWork()", ex.Message);
+                Debug.Save("bwVideo_DoWork()", ex.Message);
             }
         }
 
@@ -958,7 +960,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 catch (Exception ex)
                 {
-                    Debug.Save("private void bwVideo_ProgressChanged()", "Создание динамических полей", ex.Message);
+                    Debug.Save("bwVideo_ProgressChanged()", "Создание динамических полей", ex.Message);
                 }
             }
             else
@@ -986,44 +988,14 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        /*private void download_ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            try
-            {
-                pbDownload.Value = e.ProgressPercentage;
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("private void download_ProgressChanged(object sender, DownloadProgressChangedEventArgs e)", "pbDownload.Value = e.ProgressPercentage;", ex.Message);
-            }
-        }
-
-        private void download_Completed(object sender, AsyncCompletedEventArgs e)
-        {
-            try
-            {
-                if (DialogResult.Yes == MessageBox.Show(this, "Обнаружена новая версия лаунчера (" + rVerLauncher.ToString() + ")" + Environment.NewLine +
-                    "Применить обновление сейчас?", Application.ProductName + " v" + Application.ProductVersion, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
-                {
-                    //if (checksum("launcher.update", checksumLauncher)) { MessageBox.Show("checksum: OK"); }
-
-                    Process.Start("restart.exe", "launcher.update \""+Process.GetCurrentProcess().ProcessName+".exe\"");
-                    Process.GetCurrentProcess().Kill();
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("private void download_Completed(object sender, AsyncCompletedEventArgs e)", "Process.Start(\"restart.exe\", \"launcher.update \"\"\" + Process.GetCurrentProcess().ProcessName + \"\"\");", ex.Message);
-            }
-        }*/
-
         private void changeContent(bool video = true)
         {
             try
             {
                 if (video)
                 {
-                    if (llBlockCaption.Text != "Видео:" && llBlockCaption.Text != "Video:") // Исключаем повторное нажатие
+                    //if (llBlockCaption.Text != "Видео:" && llBlockCaption.Text != "Video:") // Исключаем повторное нажатие
+                    if (llBlockCaption.Text != LanguagePack.DynamicLanguage("video", lang)) // Исключаем повторное нажатие
                     {
                         bShowVideo.BackColor = Color.Black;
                         bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
@@ -1031,7 +1003,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         bShowNews.BackColor = Color.FromArgb(28, 28, 28);
                         bShowNews.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
 
-                        llBlockCaption.Text = lang == "ru" ? "Видео:" : "Video:";
+                        //llBlockCaption.Text = lang == "ru" ? "Видео:" : "Video:";
+                        llBlockCaption.Text = LanguagePack.DynamicLanguage("video", lang);
 
                         pNews.Visible = false;
                         pVideo.Visible = true;
@@ -1039,7 +1012,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    if (llBlockCaption.Text != "Новости:" && llBlockCaption.Text != "News:") // Исключаем повторное нажатие
+                    //if (llBlockCaption.Text != "Новости:" && llBlockCaption.Text != "News:") // Исключаем повторное нажатие
+                    if (llBlockCaption.Text != LanguagePack.DynamicLanguage("news", lang)) // Исключаем повторное нажатие
                     {
                         bShowVideo.BackColor = Color.FromArgb(28, 28, 28);
                         bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
@@ -1047,7 +1021,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         bShowNews.BackColor = Color.Black;
                         bShowNews.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
 
-                        llBlockCaption.Text = lang == "ru" ? "Новости:" : "News:";
+                        //llBlockCaption.Text = lang == "ru" ? "Новости:" : "News:";
+                        llBlockCaption.Text = LanguagePack.DynamicLanguage("news", lang);
 
                         pVideo.Visible = false;
                         pNews.Visible = true;
@@ -1056,7 +1031,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void changeContent(bool video = true)", ex.Message);
+                Debug.Save("changeContent(bool video = true)", ex.Message);
             }
         }
 
@@ -1095,7 +1070,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwVideo_DoWork()", "XmlDocument doc = new XmlDocument();", ex.Message);
+                Debug.Save("bwVideo_DoWork()", "XmlDocument doc = new XmlDocument();", ex.Message);
             }
         }
 
@@ -1137,7 +1112,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)", "Создание динамических полей", ex.Message);
+                Debug.Save("bwVideo_ProgressChanged(object sender, ProgressChangedEventArgs e)", "Создание динамических полей", ex.Message);
             }
         }
 
@@ -1165,7 +1140,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Добавление ссылки на все видео", ex.Message);
+                Debug.Save("bwVideo_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)", "Добавление ссылки на все видео", ex.Message);
             }
         }
 
@@ -1178,7 +1153,8 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             else
             {
-                MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, LanguagePack.DynamicLanguage("checkUpdates", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1198,7 +1174,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 this.Text = Application.ProductName + " v" + modpackVersion.ToString();
                 this.Icon = Properties.Resources.Icon;
 
-                llTitle.Text = Application.ProductName + " (" + (modpackType == "full" ? "Расширенная версия" : "Базовая версия") + ")";
+                //llTitle.Text = Application.ProductName + " (" + (modpackType == "full" ? "Расширенная версия" : "Базовая версия") + ")";
                 llLauncherVersion.Text = Application.ProductVersion;
             }
             catch (Exception ex)
@@ -1325,7 +1301,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void notifyIcon_Click()", ex.Message);
+                Debug.Save("notifyIcon_Click()", ex.Message);
             }
         }
 
@@ -1337,7 +1313,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("private void notifyIcon_BalloonTipClicked()", "Link: " + notifyLink, ex.Message);
+                Debug.Save("notifyIcon_BalloonTipClicked()", "Link: " + notifyLink, ex.Message);
             }
         }
 

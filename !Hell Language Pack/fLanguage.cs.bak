@@ -157,7 +157,6 @@ namespace _Hell_Language_Pack
 					"Launcher has been restart. When restart has been apply default configuration";1
 					
 					case "video": return lang == "ru" ? "Видео:" : "Video:";
-					case "news": return lang == "ru" ? "Новости:" : "News:";
 
                 /* ************************
                  *         fWarning

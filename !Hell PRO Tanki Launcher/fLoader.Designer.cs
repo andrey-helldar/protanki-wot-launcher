@@ -36,11 +36,11 @@
             this.lLoading.AutoSize = true;
             this.lLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.lLoading.Location = new System.Drawing.Point(66, 119);
+            this.lLoading.Location = new System.Drawing.Point(27, 114);
             this.lLoading.Name = "lLoading";
-            this.lLoading.Size = new System.Drawing.Size(130, 20);
+            this.lLoading.Size = new System.Drawing.Size(204, 20);
             this.lLoading.TabIndex = 0;
-            this.lLoading.Text = "Идет загрузка...";
+            this.lLoading.Text = "Downloading, please, wait...";
             // 
             // fLoader
             // 
