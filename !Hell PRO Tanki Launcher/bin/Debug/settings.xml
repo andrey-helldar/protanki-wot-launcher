@@ -4,11 +4,11 @@
   <settings kill="False" force="False" aero="False" video="Unchecked" weak="False" balance="True" />
   <notification>0.9.0.3</notification>
   <language>en</language>
-  <processes />
   <youtube>
     <video>EUOYPYJns90</video>
     <video>UXozFmMlDMA</video>
     <video>K10uxUFvM8M</video>
     <video>DfaTnlpbAGw</video>
   </youtube>
+  <processes />
 </pro>

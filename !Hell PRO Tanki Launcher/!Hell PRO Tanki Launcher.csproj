@@ -115,7 +115,6 @@
     <Compile Include="fNewVersion.Designer.cs">
       <DependentUpon>fNewVersion.cs</DependentUpon>
     </Compile>
-    <Compile Include="framework.class.cs" />
     <Compile Include="fSettings.cs">
       <SubType>Form</SubType>
     </Compile>

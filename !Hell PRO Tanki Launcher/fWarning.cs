@@ -158,15 +158,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void fWarning_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (File.Exists("settings.xml"))
-                {
-                    XDocument doc = XDocument.Load("settings.xml");
-                    lang = doc.Root.Element("language").Value;
-                }
-            }
-            catch (Exception) { lang = "ru"; }
+            string pathINI = Directory.GetCurrentDirectory() + @"\config.ini";
+            lang = new IniFile(pathINI).IniReadValue("new", "languages");
+            lang = lang != "" ? lang : "en";
 
             SetInterfaceLanguage();
         }

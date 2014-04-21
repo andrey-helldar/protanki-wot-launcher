@@ -203,6 +203,7 @@
             this.llTitle.Name = "llTitle";
             this.llTitle.Size = new System.Drawing.Size(80, 19);
             this.llTitle.TabIndex = 5;
+            this.llTitle.TabStop = true;
             this.llTitle.Text = "Настройки...";
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
@@ -367,7 +368,7 @@
             this.llRecoverySettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llRecoverySettings.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llRecoverySettings.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llRecoverySettings.Location = new System.Drawing.Point(434, 9);
+            this.llRecoverySettings.Location = new System.Drawing.Point(400, 7);
             this.llRecoverySettings.Name = "llRecoverySettings";
             this.llRecoverySettings.Size = new System.Drawing.Size(153, 19);
             this.llRecoverySettings.TabIndex = 9;

@@ -146,21 +146,6 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
 
                     if (doc.Root.Element("common.test") != null) commonTest = true;
-
-                    // ПРоверяем указан ли язык в файле. Если нет - загружаем и сохраняем настройки
-                    if (doc.Root.Element("language") != null)
-                    {
-                        if (doc.Root.Element("language").Value != lang)
-                        {
-                            doc.Root.Element("language").SetValue(lang);
-                            doc.Save("settings.xml");
-                        }
-                    }
-                    else
-                    {
-                        doc.Root.Add(new XElement("language", lang));
-                        doc.Save("settings.xml");
-                    }
                 }
                 else
                 {
@@ -1553,12 +1538,12 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 if (cb != null)
                 {
-                    cb.Text = LanguagePack.InterfaceLanguage("fIndex", cb, lang);
+                    cb.Text = LanguagePack.InterfaceLanguage("fIndex", cb, lang, modpackType);
                     LanguagePack.toolTip(cb, lang);
                 }
                 else
                 {
-                    control.Text = LanguagePack.InterfaceLanguage("fIndex", control, lang);
+                    control.Text = LanguagePack.InterfaceLanguage("fIndex", control, lang, modpackType);
                     LanguagePack.toolTip(control, lang);
                 }
             }

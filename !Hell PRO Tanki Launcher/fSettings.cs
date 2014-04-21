@@ -37,51 +37,6 @@ namespace _Hell_PRO_Tanki_Launcher
         public fSettings()
         {
             InitializeComponent();
-
-            loadLang();
-            moveForm();
-
-            // Если винда старее Висты, то отключаем пункт
-            cbAero.Enabled = EnableAero();
-            if (!EnableAero()) cbAero.Checked = false;
-
-            if (File.Exists("settings.xml"))
-            {
-                XDocument doc = XDocument.Load("settings.xml");
-
-                commonTest = doc.Root.Element("common.test") != null;
-
-                try { version = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version"); }
-                catch (Exception) { version = doc.Root.Element("version") != null ? doc.Root.Element("version").Value : "0.0.0.0"; }
-
-                type = doc.Root.Element("type") != null ? doc.Root.Element("type").Value : "full";
-                notification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : "";
-
-                try
-                {
-                    var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
-                    cbPriority.SelectedIndex = getPriority((int)key.GetValue("CpuPriorityClass"), false);
-                }
-                catch (Exception ex) { cbPriority.SelectedIndex = 2; Debug.Save("public fSettings()", "Priority", ex.Message); }
-                finally { cbPriority.SelectedIndex = 2; }
-
-                cbVideo.Checked = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false;
-
-                cbKillProcesses.Checked = ReadSettingsStatus(doc, "kill");
-                cbForceClose.Checked = ReadSettingsStatus(doc, "force");
-                cbAero.Checked = ReadSettingsStatus(doc, "aero");
-                cbVideoQuality.CheckState = ReadCheckState(doc, "video");
-                cbVideoQualityWeak.Checked = ReadSettingsStatus(doc, "weak");
-                cbBalanceCPU.Checked = ReadSettingsStatus(doc, "balance");
-
-                if (doc.Root.Element("language") != null)
-                    lang = doc.Root.Element("language").Value;
-
-                userProcesses.Clear();
-                if (doc.Root.Element("processes") != null) foreach (XElement el in doc.Root.Element("processes").Elements("process")) { userProcesses.Add(el.Attribute("name").Value); }
-
-                if (!bwUserProcesses.IsBusy) { bwUserProcesses.RunWorkerAsync(); }
-            }
         }
 
         private void loadLang()
@@ -386,7 +341,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     var key = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
                     key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show(this, LanguagePack.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -439,6 +394,52 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void fSettings_Load(object sender, EventArgs e)
         {
+            moveForm();
+
+            // Если винда старее Висты, то отключаем пункт
+            cbAero.Enabled = EnableAero();
+            if (!EnableAero()) cbAero.Checked = false;
+
+            string pathINI = Directory.GetCurrentDirectory() + @"\config.ini";
+            lang = new IniFile(pathINI).IniReadValue("new", "languages");
+            lang = lang != "" ? lang : "en";
+
+            loadLang();
+
+            if (File.Exists("settings.xml"))
+            {
+                XDocument doc = XDocument.Load("settings.xml");
+
+                commonTest = doc.Root.Element("common.test") != null;
+
+                try { version = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version"); }
+                catch (Exception) { version = doc.Root.Element("version") != null ? doc.Root.Element("version").Value : "0.0.0.0"; }
+
+                type = doc.Root.Element("type") != null ? doc.Root.Element("type").Value : "full";
+                notification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : "";
+
+                try
+                {
+                    var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
+                    cbPriority.SelectedIndex = getPriority((int)key.GetValue("CpuPriorityClass"), false);
+                }
+                catch (Exception ex) { cbPriority.SelectedIndex = 2; Debug.Save("public fSettings()", "Priority", ex.Message); }
+
+                cbVideo.Checked = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false;
+
+                cbKillProcesses.Checked = ReadSettingsStatus(doc, "kill");
+                cbForceClose.Checked = ReadSettingsStatus(doc, "force");
+                cbAero.Checked = ReadSettingsStatus(doc, "aero");
+                cbVideoQuality.CheckState = ReadCheckState(doc, "video");
+                cbVideoQualityWeak.Checked = ReadSettingsStatus(doc, "weak");
+                cbBalanceCPU.Checked = ReadSettingsStatus(doc, "balance");
+
+                userProcesses.Clear();
+                if (doc.Root.Element("processes") != null) foreach (XElement el in doc.Root.Element("processes").Elements("process")) { userProcesses.Add(el.Attribute("name").Value); }
+
+                if (!bwUserProcesses.IsBusy) { bwUserProcesses.RunWorkerAsync(); }
+            }
+
             try
             {
                 //bSave.Text = "Сохранить";
