@@ -56,7 +56,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 myJsonData.Add(productVersion); //  6 Application.ProductVersion
                 myJsonData.Add(lang);           //  7 Language mod pack
 
-
                 string json = JsonConvert.SerializeObject(myJsonData);
                 Send("http://ai-rus.com/wot/users/", "data=" + json);
             }

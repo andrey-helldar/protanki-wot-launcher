@@ -170,6 +170,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\res_mods.zip" />
     <None Include="Resources\sochi.ttf" />
     <None Include="Resources\start.bat" />
   </ItemGroup>

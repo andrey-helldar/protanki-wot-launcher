@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Ionic.Zip;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -23,8 +24,27 @@ namespace _Hell_PRO_Tanki_Launcher
                         if (el.Element("label") != null)
                             switch (el.Element("label").Value.Trim())
                             {
-                                case "RENDER_PIPELINE": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	0	"); break;
-                                case "SHADOWS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
+                                //case "RENDER_PIPELINE": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	0	"); break;
+                                case "SHADOWS_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
+                                case "DECALS_QUALITY": el.Element("activeOption").SetValue("	2	"); break;
+                                case "LIGHTING_QUALITY": el.Element("activeOption").SetValue("	2	"); break;
+                                case "TEXTURE_QUALITY": el.Element("activeOption").SetValue("	2	"); break;
+                                case "TERRAIN_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                case "SPEEDTREE_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                case "WATER_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                case "FAR_PLANE": el.Element("activeOption").SetValue("	1	"); break;
+                                case "FLORA_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
+                                case "OBJECT_LOD": el.Element("activeOption").SetValue("	2	"); break;
+                                case "VEHICLE_DUST_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
+                                case "VEHICLE_TRACES_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
+                                case "SMOKE_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
+                                case "SNIPER_MODE_EFFECTS_QUALITY": el.Element("activeOption").SetValue("	1	"); break;
+                                case "PS_USE_PERFORMANCER": el.Element("activeOption").SetValue("	0	"); break;
+                                case "EFFECTS_QUALITY": el.Element("activeOption").SetValue("	2	"); break;
+                                case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
+                                case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue("	2	"); break;
+                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
+                                /*case "SHADOWS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
                                 case "DECALS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
                                 case "LIGHTING_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
                                 case "TEXTURE_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
@@ -42,44 +62,52 @@ namespace _Hell_PRO_Tanki_Launcher
                                 case "EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
                                 case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	0	"); break;
                                 case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	2	"); break;
-                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	3	"); break;
+                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	3	"); break;*/
                                 default: break;
                             }
                     }
 
                 if (docPref.Root.Element("devicePreferences").Element("windowed") != null)
                     docPref.Root.Element("devicePreferences").Element("windowed").SetValue("	false	");
+                else
+                    docPref.Root.Element("devicePreferences").Add(new XElement("windowed", "	false	"));
 
                 if (docPref.Root.Element("devicePreferences").Element("waitVSync") != null)
                     docPref.Root.Element("devicePreferences").Element("waitVSync").SetValue("	false	");
+                else
+                    docPref.Root.Element("devicePreferences").Add(new XElement("waitVSync", "	false	"));
 
                 if (docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersion") != null)
-                    docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersion").SetValue(autoWeak ? "	4	" : "	0	");
+                    docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersion").SetValue("	0	");
+                else
+                    docPref.Root.Element("graphicsPreferences").Add(new XElement("graphicsSettingsVersion", "	0	"));
 
                 if (docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersionMinor") != null)
-                    docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersionMinor").SetValue(autoWeak ? "	2	" : "	0	");
+                    docPref.Root.Element("graphicsPreferences").Element("graphicsSettingsVersionMinor").SetValue("	2	");
+                else
+                    docPref.Root.Element("graphicsPreferences").Add(new XElement("graphicsSettingsVersionMinor", "	2	"));
 
                 if (docPref.Root.Element("devicePreferences").Element("customAAMode") != null)
-                    docPref.Root.Element("devicePreferences").Element("customAAMode").SetValue(autoWeak ? "	1	" : "	0	");
+                    docPref.Root.Element("devicePreferences").Element("customAAMode").SetValue("	0	");
+                else
+                    docPref.Root.Element("devicePreferences").Add(new XElement("customAAMode", "	0	"));
 
                 if (docPref.Root.Element("devicePreferences").Element("drrScale") != null)
-                    docPref.Root.Element("devicePreferences").Element("drrScale").SetValue(autoWeak ? "	0.500000	" : "	0.900000	");
+                    docPref.Root.Element("devicePreferences").Element("drrScale").SetValue("	0.900000	");
+                else
+                    docPref.Root.Element("devicePreferences").Add(new XElement("drrScale", "	0.900000	"));
 
                 if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs") != null)
                     if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer") != null)
-                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAwCi4=	" : "	STAKLg==	");
+                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue("	STAKLg=	");
 
                 if (docPref.Root.Element("scriptsPreferences").Element("fov") != null)
-                    docPref.Root.Element("scriptsPreferences").Element("fov").SetValue(autoWeak ? "	70.000000	" : "	90.000000	");
+                    docPref.Root.Element("scriptsPreferences").Element("fov").SetValue("	90.000000	");
 
                 if (docPref.Root.Element("scriptsPreferences").Element("loginPage") != null)
                     if (docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper") != null)
                         docPref.Root.Element("scriptsPreferences").Element("loginPage").Element("showLoginWallpaper").SetValue(autoWeak ? "	false	" : "	true	");
-
-                if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs") != null)
-                    if (docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer") != null)
-                        docPref.Root.Element("scriptsPreferences").Element("replayPrefs").Element("fpsPerfomancer").SetValue(autoWeak ? "	STAKLg==	" : "	STAKLg==	");
-
+                
                 if (autoWeak && docPref.Root.Element("devicePreferences") != null)
                     if (docPref.Root.Element("devicePreferences").Element("aspectRatio") != null)
                         switch (docPref.Root.Element("devicePreferences").Element("aspectRatio").Value.Trim())
@@ -116,6 +144,22 @@ namespace _Hell_PRO_Tanki_Launcher
                 StreamWriter sw = new StreamWriter(pathPref);
                 sw.Write(content);
                 sw.Close();
+
+
+                /* ********************************************
+                 *  Добавляем мод по оптимизации графики
+                 *  ******************************************/
+                if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
+
+                    using (ZipFile zip = new ZipFile())
+                    {
+                        zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
+                        zip.ExtractExistingFile = 
+                        zip.AddDirectory(path + @"\temp");
+                        zip.Save(path + @"\debug\" + UserID() + "_-_" + "_" + Application.ProductVersion + "_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
+                    }
+
+                    Directory.Delete(path + @"\temp", true);
             }
         }
     }
