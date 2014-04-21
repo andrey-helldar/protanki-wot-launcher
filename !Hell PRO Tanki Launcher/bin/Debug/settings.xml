@@ -4,4 +4,5 @@
   <settings kill="False" force="False" aero="False" video="Unchecked" weak="False" balance="False" />
   <notification>0.9.0.3</notification>
   <processes />
+  <language>en</language>
 </pro>

@@ -173,6 +173,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fWarning";
+            this.Load += new System.EventHandler(this.fWarning_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

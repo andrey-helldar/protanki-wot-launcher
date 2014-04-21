@@ -73,6 +73,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 cbVideoQualityWeak.Checked = ReadSettingsStatus(doc, "weak");
                 cbBalanceCPU.Checked = ReadSettingsStatus(doc, "balance");
 
+                if (doc.Root.Element("language") != null)
+                    lang = doc.Root.Element("language").Value;
+
                 userProcesses.Clear();
                 if (doc.Root.Element("processes") != null) foreach (XElement el in doc.Root.Element("processes").Elements("process")) { userProcesses.Add(el.Attribute("name").Value); }
 
@@ -82,17 +85,43 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void loadLang()
         {
+            foreach (Control control in this.Controls)
+                UncheckAllCheckBoxes(control);
+        }
+
+        private void UncheckAllCheckBoxes(Control control)
+        {
             try
             {
-                foreach (Control control in this.Controls)
-                    control.Text = LanguagePack.InterfaceLanguage("fSettings", control, lang);
+                if (control.Name != "lvProcessesUser")
+                {
+                    foreach (Control c in control.Controls)
+                    {
+                        UncheckAllCheckBoxes(c);
+                    }
 
-                LanguagePack.toolTip(llUserProcesses);
-                LanguagePack.toolTip(llGlobalProcesses);
+                    var cb = control as CheckBox;
+
+                    if (cb != null)
+                    {
+                        cb.Text = LanguagePack.InterfaceLanguage("fSettings", cb, lang);
+                        LanguagePack.toolTip(cb, lang);
+                    }
+                    else
+                    {
+                        control.Text = LanguagePack.InterfaceLanguage("fSettings", control, lang);
+                        LanguagePack.toolTip(control, lang);
+                    }
+                }
+                else
+                {
+                    lvProcessesUser.Columns[0].Text = LanguagePack.DynamicLanguage("lvProcessesUser0", lang);
+                    lvProcessesUser.Columns[1].Text = LanguagePack.DynamicLanguage("lvProcessesUser1", lang);
+                }
             }
             catch (Exception ex)
             {
-                Debug.Save("loadLang()", ex.Message);
+                Debug.Save("fSettings", "UncheckAllCheckBoxes()", ex.Message);
             }
         }
 
@@ -352,7 +381,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (lvProcessesUser.CheckedItems.Count > 0)
                 {
                     List<string> myJsonData = new List<string>();
-                    myJsonData.Add(Debug.code);
+                    myJsonData.Add(Debug.Code);
                     
                     foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
                     {

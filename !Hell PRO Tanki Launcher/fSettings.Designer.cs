@@ -50,9 +50,9 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
             this.gbPriority = new System.Windows.Forms.GroupBox();
+            this.cbBalanceCPU = new System.Windows.Forms.CheckBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.llRecoverySettings = new System.Windows.Forms.LinkLabel();
-            this.cbBalanceCPU = new System.Windows.Forms.CheckBox();
             this.gbOptimization.SuspendLayout();
             this.gbOther.SuspendLayout();
             this.gbProcesses.SuspendLayout();
@@ -203,7 +203,6 @@
             this.llTitle.Name = "llTitle";
             this.llTitle.Size = new System.Drawing.Size(80, 19);
             this.llTitle.TabIndex = 5;
-            this.llTitle.TabStop = true;
             this.llTitle.Text = "Настройки...";
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
@@ -331,6 +330,16 @@
             this.gbPriority.TabStop = false;
             this.gbPriority.Text = "Приоритет игры в системе:";
             // 
+            // cbBalanceCPU
+            // 
+            this.cbBalanceCPU.AutoSize = true;
+            this.cbBalanceCPU.Location = new System.Drawing.Point(6, 42);
+            this.cbBalanceCPU.Name = "cbBalanceCPU";
+            this.cbBalanceCPU.Size = new System.Drawing.Size(165, 17);
+            this.cbBalanceCPU.TabIndex = 7;
+            this.cbBalanceCPU.Text = "Распределить нагрузку ЦП";
+            this.cbBalanceCPU.UseVisualStyleBackColor = true;
+            // 
             // cbPriority
             // 
             this.cbPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -366,16 +375,6 @@
             this.llRecoverySettings.Text = "Восстановить настройки";
             this.llRecoverySettings.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llRecoverySettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRecoverySettings_LinkClicked);
-            // 
-            // cbBalanceCPU
-            // 
-            this.cbBalanceCPU.AutoSize = true;
-            this.cbBalanceCPU.Location = new System.Drawing.Point(6, 42);
-            this.cbBalanceCPU.Name = "cbBalanceCPU";
-            this.cbBalanceCPU.Size = new System.Drawing.Size(165, 17);
-            this.cbBalanceCPU.TabIndex = 7;
-            this.cbBalanceCPU.Text = "Распределить нагрузку ЦП";
-            this.cbBalanceCPU.UseVisualStyleBackColor = true;
             // 
             // fSettings
             // 

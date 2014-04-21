@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Xml.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,8 +18,12 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fWarning : Form
     {
+        LanguagePack LanguagePack = new LanguagePack();
+
         string sendText = String.Empty,
-            sendStatus = String.Empty;
+            sendStatus = String.Empty,
+
+            lang = "en";
 
         public fWarning()
         {
@@ -41,9 +46,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 List<string> myJsonData = new List<string>();
                 myJsonData.Clear();
 
-                myJsonData.Add(Debug.code);
+                myJsonData.Add(Debug.Code);
                 myJsonData.Add(Debug.UserID());
-                myJsonData.Add("PROTanki");
+                myJsonData.Add(Debug.Youtube);
                 myJsonData.Add(Application.ProductName + " " + Application.ProductVersion);
 
                 string text = tbTicket.Text.Trim() + "[br][br][hr]";
@@ -88,9 +93,12 @@ namespace _Hell_PRO_Tanki_Launcher
                         sendStatus = SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + json);
                         switch (sendStatus)
                         {
-                            case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
+                            /*case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
                             case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
-                            default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;
+                            default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;*/
+                            case "OK": status = LanguagePack.DynamicLanguage("thanks", lang); break;
+                            case "Hacking attempt!": status = LanguagePack.DynamicLanguage("hacking", lang); break;
+                            default: status = LanguagePack.DynamicLanguage("error", lang); break;
                         }
 
                         MessageBox.Show(this, status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -99,7 +107,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    MessageBox.Show(this, "Ошибка отправки данных. Попробуйте чуть познее...", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show(this, "Ошибка отправки данных. Попробуйте чуть познее...", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, LanguagePack.DynamicLanguage("error", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception) { }
@@ -110,18 +119,22 @@ namespace _Hell_PRO_Tanki_Launcher
             int symbolsCount = 50;
             string mess = String.Empty;
 
-            if (tbTicket.Text.Length < symbolsCount) { mess += "Текст не может быть меньше " + symbolsCount.ToString() + " символов!" + Environment.NewLine + Environment.NewLine; }
+            //if (tbTicket.Text.Length < symbolsCount) { mess += "Текст не может быть меньше " + symbolsCount.ToString() + " символов!" + Environment.NewLine + Environment.NewLine; }
+            if (tbTicket.Text.Length < symbolsCount) { mess += LanguagePack.DynamicLanguage("symbolLength", lang, symbolsCount.ToString()) + Environment.NewLine + Environment.NewLine; }
 
-            if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += "Вы уже отправляли данное сообщение."; }
+            //if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += "Вы уже отправляли данное сообщение."; }
+            if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += LanguagePack.DynamicLanguage("messAreSended", lang); }
 
             if (mess == String.Empty)
             {
-                bSend.Text = "Отправка...";
+                //bSend.Text = "Отправка...";
+                bSend.Text = LanguagePack.DynamicLanguage("sending", lang);
                 bSend.Enabled = false;
 
                 SendTicket().Wait();
 
-                bSend.Text = "Отправить";
+                //bSend.Text = "Отправить";
+                bSend.Text = LanguagePack.DynamicLanguage("send", lang);
                 bSend.Enabled = true;
 
                 Close();
@@ -139,12 +152,23 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private async Task SetInterfaceLanguage()
         {
-            XDoc
-
-            LanguagePack LanguagePack = new LanguagePack();
-
             foreach (Control control in this.Controls)
                 control.Text = new LanguagePack().InterfaceLanguage("fWarning", control, lang);
+        }
+
+        private void fWarning_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists("settings.xml"))
+                {
+                    XDocument doc = XDocument.Load("settings.xml");
+                    lang = doc.Root.Element("language").Value;
+                }
+            }
+            catch (Exception) { lang = "ru"; }
+
+            SetInterfaceLanguage();
         }
     }
 }

@@ -15,7 +15,8 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     class Debug
     {
-        public string code = "TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6";
+        public string Code = "TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6";
+        public string Youtube = "PROTankiWoT";
 
         /// <summary>
         /// Сохраняем информацию обработчика в файл
@@ -105,7 +106,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 foreach (FileInfo file in info.GetFiles())
                 {
                     NameValueCollection nvc = new NameValueCollection();
-                    nvc.Add("code", code);
+                    nvc.Add("code", Code);
                     nvc.Add("uid", userID);
                     Task.Factory.StartNew(() => HttpUploadFile("http://ai-rus.com/wot/debug/", file.FullName, "file", "application/x-zip-compressed", nvc)).Wait();
                     File.Delete(file.FullName);

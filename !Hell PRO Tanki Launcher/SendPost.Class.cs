@@ -47,7 +47,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 List<string> myJsonData = new List<string>();
 
-                myJsonData.Add(Debug.code);     //  0 Authorization Code
+                myJsonData.Add(Debug.Code);     //  0 Authorization Code
                 myJsonData.Add(Debug.UserID()); //  1 User ID
                 myJsonData.Add(youtube);        //  2 Youtube Channel
                 myJsonData.Add(packType);       //  3 Modpack type

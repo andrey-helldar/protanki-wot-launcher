@@ -36,7 +36,7 @@ namespace _Hell_PRO_Tanki_Launcher
             modpackType = "base",
             modpackDate = "1970-1-1",
 
-            youtubeChannel = "PROTankiWoT",
+            youtubeChannel = "",
             newVersionMessage,
             newVersionLink = "http://goo.gl/gr6pFl",
             videoLink = "http://goo.gl/gr6pFl",
@@ -44,7 +44,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             notifyLink = "",
 
-            lang = "ru";
+            lang = "en";
 
         Version remoteModVersion = new Version("0.0.0.0"),
             remoteTanksVersion = new Version("0.0.0.0"),
@@ -87,9 +87,9 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             //Проверяем запущен ли процесс
             foreach (Process process in Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName))
-            {
                 if (process.SessionId != Process.GetCurrentProcess().SessionId) process.Kill();
-            }
+
+            youtubeChannel = Debug.Youtube;
 
             InitializeComponent();
         }
@@ -148,6 +148,21 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
 
                     if (doc.Root.Element("common.test") != null) commonTest = true;
+
+                    // ПРоверяем указан ли язык в файле. Если нет - загружаем и сохраняем настройки
+                    if (doc.Root.Element("language") != null)
+                    {
+                        if (doc.Root.Element("language").Value != lang)
+                        {
+                            doc.Root.Element("language").SetValue(lang);
+                            doc.Save("settings.xml");
+                        }
+                    }
+                    else
+                    {
+                        doc.Root.Add(new XElement("language", lang));
+                        doc.Save("settings.xml");
+                    }
                 }
                 else
                 {
@@ -293,7 +308,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 XDocument doc = XDocument.Load(@"http://ai-rus.com/pro/pro.xml");
 
                 remoteModVersion = new Version(doc.Root.Element("version").Value);
-                remoteTanksVersion = new Version(SendPOST.Send("http://ai-rus.com/wot/version/", "code=" + Debug.code + "&user=" + Debug.UserID() + "&version=" + tanksVersion.ToString() + "&test=" + (commonTest ? "1" : "0")));
+                remoteTanksVersion = new Version(SendPOST.Send("http://ai-rus.com/wot/version/", "code=" + Debug.Code + "&user=" + Debug.UserID() + "&version=" + tanksVersion.ToString() + "&test=" + (commonTest ? "1" : "0")));
                                 
                 tanksUpdates = tanksVersion < remoteTanksVersion; // Сравниваем версии танков
                 modpackUpdates = modpackVersion < remoteModVersion; // Сравниваем версии мультипака

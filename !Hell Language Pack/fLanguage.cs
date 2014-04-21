@@ -40,7 +40,7 @@ namespace _Hell_Language_Pack
             }
         }
 
-        public string InterfaceLanguage(string formName, Control sender, string lang="ru", string type = "base")
+        public string InterfaceLanguage(string formName, Control sender, string lang = "en", string type = "base")
         {
             switch (formName)
             {
@@ -83,12 +83,6 @@ namespace _Hell_Language_Pack
                         case "gbPriority": return lang == "ru" ? "Приоритет игры в системе:" : "Priority of the game in system";
                         case "cbBalanceCPU": return lang == "ru" ? "Распределить нагрузку ЦП" : "CPU load balancing";
                         case "gbProcesses": return lang == "ru" ? "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:" : "This processes must BE ACTIVE when the game starts";
-                        case "lvProcessesUser":
-                            ListView listView = new ListView();
-                            listView.Columns[0].Text = lang == "ru" ? "Процесс" : "Process";
-                            listView.Columns[1].Text = lang == "ru" ? "Описание" : "Description";
-                            return sender.Text;
-
                         case "llUserProcesses": return lang == "ru" ? "Процессы, выбранные пользователем" : "Processes selected by the user";
                         case "llGlobalProcesses": return lang == "ru" ? "Процессы из глобального списка" : "Processes from the global list";
                         case "lDescProcesses": return lang == "ru" ?
@@ -129,10 +123,11 @@ namespace _Hell_Language_Pack
             }
         }
 
-        public string DynamicLanguage(string controlName, string lang)
+        public string DynamicLanguage(string controlName, string lang = "en", string additionalText = "")
         {
             switch (controlName)
             {
+                // fIndex
                 case "llVideoAll": return lang == "ru" ? "Все видео" : "All videos";
                 case "llActuallyActually": return lang == "ru" ? "Вы используете самые свежие моды" : "You are using the latest mods";
                 case "llActuallyNewMods": return lang == "ru" ? "Обнаружена новая версия Мультипака" : "";
@@ -140,7 +135,36 @@ namespace _Hell_Language_Pack
                 case "llActuallyThisVerMods": return lang == "ru" ? "Текущая версия Мультипака: " : "";
                 case "llActuallyThisVerGame": return lang == "ru" ? "Текущая версия клиента игры: " : "";
                 case "noUpdates": return lang == "ru" ? "Обновления отсутствуют" : "";
-                default: return String.Empty;
+
+                // fWarning
+                case "thanks": return lang == "ru" ?
+                    "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время" :
+                    "";
+                case "hacking": return lang == "ru" ?
+                    "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже." :
+                    "";
+                case "error": return lang == "ru" ?
+                    "Ошибка отправки сообщения. Попробуйте еще раз." :
+                    "";
+                case "symbolLength": return lang == "ru" ?
+                    "Текст не может быть меньше " + additionalText + " символов!" :
+                    "";
+                case "messAreSended": return lang == "ru" ?
+                    "Вы уже отправляли данное сообщение." :
+                    "";
+                case "sending": return lang == "ru" ? "Отправка..." : "Sending...";
+                case "send": return lang == "ru" ? "Отправить" : "Send";
+
+                // fSettings
+                case "lvProcessesUser0": return lang == "ru" ? "Процесс" : "Process";
+                case "lvProcessesUser1": return lang == "ru" ? "Описание" : "Description";
+
+                case "priority0": return lang == "ru" ? "Высокий" : "High";
+                case "priority1": return lang == "ru" ? "Выше среднего" : "Above average";
+                case "priority2": return lang == "ru" ? "Средний" : "Average";
+                case "priority3": return lang == "ru" ? "Ниже среднего" : "Below the average";
+                case "priority4": return lang == "ru" ? "Низкий" : "Low";
+                default: return "null";
             }
         }
     }
