@@ -175,6 +175,8 @@
     <None Include="Resources\start.bat" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\lamp_on.png" />
+    <None Include="Resources\lamp_off.png" />
     <None Include="Resources\restart.exe" />
     <None Include="Resources\ProcessesLibrary.dll" />
     <None Include="Resources\LanguagePack.dll" />
@@ -184,6 +186,7 @@
     <None Include="Resources\warning.png" />
     <None Include="Resources\WOT.ico" />
     <None Include="Resources\FonSetting.jpg" />
+    <None Include="Resources\engine_config.xml" />
     <Content Include="Resources\FonUPD.jpg" />
     <None Include="Resources\Newtonsoft.Json.dll" />
     <None Include="Resources\Ionic.Zip.dll" />

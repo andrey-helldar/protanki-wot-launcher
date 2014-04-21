@@ -131,6 +131,27 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;engine_config.xml&gt;
+        ///  &lt;personality&gt;	game	&lt;/personality&gt;
+        ///  &lt;preferences&gt;preferences.xml&lt;/preferences&gt;
+        ///  &lt;enableBalanceCPU&gt;	false	&lt;/enableBalanceCPU&gt;
+        ///  &lt;renderer&gt;
+        ///    &lt;disableSLI&gt;	false	&lt;/disableSLI&gt;
+        ///    &lt;cacheEffects&gt;	true	&lt;/cacheEffects&gt;
+        ///    &lt;gammaCorrectionOutside&gt;1.0&lt;/gammaCorrectionOutside&gt;
+        ///    &lt;gammaCorrectionInside&gt;1.0&lt;/gammaCorrectionInside&gt;
+        ///    &lt;gammaCorrectionSpeed&gt;0.2&lt;/gammaCorrectionSpeed&gt;
+        ///    &lt;maxFrameRate&gt;	120	&lt;/maxFrameRate&gt;
+        ///    &lt;reducedFrameRate&gt;	60	&lt;/reducedFrameRate&gt;
+        ///    &lt;setting [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string engine_config {
+            get {
+                return ResourceManager.GetString("engine_config", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap FonSetting {
@@ -167,6 +188,26 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("IonicZip", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lamp_off {
+            get {
+                object obj = ResourceManager.GetObject("lamp_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lamp_on {
+            get {
+                object obj = ResourceManager.GetObject("lamp_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

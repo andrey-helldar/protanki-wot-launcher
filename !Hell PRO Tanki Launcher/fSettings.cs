@@ -291,7 +291,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     AddAttributeSettings(doc, "aero", cbAero.Checked.ToString());
                     AddAttributeSettings(doc, "video", cbVideoQuality.CheckState.ToString());
                     AddAttributeSettings(doc, "weak", cbVideoQualityWeak.Checked.ToString());
-                    AddAttributeSettings(doc, "balance", cbBalanceCPU.Checked.ToString());
+                    //AddAttributeSettings(doc, "balance", cbBalanceCPU.Checked.ToString());
                 }
                 else
                 {
@@ -300,8 +300,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         new XAttribute("force", cbForceClose.Checked.ToString()),
                         new XAttribute("aero", cbAero.Checked.ToString()),
                         new XAttribute("video", cbVideoQuality.CheckState.ToString()),
-                        new XAttribute("weak", cbVideoQualityWeak.Checked.ToString()),
-                        new XAttribute("balance", cbBalanceCPU.Checked.ToString())
+                        new XAttribute("weak", cbVideoQualityWeak.Checked.ToString())
+                        //new XAttribute("balance", cbBalanceCPU.Checked.ToString())
                         );
                     doc.Root.Add(el);
                 }
@@ -432,12 +432,24 @@ namespace _Hell_PRO_Tanki_Launcher
                 cbAero.Checked = ReadSettingsStatus(doc, "aero");
                 cbVideoQuality.CheckState = ReadCheckState(doc, "video");
                 cbVideoQualityWeak.Checked = ReadSettingsStatus(doc, "weak");
-                cbBalanceCPU.Checked = ReadSettingsStatus(doc, "balance");
+                //cbBalanceCPU.Checked = ReadSettingsStatus(doc, "balance");
 
                 userProcesses.Clear();
                 if (doc.Root.Element("processes") != null) foreach (XElement el in doc.Root.Element("processes").Elements("process")) { userProcesses.Add(el.Attribute("name").Value); }
 
                 if (!bwUserProcesses.IsBusy) { bwUserProcesses.RunWorkerAsync(); }
+            }
+
+            // Нагрузка на ЦП
+            if (!File.Exists(@"..\res_mods\engine_config.xml"))
+            {
+                bBalanceCPU.Text = "Нагрузка ЦП распределена";
+                bBalanceCPU.BackgroundImage = Properties.Resources.lamp_on;
+            }
+            else
+            {
+                bBalanceCPU.Text = "Нагрузка ЦП не распределена";
+                bBalanceCPU.BackgroundImage = Properties.Resources.lamp_off;
             }
 
             try
@@ -476,6 +488,26 @@ namespace _Hell_PRO_Tanki_Launcher
                 cbVideoQuality.CheckState = CheckState.Checked;
             else
                 cbVideoQuality.CheckState = CheckState.Indeterminate;
+        }
+
+        private void bBalanceCPU_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists(@"..\res_mods\engine_config.xml"))
+                {
+                    bBalanceCPU.Text = "Нагрузка ЦП распределена";
+                    bBalanceCPU.BackgroundImage = Properties.Resources.lamp_on;
+                    File.Delete(@"..\res_mods\engine_config.xml");
+                }
+                else
+                {
+                    bBalanceCPU.Text = "Нагрузка ЦП не распределена";
+                    bBalanceCPU.BackgroundImage = Properties.Resources.lamp_off;
+                    File.WriteAllText(@"..\res_mods\engine_config.xml", Properties.Resources.engine_config);
+                }
+            }
+            finally { }
         }
     }
 }

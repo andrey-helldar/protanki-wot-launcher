@@ -50,7 +50,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
             this.gbPriority = new System.Windows.Forms.GroupBox();
-            this.cbBalanceCPU = new System.Windows.Forms.CheckBox();
+            this.bBalanceCPU = new System.Windows.Forms.Button();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.llRecoverySettings = new System.Windows.Forms.LinkLabel();
             this.gbOptimization.SuspendLayout();
@@ -173,7 +173,7 @@
             this.gbOther.ForeColor = System.Drawing.Color.White;
             this.gbOther.Location = new System.Drawing.Point(318, 29);
             this.gbOther.Name = "gbOther";
-            this.gbOther.Size = new System.Drawing.Size(267, 55);
+            this.gbOther.Size = new System.Drawing.Size(267, 42);
             this.gbOther.TabIndex = 4;
             this.gbOther.TabStop = false;
             this.gbOther.Text = "Другие:";
@@ -183,7 +183,7 @@
             this.cbVideo.AutoSize = true;
             this.cbVideo.Checked = true;
             this.cbVideo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbVideo.Location = new System.Drawing.Point(18, 25);
+            this.cbVideo.Location = new System.Drawing.Point(18, 17);
             this.cbVideo.Name = "cbVideo";
             this.cbVideo.Size = new System.Drawing.Size(165, 17);
             this.cbVideo.TabIndex = 5;
@@ -321,25 +321,36 @@
             // gbPriority
             // 
             this.gbPriority.BackColor = System.Drawing.Color.Transparent;
-            this.gbPriority.Controls.Add(this.cbBalanceCPU);
+            this.gbPriority.Controls.Add(this.bBalanceCPU);
             this.gbPriority.Controls.Add(this.cbPriority);
             this.gbPriority.ForeColor = System.Drawing.Color.White;
-            this.gbPriority.Location = new System.Drawing.Point(318, 90);
+            this.gbPriority.Location = new System.Drawing.Point(318, 77);
             this.gbPriority.Name = "gbPriority";
-            this.gbPriority.Size = new System.Drawing.Size(267, 64);
+            this.gbPriority.Size = new System.Drawing.Size(267, 77);
             this.gbPriority.TabIndex = 7;
             this.gbPriority.TabStop = false;
             this.gbPriority.Text = "Приоритет игры в системе:";
             // 
-            // cbBalanceCPU
+            // bBalanceCPU
             // 
-            this.cbBalanceCPU.AutoSize = true;
-            this.cbBalanceCPU.Location = new System.Drawing.Point(6, 42);
-            this.cbBalanceCPU.Name = "cbBalanceCPU";
-            this.cbBalanceCPU.Size = new System.Drawing.Size(165, 17);
-            this.cbBalanceCPU.TabIndex = 7;
-            this.cbBalanceCPU.Text = "Распределить нагрузку ЦП";
-            this.cbBalanceCPU.UseVisualStyleBackColor = true;
+            this.bBalanceCPU.BackColor = System.Drawing.Color.Transparent;
+            this.bBalanceCPU.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.lamp_on;
+            this.bBalanceCPU.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.bBalanceCPU.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bBalanceCPU.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bBalanceCPU.FlatAppearance.BorderSize = 0;
+            this.bBalanceCPU.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
+            this.bBalanceCPU.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.bBalanceCPU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bBalanceCPU.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bBalanceCPU.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bBalanceCPU.Location = new System.Drawing.Point(6, 44);
+            this.bBalanceCPU.Name = "bBalanceCPU";
+            this.bBalanceCPU.Size = new System.Drawing.Size(255, 28);
+            this.bBalanceCPU.TabIndex = 9;
+            this.bBalanceCPU.Text = "Нагрузка ЦП распределена";
+            this.bBalanceCPU.UseVisualStyleBackColor = false;
+            this.bBalanceCPU.Click += new System.EventHandler(this.bBalanceCPU_Click);
             // 
             // cbPriority
             // 
@@ -406,7 +417,6 @@
             this.gbProcesses.ResumeLayout(false);
             this.gbProcesses.PerformLayout();
             this.gbPriority.ResumeLayout(false);
-            this.gbPriority.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,6 +448,6 @@
         private System.Windows.Forms.CheckBox cbVideoQuality;
         private System.Windows.Forms.LinkLabel llRecoverySettings;
         private System.Windows.Forms.CheckBox cbVideoQualityWeak;
-        private System.Windows.Forms.CheckBox cbBalanceCPU;
+        private System.Windows.Forms.Button bBalanceCPU;
     }
 }
