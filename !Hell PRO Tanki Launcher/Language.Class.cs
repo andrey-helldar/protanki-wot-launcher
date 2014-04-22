@@ -141,7 +141,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 /* ************************
                  *         fIndex
                  * ***********************/
-                case "llVideoAll": return lang == "ru" ? "Все видео" : "All videos";
+                case "llVideoAllVideo": return lang == "ru" ? "Все видео" : "All videos";
+                case "llVideoAllNews": return lang == "ru" ? "Все новости" : "All news";
                 case "llActuallyActually": return lang == "ru" ? "Вы используете самые свежие моды" : "You are using the latest mods";
                 case "llActuallyNewMods": return lang == "ru" ? "Обнаружена новая версия Мультипака" : "A new version of Multipack is available";
                 case "llActuallyNewGame": return lang == "ru" ? "Обнаружена новая версия игры" : "A new game client version is available";

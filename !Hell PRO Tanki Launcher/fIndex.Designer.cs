@@ -62,6 +62,7 @@
             this.pNews = new System.Windows.Forms.Panel();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.pbWarning = new System.Windows.Forms.PictureBox();
+            this.llVideoAll = new System.Windows.Forms.LinkLabel();
             this.contextMenu.SuspendLayout();
             this.pVideo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbWarning)).BeginInit();
@@ -493,6 +494,24 @@
             this.pbWarning.TabStop = false;
             this.pbWarning.Click += new System.EventHandler(this.pbWarning_Click);
             // 
+            // llVideoAll
+            // 
+            this.llVideoAll.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVideoAll.AutoSize = true;
+            this.llVideoAll.BackColor = System.Drawing.Color.Transparent;
+            this.llVideoAll.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.llVideoAll.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llVideoAll.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.llVideoAll.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVideoAll.Location = new System.Drawing.Point(187, 426);
+            this.llVideoAll.Name = "llVideoAll";
+            this.llVideoAll.Size = new System.Drawing.Size(67, 20);
+            this.llVideoAll.TabIndex = 33;
+            this.llVideoAll.TabStop = true;
+            this.llVideoAll.Text = "Loading...";
+            this.llVideoAll.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVideoAll.Click += new System.EventHandler(this.label_Click);
+            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,6 +519,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.llVideoAll);
             this.Controls.Add(this.pbWarning);
             this.Controls.Add(this.pNews);
             this.Controls.Add(this.pVideo);
@@ -569,6 +589,7 @@
         public System.Windows.Forms.ProgressBar pbDownload;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.PictureBox pbWarning;
+        private System.Windows.Forms.LinkLabel llVideoAll;
     }
 }
 

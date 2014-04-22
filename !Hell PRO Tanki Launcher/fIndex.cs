@@ -302,6 +302,7 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 Debug.Save("fIndex", "bVideo_Click()", videoLink, ex.Message);
+                MessageBox.Show(this, Language.DynamicLanguage("badLink", lang, videoLink), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -824,7 +825,8 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("fIndex", "label_Click()", "Process.Start((sender as LinkLabel).Links[0].LinkData.ToString());", ex.Message);
+                Debug.Save("fIndex", "label_Click()", "Link : " + (sender as LinkLabel).Links[0].LinkData.ToString(), ex.Message);
+                MessageBox.Show(this, Language.DynamicLanguage("badLink", lang, videoLink), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -832,7 +834,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                LinkLabel label = new LinkLabel();
+                /*LinkLabel label = new LinkLabel();
                 label.SetBounds(190, 426, 100, 20);
                 label.AutoSize = true;
                 label.ActiveLinkColor = Color.FromArgb(243, 123, 16);
@@ -847,7 +849,10 @@ namespace _Hell_PRO_Tanki_Launcher
                 label.Name = "llVideoAll";
                 label.Click += new EventHandler(bVideo_Click);
                 this.Controls.Add(label);
-                label.Text = Language.DynamicLanguage("llVideoAll", lang);
+                label.Text = Language.DynamicLanguage("llVideoAll", lang);*/
+
+                llVideoAll.Links[0].LinkData = "http://goo.gl/LXaU7T";
+                llVideoAll.Text = Language.DynamicLanguage("llVideoAllVideo", lang);
 
                 bShowVideo.Enabled = true;
 
@@ -1017,8 +1022,10 @@ namespace _Hell_PRO_Tanki_Launcher
                         bShowNews.BackColor = Color.FromArgb(28, 28, 28);
                         bShowNews.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
 
-                        //llBlockCaption.Text = lang == "ru" ? "Видео:" : "Video:";
                         llBlockCaption.Text = Language.DynamicLanguage("video", lang);
+
+                        llVideoAll.Links[0].LinkData = "http://goo.gl/LXaU7T";
+                        llVideoAll.Text = Language.DynamicLanguage("llVideoAllVideo", lang);
 
                         pNews.Visible = false;
                         pVideo.Visible = true;
@@ -1035,8 +1042,10 @@ namespace _Hell_PRO_Tanki_Launcher
                         bShowNews.BackColor = Color.Black;
                         bShowNews.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
 
-                        //llBlockCaption.Text = lang == "ru" ? "Новости:" : "News:";
                         llBlockCaption.Text = Language.DynamicLanguage("news", lang);
+
+                        llVideoAll.Links[0].LinkData = "http://goo.gl/Wlrh9F";
+                        llVideoAll.Text = Language.DynamicLanguage("llVideoAllNews", lang);
 
                         pVideo.Visible = false;
                         pNews.Visible = true;
