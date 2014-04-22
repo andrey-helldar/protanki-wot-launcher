@@ -75,8 +75,6 @@ namespace _Hell_PRO_Tanki_Launcher
                      }
                      catch (Exception ex1) { Debug.Save("public void Check()", "launcher.update", ex1.Message); }*/
 
-                //foreach (Task task in tasks) task.Start();
-
                 Task.WhenAll(tasks);
             }
             catch (Exception ex) { Debug.Save("public void Check()", ex.Message); }
