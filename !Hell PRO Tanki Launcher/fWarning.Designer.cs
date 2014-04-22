@@ -36,6 +36,7 @@
             this.rbBug = new System.Windows.Forms.RadioButton();
             this.lEmail = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
+            this.cbAttachDebug = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lDesc
@@ -146,8 +147,21 @@
             this.tbEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.tbEmail.Location = new System.Drawing.Point(79, 271);
             this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(604, 28);
+            this.tbEmail.Size = new System.Drawing.Size(436, 28);
             this.tbEmail.TabIndex = 8;
+            // 
+            // cbAttachDebug
+            // 
+            this.cbAttachDebug.AutoSize = true;
+            this.cbAttachDebug.BackColor = System.Drawing.Color.Transparent;
+            this.cbAttachDebug.Font = new System.Drawing.Font("Sochi2014", 12F);
+            this.cbAttachDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.cbAttachDebug.Location = new System.Drawing.Point(544, 272);
+            this.cbAttachDebug.Name = "cbAttachDebug";
+            this.cbAttachDebug.Size = new System.Drawing.Size(139, 24);
+            this.cbAttachDebug.TabIndex = 9;
+            this.cbAttachDebug.Text = "Прикрепить логи";
+            this.cbAttachDebug.UseVisualStyleBackColor = false;
             // 
             // fWarning
             // 
@@ -156,6 +170,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(23)))), ((int)(((byte)(0)))));
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.fWarning;
             this.ClientSize = new System.Drawing.Size(695, 351);
+            this.Controls.Add(this.cbAttachDebug);
             this.Controls.Add(this.tbEmail);
             this.Controls.Add(this.lEmail);
             this.Controls.Add(this.rbBug);
@@ -189,5 +204,6 @@
         private System.Windows.Forms.RadioButton rbBug;
         private System.Windows.Forms.Label lEmail;
         private System.Windows.Forms.TextBox tbEmail;
+        private System.Windows.Forms.CheckBox cbAttachDebug;
     }
 }

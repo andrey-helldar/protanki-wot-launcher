@@ -199,7 +199,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 string name = Environment.MachineName +
                     Environment.UserName +
                     Environment.UserDomainName +
-                    Environment.Version.ToString() +
                     Environment.OSVersion.ToString();
 
                 using (System.Security.Cryptography.MD5 md5Hash = System.Security.Cryptography.MD5.Create())

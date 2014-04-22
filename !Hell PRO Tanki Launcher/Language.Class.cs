@@ -126,6 +126,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         case "rbBug": return lang == "ru" ? "Найдена ошибка" : "Error found";
                         case "bSend": return lang == "ru" ? "Отправить" : "Send";
                         case "bCancel": return lang == "ru" ? "Выход" : "Cancel";
+                        case "cbAttachDebug": return lang == "ru" ? "Прикрепить логи" : "Attach log-files";
                         default: return sender.Text;
                     }
 

@@ -49,7 +49,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 myJsonData.Add(Debug.UserID());
                 myJsonData.Add(Debug.Youtube);
                 myJsonData.Add(Application.ProductName + " " + Application.ProductVersion);
-
+                
                 string text = tbTicket.Text.Trim() + "[br][br][hr]";
 
                 sendText = tbTicket.Text.Trim();
@@ -60,7 +60,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr = new StreamReader("settings.xml");
                     settings = sr.ReadToEnd();
                     sr.Close();
-                    settings = settings.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
+                    settings = ReplaceSymbols(settings);
                 }
                 else settings = "File settings.xml not found";
                 text += "[b]settings.xml[/b][br]" + settings + "[br][br][hr]";
@@ -71,7 +71,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr1 = new StreamReader(@"..\version.xml");
                     tanks = sr1.ReadToEnd();
                     sr1.Close();
-                    tanks = tanks.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
+                    tanks = ReplaceSymbols(tanks);
                 }
                 else tanks = "File version.xml not found";
                 text += "[b]version.xml[/b][br]" + tanks;
@@ -79,6 +79,16 @@ namespace _Hell_PRO_Tanki_Launcher
                 myJsonData.Add(text);
                 myJsonData.Add(rbBug.Checked ? "bug" : "wish");
                 myJsonData.Add(tbEmail.Text.Trim() != "" ? tbEmail.Text.Trim() : "0");
+
+                if (File.Exists("config.ini"))
+                {
+                    try
+                    {
+                        string pathINI = Directory.GetCurrentDirectory() + @"\config.ini";
+                        myJsonData.Add("Multipack version: " + new IniFile(pathINI).IniReadValue("new", "version"));
+                    }
+                    catch (Exception) { text = String.Empty; }
+                }
 
                 if (myJsonData.Count > 2)
                 {
@@ -113,6 +123,11 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception) { }
         }
 
+        private string ReplaceSymbols(string s)
+        {
+            return s.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace(Environment.NewLine, ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
+        }
+
         private void bSend_Click(object sender, EventArgs e)
         {
             int symbolsCount = 50;
@@ -133,8 +148,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 SendTicket().Wait();
 
                 // Если имеются какие-либо файлы дебага, то отправляем их
-                Debug Debug = new Debug();
-                Task.Factory.StartNew(() => Debug.Send()).Wait();
+                // и если юзер разрешил нам отправку
+                if (cbAttachDebug.Checked)
+                {
+                    Debug Debug = new Debug();
+                    Task.Factory.StartNew(() => Debug.Send()).Wait();
+                }
 
                 //bSend.Text = "Отправить";
                 bSend.Text = Language.DynamicLanguage("send", lang);
