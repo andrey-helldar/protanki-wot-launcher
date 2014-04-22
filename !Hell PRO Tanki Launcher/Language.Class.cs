@@ -233,6 +233,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 case "bBalanceCPU1": return lang == "ru" ? "Нагрузка ЦП распределена" : "CPU load distribution is now activated";
                 case "bBalanceCPU0": return lang == "ru" ? "Нагрузка ЦП не распределена" : "CPU load distribution is now deactivated";
 
+                case "badLink": return lang == "ru" ? "Ошибка открытия ссылки: " + additionalText : "Error while opening link: " + additionalText;
+
                 default: return "null";
             }
         }

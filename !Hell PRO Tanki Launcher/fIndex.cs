@@ -540,11 +540,12 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                Process.Start("http://ai-rus.com");
+                Process.Start("http://goo.gl/5PR4ma"); // Link to http://ai-rus.com with goo.gl
             }
             catch (Exception ex)
             {
-                Debug.Save("fIndex", "linkLabel1_LinkClicked()", "Process.Start(\"http://ai-rus.com\");", ex.Message);
+                Debug.Save("fIndex", "linkLabel1_LinkClicked()", "Process.Start(\"http://goo.gl/5PR4ma\");", ex.Message);
+                MessageBox.Show(this, Language.DynamicLanguage("badLink", lang, "http://goo.gl/5PR4ma"), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
