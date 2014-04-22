@@ -28,6 +28,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (Process.GetCurrentProcess().ProcessName != Application.ProductName && Process.GetCurrentProcess().ProcessName != Application.ProductName + ".vshost")
             {
+                Task.Factory.StartNew(() => DeleteFile("Multipack Launcher.exe")).Wait();
+
                 Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + ".exe\" \"" + Application.ProductName + ".exe\"");
                 Process.GetCurrentProcess().Kill();
             }
@@ -37,6 +39,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                SaveFromResources().Wait(); // Проверяем существуют ли файлы. Если нет - сохраняем из ресурсов
+
                 CheckProcessFile().Wait();
 
                 XDocument doc = XDocument.Load(url + "version.xml");
@@ -50,8 +54,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 // Проверяем целостность файлов
                 CheckFile("Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll");
-
-                SaveFromResources(); // Проверяем существуют ли файлы. Если нет - сохраняем из ресурсов
 
                 Task[] tasks = new Task[doc.Root.Elements().Count() + 1];
                 int i = -1;
