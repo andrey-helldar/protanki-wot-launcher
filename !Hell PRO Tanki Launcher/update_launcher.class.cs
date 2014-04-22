@@ -33,7 +33,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        public async Task Check(bool launcher = false)
+        public void Check()
         {
             try
             {
@@ -51,23 +51,14 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Проверяем целостность файлов
                 CheckFile("Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll");
 
-                await SaveFromResources(); // Проверяем существуют ли файлы. Если нет - сохраняем из ресурсов
+                SaveFromResources(); // Проверяем существуют ли файлы. Если нет - сохраняем из ресурсов
 
                 Task[] tasks = new Task[doc.Root.Elements().Count() + 1];
                 int i = -1;
 
-                if (!launcher) // Определяем будем запускать скачивание до обновления или после
-                {
-                    foreach (XElement el in doc.Root.Elements())
-                        if (el.Attribute("important").Value == "True" && el.Attribute("user").Value == "true")
-                            tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
-                }
-                else
-                {
-                    // Скачиваем необходимые файлы
-                    foreach (XElement el in doc.Root.Elements())
-                        if (el.Attribute("important").Value == "False" && el.Attribute("user").Value == "true")
-                            tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
+                foreach (XElement el in doc.Root.Elements())
+                    if (el.Attribute("user").Value == "true")
+                        tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
 
                     /* try
                      {
@@ -83,8 +74,8 @@ namespace _Hell_PRO_Tanki_Launcher
                          else DeleteFile("launcher.update");
                      }
                      catch (Exception ex1) { Debug.Save("public void Check()", "launcher.update", ex1.Message); }*/
-                }
-                foreach (Task task in tasks) task.Start();
+
+                //foreach (Task task in tasks) task.Start();
 
                 Task.WhenAll(tasks);
             }

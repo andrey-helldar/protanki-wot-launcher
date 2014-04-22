@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Net;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Diagnostics;
 
 namespace _Hell_PRO_Tanki_Launcher
@@ -26,7 +26,7 @@ namespace _Hell_PRO_Tanki_Launcher
             fLoader.Show();
 
             UpdateLauncher update = new UpdateLauncher(); // Инициализируем обновление библиотек
-            update.Check().Wait();
+            Task.Factory.StartNew(() => update.Check()).Wait();
             
             fLoader.Close();
 

@@ -508,6 +508,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bUpdate_Click(object sender, EventArgs e)
         {
+            /// Tanks updates
             try
             {
                 if (tanksUpdates)
@@ -521,13 +522,13 @@ namespace _Hell_PRO_Tanki_Launcher
                     WindowState = FormWindowState.Minimized;
                 }
             }
-            catch (Exception ex) { Debug.Save("fIndex", "bUpdate_Click()", ex.Message); }
+            catch (Exception ex) { Debug.Save("fIndex", "bUpdate_Click()", "tanksUpdates = " + tanksUpdates.ToString(), ex.Message); }
 
-
-
+            /// Multipack updates
             try
             {
-                Process.Start(newVersionLink);
+                if (modpackUpdates)
+                    Process.Start(newVersionLink);
             }
             catch (Exception ex)
             {
@@ -1172,9 +1173,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void fIndex_Load(object sender, EventArgs e)
         {
-            UpdateLauncher update = new UpdateLauncher();
-            update.Check(true).Wait();
-
             loadSettings().Wait();
 
             notifyIcon.Icon = Properties.Resources.Icon;

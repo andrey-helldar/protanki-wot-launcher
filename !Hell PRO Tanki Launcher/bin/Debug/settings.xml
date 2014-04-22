@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
   <info video="True" />
-  <settings kill="False" force="False" aero="False" video="Indeterminate" weak="False" balance="True" />
+  <settings kill="False" force="False" aero="False" video="Unchecked" weak="False" balance="True" />
   <notification>0.9.0.3</notification>
   <language>en</language>
   <youtube>
