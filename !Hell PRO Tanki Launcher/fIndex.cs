@@ -376,7 +376,6 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         //status += "Обнаружена новая версия Мультипака (" + remoteModVersion.ToString() + ")" + Environment.NewLine;
                         status += Language.DynamicLanguage("llActuallyNewMods", lang) + ": " + remoteModVersion.ToString() + Environment.NewLine;
-                        bUpdate.Enabled = true;
 
                         videoLink = newVersionLink;
                     }
@@ -387,12 +386,12 @@ namespace _Hell_PRO_Tanki_Launcher
                         status += Language.DynamicLanguage("llActuallyNewGame", lang) + ": " + remoteTanksVersion.ToString() + Environment.NewLine;
 
                         // Отключаем кнопку запуска игры
-                        //bPlay.Enabled = false;
+                        bPlay.Enabled = false;
                     }
                     else
                     {
                         // Включаем кнопку запуска игры
-                        //bPlay.Enabled = true;
+                        bPlay.Enabled = true;
                     }
 
 
@@ -418,6 +417,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         fNewVersion.cbNotification.Checked = updateNotification == remoteModVersion.ToString();
                         fNewVersion.ShowDialog();
                     }
+
+                    bUpdate.Enabled = true; // Включаем кнопку обновлений
                 }
                 else
                 {
@@ -434,7 +435,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     status = Language.DynamicLanguage("llActuallyActually", lang) + Environment.NewLine +
                         Language.DynamicLanguage("llActuallyThisVerMods", lang) + modpackVersion.ToString() + Environment.NewLine +
                         Language.DynamicLanguage("llActuallyThisVerGame", lang) + tanksVersion.ToString();
-                    bUpdate.Enabled = false;
+
+                    bUpdate.Enabled = false; // Выключаем кнопку обновлений
 
                     // Окно статуса обновлений
                     fNewVersion.llCaption.Text = status;
@@ -478,16 +480,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 autoOptimizePC = false;
                 GetVipProcesses().Wait();
 
-                if (!tanksUpdates)
-                {
-                    playGame = true;
-                    OptimizePC().Wait();
-                }
-                else
-                {
-                    OptimizePC().Wait();
-                    Process.Start(pathToTanks + "WoTLauncher.exe");
-                }
+                playGame = true;
+                OptimizePC().Wait();
 
                 //Hide();
                 WindowState = FormWindowState.Minimized;
@@ -514,6 +508,23 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bUpdate_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (tanksUpdates)
+                {
+                    autoOptimizePC = false;
+                    GetVipProcesses().Wait();
+
+                    OptimizePC().Wait();
+                    Process.Start(pathToTanks + "WoTLauncher.exe");
+
+                    WindowState = FormWindowState.Minimized;
+                }
+            }
+            catch (Exception ex) { Debug.Save("fIndex", "bUpdate_Click()", ex.Message); }
+
+
+
             try
             {
                 Process.Start(newVersionLink);
@@ -1161,7 +1172,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void fIndex_Load(object sender, EventArgs e)
         {
-            /// Запускаем проверку обновлений лаунчера после инициализации приложения
             UpdateLauncher update = new UpdateLauncher();
             update.Check(true).Wait();
 

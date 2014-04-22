@@ -137,14 +137,18 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bSend_Click(object sender, EventArgs e)
         {
-            int symbolsCount = 50;
+            int minSymbolsCount = 50,
+                maxWordLength = 20;
             string mess = String.Empty;
+            
 
             //if (tbTicket.Text.Length < symbolsCount) { mess += "Текст не может быть меньше " + symbolsCount.ToString() + " символов!" + Environment.NewLine + Environment.NewLine; }
-            if (tbTicket.Text.Length < symbolsCount) { mess += Language.DynamicLanguage("symbolLength", lang, symbolsCount.ToString()) + Environment.NewLine + Environment.NewLine; }
+            if (tbTicket.Text.Trim().Length < minSymbolsCount) { mess += Language.DynamicLanguage("symbolLength", lang, minSymbolsCount.ToString()); }
 
             //if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += "Вы уже отправляли данное сообщение."; }
-            if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += Language.DynamicLanguage("messAreSended", lang); }
+            if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("messAreSended", lang); }
+
+            if (!ChechLengthWord(tbTicket.Text.Trim(), maxWordLength)) mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("veryLongWord", lang, maxWordLength.ToString()); 
 
             if (mess == String.Empty)
             {
@@ -164,6 +168,22 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 MessageBox.Show(this, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private bool ChechLengthWord(string s, int wordLength = 255)
+        {
+            try
+            {
+                string[] arr = s.Split(' ');
+
+                foreach (string str in arr)
+                {
+                    if (str.Length > wordLength) return false;
+                }
+
+                return true;
+            }
+            catch (Exception) { return true; }
         }
 
         private void lMessAboutNewVersion_Click(object sender, EventArgs e)

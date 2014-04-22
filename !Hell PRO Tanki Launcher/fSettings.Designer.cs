@@ -108,7 +108,7 @@
             this.gbOptimization.ForeColor = System.Drawing.Color.White;
             this.gbOptimization.Location = new System.Drawing.Point(12, 29);
             this.gbOptimization.Name = "gbOptimization";
-            this.gbOptimization.Size = new System.Drawing.Size(300, 125);
+            this.gbOptimization.Size = new System.Drawing.Size(276, 125);
             this.gbOptimization.TabIndex = 3;
             this.gbOptimization.TabStop = false;
             this.gbOptimization.Text = "Оптимизация:";
@@ -171,9 +171,9 @@
             this.gbOther.BackColor = System.Drawing.Color.Transparent;
             this.gbOther.Controls.Add(this.cbVideo);
             this.gbOther.ForeColor = System.Drawing.Color.White;
-            this.gbOther.Location = new System.Drawing.Point(318, 29);
+            this.gbOther.Location = new System.Drawing.Point(294, 29);
             this.gbOther.Name = "gbOther";
-            this.gbOther.Size = new System.Drawing.Size(267, 42);
+            this.gbOther.Size = new System.Drawing.Size(291, 42);
             this.gbOther.TabIndex = 4;
             this.gbOther.TabStop = false;
             this.gbOther.Text = "Другие:";
@@ -324,9 +324,9 @@
             this.gbPriority.Controls.Add(this.bBalanceCPU);
             this.gbPriority.Controls.Add(this.cbPriority);
             this.gbPriority.ForeColor = System.Drawing.Color.White;
-            this.gbPriority.Location = new System.Drawing.Point(318, 77);
+            this.gbPriority.Location = new System.Drawing.Point(294, 77);
             this.gbPriority.Name = "gbPriority";
-            this.gbPriority.Size = new System.Drawing.Size(267, 77);
+            this.gbPriority.Size = new System.Drawing.Size(291, 77);
             this.gbPriority.TabIndex = 7;
             this.gbPriority.TabStop = false;
             this.gbPriority.Text = "Приоритет игры в системе:";
@@ -346,7 +346,7 @@
             this.bBalanceCPU.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.bBalanceCPU.Location = new System.Drawing.Point(6, 44);
             this.bBalanceCPU.Name = "bBalanceCPU";
-            this.bBalanceCPU.Size = new System.Drawing.Size(255, 28);
+            this.bBalanceCPU.Size = new System.Drawing.Size(279, 28);
             this.bBalanceCPU.TabIndex = 9;
             this.bBalanceCPU.Text = "Нагрузка ЦП распределена";
             this.bBalanceCPU.UseVisualStyleBackColor = false;
@@ -364,7 +364,7 @@
             "Низкий"});
             this.cbPriority.Location = new System.Drawing.Point(6, 17);
             this.cbPriority.Name = "cbPriority";
-            this.cbPriority.Size = new System.Drawing.Size(255, 21);
+            this.cbPriority.Size = new System.Drawing.Size(279, 21);
             this.cbPriority.TabIndex = 6;
             // 
             // llRecoverySettings

@@ -143,51 +143,56 @@ namespace _Hell_PRO_Tanki_Launcher
                  * ***********************/
                 case "llVideoAll": return lang == "ru" ? "Все видео" : "All videos";
                 case "llActuallyActually": return lang == "ru" ? "Вы используете самые свежие моды" : "You are using the latest mods";
-                case "llActuallyNewMods": return lang == "ru" ? "Обнаружена новая версия Мультипака" : "Available new Multipack version";
-                case "llActuallyNewGame": return lang == "ru" ? "Обнаружена новая версия игры" : "Available new game version";
-                case "llActuallyThisVerMods": return lang == "ru" ? "Текущая версия Мультипака: " : "This Multipack version: ";
-                case "llActuallyThisVerGame": return lang == "ru" ? "Текущая версия клиента игры: " : "This WOT version: ";
-                case "noMods": return lang == "ru" ? "Мультипак не обнаружен!" : "Multipack not found!";
-                case "noTanks": return lang == "ru" ? "Клиент игры не обнаружен!" : "\"World of Tanks\" not found!";
+                case "llActuallyNewMods": return lang == "ru" ? "Обнаружена новая версия Мультипака" : "A new version of Multipack is available";
+                case "llActuallyNewGame": return lang == "ru" ? "Обнаружена новая версия игры" : "A new game client version is available";
+                case "llActuallyThisVerMods": return lang == "ru" ? "Текущая версия Мультипака: " : "Version of Multipack: ";
+                case "llActuallyThisVerGame": return lang == "ru" ? "Текущая версия клиента игры: " : "Version of game client: ";
+                case "noMods": return lang == "ru" ? "Мультипак не обнаружен!" : "Multipack is not found!";
+                case "noTanks": return lang == "ru" ? "Клиент игры не обнаружен!" : "\"World of Tanks\" is not found!";
                 case "noUpdates": return lang == "ru" ? "Обновления отсутствуют" : "No updates available";
 
-                case "checkUpdates": return lang == "ru" ? "Подождите, предыдущая проверка обновлений не завершена" : "Подождите, предыдущая проверка обновлений не завершена";
-                case "reEnterPass": return lang == "ru" ? "Также, после применения настроек графики в игре требуется заново ввести логин/пароль!" : "Также, после применения настроек графики в игре требуется заново ввести логин/пароль!";
+                case "checkUpdates": return lang == "ru" ? "Подождите, предыдущая проверка обновлений не завершена" : "Please wait, previous request is not completed yet";
+                case "reEnterPass": return lang == "ru" ?
+                    "Также, после применения настроек графики в игре требуется заново ввести логин/пароль!" :
+                    "After applying of new graphical settings you should enter your login and password again!";
 
                 case "noSettings": return lang == "ru" ?
                     "Файл настроек не обнаружен!" + Environment.NewLine + "Лаунчер будет автоматически перезапущен. Во время перезапуска будет применена стандартная конфигурация" :
-                    "Launcher has been restart. When restart has been apply default configuration";
+                    "Configuration file is unavailable!" + Environment.NewLine + "Launcher would be restarted. After restart the default configuration would be restored.";
 
                 case "video": return lang == "ru" ? "Видео:" : "Video:";
                 case "news": return lang == "ru" ? "Новости:" : "News:";
 
                 case "tsShow": return lang == "ru" ? "Главное окно" : "Main window";
                 case "tsVideo": return lang == "ru" ? "Видео" : "Video";
-                case "tsCheckUpdates": return lang == "ru" ? "Проверить обновления" : "Check updates";
+                case "tsCheckUpdates": return lang == "ru" ? "Проверить обновления" : "Check for updates";
                 case "tsSettings": return lang == "ru" ? "Настройки" : "Settings";
-                case "tsExit": return lang == "ru" ? "Выход" : "Exit";
+                case "tsExit": return lang == "ru" ? "Выход" : "Quit";
 
                 /* ************************
                  *         fWarning
                  * ***********************/
                 case "thanks": return lang == "ru" ?
                     "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время" :
-                    "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время";
+                    "Thank you for your message!" + Environment.NewLine + "Developer will consider your application as soon as possible";
                 case "hacking": return lang == "ru" ?
                     "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже." :
-                    "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже.";
+                    "Work is underway on the server. Try to send an inquiry later.";
                 case "error": return lang == "ru" ?
                     "Ошибка отправки сообщения. Попробуйте еще раз." :
-                    "Ошибка отправки сообщения. Попробуйте еще раз.";
+                    "Error while sending message. Try again.";
                 case "symbolLength": return lang == "ru" ?
                     "Текст не может быть меньше " + additionalText + " символов!" :
-                    "Текст не может быть меньше " + additionalText + " символов!";
+                    "Minimum text length is " + additionalText + " symbols!";
                 case "messAreSended": return lang == "ru" ?
                     "Вы уже отправляли данное сообщение." :
-                    "Вы уже отправляли данное сообщение.";
+                    "This message is already sent";
                 case "sending": return lang == "ru" ? "Отправка..." : "Sending...";
                 case "send": return lang == "ru" ? "Отправить" : "Send";
                 case "save": return lang == "ru" ? "Сохранить" : "Save";
+                case "veryLongWord": return lang == "ru" ?
+                    "Использование слов длиной более " + additionalText + " символов запрещено!" :
+                    "Maximum word length is " + additionalText + " symbols!";
 
                 /* ************************
                  *         fSettings
@@ -199,34 +204,34 @@ namespace _Hell_PRO_Tanki_Launcher
                 case "lvProcessesUser0": return lang == "ru" ? "Процесс" : "Process";
                 case "lvProcessesUser1": return lang == "ru" ? "Описание" : "Description";
 
-                case "priority0": return lang == "ru" ? "Высокий" : "High";
+                case "priority0": return lang == "ru" ? "Высокий" : "High priority";
                 case "priority1": return lang == "ru" ? "Выше среднего" : "Above average";
-                case "priority2": return lang == "ru" ? "Средний" : "Average";
-                case "priority3": return lang == "ru" ? "Ниже среднего" : "Below the average";
-                case "priority4": return lang == "ru" ? "Низкий" : "Low";
+                case "priority2": return lang == "ru" ? "Средний" : "Average priority";
+                case "priority3": return lang == "ru" ? "Ниже среднего" : "Below average";
+                case "priority4": return lang == "ru" ? "Низкий" : "Low priority";
 
                 case "reEnterLoginPass": return lang == "ru" ?
                 "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!" + Environment.NewLine + Environment.NewLine +
                 "Настройки графики применяются только при сохранении информации в окне настоек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
                 "При автоматической оптимизации настройки графики остаются без изменений." :
-                "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!" + Environment.NewLine + Environment.NewLine +
-                "Настройки графики применяются только при сохранении информации в окне настоек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
-                "При автоматической оптимизации настройки графики остаются без изменений.";
+                "ATTENTION!!!" + Environment.NewLine + "After applying of new graphical settings you should enter your login and password again!" + Environment.NewLine + Environment.NewLine +
+                "Graphical settings will be applied only after saving the settings or after pressing \"Optimize\" button on main window." + Environment.NewLine +
+                "When automatic optimization is applied - graphics settings remain unchanged.";
                 case "optimize": return lang == "ru" ?
                 "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." + additionalText +
                 Environment.NewLine + Environment.NewLine + "Вы хотите продолжить?" :
-                "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." + additionalText +
-                Environment.NewLine + Environment.NewLine + "Вы хотите продолжить?";
-                case "wait": return lang == "ru" ? "Подождите завершения предыдущей операции" : "Подождите завершения предыдущей операции";
+                "ATTENTION!!!" + Environment.NewLine + "To optimize your PC, some applications would be closed." + additionalText +
+                Environment.NewLine + Environment.NewLine + "Do you want to continue?";
+                case "wait": return lang == "ru" ? "Подождите завершения предыдущей операции" : "Please wait until previous request is completed";
 
                 case "admin": return lang == "ru" ?
                 "ВНИМАНИЕ!!!" + Environment.NewLine + "Для выполнения данной операции требуются права администратора!" :
-                "ВНИМАНИЕ!!!" + Environment.NewLine + "Для выполнения данной операции требуются права администратора!";
+                "ATTENTION!!!" + Environment.NewLine + "Administartor privileges is needed!";
 
                 case "viewVideo": return lang == "ru" ? "Посмотреть видео" : "Show video";
 
-                case "bBalanceCPU1": return lang == "ru" ? "Нагрузка ЦП распределена" : "CPU load is distributed";
-                case "bBalanceCPU0": return lang == "ru" ? "Нагрузка ЦП не распределена" : "CPU load is not distributed";
+                case "bBalanceCPU1": return lang == "ru" ? "Нагрузка ЦП распределена" : "CPU load distribution is now activated";
+                case "bBalanceCPU0": return lang == "ru" ? "Нагрузка ЦП не распределена" : "CPU load distribution is now deactivated";
 
                 default: return "null";
             }
