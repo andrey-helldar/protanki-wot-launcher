@@ -42,6 +42,13 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 Debug Debug = new Debug();
 
+
+                // Если имеются какие-либо файлы дебага, то отправляем их
+                // и если юзер разрешил нам отправку
+                if (cbAttachDebug.Checked) Task.Factory.StartNew(() => Debug.Send()).Wait();
+
+
+                // Готовим отправку сообщения
                 List<string> myJsonData = new List<string>();
                 myJsonData.Clear();
 
@@ -146,14 +153,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 bSend.Enabled = false;
 
                 SendTicket().Wait();
-
-                // Если имеются какие-либо файлы дебага, то отправляем их
-                // и если юзер разрешил нам отправку
-                if (cbAttachDebug.Checked)
-                {
-                    Debug Debug = new Debug();
-                    Task.Factory.StartNew(() => Debug.Send()).Wait();
-                }
 
                 //bSend.Text = "Отправить";
                 bSend.Text = Language.DynamicLanguage("send", lang);

@@ -154,6 +154,7 @@
             // 
             this.cbAttachDebug.AutoSize = true;
             this.cbAttachDebug.BackColor = System.Drawing.Color.Transparent;
+            this.cbAttachDebug.Enabled = false;
             this.cbAttachDebug.Font = new System.Drawing.Font("Sochi2014", 12F);
             this.cbAttachDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.cbAttachDebug.Location = new System.Drawing.Point(544, 272);
@@ -169,6 +170,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(23)))), ((int)(((byte)(0)))));
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.fWarning;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(695, 351);
             this.Controls.Add(this.cbAttachDebug);
             this.Controls.Add(this.tbEmail);

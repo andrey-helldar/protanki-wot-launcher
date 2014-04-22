@@ -105,11 +105,15 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 foreach (FileInfo file in info.GetFiles())
                 {
-                    NameValueCollection nvc = new NameValueCollection();
-                    nvc.Add("code", Code);
-                    nvc.Add("uid", userID);
-                    Task.Factory.StartNew(() => HttpUploadFile("http://ai-rus.com/wot/debug/", file.FullName, "file", "application/x-zip-compressed", nvc)).Wait();
-                    File.Delete(file.FullName);
+                    try
+                    {
+                        NameValueCollection nvc = new NameValueCollection();
+                        nvc.Add("code", Code);
+                        nvc.Add("uid", userID);
+                        Task.Factory.StartNew(() => HttpUploadFile("http://ai-rus.com/wot/debug/", file.FullName, "file", "application/x-zip-compressed", nvc)).Wait();
+                        File.Delete(file.FullName);
+                    }
+                    catch (Exception ex) { Save("Debug class", "Send()", ex.Message); }
                 }
             }
         }
