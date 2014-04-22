@@ -42,12 +42,10 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 Debug Debug = new Debug();
 
-
                 // Если имеются какие-либо файлы дебага, то отправляем их
                 // и если юзер разрешил нам отправку
-                if (cbAttachDebug.Checked) Task.Factory.StartNew(() => Debug.Send()).Wait();
-
-
+                if (cbAttachDebug.Checked) Debug.Send();
+                
                 // Готовим отправку сообщения
                 List<string> myJsonData = new List<string>();
                 myJsonData.Clear();
@@ -177,9 +175,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 string[] arr = s.Split(' ');
 
                 foreach (string str in arr)
-                {
                     if (str.Length > wordLength) return false;
-                }
 
                 return true;
             }

@@ -110,7 +110,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         NameValueCollection nvc = new NameValueCollection();
                         nvc.Add("code", Code);
                         nvc.Add("uid", userID);
-                        Task.Factory.StartNew(() => HttpUploadFile("http://ai-rus.com/wot/debug/", file.FullName, "file", "application/x-zip-compressed", nvc)).Wait();
+                        nvc.Add("version", Application.ProductVersion);
+                        HttpUploadFile("http://ai-rus.com/wot/debug/", file.FullName, "file", "application/x-zip-compressed", nvc);
                         File.Delete(file.FullName);
                     }
                     catch (Exception ex) { Save("Debug class", "Send()", ex.Message); }
@@ -118,7 +119,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        public void HttpUploadFile(string url, string file, string paramName, string contentType, System.Collections.Specialized.NameValueCollection nvc)
+        public void HttpUploadFile(string url, string file, string paramName, string contentType, NameValueCollection nvc)
         {
             string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
             byte[] boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
