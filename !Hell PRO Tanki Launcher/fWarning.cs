@@ -75,6 +75,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 else settings = "File settings.xml not found";
                 nvc.Add("settings.xml", settings);
 
+                // Танки
                 string tanks;
                 if (File.Exists(@"..\version.xml"))
                 {
@@ -86,6 +87,57 @@ namespace _Hell_PRO_Tanki_Launcher
                 else tanks = "File version.xml not found";
                 nvc.Add("version.xml", tanks);
 
+                // XVM
+                string xvm;
+                if (File.Exists(@"..\xvm.log"))
+                {
+                    if (new FileInfo(@"..\xvm.log").Length > 0)
+                    {
+                        StreamReader sr1 = new StreamReader(@"..\xvm.log");
+                        xvm = sr1.ReadToEnd();
+                        sr1.Close();
+                        xvm = ReplaceSymbols(xvm);
+                    }
+                    else xvm = "File xvm.log not found";
+                }
+                else xvm = "File xvm.log not found";
+                nvc.Add("xvm.log", xvm);
+
+                // PYTHON
+                string python;
+                if (File.Exists(@"..\python.log"))
+                {
+                    if (new FileInfo(@"..\python.log").Length > 0)
+                    {
+                        StreamReader sr1 = new StreamReader(@"..\python.log");
+                        python = sr1.ReadToEnd();
+                        sr1.Close();
+                        python = ReplaceSymbols(xvm);
+                    }
+                    else python = "File python.log not found";
+                }
+                else python = "File python.log not found";
+                nvc.Add("python.log", python);
+
+                // INSTALL LOG
+                string loginstall;
+                if (File.Exists(@"..\loginstall.inf"))
+                {
+                    if (new FileInfo(@"..\loginstall.inf").Length > 0)
+                    {
+                        StreamReader sr1 = new StreamReader(@"..\loginstall.inf");
+                        loginstall = sr1.ReadToEnd();
+                        sr1.Close();
+                        loginstall = ReplaceSymbols(xvm);
+                    }
+                    else loginstall = "File loginstall.inf not found";
+                }
+                else loginstall = "File loginstall.inf not found";
+                nvc.Add("loginstall.inf", loginstall);
+
+                /*************************
+                 * Цепляем конфиг
+                 * **********************/
                 if (File.Exists("config.ini"))
                 {
                     try
