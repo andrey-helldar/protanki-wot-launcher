@@ -155,5 +155,12 @@ namespace _Hell_PRO_Tanki_Launcher
 
             return String.Format("[{0}]", res);
         }
+
+        public string FromJson(string json)
+        {
+            var list = JsonConvert.DeserializeObject(json);
+
+            return list.;
+        }
     }
 }

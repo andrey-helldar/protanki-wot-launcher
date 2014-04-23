@@ -62,9 +62,24 @@ namespace _Hell_PRO_Tanki_Launcher
                 nvc.Add("email", tbEmail.Text.Trim() != "" ? tbEmail.Text.Trim() : "0");
 
                 /*************************
+                 * Цепляем конфиг
+                 * **********************/
+                if (File.Exists("config.ini"))
+                {
+                    try
+                    {
+                        string pathINI = Directory.GetCurrentDirectory() + @"\config.ini";
+                        nvc.Add("modpackVersion", new IniFile(pathINI).IniReadValue("new", "version"));
+                        nvc.Add("modpackType", (new IniFile(pathINI).IniReadValue("new", "update_file")).Replace("update", "").Replace(".xml", ""));
+                        nvc.Add("modpackLang", new IniFile(pathINI).IniReadValue("new", "languages"));
+                    }
+                    finally { }
+                }
+
+                /*************************
                  * Отправляем файлы
                  * **********************/
-                string settings;
+                /*string settings;
                 if (File.Exists("settings.xml"))
                 {
                     StreamReader sr = new StreamReader("settings.xml");
@@ -121,11 +136,11 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 // INSTALL LOG
                 string loginstall;
-                if (File.Exists(@"..\loginstall.inf"))
+                if (File.Exists("loginstall.inf"))
                 {
-                    if (new FileInfo(@"..\loginstall.inf").Length > 0)
+                    if (new FileInfo("loginstall.inf").Length > 0)
                     {
-                        StreamReader sr1 = new StreamReader(@"..\loginstall.inf");
+                        StreamReader sr1 = new StreamReader("loginstall.inf");
                         loginstall = sr1.ReadToEnd();
                         sr1.Close();
                         loginstall = ReplaceSymbols(xvm);
@@ -135,20 +150,17 @@ namespace _Hell_PRO_Tanki_Launcher
                 else loginstall = "File loginstall.inf not found";
                 nvc.Add("loginstall.inf", loginstall);
 
-                /*************************
-                 * Цепляем конфиг
-                 * **********************/
+                // CONFIG MULTIPACK
+                string config;
                 if (File.Exists("config.ini"))
                 {
-                    try
-                    {
-                        string pathINI = Directory.GetCurrentDirectory() + @"\config.ini";
-                        nvc.Add("modpackVersion", new IniFile(pathINI).IniReadValue("new", "version"));
-                        nvc.Add("modpackType", (new IniFile(pathINI).IniReadValue("new", "update_file")).Replace("update", "").Replace(".xml", ""));
-                        nvc.Add("modpackLang", new IniFile(pathINI).IniReadValue("new", "languages"));
-                    }
-                    finally { }
+                    StreamReader sr1 = new StreamReader("config.ini");
+                        config = sr1.ReadToEnd();
+                        sr1.Close();
+                        config = ReplaceSymbols(xvm);
                 }
+                else config = "File config.ini not found";
+                nvc.Add("config.ini", config);*/
 
                 if (nvc.Count > 2)
                 {
@@ -157,7 +169,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         string status = String.Empty;
 
                         SendPOST SendPOST = new SendPOST();
-                        sendStatus = SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + SendPOST.Json(nvc));
+                        sendStatus = SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + SendPOST.Json(nvc) + "&id=f39d3705d0925c26120f42599dc7d336");
                         string[] statusTSN = sendStatus.Split(':');
                         switch (statusTSN[0])
                         {
@@ -170,7 +182,7 @@ namespace _Hell_PRO_Tanki_Launcher
                             default: status = Language.DynamicLanguage("error", lang); break;
                         }
 
-                        MessageBox.Show(this, status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(this, status + Environment.NewLine + Environment.NewLine + sendStatus, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (WebException ex) { MessageBox.Show(this, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
