@@ -100,10 +100,9 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (Directory.Exists("Debug"))
             {
-                var info = new DirectoryInfo("Debug");
                 string userID = UserID();
 
-                foreach (FileInfo file in info.GetFiles())
+                foreach (string file in Directory.GetFiles(@"Debug", "*.zip", SearchOption.AllDirectories))
                 {
                     try
                     {
@@ -111,10 +110,10 @@ namespace _Hell_PRO_Tanki_Launcher
                         nvc.Add("code", Code);
                         nvc.Add("uid", userID);
                         nvc.Add("version", Application.ProductVersion);
-                        HttpUploadFile("http://ai-rus.com/wot/debug/", file.FullName, "file", "application/x-zip-compressed", nvc);
-                        File.Delete(file.FullName);
+                        new SendPOST().HttpUploadFile("http://ai-rus.com/pro/debug.php", file, "file", "application/x-zip-compressed", nvc);
+                        File.Delete(file);
                     }
-                    catch (Exception ex) { Save("Debug class", "Send()", ex.Message); }
+                    finally {  }
                 }
             }
         }
@@ -145,7 +144,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     return sBuilder.ToString();
                 }
             }catch(Exception ex){
-                Save("private string UserID()", ex.Message);
+                Save("Debug Class", "UserID()", ex.Message);
                 return null;
             }
         }

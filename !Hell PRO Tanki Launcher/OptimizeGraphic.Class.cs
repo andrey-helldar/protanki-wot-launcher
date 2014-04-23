@@ -175,13 +175,11 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         // Если возникла ошибка (обычно если файлы *.tmp найдены),
                         // то удаляем их и запускаем заново функцию
-                        string[] files = Directory.GetFiles(@"..\res_mods\", "*.tmp", SearchOption.AllDirectories);
-                        foreach (string file in files)
+                        foreach (string file in Directory.GetFiles(@"..\res_mods\", "*.tmp", SearchOption.AllDirectories))
                             try { if (File.Exists(file)) File.Delete(file); }
                             finally { }
 
-                        string[] files2 = Directory.GetFiles(@"..\res_mods\", "*.PendingOverwrite", SearchOption.AllDirectories);
-                        foreach (string file in files2)
+                        foreach (string file in Directory.GetFiles(@"..\res_mods\", "*.PendingOverwrite", SearchOption.AllDirectories))
                             try { if (File.Exists(file)) File.Delete(file); }
                             finally { }
 

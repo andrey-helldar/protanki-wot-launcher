@@ -127,7 +127,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     MessageBox.Show(this, Language.DynamicLanguage("error", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex) { new Debug().Save("ticket", ex.Message); }
         }
 
         private string ReplaceSymbols(string s)
@@ -202,16 +202,6 @@ namespace _Hell_PRO_Tanki_Launcher
             lang = lang != "" ? lang : "en";
 
             SetInterfaceLanguage();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Debug Debug = new Debug();
-                Debug.Send();
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
 }

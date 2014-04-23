@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using System.Collections.Specialized;
 using Newtonsoft.Json;
 
 namespace _Hell_PRO_Tanki_Launcher
