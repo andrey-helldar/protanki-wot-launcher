@@ -32,15 +32,15 @@
             this.tbTicket = new System.Windows.Forms.TextBox();
             this.bSend = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
-            this.rbWish = new System.Windows.Forms.RadioButton();
-            this.rbBug = new System.Windows.Forms.RadioButton();
             this.lEmail = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.cbAttachDebug = new System.Windows.Forms.CheckBox();
+            this.cbCaption = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lDesc
             // 
+            this.lDesc.BackColor = System.Drawing.Color.Transparent;
             this.lDesc.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.lDesc.Location = new System.Drawing.Point(12, 9);
@@ -56,7 +56,7 @@
             this.tbTicket.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbTicket.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbTicket.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.tbTicket.Location = new System.Drawing.Point(16, 58);
+            this.tbTicket.Location = new System.Drawing.Point(16, 92);
             this.tbTicket.Multiline = true;
             this.tbTicket.Name = "tbTicket";
             this.tbTicket.Size = new System.Drawing.Size(667, 207);
@@ -72,7 +72,7 @@
             this.bSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSend.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSend.Location = new System.Drawing.Point(437, 305);
+            this.bSend.Location = new System.Drawing.Point(438, 339);
             this.bSend.Name = "bSend";
             this.bSend.Size = new System.Drawing.Size(120, 34);
             this.bSend.TabIndex = 4;
@@ -90,41 +90,13 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(563, 305);
+            this.bCancel.Location = new System.Drawing.Point(564, 339);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(120, 34);
             this.bCancel.TabIndex = 5;
             this.bCancel.Text = "Выход";
             this.bCancel.UseVisualStyleBackColor = false;
             this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
-            // 
-            // rbWish
-            // 
-            this.rbWish.AutoSize = true;
-            this.rbWish.BackColor = System.Drawing.Color.Transparent;
-            this.rbWish.Checked = true;
-            this.rbWish.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rbWish.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.rbWish.Location = new System.Drawing.Point(16, 310);
-            this.rbWish.Name = "rbWish";
-            this.rbWish.Size = new System.Drawing.Size(177, 24);
-            this.rbWish.TabIndex = 2;
-            this.rbWish.TabStop = true;
-            this.rbWish.Text = "Пожелания к лаунчеру";
-            this.rbWish.UseVisualStyleBackColor = false;
-            // 
-            // rbBug
-            // 
-            this.rbBug.AutoSize = true;
-            this.rbBug.BackColor = System.Drawing.Color.Transparent;
-            this.rbBug.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rbBug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.rbBug.Location = new System.Drawing.Point(219, 310);
-            this.rbBug.Name = "rbBug";
-            this.rbBug.Size = new System.Drawing.Size(137, 24);
-            this.rbBug.TabIndex = 3;
-            this.rbBug.Text = "Найдена ошибка";
-            this.rbBug.UseVisualStyleBackColor = false;
             // 
             // lEmail
             // 
@@ -133,7 +105,7 @@
             this.lEmail.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lEmail.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.lEmail.Location = new System.Drawing.Point(12, 273);
+            this.lEmail.Location = new System.Drawing.Point(12, 307);
             this.lEmail.Name = "lEmail";
             this.lEmail.Size = new System.Drawing.Size(45, 20);
             this.lEmail.TabIndex = 7;
@@ -145,7 +117,7 @@
             this.tbEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbEmail.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.tbEmail.Location = new System.Drawing.Point(79, 271);
+            this.tbEmail.Location = new System.Drawing.Point(79, 305);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(436, 28);
             this.tbEmail.TabIndex = 8;
@@ -156,12 +128,30 @@
             this.cbAttachDebug.BackColor = System.Drawing.Color.Transparent;
             this.cbAttachDebug.Font = new System.Drawing.Font("Sochi2014", 12F);
             this.cbAttachDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.cbAttachDebug.Location = new System.Drawing.Point(544, 272);
+            this.cbAttachDebug.Location = new System.Drawing.Point(545, 306);
             this.cbAttachDebug.Name = "cbAttachDebug";
             this.cbAttachDebug.Size = new System.Drawing.Size(139, 24);
             this.cbAttachDebug.TabIndex = 9;
             this.cbAttachDebug.Text = "Прикрепить логи";
             this.cbAttachDebug.UseVisualStyleBackColor = false;
+            // 
+            // cbCaption
+            // 
+            this.cbCaption.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(9)))), ((int)(((byte)(0)))));
+            this.cbCaption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCaption.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbCaption.Font = new System.Drawing.Font("Sochi2014", 12F);
+            this.cbCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.cbCaption.FormattingEnabled = true;
+            this.cbCaption.Items.AddRange(new object[] {
+            "Пожелания к мультипаку",
+            "Пожелания к лаунчеру",
+            "Найдена ошибка в мультипаке",
+            "Найдена ошибка в лаунчере"});
+            this.cbCaption.Location = new System.Drawing.Point(16, 58);
+            this.cbCaption.Name = "cbCaption";
+            this.cbCaption.Size = new System.Drawing.Size(667, 28);
+            this.cbCaption.TabIndex = 11;
             // 
             // fWarning
             // 
@@ -170,12 +160,11 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(23)))), ((int)(((byte)(0)))));
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.fWarning;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(695, 351);
+            this.ClientSize = new System.Drawing.Size(695, 386);
+            this.Controls.Add(this.cbCaption);
             this.Controls.Add(this.cbAttachDebug);
             this.Controls.Add(this.tbEmail);
             this.Controls.Add(this.lEmail);
-            this.Controls.Add(this.rbBug);
-            this.Controls.Add(this.rbWish);
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bSend);
             this.Controls.Add(this.tbTicket);
@@ -201,10 +190,9 @@
         private System.Windows.Forms.TextBox tbTicket;
         private System.Windows.Forms.Button bSend;
         private System.Windows.Forms.Button bCancel;
-        private System.Windows.Forms.RadioButton rbWish;
-        private System.Windows.Forms.RadioButton rbBug;
         private System.Windows.Forms.Label lEmail;
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.CheckBox cbAttachDebug;
+        private System.Windows.Forms.ComboBox cbCaption;
     }
 }

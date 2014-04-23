@@ -39,7 +39,7 @@ namespace _Hell_PRO_Tanki_Launcher
         }
 
         public async Task CountUsers(string productName = "Multipack Launcher", string productVersion = "0.0.0.0", string packVersion = "0.0.0.0",
-            string packType = "null", string youtube = "null", string lang="ru")
+            string packType = "null", string youtube = "null", string lang = "ru")
         {
             Debug Debug = new Debug();
 
@@ -141,6 +141,19 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 wr = null;
             }
+        }
+
+        public string Json(NameValueCollection nvc)
+        {
+            string res = String.Empty;
+
+            foreach (string key in nvc)
+            {
+                res += String.Format("\"{0}\":\"{1}\",", key, nvc[key]);
+            }
+            res = res.Remove(res.Length - 1);
+
+            return String.Format("[{0}]", res);
         }
     }
 }

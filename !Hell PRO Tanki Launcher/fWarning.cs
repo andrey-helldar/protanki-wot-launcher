@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
+using System.Collections.Specialized;
 using Newtonsoft.Json;
 
 namespace _Hell_PRO_Tanki_Launcher
@@ -28,7 +29,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             InitializeComponent();
 
-            this.Text = Application.ProductName + " v" + Application.ProductVersion;
+            this.Text = Application.ProductName;
         }
 
         private void bCancel_Click(object sender, EventArgs e)
@@ -41,24 +42,28 @@ namespace _Hell_PRO_Tanki_Launcher
             try
             {
                 Debug Debug = new Debug();
+                NameValueCollection nvc = new NameValueCollection();
 
                 // Если имеются какие-либо файлы дебага, то отправляем их
                 // и если юзер разрешил нам отправку
                 if (cbAttachDebug.Checked) Debug.Send();
                 
                 // Готовим отправку сообщения
-                List<string> myJsonData = new List<string>();
-                myJsonData.Clear();
+                nvc.Add("code", Debug.Code);
+                nvc.Add("userid", Debug.UserID());
+                nvc.Add("youtube", Debug.Youtube);
+                nvc.Add("product", Application.ProductName + " " + Application.ProductVersion);
 
-                myJsonData.Add(Debug.Code);
-                myJsonData.Add(Debug.UserID());
-                myJsonData.Add(Debug.Youtube);
-                myJsonData.Add(Application.ProductName + " " + Application.ProductVersion);
-                
-                string text = tbTicket.Text.Trim() + "[br][br][hr]";
-
+                nvc.Add("text", tbTicket.Text.Trim());
                 sendText = tbTicket.Text.Trim();
 
+                //myJsonData.Add(rbBug.Checked ? "bug" : "wish");
+                nvc.Add("alert", Category());
+                nvc.Add("email", tbEmail.Text.Trim() != "" ? tbEmail.Text.Trim() : "0");
+
+                /*************************
+                 * Отправляем файлы
+                 * **********************/
                 string settings;
                 if (File.Exists("settings.xml"))
                 {
@@ -68,7 +73,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     settings = ReplaceSymbols(settings);
                 }
                 else settings = "File settings.xml not found";
-                text += "[b]settings.xml[/b][br]" + settings + "[br][br][hr]";
+                nvc.Add("settings.xml", settings);
 
                 string tanks;
                 if (File.Exists(@"..\version.xml"))
@@ -79,32 +84,28 @@ namespace _Hell_PRO_Tanki_Launcher
                     tanks = ReplaceSymbols(tanks);
                 }
                 else tanks = "File version.xml not found";
-                text += "[b]version.xml[/b][br]" + tanks;
-
-                myJsonData.Add(text);
-                myJsonData.Add(rbBug.Checked ? "bug" : "wish");
-                myJsonData.Add(tbEmail.Text.Trim() != "" ? tbEmail.Text.Trim() : "0");
+                nvc.Add("version.xml", tanks);
 
                 if (File.Exists("config.ini"))
                 {
                     try
                     {
                         string pathINI = Directory.GetCurrentDirectory() + @"\config.ini";
-                        myJsonData.Add("Multipack version: " + new IniFile(pathINI).IniReadValue("new", "version"));
+                        nvc.Add("modpackVersion", new IniFile(pathINI).IniReadValue("new", "version"));
+                        nvc.Add("modpackType", (new IniFile(pathINI).IniReadValue("new", "update_file")).Replace("update", "").Replace(".xml", ""));
+                        nvc.Add("modpackLang", new IniFile(pathINI).IniReadValue("new", "languages"));
                     }
-                    catch (Exception) { text = String.Empty; }
+                    finally { }
                 }
 
-                if (myJsonData.Count > 2)
+                if (nvc.Count > 2)
                 {
                     try
                     {
-                        string json = JsonConvert.SerializeObject(myJsonData);
-
-                        string status = "";
+                        string status = String.Empty;
 
                         SendPOST SendPOST = new SendPOST();
-                        sendStatus = SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + json);
+                        sendStatus = SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + SendPOST.Json(nvc));
                         string[] statusTSN = sendStatus.Split(':');
                         switch (statusTSN[0])
                         {
@@ -135,17 +136,33 @@ namespace _Hell_PRO_Tanki_Launcher
             return s.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace(Environment.NewLine, ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
         }
 
+        private string Category()
+        {
+            switch (cbCaption.SelectedIndex)
+            {
+                    /***********************
+                     * 0 Пожелания к мультипаку
+                     * 1 Пожелания к лаунчеру
+                     * 2 Найдена ошибка в мультипаке
+                     * 3 Найдена ошибка в лаунчере
+                     * ********************/
+                case 0: return "wish:Multipack";
+                case 1: return "wish:Launcher";
+                case 2: return "bug:Multipack";
+                default: return "bug:Launcher";
+            }
+        }
+
         private void bSend_Click(object sender, EventArgs e)
         {
             int minSymbolsCount = 50,
                 maxWordLength = 20;
+
             string mess = String.Empty;
             
 
-            //if (tbTicket.Text.Length < symbolsCount) { mess += "Текст не может быть меньше " + symbolsCount.ToString() + " символов!" + Environment.NewLine + Environment.NewLine; }
             if (tbTicket.Text.Trim().Length < minSymbolsCount) { mess += Language.DynamicLanguage("symbolLength", lang, minSymbolsCount.ToString()); }
 
-            //if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += "Вы уже отправляли данное сообщение."; }
             if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("messAreSended", lang); }
 
             if (!ChechLengthWord(tbTicket.Text.Trim(), maxWordLength)) mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("veryLongWord", lang, maxWordLength.ToString()); 

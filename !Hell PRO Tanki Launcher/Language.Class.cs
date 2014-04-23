@@ -122,11 +122,12 @@ namespace _Hell_PRO_Tanki_Launcher
                         case "lDesc": return lang == "ru" ?
                             "Если у Вас возникли проблемы в работе лаунчера или есть какие-либо пожелания, Вы можете заполнить форму ниже и отправить сообщение разработчику:" :
                             "If you have any problems with this launcher or have any comments, you can fill out the form below and send a message to the developer";
-                        case "rbWish": return lang == "ru" ? "Пожелание к лаунчеру" : "I wish to";
-                        case "rbBug": return lang == "ru" ? "Найдена ошибка" : "Error found";
                         case "bSend": return lang == "ru" ? "Отправить" : "Send";
                         case "bCancel": return lang == "ru" ? "Выход" : "Cancel";
                         case "cbAttachDebug": return lang == "ru" ? "Прикрепить логи" : "Attach log-files";
+
+                        case "rbWish": return lang == "ru" ? "Пожелание к лаунчеру" : "I wish to";
+                        case "rbBug": return lang == "ru" ? "Найдена ошибка" : "Error found";
                         default: return sender.Text;
                     }
 
@@ -188,7 +189,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     "Error while sending message. Try again.";
                 case "banned": return lang == "ru" ?
                     "Ваш лаунчер внесен в черный список. Отправка тикет-сообщений невозможна." :
-                    "Ваш лаунчер внесен в черный список. Отправка тикет-сообщений невозможна.";
+                    "Your launcher is in the blacklist. Sending support-tickets is disabled.";
                 case "symbolLength": return lang == "ru" ?
                     "Текст не может быть меньше " + additionalText + " символов!" :
                     "Minimum text length is " + additionalText + " symbols!";
