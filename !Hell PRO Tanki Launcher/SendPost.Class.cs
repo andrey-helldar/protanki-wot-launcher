@@ -7,6 +7,7 @@ using System.Net;
 using System.IO;
 using System.Collections.Specialized;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
@@ -156,11 +157,15 @@ namespace _Hell_PRO_Tanki_Launcher
             return String.Format("[{0}]", res);
         }
 
+        /// <summary>
+        /// http://stackoverflow.com/questions/4749639/deserializing-json-to-net-object-using-newtonsoft-or-linq-to-json-maybe
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
         public string FromJson(string json)
         {
-            var list = JsonConvert.DeserializeObject(json);
-
-            return list.;
+            JToken token = JObject.Parse(json);
+            return (string)token.SelectToken("status");
         }
     }
 }

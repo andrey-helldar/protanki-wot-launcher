@@ -169,7 +169,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         string status = String.Empty;
 
                         SendPOST SendPOST = new SendPOST();
-                        sendStatus = SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + SendPOST.Json(nvc) + "&id=f39d3705d0925c26120f42599dc7d336");
+                        sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + SendPOST.Json(nvc) + "&id=f39d3705d0925c26120f42599dc7d336"));
                         string[] statusTSN = sendStatus.Split(':');
                         switch (statusTSN[0])
                         {
@@ -182,7 +182,7 @@ namespace _Hell_PRO_Tanki_Launcher
                             default: status = Language.DynamicLanguage("error", lang); break;
                         }
 
-                        MessageBox.Show(this, status + Environment.NewLine + Environment.NewLine + sendStatus, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(this, status, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (WebException ex) { MessageBox.Show(this, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 }
