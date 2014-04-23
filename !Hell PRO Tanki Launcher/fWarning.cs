@@ -42,7 +42,8 @@ namespace _Hell_PRO_Tanki_Launcher
             try
             {
                 Debug Debug = new Debug();
-                NameValueCollection nvc = new NameValueCollection();
+                //NameValueCollection nvc = new NameValueCollection();
+                Dictionary<string, string> nvc = new Dictionary<string, string>();
 
                 // Если имеются какие-либо файлы дебага, то отправляем их
                 // и если юзер разрешил нам отправку
@@ -169,7 +170,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         string status = String.Empty;
 
                         SendPOST SendPOST = new SendPOST();
-                        sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + SendPOST.Json(nvc) + "&id=f39d3705d0925c26120f42599dc7d336"));
+                        string ff = SendPOST.Json(nvc);
+                        sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + ff + "&id=f39d3705d0925c26120f42599dc7d336"));
                         string[] statusTSN = sendStatus.Split(':');
                         switch (statusTSN[0])
                         {

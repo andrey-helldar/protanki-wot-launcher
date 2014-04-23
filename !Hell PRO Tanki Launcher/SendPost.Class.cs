@@ -144,28 +144,32 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        public string Json(NameValueCollection nvc)
+        /// <summary>
+        /// http://stackoverflow.com/questions/7003740/how-to-convert-namevaluecollection-to-json-string
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public string Json(Dictionary<string, string> dic)
         {
-            string res = String.Empty;
-
-            foreach (string key in nvc)
-            {
-                res += String.Format("\"{0}\":\"{1}\",", key, nvc[key]);
-            }
-            res = res.Remove(res.Length - 1);
-
-            return String.Format("[{0}]", res);
+            return JsonConvert.SerializeObject(dic);
         }
 
         /// <summary>
         /// http://stackoverflow.com/questions/4749639/deserializing-json-to-net-object-using-newtonsoft-or-linq-to-json-maybe
+        /// 
+        /// http://james.newtonking.com/json
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>
         public string FromJson(string json)
         {
+            /*
             JToken token = JObject.Parse(json);
             return (string)token.SelectToken("status");
+            */
+
+            string[] m = JsonConvert.DeserializeObject<string[]>(json);
+            return m[1];
         }
     }
 }
