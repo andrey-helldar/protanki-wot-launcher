@@ -88,7 +88,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         case "cbVideo": return lang == "ru" ? "Уведомлять о новых видео:" : "Notify about new videos";
                         case "gbPriority": return lang == "ru" ? "Приоритет игры в системе:" : "Priority of the game in system";
                         case "cbBalanceCPU": return lang == "ru" ? "Распределить нагрузку ЦП" : "CPU load balancing";
-                        case "gbProcesses": return lang == "ru" ? "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:" : "This processes must BE ACTIVE when the game starts";
+                        case "gbProcesses": return lang == "ru" ? "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:" : "This processes must BE ACTIVE when the game starts:";
                         case "llUserProcesses": return lang == "ru" ? "Процессы, выбранные пользователем" : "Processes selected by the user";
                         case "llGlobalProcesses": return lang == "ru" ? "Процессы из глобального списка" : "Processes from the global list";
                         case "lDescProcesses": return lang == "ru" ?
