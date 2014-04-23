@@ -105,13 +105,15 @@ namespace _Hell_PRO_Tanki_Launcher
 
                         SendPOST SendPOST = new SendPOST();
                         sendStatus = SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + json);
-                        switch (sendStatus)
+                        string[] statusTSN = sendStatus.Split(':');
+                        switch (statusTSN[0])
                         {
                             /*case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
                             case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
                             default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;*/
-                            case "OK": status = Language.DynamicLanguage("thanks", lang); break;
+                            case "OK": status = Language.DynamicLanguage("thanks", lang, statusTSN[1]); break;
                             case "Hacking attempt!": status = Language.DynamicLanguage("hacking", lang); break;
+                            case "BANNED": status = Language.DynamicLanguage("banned", lang); break;
                             default: status = Language.DynamicLanguage("error", lang); break;
                         }
 
@@ -200,6 +202,16 @@ namespace _Hell_PRO_Tanki_Launcher
             lang = lang != "" ? lang : "en";
 
             SetInterfaceLanguage();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Debug Debug = new Debug();
+                Debug.Send();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
 }

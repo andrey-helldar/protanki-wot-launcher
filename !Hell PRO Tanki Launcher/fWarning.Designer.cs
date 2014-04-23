@@ -37,6 +37,7 @@
             this.lEmail = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.cbAttachDebug = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lDesc
@@ -154,7 +155,6 @@
             // 
             this.cbAttachDebug.AutoSize = true;
             this.cbAttachDebug.BackColor = System.Drawing.Color.Transparent;
-            this.cbAttachDebug.Enabled = false;
             this.cbAttachDebug.Font = new System.Drawing.Font("Sochi2014", 12F);
             this.cbAttachDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.cbAttachDebug.Location = new System.Drawing.Point(544, 272);
@@ -164,6 +164,16 @@
             this.cbAttachDebug.Text = "Прикрепить логи";
             this.cbAttachDebug.UseVisualStyleBackColor = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(363, 306);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // fWarning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,6 +182,7 @@
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.fWarning;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(695, 351);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.cbAttachDebug);
             this.Controls.Add(this.tbEmail);
             this.Controls.Add(this.lEmail);
@@ -207,5 +218,6 @@
         private System.Windows.Forms.Label lEmail;
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.CheckBox cbAttachDebug;
+        private System.Windows.Forms.Button button1;
     }
 }

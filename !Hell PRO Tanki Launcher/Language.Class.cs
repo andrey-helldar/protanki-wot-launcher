@@ -174,14 +174,21 @@ namespace _Hell_PRO_Tanki_Launcher
                  *         fWarning
                  * ***********************/
                 case "thanks": return lang == "ru" ?
-                    "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время" :
-                    "Thank you for your message!" + Environment.NewLine + "Developer will consider your application as soon as possible";
+                    "Спасибо за обращение!" + Environment.NewLine +
+                    (additionalText != "" ? "Идентификатор тикета: " + additionalText+Environment.NewLine : "") +
+                    "Разработчик рассмотрит Вашу заявку в ближайшее время" :
+                    "Thank you for your message!" + Environment.NewLine +
+                    (additionalText != "" ? "Ticket ID: " + additionalText + Environment.NewLine : "") +
+                    "Developer will consider your application as soon as possible";
                 case "hacking": return lang == "ru" ?
                     "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже." :
                     "Work is underway on the server. Try to send an inquiry later.";
                 case "error": return lang == "ru" ?
                     "Ошибка отправки сообщения. Попробуйте еще раз." :
                     "Error while sending message. Try again.";
+                case "banned": return lang == "ru" ?
+                    "Ваш лаунчер внесен в черный список. Отправка тикет-сообщений невозможна." :
+                    "Ваш лаунчер внесен в черный список. Отправка тикет-сообщений невозможна.";
                 case "symbolLength": return lang == "ru" ?
                     "Текст не может быть меньше " + additionalText + " символов!" :
                     "Minimum text length is " + additionalText + " symbols!";
