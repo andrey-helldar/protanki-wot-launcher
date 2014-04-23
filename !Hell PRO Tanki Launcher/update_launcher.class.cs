@@ -62,20 +62,29 @@ namespace _Hell_PRO_Tanki_Launcher
                     if (el.Attribute("user").Value == "true")
                         tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
 
-                    /* try
+                /* try
+                 {
+                     if (File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
                      {
-                         if (File.Exists("launcher.update") && new Version(FileVersionInfo.GetVersionInfo("launcher.update").FileVersion) > new Version(Application.ProductVersion))
-                         {
-                             Process.Start("restart.exe", "launcher.update \"" + Application.ProductName + ".exe\"");
-                             Process.GetCurrentProcess().Kill();
-                         }
-                         else if (new Version(Application.ProductVersion) < new Version(doc.Root.Element("version").Value))
-                         {
-                             DownloadFile("launcher.exe", doc.Root.Element("version").Value, doc.Root.Element("version").Attribute("checksum").Value, "launcher.update").Wait();
-                         }
-                         else DeleteFile("launcher.update");
+                         Process.Start("restart.exe", "launcher.update \"" + Application.ProductName + ".exe\"");
+                         Process.GetCurrentProcess().Kill();
                      }
-                     catch (Exception ex1) { Debug.Save("public void Check()", "launcher.update", ex1.Message); }*/
+                     else if (new Version(Application.ProductVersion) < new Version(doc.Root.Element("version").Value))
+                     {
+                         DownloadFile("launcher.exe", doc.Root.Element("version").Value, doc.Root.Element("version").Attribute("checksum").Value, "launcher.update").Wait();
+                     }
+                     else DeleteFile("launcher.update");
+                 }
+                 catch (Exception ex1) { Debug.Save("public void Check()", "launcher.update", ex1.Message); }*/
+
+                /// Тестируем функцию обновлений лаунчера
+                /*bool updLauncher = false;
+                if (File.Exists("launcher.update")) File.Delete("launcher.update");
+                if (new Version(doc.Root.Element("launcher").Value) > new Version(Application.ProductVersion))
+                {
+                    updLauncher = true;
+                    tasks[++i] = DownloadFile("launcher.exe", doc.Root.Element("launcher").Value, doc.Root.Element("launcher").Attribute("checksum").Value, "launcher.update");
+                }*/
 
                 Task.WhenAll(tasks);
             }

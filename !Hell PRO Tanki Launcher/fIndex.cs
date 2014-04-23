@@ -1254,8 +1254,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 Process.Start(@"..\s.bat");
             }
 
-            //Task.Factory.StartNew(() => CheckClosingGame()); // Запускаем утилиту проверки запущен ли клиент игры
-            CheckClosingGame();
+            CheckClosingGame(); // Запускаем утилиту проверки запущен ли клиент игры
         }
 
         private async Task CheckClosingGame()
