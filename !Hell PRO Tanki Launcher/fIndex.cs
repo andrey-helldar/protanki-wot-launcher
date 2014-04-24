@@ -1274,8 +1274,11 @@ namespace _Hell_PRO_Tanki_Launcher
             //Show();
             WindowState = FormWindowState.Normal;
 
-            psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
-            Process.Start(psi);
+            if (!autoOptimizePC)
+            {
+                psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
+                Process.Start(psi);
+            }
         }
 
         private async Task ShowVideoNotification()
@@ -1334,10 +1337,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 7 секунд перед повторным запуском
             {
-                while (Process.GetProcessesByName("WorldOfTanks").Length > 0 || Process.GetProcessesByName("WoTLauncher").Length > 0)
-                {
-                    await Task.Delay(5000);
-                }
+                while (Process.GetProcessesByName("WorldOfTanks").Length > 0 || Process.GetProcessesByName("WoTLauncher").Length > 0) await Task.Delay(5000);
 
                 await Task.Delay(7000);
             }

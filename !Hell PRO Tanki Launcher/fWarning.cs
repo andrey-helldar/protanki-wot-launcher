@@ -48,7 +48,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Если имеются какие-либо файлы дебага, то отправляем их
                 // и если юзер разрешил нам отправку
                 if (cbAttachDebug.Checked) Debug.Send();
-                
+
                 // Готовим отправку сообщения
                 nvc.Add("code", Debug.Code);
                 nvc.Add("userid", Debug.UserID());
@@ -80,7 +80,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 /*************************
                  * Отправляем файлы
                  * **********************/
-                /*string settings;
+                string settings;
                 if (File.Exists("settings.xml"))
                 {
                     StreamReader sr = new StreamReader("settings.xml");
@@ -102,6 +102,18 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else tanks = "File version.xml not found";
                 nvc.Add("version.xml", tanks);
+
+                // CONFIG MULTIPACK
+                string config;
+                if (File.Exists("config.ini"))
+                {
+                    StreamReader sr1 = new StreamReader("config.ini");
+                    config = sr1.ReadToEnd();
+                    sr1.Close();
+                    config = ReplaceSymbols(config);
+                }
+                else config = "File config.ini not found";
+                nvc.Add("config.ini", config);
 
                 // XVM
                 string xvm;
@@ -128,7 +140,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         StreamReader sr1 = new StreamReader(@"..\python.log");
                         python = sr1.ReadToEnd();
                         sr1.Close();
-                        python = ReplaceSymbols(xvm);
+                        python = ReplaceSymbols(python);
                     }
                     else python = "File python.log not found";
                 }
@@ -151,18 +163,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 else loginstall = "File loginstall.inf not found";
                 nvc.Add("loginstall.inf", loginstall);
 
-                // CONFIG MULTIPACK
-                string config;
-                if (File.Exists("config.ini"))
-                {
-                    StreamReader sr1 = new StreamReader("config.ini");
-                        config = sr1.ReadToEnd();
-                        sr1.Close();
-                        config = ReplaceSymbols(xvm);
-                }
-                else config = "File config.ini not found";
-                nvc.Add("config.ini", config);*/
-
                 if (nvc.Count > 2)
                 {
                     try
@@ -170,15 +170,13 @@ namespace _Hell_PRO_Tanki_Launcher
                         string status = String.Empty;
 
                         SendPOST SendPOST = new SendPOST();
-                        string ff = SendPOST.Json(nvc);
-                        sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + ff + "&id=f39d3705d0925c26120f42599dc7d336"));
-                        string[] statusTSN = sendStatus.Split(':');
-                        switch (statusTSN[0])
+                        Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + SendPOST.Json(nvc) + "&id=f39d3705d0925c26120f42599dc7d336"));
+                        switch (sendStatus["status"])
                         {
                             /*case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
                             case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
                             default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;*/
-                            case "OK": status = Language.DynamicLanguage("thanks", lang, statusTSN[1]); break;
+                            case "OK": status = Language.DynamicLanguage("thanks", lang, sendStatus["id"]); break;
                             case "Hacking attempt!": status = Language.DynamicLanguage("hacking", lang); break;
                             case "BANNED": status = Language.DynamicLanguage("banned", lang); break;
                             default: status = Language.DynamicLanguage("error", lang); break;
@@ -206,12 +204,12 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             switch (cbCaption.SelectedIndex)
             {
-                    /***********************
-                     * 0 Пожелания к мультипаку
-                     * 1 Пожелания к лаунчеру
-                     * 2 Найдена ошибка в мультипаке
-                     * 3 Найдена ошибка в лаунчере
-                     * ********************/
+                /***********************
+                 * 0 Пожелания к мультипаку
+                 * 1 Пожелания к лаунчеру
+                 * 2 Найдена ошибка в мультипаке
+                 * 3 Найдена ошибка в лаунчере
+                 * ********************/
                 case 0: return "wish:Multipack";
                 case 1: return "wish:Launcher";
                 case 2: return "bug:Multipack";
@@ -225,13 +223,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 maxWordLength = 20;
 
             string mess = String.Empty;
-            
+
 
             if (tbTicket.Text.Trim().Length < minSymbolsCount) { mess += Language.DynamicLanguage("symbolLength", lang, minSymbolsCount.ToString()); }
 
             if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("messAreSended", lang); }
 
-            if (!ChechLengthWord(tbTicket.Text.Trim(), maxWordLength)) mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("veryLongWord", lang, maxWordLength.ToString()); 
+            if (!CheckLengthWord(tbTicket.Text.Trim(), maxWordLength)) mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("veryLongWord", lang, maxWordLength.ToString());
 
             if (mess == String.Empty)
             {
@@ -253,10 +251,14 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private bool ChechLengthWord(string s, int wordLength = 255)
+        private bool CheckLengthWord(string s, int wordLength = 0)
         {
+            if (wordLength == 0) return true;
+
             try
             {
+                s = s.Replace("\n", " ").Replace("\r", " ").Replace("\r\n", " ").Replace(Environment.NewLine, " ");
+
                 string[] arr = s.Split(' ');
 
                 foreach (string str in arr)
@@ -285,6 +287,20 @@ namespace _Hell_PRO_Tanki_Launcher
             lang = lang != "" ? lang : "en";
 
             SetInterfaceLanguage();
+
+
+            /*********************************
+             * Пожелания к мультипаку
+             * Пожелания к лаунчеру
+             * Найдена ошибка в мультипаке
+             * Найдена ошибка в лаунчере
+             * *******************************/
+            cbCaption.Items.Clear(); // Очищаем перед загрузкой языка
+
+            for (int i = 0; i < 4; i++)
+                cbCaption.Items.Add(Language.DynamicLanguage("cbCaption" + i.ToString(), lang));
+
+            cbCaption.SelectedIndex = 1;
         }
     }
 }

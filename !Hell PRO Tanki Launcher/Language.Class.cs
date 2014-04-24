@@ -125,9 +125,6 @@ namespace _Hell_PRO_Tanki_Launcher
                         case "bSend": return lang == "ru" ? "Отправить" : "Send";
                         case "bCancel": return lang == "ru" ? "Выход" : "Cancel";
                         case "cbAttachDebug": return lang == "ru" ? "Прикрепить логи" : "Attach log-files";
-
-                        case "rbWish": return lang == "ru" ? "Пожелание к лаунчеру" : "I wish to";
-                        case "rbBug": return lang == "ru" ? "Найдена ошибка" : "Error found";
                         default: return sender.Text;
                     }
 
@@ -175,11 +172,11 @@ namespace _Hell_PRO_Tanki_Launcher
                  *         fWarning
                  * ***********************/
                 case "thanks": return lang == "ru" ?
+                    (additionalText != "" ? "Идентификатор тикета: " + additionalText + Environment.NewLine + Environment.NewLine : "") +
                     "Спасибо за обращение!" + Environment.NewLine +
-                    (additionalText != "" ? "Идентификатор тикета: " + additionalText+Environment.NewLine : "") +
                     "Разработчик рассмотрит Вашу заявку в ближайшее время" :
+                    (additionalText != "" ? "Ticket ID: " + additionalText + Environment.NewLine + Environment.NewLine : "") +
                     "Thank you for your message!" + Environment.NewLine +
-                    (additionalText != "" ? "Ticket ID: " + additionalText + Environment.NewLine : "") +
                     "Developer will consider your application as soon as possible";
                 case "hacking": return lang == "ru" ?
                     "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже." :
@@ -202,6 +199,11 @@ namespace _Hell_PRO_Tanki_Launcher
                 case "veryLongWord": return lang == "ru" ?
                     "Использование слов длиной более " + additionalText + " символов запрещено!" :
                     "Maximum word length is " + additionalText + " symbols!";
+                    
+                case "cbCaption0": return lang == "ru" ? "Пожелания к мультипаку" : "I wish to MultiPack";
+                case "cbCaption1": return lang == "ru" ? "Пожелания к лаунчеру" : "I wish to Launcher";
+                case "cbCaption2": return lang == "ru" ? "Найдена ошибка в мультипаке" : "Error found in MultiPack";
+                case "cbCaption3": return lang == "ru" ? "Найдена ошибка в лаунчере" : "Error found in Launcher";
 
                 /* ************************
                  *         fSettings

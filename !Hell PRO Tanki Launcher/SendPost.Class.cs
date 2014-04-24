@@ -161,15 +161,13 @@ namespace _Hell_PRO_Tanki_Launcher
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>
-        public string FromJson(string json)
+        public Dictionary<string, string> FromJson(string json)
         {
-            /*
-            JToken token = JObject.Parse(json);
-            return (string)token.SelectToken("status");
-            */
+            /*JToken token = JObject.Parse(json);
+            return (string)token.SelectToken("status");*/
 
-            string[] m = JsonConvert.DeserializeObject<string[]>(json);
-            return m[1];
+            Dictionary<string, string> dic = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+            return dic;
         }
     }
 }
