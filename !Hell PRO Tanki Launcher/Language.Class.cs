@@ -187,13 +187,16 @@ namespace _Hell_PRO_Tanki_Launcher
                 case "banned": return lang == "ru" ?
                     "Ваш лаунчер внесен в черный список. Отправка тикет-сообщений невозможна." :
                     "Your launcher is in the blacklist. Sending support-tickets is disabled.";
+
+                case "link": return lang == "ru" ?
+                    "Ваш лаунчер успешно привязан к учетной записи \"" + additionalText + "\" на сайте разработчика." + Environment.NewLine + Environment.NewLine + "Вы хотите перейти на сайт?" :
+                    "Ваш лаунчер успешно привязан к учетной записи \"" + additionalText + "\" на сайте разработчика." + Environment.NewLine + Environment.NewLine + "Вы хотите перейти на сайт?";
                 case "linked": return lang == "ru" ?
                     "Ваш лаунчер уже привязан к учетной записи!" + Environment.NewLine +
                     "Если Вы не производили привязку или хотите выполнить повторно, напишите об этом разработчику лаунчера, выбрав в заголовке другую тему запроса" :
                     "Ваш лаунчер уже привязан к учетной записи!" + Environment.NewLine +
                     "Если Вы не производили привязку или хотите выполнить повторно, напишите об этом разработчику лаунчера, выбрав в заголовке другую тему запроса";
-
-
+                    
                 case "symbolLength": return lang == "ru" ?
                     "Текст не может быть меньше " + additionalText + " символов!" :
                     "Minimum text length is " + additionalText + " symbols!";

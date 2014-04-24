@@ -120,7 +120,7 @@
             this.tbEmail.Location = new System.Drawing.Point(79, 305);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(436, 28);
-            this.tbEmail.TabIndex = 8;
+            this.tbEmail.TabIndex = 2;
             // 
             // cbAttachDebug
             // 
@@ -131,7 +131,7 @@
             this.cbAttachDebug.Location = new System.Drawing.Point(545, 306);
             this.cbAttachDebug.Name = "cbAttachDebug";
             this.cbAttachDebug.Size = new System.Drawing.Size(139, 24);
-            this.cbAttachDebug.TabIndex = 9;
+            this.cbAttachDebug.TabIndex = 3;
             this.cbAttachDebug.Text = "Прикрепить логи";
             this.cbAttachDebug.UseVisualStyleBackColor = false;
             // 
@@ -152,7 +152,7 @@
             this.cbCaption.Location = new System.Drawing.Point(16, 58);
             this.cbCaption.Name = "cbCaption";
             this.cbCaption.Size = new System.Drawing.Size(667, 28);
-            this.cbCaption.TabIndex = 11;
+            this.cbCaption.TabIndex = 0;
             // 
             // fWarning
             // 

@@ -73,7 +73,7 @@
             this.bSave.Location = new System.Drawing.Point(138, 505);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 50);
-            this.bSave.TabIndex = 8;
+            this.bSave.TabIndex = 14;
             this.bSave.Text = "Сохранить";
             this.bSave.UseVisualStyleBackColor = false;
             this.bSave.Click += new System.EventHandler(this.bSave_Click);
@@ -92,7 +92,7 @@
             this.bCancel.Location = new System.Drawing.Point(309, 505);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(150, 50);
-            this.bCancel.TabIndex = 9;
+            this.bCancel.TabIndex = 15;
             this.bCancel.Text = "Отмена";
             this.bCancel.UseVisualStyleBackColor = false;
             this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
@@ -109,7 +109,7 @@
             this.gbOptimization.Location = new System.Drawing.Point(12, 29);
             this.gbOptimization.Name = "gbOptimization";
             this.gbOptimization.Size = new System.Drawing.Size(276, 125);
-            this.gbOptimization.TabIndex = 3;
+            this.gbOptimization.TabIndex = 0;
             this.gbOptimization.TabStop = false;
             this.gbOptimization.Text = "Оптимизация:";
             // 
@@ -119,7 +119,7 @@
             this.cbVideoQualityWeak.Location = new System.Drawing.Point(42, 103);
             this.cbVideoQualityWeak.Name = "cbVideoQualityWeak";
             this.cbVideoQualityWeak.Size = new System.Drawing.Size(158, 17);
-            this.cbVideoQualityWeak.TabIndex = 4;
+            this.cbVideoQualityWeak.TabIndex = 5;
             this.cbVideoQualityWeak.Text = "Очень слабый компьютер";
             this.cbVideoQualityWeak.UseVisualStyleBackColor = true;
             this.cbVideoQualityWeak.Click += new System.EventHandler(this.cbVideoQualityVeryLow_Click);
@@ -130,7 +130,7 @@
             this.cbVideoQuality.Location = new System.Drawing.Point(18, 80);
             this.cbVideoQuality.Name = "cbVideoQuality";
             this.cbVideoQuality.Size = new System.Drawing.Size(215, 17);
-            this.cbVideoQuality.TabIndex = 3;
+            this.cbVideoQuality.TabIndex = 4;
             this.cbVideoQuality.Text = "Уменьшить качество графики в игре";
             this.cbVideoQuality.ThreeState = true;
             this.cbVideoQuality.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@
             this.cbForceClose.Location = new System.Drawing.Point(42, 36);
             this.cbForceClose.Name = "cbForceClose";
             this.cbForceClose.Size = new System.Drawing.Size(227, 17);
-            this.cbForceClose.TabIndex = 1;
+            this.cbForceClose.TabIndex = 2;
             this.cbForceClose.Text = "Принудительно завершать приложения";
             this.cbForceClose.UseVisualStyleBackColor = true;
             // 
@@ -152,7 +152,7 @@
             this.cbAero.Location = new System.Drawing.Point(18, 59);
             this.cbAero.Name = "cbAero";
             this.cbAero.Size = new System.Drawing.Size(246, 17);
-            this.cbAero.TabIndex = 2;
+            this.cbAero.TabIndex = 3;
             this.cbAero.Text = "Отключать Windows Aero при запуске игры";
             this.cbAero.UseVisualStyleBackColor = true;
             // 
@@ -162,7 +162,7 @@
             this.cbKillProcesses.Location = new System.Drawing.Point(18, 17);
             this.cbKillProcesses.Name = "cbKillProcesses";
             this.cbKillProcesses.Size = new System.Drawing.Size(240, 17);
-            this.cbKillProcesses.TabIndex = 0;
+            this.cbKillProcesses.TabIndex = 1;
             this.cbKillProcesses.Text = "Закрывать приложения при запуске игры";
             this.cbKillProcesses.UseVisualStyleBackColor = true;
             // 
@@ -174,7 +174,7 @@
             this.gbOther.Location = new System.Drawing.Point(294, 29);
             this.gbOther.Name = "gbOther";
             this.gbOther.Size = new System.Drawing.Size(291, 42);
-            this.gbOther.TabIndex = 4;
+            this.gbOther.TabIndex = 7;
             this.gbOther.TabStop = false;
             this.gbOther.Text = "Другие:";
             // 
@@ -186,7 +186,7 @@
             this.cbVideo.Location = new System.Drawing.Point(18, 17);
             this.cbVideo.Name = "cbVideo";
             this.cbVideo.Size = new System.Drawing.Size(165, 17);
-            this.cbVideo.TabIndex = 5;
+            this.cbVideo.TabIndex = 8;
             this.cbVideo.Text = "Уведомлять о новых видео";
             this.cbVideo.UseVisualStyleBackColor = true;
             // 
@@ -202,8 +202,7 @@
             this.llTitle.Location = new System.Drawing.Point(12, 7);
             this.llTitle.Name = "llTitle";
             this.llTitle.Size = new System.Drawing.Size(80, 19);
-            this.llTitle.TabIndex = 5;
-            this.llTitle.TabStop = true;
+            this.llTitle.TabIndex = 0;
             this.llTitle.Text = "Настройки...";
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
@@ -220,7 +219,7 @@
             this.gbProcesses.Location = new System.Drawing.Point(12, 155);
             this.gbProcesses.Name = "gbProcesses";
             this.gbProcesses.Size = new System.Drawing.Size(573, 344);
-            this.gbProcesses.TabIndex = 6;
+            this.gbProcesses.TabIndex = 12;
             this.gbProcesses.TabStop = false;
             this.gbProcesses.Text = "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:";
             // 
@@ -231,7 +230,7 @@
             this.lDescProcesses.Location = new System.Drawing.Point(6, 295);
             this.lDescProcesses.Name = "lDescProcesses";
             this.lDescProcesses.Size = new System.Drawing.Size(561, 41);
-            this.lDescProcesses.TabIndex = 6;
+            this.lDescProcesses.TabIndex = 0;
             this.lDescProcesses.Text = "ВНИМАНИЕ!!! В список исключений рекомендуется добавлять действительно важные прог" +
     "раммы!";
             // 
@@ -246,8 +245,7 @@
             this.llGlobalProcesses.Location = new System.Drawing.Point(351, 273);
             this.llGlobalProcesses.Name = "llGlobalProcesses";
             this.llGlobalProcesses.Size = new System.Drawing.Size(199, 15);
-            this.llGlobalProcesses.TabIndex = 5;
-            this.llGlobalProcesses.TabStop = true;
+            this.llGlobalProcesses.TabIndex = 0;
             this.llGlobalProcesses.Text = "Процессы из глобального списка";
             this.llGlobalProcesses.VisitedLinkColor = System.Drawing.Color.White;
             // 
@@ -262,8 +260,7 @@
             this.llUserProcesses.Location = new System.Drawing.Point(49, 273);
             this.llUserProcesses.Name = "llUserProcesses";
             this.llUserProcesses.Size = new System.Drawing.Size(233, 15);
-            this.llUserProcesses.TabIndex = 4;
-            this.llUserProcesses.TabStop = true;
+            this.llUserProcesses.TabIndex = 0;
             this.llUserProcesses.Text = "Процессы, выбранные пользователем";
             this.llUserProcesses.VisitedLinkColor = System.Drawing.Color.White;
             // 
@@ -281,7 +278,7 @@
             this.panel1.Location = new System.Drawing.Point(18, 267);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(25, 25);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 0;
             // 
             // lvProcessesUser
             // 
@@ -297,7 +294,7 @@
             this.lvProcessesUser.ShowGroups = false;
             this.lvProcessesUser.Size = new System.Drawing.Size(561, 242);
             this.lvProcessesUser.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvProcessesUser.TabIndex = 7;
+            this.lvProcessesUser.TabIndex = 13;
             this.lvProcessesUser.UseCompatibleStateImageBehavior = false;
             this.lvProcessesUser.View = System.Windows.Forms.View.Details;
             // 
@@ -327,7 +324,7 @@
             this.gbPriority.Location = new System.Drawing.Point(294, 77);
             this.gbPriority.Name = "gbPriority";
             this.gbPriority.Size = new System.Drawing.Size(291, 77);
-            this.gbPriority.TabIndex = 7;
+            this.gbPriority.TabIndex = 9;
             this.gbPriority.TabStop = false;
             this.gbPriority.Text = "Приоритет игры в системе:";
             // 
@@ -347,7 +344,7 @@
             this.bBalanceCPU.Location = new System.Drawing.Point(6, 44);
             this.bBalanceCPU.Name = "bBalanceCPU";
             this.bBalanceCPU.Size = new System.Drawing.Size(279, 28);
-            this.bBalanceCPU.TabIndex = 9;
+            this.bBalanceCPU.TabIndex = 11;
             this.bBalanceCPU.Text = "Нагрузка ЦП распределена";
             this.bBalanceCPU.UseVisualStyleBackColor = false;
             this.bBalanceCPU.Click += new System.EventHandler(this.bBalanceCPU_Click);
@@ -365,7 +362,7 @@
             this.cbPriority.Location = new System.Drawing.Point(6, 17);
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(279, 21);
-            this.cbPriority.TabIndex = 6;
+            this.cbPriority.TabIndex = 10;
             // 
             // llRecoverySettings
             // 
@@ -382,7 +379,7 @@
             this.llRecoverySettings.Location = new System.Drawing.Point(400, 7);
             this.llRecoverySettings.Name = "llRecoverySettings";
             this.llRecoverySettings.Size = new System.Drawing.Size(153, 19);
-            this.llRecoverySettings.TabIndex = 9;
+            this.llRecoverySettings.TabIndex = 6;
             this.llRecoverySettings.TabStop = true;
             this.llRecoverySettings.Text = "Восстановить настройки";
             this.llRecoverySettings.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));

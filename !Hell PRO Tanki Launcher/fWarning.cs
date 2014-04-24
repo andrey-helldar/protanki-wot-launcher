@@ -222,8 +222,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bSend_Click(object sender, EventArgs e)
         {
-            string mess = String.Empty;
-
             // Если юзер хочет привязать лаунчер к сайту
             if (cbCaption.SelectedIndex == 4)
             {
@@ -231,41 +229,45 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (tbEmail.Text.Trim().IndexOf(" ") > -1)
                     {
-                        mess = "Неверный email!";
+                        MessageBox.Show(this, "Неверный email!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        Debug Debug = new Debug();
-                        Dictionary<string, string> nvc = new Dictionary<string, string>();
-                        
-                        // Готовим отправку сообщения
-                        nvc.Add("code", Debug.Code);
-                        nvc.Add("userid", Debug.UserID());
-                        nvc.Add("login", tbTicket.Text.Trim());
-                        nvc.Add("email", tbEmail.Text.Trim());
-
-                        mess = "Ваш запрос успешно отправлен";
-
-                        SendPOST SendPOST = new SendPOST();
-                        string status = String.Empty;
-
-                        Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/link/", "data=" + SendPOST.Json(nvc)));
-                        switch (sendStatus["status"])
+                        try
                         {
-                            case "OK": mess = Language.DynamicLanguage("thanks", lang, sendStatus["id"]); break;
-                            case "Hacking attempt!": mess = Language.DynamicLanguage("hacking", lang); break;
-                            case "BANNED": mess = Language.DynamicLanguage("banned", lang); break;
-                            case "LINKED": mess = Language.DynamicLanguage("linked", lang); break;                                
-                            default: mess = Language.DynamicLanguage("error", lang); break;
-                        }                        
+                            Debug Debug = new Debug();
+                            Dictionary<string, string> nvc = new Dictionary<string, string>();
+
+                            // Готовим отправку сообщения
+                            nvc.Add("code", Debug.Code);
+                            nvc.Add("userid", Debug.UserID());
+                            nvc.Add("login", tbTicket.Text.Trim());
+                            nvc.Add("email", tbEmail.Text.Trim());
+
+                            SendPOST SendPOST = new SendPOST();
+
+                            Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/link/", "data=" + SendPOST.Json(nvc)));
+                            switch (sendStatus["status"])
+                            {
+                                case "LINK":
+                                    if (DialogResult.Yes == MessageBox.Show(this, Language.DynamicLanguage("link", lang, tbTicket.Text.Trim()), Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                                    {
+                                        Process.Start(@"http://ai-rus.com/tickets.html");
+                                    }
+                                    break;
+                                case "Hacking attempt!": MessageBox.Show(this, Language.DynamicLanguage("hacking", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); break;
+                                case "BANNED": MessageBox.Show(this, Language.DynamicLanguage("banned", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); break;
+                                case "LINKED": MessageBox.Show(this, Language.DynamicLanguage("linked", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); break;
+                                default: MessageBox.Show(this, Language.DynamicLanguage("error", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); break;
+                            }
+                        }
+                        catch (Exception) { MessageBox.Show(this, Language.DynamicLanguage("error", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); }
                     }
                 }
                 else
                 {
-                    mess = "Обязательное условие - заполнение обоих полей!";
+                    MessageBox.Show(this, "Обязательное условие - заполнение обоих полей!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                MessageBox.Show(this, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Close();
             }
@@ -273,6 +275,8 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 int minSymbolsCount = 50,
                     maxWordLength = 20;
+
+                string mess = String.Empty;
 
 
                 if (tbTicket.Text.Trim().Length < minSymbolsCount) { mess += Language.DynamicLanguage("symbolLength", lang, minSymbolsCount.ToString()); }

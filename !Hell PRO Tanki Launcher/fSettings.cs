@@ -493,17 +493,17 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (File.Exists(@"..\res_mods\engine_config.xml"))
+                if (File.Exists(@"..\res_mods\0.9.0\engine_config.xml"))
                 {
                     bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU1", lang);
                     bBalanceCPU.BackgroundImage = Properties.Resources.lamp_on;
-                    File.Delete(@"..\res_mods\engine_config.xml");
+                    File.Delete(@"..\res_mods\0.9.0\engine_config.xml");
                 }
                 else
                 {
                     bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU0", lang);
                     bBalanceCPU.BackgroundImage = Properties.Resources.lamp_off;
-                    File.WriteAllText(@"..\res_mods\engine_config.xml", Properties.Resources.engine_config);
+                    File.WriteAllText(@"..\res_mods\0.9.0\engine_config.xml", Properties.Resources.engine_config);
                 }
             }
             finally { }

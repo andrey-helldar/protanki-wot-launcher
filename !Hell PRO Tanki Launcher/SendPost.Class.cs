@@ -151,7 +151,11 @@ namespace _Hell_PRO_Tanki_Launcher
         /// <returns></returns>
         public string Json(Dictionary<string, string> dic)
         {
-            return JsonConvert.SerializeObject(dic);
+            try
+            {
+                return JsonConvert.SerializeObject(dic);
+            }
+            catch (Exception) { return null; }
         }
 
         /// <summary>
@@ -163,11 +167,12 @@ namespace _Hell_PRO_Tanki_Launcher
         /// <returns></returns>
         public Dictionary<string, string> FromJson(string json)
         {
-            /*JToken token = JObject.Parse(json);
-            return (string)token.SelectToken("status");*/
-
-            Dictionary<string, string> dic = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            return dic;
+            try
+            {
+                Dictionary<string, string> dic = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                return dic;
+            }
+            catch (Exception) { return null; }
         }
     }
 }

@@ -71,7 +71,7 @@
             this.bCancel.Margin = new System.Windows.Forms.Padding(0);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(200, 50);
-            this.bCancel.TabIndex = 2;
+            this.bCancel.TabIndex = 3;
             this.bCancel.Text = "Не надо";
             this.bCancel.UseVisualStyleBackColor = false;
             this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
@@ -84,7 +84,7 @@
             this.cbNotification.Location = new System.Drawing.Point(368, 330);
             this.cbNotification.Name = "cbNotification";
             this.cbNotification.Size = new System.Drawing.Size(212, 17);
-            this.cbNotification.TabIndex = 3;
+            this.cbNotification.TabIndex = 2;
             this.cbNotification.Text = "Не уведомлять меня об этой версии";
             this.cbNotification.UseVisualStyleBackColor = false;
             // 
@@ -118,8 +118,7 @@
             this.llCaption.Location = new System.Drawing.Point(12, 16);
             this.llCaption.Name = "llCaption";
             this.llCaption.Size = new System.Drawing.Size(151, 24);
-            this.llCaption.TabIndex = 6;
-            this.llCaption.TabStop = true;
+            this.llCaption.TabIndex = 0;
             this.llCaption.Text = "Загрузка данных...";
             this.llCaption.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
@@ -146,8 +145,7 @@
             this.llContent.MaximumSize = new System.Drawing.Size(659, 1024);
             this.llContent.Name = "llContent";
             this.llContent.Size = new System.Drawing.Size(120, 19);
-            this.llContent.TabIndex = 1;
-            this.llContent.TabStop = true;
+            this.llContent.TabIndex = 0;
             this.llContent.Text = "Загрузка данных...";
             this.llContent.VisitedLinkColor = System.Drawing.Color.WhiteSmoke;
             // 

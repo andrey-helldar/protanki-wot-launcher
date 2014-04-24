@@ -1074,7 +1074,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 int i = -1;
 
-                XDocument doc = XDocument.Load(@"http://worldoftanks.ru/ru/rss/news/");
+                XDocument doc = XDocument.Load(lang == "ru" ? @"http://worldoftanks.ru/ru/rss/news/" : @"http://worldoftanks.com/en/rss/news/");
 
                 newsTitle.Clear();
                 newsLink.Clear();

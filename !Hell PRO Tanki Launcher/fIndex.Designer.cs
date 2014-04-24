@@ -82,7 +82,7 @@
             this.bPlay.Margin = new System.Windows.Forms.Padding(0);
             this.bPlay.Name = "bPlay";
             this.bPlay.Size = new System.Drawing.Size(200, 50);
-            this.bPlay.TabIndex = 4;
+            this.bPlay.TabIndex = 1;
             this.bPlay.Text = "Играть";
             this.bPlay.UseVisualStyleBackColor = false;
             this.bPlay.Click += new System.EventHandler(this.bPlay_Click);
@@ -101,7 +101,7 @@
             this.bLauncher.Margin = new System.Windows.Forms.Padding(0);
             this.bLauncher.Name = "bLauncher";
             this.bLauncher.Size = new System.Drawing.Size(200, 50);
-            this.bLauncher.TabIndex = 5;
+            this.bLauncher.TabIndex = 2;
             this.bLauncher.Text = "Лаунчер";
             this.bLauncher.UseVisualStyleBackColor = false;
             this.bLauncher.Click += new System.EventHandler(this.bLauncher_Click);
@@ -121,7 +121,7 @@
             this.bUpdate.Margin = new System.Windows.Forms.Padding(0);
             this.bUpdate.Name = "bUpdate";
             this.bUpdate.Size = new System.Drawing.Size(200, 50);
-            this.bUpdate.TabIndex = 6;
+            this.bUpdate.TabIndex = 3;
             this.bUpdate.Text = "Обновить";
             this.bUpdate.UseVisualStyleBackColor = false;
             this.bUpdate.Click += new System.EventHandler(this.bUpdate_Click);
@@ -140,7 +140,7 @@
             this.bVideo.Margin = new System.Windows.Forms.Padding(0);
             this.bVideo.Name = "bVideo";
             this.bVideo.Size = new System.Drawing.Size(200, 50);
-            this.bVideo.TabIndex = 7;
+            this.bVideo.TabIndex = 4;
             this.bVideo.Text = "Видео";
             this.bVideo.UseVisualStyleBackColor = false;
             this.bVideo.Click += new System.EventHandler(this.bVideo_Click);
@@ -159,7 +159,7 @@
             this.bExit.Margin = new System.Windows.Forms.Padding(0);
             this.bExit.Name = "bExit";
             this.bExit.Size = new System.Drawing.Size(200, 50);
-            this.bExit.TabIndex = 9;
+            this.bExit.TabIndex = 6;
             this.bExit.Text = "Выход";
             this.bExit.UseVisualStyleBackColor = false;
             this.bExit.Click += new System.EventHandler(this.bExit_Click);
@@ -175,8 +175,7 @@
             this.linkLabel1.Location = new System.Drawing.Point(652, 4);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(191, 15);
-            this.linkLabel1.TabIndex = 3;
-            this.linkLabel1.TabStop = true;
+            this.linkLabel1.TabIndex = 0;
             this.linkLabel1.Text = "Developed by Andrey Helldar";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
@@ -192,7 +191,6 @@
             this.llVersion.Name = "llVersion";
             this.llVersion.Size = new System.Drawing.Size(54, 19);
             this.llVersion.TabIndex = 0;
-            this.llVersion.TabStop = true;
             this.llVersion.Text = "0.0.0.0";
             this.llVersion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llVersion_LinkClicked);
             // 
@@ -275,7 +273,7 @@
             this.bOptimizePC.Margin = new System.Windows.Forms.Padding(0);
             this.bOptimizePC.Name = "bOptimizePC";
             this.bOptimizePC.Size = new System.Drawing.Size(200, 50);
-            this.bOptimizePC.TabIndex = 8;
+            this.bOptimizePC.TabIndex = 5;
             this.bOptimizePC.Text = "Оптимизировать";
             this.bOptimizePC.UseVisualStyleBackColor = false;
             this.bOptimizePC.Click += new System.EventHandler(this.bOptimizePC_Click);
@@ -300,8 +298,7 @@
             this.llTitle.Location = new System.Drawing.Point(189, 3);
             this.llTitle.Name = "llTitle";
             this.llTitle.Size = new System.Drawing.Size(73, 20);
-            this.llTitle.TabIndex = 1;
-            this.llTitle.TabStop = true;
+            this.llTitle.TabIndex = 0;
             this.llTitle.Text = "Загрузка...";
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llTitle.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTitle_LinkClicked);
@@ -319,7 +316,7 @@
             this.bSettings.Location = new System.Drawing.Point(12, 421);
             this.bSettings.Name = "bSettings";
             this.bSettings.Size = new System.Drawing.Size(131, 30);
-            this.bSettings.TabIndex = 12;
+            this.bSettings.TabIndex = 7;
             this.bSettings.Text = "Настройки";
             this.bSettings.UseVisualStyleBackColor = true;
             this.bSettings.Click += new System.EventHandler(this.bSettings_Click);
@@ -344,7 +341,7 @@
             this.llActually.Location = new System.Drawing.Point(283, 35);
             this.llActually.Name = "llActually";
             this.llActually.Size = new System.Drawing.Size(295, 24);
-            this.llActually.TabIndex = 19;
+            this.llActually.TabIndex = 11;
             this.llActually.TabStop = true;
             this.llActually.Text = "Вы используете самые свежие моды!";
             this.llActually.VisitedLinkColor = System.Drawing.Color.Lime;
@@ -362,8 +359,7 @@
             this.llLauncherVersion.Location = new System.Drawing.Point(569, 3);
             this.llLauncherVersion.Name = "llLauncherVersion";
             this.llLauncherVersion.Size = new System.Drawing.Size(49, 18);
-            this.llLauncherVersion.TabIndex = 2;
-            this.llLauncherVersion.TabStop = true;
+            this.llLauncherVersion.TabIndex = 0;
             this.llLauncherVersion.Text = "0.0.0.0";
             this.llLauncherVersion.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
@@ -389,7 +385,7 @@
             this.bShowVideo.Location = new System.Drawing.Point(13, 33);
             this.bShowVideo.Name = "bShowVideo";
             this.bShowVideo.Size = new System.Drawing.Size(100, 30);
-            this.bShowVideo.TabIndex = 10;
+            this.bShowVideo.TabIndex = 9;
             this.bShowVideo.Text = "Видео";
             this.bShowVideo.UseVisualStyleBackColor = false;
             this.bShowVideo.Click += new System.EventHandler(this.bShowVideo_Click);
@@ -408,7 +404,7 @@
             this.bShowNews.Location = new System.Drawing.Point(119, 33);
             this.bShowNews.Name = "bShowNews";
             this.bShowNews.Size = new System.Drawing.Size(100, 30);
-            this.bShowNews.TabIndex = 11;
+            this.bShowNews.TabIndex = 10;
             this.bShowNews.Text = "Новости";
             this.bShowNews.UseVisualStyleBackColor = true;
             this.bShowNews.Click += new System.EventHandler(this.bShowNews_Click);
@@ -460,8 +456,7 @@
             this.llLoadingVideoData.Location = new System.Drawing.Point(222, 140);
             this.llLoadingVideoData.Name = "llLoadingVideoData";
             this.llLoadingVideoData.Size = new System.Drawing.Size(182, 19);
-            this.llLoadingVideoData.TabIndex = 23;
-            this.llLoadingVideoData.TabStop = true;
+            this.llLoadingVideoData.TabIndex = 0;
             this.llLoadingVideoData.Text = "Подождите, идет загрузка...";
             this.llLoadingVideoData.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
@@ -506,7 +501,7 @@
             this.llVideoAll.Location = new System.Drawing.Point(187, 426);
             this.llVideoAll.Name = "llVideoAll";
             this.llVideoAll.Size = new System.Drawing.Size(67, 20);
-            this.llVideoAll.TabIndex = 33;
+            this.llVideoAll.TabIndex = 8;
             this.llVideoAll.TabStop = true;
             this.llVideoAll.Text = "Loading...";
             this.llVideoAll.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
