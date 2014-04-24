@@ -86,7 +86,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr = new StreamReader("settings.xml");
                     settings = sr.ReadToEnd();
                     sr.Close();
-                    settings = ReplaceSymbols(settings);
+                    settings = ReplaceSymbols(settings, true);
                 }
                 else settings = "File settings.xml not found";
                 nvc.Add("settings.xml", settings);
@@ -98,7 +98,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr1 = new StreamReader(@"..\version.xml");
                     tanks = sr1.ReadToEnd();
                     sr1.Close();
-                    tanks = ReplaceSymbols(tanks);
+                    tanks = ReplaceSymbols(tanks, true);
                 }
                 else tanks = "File version.xml not found";
                 nvc.Add("version.xml", tanks);
@@ -110,7 +110,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     StreamReader sr1 = new StreamReader("config.ini");
                     config = sr1.ReadToEnd();
                     sr1.Close();
-                    config = ReplaceSymbols(config);
+                    config = ReplaceSymbols(config, true);
                 }
                 else config = "File config.ini not found";
                 nvc.Add("config.ini", config);
@@ -124,7 +124,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         StreamReader sr1 = new StreamReader(@"..\xvm.log");
                         xvm = sr1.ReadToEnd();
                         sr1.Close();
-                        xvm = ReplaceSymbols(xvm);
+                        xvm = ReplaceSymbols(xvm, true);
                     }
                     else xvm = "File xvm.log not found";
                 }
@@ -140,7 +140,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         StreamReader sr1 = new StreamReader(@"..\python.log");
                         python = sr1.ReadToEnd();
                         sr1.Close();
-                        python = ReplaceSymbols(python);
+                        python = ReplaceSymbols(python, true);
                     }
                     else python = "File python.log not found";
                 }
@@ -156,7 +156,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         StreamReader sr1 = new StreamReader("loginstall.inf");
                         loginstall = sr1.ReadToEnd();
                         sr1.Close();
-                        loginstall = ReplaceSymbols(xvm);
+                        loginstall = ReplaceSymbols(loginstall, true);
                     }
                     else loginstall = "File loginstall.inf not found";
                 }
@@ -170,7 +170,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         string status = String.Empty;
 
                         SendPOST SendPOST = new SendPOST();
-                        Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + SendPOST.Json(nvc) + "&id=f39d3705d0925c26120f42599dc7d336"));
+                        Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + SendPOST.Json(nvc)));
                         switch (sendStatus["status"])
                         {
                             /*case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
@@ -195,9 +195,12 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex) { new Debug().Save("ticket", ex.Message); }
         }
 
-        private string ReplaceSymbols(string s)
+        private string ReplaceSymbols(string s, bool files = false)
         {
-            return s.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace(Environment.NewLine, ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
+            if (!files)
+                return s.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace(Environment.NewLine, ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
+            else
+                return s.Replace("\"", ":-:").Replace("'", ":-;").Replace("<", ":lt;").Replace(">", ":gt;");
         }
 
         private string Category()
@@ -219,35 +222,81 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bSend_Click(object sender, EventArgs e)
         {
-            int minSymbolsCount = 50,
-                maxWordLength = 20;
-
             string mess = String.Empty;
 
-
-            if (tbTicket.Text.Trim().Length < minSymbolsCount) { mess += Language.DynamicLanguage("symbolLength", lang, minSymbolsCount.ToString()); }
-
-            if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("messAreSended", lang); }
-
-            if (!CheckLengthWord(tbTicket.Text.Trim(), maxWordLength)) mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("veryLongWord", lang, maxWordLength.ToString());
-
-            if (mess == String.Empty)
+            // Если юзер хочет привязать лаунчер к сайту
+            if (cbCaption.SelectedIndex == 4)
             {
-                //bSend.Text = "Отправка...";
-                bSend.Text = Language.DynamicLanguage("sending", lang);
-                bSend.Enabled = false;
+                if (tbTicket.Text.Trim() != "" && tbEmail.Text.Trim() != "")
+                {
+                    if (tbEmail.Text.Trim().IndexOf(" ") > -1)
+                    {
+                        mess = "Неверный email!";
+                    }
+                    else
+                    {
+                        Debug Debug = new Debug();
+                        Dictionary<string, string> nvc = new Dictionary<string, string>();
+                        
+                        // Готовим отправку сообщения
+                        nvc.Add("code", Debug.Code);
+                        nvc.Add("userid", Debug.UserID());
+                        nvc.Add("login", tbTicket.Text.Trim());
+                        nvc.Add("email", tbEmail.Text.Trim());
 
-                SendTicket().Wait();
+                        mess = "Ваш запрос успешно отправлен";
 
-                //bSend.Text = "Отправить";
-                bSend.Text = Language.DynamicLanguage("send", lang);
-                bSend.Enabled = true;
+                        SendPOST SendPOST = new SendPOST();
+                        string status = String.Empty;
+
+                        Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/link/", "data=" + SendPOST.Json(nvc)));
+                        switch (sendStatus["status"])
+                        {
+                            case "OK": mess = Language.DynamicLanguage("thanks", lang, sendStatus["id"]); break;
+                            case "Hacking attempt!": mess = Language.DynamicLanguage("hacking", lang); break;
+                            case "BANNED": mess = Language.DynamicLanguage("banned", lang); break;
+                            case "LINKED": mess = Language.DynamicLanguage("linked", lang); break;                                
+                            default: mess = Language.DynamicLanguage("error", lang); break;
+                        }                        
+                    }
+                }
+                else
+                {
+                    mess = "Обязательное условие - заполнение обоих полей!";
+                }
+
+                MessageBox.Show(this, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Close();
             }
             else
             {
-                MessageBox.Show(this, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int minSymbolsCount = 50,
+                    maxWordLength = 20;
+
+
+                if (tbTicket.Text.Trim().Length < minSymbolsCount) { mess += Language.DynamicLanguage("symbolLength", lang, minSymbolsCount.ToString()); }
+                if (sendStatus == "OK" && sendText == tbTicket.Text.Trim()) { mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("messAreSended", lang); }
+                if (!CheckLengthWord(tbTicket.Text.Trim(), maxWordLength)) mess += Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("veryLongWord", lang, maxWordLength.ToString());
+
+                if (mess == String.Empty)
+                {
+                    //bSend.Text = "Отправка...";
+                    bSend.Text = Language.DynamicLanguage("sending", lang);
+                    bSend.Enabled = false;
+
+                    SendTicket().Wait();
+
+                    //bSend.Text = "Отправить";
+                    bSend.Text = Language.DynamicLanguage("send", lang);
+                    bSend.Enabled = true;
+
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show(this, mess, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -297,8 +346,9 @@ namespace _Hell_PRO_Tanki_Launcher
              * *******************************/
             cbCaption.Items.Clear(); // Очищаем перед загрузкой языка
 
-            for (int i = 0; i < 4; i++)
-                cbCaption.Items.Add(Language.DynamicLanguage("cbCaption" + i.ToString(), lang));
+            for (int i = 0; i < 5; i++)
+                if (Language.DynamicLanguage("cbCaption" + i.ToString(), lang) != "null")
+                    cbCaption.Items.Add(Language.DynamicLanguage("cbCaption" + i.ToString(), lang));
 
             cbCaption.SelectedIndex = 1;
         }

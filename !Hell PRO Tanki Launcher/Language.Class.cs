@@ -187,6 +187,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 case "banned": return lang == "ru" ?
                     "Ваш лаунчер внесен в черный список. Отправка тикет-сообщений невозможна." :
                     "Your launcher is in the blacklist. Sending support-tickets is disabled.";
+                case "linked": return lang == "ru" ?
+                    "Ваш лаунчер уже привязан к учетной записи!" + Environment.NewLine +
+                    "Если Вы не производили привязку или хотите выполнить повторно, напишите об этом разработчику лаунчера, выбрав в заголовке другую тему запроса" :
+                    "Ваш лаунчер уже привязан к учетной записи!" + Environment.NewLine +
+                    "Если Вы не производили привязку или хотите выполнить повторно, напишите об этом разработчику лаунчера, выбрав в заголовке другую тему запроса";
+
+
                 case "symbolLength": return lang == "ru" ?
                     "Текст не может быть меньше " + additionalText + " символов!" :
                     "Minimum text length is " + additionalText + " symbols!";
@@ -200,10 +207,11 @@ namespace _Hell_PRO_Tanki_Launcher
                     "Использование слов длиной более " + additionalText + " символов запрещено!" :
                     "Maximum word length is " + additionalText + " symbols!";
                     
-                case "cbCaption0": return lang == "ru" ? "Пожелания к мультипаку" : "I wish to MultiPack";
-                case "cbCaption1": return lang == "ru" ? "Пожелания к лаунчеру" : "I wish to Launcher";
-                case "cbCaption2": return lang == "ru" ? "Найдена ошибка в мультипаке" : "Error found in MultiPack";
-                case "cbCaption3": return lang == "ru" ? "Найдена ошибка в лаунчере" : "Error found in Launcher";
+                case "cbCaption0": return lang == "ru" ? "Пожелание к мультипаку" : "My wishes to MultiPack";
+                case "cbCaption1": return lang == "ru" ? "Пожелание к лаунчеру" : "My wishes to Launcher";
+                case "cbCaption2": return lang == "ru" ? "Найдена ошибка в мультипаке" : "I have found an error in MultiPack";
+                case "cbCaption3": return lang == "ru" ? "Найдена ошибка в лаунчере" : "I have found an error in Launcher";
+                case "cbCaption4": return lang == "ru" ? "Хочу привязать лаунчер к сайту" : "null";
 
                 /* ************************
                  *         fSettings
@@ -241,8 +249,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 case "viewVideo": return lang == "ru" ? "Посмотреть видео" : "Show video";
 
-                case "bBalanceCPU1": return lang == "ru" ? "Нагрузка ЦП распределена" : "CPU load distribution is now activated";
-                case "bBalanceCPU0": return lang == "ru" ? "Нагрузка ЦП не распределена" : "CPU load distribution is now deactivated";
+                case "bBalanceCPU1": return lang == "ru" ? "Нагрузка на все ядра ЦП" : "CPU load distribution is now activated";
+                case "bBalanceCPU0": return lang == "ru" ? "Нагрузка на 1 ядро ЦП" : "CPU load distribution is now deactivated";
 
                 case "badLink": return lang == "ru" ? "Ошибка открытия ссылки: " + additionalText : "Error while opening link: " + additionalText;
 

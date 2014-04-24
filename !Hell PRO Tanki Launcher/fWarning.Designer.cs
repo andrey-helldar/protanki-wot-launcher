@@ -147,7 +147,8 @@
             "Пожелания к мультипаку",
             "Пожелания к лаунчеру",
             "Найдена ошибка в мультипаке",
-            "Найдена ошибка в лаунчере"});
+            "Найдена ошибка в лаунчере",
+            "Хочу привязать лаунчер к сайту"});
             this.cbCaption.Location = new System.Drawing.Point(16, 58);
             this.cbCaption.Name = "cbCaption";
             this.cbCaption.Size = new System.Drawing.Size(667, 28);
