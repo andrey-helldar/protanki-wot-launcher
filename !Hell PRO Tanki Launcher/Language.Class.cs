@@ -252,8 +252,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 case "viewVideo": return lang == "ru" ? "Посмотреть видео" : "Show video";
 
-                case "bBalanceCPU1": return lang == "ru" ? "Нагрузка на все ядра ЦП" : "CPU load distribution is now activated";
-                case "bBalanceCPU0": return lang == "ru" ? "Нагрузка на 1 ядро ЦП" : "CPU load distribution is now deactivated";
+                case "bBalanceCPU1": return lang == "ru" ? "Нагрузка на все ядра ЦП" : "All cores CPU load";
+                case "bBalanceCPU0": return lang == "ru" ? "Нагрузка на 1 ядро ЦП" : "1 core CPU load";
 
                 case "badLink": return lang == "ru" ? "Ошибка открытия ссылки: " + additionalText : "Error while opening link: " + additionalText;
 
