@@ -198,9 +198,9 @@ namespace _Hell_PRO_Tanki_Launcher
         private string ReplaceSymbols(string s, bool files = false)
         {
             if (!files)
-                return s.Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace(Environment.NewLine, ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
+                return s.Replace("\\", "::-;;").Replace("\"", ":-:").Replace("'", ":-;").Replace("\r\n", ";-;").Replace(Environment.NewLine, ";-;").Replace("<", ":lt;").Replace(">", ":gt;");
             else
-                return s.Replace("\"", ":-:").Replace("'", ":-;").Replace("<", ":lt;").Replace(">", ":gt;");
+                return s.Replace("\\", "::-;;").Replace("\"", ":-:").Replace("'", ":-;").Replace("<", ":lt;").Replace(">", ":gt;");
         }
 
         private string Category()

@@ -43,7 +43,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fLoader";
-            this.Load += new System.EventHandler(this.fLoader_Load);
             this.ResumeLayout(false);
 
         }
