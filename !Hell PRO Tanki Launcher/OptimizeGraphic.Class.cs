@@ -24,7 +24,6 @@ namespace _Hell_PRO_Tanki_Launcher
                         if (el.Element("label") != null)
                             switch (el.Element("label").Value.Trim())
                             {
-                                //case "RENDER_PIPELINE": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	0	"); break;
                                 case "SHADOWS_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
                                 case "DECALS_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
                                 case "LIGHTING_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
@@ -44,27 +43,17 @@ namespace _Hell_PRO_Tanki_Launcher
                                 case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue("	0	"); break;
                                 case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue("	4	"); break;
                                 case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue("	3	"); break;
-                                /*case "SHADOWS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "DECALS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "LIGHTING_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "TEXTURE_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "TERRAIN_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "SPEEDTREE_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "WATER_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "FAR_PLANE": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "FLORA_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "OBJECT_LOD": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "VEHICLE_DUST_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	0	"); break;
-                                case "VEHICLE_TRACES_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	0	"); break;
-                                case "SMOKE_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	0	"); break;
-                                case "SNIPER_MODE_EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	2	"); break;
-                                case "PS_USE_PERFORMANCER": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	0	"); break;
-                                case "EFFECTS_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	4	" : "	2	"); break;
-                                case "SNIPER_MODE_GRASS_ENABLED": el.Element("activeOption").SetValue(autoWeak ? "	0	" : "	0	"); break;
-                                case "POST_PROCESSING_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	1	" : "	2	"); break;
-                                case "MOTION_BLUR_QUALITY": el.Element("activeOption").SetValue(autoWeak ? "	3	" : "	3	"); break;*/
                                 default: break;
                             }
+                    }
+
+                if (docPref.Root.Element("devicePreferences").Element("waitVSync") != null)
+                    if (docPref.Root.Element("devicePreferences").Element("waitVSync").Value == "	false	")
+                    {
+                        if (docPref.Root.Element("devicePreferences").Element("tripleBuffering") != null)
+                            docPref.Root.Element("devicePreferences").Element("tripleBuffering").SetValue("	false	");
+                        else
+                            docPref.Root.Element("devicePreferences").Add(new XElement("tripleBuffering", "	false	"));
                     }
 
                 if (docPref.Root.Element("devicePreferences").Element("customAAMode") != null)
