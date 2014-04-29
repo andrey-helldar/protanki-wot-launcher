@@ -320,8 +320,28 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 XDocument doc = XDocument.Load(@"http://ai-rus.com/pro/pro.xml");
 
+
+                Dictionary<string, string> json = new Dictionary<string, string>();
+
+                json.Add("code", Debug.Code);
+                json.Add("userid", Debug.UserID());
+                json.Add("youtube", Debug.Youtube);
+                json.Add("product", Application.ProductName + " " + Application.ProductVersion);
+                json.Add("test", commonTest ? "1" : "0");
+                json.Add("client", tanksVersion.ToString());
+                json.Add("lang", lang);
+
+
+                try
+                {
+                    SendPOST SendPOST = new SendPOST();
+                    Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/version/", "data=" + SendPOST.Json(json)));
+                    remoteTanksVersion = new Version(sendStatus["version"]);
+                }
+                catch (Exception) { remoteTanksVersion = new Version("0.0.0.0"); }
+
                 remoteModVersion = new Version(doc.Root.Element("version").Value);
-                remoteTanksVersion = new Version(SendPOST.Send("http://ai-rus.com/wot/version/", "code=" + Debug.Code + "&user=" + Debug.UserID() + "&version=" + tanksVersion.ToString() + "&test=" + (commonTest ? "1" : "0") + "&lang=" + lang));
+                //remoteTanksVersion = new Version(SendPOST.Send("http://ai-rus.com/wot/version/", "code=" + Debug.Code + "&user=" + Debug.UserID() + "&version=" + tanksVersion.ToString() + "&test=" + (commonTest ? "1" : "0") + "&lang=" + lang));
 
                 tanksUpdates = tanksVersion < remoteTanksVersion; // Сравниваем версии танков
                 modpackUpdates = modpackVersion < remoteModVersion; // Сравниваем версии мультипака
