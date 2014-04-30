@@ -324,19 +324,20 @@ namespace _Hell_PRO_Tanki_Launcher
                 Dictionary<string, string> json = new Dictionary<string, string>();
 
                 json.Add("code", Debug.Code);
-                json.Add("userid", Debug.UserID());
+                json.Add("user", Debug.UserID());
                 json.Add("youtube", Debug.Youtube);
-                json.Add("product", Application.ProductName + " " + Application.ProductVersion);
                 json.Add("test", commonTest ? "1" : "0");
-                json.Add("client", tanksVersion.ToString());
+                json.Add("version", tanksVersion.ToString());
                 json.Add("lang", lang);
-
 
                 try
                 {
                     SendPOST SendPOST = new SendPOST();
-                    Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/version/", "data=" + SendPOST.Json(json)));
+                    string saq = SendPOST.Send("http://ai-rus.com/wot/version/", "data=" + SendPOST.Json(json));
+                    Dictionary<string, string> sendStatus = SendPOST.FromJson(saq);
                     remoteTanksVersion = new Version(sendStatus["version"]);
+
+                    MessageBox.Show(saq);
                 }
                 catch (Exception) { remoteTanksVersion = new Version("0.0.0.0"); }
 
