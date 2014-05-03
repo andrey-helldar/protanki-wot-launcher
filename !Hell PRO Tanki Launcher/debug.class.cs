@@ -17,6 +17,7 @@ namespace _Hell_PRO_Tanki_Launcher
     {
         public string Code = "TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6";
         public string Youtube = "PROTankiWoT";
+        public int Accept = 300;
 
         /// <summary>
         /// Сохраняем информацию обработчика в файл

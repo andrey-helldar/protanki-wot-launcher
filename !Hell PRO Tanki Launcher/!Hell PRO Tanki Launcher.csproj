@@ -173,7 +173,6 @@
     </Compile>
     <None Include="Resources\res_mods.zip" />
     <None Include="Resources\sochi.ttf" />
-    <None Include="Resources\start.bat" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\lamp_on.png" />
@@ -184,6 +183,7 @@
     <None Include="Resources\splash.jpg" />
     <None Include="Resources\fWarning.jpg" />
     <None Include="Resources\settings.xml" />
+    <None Include="Resources\start.bat" />
     <None Include="Resources\warning.png" />
     <None Include="Resources\WOT.ico" />
     <None Include="Resources\FonSetting.jpg" />

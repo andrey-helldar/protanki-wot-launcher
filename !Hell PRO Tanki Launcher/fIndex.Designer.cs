@@ -46,7 +46,6 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsExit = new System.Windows.Forms.ToolStripMenuItem();
             this.bOptimizePC = new System.Windows.Forms.Button();
-            this.bwOptimize = new System.ComponentModel.BackgroundWorker();
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.bSettings = new System.Windows.Forms.Button();
             this.bwVideo = new System.ComponentModel.BackgroundWorker();
@@ -176,6 +175,7 @@
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(191, 15);
             this.linkLabel1.TabIndex = 0;
+            this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Developed by Andrey Helldar";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
@@ -191,6 +191,7 @@
             this.llVersion.Name = "llVersion";
             this.llVersion.Size = new System.Drawing.Size(54, 19);
             this.llVersion.TabIndex = 0;
+            this.llVersion.TabStop = true;
             this.llVersion.Text = "0.0.0.0";
             this.llVersion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llVersion_LinkClicked);
             // 
@@ -278,14 +279,6 @@
             this.bOptimizePC.UseVisualStyleBackColor = false;
             this.bOptimizePC.Click += new System.EventHandler(this.bOptimizePC_Click);
             // 
-            // bwOptimize
-            // 
-            this.bwOptimize.WorkerReportsProgress = true;
-            this.bwOptimize.WorkerSupportsCancellation = true;
-            this.bwOptimize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwOptimize_DoWork);
-            this.bwOptimize.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwOptimize_ProgressChanged);
-            this.bwOptimize.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwOptimize_RunWorkerCompleted);
-            // 
             // llTitle
             // 
             this.llTitle.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
@@ -299,6 +292,7 @@
             this.llTitle.Name = "llTitle";
             this.llTitle.Size = new System.Drawing.Size(73, 20);
             this.llTitle.TabIndex = 0;
+            this.llTitle.TabStop = true;
             this.llTitle.Text = "Загрузка...";
             this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llTitle.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llTitle_LinkClicked);
@@ -360,6 +354,7 @@
             this.llLauncherVersion.Name = "llLauncherVersion";
             this.llLauncherVersion.Size = new System.Drawing.Size(49, 18);
             this.llLauncherVersion.TabIndex = 0;
+            this.llLauncherVersion.TabStop = true;
             this.llLauncherVersion.Text = "0.0.0.0";
             this.llLauncherVersion.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
@@ -457,6 +452,7 @@
             this.llLoadingVideoData.Name = "llLoadingVideoData";
             this.llLoadingVideoData.Size = new System.Drawing.Size(182, 19);
             this.llLoadingVideoData.TabIndex = 0;
+            this.llLoadingVideoData.TabStop = true;
             this.llLoadingVideoData.Text = "Подождите, идет загрузка...";
             this.llLoadingVideoData.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
@@ -567,7 +563,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem tsShow;
         private System.Windows.Forms.Button bOptimizePC;
-        private System.ComponentModel.BackgroundWorker bwOptimize;
         private System.Windows.Forms.ToolStripMenuItem tsSettings;
         private System.Windows.Forms.LinkLabel llTitle;
         private System.Windows.Forms.Button bSettings;

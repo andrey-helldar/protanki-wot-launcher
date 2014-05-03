@@ -336,6 +336,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
 
                 doc.Save("settings.xml");
+
+                //Делаем резервную копию настроек
+                File.Copy("settings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml", true);
             }
             catch (Exception ex) { Debug.Save("bwSave_DoWork()", ex.Message); }
 

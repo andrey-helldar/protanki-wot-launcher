@@ -333,16 +333,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 try
                 {
                     SendPOST SendPOST = new SendPOST();
-                    string saq = SendPOST.Send("http://ai-rus.com/wot/version/", "data=" + SendPOST.Json(json));
-                    Dictionary<string, string> sendStatus = SendPOST.FromJson(saq);
-                    remoteTanksVersion = new Version(sendStatus["version"]);
-
-                    MessageBox.Show(saq);
+                    Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/version/", "data=" + SendPOST.Json(json)));
+                    remoteTanksVersion = Convert.ToInt32(sendStatus["count"]) > Debug.Accept ? new Version(sendStatus["id"]) : tanksVersion;
                 }
                 catch (Exception) { remoteTanksVersion = new Version("0.0.0.0"); }
 
                 remoteModVersion = new Version(doc.Root.Element("version").Value);
-                //remoteTanksVersion = new Version(SendPOST.Send("http://ai-rus.com/wot/version/", "code=" + Debug.Code + "&user=" + Debug.UserID() + "&version=" + tanksVersion.ToString() + "&test=" + (commonTest ? "1" : "0") + "&lang=" + lang));
 
                 tanksUpdates = tanksVersion < remoteTanksVersion; // Сравниваем версии танков
                 modpackUpdates = modpackVersion < remoteModVersion; // Сравниваем версии мультипака
@@ -633,118 +629,21 @@ namespace _Hell_PRO_Tanki_Launcher
                 Environment.NewLine + Environment.NewLine + "Вы хотите продолжить?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))*/
             if (DialogResult.Yes == MessageBox.Show(this, Language.DynamicLanguage("optimize", lang), Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
             {
-                if (!bwOptimize.IsBusy)
-                {
-                    autoOptimizePC = true;
-
-                    GetVipProcesses().Wait();
-
-                    pbDownload.Visible = true;
-                    pbDownload.Value = 0;
-
-                    bwOptimize.RunWorkerAsync();
-                }
-                else
-                {
-                    //MessageBox.Show(this, "Подождите завершения предыдущей операции", "Оптимизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show(this, Language.DynamicLanguage("wait", lang), Language.DynamicLanguage("optimizeTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-        }
-
-        private void bwOptimize_DoWork(object sender, DoWorkEventArgs e)
-        {
-            int myProgressStatus = 0;
-
-            try
-            {
-                if (autoOptimizePC || autoAero)
-                {
-                    // Для начала определим версию ОС для отключения AERO
-                    OperatingSystem osInfo = Environment.OSVersion;
-
-                    switch (osInfo.Platform)
-                    {
-                        case System.PlatformID.Win32NT:
-                            switch (osInfo.Version.Major)
-                            {
-                                case 5:/* THIS IS WINDOWS XP!!! AAAAAAAAAAAA!!!!!! */ break;
-
-                                default:
-                                    Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms")); // останавливаем aero
-                                    break;
-                            }
-                            break;
-                    }
-
-                    maxPercentUpdateStatus = 1;
-                    bwOptimize.ReportProgress(++myProgressStatus);
-                }
-            }
-            catch (Exception ex) {  Debug.Save("fIndex","bwOptimize_DoWork()", "if (autoOptimizePC || autoAero)", ex.Message); }
-
-            try
-            {
-                if (autoOptimizePC || autoKill)
-                {
-                    // Завершаем ненужные процессы путем перебора массива имен с условием отсутствия определенных условий
-                    int processCount = Process.GetProcesses().Length;
-                    int sessionId = Process.GetCurrentProcess().SessionId;
-
-                    maxPercentUpdateStatus += autoForceKill ? processCount * 2 - 2 : processCount - 1; // Расчитываем значение прогресс бара                    
-                    ProcessesLibrary proccessLibrary = new ProcessesLibrary();  // получаем имена процессов, завершать которые НЕЛЬЗЯ
-
-                    bool kill = false;
-
-                    for (int i = 0; i < 2; i++)
-                    {
-                        foreach (var process in Process.GetProcesses())
-                        {
-                            try
-                            {
-                                bwOptimize.ReportProgress(++myProgressStatus); // Инкрименируем значение прогресс бара
-
-                                if (process.SessionId == sessionId &&
-                                    Array.IndexOf(proccessLibrary.Processes(), process.ProcessName) == -1 &&
-                                    !ProcessList.IndexOf(process.ProcessName))
-                                {
-                                    if (!kill) process.CloseMainWindow(); else process.Kill();
-                                }
-                            }
-                            catch (Exception ex) { Debug.Save("fIndex", "bwOptimize_DoWork()", "if (autoOptimizePC || autoKill)", process.ProcessName.ToString(), "Kill: " + kill.ToString(), ex.Message); }
-                        }
-
-                        if (!autoForceKill || !autoOptimizePC) { break; }
-                        else
-                        {
-                            kill = true;
-                            Thread.Sleep(5000); // Ждем 5 секунд завершения, пока приложения нормально завершатся, затем повторяем цикл
-                        }
-                    }
-                }
-
-                ///
-                /// Optimize game graphic
-                /// 
                 try
                 {
-                    if (autoOptimizePC)
-                    {
-                        OptimizeGraphic OptimizeGraphic = new OptimizeGraphic();
-                        Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, autoVideo, autoWeak)).Wait();
-                    }
+                    autoOptimizePC = true;
+                    GetVipProcesses().Wait();
+
+                    playGame = true;
+                    OptimizePC().Wait();
+
+                    //Hide();
+                    WindowState = FormWindowState.Minimized;
                 }
-                catch (Exception ex1)
-                {
-                    Debug.Save("fIndex", "bwOptimize_DoWork()", "if (autoOptimizePC || autoVideo)", "commonTest = " + commonTest.ToString(), ex1.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("fIndex", "bwOptimize_DoWork)", ex.Message);
+                catch (Exception ex) { Debug.Save("fIndex", "bOptimizePC_Click()", ex.Message); }
             }
         }
-
+           
         private void llContent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (!bwUpdater.IsBusy)
@@ -819,18 +718,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void bwOptimize_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            try
-            {
-                double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;
-                pbDownload.Value = (int)i <= pbDownload.Value ? (int)i : pbDownload.Value;
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("fIndex", "bwOptimize_ProgressChanged(object sender, ProgressChangedEventArgs e)", "double i = Convert.ToDouble(e.ProgressPercentage) / Convert.ToDouble(maxPercentUpdateStatus) * 100;", ex.Message);
-            }
-        }
 
         // Инфа тут:
         //          http://www.cyberforum.ru/windows-forms/thread740428.html
@@ -1264,20 +1151,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void bwOptimize_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            pbDownload.Visible = false;
-            pbDownload.Value = 0;
-
-            if (playGame)
-            {
-                if (!File.Exists(@"..\s.bat")) { File.WriteAllBytes(@"..\s.bat", Properties.Resources.start); }
-                Process.Start(@"..\s.bat");
-            }
-
-            CheckClosingGame(); // Запускаем утилиту проверки запущен ли клиент игры
-        }
-
         private async Task CheckClosingGame()
         {
             await Task.Delay(playGame ? 10000 : 5000); // Если запускаем танки, ждем 10 сек, если лаунчер - 5 сек
@@ -1536,10 +1409,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
             if (playGame)
             {
-                //if (!File.Exists(@"..\s.bat")) { File.WriteAllBytes(@"..\s.bat", Properties.Resources.start); }
-                //Process.Start(@"..\s.bat");
-                if (!File.Exists(pathToTanks + "s.bat")) { File.WriteAllBytes(pathToTanks + "s.bat", Properties.Resources.start); }
-                Process.Start(pathToTanks + "s.bat");                
+                if (File.Exists(pathToTanks + "WorldOfTanks.exe"))
+                {
+                    if (!File.Exists(@"..\s.bat")) { File.WriteAllBytes(@"..\s.bat", Properties.Resources.start); }
+                    Process.Start(@"..\s.bat");
+                }
+                else
+                    MessageBox.Show(this, Language.DynamicLanguage("noTanks", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             //Task.Factory.StartNew(() => CheckClosingGame()); // Запускаем утилиту проверки запущен ли клиент игры
