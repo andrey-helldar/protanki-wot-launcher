@@ -263,25 +263,30 @@ namespace _Hell_PRO_Tanki_Launcher
         }
 
         // Выбираем изображение для установки фона
-        public void setBackground()
+        public async Task setBackground()
         {
-            try
+            while (true)
             {
-                switch ("back_" + new Random().Next(1, 7))
+                try
                 {
-                    case "back_1": this.BackgroundImage = Properties.Resources.back_1; break;
-                    case "back_2": this.BackgroundImage = Properties.Resources.back_2; break;
-                    //case "back_3": this.BackgroundImage = Properties.Resources.back_3; break;
-                    case "back_4": this.BackgroundImage = Properties.Resources.back_4; break;
-                    case "back_5": this.BackgroundImage = Properties.Resources.back_5; break;
-                    case "back_6": this.BackgroundImage = Properties.Resources.back_6; break;
-                    default: this.BackgroundImage = Properties.Resources.back_7; break;
+                    switch ("back_" + new Random().Next(1, 7))
+                    {
+                        case "back_1": this.BackgroundImage = Properties.Resources.back_1; break;
+                        case "back_2": this.BackgroundImage = Properties.Resources.back_2; break;
+                        //case "back_3": this.BackgroundImage = Properties.Resources.back_3; break;
+                        case "back_4": this.BackgroundImage = Properties.Resources.back_4; break;
+                        case "back_5": this.BackgroundImage = Properties.Resources.back_5; break;
+                        case "back_6": this.BackgroundImage = Properties.Resources.back_6; break;
+                        default: this.BackgroundImage = Properties.Resources.back_7; break;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.BackgroundImage = Properties.Resources.back_7;
-                Debug.Save("fIndex", "setBackground()", ex.Message);
+                catch (Exception ex)
+                {
+                    this.BackgroundImage = Properties.Resources.back_7;
+                    Debug.Save("fIndex", "setBackground()", ex.Message);
+                }
+
+                await Task.Delay(10000);
             }
         }
 
@@ -1088,8 +1093,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 Debug.Save("fIndex", "public fIndex()", "Применение заголовков и иконок приложения", ex.Message);
             }
 
-
-            setBackground();
             moveForm();
             SetInterfaceLanguage();
 
