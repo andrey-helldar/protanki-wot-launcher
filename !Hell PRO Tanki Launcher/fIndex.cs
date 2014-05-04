@@ -462,7 +462,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                 Debug.Save("fIndex","bwUpdater_RunWorkerCompleted()", ex.Message);
+                Debug.Save("fIndex", "bwUpdater_RunWorkerCompleted()", ex.Message);
             }
         }
 
@@ -627,7 +627,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 catch (Exception ex) { Debug.Save("fIndex", "bOptimizePC_Click()", ex.Message); }
             }
         }
-           
+
         private void llContent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (!bwUpdater.IsBusy)
@@ -1085,8 +1085,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 this.Text = Application.ProductName + " v" + modpackVersion.ToString();
                 this.Icon = Properties.Resources.Icon;
 
-            llLauncherVersion.Text = Application.ProductVersion;
-            llVersion.Text = modpackVersion.ToString();
+                llLauncherVersion.Text = Application.ProductVersion;
+                llVersion.Text = modpackVersion.ToString();
             }
             catch (Exception ex)
             {
@@ -1137,6 +1137,8 @@ namespace _Hell_PRO_Tanki_Launcher
             moveForm();
 
             SetInterfaceLanguage();
+
+            Ping();
         }
 
         private async Task GetVipProcesses()
@@ -1466,7 +1468,7 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex)
             {
-                Debug.Save("fIndex","UncheckAllCheckBoxes()", ex.Message);
+                Debug.Save("fIndex", "UncheckAllCheckBoxes()", ex.Message);
             }
         }
 
@@ -1492,6 +1494,24 @@ namespace _Hell_PRO_Tanki_Launcher
                 case "2": WindowState = FormWindowState.Minimized; break;
                 case "3": Close(); break;
                 default: break;
+            }
+        }
+
+        private async Task Ping()
+        {
+            fPing fPing = new fPing();
+            fPing.Show();
+
+            while (fPing.Visible)
+            {
+                fPing.SetBounds(
+                    this.Location.X + this.Width + 10,
+                    this.Location.Y,
+                    230,
+                    this.Height
+                    );
+
+                await Task.Delay(50);
             }
         }
     }
