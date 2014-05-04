@@ -138,10 +138,6 @@ namespace _Hell_PRO_Tanki_Launcher
         private void bSave_Click(object sender, EventArgs e)
         {
             if (cbVideoQuality.Checked)
-                /*MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!" + Environment.NewLine + Environment.NewLine +
-                "Настройки графики применяются только при сохранении информации в окне настоек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
-                "При автоматической оптимизации настройки графики остаются без изменений.",
-                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);*/
                 MessageBox.Show(this, Language.DynamicLanguage("reEnterLoginPass", lang),
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 

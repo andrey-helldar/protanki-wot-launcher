@@ -170,12 +170,9 @@ namespace _Hell_PRO_Tanki_Launcher
                         string status = String.Empty;
 
                         SendPOST SendPOST = new SendPOST();
-                        Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/ticket/", "data=" + SendPOST.Json(nvc)));
+                        Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send(Properties.Resources.PostTicket, "data=" + SendPOST.Json(nvc)));
                         switch (sendStatus["status"])
                         {
-                            /*case "OK": status = "Спасибо за обращение!" + Environment.NewLine + "Разработчик рассмотрит Вашу заявку в ближайшее время"; break;
-                            case "Hacking attempt!": status = "Ведутся работы на сервере. Попробуйте отправить запрос чуть позже."; break;
-                            default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;*/
                             case "OK": status = Language.DynamicLanguage("thanks", lang, sendStatus["id"]); break;
                             case "Hacking attempt!": status = Language.DynamicLanguage("hacking", lang); break;
                             case "BANNED": status = Language.DynamicLanguage("banned", lang); break;
@@ -188,7 +185,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    //MessageBox.Show(this, "Ошибка отправки данных. Попробуйте чуть познее...", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MessageBox.Show(this, Language.DynamicLanguage("error", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -246,13 +242,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                             SendPOST SendPOST = new SendPOST();
 
-                            Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/link/", "data=" + SendPOST.Json(nvc)));
+                            Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send(Properties.Resources.PostLink, "data=" + SendPOST.Json(nvc)));
                             switch (sendStatus["status"])
                             {
                                 case "LINK":
                                     if (DialogResult.Yes == MessageBox.Show(this, Language.DynamicLanguage("link", lang, tbTicket.Text.Trim()), Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
                                     {
-                                        Process.Start(@"http://ai-rus.com/tickets.html");
+                                        Process.Start(Properties.Resources.LinkTicket);
                                     }
                                     break;
                                 case "Hacking attempt!": MessageBox.Show(this, Language.DynamicLanguage("hacking", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information); break;
@@ -324,7 +320,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void lMessAboutNewVersion_Click(object sender, EventArgs e)
         {
-            Process.Start(@"http://vk.com/topic-58816477_29818765");
+            Process.Start(Properties.Resources.LinkLauncherVK);
         }
 
         private async Task SetInterfaceLanguage()

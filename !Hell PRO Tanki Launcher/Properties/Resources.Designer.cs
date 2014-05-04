@@ -230,6 +230,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://vk.com/topic-58816477_29818765.
+        /// </summary>
+        internal static string LinkLauncherVK {
+            get {
+                return ResourceManager.GetString("LinkLauncherVK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://goo.gl/Wlrh9F.
         /// </summary>
         internal static string LinkNewsAll {
@@ -244,6 +253,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         internal static string LinkNewVersion {
             get {
                 return ResourceManager.GetString("LinkNewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://ai-rus.com/tickets.html.
+        /// </summary>
+        internal static string LinkTicket {
+            get {
+                return ResourceManager.GetString("LinkTicket", resourceCulture);
             }
         }
         
@@ -281,6 +299,24 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("Newtonsoft_Json", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://ai-rus.com/wot/link/.
+        /// </summary>
+        internal static string PostLink {
+            get {
+                return ResourceManager.GetString("PostLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://ai-rus.com/wot/ticket/.
+        /// </summary>
+        internal static string PostTicket {
+            get {
+                return ResourceManager.GetString("PostTicket", resourceCulture);
             }
         }
         
