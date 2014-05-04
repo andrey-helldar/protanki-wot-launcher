@@ -258,6 +258,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 case "badLink": return lang == "ru" ? "Ошибка открытия ссылки: " + additionalText : "Error while opening link: " + additionalText;
 
+                    
+                /* ************************
+                 *         fPing
+                 * ***********************/
+                case "LinkError": return lang == "ru" ? "При открытии ссылки произошла ошибка. Ссылка скопирована в буфер обмена.":
+                    "При открытии ссылки произошла ошибка. Ссылка скопирована в буфер обмена.";
+
                 default: return "null";
             }
         }

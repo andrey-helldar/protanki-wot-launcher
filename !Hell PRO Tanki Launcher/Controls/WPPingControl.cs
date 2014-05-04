@@ -6,7 +6,6 @@ using System.Windows.Forms;
 
 using WoTPinger.Core;
 using WoTPinger.Core.Ping;
-using WoTPinger.Properties;
 
 namespace WoTPinger.UserInterface.Controls
 {

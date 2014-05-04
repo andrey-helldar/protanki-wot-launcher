@@ -96,6 +96,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Buttons\WPButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Buttons\WPLinkButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Buttons\WPRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\Carousel\Page.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -168,6 +177,7 @@
     <Compile Include="SendPost.Class.cs" />
     <Compile Include="update_launcher.class.cs" />
     <Compile Include="UserInterface\SingleApplication.cs" />
+    <Compile Include="UserInterface\WindowHelper.cs" />
     <Compile Include="YoutubeVideo.Class.cs" />
     <EmbeddedResource Include="fIndex.resx">
       <DependentUpon>fIndex.cs</DependentUpon>
