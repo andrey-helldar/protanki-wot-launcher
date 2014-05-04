@@ -187,4 +187,34 @@
   <data name="start" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\start.bat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="AIRUS" xml:space="preserve">
+    <value>http://goo.gl/5PR4ma</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6</value>
+  </data>
+  <data name="ModPackType" xml:space="preserve">
+    <value>base</value>
+  </data>
+  <data name="LinkNewVersion" xml:space="preserve">
+    <value>http://goo.gl/gr6pFl</value>
+  </data>
+  <data name="ProXml" xml:space="preserve">
+    <value>http://ai-rus.com/pro/pro.xml</value>
+  </data>
+  <data name="LinkVideo" xml:space="preserve">
+    <value>http://goo.gl/gr6pFl</value>
+  </data>
+  <data name="Youtube" xml:space="preserve">
+    <value>PROTankiWoT</value>
+  </data>
+  <data name="LinkVideoAll" xml:space="preserve">
+    <value>http://goo.gl/LXaU7T</value>
+  </data>
+  <data name="PostVersion" xml:space="preserve">
+    <value>http://ai-rus.com/wot/version/</value>
+  </data>
+  <data name="RssYoutube" xml:space="preserve">
+    <value>https://gdata.youtube.com/feeds/api/users/{0}/uploads</value>
+  </data>
 </root>

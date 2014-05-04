@@ -15,8 +15,8 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     class Debug
     {
-        public string Code = "TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6";
-        public string Youtube = "PROTankiWoT";
+        public string Code = Properties.Resources.Code;
+        public string Youtube = Properties.Resources.Youtube;
         public int Accept = 300;
 
         /// <summary>

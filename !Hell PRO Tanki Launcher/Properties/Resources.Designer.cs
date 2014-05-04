@@ -61,6 +61,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://goo.gl/5PR4ma.
+        /// </summary>
+        internal static string AIRUS {
+            get {
+                return ResourceManager.GetString("AIRUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap back_1 {
@@ -127,6 +136,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("back_updates", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6.
+        /// </summary>
+        internal static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
             }
         }
         
@@ -212,6 +230,42 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://goo.gl/gr6pFl.
+        /// </summary>
+        internal static string LinkNewVersion {
+            get {
+                return ResourceManager.GetString("LinkNewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://goo.gl/gr6pFl.
+        /// </summary>
+        internal static string LinkVideo {
+            get {
+                return ResourceManager.GetString("LinkVideo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://goo.gl/LXaU7T.
+        /// </summary>
+        internal static string LinkVideoAll {
+            get {
+                return ResourceManager.GetString("LinkVideoAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to base.
+        /// </summary>
+        internal static string ModPackType {
+            get {
+                return ResourceManager.GetString("ModPackType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] Newtonsoft_Json {
@@ -222,12 +276,30 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://ai-rus.com/wot/version/.
+        /// </summary>
+        internal static string PostVersion {
+            get {
+                return ResourceManager.GetString("PostVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] ProcessesLibrary {
             get {
                 object obj = ResourceManager.GetObject("ProcessesLibrary", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://ai-rus.com/pro/pro.xml.
+        /// </summary>
+        internal static string ProXml {
+            get {
+                return ResourceManager.GetString("ProXml", resourceCulture);
             }
         }
         
@@ -248,6 +320,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("restart", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://gdata.youtube.com/feeds/api/users/{0}/uploads.
+        /// </summary>
+        internal static string RssYoutube {
+            get {
+                return ResourceManager.GetString("RssYoutube", resourceCulture);
             }
         }
         
@@ -302,6 +383,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("Warning", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROTankiWoT.
+        /// </summary>
+        internal static string Youtube {
+            get {
+                return ResourceManager.GetString("Youtube", resourceCulture);
             }
         }
     }

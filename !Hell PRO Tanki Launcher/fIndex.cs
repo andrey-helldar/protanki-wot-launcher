@@ -34,12 +34,12 @@ namespace _Hell_PRO_Tanki_Launcher
 
         string pathToTanks = "",
 
-            modpackType = "base",
+            modpackType = Properties.Resources.ModPackType,
             modpackDate = "1970-1-1",
 
             newVersionMessage,
-            newVersionLink = "http://goo.gl/gr6pFl",
-            videoLink = "http://goo.gl/gr6pFl",
+            newVersionLink = Properties.Resources.LinkNewVersion,
+            videoLink = Properties.Resources.LinkVideo,
             updateNotification = "",
 
             notifyLink = "",
@@ -99,7 +99,7 @@ namespace _Hell_PRO_Tanki_Launcher
         //// Сперва загружаем настройки из файла "config.ini" - конфиг модпака
         //// Затем загружаем настройки самой программы - "settings.xml"
         /// </summary>
-        /// <returns>На возврат ничего нет, функция без возврата</returns>
+        /// <returns></returns>
         public async Task loadSettings()
         {
             try
@@ -123,7 +123,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 else
                 {
                     Debug.Save("fIndex", "loadSettings()", "File not found \"config.ini\"");
-                    //MessageBox.Show(this, "Модпак не обнаружен!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MessageBox.Show(this, Language.DynamicLanguage("noMods", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
@@ -319,7 +318,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 docSettings.Save("settings.xml");
 
-                XDocument doc = XDocument.Load(@"http://ai-rus.com/pro/pro.xml");
+                XDocument doc = XDocument.Load(Properties.Resources.ProXml);
 
 
                 Dictionary<string, string> json = new Dictionary<string, string>();
@@ -334,7 +333,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 try
                 {
                     SendPOST SendPOST = new SendPOST();
-                    Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send("http://ai-rus.com/wot/version/", "data=" + SendPOST.Json(json)));
+                    Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send(Properties.Resources.PostVersion, "data=" + SendPOST.Json(json)));
                     remoteTanksVersion = Convert.ToInt32(sendStatus["count"]) > Debug.Accept ? new Version(sendStatus["id"]) : tanksVersion;
                 }
                 catch (Exception) { remoteTanksVersion = new Version("0.0.0.0"); }
@@ -393,28 +392,19 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (modpackUpdates)
                     {
-                        //status += "Обнаружена новая версия Мультипака (" + remoteModVersion.ToString() + ")" + Environment.NewLine;
                         status += Language.DynamicLanguage("llActuallyNewMods", lang) + ": " + remoteModVersion.ToString() + Environment.NewLine;
-
                         videoLink = newVersionLink;
                     }
 
                     if (tanksUpdates)
                     {
-                        //status += "Обнаружена новая версия клиента игры (" + remoteTanksVersion.ToString() + ")" + Environment.NewLine;
                         status += Language.DynamicLanguage("llActuallyNewGame", lang) + ": " + remoteTanksVersion.ToString() + Environment.NewLine;
-
-                        // Отключаем кнопку запуска игры
                         bPlay.Enabled = false;
                     }
                     else
-                    {
-                        // Включаем кнопку запуска игры
                         bPlay.Enabled = true;
-                    }
 
 
-                    //llActually.Text = modpackUpdates ? "Обнаружена новая версия мультипака!" : "Обнаружена новая версия игры!";
                     llActually.Text = modpackUpdates ?
                         Language.DynamicLanguage("llActuallyNewMods", lang) :
                         Language.DynamicLanguage("llActuallyNewGame", lang);
@@ -441,16 +431,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else
                 {
-                    //llActually.Text = "Вы используете самые свежие моды!";
                     llActually.Text = Language.DynamicLanguage("llActuallyActually", lang);
                     llActually.ForeColor = Color.Lime;
                     llActually.ActiveLinkColor = Color.Lime;
                     llActually.LinkColor = Color.Lime;
                     llActually.VisitedLinkColor = Color.Lime;
 
-                    /*status = "Вы используете самые свежие моды." + Environment.NewLine +
-                        "Текущая версия Мультипака: " + modpackVersion.ToString() + Environment.NewLine +
-                        "Текущая версия клиента игры: " + tanksVersion.ToString();*/
                     status = Language.DynamicLanguage("llActuallyActually", lang) + Environment.NewLine +
                         Language.DynamicLanguage("llActuallyThisVerMods", lang) + modpackVersion.ToString() + Environment.NewLine +
                         Language.DynamicLanguage("llActuallyThisVerGame", lang) + tanksVersion.ToString();
@@ -560,12 +546,12 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                Process.Start("http://goo.gl/5PR4ma"); // Link to http://ai-rus.com with goo.gl
+                Process.Start(Properties.Resources.AIRUS); // Link to http://ai-rus.com with goo.gl
             }
             catch (Exception ex)
             {
-                Debug.Save("fIndex", "linkLabel1_LinkClicked()", "Process.Start(\"http://goo.gl/5PR4ma\");", ex.Message);
-                MessageBox.Show(this, Language.DynamicLanguage("badLink", lang, "http://goo.gl/5PR4ma"), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Debug.Save("fIndex", "linkLabel1_LinkClicked()", "Process.Start(\"" + Properties.Resources.AIRUS + "\");", ex.Message);
+                MessageBox.Show(this, Language.DynamicLanguage("badLink", lang, Properties.Resources.AIRUS), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -602,10 +588,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 bwUpdater.RunWorkerAsync();
             }
             else
-            {
-                // MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Language.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         private void tsShow_Click(object sender, EventArgs e)
@@ -624,11 +607,8 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bOptimizePC_Click(object sender, EventArgs e)
         {
-            //string addMess = autoVideo ? Environment.NewLine + Environment.NewLine + "Также, после применения настроек графики в игре требуется заново ввести логин/пароль!" : "";
             string addMess = autoVideo ? Environment.NewLine + Environment.NewLine + Language.DynamicLanguage("reEnterPass", lang) : "";
 
-            /*if (DialogResult.Yes == MessageBox.Show(this, "ВНИМАНИЕ!!!" + Environment.NewLine + "При оптимизации ПК на время игры будут завершены некоторые пользовательские приложения." + addMess +
-                Environment.NewLine + Environment.NewLine + "Вы хотите продолжить?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))*/
             if (DialogResult.Yes == MessageBox.Show(this, Language.DynamicLanguage("optimize", lang), Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Information))
             {
                 try
@@ -636,11 +616,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     autoOptimizePC = true;
                     GetVipProcesses().Wait();
 
-                    playGame = true;
+                    playGame = false;
                     OptimizePC().Wait();
-
-                    //Hide();
-                    WindowState = FormWindowState.Minimized;
                 }
                 catch (Exception ex) { Debug.Save("fIndex", "bOptimizePC_Click()", ex.Message); }
             }
@@ -721,12 +698,12 @@ namespace _Hell_PRO_Tanki_Launcher
         }
 
 
-        // Инфа тут:
-        //          http://www.cyberforum.ru/windows-forms/thread740428.html
-
-        /* Запрос тут:
-         * https://www.google.ru/search?q=%D0%BA%D0%B0%D0%BA+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%BE+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C+linklabel+c%23&oq=%D0%BA%D0%B0%D0%BA+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%BE+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C+linklabel+c%23&aqs=chrome..69i57.11575j0j7&sourceid=chrome&espv=2&es_sm=93&ie=UTF-8
-         * */
+        /// <summary>
+        ///     http://www.cyberforum.ru/windows-forms/thread740428.html
+        ///     https://www.google.ru/search?q=%D0%BA%D0%B0%D0%BA+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%BE+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C+linklabel+c%23&oq=%D0%BA%D0%B0%D0%BA+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%BE+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C+linklabel+c%23&aqs=chrome..69i57.11575j0j7&sourceid=chrome&espv=2&es_sm=93&ie=UTF-8
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void label_Click(object sender, EventArgs e)
         {
             try
@@ -761,7 +738,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 this.Controls.Add(label);
                 label.Text = Language.DynamicLanguage("llVideoAll", lang);*/
 
-                llVideoAll.Links[0].LinkData = "http://goo.gl/LXaU7T";
+                llVideoAll.Links[0].LinkData = Properties.Resources.LinkVideoAll;
                 llVideoAll.Text = Language.DynamicLanguage("llVideoAllVideo", lang);
 
                 bShowVideo.Enabled = true;
@@ -1439,14 +1416,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     if (!File.Exists(@"..\s.bat")) { File.WriteAllBytes(@"..\s.bat", Properties.Resources.start); }
                     Process.Start(@"..\s.bat");
+
+                    CheckClosingGame(); // Запускаем утилиту проверки запущен ли клиент игры
                 }
                 else
                     MessageBox.Show(this, Language.DynamicLanguage("noTanks", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            //Task.Factory.StartNew(() => CheckClosingGame()); // Запускаем утилиту проверки запущен ли клиент игры
-            CheckClosingGame(); // Запускаем утилиту проверки запущен ли клиент игры
-            
         }
 
         private async Task SetInterfaceLanguage()
