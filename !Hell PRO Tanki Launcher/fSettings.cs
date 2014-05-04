@@ -108,22 +108,29 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (doc.Root.Element("settings") != null)
                 if (doc.Root.Element("settings").Attribute(attr) != null)
-                {
                     switch (doc.Root.Element("settings").Attribute(attr).Value)
                     {
                         case "Checked": return CheckState.Checked;
                         case "Indeterminate": return CheckState.Indeterminate;
                         default: return CheckState.Unchecked;
                     }
-                }
             return CheckState.Unchecked;
         }
 
-        private bool ReadSettingsStatus(XDocument doc, string attr)
+        private int ReadIntStatus(XDocument doc, string el, string attr)
         {
-            if (doc.Root.Element("settings") != null)
-                if (doc.Root.Element("settings").Attribute(attr) != null)
-                    if (doc.Root.Element("settings").Attribute(attr).Value == "True")
+            if (doc.Root.Element(el) != null)
+                if (doc.Root.Element(el).Attribute(attr) != null)
+                    return Convert.ToInt16(doc.Root.Element(el).Attribute(attr).Value);
+
+            return 0;
+        }
+
+        private bool ReadSettingsStatus(XDocument doc, string root, string attr)
+        {
+            if (doc.Root.Element(root) != null)
+                if (doc.Root.Element(root).Attribute(attr) != null)
+                    if (doc.Root.Element(root).Attribute(attr).Value == "True")
                         return true;
             return false;
         }
@@ -274,12 +281,19 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private XDocument AddAttributeSettings(XDocument doc, string attr, string value)
+        private XDocument AddAttributeSettings(XDocument doc, string root, string attr, string value)
         {
-            if (doc.Root.Element("settings").Attribute(attr) != null)
-                doc.Root.Element("settings").Attribute(attr).SetValue(value);
+            if (doc.Root.Element(root) != null)
+            {
+                if (doc.Root.Element(root).Attribute(attr) != null)
+                    doc.Root.Element(root).Attribute(attr).SetValue(value);
+                else
+                    doc.Root.Element(root).Add(new XAttribute(attr, value));
+            }
             else
-                doc.Root.Element("settings").Add(new XAttribute(attr, value));
+            {
+                doc.Root.Add(new XElement(root, new XAttribute(attr, value)));
+            }
 
             return doc;
         }
@@ -295,27 +309,14 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (doc.Root.Element("info") != null) { doc.Root.Element("info").Attribute("video").SetValue(cbVideo.Checked.ToString()); }
                 else { XElement el = new XElement("info", new XAttribute("video", cbVideo.Checked.ToString())); doc.Root.Add(el); }
 
-                if (doc.Root.Element("settings") != null)
-                {
-                    AddAttributeSettings(doc, "kill", cbKillProcesses.Checked.ToString());
-                    AddAttributeSettings(doc, "force", cbForceClose.Checked.ToString());
-                    AddAttributeSettings(doc, "aero", cbAero.Checked.ToString());
-                    AddAttributeSettings(doc, "video", cbVideoQuality.CheckState.ToString());
-                    AddAttributeSettings(doc, "weak", cbVideoQualityWeak.Checked.ToString());
-                    //AddAttributeSettings(doc, "balance", cbBalanceCPU.Checked.ToString());
-                }
-                else
-                {
-                    XElement el = new XElement("settings",
-                        new XAttribute("kill", cbKillProcesses.Checked.ToString()),
-                        new XAttribute("force", cbForceClose.Checked.ToString()),
-                        new XAttribute("aero", cbAero.Checked.ToString()),
-                        new XAttribute("video", cbVideoQuality.CheckState.ToString()),
-                        new XAttribute("weak", cbVideoQualityWeak.Checked.ToString())
-                        //new XAttribute("balance", cbBalanceCPU.Checked.ToString())
-                        );
-                    doc.Root.Add(el);
-                }
+                AddAttributeSettings(doc, "settings", "kill", cbKillProcesses.Checked.ToString());
+                AddAttributeSettings(doc, "settings", "force", cbForceClose.Checked.ToString());
+                AddAttributeSettings(doc, "settings", "aero", cbAero.Checked.ToString());
+                AddAttributeSettings(doc, "settings", "video", cbVideoQuality.CheckState.ToString());
+                AddAttributeSettings(doc, "settings", "weak", cbVideoQualityWeak.Checked.ToString());
+                //AddAttributeSettings(doc, "balance", cbBalanceCPU.Checked.ToString());
+
+                AddAttributeSettings(doc, "launcher", "minimize", cbMinimize.SelectedIndex.ToString());
 
                 if (lvProcessesUser.CheckedItems.Count > 0)
                 {
@@ -340,7 +341,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 //Делаем резервную копию настроек
                 File.Copy("settings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml", true);
             }
-            catch (Exception ex) { Debug.Save("bwSave_DoWork()", ex.Message); }
+            catch (Exception ex) { Debug.Save("SaveSettings()", ex.Message); }
 
             // Сохраняем приоритет в реестр
             try
@@ -441,12 +442,14 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 cbVideo.Checked = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false;
 
-                cbKillProcesses.Checked = ReadSettingsStatus(doc, "kill");
-                cbForceClose.Checked = ReadSettingsStatus(doc, "force");
-                cbAero.Checked = ReadSettingsStatus(doc, "aero");
+                cbKillProcesses.Checked = ReadSettingsStatus(doc,"settings", "kill");
+                cbForceClose.Checked = ReadSettingsStatus(doc, "settings", "force");
+                cbAero.Checked = ReadSettingsStatus(doc, "settings", "aero");
                 cbVideoQuality.CheckState = ReadCheckState(doc, "video");
-                cbVideoQualityWeak.Checked = ReadSettingsStatus(doc, "weak");
+                cbVideoQualityWeak.Checked = ReadSettingsStatus(doc, "settings", "weak");
                 //cbBalanceCPU.Checked = ReadSettingsStatus(doc, "balance");
+
+                cbMinimize.SelectedIndex = ReadIntStatus(doc, "launcher", "minimize");
 
                 userProcesses.Clear();
                 if (doc.Root.Element("processes") != null) foreach (XElement el in doc.Root.Element("processes").Elements("process")) { userProcesses.Add(el.Attribute("name").Value); }

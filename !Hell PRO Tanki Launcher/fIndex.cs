@@ -487,7 +487,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 Process.Start(pathToTanks + "WoTLauncher.exe");
 
                 //Hide();
-                WindowState = FormWindowState.Minimized;
+                //WindowState = FormWindowState.Minimized;
+                Task.Factory.StartNew(() => State());
             }
             catch (Exception ex) { Debug.Save("fIndex", "bLauncher_Click()", ex.Message); }
         }
@@ -502,8 +503,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 playGame = true;
                 OptimizePC().Wait();
 
-                //Hide();
-                WindowState = FormWindowState.Minimized;
+                //WindowState = FormWindowState.Minimized;
+                Task.Factory.StartNew(() => State());
             }
             catch (Exception ex) { Debug.Save("fIndex", "bPlay_Click()", ex.Message); }
         }
@@ -1488,6 +1489,31 @@ namespace _Hell_PRO_Tanki_Launcher
             catch (Exception ex)
             {
                 Debug.Save("fIndex","UncheckAllCheckBoxes()", ex.Message);
+            }
+        }
+
+        /// <summary>
+        ///     0   Не закрывать лаунчер
+        ///     1   Сворачивать в трей при запуске игры
+        ///     2   Минимизировать лаунчер на панель задач
+        ///     3   Закрывать при запуске игры
+        /// </summary>
+        /// <param name="select"></param>
+        private void State()
+        {
+            XDocument docState = XDocument.Load("settings.xml");
+            string select = "0";
+
+            if (docState.Root.Element("launcher") != null)
+                if (docState.Root.Element("launcher").Attribute("minimize") != null)
+                    select = docState.Root.Element("launcher").Attribute("minimize").Value;
+
+            switch (select)
+            {
+                case "1": Hide(); break;
+                case "2": WindowState = FormWindowState.Minimized; break;
+                case "3": Close(); break;
+                default: break;
             }
         }
     }
