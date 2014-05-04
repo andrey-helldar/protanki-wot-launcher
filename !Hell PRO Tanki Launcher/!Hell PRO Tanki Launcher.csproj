@@ -115,6 +115,12 @@
     <Compile Include="fNewVersion.Designer.cs">
       <DependentUpon>fNewVersion.cs</DependentUpon>
     </Compile>
+    <Compile Include="fPing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fPing.Designer.cs">
+      <DependentUpon>fPing.cs</DependentUpon>
+    </Compile>
     <Compile Include="fSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fNewVersion.resx">
       <DependentUpon>fNewVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fPing.resx">
+      <DependentUpon>fPing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fSettings.resx">
       <DependentUpon>fSettings.cs</DependentUpon>
