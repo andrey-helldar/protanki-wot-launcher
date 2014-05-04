@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.IO;
 using System.Threading;
@@ -1109,7 +1110,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 Debug.Save("fIndex", "public fIndex()", "Применение заголовков и иконок приложения", ex.Message);
             }
 
-            if (!bwVideo.IsBusy) { bwVideo.RunWorkerAsync(); } // Грузим видео с ютуба
+
+            // Проверяем есть ли подключение к Инету
+            IPStatus status = IPStatus.Unknown;
+            e
+
+            /*if (!bwVideo.IsBusy) { bwVideo.RunWorkerAsync(); } // Грузим видео с ютуба
             if (!bwNews.IsBusy) { bwNews.RunWorkerAsync(); } // Грузим новости с WG
 
             pNews.SetBounds(13, 109, 620, 290); // Так как панель у нас убрана с видимой части, устанавливаем ее расположение динамически
@@ -1125,7 +1131,7 @@ namespace _Hell_PRO_Tanki_Launcher
             // Главное окно
             Language.toolTip(bOptimizePC);
 
-            GetVipProcesses();
+            GetVipProcesses();*/
 
             setBackground();
             moveForm();
@@ -1441,6 +1447,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+
                 foreach (Control c in control.Controls)
                 {
                     SetLanguageControl(c);
