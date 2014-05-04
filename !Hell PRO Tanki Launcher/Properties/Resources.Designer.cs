@@ -303,6 +303,24 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 180.
+        /// </summary>
+        internal static string PingBad {
+            get {
+                return ResourceManager.GetString("PingBad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 100.
+        /// </summary>
+        internal static string PingGood {
+            get {
+                return ResourceManager.GetString("PingGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://ai-rus.com/wot/link/.
         /// </summary>
         internal static string PostLink {

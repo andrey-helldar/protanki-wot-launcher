@@ -220,6 +220,12 @@
   <data name="LinkVideoAll" xml:space="preserve">
     <value>http://goo.gl/LXaU7T</value>
   </data>
+  <data name="PingBad" xml:space="preserve">
+    <value>180</value>
+  </data>
+  <data name="PingGood" xml:space="preserve">
+    <value>100</value>
+  </data>
   <data name="PostLink" xml:space="preserve">
     <value>http://ai-rus.com/wot/link/</value>
   </data>

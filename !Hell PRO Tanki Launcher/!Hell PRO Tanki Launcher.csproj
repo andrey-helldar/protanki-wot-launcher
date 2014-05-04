@@ -96,6 +96,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Carousel\Page.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Carousel\PageCollection.cs" />
+    <Compile Include="Controls\Carousel\SlideDirection.cs" />
+    <Compile Include="Controls\Carousel\WPCarousel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Panels\WPDraggablePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Panels\WPFlowLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Panels\WPPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WPPingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Configuration\ConfigFile.cs" />
+    <Compile Include="Core\Configuration\IConfiguration.cs" />
+    <Compile Include="Core\Configuration\XmlConfiguration.cs" />
+    <Compile Include="Core\Ping\PingManager.cs" />
+    <Compile Include="Core\Ping\PingReceivedEventArgs.cs" />
+    <Compile Include="Core\Ping\PingStatus.cs" />
+    <Compile Include="Core\Server.cs" />
     <Compile Include="debug.class.cs" />
     <Compile Include="fIndex.cs">
       <SubType>Form</SubType>

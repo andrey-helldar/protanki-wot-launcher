@@ -62,6 +62,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fPing";
+            this.Load += new System.EventHandler(this.fPing_Load);
             this.ResumeLayout(false);
 
         }

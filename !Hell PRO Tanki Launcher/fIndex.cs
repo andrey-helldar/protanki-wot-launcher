@@ -1505,7 +1505,7 @@ namespace _Hell_PRO_Tanki_Launcher
             while (fPing.Visible)
             {
                 fPing.SetBounds(
-                    this.Location.X + this.Width + 10,
+                    this.Location.X + this.Width + 5,
                     this.Location.Y,
                     230,
                     this.Height

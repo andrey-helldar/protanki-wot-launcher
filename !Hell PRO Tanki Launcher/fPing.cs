@@ -21,5 +21,10 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             Close();
         }
+
+        private void fPing_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
