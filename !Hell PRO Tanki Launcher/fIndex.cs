@@ -1102,8 +1102,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 this.Text = Application.ProductName + " v" + modpackVersion.ToString();
                 this.Icon = Properties.Resources.Icon;
 
-                //llTitle.Text = Application.ProductName + " (" + (modpackType == "full" ? "Расширенная версия" : "Базовая версия") + ")";
-                llLauncherVersion.Text = Application.ProductVersion;
+            llLauncherVersion.Text = Application.ProductVersion;
+            llVersion.Text = modpackVersion.ToString();
             }
             catch (Exception ex)
             {
@@ -1111,16 +1111,35 @@ namespace _Hell_PRO_Tanki_Launcher
             }
 
 
+            setBackground();
+            moveForm();
+            SetInterfaceLanguage();
+
+            LoadForm();
+        }
+
+        private async Task LoadForm()
+        {
             // Проверяем есть ли подключение к Инету
             IPStatus status = IPStatus.Unknown;
-            e
+            while (status == IPStatus.Unknown)
+            {
+                try
+                {
+                    status = new Ping().Send("google.com").Status;
+                }
+                catch (Exception)
+                {
+                    llLoadingVideoData.Text = Language.DynamicLanguage("checkInternet", lang);
+                    status = IPStatus.Unknown;
+                }
+                await Task.Delay(1000);
+            }
 
-            /*if (!bwVideo.IsBusy) { bwVideo.RunWorkerAsync(); } // Грузим видео с ютуба
+            if (!bwVideo.IsBusy) { bwVideo.RunWorkerAsync(); } // Грузим видео с ютуба
             if (!bwNews.IsBusy) { bwNews.RunWorkerAsync(); } // Грузим новости с WG
 
             pNews.SetBounds(13, 109, 620, 290); // Так как панель у нас убрана с видимой части, устанавливаем ее расположение динамически
-
-            llVersion.Text = modpackVersion.ToString();
 
             tanksVersion = GetTanksVersion().Result;
 
@@ -1131,7 +1150,7 @@ namespace _Hell_PRO_Tanki_Launcher
             // Главное окно
             Language.toolTip(bOptimizePC);
 
-            GetVipProcesses();*/
+            GetVipProcesses();
 
             setBackground();
             moveForm();

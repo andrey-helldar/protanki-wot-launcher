@@ -167,6 +167,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 case "tsCheckUpdates": return lang == "ru" ? "Проверить обновления" : "Check for updates";
                 case "tsSettings": return lang == "ru" ? "Настройки" : "Settings";
                 case "tsExit": return lang == "ru" ? "Выход" : "Quit";
+                case "checkInternet": return lang == "ru" ? "Отсутствует соединение с сетью Интернет..." : "Отсутствует соединение с сетью Интернет...";
 
                 /* ************************
                  *         fWarning

@@ -32,14 +32,6 @@ namespace _Hell_MD5files
 
         private async Task GetFiles()
         {
-            if (File.Exists(@"files\Multipack Launcher.exe") &&
-                File.Exists(@"files\launcher.exe"))
-            {
-                File.Delete(@"files\launcher.exe");
-            }
-
-            if (File.Exists(@"files\Multipack Launcher.exe")) { File.Move(@"files\Multipack Launcher.exe", @"files\launcher.exe"); }
-
             lvMD5.Items.Clear();
             List<string> settings = new List<string>();
 
@@ -86,9 +78,9 @@ namespace _Hell_MD5files
             XDocument settings = new XDocument(new XElement("ai.rus", null));
 
             foreach(ListViewItem file in lvMD5.Items){
-                string name = file.Text.Remove(file.Text.Length - 4);
+                string name = file.Text.Remove(file.Text.Length - 4) != "Multipack Launcher" ? file.Text.Remove(file.Text.Length - 4) : "launcher";
 
-                doc.Root.Add(new XElement(name,
+                doc.Root.Add(new XElement(name.Replace(" ", "."),
                     file.SubItems[1].Text,
                     new XAttribute("ext", file.SubItems[3].Text),
                     new XAttribute("checksum", file.SubItems[4].Text),
