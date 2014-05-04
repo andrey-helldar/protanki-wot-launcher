@@ -134,6 +134,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendPost.Class.cs" />
     <Compile Include="update_launcher.class.cs" />
+    <Compile Include="UserInterface\SingleApplication.cs" />
     <Compile Include="YoutubeVideo.Class.cs" />
     <EmbeddedResource Include="fIndex.resx">
       <DependentUpon>fIndex.cs</DependentUpon>
@@ -235,6 +236,7 @@
       <Name>Processes Library</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
