@@ -230,6 +230,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://goo.gl/Wlrh9F.
+        /// </summary>
+        internal static string LinkNewsAll {
+            get {
+                return ResourceManager.GetString("LinkNewsAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://goo.gl/gr6pFl.
         /// </summary>
         internal static string LinkNewVersion {
@@ -320,6 +329,24 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("restart", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://worldoftanks.com/en/rss/news/.
+        /// </summary>
+        internal static string RssWotEn {
+            get {
+                return ResourceManager.GetString("RssWotEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://worldoftanks.ru/ru/rss/news/.
+        /// </summary>
+        internal static string RssWotRU {
+            get {
+                return ResourceManager.GetString("RssWotRU", resourceCulture);
             }
         }
         

@@ -775,7 +775,7 @@ namespace _Hell_PRO_Tanki_Launcher
             try
             {
                 int i = -1;
-                XDocument doc = XDocument.Load(@"https://gdata.youtube.com/feeds/api/users/" + Debug.Youtube + "/uploads");
+                XDocument doc = XDocument.Load(String.Format(Properties.Resources.RssYoutube, Debug.Youtube));
                 XNamespace ns = "http://www.w3.org/2005/Atom";
 
                 // Загружаем новости на форму
@@ -911,7 +911,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                         llBlockCaption.Text = Language.DynamicLanguage("video", lang);
 
-                        llVideoAll.Links[0].LinkData = "http://goo.gl/LXaU7T";
+                        llVideoAll.Links[0].LinkData = Properties.Resources.LinkVideoAll;
                         llVideoAll.Text = Language.DynamicLanguage("llVideoAllVideo", lang);
 
                         pNews.Visible = false;
@@ -931,7 +931,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                         llBlockCaption.Text = Language.DynamicLanguage("news", lang);
 
-                        llVideoAll.Links[0].LinkData = "http://goo.gl/Wlrh9F";
+                        llVideoAll.Links[0].LinkData = Properties.Resources.LinkNewsAll;
                         llVideoAll.Text = Language.DynamicLanguage("llVideoAllNews", lang);
 
                         pVideo.Visible = false;
@@ -961,7 +961,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 int i = -1;
 
-                XDocument doc = XDocument.Load(lang == "ru" ? @"http://worldoftanks.ru/ru/rss/news/" : @"http://worldoftanks.com/en/rss/news/");
+                XDocument doc = XDocument.Load(lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
 
                 newsTitle.Clear();
                 newsLink.Clear();

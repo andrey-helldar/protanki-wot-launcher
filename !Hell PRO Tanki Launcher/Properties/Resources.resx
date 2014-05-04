@@ -208,11 +208,20 @@
   <data name="Youtube" xml:space="preserve">
     <value>PROTankiWoT</value>
   </data>
+  <data name="LinkNewsAll" xml:space="preserve">
+    <value>http://goo.gl/Wlrh9F</value>
+  </data>
   <data name="LinkVideoAll" xml:space="preserve">
     <value>http://goo.gl/LXaU7T</value>
   </data>
   <data name="PostVersion" xml:space="preserve">
     <value>http://ai-rus.com/wot/version/</value>
+  </data>
+  <data name="RssWotEn" xml:space="preserve">
+    <value>http://worldoftanks.com/en/rss/news/</value>
+  </data>
+  <data name="RssWotRU" xml:space="preserve">
+    <value>http://worldoftanks.ru/ru/rss/news/</value>
   </data>
   <data name="RssYoutube" xml:space="preserve">
     <value>https://gdata.youtube.com/feeds/api/users/{0}/uploads</value>
