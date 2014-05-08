@@ -169,9 +169,6 @@
   <data name="ProcessesLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProcessesLibrary.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\splash.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="res_mods" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\res_mods.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -244,26 +241,11 @@
   <data name="RssYoutube" xml:space="preserve">
     <value>https://gdata.youtube.com/feeds/api/users/{0}/uploads</value>
   </data>
-  <data name="DefaultPingText" xml:space="preserve">
+  <data name="PingText" xml:space="preserve">
     <value>---</value>
   </data>
-  <data name="DefaultServerName" xml:space="preserve">
-    <value>SERVER</value>
-  </data>
-  <data name="Pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PauseHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PauseHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Run" xml:space="preserve">
-    <value>Запустить пингование сервера '{0}'</value>
-  </data>
-  <data name="Start1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="StartHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\StartHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Splash.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StatusBad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StatusBad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -276,8 +258,5 @@
   </data>
   <data name="StatusMedium" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StatusMedium.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Stop" xml:space="preserve">
-    <value>Остановить пингование сервера '{0}'</value>
   </data>
 </root>

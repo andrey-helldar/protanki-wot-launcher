@@ -1138,7 +1138,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             SetInterfaceLanguage();
 
-            Ping();
+            //Ping();
         }
 
         private async Task GetVipProcesses()

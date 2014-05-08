@@ -149,24 +149,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ---.
-        /// </summary>
-        internal static string DefaultPingText {
-            get {
-                return ResourceManager.GetString("DefaultPingText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SERVER.
-        /// </summary>
-        internal static string DefaultServerName {
-            get {
-                return ResourceManager.GetString("DefaultServerName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;engine_config.xml&gt;
         ///  &lt;personality&gt;	game	&lt;/personality&gt;
         ///  &lt;preferences&gt;preferences.xml&lt;/preferences&gt;
@@ -321,26 +303,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Pause {
-            get {
-                object obj = ResourceManager.GetObject("Pause", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PauseHover {
-            get {
-                object obj = ResourceManager.GetObject("PauseHover", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 180.
         /// </summary>
         internal static string PingBad {
@@ -355,6 +317,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         internal static string PingGood {
             get {
                 return ResourceManager.GetString("PingGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ---.
+        /// </summary>
+        internal static string PingText {
+            get {
+                return ResourceManager.GetString("PingText", resourceCulture);
             }
         }
         
@@ -452,15 +423,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Запустить пингование сервера &apos;{0}&apos;.
-        /// </summary>
-        internal static string Run {
-            get {
-                return ResourceManager.GetString("Run", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;pro&gt;
         ///	&lt;info video=&quot;True&quot; /&gt;
@@ -507,26 +469,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Start1 {
-            get {
-                object obj = ResourceManager.GetObject("Start1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StartHover {
-            get {
-                object obj = ResourceManager.GetObject("StartHover", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap StatusBad {
             get {
                 object obj = ResourceManager.GetObject("StatusBad", resourceCulture);
@@ -561,15 +503,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("StatusMedium", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Остановить пингование сервера &apos;{0}&apos;.
-        /// </summary>
-        internal static string Stop {
-            get {
-                return ResourceManager.GetString("Stop", resourceCulture);
             }
         }
         

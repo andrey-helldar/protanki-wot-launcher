@@ -34,9 +34,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.Splash;
-            this.ClientSize = new System.Drawing.Size(500, 375);
+            this.ClientSize = new System.Drawing.Size(300, 300);
+            this.ForeColor = System.Drawing.Color.Transparent;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "fLoader";
             this.ShowIcon = false;

@@ -185,20 +185,16 @@
     <None Include="Resources\sochi.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Splash.jpg" />
     <None Include="Resources\StatusMedium.png" />
     <None Include="Resources\StatusGood.png" />
     <None Include="Resources\StatusDisabled.png" />
     <None Include="Resources\StatusBad.png" />
-    <None Include="Resources\StartHover.png" />
-    <None Include="Resources\Start.png" />
-    <None Include="Resources\PauseHover.png" />
-    <None Include="Resources\Pause.png" />
     <None Include="Resources\lamp_on.png" />
     <None Include="Resources\lamp_off.png" />
     <None Include="Resources\restart.exe" />
     <None Include="Resources\ProcessesLibrary.dll" />
     <None Include="Resources\LanguagePack.dll" />
-    <None Include="Resources\splash.jpg" />
     <None Include="Resources\fWarning.jpg" />
     <None Include="Resources\settings.xml" />
     <None Include="Resources\start.bat" />
