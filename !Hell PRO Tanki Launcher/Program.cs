@@ -24,8 +24,6 @@ namespace _Hell_PRO_Tanki_Launcher
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Запускаем прелоадер
-            spla
-
             using (var fLoader = new fLoader())
             {
                 fLoader.Show();

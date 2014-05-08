@@ -81,6 +81,7 @@
     <Reference Include="Ionic.Zip">
       <HintPath>.\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\!!other_dll\Newtonsoft.Json.dll</HintPath>
     </Reference>
