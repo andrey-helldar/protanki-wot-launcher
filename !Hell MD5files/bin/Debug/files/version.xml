@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ai.rus>
-  <FormatXML ext="exe" checksum="3910F6A4FCB4BD72B96441362ADD7960" important="False" user="false">1.0.0.0</FormatXML>
+  <FormatXML ext="exe" checksum="E5DE3A146A2FE948FD11C3D9698BE19A" important="False" user="false">1.0.0.1</FormatXML>
   <Ionic.Zip ext="dll" checksum="6DED8FCBF5F1D9E422B327CA51625E24" important="True" user="true">1.9.1.8</Ionic.Zip>
-  <launcher ext="exe" checksum="86DE7424ADD40F2322E99F760977B9DF" important="False" user="false">1.0.13.212</launcher>
+  <launcher ext="exe" checksum="7CCB1B13C75D0CCD7C97B9795DB21DAC" important="False" user="false">1.0.14.215</launcher>
   <Newtonsoft.Json ext="dll" checksum="5619E5D4B93E544C7B9174C062F6C40B" important="False" user="true">6.0.1.17001</Newtonsoft.Json>
   <ProcessesLibrary ext="dll" checksum="1561CC26FE335AE5CCEE2B451C465DAA" important="True" user="true">1.0.6.29</ProcessesLibrary>
   <restart ext="exe" checksum="F55F475FB2FB927A49E34438525FAFBB" important="True" user="true">1.0.2.12</restart>

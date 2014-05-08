@@ -48,7 +48,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private void fNewVersion_Load(object sender, EventArgs e)
         {
             string pathINI = Directory.GetCurrentDirectory() + @"\config.ini";
-            lang = new IniFile(pathINI).IniReadValue("new", "languages");
+            lang = new IniFile(pathINI).IniReadValue("protanki", "language");
             lang = lang != "" ? lang : "en";
 
             foreach (Control control in this.Controls)

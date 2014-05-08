@@ -293,6 +293,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 0.9.0.
+        /// </summary>
+        internal static string ModPackVersion {
+            get {
+                return ResourceManager.GetString("ModPackVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] Newtonsoft_Json {

@@ -110,10 +110,10 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     try
                     {
-                        modpackDate = new IniFile(pathINI).IniReadValue("new", "date");
-                        modpackType = new IniFile(pathINI).IniReadValue("new", "update_file").Replace("update", "").Replace(".xml", "").ToLower();
-                        modpackVersion = new Version(new IniFile(pathINI).IniReadValue("new", "version"));
-                        lang = new IniFile(pathINI).IniReadValue("new", "languages");
+                        modpackDate = new IniFile(pathINI).IniReadValue("protanki", "date");
+                        modpackType = new IniFile(pathINI).IniReadValue("protanki", "type").ToLower();
+                        modpackVersion = new Version(Properties.Resources.ModPackVersion + "." + new IniFile(pathINI).IniReadValue("protanki", "version"));
+                        lang = new IniFile(pathINI).IniReadValue("protanki", "language");
                     }
                     catch (Exception ex)
                     {

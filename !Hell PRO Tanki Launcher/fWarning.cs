@@ -70,9 +70,9 @@ namespace _Hell_PRO_Tanki_Launcher
                     try
                     {
                         string pathINI = Directory.GetCurrentDirectory() + @"\config.ini";
-                        nvc.Add("modpackVersion", new IniFile(pathINI).IniReadValue("new", "version"));
-                        nvc.Add("modpackType", (new IniFile(pathINI).IniReadValue("new", "update_file")).Replace("update", "").Replace(".xml", ""));
-                        nvc.Add("modpackLang", new IniFile(pathINI).IniReadValue("new", "languages"));
+                        nvc.Add("modpackVersion", Properties.Resources.ModPackVersion + "." + new IniFile(pathINI).IniReadValue("protanki", "version"));
+                        nvc.Add("modpackType", (new IniFile(pathINI).IniReadValue("protanki", "type")));
+                        nvc.Add("modpackLang", new IniFile(pathINI).IniReadValue("protanki", "languages"));
                     }
                     finally { }
                 }
@@ -332,7 +332,7 @@ namespace _Hell_PRO_Tanki_Launcher
         private void fWarning_Load(object sender, EventArgs e)
         {
             string pathINI = Directory.GetCurrentDirectory() + @"\config.ini";
-            lang = new IniFile(pathINI).IniReadValue("new", "languages");
+            lang = new IniFile(pathINI).IniReadValue("protanki", "language");
             lang = lang != "" ? lang : "en";
 
             SetInterfaceLanguage();

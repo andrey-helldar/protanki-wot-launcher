@@ -6,3 +6,11 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Release\FormatXML.Pr
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Release\FormatXML.csproj.GenerateResource.Cache
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Release\FormatXML.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Release\FormatXML.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\bin\Release\FormatXML.exe.config
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\bin\Release\FormatXML.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\bin\Release\FormatXML.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Release\FormatXML.fFormatXML.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Release\FormatXML.Properties.Resources.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Release\FormatXML.csproj.GenerateResource.Cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Release\FormatXML.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Release\FormatXML.pdb

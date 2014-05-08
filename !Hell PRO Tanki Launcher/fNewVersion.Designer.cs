@@ -48,7 +48,7 @@
             this.bDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bDownload.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bDownload.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bDownload.Location = new System.Drawing.Point(144, 353);
+            this.bDownload.Location = new System.Drawing.Point(144, 344);
             this.bDownload.Margin = new System.Windows.Forms.Padding(0);
             this.bDownload.Name = "bDownload";
             this.bDownload.Size = new System.Drawing.Size(200, 50);
@@ -67,7 +67,7 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(368, 353);
+            this.bCancel.Location = new System.Drawing.Point(368, 344);
             this.bCancel.Margin = new System.Windows.Forms.Padding(0);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(200, 50);
@@ -81,7 +81,7 @@
             this.cbNotification.AutoSize = true;
             this.cbNotification.BackColor = System.Drawing.Color.Transparent;
             this.cbNotification.ForeColor = System.Drawing.Color.White;
-            this.cbNotification.Location = new System.Drawing.Point(368, 330);
+            this.cbNotification.Location = new System.Drawing.Point(368, 321);
             this.cbNotification.Name = "cbNotification";
             this.cbNotification.Size = new System.Drawing.Size(212, 17);
             this.cbNotification.TabIndex = 2;
@@ -119,6 +119,7 @@
             this.llCaption.Name = "llCaption";
             this.llCaption.Size = new System.Drawing.Size(151, 24);
             this.llCaption.TabIndex = 0;
+            this.llCaption.TabStop = true;
             this.llCaption.Text = "Загрузка данных...";
             this.llCaption.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             // 
@@ -146,6 +147,7 @@
             this.llContent.Name = "llContent";
             this.llContent.Size = new System.Drawing.Size(120, 19);
             this.llContent.TabIndex = 0;
+            this.llContent.TabStop = true;
             this.llContent.Text = "Загрузка данных...";
             this.llContent.VisitedLinkColor = System.Drawing.Color.WhiteSmoke;
             // 

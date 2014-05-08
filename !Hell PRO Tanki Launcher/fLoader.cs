@@ -13,8 +13,6 @@ namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fLoader : Form
     {
-        int start = 0;
-
         public fLoader()
         {
             InitializeComponent();

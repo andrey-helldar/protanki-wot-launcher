@@ -7,3 +7,12 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\bin\Debug\FormatXML.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\bin\Debug\FormatXML.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Debug\FormatXML.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\FormatXML\obj\Debug\FormatXML.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\bin\Debug\FormatXML.exe.config
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\bin\Debug\FormatXML.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\bin\Debug\FormatXML.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Debug\FormatXML.csprojResolveAssemblyReference.cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Debug\FormatXML.fFormatXML.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Debug\FormatXML.Properties.Resources.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Debug\FormatXML.csproj.GenerateResource.Cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Debug\FormatXML.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Debug\FormatXML.pdb

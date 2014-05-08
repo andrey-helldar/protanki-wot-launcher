@@ -31,7 +31,11 @@ namespace FormatXML
             XDocument doc = new XDocument(
                 new XElement("pro",
                     new XElement("version", tbVersion.Text.Trim()),
-                    new XElement("tanks", "0.0.0.0"),
+
+                    new XElement("extended",
+                        new XElement("message", tbFullDesc.Text.Replace(Environment.NewLine, ":;").Trim()),
+                        new XElement("download", tbFullLink.Text.Trim())
+                        ),
 
                     new XElement("full",
                         new XElement("message", tbFullDesc.Text.Replace(Environment.NewLine, ":;").Trim()),

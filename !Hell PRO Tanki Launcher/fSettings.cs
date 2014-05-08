@@ -412,7 +412,7 @@ namespace _Hell_PRO_Tanki_Launcher
             if (!EnableAero()) cbAero.Checked = false;
 
             string pathINI = Directory.GetCurrentDirectory() + @"\config.ini";
-            lang = new IniFile(pathINI).IniReadValue("new", "languages");
+            lang = new IniFile(pathINI).IniReadValue("protanki", "language");
             lang = lang != "" ? lang : "en";
 
             loadLang();
@@ -423,7 +423,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 commonTest = doc.Root.Element("common.test") != null;
 
-                try { version = new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("new", "version"); }
+                try { version = Properties.Resources.ModPackVersion + "." + new IniFile(Directory.GetCurrentDirectory() + @"\config.ini").IniReadValue("protanki", "version"); }
                 catch (Exception) { version = doc.Root.Element("version") != null ? doc.Root.Element("version").Value : "0.0.0.0"; }
 
                 type = doc.Root.Element("type") != null ? doc.Root.Element("type").Value : "full";
