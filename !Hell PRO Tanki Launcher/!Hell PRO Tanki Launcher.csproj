@@ -96,42 +96,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Buttons\WPButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Buttons\WPLinkButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Buttons\WPRadioButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Carousel\Page.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Carousel\PageCollection.cs" />
-    <Compile Include="Controls\Carousel\SlideDirection.cs" />
-    <Compile Include="Controls\Carousel\WPCarousel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Panels\WPDraggablePanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Panels\WPFlowLayoutPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Panels\WPPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\WPPingControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Core\Configuration\ConfigFile.cs" />
-    <Compile Include="Core\Configuration\IConfiguration.cs" />
-    <Compile Include="Core\Configuration\XmlConfiguration.cs" />
-    <Compile Include="Core\Ping\PingManager.cs" />
-    <Compile Include="Core\Ping\PingReceivedEventArgs.cs" />
-    <Compile Include="Core\Ping\PingStatus.cs" />
-    <Compile Include="Core\Server.cs" />
     <Compile Include="debug.class.cs" />
     <Compile Include="fIndex.cs">
       <SubType>Form</SubType>
@@ -177,7 +141,6 @@
     <Compile Include="SendPost.Class.cs" />
     <Compile Include="update_launcher.class.cs" />
     <Compile Include="UserInterface\SingleApplication.cs" />
-    <Compile Include="UserInterface\WindowHelper.cs" />
     <Compile Include="YoutubeVideo.Class.cs" />
     <EmbeddedResource Include="fIndex.resx">
       <DependentUpon>fIndex.cs</DependentUpon>
@@ -222,6 +185,14 @@
     <None Include="Resources\sochi.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\StatusMedium.png" />
+    <None Include="Resources\StatusGood.png" />
+    <None Include="Resources\StatusDisabled.png" />
+    <None Include="Resources\StatusBad.png" />
+    <None Include="Resources\StartHover.png" />
+    <None Include="Resources\Start.png" />
+    <None Include="Resources\PauseHover.png" />
+    <None Include="Resources\Pause.png" />
     <None Include="Resources\lamp_on.png" />
     <None Include="Resources\lamp_off.png" />
     <None Include="Resources\restart.exe" />
