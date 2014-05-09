@@ -140,6 +140,26 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Close {
+            get {
+                object obj = ResourceManager.GetObject("Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CloseHover {
+            get {
+                object obj = ResourceManager.GetObject("CloseHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6.
         /// </summary>
         internal static string Code {
@@ -280,6 +300,26 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         internal static string LinkVideoAll {
             get {
                 return ResourceManager.GetString("LinkVideoAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MinimizeMain {
+            get {
+                object obj = ResourceManager.GetObject("MinimizeMain", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MinimizeMainHover {
+            get {
+                object obj = ResourceManager.GetObject("MinimizeMainHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -458,9 +498,9 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Splash {
+        internal static System.Drawing.Bitmap Splash1 {
             get {
-                object obj = ResourceManager.GetObject("Splash", resourceCulture);
+                object obj = ResourceManager.GetObject("Splash1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

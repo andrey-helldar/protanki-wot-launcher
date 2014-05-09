@@ -36,6 +36,7 @@
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.cbAttachDebug = new System.Windows.Forms.CheckBox();
             this.cbCaption = new System.Windows.Forms.ComboBox();
+            this.lLinkWithSite = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lDesc
@@ -59,7 +60,7 @@
             this.tbTicket.Location = new System.Drawing.Point(16, 92);
             this.tbTicket.Multiline = true;
             this.tbTicket.Name = "tbTicket";
-            this.tbTicket.Size = new System.Drawing.Size(667, 207);
+            this.tbTicket.Size = new System.Drawing.Size(667, 159);
             this.tbTicket.TabIndex = 1;
             // 
             // bSend
@@ -102,7 +103,7 @@
             // 
             this.lEmail.AutoSize = true;
             this.lEmail.BackColor = System.Drawing.Color.Transparent;
-            this.lEmail.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lEmail.Cursor = System.Windows.Forms.Cursors.Default;
             this.lEmail.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.lEmail.Location = new System.Drawing.Point(12, 307);
@@ -153,6 +154,20 @@
             this.cbCaption.Name = "cbCaption";
             this.cbCaption.Size = new System.Drawing.Size(667, 28);
             this.cbCaption.TabIndex = 0;
+            this.cbCaption.SelectedIndexChanged += new System.EventHandler(this.cbCaption_SelectedIndexChanged);
+            // 
+            // lLinkWithSite
+            // 
+            this.lLinkWithSite.BackColor = System.Drawing.Color.Transparent;
+            this.lLinkWithSite.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lLinkWithSite.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lLinkWithSite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.lLinkWithSite.Location = new System.Drawing.Point(24, 254);
+            this.lLinkWithSite.Name = "lLinkWithSite";
+            this.lLinkWithSite.Size = new System.Drawing.Size(646, 48);
+            this.lLinkWithSite.TabIndex = 8;
+            this.lLinkWithSite.Text = "Для привязки лаунчера к сайту Вам необходимо указать Ваш логин на сайте разработч" +
+    "ика и email-адрес.";
             // 
             // fWarning
             // 
@@ -162,6 +177,7 @@
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.fWarning;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(695, 386);
+            this.Controls.Add(this.lLinkWithSite);
             this.Controls.Add(this.cbCaption);
             this.Controls.Add(this.cbAttachDebug);
             this.Controls.Add(this.tbEmail);
@@ -195,5 +211,6 @@
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.CheckBox cbAttachDebug;
         private System.Windows.Forms.ComboBox cbCaption;
+        private System.Windows.Forms.Label lLinkWithSite;
     }
 }

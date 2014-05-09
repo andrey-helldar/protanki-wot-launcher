@@ -131,7 +131,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     XDocument doc = XDocument.Load("settings.xml");
 
-                    updateNotification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : "";
+                    updateNotification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : String.Empty;
 
                     showVideoNotify = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : true) : true;
 
@@ -585,17 +585,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void llVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (!bwUpdater.IsBusy)
-            {
-                manualClickUpdate = true;
-                bwUpdater.RunWorkerAsync();
-            }
-            else
-                MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Language.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         private void tsShow_Click(object sender, EventArgs e)
         {
             try
@@ -679,16 +668,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void llTitle_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (!bwUpdater.IsBusy)
-            {
-                manualClickUpdate = true;
-                bwUpdater.RunWorkerAsync();
-            }
-            else
-            {
-                // MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Language.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            CheckUpdatesManual();
         }
 
         private void bSettings_Click(object sender, EventArgs e)
@@ -1061,16 +1041,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void llActually_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (!bwUpdater.IsBusy)
-            {
-                manualClickUpdate = true;
-                bwUpdater.RunWorkerAsync();
-            }
-            else
-            {
-                //MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            CheckUpdatesManual();
         }
 
         private void fIndex_Load(object sender, EventArgs e)
@@ -1513,6 +1484,52 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 await Task.Delay(50);
             }
+        }
+
+        private void pbMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void pbClose_MouseEnter(object sender, EventArgs e)
+        {
+            pbClose.BackgroundImage = Properties.Resources.CloseHover;
+        }
+
+        private void pbClose_MouseLeave(object sender, EventArgs e)
+        {
+            pbClose.BackgroundImage = Properties.Resources.Close;
+        }
+
+        private void pbMinimize_MouseEnter(object sender, EventArgs e)
+        {
+            pbMinimize.BackgroundImage = Properties.Resources.MinimizeMainHover;
+        }
+
+        private void pbMinimize_MouseLeave(object sender, EventArgs e)
+        {
+            pbMinimize.BackgroundImage = Properties.Resources.MinimizeMain;
+        }
+
+        private void CheckUpdatesManual()
+        {
+            if (!bwUpdater.IsBusy)
+            {
+                manualClickUpdate = true;
+                bwUpdater.RunWorkerAsync();
+            }
+            else
+                MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Language.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void llVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CheckUpdatesManual();
+        }
+
+        private void llLauncherVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CheckUpdatesManual();
         }
     }
 }

@@ -52,9 +52,9 @@ namespace _Hell_PRO_Tanki_Launcher
                     {
                         case "llTitle":
                             if (lang == "ru")
-                                return Application.ProductName + " (" + (type == "full" ? "Расширенная версия" : "Базовая версия") + ")";
+                                return Application.ProductName + " (" + (type == "extended" ? "Расширенная версия" : "Базовая версия") + ")";
                             else
-                                return Application.ProductName + " (" + (type == "full" ? "Full" : "Base") + ")";
+                                return Application.ProductName + " (" + (type == "extended" ? "Extended" : "Base") + ")";
                         case "bPlay": return lang == "ru" ? "Играть" : "Play";
                         case "bLauncher": return lang == "ru" ? "Лаунчер" : "Launcher";
                         case "bUpdate": return lang == "ru" ? "Обновить" : "Update";

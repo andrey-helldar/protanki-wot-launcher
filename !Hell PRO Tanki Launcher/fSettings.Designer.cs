@@ -37,6 +37,7 @@
             this.cbAero = new System.Windows.Forms.CheckBox();
             this.cbKillProcesses = new System.Windows.Forms.CheckBox();
             this.gbOther = new System.Windows.Forms.GroupBox();
+            this.cbMinimize = new System.Windows.Forms.ComboBox();
             this.cbVideo = new System.Windows.Forms.CheckBox();
             this.llTitle = new System.Windows.Forms.LinkLabel();
             this.gbProcesses = new System.Windows.Forms.GroupBox();
@@ -53,7 +54,6 @@
             this.bBalanceCPU = new System.Windows.Forms.Button();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.llRecoverySettings = new System.Windows.Forms.LinkLabel();
-            this.cbMinimize = new System.Windows.Forms.ComboBox();
             this.gbOptimization.SuspendLayout();
             this.gbOther.SuspendLayout();
             this.gbProcesses.SuspendLayout();
@@ -109,7 +109,7 @@
             this.gbOptimization.ForeColor = System.Drawing.Color.White;
             this.gbOptimization.Location = new System.Drawing.Point(12, 29);
             this.gbOptimization.Name = "gbOptimization";
-            this.gbOptimization.Size = new System.Drawing.Size(276, 143);
+            this.gbOptimization.Size = new System.Drawing.Size(573, 85);
             this.gbOptimization.TabIndex = 0;
             this.gbOptimization.TabStop = false;
             this.gbOptimization.Text = "Оптимизация:";
@@ -117,7 +117,7 @@
             // cbVideoQualityWeak
             // 
             this.cbVideoQualityWeak.AutoSize = true;
-            this.cbVideoQualityWeak.Location = new System.Drawing.Point(42, 114);
+            this.cbVideoQualityWeak.Location = new System.Drawing.Point(337, 43);
             this.cbVideoQualityWeak.Name = "cbVideoQualityWeak";
             this.cbVideoQualityWeak.Size = new System.Drawing.Size(158, 17);
             this.cbVideoQualityWeak.TabIndex = 5;
@@ -128,7 +128,7 @@
             // cbVideoQuality
             // 
             this.cbVideoQuality.AutoSize = true;
-            this.cbVideoQuality.Location = new System.Drawing.Point(18, 89);
+            this.cbVideoQuality.Location = new System.Drawing.Point(312, 19);
             this.cbVideoQuality.Name = "cbVideoQuality";
             this.cbVideoQuality.Size = new System.Drawing.Size(215, 17);
             this.cbVideoQuality.TabIndex = 4;
@@ -150,7 +150,7 @@
             // cbAero
             // 
             this.cbAero.AutoSize = true;
-            this.cbAero.Location = new System.Drawing.Point(18, 64);
+            this.cbAero.Location = new System.Drawing.Point(312, 66);
             this.cbAero.Name = "cbAero";
             this.cbAero.Size = new System.Drawing.Size(246, 17);
             this.cbAero.TabIndex = 3;
@@ -173,19 +173,38 @@
             this.gbOther.Controls.Add(this.cbMinimize);
             this.gbOther.Controls.Add(this.cbVideo);
             this.gbOther.ForeColor = System.Drawing.Color.White;
-            this.gbOther.Location = new System.Drawing.Point(294, 29);
+            this.gbOther.Location = new System.Drawing.Point(12, 120);
             this.gbOther.Name = "gbOther";
-            this.gbOther.Size = new System.Drawing.Size(291, 63);
+            this.gbOther.Size = new System.Drawing.Size(276, 90);
             this.gbOther.TabIndex = 7;
             this.gbOther.TabStop = false;
             this.gbOther.Text = "Другие:";
+            // 
+            // cbMinimize
+            // 
+            this.cbMinimize.BackColor = System.Drawing.Color.White;
+            this.cbMinimize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbMinimize.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbMinimize.ForeColor = System.Drawing.Color.Black;
+            this.cbMinimize.FormattingEnabled = true;
+            this.cbMinimize.Items.AddRange(new object[] {
+            "Не закрывать лаунчер",
+            "Сворачивать в трей при запуске игры",
+            "Минимизировать лаунчер на панель задач",
+            "Закрывать при запуске игры"});
+            this.cbMinimize.Location = new System.Drawing.Point(12, 19);
+            this.cbMinimize.Name = "cbMinimize";
+            this.cbMinimize.Size = new System.Drawing.Size(252, 23);
+            this.cbMinimize.TabIndex = 9;
             // 
             // cbVideo
             // 
             this.cbVideo.AutoSize = true;
             this.cbVideo.Checked = true;
             this.cbVideo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbVideo.Location = new System.Drawing.Point(6, 18);
+            this.cbVideo.ForeColor = System.Drawing.Color.Black;
+            this.cbVideo.Location = new System.Drawing.Point(12, 57);
             this.cbVideo.Name = "cbVideo";
             this.cbVideo.Size = new System.Drawing.Size(165, 17);
             this.cbVideo.TabIndex = 8;
@@ -218,10 +237,10 @@
             this.gbProcesses.Controls.Add(this.panel2);
             this.gbProcesses.Controls.Add(this.panel1);
             this.gbProcesses.Controls.Add(this.lvProcessesUser);
-            this.gbProcesses.ForeColor = System.Drawing.Color.White;
-            this.gbProcesses.Location = new System.Drawing.Point(12, 178);
+            this.gbProcesses.ForeColor = System.Drawing.Color.Black;
+            this.gbProcesses.Location = new System.Drawing.Point(12, 216);
             this.gbProcesses.Name = "gbProcesses";
-            this.gbProcesses.Size = new System.Drawing.Size(573, 344);
+            this.gbProcesses.Size = new System.Drawing.Size(573, 306);
             this.gbProcesses.TabIndex = 12;
             this.gbProcesses.TabStop = false;
             this.gbProcesses.Text = "Какие процессы НЕЛЬЗЯ закрывать при запуске игры:";
@@ -230,7 +249,7 @@
             // 
             this.lDescProcesses.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lDescProcesses.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.lDescProcesses.Location = new System.Drawing.Point(6, 295);
+            this.lDescProcesses.Location = new System.Drawing.Point(7, 260);
             this.lDescProcesses.Name = "lDescProcesses";
             this.lDescProcesses.Size = new System.Drawing.Size(561, 41);
             this.lDescProcesses.TabIndex = 0;
@@ -245,7 +264,7 @@
             this.llGlobalProcesses.ForeColor = System.Drawing.Color.White;
             this.llGlobalProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llGlobalProcesses.LinkColor = System.Drawing.Color.White;
-            this.llGlobalProcesses.Location = new System.Drawing.Point(351, 273);
+            this.llGlobalProcesses.Location = new System.Drawing.Point(352, 238);
             this.llGlobalProcesses.Name = "llGlobalProcesses";
             this.llGlobalProcesses.Size = new System.Drawing.Size(199, 15);
             this.llGlobalProcesses.TabIndex = 0;
@@ -261,7 +280,7 @@
             this.llUserProcesses.ForeColor = System.Drawing.Color.White;
             this.llUserProcesses.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llUserProcesses.LinkColor = System.Drawing.Color.White;
-            this.llUserProcesses.Location = new System.Drawing.Point(49, 273);
+            this.llUserProcesses.Location = new System.Drawing.Point(50, 238);
             this.llUserProcesses.Name = "llUserProcesses";
             this.llUserProcesses.Size = new System.Drawing.Size(233, 15);
             this.llUserProcesses.TabIndex = 0;
@@ -272,7 +291,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Plum;
-            this.panel2.Location = new System.Drawing.Point(312, 267);
+            this.panel2.Location = new System.Drawing.Point(313, 232);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(25, 25);
             this.panel2.TabIndex = 3;
@@ -280,7 +299,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightGreen;
-            this.panel1.Location = new System.Drawing.Point(18, 267);
+            this.panel1.Location = new System.Drawing.Point(19, 232);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(25, 25);
             this.panel1.TabIndex = 0;
@@ -297,7 +316,7 @@
             this.lvProcessesUser.MultiSelect = false;
             this.lvProcessesUser.Name = "lvProcessesUser";
             this.lvProcessesUser.ShowGroups = false;
-            this.lvProcessesUser.Size = new System.Drawing.Size(561, 242);
+            this.lvProcessesUser.Size = new System.Drawing.Size(561, 207);
             this.lvProcessesUser.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvProcessesUser.TabIndex = 13;
             this.lvProcessesUser.UseCompatibleStateImageBehavior = false;
@@ -326,9 +345,9 @@
             this.gbPriority.Controls.Add(this.bBalanceCPU);
             this.gbPriority.Controls.Add(this.cbPriority);
             this.gbPriority.ForeColor = System.Drawing.Color.White;
-            this.gbPriority.Location = new System.Drawing.Point(294, 98);
+            this.gbPriority.Location = new System.Drawing.Point(294, 120);
             this.gbPriority.Name = "gbPriority";
-            this.gbPriority.Size = new System.Drawing.Size(291, 74);
+            this.gbPriority.Size = new System.Drawing.Size(291, 90);
             this.gbPriority.TabIndex = 9;
             this.gbPriority.TabStop = false;
             this.gbPriority.Text = "Приоритет игры в системе:";
@@ -345,8 +364,8 @@
             this.bBalanceCPU.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bBalanceCPU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bBalanceCPU.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bBalanceCPU.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bBalanceCPU.Location = new System.Drawing.Point(6, 41);
+            this.bBalanceCPU.ForeColor = System.Drawing.Color.White;
+            this.bBalanceCPU.Location = new System.Drawing.Point(6, 49);
             this.bBalanceCPU.Name = "bBalanceCPU";
             this.bBalanceCPU.Size = new System.Drawing.Size(279, 28);
             this.bBalanceCPU.TabIndex = 11;
@@ -356,11 +375,11 @@
             // 
             // cbPriority
             // 
-            this.cbPriority.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.cbPriority.BackColor = System.Drawing.Color.White;
             this.cbPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPriority.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPriority.Font = new System.Drawing.Font("Sochi2014", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbPriority.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.cbPriority.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbPriority.ForeColor = System.Drawing.Color.Black;
             this.cbPriority.FormattingEnabled = true;
             this.cbPriority.Items.AddRange(new object[] {
             "Высокий",
@@ -368,9 +387,9 @@
             "Средний",
             "Ниже среднего",
             "Низкий"});
-            this.cbPriority.Location = new System.Drawing.Point(6, 15);
+            this.cbPriority.Location = new System.Drawing.Point(6, 19);
             this.cbPriority.Name = "cbPriority";
-            this.cbPriority.Size = new System.Drawing.Size(279, 24);
+            this.cbPriority.Size = new System.Drawing.Size(279, 23);
             this.cbPriority.TabIndex = 10;
             // 
             // llRecoverySettings
@@ -393,24 +412,6 @@
             this.llRecoverySettings.Text = "Восстановить настройки";
             this.llRecoverySettings.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llRecoverySettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRecoverySettings_LinkClicked);
-            // 
-            // cbMinimize
-            // 
-            this.cbMinimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.cbMinimize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbMinimize.Font = new System.Drawing.Font("Sochi2014", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbMinimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.cbMinimize.FormattingEnabled = true;
-            this.cbMinimize.Items.AddRange(new object[] {
-            "Не закрывать лаунчер",
-            "Сворачивать в трей при запуске игры",
-            "Минимизировать лаунчер на панель задач",
-            "Закрывать при запуске игры"});
-            this.cbMinimize.Location = new System.Drawing.Point(6, 36);
-            this.cbMinimize.Name = "cbMinimize";
-            this.cbMinimize.Size = new System.Drawing.Size(279, 24);
-            this.cbMinimize.TabIndex = 9;
             // 
             // fSettings
             // 

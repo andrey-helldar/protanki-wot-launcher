@@ -352,5 +352,25 @@ namespace _Hell_PRO_Tanki_Launcher
 
             cbCaption.SelectedIndex = 1;
         }
+
+        private void cbCaption_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                switch (cbCaption.SelectedIndex)
+                {
+                    case 4:
+                        tbTicket.Height = 159;
+                        lLinkWithSite.Visible = true;
+                        break;
+
+                    default:
+                        tbTicket.Height = 207;
+                        lLinkWithSite.Visible = false;
+                        break;
+                }
+            }
+            catch (Exception) { tbTicket.Height = 207; }
+        }
     }
 }

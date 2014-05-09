@@ -30,7 +30,7 @@ namespace FormatXML
         {
             XDocument doc = new XDocument(
                 new XElement("pro",
-                    new XElement("version", tbVersion.Text.Trim()),
+                    new XElement("version", "0.9.0." + tbVersion.Text.Trim()),
 
                     new XElement("extended",
                         new XElement("message", tbFullDesc.Text.Replace(Environment.NewLine, ":;").Trim()),

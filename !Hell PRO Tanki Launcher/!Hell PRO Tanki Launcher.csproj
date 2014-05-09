@@ -81,10 +81,11 @@
     <Reference Include="Ionic.Zip">
       <HintPath>.\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\!!other_dll\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -95,6 +96,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="debug.class.cs" />
@@ -186,7 +188,9 @@
     <None Include="Resources\sochi.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Splash.jpg" />
+    <None Include="Resources\MinimizeHover.png" />
+    <None Include="Resources\Minimize.png" />
+    <None Include="Resources\Splash1.png" />
     <None Include="Resources\StatusMedium.png" />
     <None Include="Resources\StatusGood.png" />
     <None Include="Resources\StatusDisabled.png" />
@@ -201,8 +205,10 @@
     <None Include="Resources\start.bat" />
     <None Include="Resources\warning.png" />
     <None Include="Resources\WOT.ico" />
-    <None Include="Resources\FonSetting.jpg" />
     <None Include="Resources\engine_config.xml" />
+    <None Include="Resources\FonSetting.jpg" />
+    <None Include="Resources\Close.png" />
+    <None Include="Resources\CloseHover.png" />
     <Content Include="Resources\FonUPD.jpg" />
     <None Include="Resources\Newtonsoft.Json.dll" />
     <None Include="Resources\Ionic.Zip.dll" />
@@ -250,7 +256,6 @@
       <Name>Processes Library</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

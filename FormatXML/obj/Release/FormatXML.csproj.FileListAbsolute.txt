@@ -14,3 +14,4 @@ F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Release\FormatXML.csproj.GenerateResource.Cache
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Release\FormatXML.exe
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Release\FormatXML.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\FormatXML\obj\Release\FormatXML.csprojResolveAssemblyReference.cache
