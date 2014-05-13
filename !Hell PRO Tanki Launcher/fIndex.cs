@@ -44,7 +44,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
             notifyLink = "",
 
-            lang = "en";
+            lang = "en",
+            
+            tanksPrefixVersion = "0.0.0.";
 
         Version remoteModVersion = new Version("0.0.0.0"),
             remoteTanksVersion = new Version("0.0.0.0"),
@@ -291,7 +293,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         if (doc.Root.Element("launcher").Attribute("background") != null)
                             loop = doc.Root.Element("launcher").Attribute("background").Value == "True";
 
-                    await Task.Delay(1000);
+                    await Task.Delay(10000);
                 }
             }
             catch (Exception ex)
@@ -357,8 +359,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
 
                 var remoteJson = SendPOST.JsonResponse(Properties.Resources.ProJson);
-
-                remoteModVersion = new Version("0.9.0." + remoteJson[modpackType]["version"].ToString());
+                remoteModVersion = new Version(tanksPrefixVersion + remoteJson[modpackType]["version"].ToString());
 
                 tanksUpdates = tanksVersion < remoteTanksVersion; // Сравниваем версии танков
                 modpackUpdates = modpackVersion < remoteModVersion; // Сравниваем версии мультипака
@@ -1109,6 +1110,7 @@ namespace _Hell_PRO_Tanki_Launcher
             pNews.SetBounds(13, 109, 620, 290); // Так как панель у нас убрана с видимой части, устанавливаем ее расположение динамически
 
             tanksVersion = GetTanksVersion().Result;
+            tanksPrefixVersion = DropSuffixVersion(tanksVersion);
 
             if (!bwUpdater.IsBusy) { bwUpdater.RunWorkerAsync(); } // Запускаем проверку обновлений модпака и клиента игры
 
@@ -1125,6 +1127,16 @@ namespace _Hell_PRO_Tanki_Launcher
             SetInterfaceLanguage();
 
             //Ping();
+        }
+
+        private string DropSuffixVersion(Version ver)
+        {
+            string export = String.Empty;
+
+            string[] exp = ver.ToString().Split('.');
+            for (int i = 0; i < 3; i++) export += exp[i] + ".";
+
+            return export;
         }
 
         private async Task GetVipProcesses()

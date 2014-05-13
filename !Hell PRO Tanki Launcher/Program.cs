@@ -30,6 +30,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 UpdateLauncher update = new UpdateLauncher(); // Инициализируем обновление библиотек
                 Task.Factory.StartNew(() => update.Check()).Wait();
 
+                Debug Debug = new Debug();
+                Task.Factory.StartNew(() => Debug.Delete()).Wait(); // Удаляем старые дебаги
+
                 fLoader.Close();
             }
 

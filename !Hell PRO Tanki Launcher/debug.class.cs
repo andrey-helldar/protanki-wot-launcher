@@ -64,13 +64,15 @@ namespace _Hell_PRO_Tanki_Launcher
             }
         }
 
-        private void Delete(string path)
+        public void Delete(string path=null)
         {
             try
             {
-                if (Directory.Exists(path + @"\temp"))
+                if (path == null) path = Application.StartupPath;
+
+                if (Directory.Exists(path + @"\debug"))
                 {
-                    var info = new DirectoryInfo(path + @"\temp");
+                    var info = new DirectoryInfo(path + @"\debug");
 
                     foreach (FileInfo file in info.GetFiles())
                     {
@@ -87,13 +89,13 @@ namespace _Hell_PRO_Tanki_Launcher
                          * 3 суток = 259200 сек
                          */
 
-                        if (ts.TotalSeconds > 86400) { File.Delete(file.FullName); }
+                        if (ts.TotalSeconds > 172800) { File.Delete(file.FullName); }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Save("private void Delete(string path)", "Debug mode", ex.Message);
+                Save("Debug Class", "Delete()", path, ex.Message);
             }
         }
 
