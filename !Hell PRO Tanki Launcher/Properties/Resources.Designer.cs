@@ -416,6 +416,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://ai-rus.com/pro/update.json.
+        /// </summary>
+        internal static string ProJson {
+            get {
+                return ResourceManager.GetString("ProJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://ai-rus.com/pro/pro.xml.
         /// </summary>
         internal static string ProXml {

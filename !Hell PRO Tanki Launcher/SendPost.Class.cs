@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
@@ -173,6 +174,61 @@ namespace _Hell_PRO_Tanki_Launcher
                 return dic;
             }
             catch (Exception) { return null; }
+        }
+
+        public JObject JsonResponse(string uri)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                byte[] buf = new byte[8192];
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream resStream = response.GetResponseStream();
+                int count = 0;
+                do
+                {
+                    count = resStream.Read(buf, 0, buf.Length);
+                    if (count != 0)
+                        sb.Append(Encoding.UTF8.GetString(buf, 0, count));
+                }
+                while (count > 0);
+                //return sb.ToString();
+
+                return JsonConvert.DeserializeObject<JObject>(sb.ToString());
+            }
+            catch (Exception) { return null; }
+        }
+
+        public string DataRegex(string str)
+        {
+            // Убираем лишние теги
+            string[] arrRegex = { @"\<font(.*?)\>", @"\<\/font\>", @"\<ul\>", @"\<\/ul\>", @"\<\/li\>" };
+            foreach (string reg in arrRegex)
+            {
+                Regex myRegex = new Regex(reg, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                str = myRegex.Replace(str, @"");
+            }
+
+            // Заменяем список
+            string[] arrRegex1 = { @"\<li\>"};
+            foreach (string reg in arrRegex1)
+            {
+                Regex myRegex = new Regex(reg, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                str = myRegex.Replace(str, Environment.NewLine + " * ");
+            }
+
+            // Заменяем список
+            string[] arrRegex2 = { @"\<br\>" };
+            foreach (string reg in arrRegex2)
+            {
+                Regex myRegex = new Regex(reg, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                str = myRegex.Replace(str, Environment.NewLine);
+            }
+
+            str = str.Replace("__________________________________________", Environment.NewLine + "__________________________________________");
+
+            return str;
         }
     }
 }

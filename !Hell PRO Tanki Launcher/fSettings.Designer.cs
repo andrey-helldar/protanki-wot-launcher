@@ -54,6 +54,7 @@
             this.bBalanceCPU = new System.Windows.Forms.Button();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.llRecoverySettings = new System.Windows.Forms.LinkLabel();
+            this.cbChangeBack = new System.Windows.Forms.CheckBox();
             this.gbOptimization.SuspendLayout();
             this.gbOther.SuspendLayout();
             this.gbProcesses.SuspendLayout();
@@ -170,6 +171,7 @@
             // gbOther
             // 
             this.gbOther.BackColor = System.Drawing.Color.Transparent;
+            this.gbOther.Controls.Add(this.cbChangeBack);
             this.gbOther.Controls.Add(this.cbMinimize);
             this.gbOther.Controls.Add(this.cbVideo);
             this.gbOther.ForeColor = System.Drawing.Color.White;
@@ -204,7 +206,7 @@
             this.cbVideo.Checked = true;
             this.cbVideo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbVideo.ForeColor = System.Drawing.Color.Black;
-            this.cbVideo.Location = new System.Drawing.Point(12, 57);
+            this.cbVideo.Location = new System.Drawing.Point(12, 49);
             this.cbVideo.Name = "cbVideo";
             this.cbVideo.Size = new System.Drawing.Size(165, 17);
             this.cbVideo.TabIndex = 8;
@@ -413,6 +415,19 @@
             this.llRecoverySettings.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llRecoverySettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRecoverySettings_LinkClicked);
             // 
+            // cbChangeBack
+            // 
+            this.cbChangeBack.AutoSize = true;
+            this.cbChangeBack.Checked = true;
+            this.cbChangeBack.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbChangeBack.ForeColor = System.Drawing.Color.Black;
+            this.cbChangeBack.Location = new System.Drawing.Point(12, 67);
+            this.cbChangeBack.Name = "cbChangeBack";
+            this.cbChangeBack.Size = new System.Drawing.Size(266, 17);
+            this.cbChangeBack.TabIndex = 10;
+            this.cbChangeBack.Text = "Изменять фоновый рисунок каждые 10 секунд";
+            this.cbChangeBack.UseVisualStyleBackColor = true;
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,5 +490,6 @@
         private System.Windows.Forms.CheckBox cbVideoQualityWeak;
         private System.Windows.Forms.Button bBalanceCPU;
         private System.Windows.Forms.ComboBox cbMinimize;
+        private System.Windows.Forms.CheckBox cbChangeBack;
     }
 }

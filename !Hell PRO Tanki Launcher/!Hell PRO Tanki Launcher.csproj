@@ -188,6 +188,7 @@
     <None Include="Resources\sochi.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Newtonsoft.Json.dll" />
     <None Include="Resources\MinimizeHover.png" />
     <None Include="Resources\Minimize.png" />
     <None Include="Resources\Splash1.png" />
@@ -210,7 +211,6 @@
     <None Include="Resources\Close.png" />
     <None Include="Resources\CloseHover.png" />
     <Content Include="Resources\FonUPD.jpg" />
-    <None Include="Resources\Newtonsoft.Json.dll" />
     <None Include="Resources\Ionic.Zip.dll" />
     <None Include="Resources\back_7.jpg" />
     <None Include="Resources\back_6.jpg" />

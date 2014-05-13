@@ -265,29 +265,41 @@ namespace _Hell_PRO_Tanki_Launcher
         // Выбираем изображение для установки фона
         public async Task setBackground()
         {
-            while (true)
+            try
             {
-                try
-                {
-                    switch ("back_" + new Random().Next(1, 7))
-                    {
-                        case "back_1": this.BackgroundImage = Properties.Resources.back_1; break;
-                        case "back_2": this.BackgroundImage = Properties.Resources.back_2; break;
-                        //case "back_3": this.BackgroundImage = Properties.Resources.back_3; break;
-                        case "back_4": this.BackgroundImage = Properties.Resources.back_4; break;
-                        case "back_5": this.BackgroundImage = Properties.Resources.back_5; break;
-                        case "back_6": this.BackgroundImage = Properties.Resources.back_6; break;
-                        default: this.BackgroundImage = Properties.Resources.back_7; break;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    this.BackgroundImage = Properties.Resources.back_7;
-                    Debug.Save("fIndex", "setBackground()", ex.Message);
-                }
+                bool loop = true;
+                XDocument doc = XDocument.Load("settings.xml");
 
-                await Task.Delay(10000);
+                while (loop)
+                {
+                    try
+                    {
+                        switch ("back_" + new Random().Next(1, 7))
+                        {
+                            case "back_1": this.BackgroundImage = Properties.Resources.back_1; break;
+                            case "back_2": this.BackgroundImage = Properties.Resources.back_2; break;
+                            case "back_4": this.BackgroundImage = Properties.Resources.back_4; break;
+                            case "back_5": this.BackgroundImage = Properties.Resources.back_5; break;
+                            case "back_6": this.BackgroundImage = Properties.Resources.back_6; break;
+                            default: this.BackgroundImage = Properties.Resources.back_7; break;
+                        }
+                    }
+                    catch (Exception) { this.BackgroundImage = Properties.Resources.back_7; }
+
+                    // Проверяем включен ли параметр автосмены фона
+                    if (doc.Root.Element("launcher") != null)
+                        if (doc.Root.Element("launcher").Attribute("background") != null)
+                            loop = doc.Root.Element("launcher").Attribute("background").Value == "True";
+
+                    await Task.Delay(1000);
+                }
             }
+            catch (Exception ex)
+            {
+                this.BackgroundImage = Properties.Resources.back_7;
+                Debug.Save("fIndex", "setBackground()", ex.Message);
+            }
+
         }
 
         private void bExit_Click(object sender, EventArgs e)
@@ -315,6 +327,9 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                SendPOST SendPOST = new SendPOST();
+                Dictionary<string, string> json = new Dictionary<string, string>();
+
                 XDocument docSettings = XDocument.Load("settings.xml");
                 if (commonTest)
                     if (docSettings.Root.Element("common.test") == null) docSettings.Root.Add(new XElement("common.test", null));
@@ -324,9 +339,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 docSettings.Save("settings.xml");
 
                 XDocument doc = XDocument.Load(Properties.Resources.ProXml);
-
-
-                Dictionary<string, string> json = new Dictionary<string, string>();
+                
 
                 json.Add("code", Debug.Code);
                 json.Add("user", Debug.UserID());
@@ -337,21 +350,23 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 try
                 {
-                    SendPOST SendPOST = new SendPOST();
                     Dictionary<string, string> sendStatus = SendPOST.FromJson(SendPOST.Send(Properties.Resources.PostVersion, "data=" + SendPOST.Json(json)));
                     remoteTanksVersion = Convert.ToInt32(sendStatus["count"]) > Debug.Accept ? new Version(sendStatus["id"]) : tanksVersion;
                 }
                 catch (Exception) { remoteTanksVersion = new Version("0.0.0.0"); }
 
-                remoteModVersion = new Version(doc.Root.Element("version").Value);
+
+                var remoteJson = SendPOST.JsonResponse(Properties.Resources.ProJson);
+
+                remoteModVersion = new Version("0.9.0." + remoteJson[modpackType]["version"].ToString());
 
                 tanksUpdates = tanksVersion < remoteTanksVersion; // Сравниваем версии танков
                 modpackUpdates = modpackVersion < remoteModVersion; // Сравниваем версии мультипака
 
                 if (modpackUpdates)
                 {
-                    newVersionMessage = doc.Root.Element(modpackType).Element("message").Value.Replace(":;", Environment.NewLine);
-                    newVersionLink = doc.Root.Element(modpackType).Element("download").Value;
+                    newVersionMessage = SendPOST.DataRegex(remoteJson[modpackType]["changelog"][lang].ToString());
+                    newVersionLink = remoteJson[modpackType]["download"].ToString();
                 }
             }
             catch (Exception ex)

@@ -97,6 +97,8 @@ namespace _Hell_PRO_Tanki_Launcher
                         case "bSave": return lang == "ru" ? "Сохранить" : "Save";
                         case "bCancel": return lang == "ru" ? "Отмена" : "Cancel";
                         case "llRecoverySettings": return lang == "ru" ? "Восстановить настройки..." : "Recovery game settings...";
+
+                        case "cbChangeBack": return lang == "ru" ? "Изменять фоновый рисунок каждые 10 секунд" : "Change background every 10 seconds";
                         default: return sender.Text;
                     }
 
@@ -257,13 +259,6 @@ namespace _Hell_PRO_Tanki_Launcher
                 case "bBalanceCPU0": return lang == "ru" ? "Нагрузка на 1 ядро ЦП" : "1 core CPU load";
 
                 case "badLink": return lang == "ru" ? "Ошибка открытия ссылки: " + additionalText : "Error while opening link: " + additionalText;
-
-                    
-                /* ************************
-                 *         fPing
-                 * ***********************/
-                case "LinkError": return lang == "ru" ? "При открытии ссылки произошла ошибка. Ссылка скопирована в буфер обмена.":
-                    "Error while opening link. ";
 
                 default: return "null";
             }

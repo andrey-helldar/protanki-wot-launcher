@@ -3,14 +3,6 @@
   <info video="True" />
   <settings kill="False" force="False" aero="False" video="Unchecked" weak="False" balance="True" />
   <notification>0.9.0.4</notification>
-  <language>en</language>
-  <ping>
-    <server address="178.20.235.151" name="RU 1" />
-    <server address="178.20.235.83" name="RU 2" />
-    <server address="213.252.177.91" name="RU 3" />
-    <server address="193.110.91.28" name="RU 4" />
-    <server address="94.198.55.167" name="RU 5" />
-  </ping>
   <youtube>
     <video>EUOYPYJns90</video>
     <video>UXozFmMlDMA</video>
@@ -21,7 +13,10 @@
     <video>klHXPN8cmvY</video>
     <video>89BK8GpjDB8</video>
     <video>9o8lvAvwGPY</video>
+    <video>3srGzlJo1Es</video>
+    <video>DQZ25l4Tq-A</video>
+    <video>R7CyezwiZxU</video>
   </youtube>
-  <launcher minimize="0" />
+  <launcher minimize="0" background="False" />
   <processes />
 </pro>

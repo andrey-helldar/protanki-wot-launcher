@@ -311,8 +311,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 AddAttributeSettings(doc, "settings", "video", cbVideoQuality.CheckState.ToString());
                 AddAttributeSettings(doc, "settings", "weak", cbVideoQualityWeak.Checked.ToString());
                 //AddAttributeSettings(doc, "balance", cbBalanceCPU.Checked.ToString());
-
+                
                 AddAttributeSettings(doc, "launcher", "minimize", cbMinimize.SelectedIndex.ToString());
+                AddAttributeSettings(doc, "launcher", "background", cbChangeBack.Checked.ToString());
 
                 if (lvProcessesUser.CheckedItems.Count > 0)
                 {
@@ -446,6 +447,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 //cbBalanceCPU.Checked = ReadSettingsStatus(doc, "balance");
 
                 cbMinimize.SelectedIndex = ReadIntStatus(doc, "launcher", "minimize");
+                cbChangeBack.Checked = ReadSettingsStatus(doc, "launcher", "background");
 
                 userProcesses.Clear();
                 if (doc.Root.Element("processes") != null) foreach (XElement el in doc.Root.Element("processes").Elements("process")) { userProcesses.Add(el.Attribute("name").Value); }
@@ -508,6 +510,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     File.WriteAllText(@"..\res_mods\0.9.0\engine_config.xml", Properties.Resources.engine_config);
                 }
             }
+            catch (Exception ex) { Debug.Save("bBalanceCPU_Click", "Возможно, файл балансировки не найден", ex.Message); }
             finally { }
         }
     }
