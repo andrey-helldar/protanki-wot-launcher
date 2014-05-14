@@ -80,6 +80,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 /*************************
                  * Отправляем файлы
                  * **********************/
+                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+
                 string settings;
                 if (File.Exists("settings.xml"))
                 {

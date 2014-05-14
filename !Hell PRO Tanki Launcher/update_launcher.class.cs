@@ -198,7 +198,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (File.Exists(filename)) { File.Delete(filename); }
         }
 
-        private async Task SaveFromResources()
+        public async Task SaveFromResources()
         {
             // Проверяем существование резервной копии файла настроек
             if (!File.Exists("settings.xml")) { File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml", "settings.xml", true); }

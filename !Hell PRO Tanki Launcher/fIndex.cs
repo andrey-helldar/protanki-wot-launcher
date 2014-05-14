@@ -128,6 +128,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     MessageBox.Show(this, Language.DynamicLanguage("noMods", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
+                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+
                 // Загружаем настройки
                 if (File.Exists("settings.xml"))
                 {
@@ -269,6 +271,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+
                 bool loop = true;
                 XDocument doc = XDocument.Load("settings.xml");
 
@@ -329,6 +333,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+
                 SendPOST SendPOST = new SendPOST();
                 Dictionary<string, string> json = new Dictionary<string, string>();
 
@@ -341,7 +347,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 docSettings.Save("settings.xml");
 
                 XDocument doc = XDocument.Load(Properties.Resources.ProXml);
-                
+
 
                 json.Add("code", Debug.Code);
                 json.Add("user", Debug.UserID());
@@ -370,10 +376,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     newVersionLink = remoteJson[modpackType]["download"].ToString();
                 }
             }
-            catch (Exception ex)
-            {
-                Debug.Save("fIndex", "bwUpdater_DoWork()", ex.Message);
-            }
+            catch (Exception ex) { Debug.Save("fIndex", "bwUpdater_DoWork()", ex.Message); }
         }
 
         static string getResponse(string uri)
@@ -1143,6 +1146,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+
                 if (File.Exists("settings.xml"))
                 {
                     //ProcessList.processes;
@@ -1185,6 +1190,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
+                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+
                 XDocument doc = XDocument.Load("settings.xml");
 
                 if (doc.Root.Element("youtube") != null)
@@ -1479,6 +1486,8 @@ namespace _Hell_PRO_Tanki_Launcher
         /// <param name="select"></param>
         private void State()
         {
+            if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+
             XDocument docState = XDocument.Load("settings.xml");
             string select = "0";
 

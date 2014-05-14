@@ -300,6 +300,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 bSave.Text = "Сохранение";
 
+                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
                 XDocument doc = XDocument.Load("settings.xml");
 
                 if (doc.Root.Element("info") != null) { doc.Root.Element("info").Attribute("video").SetValue(cbVideo.Checked.ToString()); }
@@ -418,6 +419,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             loadLang();
 
+            if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
             if (File.Exists("settings.xml"))
             {
                 XDocument doc = XDocument.Load("settings.xml");

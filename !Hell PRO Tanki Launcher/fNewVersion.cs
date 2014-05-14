@@ -28,6 +28,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (cbNotification.Checked)
             {
+                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
                 XDocument doc = XDocument.Load("settings.xml");
 
                 if (doc.Root.Element("notification") != null) { doc.Root.Element("notification").SetValue(llVersion.Text); }

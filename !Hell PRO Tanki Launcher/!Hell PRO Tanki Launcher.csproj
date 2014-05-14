@@ -29,8 +29,8 @@
     <ProductName>!Hell Multipack Launcher</ProductName>
     <PublisherName>Andrey Helldar</PublisherName>
     <SuiteName>!Hell Multipack Launcher</SuiteName>
-    <ApplicationRevision>174</ApplicationRevision>
-    <ApplicationVersion>1.0.12.%2a</ApplicationVersion>
+    <ApplicationRevision>220</ApplicationRevision>
+    <ApplicationVersion>1.0.15.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -243,6 +243,11 @@
     <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
       <Visible>False</Visible>
       <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
