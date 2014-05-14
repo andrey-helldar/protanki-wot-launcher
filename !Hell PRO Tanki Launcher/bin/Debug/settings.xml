@@ -3,15 +3,4 @@
   <info video="True" />
   <settings kill="False" force="False" aero="True" video="Indeterminate" weak="False" />
   <launcher minimize="0" />
-  <processes>
-    <process name="Clock" description="Clock widget for HTC Home 3" />
-    <process name="ps64ldr" description="Punto Switcher Loader for Win64" />
-    <process name="punto" description="Punto Switcher" />
-    <process name="thunderbird" description="Thunderbird" />
-    <process name="uTorrent" description="µTorrent" />
-  </processes>
-  <youtube>
-    <video>xR4CR2B90hY</video>
-    <video>3srGzlJo1Es</video>
-  </youtube>
 </pro>

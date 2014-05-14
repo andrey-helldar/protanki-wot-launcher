@@ -201,7 +201,8 @@ namespace _Hell_PRO_Tanki_Launcher
         public async Task SaveFromResources()
         {
             // Проверяем существование резервной копии файла настроек
-            if (!File.Exists("settings.xml")) { File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml", "settings.xml", true); }
+            string backupSettings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
+            if (!File.Exists("settings.xml") && File.Exists(backupSettings)) { File.Copy(backupSettings, "settings.xml", true); }
 
             if (!File.Exists("Ionic.Zip.dll")) { File.WriteAllBytes("Ionic.Zip.dll", Properties.Resources.IonicZip); }
             if (!File.Exists("restart.exe")) { File.WriteAllBytes("restart.exe", Properties.Resources.restart); }

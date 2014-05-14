@@ -483,9 +483,9 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;pro&gt;
-        ///	&lt;info video=&quot;True&quot; /&gt;
-        ///	&lt;settings kill=&quot;False&quot; force=&quot;False&quot; aero=&quot;False&quot; video=&quot;Unchecked&quot; weak=&quot;False&quot; /&gt;
-        ///	&lt;processes /&gt;
+        ///  &lt;info video=&quot;True&quot; /&gt;
+        ///  &lt;settings kill=&quot;False&quot; force=&quot;False&quot; aero=&quot;True&quot; video=&quot;Indeterminate&quot; weak=&quot;False&quot; /&gt;
+        ///  &lt;launcher minimize=&quot;0&quot; /&gt;
         ///&lt;/pro&gt;.
         /// </summary>
         internal static string Settings {
