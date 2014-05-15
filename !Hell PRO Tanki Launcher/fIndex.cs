@@ -271,33 +271,40 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
-
-                bool loop = true;
-                XDocument doc = XDocument.Load("settings.xml");
-
-                while (loop)
+                if (!File.Exists("Interface.dll")) // Если входящее изображение отсутствует, то выполняем обычную форму, иначе - загружаемый скин
                 {
-                    try
+                    if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+
+                    bool loop = true;
+                    XDocument doc = XDocument.Load("settings.xml");
+
+                    while (loop)
                     {
-                        switch ("back_" + new Random().Next(1, 7))
+                        try
                         {
-                            case "back_1": this.BackgroundImage = Properties.Resources.back_1; break;
-                            case "back_2": this.BackgroundImage = Properties.Resources.back_2; break;
-                            case "back_4": this.BackgroundImage = Properties.Resources.back_4; break;
-                            case "back_5": this.BackgroundImage = Properties.Resources.back_5; break;
-                            case "back_6": this.BackgroundImage = Properties.Resources.back_6; break;
-                            default: this.BackgroundImage = Properties.Resources.back_7; break;
+                            switch ("back_" + new Random().Next(1, 7))
+                            {
+                                case "back_1": this.BackgroundImage = Properties.Resources.back_1; break;
+                                case "back_2": this.BackgroundImage = Properties.Resources.back_2; break;
+                                case "back_4": this.BackgroundImage = Properties.Resources.back_4; break;
+                                case "back_5": this.BackgroundImage = Properties.Resources.back_5; break;
+                                case "back_6": this.BackgroundImage = Properties.Resources.back_6; break;
+                                default: this.BackgroundImage = Properties.Resources.back_7; break;
+                            }
                         }
+                        catch (Exception) { this.BackgroundImage = Properties.Resources.back_7; }
+
+                        // Проверяем включен ли параметр автосмены фона
+                        if (doc.Root.Element("launcher") != null)
+                            if (doc.Root.Element("launcher").Attribute("background") != null)
+                                loop = doc.Root.Element("launcher").Attribute("background").Value == "True";
+
+                        await Task.Delay(10000);
                     }
-                    catch (Exception) { this.BackgroundImage = Properties.Resources.back_7; }
-
-                    // Проверяем включен ли параметр автосмены фона
-                    if (doc.Root.Element("launcher") != null)
-                        if (doc.Root.Element("launcher").Attribute("background") != null)
-                            loop = doc.Root.Element("launcher").Attribute("background").Value == "True";
-
-                    await Task.Delay(10000);
+                }
+                else // загружаем свой скин
+                {
+                    
                 }
             }
             catch (Exception ex)

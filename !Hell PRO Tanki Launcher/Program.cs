@@ -7,7 +7,7 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using _Hell_PRO_Tanki_Launcher.UserInterface;
+using _Hell_PRO_Tanki_Launcher.InnerInterface;
 
 namespace _Hell_PRO_Tanki_Launcher
 {

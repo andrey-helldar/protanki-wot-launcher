@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AIRUS")]
+[assembly: AssemblyTitle("UserInterface")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AIRUS")]
+[assembly: AssemblyProduct("UserInterface")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2c8a524b-f5f2-4b1a-8545-c05e87467163")]
+[assembly: Guid("a3363d3f-8122-4bfc-9528-9629ed11e433")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,6 +1,0 @@
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\AIRUS\bin\Debug\Interface.dll
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\AIRUS\bin\Debug\Interface.pdb
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\AIRUS\obj\Debug\Interface.dll
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\AIRUS\obj\Debug\Interface.pdb
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\AIRUS\obj\Debug\AIRUS.Properties.Resources.resources
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\AIRUS\obj\Debug\AIRUS.csproj.GenerateResource.Cache

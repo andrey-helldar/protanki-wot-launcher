@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace _Hell_PRO_Tanki_Launcher.UserInterface
+namespace _Hell_PRO_Tanki_Launcher.InnerInterface
 {
     public sealed class SingleApplication
     {
