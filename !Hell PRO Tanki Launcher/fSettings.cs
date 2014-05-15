@@ -126,13 +126,22 @@ namespace _Hell_PRO_Tanki_Launcher
             return 0;
         }
 
-        private bool ReadSettingsStatus(XDocument doc, string root, string attr)
+        private bool ReadSettingsStatus(XDocument doc, string root, string attr, bool back=false)
         {
-            if (doc.Root.Element(root) != null)
-                if (doc.Root.Element(root).Attribute(attr) != null)
-                    if (doc.Root.Element(root).Attribute(attr).Value == "True")
-                        return true;
-            return false;
+            if (!back)
+            {
+                if (doc.Root.Element(root) != null)
+                    if (doc.Root.Element(root).Attribute(attr) != null)
+                        return doc.Root.Element(root).Attribute(attr).Value == "True";
+                return false;
+            }
+            else
+            {
+                if (doc.Root.Element(root) != null)
+                    if (doc.Root.Element(root).Attribute(attr) != null)
+                        return doc.Root.Element(root).Attribute(attr).Value == "True";
+                return true;
+            }
         }
 
         private void bSave_Click(object sender, EventArgs e)
@@ -300,7 +309,6 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 bSave.Text = "Сохранение";
 
-                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
                 XDocument doc = XDocument.Load("settings.xml");
 
                 if (doc.Root.Element("info") != null) { doc.Root.Element("info").Attribute("video").SetValue(cbVideo.Checked.ToString()); }
@@ -319,7 +327,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (lvProcessesUser.CheckedItems.Count > 0)
                 {
                     // Удаляем элемент
-                    doc.Root.Element("processes").Remove();
+                    if (doc.Root.Element("processes") != null) doc.Root.Element("processes").Remove();
 
                     if (doc.Root.Element("processes") == null) { XElement el = new XElement("processes", null); doc.Root.Add(el); }
 
@@ -449,7 +457,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 //cbBalanceCPU.Checked = ReadSettingsStatus(doc, "balance");
 
                 cbMinimize.SelectedIndex = ReadIntStatus(doc, "launcher", "minimize");
-                cbChangeBack.Checked = ReadSettingsStatus(doc, "launcher", "background");
+                cbChangeBack.Checked = ReadSettingsStatus(doc, "launcher", "background", true);
 
                 userProcesses.Clear();
                 if (doc.Root.Element("processes") != null) foreach (XElement el in doc.Root.Element("processes").Elements("process")) { userProcesses.Add(el.Attribute("name").Value); }
