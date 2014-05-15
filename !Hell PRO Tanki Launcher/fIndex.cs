@@ -304,7 +304,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else // загружаем свой скин
                 {
-                    
+                    UI();
                 }
             }
             catch (Exception ex)
@@ -313,6 +313,11 @@ namespace _Hell_PRO_Tanki_Launcher
                 Debug.Save("fIndex", "setBackground()", ex.Message);
             }
 
+        }
+
+        [DllImport("Interface.dll")]
+        private async Task UI()
+        {
         }
 
         private void bExit_Click(object sender, EventArgs e)
