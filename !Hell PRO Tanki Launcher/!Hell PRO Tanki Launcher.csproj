@@ -188,6 +188,8 @@
     <None Include="Resources\sochi.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\warning.png" />
     <None Include="Resources\settings.xml" />
     <None Include="Resources\Newtonsoft.Json.dll" />
     <None Include="Resources\MinimizeHover.png" />
@@ -204,7 +206,6 @@
     <None Include="Resources\LanguagePack.dll" />
     <None Include="Resources\fWarning.jpg" />
     <None Include="Resources\start.bat" />
-    <None Include="Resources\warning.png" />
     <None Include="Resources\WOT.ico" />
     <None Include="Resources\engine_config.xml" />
     <None Include="Resources\FonSetting.jpg" />

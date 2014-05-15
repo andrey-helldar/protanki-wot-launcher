@@ -486,11 +486,28 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         ///  &lt;info video=&quot;True&quot; /&gt;
         ///  &lt;settings kill=&quot;False&quot; force=&quot;False&quot; aero=&quot;False&quot; video=&quot;Unchecked&quot; weak=&quot;False&quot; /&gt;
         ///  &lt;launcher minimize=&quot;0&quot; background=&quot;True&quot; /&gt;
+        ///  &lt;youtube&gt;
+        ///    &lt;video&gt;5Mv0JFZGvf4&lt;/video&gt;
+        ///    &lt;video&gt;xR4CR2B90hY&lt;/video&gt;
+        ///    &lt;video&gt;3srGzlJo1Es&lt;/video&gt;
+        ///    &lt;video&gt;DQZ25l4Tq-A&lt;/video&gt;
+        ///    &lt;video&gt;R7CyezwiZxU&lt;/video&gt;
+        ///  &lt;/youtube&gt;
         ///&lt;/pro&gt;.
         /// </summary>
         internal static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SettingsIcon {
+            get {
+                object obj = ResourceManager.GetObject("SettingsIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
