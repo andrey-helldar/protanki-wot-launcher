@@ -1,13 +1,11 @@
 ﻿<Window x:Name="MainForm" x:Class="WPF_Multipack_Launcher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Multipack Launcher" Height="480" Width="860" WindowStartupLocation="CenterScreen" Background="Black" ResizeMode="NoResize" WindowStyle="None">
-    <Button x:Name="bExit" Content="Exit" HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom" Width="170" Margin="0,0,10,10" Foreground="White" BorderBrush="#FF282828" Cursor="Hand" HorizontalContentAlignment="Center" FontFamily="Sochi2014" FontSize="18" Click="bExit_Click" TextOptions.TextHintingMode="Animated">
-        <Button.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF171414" Offset="0"/>
-                <GradientStop Color="#FF303000" Offset="1"/>
-            </LinearGradientBrush>
-        </Button.Background>
-    </Button>
+        Title="Multipack Launcher" Height="480" Width="860" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Loaded="MainForm_Loaded">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/back_6.jpg"/>
+        </Grid.Background>
+
+    </Grid>
 </Window>

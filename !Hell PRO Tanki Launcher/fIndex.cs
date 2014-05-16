@@ -304,7 +304,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
                 else // загружаем свой скин
                 {
-                    UI();
+                    //UI();
                 }
             }
             catch (Exception ex)
@@ -315,10 +315,10 @@ namespace _Hell_PRO_Tanki_Launcher
 
         }
 
-        [DllImport("Interface.dll")]
+        /*[DllImport("Interface.dll")]
         private async Task UI()
         {
-        }
+        }*/
 
         private void bExit_Click(object sender, EventArgs e)
         {

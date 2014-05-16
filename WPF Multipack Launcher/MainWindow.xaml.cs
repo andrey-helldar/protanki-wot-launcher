@@ -30,7 +30,7 @@ namespace WPF_Multipack_Launcher
             this.Close();
         }
 
-        private async Task Interface()
+        private void MainForm_Loaded(object sender, RoutedEventArgs e)
         {
         }
     }
