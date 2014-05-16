@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell PRO Tanki Launcher", "!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher.csproj", "{79E364F5-121C-4402-9295-D6836EB5A805}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell PRO Tanki Installer", "!Hell PRO Tanki Installer\!Hell PRO Tanki Installer.csproj", "{90703D70-A6A4-42EE-A5BB-184BF08C1A31}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Process List", "!Hell Process List\!Hell Process List.csproj", "{AF9F8199-194C-4BFA-B49D-4BE012B0028A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Restarter", "!Hell Restarter\!Hell Restarter.csproj", "{F71575F4-D350-4667-BF5E-866354AF66DA}"
@@ -18,6 +16,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserInterface", "UserInterface", "{D324D2B3-838E-4021-AA5E-E3CAB103AC53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{CBE131EF-1A97-4EC4-A204-02EE7055CB94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF Multipack Launcher", "WPF Multipack Launcher\WPF Multipack Launcher.csproj", "{330BBE05-05DD-48DB-9BD4-88E19AD983E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,16 +39,6 @@ Global
 		{79E364F5-121C-4402-9295-D6836EB5A805}.Release|Mixed Platforms.Build.0 = Release|x86
 		{79E364F5-121C-4402-9295-D6836EB5A805}.Release|x86.ActiveCfg = Release|x86
 		{79E364F5-121C-4402-9295-D6836EB5A805}.Release|x86.Build.0 = Release|x86
-		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Debug|x86.ActiveCfg = Debug|x86
-		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Debug|x86.Build.0 = Debug|x86
-		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Release|Any CPU.ActiveCfg = Release|x86
-		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Release|Mixed Platforms.Build.0 = Release|x86
-		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Release|x86.ActiveCfg = Release|x86
-		{90703D70-A6A4-42EE-A5BB-184BF08C1A31}.Release|x86.Build.0 = Release|x86
 		{AF9F8199-194C-4BFA-B49D-4BE012B0028A}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{AF9F8199-194C-4BFA-B49D-4BE012B0028A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{AF9F8199-194C-4BFA-B49D-4BE012B0028A}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -109,6 +99,16 @@ Global
 		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Release|x86.ActiveCfg = Release|Any CPU
+		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
