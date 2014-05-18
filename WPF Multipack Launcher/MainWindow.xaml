@@ -3,23 +3,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Multipack Launcher" Height="480" Width="860" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Loaded="MainForm_Loaded" Icon="Resources/WOT.ico">
     <Window.Background>
-        <ImageBrush ImageSource="Resources/back_6.jpg"/>
+        <ImageBrush ImageSource="Resources/back_1.jpg"/>
     </Window.Background>
     <Grid HorizontalAlignment="Left" Width="860" Height="480" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="113*"/>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="351*"/>
+            <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="67*"/>
-            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="343*"/>
+            <ColumnDefinition Width="87*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="Exit" HorizontalAlignment="Right" Margin="0,0,10,59" VerticalAlignment="Bottom" Width="150" Height="45" Click="Button_Click" Background="#FF282828" Foreground="#FFF37B10" Grid.Row="1" Grid.Column="2" FontFamily="Sochi2014" FontSize="14"/>
-        <Button Content="Optimize" Grid.Column="2" HorizontalAlignment="Left" Margin="30,290,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14"/>
-        <Button Content="Video" Grid.Column="2" HorizontalAlignment="Left" Margin="30,230,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14"/>
-        <Button Content="Update" Grid.Column="2" HorizontalAlignment="Left" Margin="30,170,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14"/>
-        <Button Content="Launcher" Grid.Column="2" HorizontalAlignment="Left" Margin="30,110,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14"/>
-        <Button x:Name="bPlay" Content="Play" Grid.Column="2" HorizontalAlignment="Left" Margin="30,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14"/>
+        <Button Content="Exit" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="150" Height="45" Click="Button_Click" Background="#FF282828" Foreground="#FFF37B10" Grid.Row="2" Grid.Column="2" FontFamily="Sochi2014" FontSize="16" Cursor="Hand" BorderThickness="0" BorderBrush="#FF404040"/>
+        <Button Content="Optimize" Grid.Column="2" HorizontalAlignment="Right" Margin="0,215,10,0" Grid.Row="2" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="16" Cursor="Hand" BorderThickness="0" BorderBrush="#FF404040"/>
+        <Button Content="Video" Grid.Column="2" HorizontalAlignment="Right" Margin="0,160,10,0" Grid.Row="2" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="16" Cursor="Hand" BorderThickness="0" BorderBrush="#FF404040"/>
+        <Button Content="Update" Grid.Column="2" HorizontalAlignment="Right" Margin="0,105,10,0" Grid.Row="2" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="16" Cursor="Hand" BorderThickness="0" BorderBrush="#FF404040"/>
+        <Button Content="Launcher" Grid.Column="2" HorizontalAlignment="Right" Margin="0,55,10,0" Grid.Row="2" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="16" Cursor="Hand" BorderThickness="0" BorderBrush="#FF404040"/>
+        <Button x:Name="bPlay" Content="Play" Grid.Column="2" HorizontalAlignment="Right" Margin="0,5,10,0" Grid.Row="2" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="16" Cursor="Hand" BorderThickness="0" BorderBrush="#FF404040"/>
+        <Label Grid.ColumnSpan="2" Content="0.0.0 #0" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14" Height="27" Width="61"/>
+        <Label Grid.ColumnSpan="2" Content="Multipack Launcher" HorizontalAlignment="Left" Margin="161,0,0,0" VerticalAlignment="Top" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14" FontWeight="Bold" Height="27" Width="111"/>
+        <Label Content="Developed by Andrey Helldar" Margin="0,0,10,10" Grid.Row="3" VerticalAlignment="Bottom" Grid.Column="1" Foreground="#FFF37B10" HorizontalAlignment="Right" Width="167" Height="26" Grid.ColumnSpan="2" Cursor="Hand" Focusable="True" FontFamily="Arial">
+            <Label.Effect>
+                <DropShadowEffect/>
+            </Label.Effect>
+        </Label>
+        <Image x:Name="iSettings" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="32" Margin="10,0,0,10" Grid.Row="3" VerticalAlignment="Bottom" Width="32" Source="Resources/settings.png" Cursor="Hand"/>
+        <Image x:Name="iFeedback" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="32" Margin="50,0,0,10" Grid.Row="3" VerticalAlignment="Bottom" Width="32" Source="Resources/feedback.png" Cursor="Hand"/>
     </Grid>
 </Window>

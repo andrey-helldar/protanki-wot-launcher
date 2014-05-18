@@ -25,6 +25,7 @@ namespace WPF_Multipack_Launcher
         public MainWindow()
         {
             InitializeComponent();
+            MouseDown += delegate { DragMove(); };
         }
 
         private void bExit_Click(object sender, RoutedEventArgs e)
@@ -38,7 +39,8 @@ namespace WPF_Multipack_Launcher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Multipack Launcher;component/Resources/back_2.jpg")));
+            //this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Multipack Launcher;component/Resources/back_2.jpg")));
+            Close();
         }
     }
 }
