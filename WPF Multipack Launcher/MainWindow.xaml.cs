@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
 using System.Drawing;
@@ -22,6 +23,8 @@ namespace WPF_Multipack_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
+        LocalInterface.LocInterface LocalInterface = new LocalInterface.LocInterface();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +38,16 @@ namespace WPF_Multipack_Launcher
 
         private void MainForm_Loaded(object sender, RoutedEventArgs e)
         {
+            Task.Factory.StartNew(()=>SetBack());
+        }
+
+        private void SetBack()
+        {
+            while (true)
+            {
+                this.Background = LocalInterface.Background().Result;
+                Thread.Sleep(5000);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
