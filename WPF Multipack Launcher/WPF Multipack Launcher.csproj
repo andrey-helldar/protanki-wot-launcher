@@ -86,10 +86,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <Resource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    </Resource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,28 +100,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_1.jpg" />
+    <Resource Include="Resources\back_1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_2.jpg" />
+    <Resource Include="Resources\back_2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_3.jpg" />
+    <Resource Include="Resources\back_3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_5.jpg" />
+    <Resource Include="Resources\back_5.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_6.jpg" />
+    <Resource Include="Resources\back_6.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_7.jpg" />
+    <Resource Include="Resources\back_7.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\WOT.ico" />
+    <Resource Include="Resources\WOT.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_7.png" />
+    <Resource Include="Resources\back_7.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,9 +1,25 @@
 ﻿<Window x:Name="MainForm" x:Class="WPF_Multipack_Launcher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Multipack Launcher" Height="480" Width="860" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Loaded="MainForm_Loaded">
-    <Grid HorizontalAlignment="Left" Height="480" VerticalAlignment="Top" Width="860" Background="{StaticResource MainWindow}">
-        <Button Content="Button" HorizontalAlignment="Left" Margin="680,420,0,0" VerticalAlignment="Top" Width="170" Height="50"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="680,352,0,0" VerticalAlignment="Top" Width="170" Height="50"/>
+        Title="Multipack Launcher" Height="480" Width="860" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Loaded="MainForm_Loaded" Icon="Resources/WOT.ico">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/back_6.jpg"/>
+    </Window.Background>
+    <Grid HorizontalAlignment="Left" Width="860" Height="480" VerticalAlignment="Bottom">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="113*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="67*"/>
+            <ColumnDefinition Width="19*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Exit" HorizontalAlignment="Right" Margin="0,0,10,59" VerticalAlignment="Bottom" Width="150" Height="45" Click="Button_Click" Background="#FF282828" Foreground="#FFF37B10" Grid.Row="1" Grid.Column="2" FontFamily="Sochi2014" FontSize="14"/>
+        <Button Content="Optimize" Grid.Column="2" HorizontalAlignment="Left" Margin="30,290,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14"/>
+        <Button Content="Video" Grid.Column="2" HorizontalAlignment="Left" Margin="30,230,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14"/>
+        <Button Content="Update" Grid.Column="2" HorizontalAlignment="Left" Margin="30,170,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14"/>
+        <Button Content="Launcher" Grid.Column="2" HorizontalAlignment="Left" Margin="30,110,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14"/>
+        <Button x:Name="bPlay" Content="Play" Grid.Column="2" HorizontalAlignment="Left" Margin="30,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="45" Background="#FF282828" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14"/>
     </Grid>
 </Window>
