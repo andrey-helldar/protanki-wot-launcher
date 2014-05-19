@@ -5,32 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows;
 
 namespace WPF_Multipack_Launcher.LocalInterface
 {
     class LocInterface
     {
+        private string ProductName = String.Empty;
+
         public bool loop = true;
 
-        public async Task<ImageBrush> Background()
+        public async Task Start()
         {
-            string uri = @"pack://application:,,,/Multipack Launcher;component/Resources/back_{0}.jpg";
+            ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
+        }
 
+        public void Message(string text, string caption=null)
+        {
             try
             {
-                //while (this.loop)
-                //{
-                    try
-                    {
-                        //this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Multipack Launcher;component/Resources/back_2.jpg")));
-                        return new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (new Random().Next(1, 7)).ToString()))));
-                    }
-                    catch (Exception) { return new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
+                //caption = caption != null ? caption : Application.Current.MainWindow.GetType().Assembly.GetName().Version.ToString();
+                caption = caption != null ? caption : this.ProductName;
 
-                //    await Task.Delay(10000);
-                //}
+                MessageBox.Show(caption, caption, MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (Exception) { return new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
+            finally { }
         }
     }
 }

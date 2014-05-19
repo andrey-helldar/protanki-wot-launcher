@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Variables\Variables.Class.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -120,9 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WOT.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\back_7.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\settings.png" />

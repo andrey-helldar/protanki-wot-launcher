@@ -1,0 +1,10 @@
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\bin\Release\Multipack Launcher.exe.config
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\bin\Release\Multipack Launcher.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\bin\Release\Multipack Launcher.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Release\MainWindow.baml
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Release\MainWindow.g.cs
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Release\App.g.cs
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Release\Multipack Launcher_MarkupCompile.cache
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Release\Multipack Launcher.g.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Release\Multipack Launcher.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Release\Multipack Launcher.pdb
