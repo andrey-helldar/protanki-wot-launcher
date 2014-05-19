@@ -174,4 +174,7 @@
   <data name="Youtube" xml:space="preserve">
     <value>PROTankiWoT</value>
   </data>
+  <data name="SettingsPathMultipack" xml:space="preserve">
+    <value>config.ini</value>
+  </data>
 </root>

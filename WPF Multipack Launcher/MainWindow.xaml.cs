@@ -42,8 +42,8 @@ namespace WPF_Multipack_Launcher
             InitializeComponent();
             MouseDown += delegate { DragMove(); };
 
-            LocalInterface.Start();
-            Variables.Start();
+            LocalInterface.Start().Wait();
+            Variables.Start().Wait();
         }
 
         private void MainForm_Loaded(object sender, RoutedEventArgs e)
@@ -51,7 +51,7 @@ namespace WPF_Multipack_Launcher
             //Task.Factory.StartNew(()=>SetBack());
             SetBackground();
 
-            DataLoading();
+            DataLoading().Wait();
 
             lCaption.Content = Variables.ProductName;
             lMultipackVersion.Content = MultipackVersion().Result;
@@ -97,7 +97,7 @@ namespace WPF_Multipack_Launcher
 
         private async Task DataLoading()
         {
-            Variables.MultipackVersion = new Version("0.0.0.0");
+            lMultipackVersion.Content = Variables.MultipackVersion.ToString();
         }
 
         private async Task<string> MultipackVersion()
@@ -142,26 +142,20 @@ namespace WPF_Multipack_Launcher
             /// Multipack updates
             if (Variables.UpdateMultipack)
             {
-                try { OpenLink(Variables.LinkUpdate).Wait(); }
-                catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "LinkUpdate = " + Variables.LinkUpdate, ex.Message).Wait(); }
+                try { OpenLink(Variables.UpdateLink).Wait(); }
+                catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "LinkUpdate = " + Variables.UpdateLink, ex.Message).Wait(); }
             }
         }
 
         private async Task OpenLink(string url)
         {
-            try
-            {
-                Process.Start(url);
-            }
-            finally { }
+            try { Process.Start(url); }
+            catch (Exception ex) { Debug.Save("MainWindow", "OpenLink()", "URL = " + url, ex.Message).Wait(); }
         }
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Optimize.Start(true).Wait();
-            }
+            try { Optimize.Start(true).Wait(); }
             catch (Exception ex) { Debug.Save("MainWindow", "bOptimize_Click()", ex.Message).Wait(); }
         }
     }

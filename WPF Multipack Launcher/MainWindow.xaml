@@ -20,15 +20,19 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="lMultipackVersion" Grid.ColumnSpan="2" Content="0.0.0 #0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label x:Name="lCaption" Grid.ColumnSpan="2" Content="Loading..." HorizontalAlignment="Left" Margin="189,-2,0,0" VerticalAlignment="Top" Foreground="#FFF37B10" FontFamily="Sochi2014" FontWeight="Bold" FontSize="16"/>
-        <Image x:Name="iFeedback" HorizontalAlignment="Left" Height="32" Margin="45,0,0,8" Grid.Row="4" VerticalAlignment="Bottom" Width="32" Source="Resources/feedback.png" Cursor="Hand" Grid.Column="2"/>
+        <Image x:Name="iFeedback" HorizontalAlignment="Left" Height="32" Margin="82,0,0,8" Grid.Row="4" VerticalAlignment="Bottom" Width="32" Source="Resources/feedback.png" Cursor="Hand" Grid.Column="2"/>
         <Button x:Name="bLauncher" Content="Launcher" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,218,0" Grid.Row="4" VerticalAlignment="Top" Width="105" Click="bLauncher_Click"/>
         <Button x:Name="bUpdate" Content="Update" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,115,0" Grid.Row="4" VerticalAlignment="Top" Width="98" Click="bUpdate_Click" IsEnabled="False"/>
         <Button x:Name="bExit" Content="Exit" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="4" VerticalAlignment="Bottom" Width="102" Click="Button_Click_1"/>
         <Button x:Name="bPlay" Content="Play" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="91" Click="bPlay_Click"/>
-        <TextBlock Grid.Column="2" Grid.Row="4" Margin="82,19,184,16">
+        <TextBlock Grid.Column="2" Grid.Row="4" Margin="129,19,137,16">
             <Hyperlink NavigateUri="http://ai-rus.com" RequestNavigate="Hyperlink_Open" Foreground="#FFF37B10">Developed by Andrey Helldar</Hyperlink>
         </TextBlock>
-        <Button x:Name="bSettings" Content="Set" Grid.Column="2" HorizontalAlignment="Left" Margin="266,8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="47"/>
+        <Button x:Name="bSettings" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="40,13,0,0" Grid.Row="4" VerticalAlignment="Top" Width="32" Height="32">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/settings.png"/>
+            </Button.Background>
+        </Button>
         <Button x:Name="bOptimize" Content="Optimize" Grid.Column="1" HorizontalAlignment="Left" Margin="320,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="100" Click="bOptimize_Click"/>
         <Label x:Name="lStatusUpdates" Grid.ColumnSpan="3" Content="Loading status..." HorizontalAlignment="Center" Margin="0,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="840" FontSize="18" Height="33"/>
         <Label x:Name="lLauncherVersion" Content="0.0.0 #0" HorizontalAlignment="Right" Margin="0,0,100,0" VerticalAlignment="Top" Grid.RowSpan="2" Grid.Column="2"/>
