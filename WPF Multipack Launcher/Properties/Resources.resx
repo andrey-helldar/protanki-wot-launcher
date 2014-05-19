@@ -147,5 +147,6 @@
   </data>
   <data name="DeveloperLinkSite" xml:space="preserve">
     <value>http://ai-rus.com</value>
+    <comment>Developer's site</comment>
   </data>
 </root>

@@ -88,14 +88,7 @@ namespace WPF_Multipack_Launcher
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            try
-            {
-                //MessageBox.Show("opening " + Properties.Resources.DeveloperLinkSite);
-                //Process.Start(Properties.Resources.DeveloperLinkSite);
-
-                LocalInterface.Message("link is opened");
-            }
-            finally { }
+                OpenLink(Properties.Resources.DeveloperLinkSite);
         }
 
         private async Task DataLoading()
@@ -111,6 +104,15 @@ namespace WPF_Multipack_Launcher
         private async Task<string> LauncherVersion()
         {
             return LocalInterface.VersionToSharp(Variables.ProductVersion).Result;
+        }
+
+        private async Task OpenLink(string url)
+        {
+            try
+            {
+                Process.Start(Properties.Resources.DeveloperLinkSite);
+            }
+            finally { }
         }
     }
 }
