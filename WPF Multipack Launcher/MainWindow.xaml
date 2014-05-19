@@ -29,7 +29,7 @@
             <Hyperlink NavigateUri="http://ai-rus.com" RequestNavigate="Hyperlink_Open" Foreground="#FFF37B10">Developed by Andrey Helldar</Hyperlink>
         </TextBlock>
         <Button x:Name="bSettings" Content="Set" Grid.Column="2" HorizontalAlignment="Left" Margin="266,8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="47"/>
-        <Button x:Name="bOptimize" Content="Optimize" Grid.Column="1" HorizontalAlignment="Left" Margin="320,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="bOptimize" Content="Optimize" Grid.Column="1" HorizontalAlignment="Left" Margin="320,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="100" Click="bOptimize_Click"/>
         <Label x:Name="lStatusUpdates" Grid.ColumnSpan="3" Content="Loading status..." HorizontalAlignment="Center" Margin="0,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="840" FontSize="18" Height="33"/>
         <Label x:Name="lLauncherVersion" Content="0.0.0 #0" HorizontalAlignment="Right" Margin="0,0,100,0" VerticalAlignment="Top" Grid.RowSpan="2" Grid.Column="2"/>
         <Label Grid.ColumnSpan="2" Content="PROTanks: Video" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>

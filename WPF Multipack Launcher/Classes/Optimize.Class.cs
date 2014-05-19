@@ -8,7 +8,7 @@ namespace WPF_Multipack_Launcher.Classes
 {
     class Optimize
     {
-        public async Task Start()
+        public async Task Start(bool autoOptimize=false)
         {
         }
     }

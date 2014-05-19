@@ -32,11 +32,6 @@ namespace WPF_Multipack_Launcher.Variables
         public bool UpdateMultipack = false,
                     UpdateTanks = false;
 
-        // Local variables
-        public bool autoOptimize = false,
-                    playGame = false,
-                    playLauncher = false;
-
         public string TempStatus = "Loading status...";
 
 

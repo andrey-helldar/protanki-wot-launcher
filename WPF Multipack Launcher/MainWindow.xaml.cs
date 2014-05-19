@@ -114,35 +114,20 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                Variables.autoOptimize = false;
-                Variables.playLauncher = false;
-                Variables.playGame = true;
-
-                //GetVipProcesses().Wait();
-                //OptimizePC().Wait();
-                Optimize.Start().Wait();
-
-                //WindowState = FormWindowState.Minimized;
-                //Task.Factory.StartNew(() => State());
+                Optimize.Start(false).Wait();
+                Process.Start(Variables.PathTanks + "WorldOfTanks.exe");
             }
-            catch (Exception ex) { Debug.Message("bPlay_Click()", ex.Message).Wait(); }
+            catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message).Wait(); }
         }
 
         private void bLauncher_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Variables.autoOptimize = false;
-                Variables.playLauncher = true;
-                Variables.playGame = false;
-
-                //GetVipProcesses().Wait();
-                //OptimizePC().Wait();
-
-                //WindowState = FormWindowState.Minimized;
-                //Task.Factory.StartNew(() => State());
+                Optimize.Start(false).Wait();
+                Process.Start(Variables.PathTanks + "WoTLauncher.exe");
             }
-            catch (Exception ex) { Debug.Message("bLauncher_Click()", ex.Message).Wait(); }
+            catch (Exception ex) { Debug.Save("MainWindow", "bLauncher_Click()", ex.Message).Wait(); }
         }
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)
@@ -150,11 +135,7 @@ namespace WPF_Multipack_Launcher
             /// Tanks updates
             if (Variables.UpdateTanks)
             {
-                try
-                {
-                    Variables.autoOptimize = false;
-                    Process.Start(Variables.PathTanks + "WoTLauncher.exe");
-                }
+                try { Process.Start(Variables.PathTanks + "WoTLauncher.exe"); }
                 catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "UpdateTanks = " + Variables.UpdateTanks.ToString(), ex.Message).Wait(); }
             }
 
@@ -173,6 +154,15 @@ namespace WPF_Multipack_Launcher
                 Process.Start(url);
             }
             finally { }
+        }
+
+        private void bOptimize_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Optimize.Start(true).Wait();
+            }
+            catch (Exception ex) { Debug.Save("MainWindow", "bOptimize_Click()", ex.Message).Wait(); }
         }
     }
 }
