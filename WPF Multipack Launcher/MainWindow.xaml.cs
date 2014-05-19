@@ -42,7 +42,7 @@ namespace WPF_Multipack_Launcher
             InitializeComponent();
             MouseDown += delegate { DragMove(); };
 
-            OverlayPanel();
+            //OverlayPanel();
 
             LocalInterface.Start().Wait();
             Variables.Start().Wait();
@@ -60,7 +60,6 @@ namespace WPF_Multipack_Launcher
             lLauncherVersion.Content = LauncherVersion().Result;
 
             // Убираем перекрытие загрузки
-            
         }
 
         private async Task OverlayPanel(string page=null)
@@ -72,6 +71,7 @@ namespace WPF_Multipack_Launcher
             panel.VerticalAlignment = VerticalAlignment.Center;
             panel.Width = MainForm.Width;
             panel.Height = MainForm.Height;
+            panel.Opacity = 0.8;
             panel.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/" + Application.Current.MainWindow.GetType().Assembly.GetName().Name + ";component/Resources/back_6.jpg")));
 
             Label label = new Label();
@@ -81,7 +81,7 @@ namespace WPF_Multipack_Launcher
             label.VerticalContentAlignment = System.Windows.VerticalAlignment.Center;
             label.Width = MainForm.Width;
             label.Height = MainForm.Height;
-            label.FontSize = 24;
+            label.FontSize = 20;
             label.Content = "Loading data... Please, wait...";
 
             panel.Children.Add(label);
