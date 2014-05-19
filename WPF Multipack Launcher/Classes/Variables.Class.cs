@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -77,27 +78,70 @@ namespace WPF_Multipack_Launcher.Variables
 
         private void LoadSettings()
         {
+            // Загружаем config.ini
             if (File.Exists(Properties.Resources.SettingsPathMultipack))
             {
                 // Загружаем данные
-                string pathINI = Properties.Resources.SettingsPathMultipack;
+                string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsPathMultipack;
 
-                MessageBox.Show("start");
                 MultipackDate = new IniFile(pathINI).IniReadValue("protanki", "date");
                 MultipackType = new IniFile(pathINI).IniReadValue("protanki", "type").ToLower();
-                MessageBox.Show("1");
-                MessageBox.Show(new IniFile(pathINI).IniReadValue("protanki", "version"));
-                //MultipackVersion = new Version(TanksVersionPrefix + "." + new IniFile(pathINI).IniReadValue("protanki", "version"));
-                MessageBox.Show("2");
+                MultipackVersion = new Version(TanksVersionPrefix + "." + new IniFile(pathINI).IniReadValue("protanki", "version"));
                 Lang = new IniFile(pathINI).IniReadValue("protanki", "language");
-
-                MessageBox.Show(MultipackVersion.ToString());
             }
             else
             {
-                MultipackVersion = new Version("1.1.1.1");
                 // Мультипак не обнаружен
+                new Classes.Debug().Message(ProductName, new LocalInterface.Language().DynamicLanguage("noMods", Lang)).Wait();
             }
+
+            // Загружаем настройки лаунчера
+            if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
+
+            if (File.Exists("settings.xml"))
+            {
+                XDocument doc = XDocument.Load("settings.xml");
+
+                UpdateNotify = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : String.Empty;
+                ShowVideoNotify = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : true) : true;
+
+                if (doc.Root.Element("settings") != null)
+                {
+                    AutoKill = doc.Root.Element("settings").Attribute("kill") != null ? doc.Root.Element("settings").Attribute("kill").Value == "True" : false;
+                    AutoForceKill = doc.Root.Element("settings").Attribute("force") != null ? doc.Root.Element("settings").Attribute("force").Value == "True" : false;
+
+                    AutoAero = doc.Root.Element("settings").Attribute("aero") != null ? doc.Root.Element("settings").Attribute("aero").Value == "True" : false;
+                    AutoVideo = ReadCheckStateBool(doc, "video");
+                    AutoWeak = doc.Root.Element("settings").Attribute("weak") != null ? doc.Root.Element("settings").Attribute("weak").Value == "True" : false;
+                    AutoCPU = doc.Root.Element("settings").Attribute("balance") != null ? doc.Root.Element("settings").Attribute("balance").Value == "True" : false;
+                }
+
+                if (doc.Root.Element("common.test") != null) CommonTest = true;
+            }
+            else
+            {
+                // Файл настроек не обнаружен
+                new Classes.Debug().Message(ProductName, new LocalInterface.Language().DynamicLanguage("noSettings", Lang)).Wait();
+            }
+        }
+
+        private bool ReadCheckStateBool(XDocument doc, string attr)
+        {
+            try
+            {
+                if (doc.Root.Element("settings") != null)
+                    if (doc.Root.Element("settings").Attribute(attr) != null)
+                    {
+                        switch (doc.Root.Element("settings").Attribute(attr).Value)
+                        {
+                            case "Checked": return true;
+                            case "Indeterminate": return true;
+                            default: return false;
+                        }
+                    }
+                return false;
+            }
+            catch (Exception) { return false; }
         }
     }
 }

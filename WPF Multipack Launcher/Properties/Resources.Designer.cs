@@ -168,6 +168,16 @@ namespace WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Ionic_Zip {
+            get {
+                object obj = ResourceManager.GetObject("Ionic_Zip", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://goo.gl/Wlrh9F.
         /// </summary>
         public static string LinkNewsAll {
@@ -182,6 +192,36 @@ namespace WPF_Multipack_Launcher.Properties {
         public static string LinkVideoAll {
             get {
                 return ResourceManager.GetString("LinkVideoAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Newtonsoft_Json {
+            get {
+                object obj = ResourceManager.GetObject("Newtonsoft_Json", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] ProcessesLibrary {
+            get {
+                object obj = ResourceManager.GetObject("ProcessesLibrary", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] restart {
+            get {
+                object obj = ResourceManager.GetObject("restart", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -228,6 +268,20 @@ namespace WPF_Multipack_Launcher.Properties {
         public static string SettingsPathMultipack {
             get {
                 return ResourceManager.GetString("SettingsPathMultipack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;pro&gt;
+        ///  &lt;info video=&quot;True&quot; /&gt;
+        ///  &lt;settings kill=&quot;False&quot; force=&quot;False&quot; aero=&quot;False&quot; video=&quot;Unchecked&quot; weak=&quot;False&quot; /&gt;
+        ///  &lt;launcher minimize=&quot;0&quot; background=&quot;True&quot; /&gt;
+        ///&lt;/pro&gt;.
+        /// </summary>
+        public static string SettingsXML {
+            get {
+                return ResourceManager.GetString("SettingsXML", resourceCulture);
             }
         }
         

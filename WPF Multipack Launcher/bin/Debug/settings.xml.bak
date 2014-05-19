@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pro>
+  <info video="True" />
+  <launcher minimize="0" background="False" />
+  <settings kill="False" force="False" aero="False" video="Unchecked" weak="False" balance="True" />
+  <youtube />
+  <processes />
+</pro>

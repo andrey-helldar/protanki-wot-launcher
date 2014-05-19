@@ -42,6 +42,8 @@ namespace WPF_Multipack_Launcher
             InitializeComponent();
             MouseDown += delegate { DragMove(); };
 
+            OverlayPanel();
+
             LocalInterface.Start().Wait();
             Variables.Start().Wait();
         }
@@ -56,6 +58,19 @@ namespace WPF_Multipack_Launcher
             lCaption.Content = Variables.ProductName;
             lMultipackVersion.Content = MultipackVersion().Result;
             lLauncherVersion.Content = LauncherVersion().Result;
+        }
+
+        private async Task OverlayPanel(string page=null)
+        {
+            switch(page){
+                default:
+                    // Создаем панель
+                    Grid grid = new Grid();
+                    grid.Margin(10, 10, 10, 10);
+                    grid.Background = new GradientBrush()
+                    MainForm.AddChild(grid);
+                    break;
+            }
         }
 
         private async Task SetBackground()
