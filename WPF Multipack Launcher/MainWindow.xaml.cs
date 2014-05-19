@@ -58,19 +58,35 @@ namespace WPF_Multipack_Launcher
             lCaption.Content = Variables.ProductName;
             lMultipackVersion.Content = MultipackVersion().Result;
             lLauncherVersion.Content = LauncherVersion().Result;
+
+            // Убираем перекрытие загрузки
+            
         }
 
         private async Task OverlayPanel(string page=null)
         {
-            switch(page){
-                default:
-                    // Создаем панель
-                    Grid grid = new Grid();
-                    grid.Margin(10, 10, 10, 10);
-                    grid.Background = new GradientBrush()
-                    MainForm.AddChild(grid);
-                    break;
-            }
+            // Создаем панель
+            StackPanel panel = new StackPanel();
+            panel.Name = "pOverlayPanel";
+            panel.HorizontalAlignment = HorizontalAlignment.Center;
+            panel.VerticalAlignment = VerticalAlignment.Center;
+            panel.Width = MainForm.Width;
+            panel.Height = MainForm.Height;
+            panel.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/" + Application.Current.MainWindow.GetType().Assembly.GetName().Name + ";component/Resources/back_6.jpg")));
+
+            Label label = new Label();
+            label.HorizontalAlignment = HorizontalAlignment.Center;
+            label.VerticalAlignment = VerticalAlignment.Center;
+            label.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Center;
+            label.VerticalContentAlignment = System.Windows.VerticalAlignment.Center;
+            label.Width = MainForm.Width;
+            label.Height = MainForm.Height;
+            label.FontSize = 24;
+            label.Content = "Loading data... Please, wait...";
+
+            panel.Children.Add(label);
+            RegisterName("pOverlayPanel", panel);
+            Content = panel;
         }
 
         private async Task SetBackground()
