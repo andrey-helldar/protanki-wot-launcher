@@ -12,9 +12,10 @@ namespace WPF_Multipack_Launcher.Variables
         public string ProductName = String.Empty;
         public Version ProductVersion = new Version("0.0.0.0");
 
+        public int BackgroundMax = 7;
         public int BackgroundIndex = 1;
         public bool BackgroundLoop = true;
-        public int BackgroundDelay = 3000;
+        public int BackgroundDelay = 1000;
 
         public async Task Start()
         {

@@ -20,7 +20,7 @@ namespace WPF_Multipack_Launcher.LocalInterface
             ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
         }
 
-        public void Message(string text, string caption=null)
+        public void Message(string text, string caption = null)
         {
             try
             {
@@ -30,6 +30,21 @@ namespace WPF_Multipack_Launcher.LocalInterface
                 MessageBox.Show(caption, caption, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             finally { }
+        }
+
+        public async Task<ImageBrush> Background(string uri, int index)
+        {
+            try
+            {
+
+                //this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Multipack Launcher;component/Resources/back_2.jpg")));
+                //this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, Variables.BackgroundIndex.ToString()))));
+                return new ImageBrush(new BitmapImage(new Uri(String.Format(uri, index.ToString()))));
+            }
+            catch (Exception)
+            {
+                return new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (--index).ToString()))));
+            }
         }
     }
 }

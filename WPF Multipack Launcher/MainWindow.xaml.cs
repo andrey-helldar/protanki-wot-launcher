@@ -60,14 +60,21 @@ namespace WPF_Multipack_Launcher
             {
                 try
                 {
-                    if (Variables.BackgroundIndex < 0 || Variables.BackgroundIndex > 7) Variables.BackgroundIndex = 1;
 
-                    //this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Multipack Launcher;component/Resources/back_2.jpg")));
-                    this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, Variables.BackgroundIndex.ToString()))));
-                    lCaption.Content = Variables.BackgroundIndex.ToString();
-                    Variables.BackgroundIndex++;
+                    if (Variables.BackgroundIndex < 1 || Variables.BackgroundIndex > Variables.BackgroundMax) Variables.BackgroundIndex = 1;
+
+                    try
+                    {
+                        //this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, Variables.BackgroundIndex.ToString()))));
+                        this.Background = LocalInterface.Background(uri, Variables.BackgroundIndex).Result;
+                    }
+                    finally
+                    {
+                        Variables.BackgroundIndex++;
+                        lCaption.Content = (Variables.BackgroundIndex-1).ToString();
+                    }
                 }
-                catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
+                catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); lCaption.Content = "Error"; }
 
                 await Task.Delay(Variables.BackgroundDelay);
             }
