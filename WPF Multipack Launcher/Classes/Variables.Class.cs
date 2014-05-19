@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using Ini;
 
 namespace WPF_Multipack_Launcher.Variables
@@ -29,7 +31,7 @@ namespace WPF_Multipack_Launcher.Variables
                       MultipackDate = "1970-1-1";
 
         // Tanks
-        public string TanksVersionPrefix = "0.0.0";
+        public Version TanksVersion = new Version("0.0.0.0");
 
         // Paths
         public string PathTanks = String.Empty;
@@ -70,14 +72,37 @@ namespace WPF_Multipack_Launcher.Variables
                 ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
                 ProductVersion = Application.Current.MainWindow.GetType().Assembly.GetName().Version;
 
-                LoadSettings();
+                LoadSettings().Wait();
+
+                Updater().Wait();
             }
             catch (Exception) { return false; }
             return true;
         }
 
-        private void LoadSettings()
+        private async Task LoadSettings()
         {
+            // Загружаем версию клиента игры
+            PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry();
+
+            if (File.Exists(@"..\version.xml") && PathTanks != String.Empty)
+            {
+                XDocument doc = XDocument.Load(PathTanks + "version.xml");
+
+                if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
+                {
+                    CommonTest = true;
+                    TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
+                }
+                else
+                    TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
+            }
+            else
+            {
+                // КЛиент игры не существует
+            }
+
+
             // Загружаем config.ini
             if (File.Exists(Properties.Resources.SettingsPathMultipack))
             {
@@ -86,7 +111,7 @@ namespace WPF_Multipack_Launcher.Variables
 
                 MultipackDate = new IniFile(pathINI).IniReadValue("protanki", "date");
                 MultipackType = new IniFile(pathINI).IniReadValue("protanki", "type").ToLower();
-                MultipackVersion = new Version(TanksVersionPrefix + "." + new IniFile(pathINI).IniReadValue("protanki", "version"));
+                MultipackVersion = new Version(new LocalInterface.LocInterface().VersionPrefix(TanksVersion).Result + new IniFile(pathINI).IniReadValue("protanki", "version"));
                 Lang = new IniFile(pathINI).IniReadValue("protanki", "language");
             }
             else
@@ -94,6 +119,7 @@ namespace WPF_Multipack_Launcher.Variables
                 // Мультипак не обнаружен
                 new Classes.Debug().Message(ProductName, new LocalInterface.Language().DynamicLanguage("noMods", Lang)).Wait();
             }
+
 
             // Загружаем настройки лаунчера
             if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
@@ -142,6 +168,46 @@ namespace WPF_Multipack_Launcher.Variables
                 return false;
             }
             catch (Exception) { return false; }
+        }
+
+        private string GetTanksRegistry()
+        {
+            try
+            {
+                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
+                return key != null ? (string)key.GetValue("InstallLocation") : null;
+            }
+            catch (Exception ex)
+            {
+                new Classes.Debug().Save("fIndex", "GetTanksRegistry()", ex.Message).Wait();
+                //MessageBox.Show(this, Language.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
+            }
+        }
+
+        private string CorrectPath(string sourcePath, int remove = 0)
+        {
+            string newPath = String.Empty;
+
+            try
+            {
+                string[] temp = sourcePath.Split('\\');
+
+                for (int i = 0; i < temp.Length + remove; i++)
+                    newPath += temp[i] + @"\";
+
+                return newPath;
+            }
+            catch (Exception ex)
+            {
+                new Classes.Debug().Save("fIndex", "CorrectPath", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message).Wait();
+                return sourcePath;
+            }
+        }
+
+        private async Task Updater()
+        {
+            if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
         }
     }
 }

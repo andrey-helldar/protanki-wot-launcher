@@ -108,8 +108,13 @@ namespace WPF_Multipack_Launcher.LocalInterface
         {
             switch (controlName)
             {
+                case "WindowCaption":
+                    if (lang == "ru")
+                        return additionalText == "extended" ? "Расширенная версия" : "Базовая версия";
+                    else
+                        return additionalText == "extended" ? "Extended" : "Base";
                 /* ************************
-                 *         fIndex
+                 *         MainForm
                  * ***********************/
                 case "llVideoAllVideo": return lang == "ru" ? "Все видео" : "All videos";
                 case "llVideoAllNews": return lang == "ru" ? "Все новости" : "All news";

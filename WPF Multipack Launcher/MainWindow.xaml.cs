@@ -31,6 +31,7 @@ namespace WPF_Multipack_Launcher
         Variables.Variables Variables = new Variables.Variables();
         Classes.Debug Debug = new Classes.Debug();
         Classes.Optimize Optimize = new Classes.Optimize();
+        LocalInterface.Language Language = new LocalInterface.Language();
 
 
         /*********************
@@ -55,7 +56,7 @@ namespace WPF_Multipack_Launcher
 
             DataLoading().Wait();
 
-            lCaption.Content = Variables.ProductName;
+            lCaption.Content = Variables.ProductName + " (" + Language.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")";
             lMultipackVersion.Content = MultipackVersion().Result;
             lLauncherVersion.Content = LauncherVersion().Result;
 
@@ -188,6 +189,11 @@ namespace WPF_Multipack_Launcher
         {
             try { Optimize.Start(true).Wait(); }
             catch (Exception ex) { Debug.Save("MainWindow", "bOptimize_Click()", ex.Message).Wait(); }
+        }
+
+        private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
         }
     }
 }

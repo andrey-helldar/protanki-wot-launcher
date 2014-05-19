@@ -37,5 +37,11 @@ namespace WPF_Multipack_Launcher.LocalInterface
             string[] exp = ver.ToString().Split('.');
             return exp[0] + "." + exp[1] + "." + exp[2] + " #" + exp[3];
         }
+
+        public async Task<string> VersionPrefix(Version ver)
+        {
+            string[] exp = ver.ToString().Split('.');
+            return exp[0] + "." + exp[1] + "." + exp[2] + ".";
+        }
     }
 }
