@@ -146,7 +146,32 @@
     <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeveloperLinkSite" xml:space="preserve">
-    <value>http://ai-rus.com</value>
-    <comment>Developer's site</comment>
+    <value>http://goo.gl/5PR4ma</value>
+    <comment>Developer's site (http://ai-rus.com)</comment>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6</value>
+  </data>
+  <data name="Debug" xml:space="preserve">
+    <value>True</value>
+    <comment>Debug mode</comment>
+  </data>
+  <data name="LinkNewsAll" xml:space="preserve">
+    <value>http://goo.gl/Wlrh9F</value>
+  </data>
+  <data name="LinkVideoAll" xml:space="preserve">
+    <value>http://goo.gl/LXaU7T</value>
+  </data>
+  <data name="RssWotEn" xml:space="preserve">
+    <value>http://worldoftanks.com/en/rss/news/</value>
+  </data>
+  <data name="RssWotRU" xml:space="preserve">
+    <value>http://worldoftanks.ru/ru/rss/news/</value>
+  </data>
+  <data name="RssYoutube" xml:space="preserve">
+    <value>https://gdata.youtube.com/feeds/api/users/{0}/uploads</value>
+  </data>
+  <data name="Youtube" xml:space="preserve">
+    <value>PROTankiWoT</value>
   </data>
 </root>

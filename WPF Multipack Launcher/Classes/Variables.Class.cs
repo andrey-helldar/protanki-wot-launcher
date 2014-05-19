@@ -23,6 +23,17 @@ namespace WPF_Multipack_Launcher.Variables
         public string MultipackType = "Base";
         public Version MultipackVersion = new Version("0.0.0.0");
 
+        // Paths
+        public string PathTanks = String.Empty;
+
+        // Update links
+        public string LinkUpdate = Properties.Resources.LinkVideoAll;
+
+        // Local variables
+        public bool autoOptimize = false,
+            playGame = false,
+            playLauncher = false;
+
 
         /********************
          * Functions

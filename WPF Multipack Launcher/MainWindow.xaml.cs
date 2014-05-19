@@ -29,6 +29,7 @@ namespace WPF_Multipack_Launcher
          * *******************/
         LocalInterface.LocInterface LocalInterface = new LocalInterface.LocInterface();
         Variables.Variables Variables = new Variables.Variables();
+        Classes.Debug Debug = new Classes.Debug();
 
 
         /*********************
@@ -58,7 +59,7 @@ namespace WPF_Multipack_Launcher
 
         private async Task SetBackground()
         {
-            string uri = @"pack://application:,,,/Multipack Launcher;component/Resources/back_{0}.jpg";
+            string uri = @"pack://application:,,,/" + Application.Current.MainWindow.GetType().Assembly.GetName().Name + ";component/Resources/back_{0}.jpg";
 
             while (Variables.BackgroundLoop)
             {
@@ -86,14 +87,16 @@ namespace WPF_Multipack_Launcher
             Close();
         }
 
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        private void Hyperlink_Open(object sender, RequestNavigateEventArgs e)
         {
-                OpenLink(Properties.Resources.DeveloperLinkSite);
+            try { Process.Start(e.Uri.AbsoluteUri); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            finally { }
         }
 
         private async Task DataLoading()
         {
-            Variables.MultipackVersion = new Version("0.9.0.10");
+            Variables.MultipackVersion = new Version("0.0.0.0");
         }
 
         private async Task<string> MultipackVersion()
@@ -106,11 +109,50 @@ namespace WPF_Multipack_Launcher
             return LocalInterface.VersionToSharp(Variables.ProductVersion).Result;
         }
 
+        private void bPlay_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Variables.autoOptimize = false;
+                Variables.playLauncher = false;
+                Variables.playGame = true;
+
+                //GetVipProcesses().Wait();
+                //OptimizePC().Wait();
+
+                //WindowState = FormWindowState.Minimized;
+                //Task.Factory.StartNew(() => State());
+            }
+            catch (Exception ex) { Debug.Message("bPlay_Click()", ex.Message).Wait(); }
+        }
+
+        private void bLauncher_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Variables.autoOptimize = false;
+                Variables.playLauncher = true;
+                Variables.playGame = false;
+
+                //GetVipProcesses().Wait();
+                //OptimizePC().Wait();
+
+                //WindowState = FormWindowState.Minimized;
+                //Task.Factory.StartNew(() => State());
+            }
+            catch (Exception ex) { Debug.Message("bLauncher_Click()", ex.Message).Wait(); }
+        }
+
+        private void bUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            OpenLink(Variables.LinkUpdate);
+        }
+
         private async Task OpenLink(string url)
         {
             try
             {
-                Process.Start(Properties.Resources.DeveloperLinkSite);
+                Process.Start(url);
             }
             finally { }
         }

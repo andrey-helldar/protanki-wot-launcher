@@ -121,7 +121,25 @@ namespace WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://ai-rus.com.
+        ///   Looks up a localized string similar to TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6.
+        /// </summary>
+        public static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to True.
+        /// </summary>
+        public static string Debug {
+            get {
+                return ResourceManager.GetString("Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://goo.gl/5PR4ma.
         /// </summary>
         public static string DeveloperLinkSite {
             get {
@@ -150,12 +168,66 @@ namespace WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://goo.gl/Wlrh9F.
+        /// </summary>
+        public static string LinkNewsAll {
+            get {
+                return ResourceManager.GetString("LinkNewsAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://goo.gl/LXaU7T.
+        /// </summary>
+        public static string LinkVideoAll {
+            get {
+                return ResourceManager.GetString("LinkVideoAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://worldoftanks.com/en/rss/news/.
+        /// </summary>
+        public static string RssWotEn {
+            get {
+                return ResourceManager.GetString("RssWotEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://worldoftanks.ru/ru/rss/news/.
+        /// </summary>
+        public static string RssWotRU {
+            get {
+                return ResourceManager.GetString("RssWotRU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://gdata.youtube.com/feeds/api/users/{0}/uploads.
+        /// </summary>
+        public static string RssYoutube {
+            get {
+                return ResourceManager.GetString("RssYoutube", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Settings {
             get {
                 object obj = ResourceManager.GetObject("Settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROTankiWoT.
+        /// </summary>
+        public static string Youtube {
+            get {
+                return ResourceManager.GetString("Youtube", resourceCulture);
             }
         }
     }
