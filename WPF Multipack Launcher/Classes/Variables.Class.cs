@@ -209,5 +209,26 @@ namespace WPF_Multipack_Launcher.Variables
         {
             if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
         }
+
+        public async Task<string> GetUserID()
+        {
+            try
+            {
+                string name = Environment.MachineName +
+                    Environment.UserName +
+                    Environment.UserDomainName +
+                    Environment.OSVersion.ToString();
+
+                using (System.Security.Cryptography.MD5 md5Hash = System.Security.Cryptography.MD5.Create())
+                {
+                    byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(name));
+                    StringBuilder sBuilder = new StringBuilder();
+                    for (int i = 0; i < data.Length; i++) { sBuilder.Append(data[i].ToString("x2")); }
+
+                    return sBuilder.ToString();
+                }
+            }
+            catch (Exception) { return null; }
+        }
     }
 }
