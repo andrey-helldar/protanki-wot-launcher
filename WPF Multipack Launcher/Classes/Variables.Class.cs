@@ -14,9 +14,9 @@ namespace WPF_Multipack_Launcher.Variables
         public Version ProductVersion = new Version("0.0.0.0");
 
         // Background
-        public int BackgroundMax = 7;
-        public int BackgroundIndex = 1;
-        public int BackgroundDelay = 10000;
+        public int BackgroundMax = 7,
+                   BackgroundIndex = 1,
+                   BackgroundDelay = 10000;
         public bool BackgroundLoop = true;
 
         // Multipack
@@ -26,13 +26,16 @@ namespace WPF_Multipack_Launcher.Variables
         // Paths
         public string PathTanks = String.Empty;
 
-        // Update links
+        // Updates
         public string LinkUpdate = Properties.Resources.LinkVideoAll;
+
+        public bool UpdateMultipack = false,
+                    UpdateTanks = false;
 
         // Local variables
         public bool autoOptimize = false,
-            playGame = false,
-            playLauncher = false;
+                    playGame = false,
+                    playLauncher = false;
 
 
         /********************

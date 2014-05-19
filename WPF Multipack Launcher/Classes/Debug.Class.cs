@@ -22,5 +22,9 @@ namespace WPF_Multipack_Launcher.Classes
                 MessageBox.Show(export, caption);
             }
         }
+
+        public async Task Save(string caption, params string[] args)
+        {
+        }
     }
 }

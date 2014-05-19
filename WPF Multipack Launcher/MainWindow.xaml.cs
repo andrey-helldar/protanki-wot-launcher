@@ -145,7 +145,23 @@ namespace WPF_Multipack_Launcher
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)
         {
-            OpenLink(Variables.LinkUpdate);
+            /// Tanks updates
+            if (Variables.UpdateTanks)
+            {
+                try
+                {
+                    Variables.autoOptimize = false;
+                    Process.Start(Variables.PathTanks + "WoTLauncher.exe");
+                }
+                catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "UpdateTanks = " + Variables.UpdateTanks.ToString(), ex.Message).Wait(); }
+            }
+
+            /// Multipack updates
+            if (Variables.UpdateMultipack)
+            {
+                try { OpenLink(Variables.LinkUpdate).Wait(); }
+                catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "LinkUpdate = " + Variables.LinkUpdate, ex.Message).Wait(); }
+            }
         }
 
         private async Task OpenLink(string url)
