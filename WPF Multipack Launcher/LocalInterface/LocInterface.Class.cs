@@ -32,19 +32,10 @@ namespace WPF_Multipack_Launcher.LocalInterface
             finally { }
         }
 
-        public async Task<ImageBrush> Background(string uri, int index)
+        public async Task<string> VersionToSharp(Version ver)
         {
-            try
-            {
-
-                //this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Multipack Launcher;component/Resources/back_2.jpg")));
-                //this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, Variables.BackgroundIndex.ToString()))));
-                return new ImageBrush(new BitmapImage(new Uri(String.Format(uri, index.ToString()))));
-            }
-            catch (Exception)
-            {
-                return new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (--index).ToString()))));
-            }
+            string[] exp = ver.ToString().Split('.');
+            return exp[0] + "." + exp[1] + "." + exp[2] + " #" + exp[3];
         }
     }
 }

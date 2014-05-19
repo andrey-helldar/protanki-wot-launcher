@@ -9,13 +9,24 @@ namespace WPF_Multipack_Launcher.Variables
 {
     class Variables
     {
+        // Product
         public string ProductName = String.Empty;
         public Version ProductVersion = new Version("0.0.0.0");
 
+        // Background
         public int BackgroundMax = 7;
         public int BackgroundIndex = 1;
+        public int BackgroundDelay = 10000;
         public bool BackgroundLoop = true;
-        public int BackgroundDelay = 1000;
+
+        // Multipack
+        public string MultipackType = "Base";
+        public Version MultipackVersion = new Version("0.0.0.0");
+
+
+        /********************
+         * Functions
+         * ******************/
 
         public async Task Start()
         {

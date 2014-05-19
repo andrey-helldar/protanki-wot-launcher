@@ -49,7 +49,11 @@ namespace WPF_Multipack_Launcher
             //Task.Factory.StartNew(()=>SetBack());
             SetBackground();
 
+            DataLoading();
+
             lCaption.Content = Variables.ProductName;
+            lMultipackVersion.Content = MultipackVersion().Result;
+            lLauncherVersion.Content = LauncherVersion().Result;
         }
 
         private async Task SetBackground()
@@ -60,21 +64,12 @@ namespace WPF_Multipack_Launcher
             {
                 try
                 {
-
                     if (Variables.BackgroundIndex < 1 || Variables.BackgroundIndex > Variables.BackgroundMax) Variables.BackgroundIndex = 1;
 
-                    try
-                    {
-                        //this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, Variables.BackgroundIndex.ToString()))));
-                        this.Background = LocalInterface.Background(uri, Variables.BackgroundIndex).Result;
-                    }
-                    finally
-                    {
-                        Variables.BackgroundIndex++;
-                        lCaption.Content = (Variables.BackgroundIndex-1).ToString();
-                    }
+                    try { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex++).ToString())))); }
+                    catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
                 }
-                catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); lCaption.Content = "Error"; }
+                catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
 
                 await Task.Delay(Variables.BackgroundDelay);
             }
@@ -101,6 +96,21 @@ namespace WPF_Multipack_Launcher
                 LocalInterface.Message("link is opened");
             }
             finally { }
+        }
+
+        private async Task DataLoading()
+        {
+            Variables.MultipackVersion = new Version("0.9.0.10");
+        }
+
+        private async Task<string> MultipackVersion()
+        {
+            return LocalInterface.VersionToSharp(Variables.MultipackVersion).Result;
+        }
+
+        private async Task<string> LauncherVersion()
+        {
+            return LocalInterface.VersionToSharp(Variables.ProductVersion).Result;
         }
     }
 }
