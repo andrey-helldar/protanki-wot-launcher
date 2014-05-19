@@ -60,6 +60,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Debug.Class.cs" />
+    <Compile Include="Classes\Optimize.Class.cs" />
     <Compile Include="Classes\Variables.Class.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

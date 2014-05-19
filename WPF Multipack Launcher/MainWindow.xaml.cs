@@ -30,6 +30,7 @@ namespace WPF_Multipack_Launcher
         LocalInterface.LocInterface LocalInterface = new LocalInterface.LocInterface();
         Variables.Variables Variables = new Variables.Variables();
         Classes.Debug Debug = new Classes.Debug();
+        Classes.Optimize Optimize = new Classes.Optimize();
 
 
         /*********************
@@ -119,6 +120,7 @@ namespace WPF_Multipack_Launcher
 
                 //GetVipProcesses().Wait();
                 //OptimizePC().Wait();
+                Optimize.Start().Wait();
 
                 //WindowState = FormWindowState.Minimized;
                 //Task.Factory.StartNew(() => State());

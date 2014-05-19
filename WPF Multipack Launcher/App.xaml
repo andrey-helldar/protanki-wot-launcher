@@ -48,7 +48,6 @@
                             <!-- Set properties when button has unavailable -->
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Background" Value="#FF282828"/>
-                                <Setter Property="{TemplateBinding Property=myContentPresenter}" Value="#FFFFFFFF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

@@ -37,6 +37,8 @@ namespace WPF_Multipack_Launcher.Variables
                     playGame = false,
                     playLauncher = false;
 
+        public string TempStatus = "Loading status...";
+
 
         /********************
          * Functions
