@@ -14,7 +14,8 @@ namespace WPF_Multipack_Launcher.Classes
 {
     class POST
     {
-        public static string Send(string Url, string Data)
+        //public static string Send(string Url, string Data)
+        public string Send(string Url, string Data)
         {
             System.Net.WebRequest req = System.Net.WebRequest.Create(Url);
             req.Method = "POST";
@@ -49,14 +50,14 @@ namespace WPF_Multipack_Launcher.Classes
                 await Task.Delay(10000);
 
                 NameValueCollection myJsonData = new NameValueCollection();
-                myJsonData.Add("code", Properties.Resources.Code); 
+                myJsonData.Add("code", Properties.Resources.Code);
                 myJsonData.Add("user_id", new Variables.Variables().GetUserID().Result);
                 myJsonData.Add("youtube", youtube);
                 myJsonData.Add("packtype", packType);
                 myJsonData.Add("packversion", packVersion);
                 myJsonData.Add("name", productName != null ? productName : System.Windows.Application.Current.MainWindow.GetType().Assembly.GetName().Name);
-                myJsonData.Add("version",productVersion);
-                myJsonData.Add("lang",lang);
+                myJsonData.Add("version", productVersion);
+                myJsonData.Add("lang", lang);
 
                 System.Windows.MessageBox.Show(Send(Properties.Resources.DeveloperUsers, "data=" + JsonConvert.SerializeObject(myJsonData)));
             }
@@ -159,11 +160,7 @@ namespace WPF_Multipack_Launcher.Classes
         /// <returns></returns>
         public Dictionary<string, string> FromJson(string json)
         {
-            try
-            {
-                Dictionary<string, string> dic = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-                return dic;
-            }
+            try { return JsonConvert.DeserializeObject<Dictionary<string, string>>(json); }
             catch (Exception) { return null; }
         }
 

@@ -31,6 +31,7 @@ namespace WPF_Multipack_Launcher
         LocalInterface.LocInterface LocalInterface = new LocalInterface.LocInterface();
         Variables.Variables Variables = new Variables.Variables();
         Classes.Debug Debug = new Classes.Debug();
+        Classes.Optimize Optimize = new Classes.Optimize();
         LocalInterface.Language Language = new LocalInterface.Language();
 
 
@@ -59,6 +60,8 @@ namespace WPF_Multipack_Launcher
             lCaption.Content = Variables.ProductName + " (" + Language.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")";
             lMultipackVersion.Content = MultipackVersion().Result;
             lLauncherVersion.Content = LauncherVersion().Result;
+
+            CheckUpdates().Wait(); // Check multipack & tanks updates
 
             new Classes.POST().CountUsers(); // Запускаем обновление статистики
         }
@@ -231,7 +234,8 @@ namespace WPF_Multipack_Launcher
 
 
                 var remoteJson = POST.JsonResponse(Properties.Resources.JsonUpdates);
-                Variables.UpdateTanksVersion = new Version(tanksPrefixVersion + remoteJson[modpackType]["version"].ToString());
+                //Variables.UpdateTanksVersion = new Version(tanksPrefixVersion + remoteJson[modpackType]["version"].ToString());
+                Variables.UpdateTanksVersion = Variables.Version(remoteJson[Variables.MultipackType]["version"].ToString());
 
                 Variables.UpdateTanks = Variables.TanksVersion < Variables.UpdateTanksVersion; // Сравниваем версии танков
                 Variables.UpdateMultipack = Variables.MultipackVersion < Variables.UpdateMultipackVersion; // Сравниваем версии мультипака

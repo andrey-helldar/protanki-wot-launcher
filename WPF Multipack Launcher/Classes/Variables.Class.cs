@@ -235,7 +235,8 @@ namespace WPF_Multipack_Launcher.Variables
 
         public Version Version(string version)
         {
-            return Version;
+            string newVersion = "{0}.{1}.{2}.{3}";
+            return new Version(String.Format(newVersion, TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version));
         }
     }
 }
