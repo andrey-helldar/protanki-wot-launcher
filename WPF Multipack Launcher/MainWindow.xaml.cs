@@ -259,12 +259,22 @@ namespace WPF_Multipack_Launcher
 
                 if (Variables.UpdateMultipack || Variables.UpdateTanks) // Если есть одно из обновлений
                 {
-                    if (Variables.UpdateMultipack)
-                    {
-                    }
+                    bUpdate.IsEnabled = true; // Включаем кнопку обновлений
+
+                    if (Variables.UpdateMultipack) lStatusUpdates.Content = Language.DynamicLanguage("llActuallyNewMods", Variables.Lang);
+                    if (Variables.UpdateTanks && !Variables.UpdateMultipack) lStatusUpdates.Content = Language.DynamicLanguage("llActuallyNewGame", Variables.Lang);
+
+                    /// ****************************************
+                    /// ВСТАВИТЬ ОКНО ВЫВОДА СПИСКА ОБНОВЛЕНИЙ
+                    /// ****************************************
+                }
+                else
+                {
+                    bUpdate.IsEnabled = false; // Выключаем кнопку обновлений
+                    lStatusUpdates.Content = Language.DynamicLanguage("llActuallyActually", Variables.Lang);
                 }
             }
-            catch (Exception ex) { new Classes.Debug().Save("fIndex", "bwUpdater_DoWork()", ex.Message); }
+            catch (Exception ex) { new Classes.Debug().Save("MainForm", "CheckUpdates()", ex.Message); }
         }
     }
 }
