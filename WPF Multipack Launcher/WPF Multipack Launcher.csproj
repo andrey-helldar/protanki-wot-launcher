@@ -157,9 +157,7 @@
     <None Include="Resources\Ionic.Zip.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Newtonsoft.Json.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\Newtonsoft.Json.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ProcessesLibrary.dll" />
@@ -186,6 +184,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Splash1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Resources\Splash2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

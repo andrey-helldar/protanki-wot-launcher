@@ -73,6 +73,8 @@ namespace WPF_Multipack_Launcher {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
+            SplashScreen splashScreen = new SplashScreen("resources/splash2.png");
+            splashScreen.Show(true);
             WPF_Multipack_Launcher.App app = new WPF_Multipack_Launcher.App();
             app.InitializeComponent();
             app.Run();
