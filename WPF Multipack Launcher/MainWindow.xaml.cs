@@ -60,7 +60,7 @@ namespace WPF_Multipack_Launcher
             lMultipackVersion.Content = MultipackVersion().Result;
             lLauncherVersion.Content = LauncherVersion().Result;
 
-            // Убираем перекрытие загрузки
+            new Classes.POST().CountUsers(); // Запускаем обновление статистики
         }
 
         private async Task OverlayPanel(string page=null)

@@ -40,32 +40,29 @@ namespace WPF_Multipack_Launcher.Classes
             return Out;
         }
 
-        public async Task CountUsers(string productName = "Multipack Launcher", string productVersion = "0.0.0.0", string packVersion = "0.0.0.0",
-            string packType = "null", string youtube = "null", string lang = "ru")
+        public async Task CountUsers(string productName = null,
+            string productVersion = "0.0.0.0", string packVersion = "0.0.0.0",
+            string packType = "null", string youtube = "null", string lang = "en")
         {
-            Debug Debug = new Debug();
-
             try
             {
                 await Task.Delay(10000);
 
-                List<string> myJsonData = new List<string>();
+                NameValueCollection myJsonData = new NameValueCollection();
+                myJsonData.Add("code", Properties.Resources.Code); 
+                myJsonData.Add("user_id", new Variables.Variables().GetUserID().Result);
+                myJsonData.Add("youtube", youtube);
+                myJsonData.Add("packtype", packType);
+                myJsonData.Add("packversion", packVersion);
+                myJsonData.Add("name", productName != null ? productName : System.Windows.Application.Current.MainWindow.GetType().Assembly.GetName().Name);
+                myJsonData.Add("version",productVersion);
+                myJsonData.Add("lang",lang);
 
-                myJsonData.Add(Properties.Resources.Code);     //  0 Authorization Code
-                myJsonData.Add(new Variables.Variables().GetUserID().Result); //  1 User ID
-                myJsonData.Add(youtube);        //  2 Youtube Channel
-                myJsonData.Add(packType);       //  3 Modpack type
-                myJsonData.Add(packVersion);    //  4 Modpack version
-                myJsonData.Add(productName);    //  5 Application.ProductName
-                myJsonData.Add(productVersion); //  6 Application.ProductVersion
-                myJsonData.Add(lang);           //  7 Language mod pack
-
-                string json = JsonConvert.SerializeObject(myJsonData);
-                Send("http://ai-rus.com/wot/users/", "data=" + json);
+                Send(Properties.Resources.DeveloperUsers, JsonConvert.SerializeObject(myJsonData));
             }
             catch (WebException ex)
             {
-                Debug.Save("CountUsers()",
+                new Debug().Save("POST Class: CountUsers()",
                     "productName: " + productName,
                     "productVersion: " + productVersion,
                     "packVersion: " + packVersion,
@@ -139,10 +136,7 @@ namespace WPF_Multipack_Launcher.Classes
                     wresp = null;
                 }
             }
-            finally
-            {
-                wr = null;
-            }
+            finally { wr = null; }
         }
 
         /// <summary>
@@ -152,10 +146,7 @@ namespace WPF_Multipack_Launcher.Classes
         /// <returns></returns>
         public string Json(Dictionary<string, string> dic)
         {
-            try
-            {
-                return JsonConvert.SerializeObject(dic);
-            }
+            try { return JsonConvert.SerializeObject(dic); }
             catch (Exception) { return null; }
         }
 
