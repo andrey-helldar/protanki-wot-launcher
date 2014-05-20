@@ -58,7 +58,7 @@ namespace WPF_Multipack_Launcher.Classes
                 myJsonData.Add("version",productVersion);
                 myJsonData.Add("lang",lang);
 
-                Send(Properties.Resources.DeveloperUsers, JsonConvert.SerializeObject(myJsonData));
+                System.Windows.MessageBox.Show(Send(Properties.Resources.DeveloperUsers, JsonConvert.SerializeObject(myJsonData)));
             }
             catch (WebException ex)
             {
