@@ -20,7 +20,6 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="lMultipackVersion" Grid.ColumnSpan="2" Content="0.0.0 #0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label x:Name="lCaption" Grid.ColumnSpan="2" Content="Loading..." HorizontalAlignment="Left" Margin="189,-2,0,0" VerticalAlignment="Top" Foreground="#FFF37B10" FontFamily="Sochi2014" FontWeight="Bold" FontSize="16"/>
-        <Image x:Name="iFeedback" HorizontalAlignment="Left" Height="32" Margin="82,0,0,8" Grid.Row="4" VerticalAlignment="Bottom" Width="32" Source="Resources/feedback.png" Cursor="Hand" Grid.Column="2"/>
         <Button x:Name="bLauncher" Content="Launcher" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,218,0" Grid.Row="4" VerticalAlignment="Top" Width="105" Click="bLauncher_Click"/>
         <Button x:Name="bUpdate" Content="Update" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,115,0" Grid.Row="4" VerticalAlignment="Top" Width="98" Click="bUpdate_Click" IsEnabled="False"/>
         <Button x:Name="bExit" Content="Exit" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="4" VerticalAlignment="Bottom" Width="102" Click="Button_Click_1"/>

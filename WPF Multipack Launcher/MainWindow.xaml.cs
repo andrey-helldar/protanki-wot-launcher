@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,7 +31,6 @@ namespace WPF_Multipack_Launcher
         LocalInterface.LocInterface LocalInterface = new LocalInterface.LocInterface();
         Variables.Variables Variables = new Variables.Variables();
         Classes.Debug Debug = new Classes.Debug();
-        Classes.Optimize Optimize = new Classes.Optimize();
         LocalInterface.Language Language = new LocalInterface.Language();
 
 
@@ -194,6 +194,55 @@ namespace WPF_Multipack_Launcher
         private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
+        }
+
+        private async Task CheckUpdates()
+        {
+            try
+            {
+                Classes.POST POST = new Classes.POST();
+
+                if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
+
+                XDocument docSettings = XDocument.Load("settings.xml");
+                if (Variables.CommonTest)
+                    if (docSettings.Root.Element("common.test") == null) docSettings.Root.Add(new XElement("common.test", null));
+                    else
+                        if (docSettings.Root.Element("common.test") != null) docSettings.Root.Element("common.test").Remove();
+                docSettings.Save("settings.xml");
+
+
+                XDocument doc = XDocument.Load(Properties.Resources.XmlPro);
+                Dictionary<string, string> json = new Dictionary<string, string>();
+
+                json.Add("code", Properties.Resources.Code);
+                json.Add("user", new Variables.Variables().GetUserID().Result);
+                json.Add("youtube", Properties.Resources.Youtube);
+                json.Add("test", Variables.CommonTest ? "1" : "0");
+                json.Add("version", Variables.TanksVersion.ToString());
+                json.Add("lang", Variables.Lang);
+
+                try
+                {
+                    Dictionary<string, string> sendStatus = POST.FromJson(POST.Send(Properties.Resources.DeveloperWotVersion, "data=" + POST.Json(json)));
+                    Variables.UpdateTanksVersion = Convert.ToInt32(sendStatus["count"]) > new Variables.Variables().Accept ? new Version(sendStatus["id"]) : Variables.TanksVersion;
+                }
+                catch (Exception) { Variables.UpdateTanksVersion = new Version("0.0.0.0"); }
+
+
+                var remoteJson = POST.JsonResponse(Properties.Resources.JsonUpdates);
+                Variables.UpdateTanksVersion = new Version(tanksPrefixVersion + remoteJson[modpackType]["version"].ToString());
+
+                Variables.UpdateTanks = Variables.TanksVersion < Variables.UpdateTanksVersion; // Сравниваем версии танков
+                Variables.UpdateMultipack = Variables.MultipackVersion < Variables.UpdateMultipackVersion; // Сравниваем версии мультипака
+
+                if (Variables.UpdateMultipack)
+                {
+                    Variables.UpdateMessage = POST.DataRegex(remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString());
+                    Variables.UpdateLink = remoteJson[Variables.MultipackType]["download"].ToString();
+                }
+            }
+            catch (Exception ex) { new Classes.Debug().Save("fIndex", "bwUpdater_DoWork()", ex.Message); }
         }
     }
 }

@@ -37,6 +37,8 @@ namespace WPF_Multipack_Launcher.Variables
         public string PathTanks = String.Empty;
 
         // Updates
+        public int Accept = 300;
+
         public string UpdateLink = Properties.Resources.LinkVideoAll,
                       UpdateMessage = String.Empty,
                       UpdateNotify = String.Empty;
@@ -229,6 +231,11 @@ namespace WPF_Multipack_Launcher.Variables
                 }
             }
             catch (Exception) { return null; }
+        }
+
+        public Version Version(string version)
+        {
+            return Version;
         }
     }
 }

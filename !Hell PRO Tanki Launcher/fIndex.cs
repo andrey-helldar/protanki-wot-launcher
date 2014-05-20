@@ -87,10 +87,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
         public fIndex()
         {
-            //Проверяем запущен ли процесс
-            foreach (Process process in Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName))
-                if (process.SessionId != Process.GetCurrentProcess().SessionId) process.Kill();
-
             InitializeComponent();
         }
 
@@ -271,14 +267,12 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (!File.Exists("Interface.dll")) // Если входящее изображение отсутствует, то выполняем обычную форму, иначе - загружаемый скин
-                {
                     if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
 
                     bool loop = true;
                     XDocument doc = XDocument.Load("settings.xml");
-
-                    while (loop)
+                
+                while (loop)
                     {
                         try
                         {
@@ -301,11 +295,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
                         await Task.Delay(10000);
                     }
-                }
-                else // загружаем свой скин
-                {
-                    //UI();
-                }
             }
             catch (Exception ex)
             {
@@ -642,7 +631,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     GetVipProcesses().Wait();
 
                     playGame = false;
-                    OptimizePC().Wait();
+                    OptimizePC();
                 }
                 catch (Exception ex) { Debug.Save("fIndex", "bOptimizePC_Click()", ex.Message); }
             }
@@ -707,7 +696,7 @@ namespace _Hell_PRO_Tanki_Launcher
             fSettings fSettings = new fSettings();
             if (fSettings.ShowDialog() == DialogResult.OK)
             {
-                loadSettings();
+                loadSettings().Wait();
 
                 GetVipProcesses();
             }
