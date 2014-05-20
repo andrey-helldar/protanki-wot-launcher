@@ -66,7 +66,7 @@ namespace WPF_Multipack_Launcher
             new Classes.POST().CountUsers(); // Запускаем обновление статистики
         }
 
-        private async Task OverlayPanel(string page=null)
+        private async Task OverlayPanel(string page = null)
         {
             // Создаем панель
             StackPanel panel = new StackPanel();
@@ -204,6 +204,7 @@ namespace WPF_Multipack_Launcher
             try
             {
                 Classes.POST POST = new Classes.POST();
+                string status = String.Empty;
 
                 if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
 
@@ -244,6 +245,23 @@ namespace WPF_Multipack_Launcher
                 {
                     Variables.UpdateMessage = POST.DataRegex(remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString());
                     Variables.UpdateLink = remoteJson[Variables.MultipackType]["download"].ToString();
+                    status += Language.DynamicLanguage("llActuallyNewMods", Variables.Lang) + ": " + Variables.UpdateMultipackVersion.ToString() + Environment.NewLine;
+                }
+
+                if (Variables.UpdateTanks)
+                {
+                    status += Language.DynamicLanguage("llActuallyNewGame", Variables.Lang) + ": " + Variables.UpdateTanksVersion.ToString() + Environment.NewLine;
+                    bPlay.IsEnabled = false;
+                }
+                else
+                    bPlay.IsEnabled = true;
+
+
+                if (Variables.UpdateMultipack || Variables.UpdateTanks) // Если есть одно из обновлений
+                {
+                    if (Variables.UpdateMultipack)
+                    {
+                    }
                 }
             }
             catch (Exception ex) { new Classes.Debug().Save("fIndex", "bwUpdater_DoWork()", ex.Message); }
