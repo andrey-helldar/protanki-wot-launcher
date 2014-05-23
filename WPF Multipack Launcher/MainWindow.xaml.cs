@@ -149,7 +149,7 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                Optimize.Start(false).Wait();
+                Optimize.Start().Wait();
                 Process.Start(Variables.PathTanks + "WorldOfTanks.exe");
             }
             catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message).Wait(); }
@@ -159,19 +159,22 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                Optimize.Start(false).Wait();
+                Optimize.Start().Wait();
                 Process.Start(Variables.PathTanks + "WoTLauncher.exe");
             }
             catch (Exception ex) { Debug.Save("MainWindow", "bLauncher_Click()", ex.Message).Wait(); }
         }
 
-        private void bUpdate_Click(object sender, RoutedEventArgs e)
+        private async void bUpdate_Click(object sender, RoutedEventArgs e)
         {
             /// Tanks updates
             if (Variables.UpdateTanks)
             {
-                try { Process.Start(Variables.PathTanks + "WoTLauncher.exe"); }
-                catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "UpdateTanks = " + Variables.UpdateTanks.ToString(), ex.Message).Wait(); }
+                if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
+                    try { Process.Start(Variables.PathTanks + "WoTLauncher.exe"); }
+                    catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "UpdateTanks = " + Variables.UpdateTanks.ToString(), ex.Message).Wait(); }
+                else
+                    await Debug.Message(Variables.ProductName, Language.DynamicLanguage("noTanks", Variables.Lang));
             }
 
             /// Multipack updates
@@ -190,7 +193,7 @@ namespace WPF_Multipack_Launcher
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
-            try { Optimize.Start(true).Wait(); }
+            try { Optimize.Start(Variables.AutoKill,Variables.AutoForceKill, Variables.AutoVideo, Variables.AutoWeak, Variables.AutoAero, true).Wait(); }
             catch (Exception ex) { Debug.Save("MainWindow", "bOptimize_Click()", ex.Message).Wait(); }
         }
 
@@ -274,7 +277,7 @@ namespace WPF_Multipack_Launcher
                     lStatusUpdates.Content = Language.DynamicLanguage("llActuallyActually", Variables.Lang);
                 }
             }
-            catch (Exception ex) { new Classes.Debug().Save("MainForm", "CheckUpdates()", ex.Message); }
+            catch (Exception ex) { Debug.Save("MainForm", "CheckUpdates()", ex.Message).Wait(); }
         }
     }
 }
