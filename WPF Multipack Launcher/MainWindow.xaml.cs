@@ -149,8 +149,8 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                Optimize.Start().Wait();
-                Process.Start(Variables.PathTanks + "WorldOfTanks.exe");
+                //Optimize.Start().Wait();
+                StartGame();
             }
             catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message).Wait(); }
         }
@@ -193,7 +193,7 @@ namespace WPF_Multipack_Launcher
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
-            try { Optimize.Start(Variables.AutoKill,Variables.AutoForceKill, Variables.AutoVideo, Variables.AutoWeak, Variables.AutoAero, true).Wait(); }
+            try { Optimize.Start(Variables.AutoKill, Variables.AutoForceKill, Variables.AutoAero, Variables.AutoVideo, Variables.AutoWeak, true).Wait(); }
             catch (Exception ex) { Debug.Save("MainWindow", "bOptimize_Click()", ex.Message).Wait(); }
         }
 
@@ -278,6 +278,16 @@ namespace WPF_Multipack_Launcher
                 }
             }
             catch (Exception ex) { Debug.Save("MainForm", "CheckUpdates()", ex.Message).Wait(); }
+        }
+
+        private async void StartGame(string file = "WorldOfTanks.exe")
+        {
+            try
+            {
+                if (File.Exists(Variables.PathTanks + file))
+                    Process.Start(new ProcessStartInfo("cmd", @"/c " + Variables.PathTanks + file));
+            }
+            finally { }
         }
     }
 }

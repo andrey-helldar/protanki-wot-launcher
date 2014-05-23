@@ -228,4 +228,7 @@
   <data name="XmlPro" xml:space="preserve">
     <value>http://ai-rus.com/pro/pro.xml</value>
   </data>
+  <data name="res_mods" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\res_mods.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
