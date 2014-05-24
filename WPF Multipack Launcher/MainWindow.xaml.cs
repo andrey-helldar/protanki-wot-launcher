@@ -350,19 +350,37 @@ namespace WPF_Multipack_Launcher
                         );
 
                     // Creating window controls
-                    // Date
-                    Label label = new Label();
-                    label.Foreground = new SolidColorBrush(Colors.LightGray);
-                    label.FontSize = fontSize;
-                    label.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                    label.VerticalAlignment = System.Windows.VerticalAlignment.Top;
-                    label.Margin = new Thickness(5, topOffset,0 , 0);
-                    label.Content = FormatDateNews(el.Element(ns + "published").Value.Remove(10));
-                    Grid.SetRow(label, 3);
-                    Grid.SetColumn(label, 1);
-                    gGrid.Children.Add(label);
+                    if (topOffset < 200)
+                    {
+                        // Date
+                        Label label = new Label();
+                        label.Foreground = new SolidColorBrush(Colors.LightGray);
+                        label.FontSize = fontSize;
+                        label.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                        label.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                        label.Margin = new Thickness(5, topOffset, 0, 0);
+                        label.Content = FormatDateNews(el.Element(ns + "published").Value.Remove(10));
+                        Grid.SetRow(label, 3);
+                        Grid.SetColumn(label, 1);
+                        gGrid.Children.Add(label);
 
-                    topOffset += fontSize + 6;
+                        // News title
+                        Label labelT = new Label();
+                        Hyperlink hyperlink = new Hyperlink(new Run(content));
+                        hyperlink.NavigateUri = new Uri(link);
+                        hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
+
+                        labelT.Content = hyperlink;
+                        labelT.FontSize = fontSize;
+                        labelT.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                        labelT.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                        labelT.Margin = new Thickness(60, topOffset, 0, 0);
+                        Grid.SetRow(labelT, 3);
+                        Grid.SetColumn(labelT, 1);
+                        gGrid.Children.Add(labelT);
+
+                        topOffset += fontSize + 6;
+                    }
                 }
             }
             catch (Exception) { }
