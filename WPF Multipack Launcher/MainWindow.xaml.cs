@@ -67,6 +67,7 @@ namespace WPF_Multipack_Launcher
             new Classes.POST().CountUsers(); // Запускаем обновление статистики
 
             Youtube();
+            WargamingNews();
         }
 
         private async Task OverlayPanel(string page = null)
@@ -383,7 +384,56 @@ namespace WPF_Multipack_Launcher
                     }
                 }
             }
-            catch (Exception) { }
+            finally { }
+        }
+
+        private async Task WargamingNews()
+        {
+            try
+            {
+                int topOffset = 0,
+                    fontSize = 16;
+
+                gGrid.Children.Remove(lLoadingNews);
+
+                XDocument doc = XDocument.Load(Variables.Lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
+
+                foreach (XElement el in doc.Root.Element("channel").Elements("item"))
+                {
+                    if (topOffset < gGrid.RowDefinitions[3].Height.Value)
+                    {
+                        // Date
+                        Label label = new Label();
+                        label.Foreground = new SolidColorBrush(Colors.LightGray);
+                        label.FontSize = fontSize;
+                        label.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                        label.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                        label.Margin = new Thickness(5, topOffset, 0, 0);
+                        label.Content = FormatDateNews(el.Element("pubDate").Value);
+                        Grid.SetRow(label, 3);
+                        Grid.SetColumn(label, 2);
+                        gGrid.Children.Add(label);
+
+                        // News title
+                        Label labelT = new Label();
+                        Hyperlink hyperlink = new Hyperlink(new Run(el.Element("title").Value));
+                        hyperlink.NavigateUri = new Uri(el.Element("link").Value);
+                        hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
+
+                        labelT.Content = hyperlink;
+                        labelT.FontSize = fontSize;
+                        labelT.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                        labelT.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                        labelT.Margin = new Thickness(60, topOffset, 0, 0);
+                        Grid.SetRow(labelT, 3);
+                        Grid.SetColumn(labelT, 2);
+                        gGrid.Children.Add(labelT);
+
+                        topOffset += fontSize + 6;
+                    }
+                    else break;
+                }
+            }
             finally { }
         }
 
