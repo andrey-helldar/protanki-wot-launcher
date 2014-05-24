@@ -350,7 +350,7 @@ namespace WPF_Multipack_Launcher
                         );
 
                     // Creating window controls
-                    if (topOffset < 200)
+                    if (topOffset < gGrid.RowDefinitions[3].Height.Value)
                     {
                         // Date
                         Label label = new Label();
