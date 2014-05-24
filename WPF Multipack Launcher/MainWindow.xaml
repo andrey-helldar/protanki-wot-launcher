@@ -5,7 +5,7 @@
     <Window.Background>
         <ImageBrush ImageSource="Resources/back_1.jpg"/>
     </Window.Background>
-    <Grid HorizontalAlignment="Left" Width="860" Height="480" VerticalAlignment="Bottom">
+    <Grid x:Name="gGrid" HorizontalAlignment="Left" Width="860" Height="480" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition Height="27*"/>
             <RowDefinition Height="49*"/>
@@ -43,5 +43,7 @@
         <TextBlock Grid.Column="2" Grid.Row="2" Margin="0,0,20,6" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontFamily="Sochi2014" FontSize="16">
             <Hyperlink NavigateUri="http://goo.gl/Wlrh9F" RequestNavigate="Hyperlink_Open" Foreground="#FFF37B10" TextDecorations="None">All news</Hyperlink>
         </TextBlock>
+        <Label x:Name="lLoadingVideo" Grid.ColumnSpan="2" Content="Loading videos..." HorizontalAlignment="Center" Margin="0" Grid.Row="3" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="lLoadingNews" Content="Loading news..." Grid.Column="2" HorizontalAlignment="Center" Margin="0" Grid.Row="3" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
     </Grid>
 </Window>

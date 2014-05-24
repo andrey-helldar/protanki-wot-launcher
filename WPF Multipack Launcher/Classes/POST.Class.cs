@@ -47,7 +47,7 @@ namespace WPF_Multipack_Launcher.Classes
         {
             try
             {
-                await Task.Delay(10000);
+                await Task.Delay(Convert.ToInt16(Properties.Resources.PostCountUsersDelay));
 
                 NameValueCollection myJsonData = new NameValueCollection();
                 myJsonData.Add("code", Properties.Resources.Code);
@@ -59,7 +59,7 @@ namespace WPF_Multipack_Launcher.Classes
                 myJsonData.Add("version", productVersion);
                 myJsonData.Add("lang", lang);
 
-                System.Windows.MessageBox.Show(Send(Properties.Resources.DeveloperUsers, "data=" + JsonConvert.SerializeObject(myJsonData)));
+                //System.Windows.MessageBox.Show(Send(Properties.Resources.DeveloperUsers, "data=" + JsonConvert.SerializeObject(myJsonData)));
             }
             catch (WebException ex)
             {

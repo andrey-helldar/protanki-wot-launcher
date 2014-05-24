@@ -33,6 +33,7 @@ namespace WPF_Multipack_Launcher
         Classes.Debug Debug = new Classes.Debug();
         Classes.Optimize Optimize = new Classes.Optimize();
         LocalInterface.Language Language = new LocalInterface.Language();
+        Classes.YoutubeVideo YoutubeClass = new Classes.YoutubeVideo();
 
 
         /*********************
@@ -64,6 +65,8 @@ namespace WPF_Multipack_Launcher
             CheckUpdates().Wait(); // Check multipack & tanks updates
 
             new Classes.POST().CountUsers(); // Запускаем обновление статистики
+
+            Youtube();
         }
 
         private async Task OverlayPanel(string page = null)
@@ -238,7 +241,6 @@ namespace WPF_Multipack_Launcher
 
 
                 var remoteJson = POST.JsonResponse(Properties.Resources.JsonUpdates);
-                //Variables.UpdateTanksVersion = new Version(tanksPrefixVersion + remoteJson[modpackType]["version"].ToString());
                 Variables.UpdateTanksVersion = Variables.Version(remoteJson[Variables.MultipackType]["version"].ToString());
 
                 Variables.UpdateTanks = Variables.TanksVersion < Variables.UpdateTanksVersion; // Сравниваем версии танков
@@ -285,9 +287,100 @@ namespace WPF_Multipack_Launcher
             try
             {
                 if (File.Exists(Variables.PathTanks + file))
+                {
+                    State().Wait();
                     Process.Start(new ProcessStartInfo("cmd", @"/c " + Variables.PathTanks + file));
+                }
             }
             finally { }
+        }
+
+        /// <summary>
+        ///     0   Не закрывать лаунчер
+        ///     1   Сворачивать в трей при запуске игры
+        ///     2   Минимизировать лаунчер на панель задач
+        ///     3   Закрывать при запуске игры
+        /// </summary>
+        /// <param name="select"></param>
+        private async Task State()
+        {
+            if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
+
+            XDocument docState = XDocument.Load("settings.xml");
+            string select = "0";
+
+            if (docState.Root.Element("launcher") != null)
+                if (docState.Root.Element("launcher").Attribute("minimize") != null)
+                    select = docState.Root.Element("launcher").Attribute("minimize").Value;
+
+            switch (select)
+            {
+                case "1": Hide(); break;
+                case "2": WindowState = System.Windows.WindowState.Minimized; break;
+                case "3": Close(); break;
+                default: break;
+            }
+        }
+
+        public async Task Youtube()
+        {
+            try
+            {
+                int topOffset = 0,
+                    fontSize = 16;
+
+                XDocument doc = XDocument.Load(String.Format(Properties.Resources.RssYoutube, Properties.Resources.Youtube));
+                XNamespace ns = "http://www.w3.org/2005/Atom";
+
+                gGrid.Children.Remove(lLoadingVideo);
+
+                foreach (XElement el in doc.Root.Elements(ns + "entry"))
+                {
+                    string link = String.Empty;
+                    foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
+
+                    string content = (el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value);
+                    // Write array
+                    YoutubeClass.Add(
+                        el.Element(ns + "id").Value.Remove(0, 42),
+                            content,
+                            el.Element(ns + "content").Value.Remove(256) + (el.Element(ns + "content").Value.Length > 256 ? "..." : ""),
+                            link,
+                            el.Element(ns + "published").Value.Remove(10)
+                        );
+
+                    // Creating window controls
+                    // Date
+                    Label label = new Label();
+                    label.Foreground = new SolidColorBrush(Colors.LightGray);
+                    label.FontSize = fontSize;
+                    label.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                    label.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                    label.Margin = new Thickness(5, topOffset,0 , 0);
+                    label.Content = FormatDateNews(el.Element(ns + "published").Value.Remove(10));
+                    Grid.SetRow(label, 3);
+                    Grid.SetColumn(label, 1);
+                    gGrid.Children.Add(label);
+
+                    topOffset += fontSize + 6;
+                }
+            }
+            catch (Exception) { }
+            finally { }
+        }
+
+        private string FormatDateNews(string dt)
+        {
+            try
+            {
+                if (dt != null)
+                {
+                    DateTime nd = DateTime.Parse(dt);
+                    return nd.ToString("dd/MM").Replace(".", "/");
+                }
+                return "null";
+            }
+            catch (Exception) { return "error"; }
         }
     }
 }

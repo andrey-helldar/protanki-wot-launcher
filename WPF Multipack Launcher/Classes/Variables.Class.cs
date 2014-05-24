@@ -76,7 +76,7 @@ namespace WPF_Multipack_Launcher.Variables
 
                 LoadSettings().Wait();
 
-                Updater().Wait();
+                new Classes.Update().SaveFromResources().Wait();
             }
             catch (Exception) { return false; }
             return true;
@@ -207,11 +207,6 @@ namespace WPF_Multipack_Launcher.Variables
             }
         }
 
-        private async Task Updater()
-        {
-            if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
-        }
-
         public async Task<string> GetUserID()
         {
             try
@@ -235,8 +230,7 @@ namespace WPF_Multipack_Launcher.Variables
 
         public Version Version(string version)
         {
-            string newVersion = "{0}.{1}.{2}.{3}";
-            return new Version(String.Format(newVersion, TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version));
+            return new Version(String.Format("{0}.{1}.{2}.{3}", TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version));
         }
     }
 }
