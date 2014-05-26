@@ -367,12 +367,14 @@ namespace WPF_Multipack_Launcher
 
                         // News title
                         Label labelT = new Label();
-                        Hyperlink hyperlink = new Hyperlink(new Run(content));
+                        //Hyperlink hyperlink = new Hyperlink(new Run(content));
+                        Hyperlink hyperlink = new Hyperlink(new Run(TrimText(content, gGrid.ColumnDefinitions[1].ActualWidth - 60, fontSize)));
                         hyperlink.NavigateUri = new Uri(link);
                         hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
 
                         labelT.Content = hyperlink;
                         labelT.FontSize = fontSize;
+                        labelT.ToolTip = content;
                         labelT.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                         labelT.VerticalAlignment = System.Windows.VerticalAlignment.Top;
                         labelT.Margin = new Thickness(60, topOffset, 0, 0);
@@ -449,6 +451,31 @@ namespace WPF_Multipack_Launcher
                 return "null";
             }
             catch (Exception) { return "error"; }
+        }
+
+        private string TrimText(string text, double maxWidth = 0, int fontSize = 14)
+        {
+            try
+            {
+                int width = (int)maxWidth;
+
+                FormattedText formText = new FormattedText(text,
+                    System.Globalization.CultureInfo.CurrentUICulture,
+                    FlowDirection.LeftToRight,
+                    new Typeface(lCaption.FontFamily, FontStyles.Normal, FontWeights.Normal, FontStretches.Normal),
+                    fontSize,
+                    System.Windows.Media.Brushes.Black
+                );
+
+                if (formText.Width > width && width > 0)
+                {
+                    text = text.Remove(width - 3);
+                    return text + "...";
+                }
+                else
+                    return text;
+            }
+            catch (Exception) { return "[x] "+text; }
         }
     }
 }
