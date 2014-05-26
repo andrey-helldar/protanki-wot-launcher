@@ -83,6 +83,8 @@ namespace WPF_Multipack_Launcher
 
             ShowNotify(Language.DynamicLanguage("welcome", Variables.Lang));
             VideoNotify();
+
+            ShowUpdateWindow();
         }
 
         private async Task OverlayPanel(string page = null)
@@ -133,13 +135,12 @@ namespace WPF_Multipack_Launcher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Multipack Launcher;component/Resources/back_2.jpg")));
             Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void Hyperlink_Open(object sender, RequestNavigateEventArgs e)
@@ -264,7 +265,8 @@ namespace WPF_Multipack_Launcher
 
                 if (Variables.UpdateMultipack)
                 {
-                    Variables.UpdateMessage = POST.DataRegex(remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString());
+                    //Variables.UpdateMessage = POST.DataRegex(remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString());
+                    Variables.UpdateMessage = remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString();
                     Variables.UpdateLink = remoteJson[Variables.MultipackType]["download"].ToString();
                     status += Language.DynamicLanguage("llActuallyNewMods", Variables.Lang) + ": " + Variables.UpdateMultipackVersion.ToString() + Environment.NewLine;
                 }
@@ -282,13 +284,11 @@ namespace WPF_Multipack_Launcher
                 {
                     bUpdate.IsEnabled = true; // Включаем кнопку обновлений
 
-                    if (Variables.UpdateMultipack) lStatusUpdates.Content = Language.DynamicLanguage("llActuallyNewMods", Variables.Lang);
-                    if (Variables.UpdateTanks && !Variables.UpdateMultipack) lStatusUpdates.Content = Language.DynamicLanguage("llActuallyNewGame", Variables.Lang);
+                    if (Variables.UpdateMultipack) lStatusUpdates.Content = String.Format("{0} ({1})", Language.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.UpdateMultipackVersion.ToString());
+                    if (Variables.UpdateTanks && !Variables.UpdateMultipack) lStatusUpdates.Content = String.Format("{0} ({1})", Language.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString());
+                    if (Variables.UpdateMultipack && Variables.UpdateMultipack) lStatusUpdates.Content += String.Format(Environment.NewLine + "{0} ({1})", Language.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString());
 
                     lStatusUpdates.Foreground = System.Windows.Media.Brushes.Yellow;
-                    /// ****************************************
-                    /// ВСТАВИТЬ ОКНО ВЫВОДА СПИСКА ОБНОВЛЕНИЙ
-                    /// ****************************************
                 }
                 else
                 {
@@ -578,6 +578,19 @@ namespace WPF_Multipack_Launcher
         private async void NotifyClick(object sender, EventArgs e)
         {
             await OpenLink(Variables.notifyLink);
+        }
+
+        private async void ShowUpdateWindow()
+        {
+            Notify MainNotify = new Notify();
+            MainNotify.lCaption.Content = lStatusUpdates.Content;
+            MainNotify.lCaption.FontSize = 16;
+            MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
+
+            this.Effect = new System.Windows.Media.Effects.BlurEffect();
+            MainNotify.ShowDialog();
+
+            this.Effect = null;
         }
     }
 }
