@@ -220,6 +220,8 @@ namespace WPF_Multipack_Launcher
         private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
+
+            Variables.Doc.Save("settings.xml");
         }
 
         private async Task CheckUpdates()
@@ -229,17 +231,16 @@ namespace WPF_Multipack_Launcher
                 Classes.POST POST = new Classes.POST();
                 string status = String.Empty;
 
-                if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
+                //if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
 
-                XDocument docSettings = XDocument.Load("settings.xml");
+                //XDocument docSettings = XDocument.Load("settings.xml");
                 if (Variables.CommonTest)
-                    if (docSettings.Root.Element("common.test") == null) docSettings.Root.Add(new XElement("common.test", null));
+                    if (Variables.Doc.Root.Element("common.test") == null) Variables.Doc.Root.Add(new XElement("common.test", null));
                     else
-                        if (docSettings.Root.Element("common.test") != null) docSettings.Root.Element("common.test").Remove();
-                docSettings.Save("settings.xml");
+                        if (Variables.Doc.Root.Element("common.test") != null) Variables.Doc.Root.Element("common.test").Remove();
+                //docSettings.Save("settings.xml");
 
 
-                XDocument doc = XDocument.Load(Properties.Resources.XmlPro);
                 Dictionary<string, string> json = new Dictionary<string, string>();
 
                 json.Add("code", Properties.Resources.Code);
@@ -322,14 +323,14 @@ namespace WPF_Multipack_Launcher
         /// <param name="select"></param>
         private async Task State()
         {
-            if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
+            //if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
 
-            XDocument docState = XDocument.Load("settings.xml");
+            //XDocument docState = XDocument.Load("settings.xml");
             string select = "0";
 
-            if (docState.Root.Element("launcher") != null)
-                if (docState.Root.Element("launcher").Attribute("minimize") != null)
-                    select = docState.Root.Element("launcher").Attribute("minimize").Value;
+            if (Variables.Doc.Root.Element("launcher") != null)
+                if (Variables.Doc.Root.Element("launcher").Attribute("minimize") != null)
+                    select = Variables.Doc.Root.Element("launcher").Attribute("minimize").Value;
 
             switch (select)
             {
@@ -520,13 +521,12 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
+                //if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
+                //XDocument doc = XDocument.Load("settings.xml");
 
-                XDocument doc = XDocument.Load("settings.xml");
-
-                if (doc.Root.Element("youtube") != null)
-                    foreach (var el in doc.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
-                else doc.Root.Add(new XElement("youtube", null));
+                if (Variables.Doc.Root.Element("youtube") != null)
+                    foreach (var el in Variables.Doc.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
+                else Variables.Doc.Root.Add(new XElement("youtube", null));
 
                 DeleteVideo(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
 
@@ -546,8 +546,8 @@ namespace WPF_Multipack_Launcher
                     Variables.notifyLink = el.Link;
                     ShowNotify(Language.DynamicLanguage("viewVideo", Variables.Lang), el.Title);
 
-                    doc.Root.Element("youtube").Add(new XElement("video", el.ID));
-                    doc.Save("settings.xml");
+                    Variables.Doc.Root.Element("youtube").Add(new XElement("video", el.ID));
+                    //Variables.Doc.Save("settings.xml");
                 }
             }
             finally { }
@@ -582,10 +582,10 @@ namespace WPF_Multipack_Launcher
 
         private async void ShowUpdateWindow()
         {
-            XDocument doc = XDocument.Load("settings.xml");
+            //XDocument doc = XDocument.Load("settings.xml");
 
-            if(doc.Root.Element("notification") != null)
-                if (doc.Root.Element("notification").Value != Variables.UpdateMultipackVersion.ToString())
+            if (Variables.Doc.Root.Element("notification") != null)
+                if (Variables.Doc.Root.Element("notification").Value != Variables.UpdateMultipackVersion.ToString())
                 {
                     Notify MainNotify = new Notify();
                     MainNotify.lCaption.Content = lStatusUpdates.Content;
