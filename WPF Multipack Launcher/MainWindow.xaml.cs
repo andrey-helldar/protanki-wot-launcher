@@ -582,15 +582,21 @@ namespace WPF_Multipack_Launcher
 
         private async void ShowUpdateWindow()
         {
-            Notify MainNotify = new Notify();
-            MainNotify.lCaption.Content = lStatusUpdates.Content;
-            MainNotify.lCaption.FontSize = 16;
-            MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
+            XDocument doc = XDocument.Load("settings.xml");
 
-            this.Effect = new System.Windows.Media.Effects.BlurEffect();
-            MainNotify.ShowDialog();
+            if(doc.Root.Element("notification") != null)
+                if (doc.Root.Element("notification").Value != Variables.UpdateMultipackVersion.ToString())
+                {
+                    Notify MainNotify = new Notify();
+                    MainNotify.lCaption.Content = lStatusUpdates.Content;
+                    MainNotify.lCaption.FontSize = 16;
+                    MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
 
-            this.Effect = null;
+                    this.Effect = new System.Windows.Media.Effects.BlurEffect();
+                    MainNotify.ShowDialog();
+
+                    this.Effect = null;
+                }
         }
     }
 }

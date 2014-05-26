@@ -50,6 +50,7 @@ namespace WPF_Multipack_Launcher.Variables
                        UpdateTanksVersion = new Version("0.0.0.0");
 
         // Launcher settings
+        public XDocument Doc = null;
         public bool AutoKill = false,
                     AutoForceKill = false,
                     AutoAero = false,
@@ -79,6 +80,8 @@ namespace WPF_Multipack_Launcher.Variables
                 LoadSettings().Wait();
 
                 new Classes.Update().SaveFromResources().Wait();
+
+                if (File.Exists("settings.xml")) Doc = XDocument.Load("settings.xml");
             }
             catch (Exception) { return false; }
             return true;
@@ -126,33 +129,33 @@ namespace WPF_Multipack_Launcher.Variables
 
 
             // Загружаем настройки лаунчера
-            if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
+            //if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
 
-            if (File.Exists("settings.xml"))
-            {
-                XDocument doc = XDocument.Load("settings.xml");
+            //if (File.Exists("settings.xml"))
+            //{
+            //    XDocument doc = XDocument.Load("settings.xml");
 
-                UpdateNotify = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : String.Empty;
-                ShowVideoNotify = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : true) : true;
+            UpdateNotify = Doc.Root.Element("notification") != null ? Doc.Root.Element("notification").Value : String.Empty;
+            ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true;
 
-                if (doc.Root.Element("settings") != null)
+            if (Doc.Root.Element("settings") != null)
                 {
-                    AutoKill = doc.Root.Element("settings").Attribute("kill") != null ? doc.Root.Element("settings").Attribute("kill").Value == "True" : false;
-                    AutoForceKill = doc.Root.Element("settings").Attribute("force") != null ? doc.Root.Element("settings").Attribute("force").Value == "True" : false;
+                    AutoKill = Doc.Root.Element("settings").Attribute("kill") != null ? Doc.Root.Element("settings").Attribute("kill").Value == "True" : false;
+                    AutoForceKill = Doc.Root.Element("settings").Attribute("force") != null ? Doc.Root.Element("settings").Attribute("force").Value == "True" : false;
 
-                    AutoAero = doc.Root.Element("settings").Attribute("aero") != null ? doc.Root.Element("settings").Attribute("aero").Value == "True" : false;
-                    AutoVideo = ReadCheckStateBool(doc, "video");
-                    AutoWeak = doc.Root.Element("settings").Attribute("weak") != null ? doc.Root.Element("settings").Attribute("weak").Value == "True" : false;
-                    AutoCPU = doc.Root.Element("settings").Attribute("balance") != null ? doc.Root.Element("settings").Attribute("balance").Value == "True" : false;
+                    AutoAero = Doc.Root.Element("settings").Attribute("aero") != null ? Doc.Root.Element("settings").Attribute("aero").Value == "True" : false;
+                    AutoVideo = ReadCheckStateBool(Doc, "video");
+                    AutoWeak = Doc.Root.Element("settings").Attribute("weak") != null ? Doc.Root.Element("settings").Attribute("weak").Value == "True" : false;
+                    AutoCPU = Doc.Root.Element("settings").Attribute("balance") != null ? Doc.Root.Element("settings").Attribute("balance").Value == "True" : false;
                 }
 
-                if (doc.Root.Element("common.test") != null) CommonTest = true;
-            }
+            if (Doc.Root.Element("common.test") != null) CommonTest = true;
+            /*}
             else
             {
                 // Файл настроек не обнаружен
                 new Classes.Debug().Message(ProductName, new LocalInterface.Language().DynamicLanguage("noSettings", Lang)).Wait();
-            }
+            }*/
         }
 
         private bool ReadCheckStateBool(XDocument doc, string attr)
