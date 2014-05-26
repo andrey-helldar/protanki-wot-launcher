@@ -146,6 +146,8 @@ namespace WPF_Multipack_Launcher.LocalInterface
                 case "tsExit": return lang == "ru" ? "Выход" : "Quit";
                 case "checkInternet": return lang == "ru" ? "Отсутствует соединение с сетью Интернет..." : "Отсутствует соединение с сетью Интернет...";
 
+                case "welcome": return lang == "ru" ? "Добро пожаловать!" : "Welcome!";
+
                 /* ************************
                  *         fWarning
                  * ***********************/

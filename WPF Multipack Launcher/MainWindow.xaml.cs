@@ -25,6 +25,9 @@ namespace WPF_Multipack_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
+        // notifyIcon
+        System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+
         /*********************
          * Variables
          * *******************/
@@ -68,6 +71,18 @@ namespace WPF_Multipack_Launcher
 
             Youtube();
             WargamingNews();
+
+            // NotifyIcon
+
+            Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Application.Current.MainWindow.GetType().Assembly.GetName().Name + ";component/Resources/WOT.ico")).Stream;
+            if (iconStream != null)
+                notifyIcon.Icon = new System.Drawing.Icon(iconStream);
+            notifyIcon.Visible = true;
+            notifyIcon.Text = lCaption.Content.ToString();
+            notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
+
+            ShowNotify(Language.DynamicLanguage("welcome", Variables.Lang));
+            VideoNotify();
         }
 
         private async Task OverlayPanel(string page = null)
@@ -233,7 +248,7 @@ namespace WPF_Multipack_Launcher
                 json.Add("version", Variables.TanksVersion.ToString());
                 json.Add("lang", Variables.Lang);
 
-                try
+                try // Check updates tanks version
                 {
                     Dictionary<string, string> sendStatus = POST.FromJson(POST.Send(Properties.Resources.DeveloperWotVersion, "data=" + POST.Json(json)));
                     Variables.UpdateTanksVersion = Convert.ToInt32(sendStatus["count"]) > new Variables.Variables().Accept ? new Version(sendStatus["id"]) : Variables.TanksVersion;
@@ -242,7 +257,7 @@ namespace WPF_Multipack_Launcher
 
 
                 var remoteJson = POST.JsonResponse(Properties.Resources.JsonUpdates);
-                Variables.UpdateTanksVersion = Variables.Version(remoteJson[Variables.MultipackType]["version"].ToString());
+                Variables.UpdateMultipackVersion = Variables.Version(remoteJson[Variables.MultipackType]["version"].ToString());
 
                 Variables.UpdateTanks = Variables.TanksVersion < Variables.UpdateTanksVersion; // Сравниваем версии танков
                 Variables.UpdateMultipack = Variables.MultipackVersion < Variables.UpdateMultipackVersion; // Сравниваем версии мультипака
@@ -270,6 +285,7 @@ namespace WPF_Multipack_Launcher
                     if (Variables.UpdateMultipack) lStatusUpdates.Content = Language.DynamicLanguage("llActuallyNewMods", Variables.Lang);
                     if (Variables.UpdateTanks && !Variables.UpdateMultipack) lStatusUpdates.Content = Language.DynamicLanguage("llActuallyNewGame", Variables.Lang);
 
+                    lStatusUpdates.Foreground = System.Windows.Media.Brushes.Yellow;
                     /// ****************************************
                     /// ВСТАВИТЬ ОКНО ВЫВОДА СПИСКА ОБНОВЛЕНИЙ
                     /// ****************************************
@@ -278,6 +294,7 @@ namespace WPF_Multipack_Launcher
                 {
                     bUpdate.IsEnabled = false; // Выключаем кнопку обновлений
                     lStatusUpdates.Content = Language.DynamicLanguage("llActuallyActually", Variables.Lang);
+                    lStatusUpdates.Foreground = System.Windows.Media.Brushes.GreenYellow;
                 }
             }
             catch (Exception ex) { Debug.Save("MainForm", "CheckUpdates()", ex.Message).Wait(); }
@@ -368,7 +385,7 @@ namespace WPF_Multipack_Launcher
                         // News title
                         Label labelT = new Label();
                         //Hyperlink hyperlink = new Hyperlink(new Run(content));
-                        Hyperlink hyperlink = new Hyperlink(new Run(TrimText(content, gGrid.ColumnDefinitions[1].ActualWidth - 60, fontSize)));
+                        Hyperlink hyperlink = new Hyperlink(new Run(TrimText(content, gGrid.ColumnDefinitions[1].ActualWidth - 100, fontSize)));
                         hyperlink.NavigateUri = new Uri(link);
                         hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
 
@@ -418,11 +435,13 @@ namespace WPF_Multipack_Launcher
 
                         // News title
                         Label labelT = new Label();
-                        Hyperlink hyperlink = new Hyperlink(new Run(el.Element("title").Value));
+                        //Hyperlink hyperlink = new Hyperlink(new Run(el.Element("title").Value));
+                        Hyperlink hyperlink = new Hyperlink(new Run(TrimText(el.Element("title").Value, gGrid.ColumnDefinitions[2].ActualWidth - 100, fontSize)));
                         hyperlink.NavigateUri = new Uri(el.Element("link").Value);
                         hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
 
                         labelT.Content = hyperlink;
+                        labelT.ToolTip = el.Element("title").Value;
                         labelT.FontSize = fontSize;
                         labelT.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                         labelT.VerticalAlignment = System.Windows.VerticalAlignment.Top;
@@ -457,25 +476,108 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                int width = (int)maxWidth;
+                if (text.Length > 0 && (int)maxWidth > 0 && TextWidth(text, fontSize) > maxWidth)
+                {
+                    string result = String.Empty;
 
-                FormattedText formText = new FormattedText(text,
+                    while (TextWidth(result, fontSize) < (int)maxWidth)
+                        result = text.Remove(result.Length+1);
+
+                    return result + "...";
+                }
+                else
+                    return text;
+            }
+            catch (Exception) { return text; }
+        }
+
+        private double TextWidth(string text, int fontSize=14)
+        {
+            try
+            {
+                return new FormattedText(text,
                     System.Globalization.CultureInfo.CurrentUICulture,
                     FlowDirection.LeftToRight,
                     new Typeface(lCaption.FontFamily, FontStyles.Normal, FontWeights.Normal, FontStretches.Normal),
                     fontSize,
                     System.Windows.Media.Brushes.Black
-                );
-
-                if (formText.Width > width && width > 0)
-                {
-                    text = text.Remove(width - 3);
-                    return text + "...";
-                }
-                else
-                    return text;
+                ).Width;
             }
-            catch (Exception) { return "[x] "+text; }
+            catch (Exception) { return 0; }
+        }
+
+        private async void ShowNotify(string text, string caption=null)
+        {
+            try
+            {
+                caption = caption != null ? caption : lCaption.Content.ToString();
+                notifyIcon.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
+            }
+            finally { }
+        }
+
+        private async Task VideoNotify()
+        {
+            try
+            {
+                if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
+
+                XDocument doc = XDocument.Load("settings.xml");
+
+                if (doc.Root.Element("youtube") != null)
+                    foreach (var el in doc.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
+                else doc.Root.Add(new XElement("youtube", null));
+
+                DeleteVideo(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
+
+                foreach (var el in YoutubeClass.List)
+                {
+                    await Task.Delay(5000);
+
+                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 7 секунд перед повторным запуском
+                    {
+                        while (System.Diagnostics.Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
+                            System.Diagnostics.Process.GetProcessesByName("WoTLauncher").Length > 0)
+                            await Task.Delay(5000);
+
+                        await Task.Delay(7000);
+                    }
+
+                    Variables.notifyLink = el.Link;
+                    ShowNotify(Language.DynamicLanguage("viewVideo", Variables.Lang), el.Title);
+
+                    doc.Root.Element("youtube").Add(new XElement("video", el.ID));
+                    doc.Save("settings.xml");
+                }
+            }
+            finally { }
+        }
+
+        /// <summary>
+        /// Если мы удалили 1 пункт из списка, то дальнейший перебор невозможен.
+        /// Но используя рекурсию мы повторяем перебор до тех пор, пока все ненужные
+        /// элементы не будут удалены из списка. Profit!
+        /// </summary>
+        /// <returns>Функция как таковая ничего не возвращает</returns>
+        private async void DeleteVideo()
+        {
+            try
+            {
+                foreach (var el in YoutubeClass.List)
+                    if (!Variables.ParseDate(Variables.MultipackDate, el.Date))
+                        YoutubeClass.Delete(el.ID);
+            }
+            catch (Exception) { DeleteVideo(); }
+        }
+
+        private void bSettings_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private async void NotifyClick(object sender, EventArgs e)
+        {
+            await OpenLink(Variables.notifyLink);
         }
     }
 }

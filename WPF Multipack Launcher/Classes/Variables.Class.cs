@@ -62,6 +62,8 @@ namespace WPF_Multipack_Launcher.Variables
         public bool ShowVideoNotify = true,
                     CommonTest = false;
 
+        public string notifyLink = Properties.Resources.LinkVideoAll;
+
 
         /********************
          * Functions
@@ -231,6 +233,26 @@ namespace WPF_Multipack_Launcher.Variables
         public Version Version(string version)
         {
             return new Version(String.Format("{0}.{1}.{2}.{3}", TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version));
+        }
+
+
+        /// <summary>
+        /// Если дата новости старее даты выпуска модпака,
+        /// то выводим в результат "false" как запрет на вывод.
+        /// </summary>
+        /// <param name="packDate"></param>
+        /// <param name="newsDate"></param>
+        /// <returns>Во всех иных случаях выводим "true",
+        /// то есть дата валидная</returns>
+        public bool ParseDate(string packDate = null, string newsDate = null)
+        {
+            try
+            {
+                if (packDate != null && newsDate != null)
+                    if (DateTime.Parse(newsDate) < DateTime.Parse(packDate)) { return false; }
+                return true;
+            }
+            catch (Exception) { return true; }
         }
     }
 }
