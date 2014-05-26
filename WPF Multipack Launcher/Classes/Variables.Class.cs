@@ -77,11 +77,11 @@ namespace WPF_Multipack_Launcher.Variables
                 ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
                 ProductVersion = Application.Current.MainWindow.GetType().Assembly.GetName().Version;
 
+                if (File.Exists("settings.xml")) Doc = XDocument.Load("settings.xml");
+
                 LoadSettings().Wait();
 
                 new Classes.Update().SaveFromResources().Wait();
-
-                if (File.Exists("settings.xml")) Doc = XDocument.Load("settings.xml");
             }
             catch (Exception) { return false; }
             return true;

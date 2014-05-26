@@ -269,12 +269,12 @@ namespace WPF_Multipack_Launcher
                     //Variables.UpdateMessage = POST.DataRegex(remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString());
                     Variables.UpdateMessage = remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString();
                     Variables.UpdateLink = remoteJson[Variables.MultipackType]["download"].ToString();
-                    status += Language.DynamicLanguage("llActuallyNewMods", Variables.Lang) + ": " + Variables.UpdateMultipackVersion.ToString() + Environment.NewLine;
+                    lStatusUpdates.Content = String.Format("{0} ({1})", Language.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.UpdateMultipackVersion.ToString());
                 }
 
                 if (Variables.UpdateTanks)
                 {
-                    status += Language.DynamicLanguage("llActuallyNewGame", Variables.Lang) + ": " + Variables.UpdateTanksVersion.ToString() + Environment.NewLine;
+                    lStatusUpdates.Content += String.Format(Environment.NewLine + "{0} ({1})", Language.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString());
                     bPlay.IsEnabled = false;
                 }
                 else
@@ -284,11 +284,6 @@ namespace WPF_Multipack_Launcher
                 if (Variables.UpdateMultipack || Variables.UpdateTanks) // Если есть одно из обновлений
                 {
                     bUpdate.IsEnabled = true; // Включаем кнопку обновлений
-
-                    if (Variables.UpdateMultipack) lStatusUpdates.Content = String.Format("{0} ({1})", Language.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.UpdateMultipackVersion.ToString());
-                    if (Variables.UpdateTanks && !Variables.UpdateMultipack) lStatusUpdates.Content = String.Format("{0} ({1})", Language.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString());
-                    if (Variables.UpdateMultipack && Variables.UpdateMultipack) lStatusUpdates.Content += String.Format(Environment.NewLine + "{0} ({1})", Language.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString());
-
                     lStatusUpdates.Foreground = System.Windows.Media.Brushes.Yellow;
                 }
                 else
@@ -369,7 +364,7 @@ namespace WPF_Multipack_Launcher
                         );
 
                     // Creating window controls
-                    if (topOffset < gGrid.RowDefinitions[3].Height.Value)
+                    if (topOffset + fontSize + 6 < gGrid.RowDefinitions[3].Height.Value)
                     {
                         // Date
                         Label label = new Label();
@@ -420,7 +415,7 @@ namespace WPF_Multipack_Launcher
 
                 foreach (XElement el in doc.Root.Element("channel").Elements("item"))
                 {
-                    if (topOffset < gGrid.RowDefinitions[3].Height.Value)
+                    if (topOffset + fontSize + 6 < gGrid.RowDefinitions[3].Height.Value)
                     {
                         // Date
                         Label label = new Label();
@@ -482,7 +477,7 @@ namespace WPF_Multipack_Launcher
                     string result = String.Empty;
 
                     while (TextWidth(result, fontSize) < (int)maxWidth)
-                        result = text.Remove(result.Length+1);
+                        result = text.Remove(result.Length + 1);
 
                     return result + "...";
                 }
@@ -492,7 +487,7 @@ namespace WPF_Multipack_Launcher
             catch (Exception) { return text; }
         }
 
-        private double TextWidth(string text, int fontSize=14)
+        private double TextWidth(string text, int fontSize = 14)
         {
             try
             {
@@ -507,7 +502,7 @@ namespace WPF_Multipack_Launcher
             catch (Exception) { return 0; }
         }
 
-        private async void ShowNotify(string text, string caption=null)
+        private async void ShowNotify(string text, string caption = null)
         {
             try
             {
@@ -572,7 +567,7 @@ namespace WPF_Multipack_Launcher
 
         private void bSettings_Click(object sender, RoutedEventArgs e)
         {
-           
+
         }
 
         private async void NotifyClick(object sender, EventArgs e)
@@ -580,23 +575,24 @@ namespace WPF_Multipack_Launcher
             await OpenLink(Variables.notifyLink);
         }
 
-        private async void ShowUpdateWindow()
+        private async Task<bool> ShowUpdateWindow()
         {
             //XDocument doc = XDocument.Load("settings.xml");
 
             if (Variables.Doc.Root.Element("notification") != null)
-                if (Variables.Doc.Root.Element("notification").Value != Variables.UpdateMultipackVersion.ToString())
-                {
-                    Notify MainNotify = new Notify();
-                    MainNotify.lCaption.Content = lStatusUpdates.Content;
-                    MainNotify.lCaption.FontSize = 16;
-                    MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
+                if (Variables.Doc.Root.Element("notification").Value == Variables.UpdateMultipackVersion.ToString())
+                    return false;
+            
+            Notify MainNotify = new Notify();
+            MainNotify.lCaption.Content = lStatusUpdates.Content;
+            MainNotify.lCaption.FontSize = 16;
+            MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
 
-                    this.Effect = new System.Windows.Media.Effects.BlurEffect();
-                    MainNotify.ShowDialog();
+            this.Effect = new System.Windows.Media.Effects.BlurEffect();
+            MainNotify.ShowDialog();
 
-                    this.Effect = null;
-                }
+            this.Effect = null;
+            return true;
         }
     }
 }

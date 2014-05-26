@@ -3,4 +3,7 @@
   <info video="True" />
   <settings kill="False" force="False" aero="False" video="Unchecked" weak="False" />
   <launcher minimize="0" background="True" />
+  <youtube>
+    <video>JaeoPYrCpIY</video>
+  </youtube>
 </pro>
