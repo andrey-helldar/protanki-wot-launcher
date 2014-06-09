@@ -166,9 +166,6 @@
   <data name="ProcessesLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ProcessesLibrary.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="res_mods" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\res_mods.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="engine_config" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\engine_config.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>

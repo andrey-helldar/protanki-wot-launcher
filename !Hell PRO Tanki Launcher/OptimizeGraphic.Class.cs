@@ -148,7 +148,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 /* ********************************************
                  *  http://goo.gl/xLwuLq
                  *  ******************************************/
-                if (!Directory.Exists("temp")) Directory.CreateDirectory("temp");
+               /* if (!Directory.Exists("temp")) Directory.CreateDirectory("temp");
                 else if (File.Exists(@"temp\res_mods.zip")) File.Delete(@"temp\res_mods.zip");
 
                 File.WriteAllBytes(@"temp\res_mods.zip", Properties.Resources.res_mods);
@@ -177,7 +177,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
                 }
 
-                if (File.Exists(@"temp\res_mods.zip")) File.Delete(@"temp\res_mods.zip");
+                if (File.Exists(@"temp\res_mods.zip")) File.Delete(@"temp\res_mods.zip");*/
             }
             catch (Exception ex)
             {
