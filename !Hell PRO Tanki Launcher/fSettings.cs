@@ -62,7 +62,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 if (control.Name != "lvProcessesUser")
                 {
-                    if (control.Name != "cbPriority")
+                    if (control.Name != "cbPriority" && control.Name != "cbMinimize")
                     {
                         foreach (Control c in control.Controls)
                         {
@@ -84,9 +84,19 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
                     else
                     {
-                        cbPriority.Items.Clear();
-                        for (int i = 0; i < 5; i++)
-                            cbPriority.Items.Add(Language.DynamicLanguage("priority" + i.ToString(), lang));
+                        if (control.Name == "cbPriority")
+                        {
+                            cbPriority.Items.Clear();
+                            for (int i = 0; i < 5; i++)
+                                cbPriority.Items.Add(Language.DynamicLanguage("priority" + i.ToString(), lang));
+                        }
+
+                        if (control.Name == "cbMinimize")
+                        {
+                            cbMinimize.Items.Clear();
+                            for (int i = 0; i < 4; i++)
+                                cbMinimize.Items.Add(Language.DynamicLanguage("minimize" + i.ToString(), lang));
+                        }
                     }
                 }
                 else
@@ -507,17 +517,17 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (File.Exists(@"..\res_mods\0.9.0\engine_config.xml"))
+                if (File.Exists(@"..\res_mods\0.9.1\engine_config.xml"))
                 {
                     bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU1", lang);
                     bBalanceCPU.BackgroundImage = Properties.Resources.lamp_on;
-                    File.Delete(@"..\res_mods\0.9.0\engine_config.xml");
+                    File.Delete(@"..\res_mods\0.9.1\engine_config.xml");
                 }
                 else
                 {
                     bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU0", lang);
                     bBalanceCPU.BackgroundImage = Properties.Resources.lamp_off;
-                    File.WriteAllText(@"..\res_mods\0.9.0\engine_config.xml", Properties.Resources.engine_config);
+                    File.WriteAllText(@"..\res_mods\0.9.1\engine_config.xml", Properties.Resources.engine_config);
                 }
             }
             catch (Exception ex) { Debug.Save("bBalanceCPU_Click", "Возможно, файл балансировки не найден", ex.Message); }

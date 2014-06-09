@@ -120,7 +120,7 @@
             this.tbEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.tbEmail.Location = new System.Drawing.Point(79, 305);
             this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(436, 28);
+            this.tbEmail.Size = new System.Drawing.Size(411, 28);
             this.tbEmail.TabIndex = 2;
             // 
             // cbAttachDebug
@@ -129,7 +129,7 @@
             this.cbAttachDebug.BackColor = System.Drawing.Color.Transparent;
             this.cbAttachDebug.Font = new System.Drawing.Font("Sochi2014", 12F);
             this.cbAttachDebug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.cbAttachDebug.Location = new System.Drawing.Point(545, 306);
+            this.cbAttachDebug.Location = new System.Drawing.Point(496, 306);
             this.cbAttachDebug.Name = "cbAttachDebug";
             this.cbAttachDebug.Size = new System.Drawing.Size(139, 24);
             this.cbAttachDebug.TabIndex = 3;

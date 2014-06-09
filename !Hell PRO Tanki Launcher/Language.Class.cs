@@ -235,6 +235,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 case "priority3": return lang == "ru" ? "Ниже среднего" : "Below average";
                 case "priority4": return lang == "ru" ? "Низкий" : "Low priority";
 
+
+                case "minimize0": return lang == "ru" ? "Не закрывать лаунчер" : "Do not close the Launcher";
+                case "minimize1": return lang == "ru" ? "Сворачивать в трей при запуске игры" : "Minimize to tray when the game starts";
+                case "minimize2": return lang == "ru" ? "Минимизировать лаунчер на панель задач" : "Minimize Launcher to the taskbar";
+                case "minimize3": return lang == "ru" ? "Закрывать при запуске игры" : "Close when the game starts";
+                    
                 case "reEnterLoginPass": return lang == "ru" ?
                 "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!" + Environment.NewLine + Environment.NewLine +
                 "Настройки графики применяются только при сохранении информации в окне настоек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
