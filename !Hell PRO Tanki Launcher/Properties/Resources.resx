@@ -236,7 +236,7 @@
     <value>https://gdata.youtube.com/feeds/api/users/{0}/uploads</value>
   </data>
   <data name="ModPackVersion" xml:space="preserve">
-    <value>0.9.0</value>
+    <value>0.9.1</value>
   </data>
   <data name="PingText" xml:space="preserve">
     <value>---</value>
