@@ -334,7 +334,7 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources().Wait();
 
                 SendPOST SendPOST = new SendPOST();
                 Dictionary<string, string> json = new Dictionary<string, string>();
@@ -346,8 +346,6 @@ namespace _Hell_PRO_Tanki_Launcher
                         if (docSettings.Root.Element("common.test") != null) docSettings.Root.Element("common.test").Remove();
 
                 docSettings.Save("settings.xml");
-
-                XDocument doc = XDocument.Load(Properties.Resources.ProXml);
 
 
                 json.Add("code", Debug.Code);
