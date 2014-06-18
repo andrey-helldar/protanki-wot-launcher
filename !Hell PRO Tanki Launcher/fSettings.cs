@@ -42,9 +42,9 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             foreach (Control control in this.Controls)
                 SetLanguageControl(control);
-            
+
             // Нагрузка на ЦП
-            if (!File.Exists(@"..\res_mods\engine_config.xml"))
+            if (!File.Exists(@"..\res_mods\" + Properties.Resources.ModPackVersion + @"\engine_config.xml"))
             {
                 bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU1", lang);
                 bBalanceCPU.BackgroundImage = Properties.Resources.lamp_on;
@@ -136,7 +136,7 @@ namespace _Hell_PRO_Tanki_Launcher
             return 0;
         }
 
-        private bool ReadSettingsStatus(XDocument doc, string root, string attr, bool back=false)
+        private bool ReadSettingsStatus(XDocument doc, string root, string attr, bool back = false)
         {
             if (!back)
             {
@@ -330,7 +330,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 AddAttributeSettings(doc, "settings", "video", cbVideoQuality.CheckState.ToString());
                 AddAttributeSettings(doc, "settings", "weak", cbVideoQualityWeak.Checked.ToString());
                 //AddAttributeSettings(doc, "balance", cbBalanceCPU.Checked.ToString());
-                
+
                 AddAttributeSettings(doc, "launcher", "minimize", cbMinimize.SelectedIndex.ToString());
                 AddAttributeSettings(doc, "launcher", "background", cbChangeBack.Checked.ToString());
 
@@ -390,7 +390,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     List<string> myJsonData = new List<string>();
                     myJsonData.Add(Debug.Code);
-                    
+
                     foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
                     {
                         if (obj.BackColor != Color.Plum) // Если процесс не является глобальным, то добавляем данные для вывода
@@ -459,7 +459,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 cbVideo.Checked = doc.Root.Element("info") != null ? (doc.Root.Element("info").Attribute("video").Value == "True") : false;
 
-                cbKillProcesses.Checked = ReadSettingsStatus(doc,"settings", "kill");
+                cbKillProcesses.Checked = ReadSettingsStatus(doc, "settings", "kill");
                 cbForceClose.Checked = ReadSettingsStatus(doc, "settings", "force");
                 cbAero.Checked = ReadSettingsStatus(doc, "settings", "aero");
                 cbVideoQuality.CheckState = ReadCheckState(doc, "video");
@@ -517,17 +517,17 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (File.Exists(@"..\res_mods\0.9.1\engine_config.xml"))
+                if (File.Exists(@"..\res_mods\" + Properties.Resources.ModPackVersion + @"\engine_config.xml"))
                 {
                     bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU1", lang);
                     bBalanceCPU.BackgroundImage = Properties.Resources.lamp_on;
-                    File.Delete(@"..\res_mods\0.9.1\engine_config.xml");
+                    File.Delete(@"..\res_mods\" + Properties.Resources.ModPackVersion + @"\engine_config.xml");
                 }
                 else
                 {
                     bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU0", lang);
                     bBalanceCPU.BackgroundImage = Properties.Resources.lamp_off;
-                    File.WriteAllText(@"..\res_mods\0.9.1\engine_config.xml", Properties.Resources.engine_config);
+                    File.WriteAllText(@"..\res_mods\" + Properties.Resources.ModPackVersion + @"\engine_config.xml", Properties.Resources.engine_config);
                 }
             }
             catch (Exception ex) { Debug.Save("bBalanceCPU_Click", "Возможно, файл балансировки не найден", ex.Message); }
