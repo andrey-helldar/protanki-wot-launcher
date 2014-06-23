@@ -243,7 +243,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     
                 case "reEnterLoginPass": return lang == "ru" ?
                 "ВНИМАНИЕ!!!" + Environment.NewLine + "После применения настроек графики в игре требуется заново ввести логин/пароль!" + Environment.NewLine + Environment.NewLine +
-                "Настройки графики применяются только при сохранении информации в окне настоек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
+                "Настройки графики применяются только при сохранении информации в окне настроек, либо при нажатии на кнопку \"Оптимизировать\" на главном окне программы." + Environment.NewLine +
                 "При автоматической оптимизации настройки графики остаются без изменений." :
                 "ATTENTION!!!" + Environment.NewLine + "After applying of new graphical settings you should enter your login and password again!" + Environment.NewLine + Environment.NewLine +
                 "Graphical settings will be applied only after saving the settings or after pressing \"Optimize\" button on main window." + Environment.NewLine +

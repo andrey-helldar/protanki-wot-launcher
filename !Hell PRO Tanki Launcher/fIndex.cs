@@ -491,7 +491,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 autoOptimizePC = false;
 
                 GetVipProcesses().Wait();
-                OptimizePC().Wait();
+                Task.Factory.StartNew(() => OptimizePC()).Wait();
 
                 Process.Start(pathToTanks + "WoTLauncher.exe");
 
@@ -510,7 +510,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 GetVipProcesses().Wait();
 
                 playGame = true;
-                OptimizePC().Wait();
+                Task.Factory.StartNew(() => OptimizePC()).Wait();
 
                 //WindowState = FormWindowState.Minimized;
                 Task.Factory.StartNew(() => State());
@@ -545,7 +545,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     autoOptimizePC = false;
                     GetVipProcesses().Wait();
 
-                    OptimizePC().Wait();
+                    Task.Factory.StartNew(() => OptimizePC()).Wait();
                     Process.Start(pathToTanks + "WoTLauncher.exe");
 
                     WindowState = FormWindowState.Minimized;
@@ -629,7 +629,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     GetVipProcesses().Wait();
 
                     playGame = false;
-                    OptimizePC();
+                    Task.Factory.StartNew(() => OptimizePC()).Wait();
                 }
                 catch (Exception ex) { Debug.Save("fIndex", "bOptimizePC_Click()", ex.Message); }
             }
@@ -1168,9 +1168,7 @@ namespace _Hell_PRO_Tanki_Launcher
             for (int i = 0; i < 2; i++)
             {
                 while (Process.GetProcessesByName("WorldOfTanks").Length > 0 || Process.GetProcessesByName("WoTLauncher").Length > 0)
-                {
                     await Task.Delay(5000);
-                }
 
                 await Task.Delay(7000); // Если цикл прерван случайно, то выжидаем еще 7 секунд перед повторным запуском
             }
@@ -1485,22 +1483,26 @@ namespace _Hell_PRO_Tanki_Launcher
         /// <param name="select"></param>
         private void State()
         {
-            if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
-
-            XDocument docState = XDocument.Load("settings.xml");
-            string select = "0";
-
-            if (docState.Root.Element("launcher") != null)
-                if (docState.Root.Element("launcher").Attribute("minimize") != null)
-                    select = docState.Root.Element("launcher").Attribute("minimize").Value;
-
-            switch (select)
+            if (File.Exists("settings.xml"))
             {
-                case "1": Hide(); break;
-                case "2": WindowState = FormWindowState.Minimized; break;
-                case "3": Close(); break;
-                default: break;
+
+                XDocument docState = XDocument.Load("settings.xml");
+                string select = "0";
+
+                if (docState.Root.Element("launcher") != null)
+                    if (docState.Root.Element("launcher").Attribute("minimize") != null)
+                        select = docState.Root.Element("launcher").Attribute("minimize").Value;
+
+                switch (select)
+                {
+                    case "1": Hide(); break;
+                    case "2": WindowState = FormWindowState.Minimized; break;
+                    case "3": Close(); break;
+                    default: break;
+                }
             }
+            else
+                Close();
         }
 
         private async Task Ping()
