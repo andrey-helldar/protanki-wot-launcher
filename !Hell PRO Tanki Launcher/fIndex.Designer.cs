@@ -330,18 +330,18 @@
             // llActually
             // 
             this.llActually.ActiveLinkColor = System.Drawing.Color.Lime;
-            this.llActually.AutoSize = true;
             this.llActually.BackColor = System.Drawing.Color.Transparent;
             this.llActually.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llActually.ForeColor = System.Drawing.Color.Lime;
             this.llActually.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llActually.LinkColor = System.Drawing.Color.Lime;
-            this.llActually.Location = new System.Drawing.Point(283, 35);
+            this.llActually.Location = new System.Drawing.Point(225, 33);
             this.llActually.Name = "llActually";
-            this.llActually.Size = new System.Drawing.Size(295, 24);
+            this.llActually.Size = new System.Drawing.Size(408, 30);
             this.llActually.TabIndex = 11;
             this.llActually.TabStop = true;
-            this.llActually.Text = "Вы используете самые свежие моды!";
+            this.llActually.Text = "Loading...";
+            this.llActually.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.llActually.VisitedLinkColor = System.Drawing.Color.Lime;
             this.llActually.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llActually_LinkClicked);
             // 

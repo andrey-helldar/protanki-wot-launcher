@@ -33,8 +33,12 @@ namespace _Hell_PRO_Tanki_Launcher
                 Debug Debug = new Debug();
                 Task.Factory.StartNew(() => Debug.Delete()).Wait(); // Удаляем старые дебаги
 
+                // Так как нам больше не нужен файл настроек в папке с прогой - удаляем его
+                if (File.Exists("settings.xml")) File.Delete("settings.xml");
+
                 fLoader.Close();
             }
+
 
             using (var fIndex = new fIndex())
                 SingleApplication.Run(fIndex);

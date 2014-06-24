@@ -17,7 +17,8 @@ namespace _Hell_PRO_Tanki_Launcher
         Debug Debug = new Debug();
         Language Language = new Language();
 
-        string lang = "en";
+        string lang = "en",
+            patoToSettings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
 
         public fNewVersion()
         {
@@ -28,13 +29,13 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             if (cbNotification.Checked)
             {
-                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
-                XDocument doc = XDocument.Load("settings.xml");
+                if (!File.Exists(patoToSettings)) new UpdateLauncher().SaveFromResources();
+                XDocument doc = XDocument.Load(patoToSettings);
 
                 if (doc.Root.Element("notification") != null) { doc.Root.Element("notification").SetValue(llVersion.Text); }
                 else { XElement el = new XElement("notification", llVersion.Text); doc.Root.Add(el); }
 
-                doc.Save("settings.xml");
+                doc.Save(patoToSettings);
             }
 
             Close();

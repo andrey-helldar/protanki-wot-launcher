@@ -46,7 +46,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
             lang = "en",
             
-            tanksPrefixVersion = "0.0.0.";
+            tanksPrefixVersion = "0.0.0.",
+
+            patoToSettings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
 
         Version remoteModVersion = new Version("0.0.0.0"),
             remoteTanksVersion = new Version("0.0.0.0"),
@@ -95,7 +97,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
         /// <summary>
         //// Сперва загружаем настройки из файла "config.ini" - конфиг модпака
-        //// Затем загружаем настройки самой программы - "settings.xml"
+        //// Затем загружаем настройки самой программы - patoToSettings
         /// </summary>
         /// <returns></returns>
         public async Task loadSettings()
@@ -124,12 +126,12 @@ namespace _Hell_PRO_Tanki_Launcher
                     MessageBox.Show(this, Language.DynamicLanguage("noMods", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+                if (!File.Exists(patoToSettings)) new UpdateLauncher().SaveFromResources();
 
                 // Загружаем настройки
-                if (File.Exists("settings.xml"))
+                if (File.Exists(patoToSettings))
                 {
-                    XDocument doc = XDocument.Load("settings.xml");
+                    XDocument doc = XDocument.Load(patoToSettings);
 
                     updateNotification = doc.Root.Element("notification") != null ? doc.Root.Element("notification").Value : String.Empty;
 
@@ -267,10 +269,10 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                    if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+                if (!File.Exists(patoToSettings)) new UpdateLauncher().SaveFromResources();
 
                     bool loop = true;
-                    XDocument doc = XDocument.Load("settings.xml");
+                    XDocument doc = XDocument.Load(patoToSettings);
                 
                 while (loop)
                     {
@@ -334,18 +336,18 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources().Wait();
+                if (!File.Exists(patoToSettings)) new UpdateLauncher().SaveFromResources().Wait();
 
                 SendPOST SendPOST = new SendPOST();
                 Dictionary<string, string> json = new Dictionary<string, string>();
 
-                XDocument docSettings = XDocument.Load("settings.xml");
+                XDocument docSettings = XDocument.Load(patoToSettings);
                 if (commonTest)
                     if (docSettings.Root.Element("common.test") == null) docSettings.Root.Add(new XElement("common.test", null));
                     else
                         if (docSettings.Root.Element("common.test") != null) docSettings.Root.Element("common.test").Remove();
 
-                docSettings.Save("settings.xml");
+                docSettings.Save(patoToSettings);
 
 
                 json.Add("code", Debug.Code);
@@ -1145,12 +1147,12 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+                if (!File.Exists(patoToSettings)) new UpdateLauncher().SaveFromResources();
 
-                if (File.Exists("settings.xml"))
+                if (File.Exists(patoToSettings))
                 {
                     //ProcessList.processes;
-                    XDocument doc = XDocument.Load("settings.xml");
+                    XDocument doc = XDocument.Load(patoToSettings);
                     if (doc.Root.Element("processes") != null)
                         foreach (XElement el in doc.Root.Element("processes").Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
                 }
@@ -1187,9 +1189,9 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
+                if (!File.Exists(patoToSettings)) new UpdateLauncher().SaveFromResources();
 
-                XDocument doc = XDocument.Load("settings.xml");
+                XDocument doc = XDocument.Load(patoToSettings);
 
                 if (doc.Root.Element("youtube") != null)
                 {
@@ -1209,7 +1211,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     notifyIcon.ShowBalloonTip(5000, el.Title, Language.DynamicLanguage("viewVideo", lang), ToolTipIcon.Info);
 
                     doc.Root.Element("youtube").Add(new XElement("video", el.ID));
-                    doc.Save("settings.xml");
+                    doc.Save(patoToSettings);
                 }
             }
             catch (Exception ex)
@@ -1483,10 +1485,10 @@ namespace _Hell_PRO_Tanki_Launcher
         /// <param name="select"></param>
         private void State()
         {
-            if (File.Exists("settings.xml"))
+            if (File.Exists(patoToSettings))
             {
 
-                XDocument docState = XDocument.Load("settings.xml");
+                XDocument docState = XDocument.Load(patoToSettings);
                 string select = "0";
 
                 if (docState.Root.Element("launcher") != null)

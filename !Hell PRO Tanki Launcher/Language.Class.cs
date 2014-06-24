@@ -212,12 +212,17 @@ namespace _Hell_PRO_Tanki_Launcher
                 case "veryLongWord": return lang == "ru" ?
                     "Использование слов длиной более " + additionalText + " символов запрещено!" :
                     "Maximum word length is " + additionalText + " symbols!";
+
+                case "cbCaption0": return lang == "ru" ? "- Выберите категорию -" : "- Select a category -";
+                case "cbCaption1": return lang == "ru" ? "Пожелание к мультипаку" : "My wishes to MultiPack";
+                case "cbCaption2": return lang == "ru" ? "Пожелание к лаунчеру" : "My wishes to Launcher";
+                case "cbCaption3": return lang == "ru" ? "Найдена ошибка в мультипаке" : "I have found an error in MultiPack";
+                case "cbCaption4": return lang == "ru" ? "Найдена ошибка в лаунчере" : "I have found an error in Launcher";
+                case "cbCaption5": return lang == "ru" ? "Хочу привязать лаунчер к сайту" : "null";
+
+                case "NotSelectCategory": return lang == "ru" ? "Вы не выбрали категорию!" : "You have not selected category!";
+
                     
-                case "cbCaption0": return lang == "ru" ? "Пожелание к мультипаку" : "My wishes to MultiPack";
-                case "cbCaption1": return lang == "ru" ? "Пожелание к лаунчеру" : "My wishes to Launcher";
-                case "cbCaption2": return lang == "ru" ? "Найдена ошибка в мультипаке" : "I have found an error in MultiPack";
-                case "cbCaption3": return lang == "ru" ? "Найдена ошибка в лаунчере" : "I have found an error in Launcher";
-                case "cbCaption4": return lang == "ru" ? "Хочу привязать лаунчер к сайту" : "null";
 
                 /* ************************
                  *         fSettings

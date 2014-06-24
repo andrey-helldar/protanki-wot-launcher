@@ -27,7 +27,8 @@ namespace _Hell_PRO_Tanki_Launcher
             version = "0.0.0.0",
             type = "full",
             notification,
-            lang = "en";
+            lang = "en",
+            patoToSettings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
 
         bool commonTest = false;
 
@@ -319,7 +320,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 bSave.Text = "Сохранение";
 
-                XDocument doc = XDocument.Load("settings.xml");
+                XDocument doc = XDocument.Load(patoToSettings);
 
                 if (doc.Root.Element("info") != null) { doc.Root.Element("info").Attribute("video").SetValue(cbVideo.Checked.ToString()); }
                 else { XElement el = new XElement("info", new XAttribute("video", cbVideo.Checked.ToString())); doc.Root.Add(el); }
@@ -352,10 +353,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     }
                 }
 
-                doc.Save("settings.xml");
-
-                //Делаем резервную копию настроек
-                File.Copy("settings.xml", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml", true);
+                doc.Save(patoToSettings);
             }
             catch (Exception ex) { Debug.Save("SaveSettings()", ex.Message); }
 
@@ -437,10 +435,10 @@ namespace _Hell_PRO_Tanki_Launcher
 
             loadLang();
 
-            if (!File.Exists("settings.xml")) new UpdateLauncher().SaveFromResources();
-            if (File.Exists("settings.xml"))
+            if (!File.Exists(patoToSettings)) new UpdateLauncher().SaveFromResources();
+            if (File.Exists(patoToSettings))
             {
-                XDocument doc = XDocument.Load("settings.xml");
+                XDocument doc = XDocument.Load(patoToSettings);
 
                 commonTest = doc.Root.Element("common.test") != null;
 

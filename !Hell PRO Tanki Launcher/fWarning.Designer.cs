@@ -145,6 +145,7 @@
             this.cbCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.cbCaption.FormattingEnabled = true;
             this.cbCaption.Items.AddRange(new object[] {
+            "- Выберите категорию -",
             "Пожелания к мультипаку",
             "Пожелания к лаунчеру",
             "Найдена ошибка в мультипаке",

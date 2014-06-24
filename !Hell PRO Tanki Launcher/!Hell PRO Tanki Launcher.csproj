@@ -188,10 +188,10 @@
     <None Include="Resources\sochi.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\settings.xml" />
     <None Include="Resources\warning.png" />
     <None Include="Resources\PROTanks.png" />
     <None Include="Resources\settings.png" />
-    <None Include="Resources\settings.xml" />
     <None Include="Resources\Newtonsoft.Json.dll" />
     <None Include="Resources\MinimizeHover.png" />
     <None Include="Resources\Minimize.png" />
