@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace _Hell_ProcessesDb2Dll
+namespace _Hell_Processes_to_DLL
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace _Hell_ProcessesDb2Dll
+namespace _Hell_Processes_to_DLL
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
