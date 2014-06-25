@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>7864cf10-6ab9-4267-b544-3bdffd541102</ProjectGuid>
+    <ProjectGuid>{B9B0A6EF-9E80-4590-A09A-FCBD59070735}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>_Hell_ProcessesDb2Dll</RootNamespace>
