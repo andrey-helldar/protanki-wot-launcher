@@ -111,10 +111,12 @@ namespace _Hell_Processes_to_DLL
 
                 for (int i = 0; i < ToDB.Count; i++)
                 {
-                    progress = Math.Round(((decimal)i / (decimal)max * 100), 2).ToString() + "% (" + i.ToString() + "/" + max.ToString() + ")";
+                    progress = Math.Round((((decimal)i + 1) / (decimal)max * 100), 2).ToString() + "% (" + (i + 1).ToString() + "/" + max.ToString() + ")";
                     new MySqlCommand(ToDB[i], con).ExecuteNonQuery();
                 }
                 con.Close();
+
+                await Task.Delay(200);
 
                 MessageBox.Show("Database updated sucessfully");
             }
