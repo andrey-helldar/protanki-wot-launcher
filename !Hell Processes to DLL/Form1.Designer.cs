@@ -28,17 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("New items", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Unchecked", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("Checked", System.Windows.Forms.HorizontalAlignment.Left);
             this.button1 = new System.Windows.Forms.Button();
+            this.lvProcesses = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(12, 12);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(760, 499);
-            this.checkedListBox1.TabIndex = 0;
             // 
             // button1
             // 
@@ -46,16 +44,56 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(760, 33);
             this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lvProcesses
+            // 
+            this.lvProcesses.CheckBoxes = true;
+            this.lvProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvProcesses.FullRowSelect = true;
+            listViewGroup7.Header = "New items";
+            listViewGroup7.Name = "lvgNew";
+            listViewGroup8.Header = "Unchecked";
+            listViewGroup8.Name = "lvgUnchecked";
+            listViewGroup9.Header = "Checked";
+            listViewGroup9.Name = "lvgChecked";
+            this.lvProcesses.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup7,
+            listViewGroup8,
+            listViewGroup9});
+            this.lvProcesses.Location = new System.Drawing.Point(12, 12);
+            this.lvProcesses.Name = "lvProcesses";
+            this.lvProcesses.Size = new System.Drawing.Size(760, 499);
+            this.lvProcesses.TabIndex = 2;
+            this.lvProcesses.UseCompatibleStateImageBehavior = false;
+            this.lvProcesses.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "ID";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Name";
+            this.columnHeader2.Width = 250;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Description";
+            this.columnHeader3.Width = 430;
             // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.lvProcesses);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkedListBox1);
             this.Name = "fIndex";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "!Hell Processes to DLL";
@@ -66,8 +104,11 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListView lvProcesses;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
 
