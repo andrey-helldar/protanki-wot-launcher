@@ -1,13 +1,8 @@
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Debug\Processes2DLL.exe.config
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Processes2DLL.exe.config
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Debug\Processes2DLL.exe
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Debug\Processes2DLL.pdb
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\MainWindow.baml
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\MainWindow.g.cs
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\App.g.cs
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\Processes2DLL_MarkupCompile.cache
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\Processes2DLL.g.resources
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\Processes_to_DLL.Properties.Resources.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Debug\!Hell Processes to DLL.exe.config
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Debug\!Hell Processes to DLL.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Debug\!Hell Processes to DLL.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\!Hell Processes to DLL.csprojResolveAssemblyReference.cache
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\_Hell_Processes_to_DLL.Properties.Resources.resources
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\!Hell Processes to DLL.csproj.GenerateResource.Cache
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\Processes2DLL.exe
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\Processes2DLL.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\!Hell Processes to DLL.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\!Hell Processes to DLL.pdb
