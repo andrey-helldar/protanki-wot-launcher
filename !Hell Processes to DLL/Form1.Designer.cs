@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup13 = new System.Windows.Forms.ListViewGroup("New items", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("Unchecked", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup15 = new System.Windows.Forms.ListViewGroup("Checked", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup22 = new System.Windows.Forms.ListViewGroup("New items", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup23 = new System.Windows.Forms.ListViewGroup("Unchecked", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup24 = new System.Windows.Forms.ListViewGroup("Checked", System.Windows.Forms.HorizontalAlignment.Left);
             this.bStart = new System.Windows.Forms.Button();
             this.lvProcesses = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -40,13 +40,15 @@
             this.lStatus = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bStart
             // 
             this.bStart.Location = new System.Drawing.Point(129, 517);
             this.bStart.Name = "bStart";
-            this.bStart.Size = new System.Drawing.Size(551, 33);
+            this.bStart.Size = new System.Drawing.Size(380, 33);
             this.bStart.TabIndex = 1;
             this.bStart.Text = "Save";
             this.bStart.UseVisualStyleBackColor = true;
@@ -60,16 +62,16 @@
             this.columnHeader2,
             this.columnHeader3});
             this.lvProcesses.FullRowSelect = true;
-            listViewGroup13.Header = "New items";
-            listViewGroup13.Name = "lvgNew";
-            listViewGroup14.Header = "Unchecked";
-            listViewGroup14.Name = "lvgUnchecked";
-            listViewGroup15.Header = "Checked";
-            listViewGroup15.Name = "lvgChecked";
+            listViewGroup22.Header = "New items";
+            listViewGroup22.Name = "lvgNew";
+            listViewGroup23.Header = "Unchecked";
+            listViewGroup23.Name = "lvgUnchecked";
+            listViewGroup24.Header = "Checked";
+            listViewGroup24.Name = "lvgChecked";
             this.lvProcesses.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup13,
-            listViewGroup14,
-            listViewGroup15});
+            listViewGroup22,
+            listViewGroup23,
+            listViewGroup24});
             this.lvProcesses.Location = new System.Drawing.Point(12, 12);
             this.lvProcesses.Name = "lvProcesses";
             this.lvProcesses.Size = new System.Drawing.Size(760, 499);
@@ -106,19 +108,41 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(687, 518);
+            this.button1.Location = new System.Drawing.Point(687, 517);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 32);
+            this.button1.Size = new System.Drawing.Size(85, 33);
             this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(596, 517);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(85, 33);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Hide";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(515, 517);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 33);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Uncheck";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lStatus);
             this.Controls.Add(this.lvProcesses);
@@ -141,6 +165,8 @@
         private System.Windows.Forms.Label lStatus;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

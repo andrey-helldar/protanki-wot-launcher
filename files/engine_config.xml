@@ -8,8 +8,8 @@
     <gammaCorrectionOutside>1.0</gammaCorrectionOutside>
     <gammaCorrectionInside>1.0</gammaCorrectionInside>
     <gammaCorrectionSpeed>0.2</gammaCorrectionSpeed>
-    <maxFrameRate>	120	</maxFrameRate>
-    <reducedFrameRate>	60	</reducedFrameRate>
+    <maxFrameRate>	75	</maxFrameRate>
+    <reducedFrameRate>	50	</reducedFrameRate>
     <settings>
       <effect>shaders/terrain/terrain_lit.fx</effect>
     </settings>
@@ -46,7 +46,7 @@
   </debugKeys>
   <entities>
     <disablePreloads>	false	</disablePreloads>
-    <enforcePreloads>	false	</enforcePreloads>
+    <enforcePreloads>	true	</enforcePreloads>
     <entityCollision>	false	</entityCollision>
     <particlesActive>	true	</particlesActive>
     <movementThreshold>0.25</movementThreshold>
@@ -98,6 +98,15 @@
   <debug>
     <framesCount>	0	</framesCount>
   </debug>
+  <log_console>
+    <enable>	false	</enable>
+    <monitor>	false	</monitor>
+    <colors>	false	</colors>
+    <timestamp>	true	</timestamp>
+    <wrap>	false	</wrap>
+    <auto_scroll>	true	</auto_scroll>
+    <priority>	1111111111	</priority>
+  </log_console>
   <soundMgr>
     <enabled>	true	</enabled>
     <errorLevel>warning</errorLevel>
@@ -108,16 +117,30 @@
     <mediaPath>audio</mediaPath>
     <soundbanks>
       <project>
-        <name>	vehicles	</name>
+        <name>ambient</name>
       </project>
       <project>
-        <name>weapons</name>
+        <name>	burn	</name>
       </project>
       <project>
-        <name>	hits	</name>
+        <name>combat_atmosphere</name>
+      </project>
+      <project>
+        <name>explosions</name>
+        <preload>	true	</preload>
       </project>
       <project>
         <name>GUI</name>
+        <preload>	true	</preload>
+      </project>
+      <project>
+        <name>	guns	</name>
+      </project>
+      <project>
+        <name>hangar</name>
+      </project>
+      <project>
+        <name>	hits	</name>
       </project>
       <project>
         <name>ingame_voice</name>
@@ -126,13 +149,31 @@
         <name>music</name>
       </project>
       <project>
-        <name>ambient</name>
-      </project>
-      <project>
         <name>objects</name>
       </project>
       <project>
+        <name>	rain	</name>
+      </project>
+      <project>
         <name>tanks</name>
+      </project>
+      <project>
+        <name>trees</name>
+      </project>
+      <project>
+        <name>turret</name>
+      </project>
+      <project>
+        <name>tutorial_voice</name>
+      </project>
+      <project>
+        <name>	vehicles	</name>
+      </project>
+      <project>
+        <name>	wind	</name>
+      </project>
+      <project>
+        <name>fwc</name>
       </project>
     </soundbanks>
     <networkUpdates>	false	</networkUpdates>

@@ -33,7 +33,7 @@ namespace _Hell_Processes_to_DLL
             this.Text = Application.ProductName + " v" + Application.ProductVersion;
 
             con.Open();
-            cmd = new MySqlCommand("SELECT * FROM `dle_wot_processes` ORDER BY `name`", con);
+            cmd = new MySqlCommand("SELECT * FROM `dle_wot_processes` WHERE `hide`='0' ORDER BY `name`", con);
             dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -78,6 +78,7 @@ namespace _Hell_Processes_to_DLL
             bStart.Enabled = false;
 
             List<string> ToFile = new List<string>();
+            ToDB.Clear();
 
             for (int i = 0; i < lvProcesses.Items.Count; i++)
             {
@@ -139,6 +140,36 @@ namespace _Hell_Processes_to_DLL
         private void button1_Click_1(object sender, EventArgs e)
         {
             button1.Text = timer1.Enabled ? "true" : "false";
+            bStart.Enabled = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            bStart.Enabled = false;
+            ToDB.Clear();
+
+            for (int i = 0; i < lvProcesses.CheckedItems.Count; i++)
+            {
+                ToDB.Add(String.Format("UPDATE `dle_wot_processes` SET `hide`='1' WHERE `id`='{0}';", lvProcesses.CheckedItems[i].Text));
+            }
+
+            File.WriteAllLines("db.sql", ToDB);
+
+            try
+            {
+                timer1.Enabled = true;
+                Task.Factory.StartNew(() => UpdateBD());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < lvProcesses.Items.Count; i++)
+                lvProcesses.Items[i].Checked = false;
         }
     }
 }

@@ -188,6 +188,7 @@
     <None Include="Resources\sochi.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ProcessesLibrary.dll" />
     <None Include="Resources\settings.xml" />
     <None Include="Resources\warning.png" />
     <None Include="Resources\PROTanks.png" />
@@ -202,16 +203,15 @@
     <None Include="Resources\lamp_on.png" />
     <None Include="Resources\lamp_off.png" />
     <None Include="Resources\restart.exe" />
-    <None Include="Resources\ProcessesLibrary.dll" />
     <None Include="Resources\LanguagePack.dll" />
     <None Include="Resources\fWarning.jpg" />
     <None Include="Resources\start.bat" />
     <None Include="Resources\WOT.ico" />
-    <None Include="Resources\engine_config.xml" />
     <None Include="Resources\FonSetting.jpg" />
     <None Include="Resources\Close.png" />
     <None Include="Resources\CloseHover.png" />
     <None Include="bin\Debug\settings.xml" />
+    <None Include="Resources\engine_config.xml" />
     <Content Include="Resources\FonUPD.jpg" />
     <None Include="Resources\Ionic.Zip.dll" />
     <None Include="Resources\back_7.jpg" />
