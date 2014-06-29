@@ -212,6 +212,7 @@
     <None Include="Resources\CloseHover.png" />
     <None Include="bin\Debug\settings.xml" />
     <None Include="Resources\engine_config.xml" />
+    <Content Include="changelog.txt" />
     <Content Include="Resources\FonUPD.jpg" />
     <None Include="Resources\Ionic.Zip.dll" />
     <None Include="Resources\back_7.jpg" />

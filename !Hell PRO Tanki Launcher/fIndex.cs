@@ -437,7 +437,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     llActually.ActiveLinkColor = Color.Yellow;
                     llActually.LinkColor = Color.Yellow;
                     llActually.VisitedLinkColor = Color.Yellow;
-                    llActually.SetBounds(315 + 100 - (int)(llActually.Width / 2), llActually.Location.Y, 10, 10);
+                    //llActually.SetBounds(315 + 100 - (int)(llActually.Width / 2), llActually.Location.Y, 10, 10);
 
                     // Окно статуса обновлений
                     // отображаем если найдены обновы модпака
@@ -491,15 +491,9 @@ namespace _Hell_PRO_Tanki_Launcher
             try
             {
                 autoOptimizePC = false;
+                playGame = false;
 
-                GetVipProcesses().Wait();
-                Task.Factory.StartNew(() => OptimizePC()).Wait();
-
-                Process.Start(pathToTanks + "WoTLauncher.exe");
-
-                //Hide();
-                //WindowState = FormWindowState.Minimized;
-                Task.Factory.StartNew(() => State());
+                OptimizePC("WoTLauncher.exe");
             }
             catch (Exception ex) { Debug.Save("fIndex", "bLauncher_Click()", ex.Message); }
         }
@@ -508,14 +502,10 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                autoOptimizePC = false;
-                GetVipProcesses().Wait();
-
+                autoOptimizePC = false; 
                 playGame = true;
-                Task.Factory.StartNew(() => OptimizePC()).Wait();
 
-                //WindowState = FormWindowState.Minimized;
-                Task.Factory.StartNew(() => State());
+                OptimizePC("WorldOfTanks.exe");
             }
             catch (Exception ex) { Debug.Save("fIndex", "bPlay_Click()", ex.Message); }
         }
@@ -545,12 +535,8 @@ namespace _Hell_PRO_Tanki_Launcher
                 if (tanksUpdates)
                 {
                     autoOptimizePC = false;
-                    GetVipProcesses().Wait();
 
-                    Task.Factory.StartNew(() => OptimizePC()).Wait();
-                    Process.Start(pathToTanks + "WoTLauncher.exe");
-
-                    WindowState = FormWindowState.Minimized;
+                    OptimizePC("WoTLauncher.exe");
                 }
             }
             catch (Exception ex) { Debug.Save("fIndex", "bUpdate_Click()", "tanksUpdates = " + tanksUpdates.ToString(), ex.Message); }
@@ -628,10 +614,9 @@ namespace _Hell_PRO_Tanki_Launcher
                 try
                 {
                     autoOptimizePC = true;
-                    GetVipProcesses().Wait();
-
                     playGame = false;
-                    Task.Factory.StartNew(() => OptimizePC()).Wait();
+
+                    OptimizePC();
                 }
                 catch (Exception ex) { Debug.Save("fIndex", "bOptimizePC_Click()", ex.Message); }
             }
@@ -640,14 +625,9 @@ namespace _Hell_PRO_Tanki_Launcher
         private void llContent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (!bwUpdater.IsBusy)
-            {
                 bwUpdater.RunWorkerAsync();
-            }
             else
-            {
-                // MessageBox.Show(this, "Подождите, предыдущая проверка обновлений не завершена", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MessageBox.Show(this, Language.DynamicLanguage("checkUpdates", lang), Language.DynamicLanguage("updatingTitle", lang), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         private void tsSettings_Click(object sender, EventArgs e)
@@ -1154,7 +1134,10 @@ namespace _Hell_PRO_Tanki_Launcher
                     //ProcessList.processes;
                     XDocument doc = XDocument.Load(patoToSettings);
                     if (doc.Root.Element("processes") != null)
+                    {
+                        ProcessList.Clear();
                         foreach (XElement el in doc.Root.Element("processes").Elements("process")) { ProcessList.Add(el.Attribute("name").Value, el.Attribute("description").Value); }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1167,13 +1150,8 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             await Task.Delay(playGame ? 10000 : 5000); // Если запускаем танки, ждем 10 сек, если лаунчер - 5 сек
 
-            for (int i = 0; i < 2; i++)
-            {
                 while (Process.GetProcessesByName("WorldOfTanks").Length > 0 || Process.GetProcessesByName("WoTLauncher").Length > 0)
                     await Task.Delay(5000);
-
-                await Task.Delay(7000); // Если цикл прерван случайно, то выжидаем еще 7 секунд перед повторным запуском
-            }
 
             //Show();
             WindowState = FormWindowState.Normal;
@@ -1309,12 +1287,14 @@ namespace _Hell_PRO_Tanki_Launcher
         ////Оптимизируем комп
         /// </summary>
         /// <returns>ждем ответа для решения о запуске клиента игры</returns>
-        private async Task OptimizePC()
+        private async Task OptimizePC(string launch = null)
         {
             int myProgressStatus = 0;
 
             pbDownload.Value = 0;
             pbDownload.Visible = true;
+
+            GetVipProcesses().Wait();
 
             try
             {
@@ -1419,14 +1399,21 @@ namespace _Hell_PRO_Tanki_Launcher
             pbDownload.Visible = false;
             pbDownload.Value = 0;
 
-            if (playGame)
+            if (launch != null)
             {
-                if (File.Exists(pathToTanks + "WorldOfTanks.exe"))
+                if (File.Exists(pathToTanks + launch))
                 {
-                    if (!File.Exists(@"..\s.bat")) { File.WriteAllBytes(@"..\s.bat", Properties.Resources.start); }
-                    Process.Start(@"..\s.bat");
+                    if (launch == "WorldOfTanks.exe")
+                    {
+                        if (!File.Exists(@"..\s.bat")) { File.WriteAllBytes(@"..\s.bat", Properties.Resources.start); }
+                        Process.Start(@"..\s.bat");
 
-                    CheckClosingGame(); // Запускаем утилиту проверки запущен ли клиент игры
+                        CheckClosingGame(); // Запускаем утилиту проверки запущен ли клиент игры
+                    }
+                    else
+                        Process.Start(pathToTanks + launch);
+
+                    Task.Factory.StartNew(() => State());
                 }
                 else
                     MessageBox.Show(this, Language.DynamicLanguage("noTanks", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1483,11 +1470,10 @@ namespace _Hell_PRO_Tanki_Launcher
         ///     3   Закрывать при запуске игры
         /// </summary>
         /// <param name="select"></param>
-        private void State()
+        private async Task State()
         {
             if (File.Exists(patoToSettings))
             {
-
                 XDocument docState = XDocument.Load(patoToSettings);
                 string select = "0";
 
@@ -1503,8 +1489,6 @@ namespace _Hell_PRO_Tanki_Launcher
                     default: break;
                 }
             }
-            else
-                Close();
         }
 
         private async Task Ping()
