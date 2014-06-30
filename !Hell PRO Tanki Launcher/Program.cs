@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using _Hell_PRO_Tanki_Launcher.InnerInterface;
@@ -29,11 +30,13 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     fLoader.Show();
 
-                    new UpdateLauncher().Check().Wait(); // Инициализируем обновление библиотек
+                    Task.Factory.StartNew(() => new UpdateLauncher().Check()).Wait(); // Инициализируем обновление библиотек
                     Task.Factory.StartNew(() => new Debug().Delete()).Wait(); // Удаляем старые дебаги
 
                     // Так как нам больше не нужен файл настроек в папке с прогой - удаляем его
                     if (File.Exists("settings.xml")) File.Delete("settings.xml");
+
+                    Thread.Sleep(2000);
 
                     fLoader.Close();
                 }
@@ -49,7 +52,9 @@ namespace _Hell_PRO_Tanki_Launcher
                     SingleApplication.Run(fIndex);
             }
             catch (Exception ex)
-            {                
+            {
+                new Debug().Save("static void Main()", ex.Message);
+
                 Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + ".exe\"");
                 Process.GetCurrentProcess().Kill();
             }
