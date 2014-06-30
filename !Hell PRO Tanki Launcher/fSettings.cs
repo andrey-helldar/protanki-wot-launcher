@@ -200,12 +200,8 @@ namespace _Hell_PRO_Tanki_Launcher
                     try
                     {
                         if (myProcesses[i].SessionId == processID)
-                        {
                             if (!ProcessList.IndexOf(myProcesses[i].ProcessName) && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
-                            {
                                 ProcessList.Add(myProcesses[i].ProcessName, myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim());
-                            }
-                        }
                     }
                     catch (Exception ex) { Debug.Save("bwUserProcesses_DoWork()", myProcesses[i].ProcessName, ex.Message); }
                 }

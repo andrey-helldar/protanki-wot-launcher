@@ -22,17 +22,20 @@ namespace _Hell_PRO_Tanki_Launcher
         /// 
         Debug Debug = new Debug();
 
-        private string url = @"http://ai-rus.com/pro/";
-
         public async Task CheckProcessFile()
         {
-            if (Process.GetCurrentProcess().ProcessName != Application.ProductName && Process.GetCurrentProcess().ProcessName != Application.ProductName + ".vshost")
+            try
             {
-                Task.Factory.StartNew(() => DeleteFile("Multipack Launcher.exe")).Wait();
+                if (Process.GetCurrentProcess().ProcessName != Application.ProductName && Process.GetCurrentProcess().ProcessName != Application.ProductName + ".vshost")
+                {
+                    Task.Factory.StartNew(() => DeleteFile("Multipack Launcher.exe")).Wait();
 
-                Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + ".exe\" \"" + Application.ProductName + ".exe\"");
-                Process.GetCurrentProcess().Kill();
+                    Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + ".exe\" \"" + Application.ProductName + ".exe\"");
+                    Process.GetCurrentProcess().Kill();
+                }
+
             }
+            finally { }
         }
 
         public void Check()
@@ -43,11 +46,9 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 CheckProcessFile().Wait();
 
-                XDocument doc = XDocument.Load(url + "version.xml");
+                XDocument doc = XDocument.Load(Properties.Resources.LibraryVersions + "version.xml");
 
                 DownloadSettings().Wait(); // Загружаем файл настроек
-
-                Task.Factory.StartNew(() => DeleteFile("LanguagePack.dll")).Wait(); // Удаляем ненужные файлы
 
                 /// Если файлы имеют нулевой размер, то удаляем их
                 Task.Factory.StartNew(() => DeleteNullFile("settings.xml", "Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "launcher.update")).Wait();
@@ -55,12 +56,24 @@ namespace _Hell_PRO_Tanki_Launcher
                 // Проверяем целостность файлов
                 CheckFile("Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll");
 
-                Task[] tasks = new Task[doc.Root.Elements().Count() + 1];
-                int i = -1;
+                int i = -1,
+                    all = 0;
 
                 foreach (XElement el in doc.Root.Elements())
                     if (el.Attribute("user").Value == "true")
-                        tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
+                        ++all;
+
+                Task[] tasks = new Task[all];
+
+                foreach (XElement el in doc.Root.Elements())
+                    if (el.Attribute("user").Value == "true")
+                    {
+                        try
+                        {
+                            tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
+                        }
+                        finally { }
+                    }
 
                 /* try
                  {
@@ -131,7 +144,7 @@ namespace _Hell_PRO_Tanki_Launcher
                             int errorCount = 0;
 
                             // Скачиваем файл
-                            await client.DownloadFileTaskAsync(new Uri(url + filename), localFile);
+                            await client.DownloadFileTaskAsync(new Uri(Properties.Resources.LibraryVersions + filename), localFile);
 
                             // Проверяем контрольную сумму. Если она нарушена, применяем 3 попытки к скачиванию
                             if (!Checksum(localFile, xmlChecksum) && File.Exists(localFile))
@@ -141,7 +154,7 @@ namespace _Hell_PRO_Tanki_Launcher
                                     {
                                         DeleteFile(localFile);
                                         await Task.Delay(1000);
-                                        await client.DownloadFileTaskAsync(new Uri(url + filename), localFile);
+                                        await client.DownloadFileTaskAsync(new Uri(Properties.Resources.LibraryVersions + filename), localFile);
                                         errorCount++;
                                     }
                                     else { break; }
@@ -154,7 +167,7 @@ namespace _Hell_PRO_Tanki_Launcher
                                 "Error download: EX" + Environment.NewLine +
                                 "Filename: " + filename + Environment.NewLine +
                                 "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +
-                                "URL: " + url,
+                                "URL: " + Properties.Resources.LibraryVersions+filename,
                                 ex.Message);
                         }
                     }
@@ -166,14 +179,15 @@ namespace _Hell_PRO_Tanki_Launcher
                     "Error download: EX1" + Environment.NewLine +
                     "Filename: " + filename + Environment.NewLine +
                     "Localname: " + (localFile != null ? localFile : "null") + Environment.NewLine +
-                    "URL: " + url,
+                    "URL: " + Properties.Resources.LibraryVersions+filename,
                     ex1.Message);
             }
         }
 
         private async Task DownloadSettings()
         {
-            if (!File.Exists("settings.xml")) { using (var client = new WebClient()) { await client.DownloadFileTaskAsync(new Uri(url + "settings.xml"), "settings.xml"); client.Dispose(); } }
+            string settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
+            if (!File.Exists(settings)) { using (var client = new WebClient()) { await client.DownloadFileTaskAsync(new Uri(Properties.Resources.LibraryVersions + "settings.xml"), settings); client.Dispose(); } }
         }
 
         private void CheckFile(params string[] fileArr)
@@ -194,8 +208,15 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void DeleteFile(params string[] fileArr)
         {
-            foreach (string filename in fileArr)
-                if (File.Exists(filename)) { File.Delete(filename); }
+            try
+            {
+                foreach (string filename in fileArr)
+                    if (File.Exists(filename)) { File.Delete(filename); }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public async Task SaveFromResources()

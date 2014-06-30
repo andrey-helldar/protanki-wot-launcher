@@ -250,6 +250,15 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://ai-rus.com/pro/.
+        /// </summary>
+        internal static string LibraryVersions {
+            get {
+                return ResourceManager.GetString("LibraryVersions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://vk.com/topic-58816477_29818765.
         /// </summary>
         internal static string LinkLauncherVK {

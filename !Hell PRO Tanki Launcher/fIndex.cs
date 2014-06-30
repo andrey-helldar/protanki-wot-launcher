@@ -139,12 +139,12 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     if (doc.Root.Element("settings") != null)
                     {
-                        autoForceKill = doc.Root.Element("settings").Attribute("force").Value == "True";
-                        autoKill = doc.Root.Element("settings").Attribute("kill").Value == "True";
-                        autoAero = doc.Root.Element("settings").Attribute("aero").Value == "True";
+                        autoForceKill = doc.Root.Element("settings").Attribute("force") != null ? (doc.Root.Element("settings").Attribute("force").Value == "True") : false;
+                        autoKill = doc.Root.Element("settings").Attribute("kill") != null ? (doc.Root.Element("settings").Attribute("kill").Value == "True") : false;
+                        autoAero = doc.Root.Element("settings").Attribute("aero") != null ? (doc.Root.Element("settings").Attribute("aero").Value == "True") : false;
                         autoVideo = ReadCheckStateBool(doc, "video");
-                        autoWeak = doc.Root.Element("settings").Attribute("weak").Value == "True";
-                        autoCPU = doc.Root.Element("settings").Attribute("balance").Value == "True";
+                        autoWeak = doc.Root.Element("settings").Attribute("weak") != null ? (doc.Root.Element("settings").Attribute("weak").Value == "True") : false;
+                        autoCPU = doc.Root.Element("settings").Attribute("balance") != null ? (doc.Root.Element("settings").Attribute("balance").Value == "True") : false;
                     }
 
                     if (doc.Root.Element("common.test") != null) commonTest = true;
@@ -305,11 +305,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
 
         }
-
-        /*[DllImport("Interface.dll")]
-        private async Task UI()
-        {
-        }*/
 
         private void bExit_Click(object sender, EventArgs e)
         {
