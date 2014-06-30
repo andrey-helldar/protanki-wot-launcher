@@ -188,6 +188,7 @@
     <None Include="Resources\sochi.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\restart.exe" />
     <None Include="Resources\ProcessesLibrary.dll" />
     <None Include="Resources\settings.xml" />
     <None Include="Resources\warning.png" />
@@ -202,7 +203,6 @@
     <None Include="Resources\StatusBad.png" />
     <None Include="Resources\lamp_on.png" />
     <None Include="Resources\lamp_off.png" />
-    <None Include="Resources\restart.exe" />
     <None Include="Resources\LanguagePack.dll" />
     <None Include="Resources\fWarning.jpg" />
     <None Include="Resources\start.bat" />
