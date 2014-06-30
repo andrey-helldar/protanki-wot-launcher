@@ -23,9 +23,9 @@ namespace _Hell_PRO_Tanki_Launcher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Запускаем прелоадер
             try
             {
+                // Запускаем прелоадер
                 using (var fLoader = new fLoader())
                 {
                     fLoader.Show();
@@ -39,17 +39,11 @@ namespace _Hell_PRO_Tanki_Launcher
                     Thread.Sleep(5000);
 
                     fLoader.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
-            try
-            {
-                using (var fIndex = new fIndex())
-                    SingleApplication.Run(fIndex);
+
+                    using (var fIndex = new fIndex())
+                        SingleApplication.Run(fIndex);
+                }
             }
             catch (Exception ex)
             {
