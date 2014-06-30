@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jUw2rddaJZGyOclZJ5tgkOJNZDS0ciZtxE0A0U9Yjj8=</dsig:DigestValue>
+        <dsig:DigestValue>qEAUNGlnJnAmU37w7Sg0I3xpSMbZwp80C1PMI5gR/1E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -102,13 +102,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="changelog.txt" size="293">
+  <file name="changelog.txt" size="389">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ZsatisgmCwtwIfE69XEwLwcxFaHD2wovyUbRbLV/eJE=</dsig:DigestValue>
+      <dsig:DigestValue>tSlokN14maEFAvvCs9K0FafjtW5gkTN8Rs8nzg5EQTg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Multipack Launcher.exe.config" size="144">
