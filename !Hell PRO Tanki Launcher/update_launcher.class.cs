@@ -38,7 +38,7 @@ namespace _Hell_PRO_Tanki_Launcher
             finally { }
         }
 
-        public void Check()
+        public async Task Check()
         {
             try
             {
@@ -72,6 +72,7 @@ namespace _Hell_PRO_Tanki_Launcher
                         {
                             tasks[++i] = DownloadFile(el.Name + "." + el.Attribute("ext").Value, el.Value, el.Attribute("checksum").Value);
                         }
+                        catch (Exception ex) { MessageBox.Show(el.Name+Environment.NewLine+ex.Message); }
                         finally { }
                     }
 
@@ -99,7 +100,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     tasks[++i] = DownloadFile("launcher.exe", doc.Root.Element("launcher").Value, doc.Root.Element("launcher").Attribute("checksum").Value, "launcher.update");
                 }*/
 
-                Task.WhenAll(tasks);
+                await Task.WhenAll(tasks);
             }
             catch (Exception ex) { Debug.Save("public void Check()", ex.Message); }
         }

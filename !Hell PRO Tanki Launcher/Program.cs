@@ -23,21 +23,36 @@ namespace _Hell_PRO_Tanki_Launcher
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Запускаем прелоадер
-            using (var fLoader = new fLoader())
+            try
             {
-                fLoader.Show();
+                using (var fLoader = new fLoader())
+                {
+                    fLoader.Show();
 
-                Task.Factory.StartNew(() => new UpdateLauncher().Check()).Wait(); // Инициализируем обновление библиотек
-                Task.Factory.StartNew(() => new Debug().Delete()).Wait(); // Удаляем старые дебаги
+                    new UpdateLauncher().Check().Wait(); // Инициализируем обновление библиотек
+                    Task.Factory.StartNew(() => new Debug().Delete()).Wait(); // Удаляем старые дебаги
 
-                // Так как нам больше не нужен файл настроек в папке с прогой - удаляем его
-                if (File.Exists("settings.xml")) File.Delete("settings.xml");
+                    // Так как нам больше не нужен файл настроек в папке с прогой - удаляем его
+                    if (File.Exists("settings.xml")) File.Delete("settings.xml");
 
-                fLoader.Close();
+                    fLoader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
-            using (var fIndex = new fIndex())
-                SingleApplication.Run(fIndex);
+            try
+            {
+                using (var fIndex = new fIndex())
+                    SingleApplication.Run(fIndex);
+            }
+            catch (Exception ex)
+            {                
+                Process.Start("restart.exe", "\"" + Process.GetCurrentProcess().ProcessName + ".exe\"");
+                Process.GetCurrentProcess().Kill();
+            }
         }
     }
 }
