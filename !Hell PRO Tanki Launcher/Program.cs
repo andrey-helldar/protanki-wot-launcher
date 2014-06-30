@@ -36,7 +36,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     // Так как нам больше не нужен файл настроек в папке с прогой - удаляем его
                     if (File.Exists("settings.xml")) File.Delete("settings.xml");
 
-                    Thread.Sleep(2000);
+                    Thread.Sleep(5000);
 
                     fLoader.Close();
                 }

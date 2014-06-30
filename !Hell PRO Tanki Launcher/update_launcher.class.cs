@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Net;
 using System.Xml.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -54,7 +55,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 Task.Factory.StartNew(() => DeleteNullFile("settings.xml", "Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll", "launcher.update")).Wait();
 
                 // Проверяем целостность файлов
-                CheckFile("Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll");
+                Task.Factory.StartNew(() => CheckFile(false, "Ionic.Zip.dll", "restart.exe", "Newtonsoft.Json.dll", "ProcessesLibrary.dll")).Wait();
 
                 int i = -1,
                     all = 0;
@@ -190,14 +191,38 @@ namespace _Hell_PRO_Tanki_Launcher
             if (!File.Exists(settings)) { using (var client = new WebClient()) { await client.DownloadFileTaskAsync(new Uri(Properties.Resources.LibraryVersions + "settings.xml"), settings); client.Dispose(); } }
         }
 
-        private void CheckFile(params string[] fileArr)
+        private void CheckFile(bool wait=false, params string[] fileArr)
         {
-            foreach (string filename in fileArr)
-                if (File.Exists(filename))
+                foreach (string filename in fileArr)
+                    if (File.Exists(filename))
+                        try
+                        {
+                            Task.Factory.StartNew(() => CheckOneFile(filename, wait)).Wait();
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.Save("CheckFile()",
+                                "Filename: " + filename + Environment.NewLine +
+                                ex.Message);
+                        }
+        }
+
+        private void CheckOneFile(string filename, bool wait = false)
+        {
+            if (File.Exists(filename))
+            {
+                try { string s = FileVersionInfo.GetVersionInfo(filename).FileVersion; }
+                catch (Exception)
                 {
-                    try { string s = FileVersionInfo.GetVersionInfo(filename).FileVersion; }
-                    catch (Exception) { File.Delete(filename); }
+                    if (!wait)
+                        File.Delete(filename);
+                    else
+                    {
+                        Thread.Sleep(3000);
+                        CheckOneFile(filename, true);
+                    }
                 }
+            }
         }
 
         private void DeleteNullFile(params string[] fileParams)

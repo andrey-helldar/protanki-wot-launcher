@@ -20,7 +20,8 @@ namespace _Hell_Restarter
                 Process[] myProcesses = Process.GetProcessesByName(process);
                 for (int i = 1; i < myProcesses.Length; i++) { myProcesses[i].Kill(); }
 
-                Thread.Sleep(500);
+                Thread.Sleep(1000);
+                Console.WriteLine("");
 
                 Console.WriteLine("Terminate process!");
                 while (Process.GetProcessesByName(process).Length > 0)
@@ -28,6 +29,8 @@ namespace _Hell_Restarter
                     Process[] myProcesses2 = Process.GetProcessesByName(process);
                     for (int i = 1; i < myProcesses2.Length; i++) { myProcesses2[i].Kill(); }
                 }
+                Console.WriteLine("Precess terminate sucessfully!");
+                Console.WriteLine("");
 
                 try
                 {
@@ -39,15 +42,22 @@ namespace _Hell_Restarter
                 }
                 catch (Exception) { process = args[0].Replace(".exe", ""); }
 
+                Console.WriteLine("Wait 2 seconds...");
+                Console.WriteLine("");
+                Thread.Sleep(2000);
 
                 Console.WriteLine("Restart " + process + ".exe");
-                Process.Start(Directory.GetCurrentDirectory() + @"\" + process + ".exe");
+                Process.Start(String.Format("\"{0}.exe\"", process));
             }
             catch (Exception ex)
             {
+                Console.WriteLine("-------------");
+                Console.WriteLine("----ERROR----");
+                Console.WriteLine("-------------");
                 Console.WriteLine(ex.Message);
-                Console.WriteLine("----------------------------------");
+                Console.WriteLine("-------------");
                 Console.WriteLine(args[0]);
+                Console.WriteLine("-------------");
                 Console.Read();
             }
         }

@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XgR/7ag88fPqcMLfV/CGqj50APeXU7v5IKuD2yDO5FM=</dsig:DigestValue>
+        <dsig:DigestValue>3WIVuhu+GqCOG8WG88dGVOBtDilwCHZaNTliyBenGgY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -91,24 +91,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="restart.exe" size="5632">
-      <assemblyIdentity name="restart" version="1.0.2.12" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="restart.exe" size="6144">
+      <assemblyIdentity name="restart" version="1.0.3.13" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6xG58I7u/WMcL2Jnik33sF7rKfCvtOdrooUvIxSuErU=</dsig:DigestValue>
+        <dsig:DigestValue>1Na8yFc+JZfH53DN1lGT6kTc+V4KL7JICBiGniiUdHc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="changelog.txt" size="512">
+  <file name="changelog.txt" size="628">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>PZHv4Z1ZUUtCUWBmECTtgrnfzlU1EsV9wob6mfPexww=</dsig:DigestValue>
+      <dsig:DigestValue>gLOityssmJCCk03cW8Ff6gXDj79ZRjZTWRJX8u1xEsU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Multipack Launcher.exe.config" size="144">
