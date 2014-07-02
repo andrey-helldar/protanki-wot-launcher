@@ -238,10 +238,11 @@ namespace _Hell_PRO_Tanki_Launcher
                 foreach (string filename in fileArr)
                     if (File.Exists(filename)) { File.Delete(filename); }
             }
-            catch (Exception ex)
+            /*catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
+            finally { }
         }
 
         public async Task SaveFromResources()

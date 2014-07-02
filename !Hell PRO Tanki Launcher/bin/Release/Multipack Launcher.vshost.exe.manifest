@@ -102,13 +102,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="changelog.txt" size="738">
+  <file name="changelog.txt" size="1069">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>VsirCM/K+Yd9ZOeuXEI5pTlDHfpFZ3ztTwVspAKJjWA=</dsig:DigestValue>
+      <dsig:DigestValue>m2248PVCiEvMBOHhQj99rTtGBVWRy7aMPBoxAGv+8Dc=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Multipack Launcher.exe.config" size="144">
