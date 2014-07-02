@@ -36,6 +36,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 }
 
             }
+            catch (Exception ex) { Debug.Save("UpdateLauncher", "CheckProcessFile()", ex.Message); }
             finally { }
         }
 
@@ -187,24 +188,24 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private async Task DownloadSettings()
         {
-            string settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
-            if (!File.Exists(settings)) { using (var client = new WebClient()) { await client.DownloadFileTaskAsync(new Uri(Properties.Resources.LibraryVersions + "settings.xml"), settings); client.Dispose(); } }
+            try
+            {
+                string settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
+                if (!File.Exists(settings)) { using (var client = new WebClient()) { await client.DownloadFileTaskAsync(new Uri(Properties.Resources.LibraryVersions + "settings.xml"), settings); client.Dispose(); } }
+            }
+            catch (Exception ex) { Debug.Save("UpdateLauncher", "DownloadSettings()", ex.Message); }
         }
 
-        private void CheckFile(bool wait=false, params string[] fileArr)
+        private void CheckFile(bool wait = false, params string[] fileArr)
         {
+            try
+            {
                 foreach (string filename in fileArr)
                     if (File.Exists(filename))
-                        try
-                        {
-                            Task.Factory.StartNew(() => CheckOneFile(filename, wait)).Wait();
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.Save("CheckFile()",
-                                "Filename: " + filename + Environment.NewLine +
-                                ex.Message);
-                        }
+                        try { Task.Factory.StartNew(() => CheckOneFile(filename, wait)).Wait(); }
+                        catch (Exception ex) { Debug.Save("CheckFile()", "Filename: " + filename + Environment.NewLine + ex.Message); }
+            }
+            catch (Exception ex) { Debug.Save("UpdateLauncher", "CheckFile()", ex.Message); }
         }
 
         private void CheckOneFile(string filename, bool wait = false)
@@ -227,8 +228,16 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void DeleteNullFile(params string[] fileParams)
         {
-            foreach (string filename in fileParams)
-                if (File.Exists(filename) && new FileInfo(filename).Length == 0) { File.Delete(filename); }
+            try
+            {
+                foreach (string filename in fileParams)
+                    try
+                    {
+                        if (File.Exists(filename) && new FileInfo(filename).Length == 0) { File.Delete(filename); }
+                    }
+                    catch (Exception ex) { Debug.Save("UpdateLauncher", "DeleteNullFile()", filename, ex.Message); }
+            }
+            catch (Exception ex) { Debug.Save("UpdateLauncher", "DeleteNullFile()", ex.Message); }
         }
 
         private void DeleteFile(params string[] fileArr)
@@ -238,22 +247,23 @@ namespace _Hell_PRO_Tanki_Launcher
                 foreach (string filename in fileArr)
                     if (File.Exists(filename)) { File.Delete(filename); }
             }
-            /*catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }*/
+            catch (Exception ex) { Debug.Save("UpdateLauncher", "DeleteFile()", ex.Message); }
             finally { }
         }
 
         public async Task SaveFromResources()
         {
-            if (!File.Exists("Ionic.Zip.dll")) { File.WriteAllBytes("Ionic.Zip.dll", Properties.Resources.IonicZip); }
-            if (!File.Exists("restart.exe")) { File.WriteAllBytes("restart.exe", Properties.Resources.restart); }
-            if (!File.Exists("Newtonsoft.Json.dll")) { File.WriteAllBytes("Newtonsoft.Json.dll", Properties.Resources.Newtonsoft_Json); }
-            if (!File.Exists("ProcessesLibrary.dll")) { File.WriteAllBytes("ProcessesLibrary.dll", Properties.Resources.ProcessesLibrary); }
+            try
+            {
+                if (!File.Exists("Ionic.Zip.dll")) { File.WriteAllBytes("Ionic.Zip.dll", Properties.Resources.IonicZip); }
+                if (!File.Exists("restart.exe")) { File.WriteAllBytes("restart.exe", Properties.Resources.restart); }
+                if (!File.Exists("Newtonsoft.Json.dll")) { File.WriteAllBytes("Newtonsoft.Json.dll", Properties.Resources.Newtonsoft_Json); }
+                if (!File.Exists("ProcessesLibrary.dll")) { File.WriteAllBytes("ProcessesLibrary.dll", Properties.Resources.ProcessesLibrary); }
 
-            string Settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
-            if (!File.Exists(Settings)) { File.WriteAllText(Settings, Properties.Resources.Settings); }
+                string Settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
+                if (!File.Exists(Settings)) { File.WriteAllText(Settings, Properties.Resources.Settings); }
+            }
+            catch (Exception ex) { Debug.Save("UpdateLauncher", "SaveFromResources()", ex.Message); }
         }
     }
 }

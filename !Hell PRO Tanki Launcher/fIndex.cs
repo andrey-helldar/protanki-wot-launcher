@@ -791,18 +791,20 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 // Так как начали выводить данные, проверяем существует ли контрол с текстом "ПОдождите, идет загрузка данных..."
                 try { if (llLoadingVideoData.Text != "") { this.pVideo.Controls.Remove(llLoadingVideoData); } }
-                catch { }
+                finally { }
 
                 try
                 {
+                    int id = e.ProgressPercentage >= 0 ? e.ProgressPercentage - 1 : 0;
+
                     Label labelDate = new Label();
                     labelDate.SetBounds(10, showVideoTop, 10, 10);
                     labelDate.AutoSize = true;
                     labelDate.BackColor = Color.Transparent;
                     labelDate.ForeColor = Color.Silver;
                     labelDate.Font = new Font("Sochi2014", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-                    labelDate.Text = formatDate(YoutubeVideo.List[e.ProgressPercentage].Date);
-                    labelDate.Name = "llDateVideo" + e.ProgressPercentage.ToString();
+                    labelDate.Text = formatDate(YoutubeVideo.List[id].Date);
+                    labelDate.Name = "llDateVideo" + id.ToString();
                     this.pVideo.Controls.Add(labelDate);
 
                     LinkLabel label = new LinkLabel();
@@ -813,9 +815,9 @@ namespace _Hell_PRO_Tanki_Launcher
                     label.VisitedLinkColor = Color.FromArgb(243, 123, 16);
                     label.LinkColor = Color.FromArgb(243, 123, 16);
                     label.LinkBehavior = LinkBehavior.HoverUnderline;
-                    label.Name = "llVideo" + e.ProgressPercentage.ToString();
-                    label.Text = YoutubeVideo.List[e.ProgressPercentage].Title;
-                    label.Links[0].LinkData = YoutubeVideo.List[e.ProgressPercentage].Link;
+                    label.Name = "llVideo" + id.ToString();
+                    label.Text = YoutubeVideo.List[id].Title;
+                    label.Links[0].LinkData = YoutubeVideo.List[id].Link;
                     try
                     {
                         label.SetBounds(labelDate.Width + 10, showVideoTop, 100, 20);
@@ -1180,7 +1182,6 @@ namespace _Hell_PRO_Tanki_Launcher
                     ShowVideoPause().Wait();
 
                     notifyLink = el.Link;
-                    //notifyIcon.ShowBalloonTip(5000, el.Title, "Посмотреть видео", ToolTipIcon.Info);
                     notifyIcon.ShowBalloonTip(5000, el.Title, Language.DynamicLanguage("viewVideo", lang), ToolTipIcon.Info);
 
                     doc.Root.Element("youtube").Add(new XElement("video", el.ID));

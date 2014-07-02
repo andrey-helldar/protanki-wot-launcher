@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2673664">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2673152">
       <assemblyIdentity name="Multipack Launcher" version="1.0.15.235" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>b4PyWVGKJRLVUxjm7wjlnwDHChwlQc+KwP5+/O8F3Nc=</dsig:DigestValue>
+        <dsig:DigestValue>Cui25pVocjGP/5QbY3P5kGCJrDFG5UtnPTPYLy/fuFA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,7 +98,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>O/KxFkUPgmEkqlrOcENz7OogteCoFqsOm4LfniQxYkc=</dsig:DigestValue>
+        <dsig:DigestValue>jXUGF9q1C4d+iy6QqXXUtSO/rFXm0akz3VerqcCaypE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
