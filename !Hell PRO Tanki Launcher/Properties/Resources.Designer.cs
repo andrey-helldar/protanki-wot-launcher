@@ -179,9 +179,9 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         ///    &lt;gammaCorrectionOutside&gt;1.0&lt;/gammaCorrectionOutside&gt;
         ///    &lt;gammaCorrectionInside&gt;1.0&lt;/gammaCorrectionInside&gt;
         ///    &lt;gammaCorrectionSpeed&gt;0.2&lt;/gammaCorrectionSpeed&gt;
-        ///    &lt;maxFrameRate&gt;	75	&lt;/maxFrameRate&gt;
-        ///    &lt;reducedFrameRate&gt;	50	&lt;/reducedFrameRate&gt;
-        ///    &lt;settings [rest of string was truncated]&quot;;.
+        ///    &lt;maxFrameRate&gt;	120	&lt;/maxFrameRate&gt;
+        ///    &lt;reducedFrameRate&gt;	60	&lt;/reducedFrameRate&gt;
+        ///    &lt;setting [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string engine_config {
             get {

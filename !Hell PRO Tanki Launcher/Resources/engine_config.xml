@@ -8,8 +8,8 @@
     <gammaCorrectionOutside>1.0</gammaCorrectionOutside>
     <gammaCorrectionInside>1.0</gammaCorrectionInside>
     <gammaCorrectionSpeed>0.2</gammaCorrectionSpeed>
-    <maxFrameRate>	75	</maxFrameRate>
-    <reducedFrameRate>	50	</reducedFrameRate>
+    <maxFrameRate>	120	</maxFrameRate>
+    <reducedFrameRate>	60	</reducedFrameRate>
     <settings>
       <effect>shaders/terrain/terrain_lit.fx</effect>
     </settings>
@@ -46,7 +46,7 @@
   </debugKeys>
   <entities>
     <disablePreloads>	false	</disablePreloads>
-    <enforcePreloads>	true	</enforcePreloads>
+    <enforcePreloads>	false	</enforcePreloads>
     <entityCollision>	false	</entityCollision>
     <particlesActive>	true	</particlesActive>
     <movementThreshold>0.25</movementThreshold>
