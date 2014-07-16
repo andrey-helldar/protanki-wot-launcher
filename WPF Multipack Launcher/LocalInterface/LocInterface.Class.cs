@@ -11,7 +11,7 @@ namespace WPF_Multipack_Launcher.LocalInterface
 {
     class LocInterface
     {
-        private string ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
+        private string ProductName = String.Empty;
         public bool loop = true;
 
         public void Message(string text, string caption = null)
@@ -22,6 +22,11 @@ namespace WPF_Multipack_Launcher.LocalInterface
                 MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             finally { }
+        }
+
+        private void SetProductName()
+        {
+            ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
         }
 
         public async Task<string> VersionToSharp(Version ver)

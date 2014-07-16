@@ -12,7 +12,7 @@ namespace WPF_Multipack_Launcher.Classes
 {
     class Optimize
     {
-        public async Task Start(
+        public async Task<bool> Start(
             bool Kill = false,
             bool ForceKill = false,
             bool Aero = false,
@@ -96,6 +96,8 @@ namespace WPF_Multipack_Launcher.Classes
                 }
             }
             finally { }
+
+            return true;
         }
 
         private async Task Sleep(int sec = 5)
