@@ -1,6 +1,7 @@
-﻿<Window x:Name="SettingsForm" x:Class="WPF_Multipack_Launcher.Settings"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="SettingsForm" x:Class="WPF_Multipack_Launcher.Settings"
         Title="Settings" Height="600" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SizeToContent="WidthAndHeight" WindowStyle="None" ShowInTaskbar="False">
     <Window.Background>
         <ImageBrush ImageSource="Resources/back_1.jpg"/>
@@ -8,16 +9,58 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="29*"/>
-            <RowDefinition Height="513*"/>
-            <RowDefinition Height="58*"/>
+            <RowDefinition Height="514*"/>
+            <RowDefinition Height="57*"/>
         </Grid.RowDefinitions>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="515,13,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="404,13,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
-        <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="109" Width="580">
-            <StackPanel HorizontalAlignment="Left" Height="87" VerticalAlignment="Top" Width="568" Margin="87,3,-87,-3">
+        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="367,13,0,0" Grid.Row="2" VerticalAlignment="Top" Width="112"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="28" Width="38"/>
+        <GroupBox Header="Оптимизация ПК" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="118" Width="280">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,0" Height="71">
                 <CheckBox Content="Закрывать приложения при запуске игры" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0"/>
                 <CheckBox Content="Принудительно закрывать приложения" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,5,0,0"/>
+                <ComboBox Width="199" SelectedIndex="0">
+                    <ListBoxItem Content="Не закрывать лаунчер"/>
+                </ComboBox>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Оптимизация игры" HorizontalAlignment="Left" Margin="305,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="118" Width="285">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,-2,0" Width="275">
+                <CheckBox Content="Уменьшить качество графики в игре"/>
+                <CheckBox Content="Очень слабый компьютер" Margin="27,0,0,0"/>
+                <CheckBox Content="Отключать Windows Aero"/>
+                <ComboBox SelectedIndex="0">
+                    <ListBoxItem Content="Высокий приоритет"/>
+                </ComboBox>
+                <Button Content="Нагрузка на все ядра" Width="Auto" Height="28" Margin="10,0"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Другие" HorizontalAlignment="Left" Margin="10,134,0,0" Grid.Row="1" VerticalAlignment="Top" Height="106" Width="280">
+            <StackPanel HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="270" Margin="0,0,-2,0">
+                <CheckBox Content="Уведомлять о новых видео"/>
+                <CheckBox Content="Уведомлять о новых новостях"/>
+                <CheckBox Content="Изменять фоновое изображение каждые 10 сек"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Подключенные модули" HorizontalAlignment="Left" Margin="305,139,0,0" Grid.Row="1" VerticalAlignment="Top" Height="106" Width="285">
+            <StackPanel HorizontalAlignment="Left" Height="95" VerticalAlignment="Top" Width="262" Margin="0,0,0,-10">
+                <ListView Height="77">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Какие процессы НЕЛЬЗЯ закрывать при запуске игры" HorizontalAlignment="Left" Margin="19,245,0,0" Grid.Row="1" VerticalAlignment="Top" Height="259" Width="561">
+            <StackPanel HorizontalAlignment="Left" Height="229" VerticalAlignment="Top" Width="539">
+                <ListView Height="219">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </StackPanel>
         </GroupBox>
 

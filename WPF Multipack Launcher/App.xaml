@@ -74,6 +74,15 @@
         </Style>
 
 
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="FontFamily" Value="Microsoft Sans Serif"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        
+
         <Style TargetType="{x:Type Hyperlink}">
             <Setter Property="FontFamily" Value="Sochi2014"/>
             <Setter Property="FontSize" Value="16"/>
