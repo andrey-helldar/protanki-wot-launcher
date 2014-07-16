@@ -41,38 +41,6 @@ namespace WPF_Multipack_Launcher.Classes
             return Out;
         }
 
-        public async Task CountUsers(string productName = null,
-            string productVersion = "0.0.0.0", string packVersion = "0.0.0.0",
-            string packType = "null", string youtube = "null", string lang = "en")
-        {
-            try
-            {
-                await Task.Delay(Convert.ToInt16(Properties.Resources.PostCountUsersDelay));
-
-                NameValueCollection myJsonData = new NameValueCollection();
-                myJsonData.Add("code", Properties.Resources.Code);
-                myJsonData.Add("user_id", new Variables.Variables().GetUserID().Result);
-                myJsonData.Add("youtube", youtube);
-                myJsonData.Add("packtype", packType);
-                myJsonData.Add("packversion", packVersion);
-                myJsonData.Add("name", productName != null ? productName : System.Windows.Application.Current.MainWindow.GetType().Assembly.GetName().Name);
-                myJsonData.Add("version", productVersion);
-                myJsonData.Add("lang", lang);
-
-                //System.Windows.MessageBox.Show(Send(Properties.Resources.DeveloperUsers, "data=" + JsonConvert.SerializeObject(myJsonData)));
-            }
-            catch (WebException ex)
-            {
-                new Debug().Save("POST Class: CountUsers()",
-                    "productName: " + productName,
-                    "productVersion: " + productVersion,
-                    "packVersion: " + packVersion,
-                    "packType: " + packType,
-                    "youtube: " + youtube,
-                    ex.Message);
-            }
-        }
-
         public void HttpUploadFile(string url, string file, string paramName, string contentType, NameValueCollection nvc)
         {
             string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
@@ -217,6 +185,24 @@ namespace WPF_Multipack_Launcher.Classes
             str = str.Replace("__________________________________________", Environment.NewLine + "__________________________________________");
 
             return str;
+        }
+
+        public string RequestInfo(string request)
+        {
+            try
+            {
+                Dictionary<string, string> jData = new Dictionary<string, string>();
+                jData.Add("code", Properties.Resources.Code);
+                jData.Add("request", request);
+
+                Dictionary<string, string> status = FromJson(Send(Properties.Resources.DeveloperInfo, "data=" + Json(jData)));
+                return status["info"];
+            }
+            catch (Exception ex)
+            {
+                new Debug().Save("POST Class", ex.Message);
+                return "FAIL";
+            }
         }
     }
 }

@@ -4,28 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
+using System.IO;
 
 namespace WPF_Multipack_Launcher.Classes
 {
     class Debug
     {
-        public async Task Save(string caption, params string[] args){
-            if (Properties.Resources.Debug == "True")
+        public async Task Save(string caption, params string[] args)
+        {
+            try
             {
-                string template = "/*********************************" + Environment.NewLine +
-                                  " * {0}" + Environment.NewLine +
-                                  "**********************************/" + Environment.NewLine +
-                                  "{1}" + Environment.NewLine + Environment.NewLine;
+                if (Properties.Resources.Debug == "True")
+                {
+                    string export = String.Empty,
+                           template = "***************************************************" + Environment.NewLine +
+                                      "*    Function: " + caption + Environment.NewLine +
+                                      "***************************************************" + Environment.NewLine +
+                                      "{0}",
+                           split = Environment.NewLine + "------------------" + Environment.NewLine;
 
-                string export = String.Format(template, args);
+                    foreach (string str in args)
+                        export += str + split;
 
-                MessageBox.Show(export, caption);
+                    export = String.Format(template, export);
+
+                    if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
+                    File.WriteAllText(@"temp\" + String.Format("{0}_{1}.debug", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(), DateTime.Now.ToString("yyyy-MM-dd_h-m-s.ffffff")), export, Encoding.UTF8);
+                }
             }
+            catch (Exception) { }
         }
 
         public async Task Message(string caption, string text)
         {
-            MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+            //MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

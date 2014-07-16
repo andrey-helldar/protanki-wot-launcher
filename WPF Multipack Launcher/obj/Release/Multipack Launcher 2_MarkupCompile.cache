@@ -1,4 +1,4 @@
-﻿Multipack Launcher
+﻿Multipack Launcher 2
 
 
 winexe
@@ -10,11 +10,11 @@ none
 false
 TRACE
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\App.xaml
-11151548125
+3-1533303018
 
-6-430928950
-131478842535
-MainWindow.xaml;
-
+16721418715
+18542980101
+MainWindow.xaml;Notify.xaml;Settings.xaml;
+resources\splash2.png
 False
 

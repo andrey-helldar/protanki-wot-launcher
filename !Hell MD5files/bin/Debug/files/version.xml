@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ai.rus>
   <Ionic.Zip ext="dll" checksum="6DED8FCBF5F1D9E422B327CA51625E24" important="True" user="true">1.9.1.8</Ionic.Zip>
-  <launcher ext="exe" checksum="3868C6F8B68DAE1959F09C539925E4FA" important="False" user="false">1.0.15.236</launcher>
+  <launcher ext="exe" checksum="819043ACA8159956A33A76E3E4304352" important="False" user="false">1.0.15.237</launcher>
   <Newtonsoft.Json ext="dll" checksum="A94583EE47F673118B0BF822BF8E425D" important="False" user="true">6.0.3.17227</Newtonsoft.Json>
   <ProcessesLibrary ext="dll" checksum="0E4F91058013090DC2D3C34A60BDD8B9" important="True" user="true">1.0.8.31</ProcessesLibrary>
   <restart ext="exe" checksum="94CC2929E5A665F7B9F4F872D90AE71F" important="True" user="true">1.0.3.13</restart>

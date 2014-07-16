@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Xml.Linq;
 using System.Text;
@@ -14,6 +15,12 @@ namespace WPF_Multipack_Launcher.Variables
 {
     class Variables
     {
+        // TEMP
+        public int Accept = 300;
+
+        // Wargaming API
+        public string Api = String.Empty;
+
         // Product
         public string ProductName = String.Empty;
         public Version ProductVersion = new Version("0.0.0.0");
@@ -35,9 +42,6 @@ namespace WPF_Multipack_Launcher.Variables
 
         // Paths
         public string PathTanks = String.Empty;
-
-        // Updates
-        public int Accept = 300;
 
         public string UpdateLink = Properties.Resources.LinkVideoAll,
                       UpdateMessage = String.Empty,
@@ -77,11 +81,12 @@ namespace WPF_Multipack_Launcher.Variables
                 ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
                 ProductVersion = Application.Current.MainWindow.GetType().Assembly.GetName().Version;
 
-                if (File.Exists("settings.xml")) Doc = XDocument.Load("settings.xml");
-
-                LoadSettings().Wait();
+                GetApiKey().Wait();
 
                 new Classes.Update().SaveFromResources().Wait();
+
+                if (File.Exists("settings.xml")) Doc = XDocument.Load("settings.xml");
+                LoadSettings().Wait();
             }
             catch (Exception) { return false; }
             return true;
@@ -116,10 +121,10 @@ namespace WPF_Multipack_Launcher.Variables
                 // Загружаем данные
                 string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsPathMultipack;
 
-                MultipackDate = new IniFile(pathINI).IniReadValue("protanki", "date");
-                MultipackType = new IniFile(pathINI).IniReadValue("protanki", "type").ToLower();
-                MultipackVersion = new Version(new LocalInterface.LocInterface().VersionPrefix(TanksVersion).Result + new IniFile(pathINI).IniReadValue("protanki", "version"));
-                Lang = new IniFile(pathINI).IniReadValue("protanki", "language");
+                MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
+                MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
+                MultipackVersion = new Version(new LocalInterface.LocInterface().VersionPrefix(TanksVersion).Result + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
+                Lang = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language");
             }
             else
             {
@@ -127,14 +132,7 @@ namespace WPF_Multipack_Launcher.Variables
                 new Classes.Debug().Message(ProductName, new LocalInterface.Language().DynamicLanguage("noMods", Lang)).Wait();
             }
 
-
-            // Загружаем настройки лаунчера
-            //if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
-
-            //if (File.Exists("settings.xml"))
-            //{
-            //    XDocument doc = XDocument.Load("settings.xml");
-
+            
             UpdateNotify = Doc.Root.Element("notification") != null ? Doc.Root.Element("notification").Value : String.Empty;
             ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true;
 
@@ -150,12 +148,18 @@ namespace WPF_Multipack_Launcher.Variables
                 }
 
             if (Doc.Root.Element("common.test") != null) CommonTest = true;
-            /*}
-            else
+        }
+
+        /*************************
+         * GET Wargaming API key
+         * **********************/
+        private async Task GetApiKey()
+        {
+            try
             {
-                // Файл настроек не обнаружен
-                new Classes.Debug().Message(ProductName, new LocalInterface.Language().DynamicLanguage("noSettings", Lang)).Wait();
-            }*/
+                Api = new Classes.POST().RequestInfo("api");
+            }
+            catch (Exception ex) { new Classes.Debug().Save("Variables Class", ex.Message); }
         }
 
         private bool ReadCheckStateBool(XDocument doc, string attr)

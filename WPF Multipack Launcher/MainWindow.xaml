@@ -7,7 +7,7 @@
     </Window.Background>
     <Grid x:Name="gGrid" HorizontalAlignment="Left" Width="860" Height="480" VerticalAlignment="Top">
         <Grid.RowDefinitions>
-            <RowDefinition Height="31*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="54*"/>
             <RowDefinition Height="35*"/>
             <RowDefinition Height="307*"/>
@@ -33,11 +33,7 @@
             </Button.Background>
         </Button>
         <Button x:Name="bOptimize" Content="Optimize" Grid.Column="1" HorizontalAlignment="Left" Margin="320,9,0,9" Grid.Row="4" VerticalAlignment="Center" Width="100" Click="bOptimize_Click"/>
-        <Label x:Name="lStatusUpdates" Grid.ColumnSpan="3" Content="Loading status..." HorizontalAlignment="Center" Margin="20,0" Grid.Row="1" VerticalAlignment="Center" FontSize="18">
-            <Label.Effect>
-                <DropShadowEffect/>
-            </Label.Effect>
-        </Label>
+        <Label x:Name="lStatusUpdates" Grid.ColumnSpan="3" Content="Loading status..." HorizontalAlignment="Center" Margin="20,0" Grid.Row="1" VerticalAlignment="Center" FontSize="18"/>
         <Label x:Name="lLauncherVersion" Content="0.0.0 #0" HorizontalAlignment="Right" Margin="0,0,100,0" VerticalAlignment="Center" Grid.Column="2"/>
         <Label Grid.ColumnSpan="2" Content="PROTanks: Video" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="16"/>
         <Label Content="Wargaming.net: News" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="16"/>

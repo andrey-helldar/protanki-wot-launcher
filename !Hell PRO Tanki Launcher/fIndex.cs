@@ -351,6 +351,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 json.Add("test", commonTest ? "1" : "0");
                 json.Add("version", tanksVersion.ToString());
                 json.Add("lang", lang);
+                json.Add("resolution", Screen.PrimaryScreen.WorkingArea.Width.ToString()+"x"+Screen.PrimaryScreen.WorkingArea.Height.ToString());
 
                 try
                 {

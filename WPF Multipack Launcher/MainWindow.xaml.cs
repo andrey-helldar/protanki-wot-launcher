@@ -32,10 +32,10 @@ namespace WPF_Multipack_Launcher
          * Variables
          * *******************/
         LocalInterface.LocInterface LocalInterface = new LocalInterface.LocInterface();
+        LocalInterface.Language LocalLanguage = new LocalInterface.Language();
         Variables.Variables Variables = new Variables.Variables();
         Classes.Debug Debug = new Classes.Debug();
         Classes.Optimize Optimize = new Classes.Optimize();
-        LocalInterface.Language Language = new LocalInterface.Language();
         Classes.YoutubeVideo YoutubeClass = new Classes.YoutubeVideo();
 
 
@@ -47,89 +47,68 @@ namespace WPF_Multipack_Launcher
         {
             InitializeComponent();
             MouseDown += delegate { DragMove(); };
-
-            //OverlayPanel();
-
-            LocalInterface.Start().Wait();
+            
             Variables.Start().Wait();
         }
 
         private void MainForm_Loaded(object sender, RoutedEventArgs e)
         {
-            //Task.Factory.StartNew(()=>SetBack());
             SetBackground();
 
-            DataLoading().Wait();
+            lMultipackVersion.Content = Variables.MultipackVersion.ToString();
 
-            lCaption.Content = Variables.ProductName + " (" + Language.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")";
+            lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")";
             lMultipackVersion.Content = MultipackVersion().Result;
             lLauncherVersion.Content = LauncherVersion().Result;
 
             CheckUpdates().Wait(); // Check multipack & tanks updates
 
-            new Classes.POST().CountUsers(); // Запускаем обновление статистики
-
             Youtube();
             WargamingNews();
 
             // NotifyIcon
-
-            Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Application.Current.MainWindow.GetType().Assembly.GetName().Name + ";component/Resources/WOT.ico")).Stream;
+            Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
             if (iconStream != null)
                 notifyIcon.Icon = new System.Drawing.Icon(iconStream);
             notifyIcon.Visible = true;
             notifyIcon.Text = lCaption.Content.ToString();
             notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
 
-            ShowNotify(Language.DynamicLanguage("welcome", Variables.Lang));
+            ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang));
             VideoNotify();
 
             ShowUpdateWindow();
         }
 
-        private async Task OverlayPanel(string page = null)
-        {
-            // Создаем панель
-            StackPanel panel = new StackPanel();
-            panel.Name = "pOverlayPanel";
-            panel.HorizontalAlignment = HorizontalAlignment.Center;
-            panel.VerticalAlignment = VerticalAlignment.Center;
-            panel.Width = MainForm.Width;
-            panel.Height = MainForm.Height;
-            panel.Opacity = 0.8;
-            panel.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/" + Application.Current.MainWindow.GetType().Assembly.GetName().Name + ";component/Resources/back_6.jpg")));
-
-            Label label = new Label();
-            label.HorizontalAlignment = HorizontalAlignment.Center;
-            label.VerticalAlignment = VerticalAlignment.Center;
-            label.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Center;
-            label.VerticalContentAlignment = System.Windows.VerticalAlignment.Center;
-            label.Width = MainForm.Width;
-            label.Height = MainForm.Height;
-            label.FontSize = 20;
-            label.Content = "Loading data... Please, wait...";
-
-            panel.Children.Add(label);
-            RegisterName("pOverlayPanel", panel);
-            Content = panel;
-        }
-
         private async Task SetBackground()
         {
-            string uri = @"pack://application:,,,/" + Application.Current.MainWindow.GetType().Assembly.GetName().Name + ";component/Resources/back_{0}.jpg";
+            string uri = @"pack://application:,,,/" + Variables.ProductName + ";component/Resources/back_{0}.jpg";
 
-            while (Variables.BackgroundLoop)
+            if (Variables.BackgroundLoop)
             {
+                while (Variables.BackgroundLoop)
+                {
+                    try
+                    {
+                        if (Variables.BackgroundIndex < 1 || Variables.BackgroundIndex > Variables.BackgroundMax) Variables.BackgroundIndex = 1;
+
+                        try { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex++).ToString())))); }
+                        catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
+                    }
+                    catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
+
+                    await Task.Delay(Variables.BackgroundDelay);
+                }
+            }
+            else
+            {
+
                 try
                 {
-                    if (Variables.BackgroundIndex < 1 || Variables.BackgroundIndex > Variables.BackgroundMax) Variables.BackgroundIndex = 1;
-
-                    try { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex++).ToString())))); }
-                    catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
+                    Variables.BackgroundIndex = new Random().Next(1, 7);
+                    this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, Variables.BackgroundIndex.ToString()))));
                 }
-                catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
-
-                await Task.Delay(Variables.BackgroundDelay);
+                catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
             }
         }
 
@@ -148,11 +127,6 @@ namespace WPF_Multipack_Launcher
             try { Process.Start(e.Uri.AbsoluteUri); }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
             finally { }
-        }
-
-        private async Task DataLoading()
-        {
-            lMultipackVersion.Content = Variables.MultipackVersion.ToString();
         }
 
         private async Task<string> MultipackVersion()
@@ -194,7 +168,7 @@ namespace WPF_Multipack_Launcher
                     try { Process.Start(Variables.PathTanks + "WoTLauncher.exe"); }
                     catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "UpdateTanks = " + Variables.UpdateTanks.ToString(), ex.Message).Wait(); }
                 else
-                    await Debug.Message(Variables.ProductName, Language.DynamicLanguage("noTanks", Variables.Lang));
+                    await Debug.Message(Variables.ProductName, LocalLanguage.DynamicLanguage("noTanks", Variables.Lang));
             }
 
             /// Multipack updates
@@ -220,7 +194,7 @@ namespace WPF_Multipack_Launcher
         private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
-
+            notifyIcon.Dispose();
             Variables.Doc.Save("settings.xml");
         }
 
@@ -231,14 +205,10 @@ namespace WPF_Multipack_Launcher
                 Classes.POST POST = new Classes.POST();
                 string status = String.Empty;
 
-                //if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
-
-                //XDocument docSettings = XDocument.Load("settings.xml");
                 if (Variables.CommonTest)
                     if (Variables.Doc.Root.Element("common.test") == null) Variables.Doc.Root.Add(new XElement("common.test", null));
                     else
                         if (Variables.Doc.Root.Element("common.test") != null) Variables.Doc.Root.Element("common.test").Remove();
-                //docSettings.Save("settings.xml");
 
 
                 Dictionary<string, string> json = new Dictionary<string, string>();
@@ -249,11 +219,12 @@ namespace WPF_Multipack_Launcher
                 json.Add("test", Variables.CommonTest ? "1" : "0");
                 json.Add("version", Variables.TanksVersion.ToString());
                 json.Add("lang", Variables.Lang);
+                json.Add("resolution", SystemParameters.PrimaryScreenWidth.ToString() + "x" + SystemParameters.PrimaryScreenHeight.ToString());
 
                 try // Check updates tanks version
                 {
-                    Dictionary<string, string> sendStatus = POST.FromJson(POST.Send(Properties.Resources.DeveloperWotVersion, "data=" + POST.Json(json)));
-                    Variables.UpdateTanksVersion = Convert.ToInt32(sendStatus["count"]) > new Variables.Variables().Accept ? new Version(sendStatus["id"]) : Variables.TanksVersion;
+                    Dictionary<string, string> postStatus = POST.FromJson(POST.Send(Properties.Resources.DeveloperWotVersion, "data=" + POST.Json(json)));
+                    Variables.UpdateTanksVersion = postStatus["id"] != "0.0.0.0" ? new Version(postStatus["id"]) : Variables.TanksVersion;
                 }
                 catch (Exception) { Variables.UpdateTanksVersion = new Version("0.0.0.0"); }
 
@@ -266,15 +237,14 @@ namespace WPF_Multipack_Launcher
 
                 if (Variables.UpdateMultipack)
                 {
-                    //Variables.UpdateMessage = POST.DataRegex(remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString());
                     Variables.UpdateMessage = remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString();
                     Variables.UpdateLink = remoteJson[Variables.MultipackType]["download"].ToString();
-                    lStatusUpdates.Content = String.Format("{0} ({1})", Language.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.UpdateMultipackVersion.ToString());
+                    lStatusUpdates.Content = String.Format("{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.UpdateMultipackVersion.ToString());
                 }
 
                 if (Variables.UpdateTanks)
                 {
-                    lStatusUpdates.Content += String.Format(Environment.NewLine + "{0} ({1})", Language.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString());
+                    lStatusUpdates.Content += String.Format(Environment.NewLine + "{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString());
                     bPlay.IsEnabled = false;
                 }
                 else
@@ -289,11 +259,11 @@ namespace WPF_Multipack_Launcher
                 else
                 {
                     bUpdate.IsEnabled = false; // Выключаем кнопку обновлений
-                    lStatusUpdates.Content = Language.DynamicLanguage("llActuallyActually", Variables.Lang);
+                    lStatusUpdates.Content = LocalLanguage.DynamicLanguage("llActuallyActually", Variables.Lang);
                     lStatusUpdates.Foreground = System.Windows.Media.Brushes.GreenYellow;
                 }
             }
-            catch (Exception ex) { Debug.Save("MainForm", "CheckUpdates()", ex.Message).Wait(); }
+            catch (Exception ex) { Debug.Save("MainForm", "CheckUpdates()", ex.Message); }
         }
 
         private async void StartGame(string file = "WorldOfTanks.exe")
@@ -516,9 +486,6 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                //if (!File.Exists("settings.xml")) new Classes.Update().SaveFromResources().Wait();
-                //XDocument doc = XDocument.Load("settings.xml");
-
                 if (Variables.Doc.Root.Element("youtube") != null)
                     foreach (var el in Variables.Doc.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
                 else Variables.Doc.Root.Add(new XElement("youtube", null));
@@ -539,7 +506,7 @@ namespace WPF_Multipack_Launcher
                     }
 
                     Variables.notifyLink = el.Link;
-                    ShowNotify(Language.DynamicLanguage("viewVideo", Variables.Lang), el.Title);
+                    ShowNotify(LocalLanguage.DynamicLanguage("viewVideo", Variables.Lang), el.Title);
 
                     Variables.Doc.Root.Element("youtube").Add(new XElement("video", el.ID));
                     //Variables.Doc.Save("settings.xml");
@@ -577,8 +544,6 @@ namespace WPF_Multipack_Launcher
 
         private async Task<bool> ShowUpdateWindow()
         {
-            //XDocument doc = XDocument.Load("settings.xml");
-
             if (Variables.Doc.Root.Element("notification") != null)
                 if (Variables.Doc.Root.Element("notification").Value == Variables.UpdateMultipackVersion.ToString())
                     return false;
