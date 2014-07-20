@@ -139,7 +139,7 @@ namespace WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://ai-rus.com/wot/info/.
+        ///   Looks up a localized string similar to /wot/info/.
         /// </summary>
         public static string DeveloperInfo {
             get {
@@ -157,7 +157,16 @@ namespace WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://ai-rus.com/wot/users/.
+        ///   Looks up a localized string similar to http://n.ai-rus.com.
+        /// </summary>
+        public static string DeveloperSite {
+            get {
+                return ResourceManager.GetString("DeveloperSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /wot/users/.
         /// </summary>
         public static string DeveloperUsers {
             get {
@@ -166,7 +175,7 @@ namespace WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://ai-rus.com/wot/version/.
+        ///   Looks up a localized string similar to /wot/version/.
         /// </summary>
         public static string DeveloperWotVersion {
             get {
@@ -420,15 +429,6 @@ namespace WPF_Multipack_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("WOT", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://ai-rus.com/pro/pro.xml.
-        /// </summary>
-        public static string XmlPro {
-            get {
-                return ResourceManager.GetString("XmlPro", resourceCulture);
             }
         }
         
