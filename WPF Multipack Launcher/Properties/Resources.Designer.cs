@@ -213,16 +213,6 @@ namespace WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Ionic_Zip {
-            get {
-                object obj = ResourceManager.GetObject("Ionic_Zip", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to http://file.theaces.ru/mods/proupdate/update.json.
         /// </summary>
         public static string JsonUpdates {
@@ -250,26 +240,6 @@ namespace WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Newtonsoft_Json {
-            get {
-                object obj = ResourceManager.GetObject("Newtonsoft_Json", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Newtonsoft_Json1 {
-            get {
-                object obj = ResourceManager.GetObject("Newtonsoft_Json1", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 10000.
         /// </summary>
         public static string PostCountUsersDelay {
@@ -291,16 +261,6 @@ namespace WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] ProcessesLibrary1 {
-            get {
-                object obj = ResourceManager.GetObject("ProcessesLibrary1", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         public static byte[] res_mods {
             get {
                 object obj = ResourceManager.GetObject("res_mods", resourceCulture);
@@ -314,16 +274,6 @@ namespace WPF_Multipack_Launcher.Properties {
         public static byte[] restart {
             get {
                 object obj = ResourceManager.GetObject("restart", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] restart1 {
-            get {
-                object obj = ResourceManager.GetObject("restart1", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -195,7 +195,7 @@ namespace WPF_Multipack_Launcher.Classes
                 jData.Add("code", Properties.Resources.Code);
                 jData.Add("request", request);
 
-                Dictionary<string, string> status = FromJson(Send(Properties.Resources.DeveloperInfo, "data=" + Json(jData)));
+                Dictionary<string, string> status = FromJson(Send(Properties.Resources.DeveloperSite+ Properties.Resources.DeveloperInfo, "data=" + Json(jData)));
                 return status["info"];
             }
             catch (Exception ex)

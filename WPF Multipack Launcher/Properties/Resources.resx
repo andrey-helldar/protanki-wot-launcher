@@ -150,18 +150,6 @@
   <data name="Youtube" xml:space="preserve">
     <value>PROTankiWoT</value>
   </data>
-  <data name="Ionic_Zip" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ionic.Zip.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Newtonsoft_Json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Newtonsoft.Json.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ProcessesLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ProcessesLibrary.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="restart" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\restart.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="SettingsPathMultipack" xml:space="preserve">
     <value>config.ini</value>
   </data>
@@ -198,13 +186,10 @@
   <data name="JsonUpdates" xml:space="preserve">
     <value>http://file.theaces.ru/mods/proupdate/update.json</value>
   </data>
-  <data name="Newtonsoft_Json1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\newtonsoft.json.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ProcessesLibrary1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ProcessesLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\processeslibrary.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="restart1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="restart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\restart.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">

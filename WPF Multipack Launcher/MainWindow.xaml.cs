@@ -47,7 +47,7 @@ namespace WPF_Multipack_Launcher
         {
             InitializeComponent();
             MouseDown += delegate { DragMove(); };
-            
+
             Variables.Start().Wait();
         }
 
@@ -182,7 +182,7 @@ namespace WPF_Multipack_Launcher
 
         private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(Variables.AutoAero) Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
+            if (Variables.AutoAero) Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
 
             notifyIcon.Dispose();
             Variables.Doc.Save("settings.xml");
@@ -213,7 +213,7 @@ namespace WPF_Multipack_Launcher
 
                 try // Check updates tanks version
                 {
-                    Dictionary<string, string> postStatus = POST.FromJson(POST.Send(Properties.Resources.DeveloperWotVersion, "data=" + POST.Json(json)));
+                    Dictionary<string, string> postStatus = POST.FromJson(POST.Send(Properties.Resources.DeveloperSite + Properties.Resources.DeveloperWotVersion, "data=" + POST.Json(json)));
                     Variables.UpdateTanksVersion = postStatus["id"] != "0.0.0.0" ? new Version(postStatus["id"]) : Variables.TanksVersion;
                 }
                 catch (Exception) { Variables.UpdateTanksVersion = new Version("0.0.0.0"); }
@@ -537,7 +537,7 @@ namespace WPF_Multipack_Launcher
             if (Variables.Doc.Root.Element("notification") != null)
                 if (Variables.Doc.Root.Element("notification").Value == Variables.UpdateMultipackVersion.ToString())
                     return false;
-            
+
             Notify MainNotify = new Notify();
             MainNotify.lCaption.Content = lStatusUpdates.Content;
             MainNotify.lCaption.FontSize = 16;

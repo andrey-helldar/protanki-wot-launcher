@@ -23,5 +23,10 @@ namespace WPF_Multipack_Launcher
         {
             InitializeComponent();
         }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+        }
     }
 }

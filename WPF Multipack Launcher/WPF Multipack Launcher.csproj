@@ -175,12 +175,6 @@
     <None Include="Resources\settings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Ionic.Zip.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Newtonsoft.Json.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ProcessesLibrary.dll" />
   </ItemGroup>
   <ItemGroup>
