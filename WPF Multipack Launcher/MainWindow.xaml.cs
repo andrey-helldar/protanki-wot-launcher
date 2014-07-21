@@ -53,7 +53,7 @@ namespace WPF_Multipack_Launcher
 
         private void MainForm_Loaded(object sender, RoutedEventArgs e)
         {
-            new Thread(SetBackground).Start();
+            Task.Factory.StartNew(() => SetBackground());
 
             lMultipackVersion.Content = Variables.MultipackVersion.ToString();
 
@@ -61,10 +61,10 @@ namespace WPF_Multipack_Launcher
             lMultipackVersion.Content = LocalInterface.VersionToSharp(Variables.MultipackVersion);
             lLauncherVersion.Content = LocalInterface.VersionToSharp(Variables.ProductVersion);
             
-            new Thread(Youtube).Start();
-            new Thread(WargamingNews).Start();
+            Task.Factory.StartNew(() => Youtube());
+            Task.Factory.StartNew(() => WargamingNews());
 
-            CheckUpdates(); // Check multipack & tanks updates
+            Task.Factory.StartNew(() => CheckUpdates()).Wait(); // Check multipack & tanks updates
 
             // NotifyIcon
             Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
@@ -75,9 +75,9 @@ namespace WPF_Multipack_Launcher
             notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
 
             ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang));
-            new Thread(VideoNotify).Start();
+            Task.Factory.StartNew(() => VideoNotify());
 
-            new Thread(ShowUpdateWindow).Start();
+            Task.Factory.StartNew(() => ShowUpdateWindow());
         }
 
         private void SetBackground()
@@ -131,10 +131,7 @@ namespace WPF_Multipack_Launcher
 
         private void bPlay_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                StartGame();
-            }
+            try { StartGame(); }
             catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message); }
         }
 
