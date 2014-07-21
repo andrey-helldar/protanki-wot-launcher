@@ -95,7 +95,7 @@ namespace WPF_Multipack_Launcher
                         try { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex++).ToString())))); }
                         catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
                     }
-                    catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
+                    catch (Exception) { Thread.Sleep(5000); this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
 
                     Thread.Sleep(Variables.BackgroundDelay);
                 }
@@ -303,8 +303,6 @@ namespace WPF_Multipack_Launcher
                 XDocument doc = XDocument.Load(String.Format(Properties.Resources.RssYoutube, Properties.Resources.Youtube));
                 XNamespace ns = "http://www.w3.org/2005/Atom";
 
-                gGrid.Children.Remove(lLoadingVideo);
-
                 foreach (XElement el in doc.Root.Elements(ns + "entry"))
                 {
                     string link = String.Empty;
@@ -365,8 +363,6 @@ namespace WPF_Multipack_Launcher
             {
                 int topOffset = 0,
                     fontSize = 16;
-
-                gGrid.Children.Remove(lLoadingNews);
 
                 XDocument doc = XDocument.Load(Variables.Lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
 

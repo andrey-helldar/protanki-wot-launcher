@@ -58,7 +58,7 @@ namespace WPF_Multipack_Launcher
                 cbCpuLoading.Content = InterfaceLang.DynamicLanguage((File.Exists(@"..\res_mods\" + GameVersion + @"\engine_config.xml") ? "cbCpuLoading0" : "cbCpuLoading1"), lang);
 
                 // Применяем язык
-
+                //lCaption.Content = InterfaceLang.DynamicLanguage();
             }
             finally { }
         }

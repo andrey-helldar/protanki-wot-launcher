@@ -13,7 +13,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="345,10,0,0" Grid.Row="2" VerticalAlignment="Center" Width="112"/>
-        <Label Content="Настройки..." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="28" FontSize="16" Width="88"/>
+        <Label x:Name="lCaption" Content="Настройки..." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="28" FontSize="16" Width="88"/>
         <Label Content="Закрыть" HorizontalAlignment="Left" Margin="486,10,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="18" MouseDown="Label_MouseDown" Height="33" Width="70"/>
         <TabControl HorizontalAlignment="Left" Height="418" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="555" Background="{x:Null}">
             <TabItem Header="Оптимизация" Foreground="Black">

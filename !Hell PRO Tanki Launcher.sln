@@ -9,13 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Restarter", "!Hell Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processes Library", "Processes Library\Processes Library.csproj", "{C89F98DD-CF7B-4B7B-AE2C-FBF49177B8A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormatXML", "FormatXML\FormatXML.csproj", "{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell MD5files", "!Hell MD5files\!Hell MD5files.csproj", "{57431204-4EE1-4CFC-B0C7-0AA79403B012}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserInterface", "UserInterface", "{D324D2B3-838E-4021-AA5E-E3CAB103AC53}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{CBE131EF-1A97-4EC4-A204-02EE7055CB94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF Multipack Launcher", "WPF Multipack Launcher\WPF Multipack Launcher.csproj", "{330BBE05-05DD-48DB-9BD4-88E19AD983E3}"
 EndProject
@@ -71,16 +65,6 @@ Global
 		{C89F98DD-CF7B-4B7B-AE2C-FBF49177B8A6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C89F98DD-CF7B-4B7B-AE2C-FBF49177B8A6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C89F98DD-CF7B-4B7B-AE2C-FBF49177B8A6}.Release|x86.ActiveCfg = Release|Any CPU
-		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0AB39EB1-6325-4E6E-8AF4-A53EA389DCB8}.Release|x86.ActiveCfg = Release|Any CPU
 		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -91,16 +75,6 @@ Global
 		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{57431204-4EE1-4CFC-B0C7-0AA79403B012}.Release|x86.ActiveCfg = Release|Any CPU
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94}.Release|x86.ActiveCfg = Release|Any CPU
 		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{330BBE05-05DD-48DB-9BD4-88E19AD983E3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -125,8 +99,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{CBE131EF-1A97-4EC4-A204-02EE7055CB94} = {D324D2B3-838E-4021-AA5E-E3CAB103AC53}
 	EndGlobalSection
 EndGlobal
