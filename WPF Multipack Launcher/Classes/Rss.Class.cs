@@ -20,7 +20,7 @@ namespace WPF_Multipack_Launcher.Classes
         public List<VideoLoading> List;
         public List<List<VideoLoading>> Range;
 
-        public async void Add(string id, string title, string content, string link, string date)
+        public void Add(string id, string title, string content, string link, string date)
         {
             try { if (List.Count <= 0) { } }
             catch (Exception)
@@ -59,7 +59,7 @@ namespace WPF_Multipack_Launcher.Classes
         /// Запускаем процессрекурсии на удаление
         /// </summary>
         /// <param name="id"></param>
-        public async void Delete(string id)
+        public void Delete(string id)
         {
             try
             {

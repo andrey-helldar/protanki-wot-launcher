@@ -224,4 +224,7 @@
     <value>http://n.ai-rus.com</value>
     <comment>БЕЗ СЛЕША В КОНЦЕ!!!</comment>
   </data>
+  <data name="DeveloperProcesses" xml:space="preserve">
+    <value>/wot/processes/</value>
+  </data>
 </root>

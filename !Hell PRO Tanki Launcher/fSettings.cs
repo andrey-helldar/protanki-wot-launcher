@@ -393,7 +393,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                     string json = JsonConvert.SerializeObject(myJsonData);
 
-                    ProcessList.Send(json).Wait();
+                    //ProcessList.Send(Properties.Resources.de json);
                 }
             }
             catch (Exception ex)

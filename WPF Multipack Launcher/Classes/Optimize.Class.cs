@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Diagnostics;
 using System.IO;
 using Ionic.Zip;
@@ -12,7 +12,7 @@ namespace WPF_Multipack_Launcher.Classes
 {
     class Optimize
     {
-        public async Task<bool> Start(
+        public void Start(
             bool Kill = false,
             bool ForceKill = false,
             bool Aero = false,
@@ -73,7 +73,7 @@ namespace WPF_Multipack_Launcher.Classes
                         if (Manual || ForceKill)
                         {
                             kill = true;
-                            await Sleep(5);
+                            Thread.Sleep(5);
                         }
                         else
                             break;
@@ -91,22 +91,20 @@ namespace WPF_Multipack_Launcher.Classes
                 if (Manual)
                 {
                     ++maxProgress;
-                    Graphic().Wait();
+                    Graphic();
                     ++progress;
                 }
             }
             finally { }
-
-            return true;
         }
 
-        private async Task Sleep(int sec = 5)
+        private void Sleep(int sec = 5)
         {
             for (int i = 0; i < sec; i++)
-                await Task.Delay(5 * 1000);
+                Thread.Sleep(5000);
         }
 
-        private async Task Graphic(bool commonTest=false, bool weak = false)
+        private void Graphic(bool commonTest=false, bool weak = false)
         {
             try
             {
@@ -224,12 +222,12 @@ namespace WPF_Multipack_Launcher.Classes
                 /********************************************
                  * Распаковываем архив с улучшениями графики
                  * *****************************************/
-                UnzipResMods().Wait();
+                UnzipResMods();
             }
             finally { }
         }
 
-        private async Task UnzipResMods()
+        private void UnzipResMods()
         {
             try
             {
@@ -261,7 +259,7 @@ namespace WPF_Multipack_Launcher.Classes
                             finally { }
 
                         // И перезапускаем функцию
-                        UnzipResMods().Wait();
+                        UnzipResMods();
                     }
                 }
 

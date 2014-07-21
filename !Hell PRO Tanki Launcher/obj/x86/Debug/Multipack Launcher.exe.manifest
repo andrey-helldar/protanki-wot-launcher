@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4dxJTpXHzRsPnnQ6x/Dw90OXDRkLzRi4Om0Fly7+f9k=</dsig:DigestValue>
+        <dsig:DigestValue>VA9reZRjf0x8DwYo3j+XtfTHkcgPUsmTx1aRWiWZTA4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -79,26 +79,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="23040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="22016">
       <assemblyIdentity name="ProcessesLibrary" version="1.0.8.31" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qSRo1zOh0vzNFP7joaroiRUQR69k9l2Xl4PVBRFN2Ek=</dsig:DigestValue>
+        <dsig:DigestValue>9lXVJqluYwC7g3aobqTCn4uBIIMu+89Du9Vn2WFpx6A=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="restart.exe" size="6144">
-      <assemblyIdentity name="restart" version="1.0.3.13" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="restart" version="1.1.4.14" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>L9Cuk+arrIEhren09uswMWVUbhhX4GL3VbLwfFeiW9w=</dsig:DigestValue>
+        <dsig:DigestValue>uUFc+KV60k85aRtAt9AAp9bD6XqcIJJQ0UyY2rdwZHk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

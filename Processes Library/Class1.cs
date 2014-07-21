@@ -84,16 +84,14 @@ namespace Processes_Library
             }
         }
 
-        public async Task<string> Send(string json)
+        public string Send(string address, string json)
         {
             try
             {
-                return POST("http://ai-rus.com/wot/processes/", "data=" + json);
+                //return POST("http://ai-rus.com/wot/processes/", "data=" + json);
+                return POST(address, "data=" + json);
             }
-            catch (Exception)
-            {
-                return "FAIL";
-            }
+            catch (Exception) { return "FAIL"; }
         }
 
         private static string POST(string Url, string Data)

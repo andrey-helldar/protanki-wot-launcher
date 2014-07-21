@@ -48,23 +48,23 @@ namespace WPF_Multipack_Launcher
             InitializeComponent();
             MouseDown += delegate { DragMove(); };
 
-            Variables.Start().Wait();
+            Variables.Start();
         }
 
         private void MainForm_Loaded(object sender, RoutedEventArgs e)
         {
-            SetBackground();
+            new Thread(SetBackground).Start();
 
             lMultipackVersion.Content = Variables.MultipackVersion.ToString();
 
             lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")";
-            lMultipackVersion.Content = LocalInterface.VersionToSharp(Variables.MultipackVersion).Result;
-            lLauncherVersion.Content = LocalInterface.VersionToSharp(Variables.ProductVersion).Result;
+            lMultipackVersion.Content = LocalInterface.VersionToSharp(Variables.MultipackVersion);
+            lLauncherVersion.Content = LocalInterface.VersionToSharp(Variables.ProductVersion);
+            
+            new Thread(Youtube).Start();
+            new Thread(WargamingNews).Start();
 
-            CheckUpdates().Wait(); // Check multipack & tanks updates
-
-            Youtube();
-            WargamingNews();
+            CheckUpdates(); // Check multipack & tanks updates
 
             // NotifyIcon
             Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
@@ -75,12 +75,12 @@ namespace WPF_Multipack_Launcher
             notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
 
             ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang));
-            VideoNotify();
+            new Thread(VideoNotify).Start();
 
-            ShowUpdateWindow();
+            new Thread(ShowUpdateWindow).Start();
         }
 
-        private async Task SetBackground()
+        private void SetBackground()
         {
             string uri = @"pack://application:,,,/" + Variables.ProductName + ";component/Resources/back_{0}.jpg";
 
@@ -97,7 +97,7 @@ namespace WPF_Multipack_Launcher
                     }
                     catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
 
-                    await Task.Delay(Variables.BackgroundDelay);
+                    Thread.Sleep(Variables.BackgroundDelay);
                 }
             }
             else
@@ -142,13 +142,13 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                Optimize.Start().Wait();
+                Optimize.Start();
                 Process.Start(Variables.PathTanks + "WoTLauncher.exe");
             }
             catch (Exception ex) { Debug.Save("MainWindow", "bLauncher_Click()", ex.Message); }
         }
 
-        private async void bUpdate_Click(object sender, RoutedEventArgs e)
+        private void bUpdate_Click(object sender, RoutedEventArgs e)
         {
             /// Tanks updates
             if (Variables.UpdateTanks)
@@ -157,7 +157,7 @@ namespace WPF_Multipack_Launcher
                     try { Process.Start(Variables.PathTanks + "WoTLauncher.exe"); }
                     catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "UpdateTanks = " + Variables.UpdateTanks.ToString(), ex.Message); }
                 else
-                    await Debug.Message(Variables.ProductName, LocalLanguage.DynamicLanguage("noTanks", Variables.Lang));
+                    Debug.Message(Variables.ProductName, LocalLanguage.DynamicLanguage("noTanks", Variables.Lang));
             }
 
             /// Multipack updates
@@ -168,7 +168,7 @@ namespace WPF_Multipack_Launcher
             }
         }
 
-        private async Task OpenLink(string url)
+        private void OpenLink(string url)
         {
             try { Process.Start(url); }
             catch (Exception ex) { Debug.Save("MainWindow", "OpenLink()", "URL = " + url, ex.Message); }
@@ -176,7 +176,7 @@ namespace WPF_Multipack_Launcher
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
-            try { Optimize.Start(Variables.AutoKill, Variables.AutoForceKill, Variables.AutoAero, Variables.AutoVideo, Variables.AutoWeak, true).Wait(); }
+            try { Optimize.Start(Variables.AutoKill, Variables.AutoForceKill, Variables.AutoAero, Variables.AutoVideo, Variables.AutoWeak, true); }
             catch (Exception ex) { Debug.Save("MainWindow", "bOptimize_Click()", ex.Message); }
         }
 
@@ -188,7 +188,7 @@ namespace WPF_Multipack_Launcher
             Variables.Doc.Save("settings.xml");
         }
 
-        private async Task CheckUpdates()
+        private void CheckUpdates()
         {
             try
             {
@@ -204,7 +204,7 @@ namespace WPF_Multipack_Launcher
                 Dictionary<string, string> json = new Dictionary<string, string>();
 
                 json.Add("code", Properties.Resources.Code);
-                json.Add("user", new Variables.Variables().GetUserID().Result);
+                json.Add("user", new Variables.Variables().GetUserID());
                 json.Add("youtube", Properties.Resources.Youtube);
                 json.Add("test", Variables.CommonTest ? "1" : "0");
                 json.Add("version", Variables.TanksVersion.ToString());
@@ -256,13 +256,13 @@ namespace WPF_Multipack_Launcher
             catch (Exception ex) { Debug.Save("MainForm", "CheckUpdates()", ex.Message); }
         }
 
-        private async void StartGame(string file = "WorldOfTanks.exe")
+        private void StartGame(string file = "WorldOfTanks.exe")
         {
             try
             {
                 if (File.Exists(Variables.PathTanks + file))
                 {
-                    State().Wait();
+                    State();
                     Process.Start(new ProcessStartInfo("cmd", @"/c " + Variables.PathTanks + file));
                 }
             }
@@ -276,7 +276,7 @@ namespace WPF_Multipack_Launcher
         ///     3   Закрывать при запуске игры
         /// </summary>
         /// <param name="select"></param>
-        private async Task State()
+        private void State()
         {
             string select = "0";
 
@@ -293,7 +293,7 @@ namespace WPF_Multipack_Launcher
             }
         }
 
-        public async Task Youtube()
+        public void Youtube()
         {
             try
             {
@@ -359,7 +359,7 @@ namespace WPF_Multipack_Launcher
             finally { }
         }
 
-        private async Task WargamingNews()
+        private void WargamingNews()
         {
             try
             {
@@ -459,7 +459,7 @@ namespace WPF_Multipack_Launcher
             catch (Exception) { return 0; }
         }
 
-        private async void ShowNotify(string text, string caption = null)
+        private void ShowNotify(string text, string caption = null)
         {
             try
             {
@@ -469,7 +469,7 @@ namespace WPF_Multipack_Launcher
             finally { }
         }
 
-        private async Task VideoNotify()
+        private void VideoNotify()
         {
             try
             {
@@ -481,22 +481,21 @@ namespace WPF_Multipack_Launcher
 
                 foreach (var el in YoutubeClass.List)
                 {
-                    await Task.Delay(5000);
+                    Thread.Sleep(5000);
 
                     for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 7 секунд перед повторным запуском
                     {
                         while (System.Diagnostics.Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
                             System.Diagnostics.Process.GetProcessesByName("WoTLauncher").Length > 0)
-                            await Task.Delay(5000);
+                            Thread.Sleep(5000);
 
-                        await Task.Delay(7000);
+                        Thread.Sleep(7000);
                     }
 
                     Variables.notifyLink = el.Link;
                     ShowNotify(LocalLanguage.DynamicLanguage("viewVideo", Variables.Lang), el.Title);
 
                     Variables.Doc.Root.Element("youtube").Add(new XElement("video", el.ID));
-                    //Variables.Doc.Save("settings.xml");
                 }
             }
             finally { }
@@ -508,7 +507,7 @@ namespace WPF_Multipack_Launcher
         /// элементы не будут удалены из списка. Profit!
         /// </summary>
         /// <returns>Функция как таковая ничего не возвращает</returns>
-        private async void DeleteVideo()
+        private void DeleteVideo()
         {
             try
             {
@@ -530,27 +529,26 @@ namespace WPF_Multipack_Launcher
             this.Effect = null;
         }
 
-        private async void NotifyClick(object sender, EventArgs e)
+        private void NotifyClick(object sender, EventArgs e)
         {
             OpenLink(Variables.notifyLink);
         }
 
-        private async Task<bool> ShowUpdateWindow()
+        private void ShowUpdateWindow()
         {
             if (Variables.Doc.Root.Element("notification") != null)
-                if (Variables.Doc.Root.Element("notification").Value == Variables.UpdateMultipackVersion.ToString())
-                    return false;
+                if (Variables.Doc.Root.Element("notification").Value != Variables.UpdateMultipackVersion.ToString())
+                {
+                    Notify MainNotify = new Notify();
+                    MainNotify.lCaption.Content = lStatusUpdates.Content;
+                    MainNotify.lCaption.FontSize = 16;
+                    MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
 
-            Notify MainNotify = new Notify();
-            MainNotify.lCaption.Content = lStatusUpdates.Content;
-            MainNotify.lCaption.FontSize = 16;
-            MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
+                    this.Effect = new System.Windows.Media.Effects.BlurEffect();
+                    MainNotify.ShowDialog();
 
-            this.Effect = new System.Windows.Media.Effects.BlurEffect();
-            MainNotify.ShowDialog();
-
-            this.Effect = null;
-            return true;
+                    this.Effect = null;
+                }
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Xml.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.IO;
 using Microsoft.Win32;
@@ -74,69 +74,78 @@ namespace WPF_Multipack_Launcher.Variables
          * Functions
          * ******************/
 
-        public async Task<bool> Start()
+        public void Start()
         {
             try
             {
                 ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
                 ProductVersion = Application.Current.MainWindow.GetType().Assembly.GetName().Version;
 
-                GetApiKey().Wait();
+                GetApiKey();
 
-                new Classes.Update().SaveFromResources().Wait();
+                new Classes.Update().SaveFromResources();
 
                 if (File.Exists("settings.xml")) Doc = XDocument.Load("settings.xml");
-                LoadSettings().Wait();
+                LoadSettings();
             }
-            catch (Exception) { return false; }
-            return true;
+            finally { }
         }
 
-        private async Task LoadSettings()
+        private void LoadSettings()
         {
             // Загружаем версию клиента игры
-            PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry();
+            try { PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry(); }
+            finally { }
 
-            if (File.Exists(@"..\version.xml") && PathTanks != String.Empty)
+            try
             {
-                XDocument doc = XDocument.Load(PathTanks + "version.xml");
-
-                if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
+                if (File.Exists(@"..\version.xml") && PathTanks != String.Empty)
                 {
-                    CommonTest = true;
-                    TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
+                    XDocument doc = XDocument.Load(PathTanks + "version.xml");
+
+                    if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
+                    {
+                        CommonTest = true;
+                        TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
+                    }
+                    else
+                        TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
                 }
-                else
-                    TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
             }
-            else
-            {
-                // КЛиент игры не существует
-            }
+            finally { }
 
 
             // Загружаем config.ini
-            if (File.Exists(Properties.Resources.SettingsPathMultipack))
+            try
             {
-                // Загружаем данные
-                string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsPathMultipack;
+                if (File.Exists(Properties.Resources.SettingsPathMultipack))
+                {
+                    // Загружаем данные
+                    string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsPathMultipack;
 
-                MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
-                MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
-                MultipackVersion = new Version(new LocalInterface.LocInterface().VersionPrefix(TanksVersion).Result + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
-                Lang = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language");
+                    MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
+                    MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
+                    MultipackVersion = new Version(new LocalInterface.LocInterface().VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
+                    Lang = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language");
+                }
+                else
+                {
+                    // Мультипак не обнаружен
+                    new Classes.Debug().Message(ProductName, new LocalInterface.Language().DynamicLanguage("noMods", Lang));
+                }
             }
-            else
+            finally { }
+
+
+            try { UpdateNotify = Doc.Root.Element("notification") != null ? Doc.Root.Element("notification").Value : String.Empty; }
+            catch(Exception ex) { new Classes.Debug().Message("LoadSettings", ex.Message); }
+
+            try { ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true; }
+            finally { }
+
+            try
             {
-                // Мультипак не обнаружен
-                new Classes.Debug().Message(ProductName, new LocalInterface.Language().DynamicLanguage("noMods", Lang)).Wait();
-            }
-
-            
-            UpdateNotify = Doc.Root.Element("notification") != null ? Doc.Root.Element("notification").Value : String.Empty;
-            ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true;
-
-            if (Doc.Root.Element("settings") != null)
+                if (Doc.Root.Element("settings") != null)
                 {
                     AutoKill = Doc.Root.Element("settings").Attribute("kill") != null ? Doc.Root.Element("settings").Attribute("kill").Value == "True" : false;
                     AutoForceKill = Doc.Root.Element("settings").Attribute("force") != null ? Doc.Root.Element("settings").Attribute("force").Value == "True" : false;
@@ -146,14 +155,17 @@ namespace WPF_Multipack_Launcher.Variables
                     AutoWeak = Doc.Root.Element("settings").Attribute("weak") != null ? Doc.Root.Element("settings").Attribute("weak").Value == "True" : false;
                     AutoCPU = Doc.Root.Element("settings").Attribute("balance") != null ? Doc.Root.Element("settings").Attribute("balance").Value == "True" : false;
                 }
+            }
+            finally { }
 
-            if (Doc.Root.Element("common.test") != null) CommonTest = true;
+            try { if (Doc.Root.Element("common.test") != null) CommonTest = true; }
+            finally { }
         }
 
         /*************************
          * GET Wargaming API key
          * **********************/
-        private async Task GetApiKey()
+        private void GetApiKey()
         {
             try
             {
@@ -190,7 +202,7 @@ namespace WPF_Multipack_Launcher.Variables
             }
             catch (Exception ex)
             {
-                new Classes.Debug().Save("fIndex", "GetTanksRegistry()", ex.Message).Wait();
+                new Classes.Debug().Save("fIndex", "GetTanksRegistry()", ex.Message);
                 //MessageBox.Show(this, Language.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
@@ -211,12 +223,12 @@ namespace WPF_Multipack_Launcher.Variables
             }
             catch (Exception ex)
             {
-                new Classes.Debug().Save("fIndex", "CorrectPath", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message).Wait();
+                new Classes.Debug().Save("fIndex", "CorrectPath", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message);
                 return sourcePath;
             }
         }
 
-        public async Task<string> GetUserID()
+        public string GetUserID()
         {
             try
             {

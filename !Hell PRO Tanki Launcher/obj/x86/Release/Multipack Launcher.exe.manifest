@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VCml4qe59kPMCRxo+2JdKnUQtvlF/EeWjLvo3FTL1I4=</dsig:DigestValue>
+        <dsig:DigestValue>G2iPAuUcwoops6vYWptV56NUINkSVWToRGKFwUwAx6A=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -79,26 +79,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="23040">
-      <assemblyIdentity name="ProcessesLibrary" version="1.0.8.31" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="22016">
+      <assemblyIdentity name="ProcessesLibrary" version="1.1.9.32" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MYyS614RrWXXOySUgoM8PJjpw9EgS11rqR07aLGCpFs=</dsig:DigestValue>
+        <dsig:DigestValue>paUGQvYG4lMpeHJrHiy2Fn/tKWgKiEpgkYZD0uea3F8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="restart.exe" size="6144">
-      <assemblyIdentity name="restart" version="1.0.3.13" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="restart" version="1.1.4.14" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>x7zKLN7Hu7X8LJKmFQxMZQbw+IV3eFPDqB/WdfPs+Ek=</dsig:DigestValue>
+        <dsig:DigestValue>YzimfR0s4/UsWUblTBtucRQcPSIsQCpJC2JzQif5n7o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

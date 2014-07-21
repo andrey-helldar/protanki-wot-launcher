@@ -11,7 +11,7 @@ namespace WPF_Multipack_Launcher.Classes
 {
     class Debug
     {
-        public async Task Save(string caption, params string[] args)
+        public void Save(string caption, params string[] args)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace WPF_Multipack_Launcher.Classes
             catch (Exception) { }
         }
 
-        public async Task Message(string caption, string text)
+        public void Message(string caption, string text)
         {
             //MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
         }

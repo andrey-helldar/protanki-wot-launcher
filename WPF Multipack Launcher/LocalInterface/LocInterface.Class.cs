@@ -29,7 +29,7 @@ namespace WPF_Multipack_Launcher.LocalInterface
             ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
         }
 
-        public async Task<string> VersionToSharp(Version ver)
+        public string VersionToSharp(Version ver)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace WPF_Multipack_Launcher.LocalInterface
             catch (Exception) { return "0.0.0 #0"; }
         }
 
-        public async Task<string> VersionPrefix(Version ver)
+        public string VersionPrefix(Version ver)
         {
             try
             {

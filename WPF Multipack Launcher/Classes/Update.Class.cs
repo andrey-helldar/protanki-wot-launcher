@@ -10,7 +10,7 @@ namespace WPF_Multipack_Launcher.Classes
 {
     class Update
     {
-        public async Task SaveFromResources()
+        public void SaveFromResources()
         {
             try
             {
