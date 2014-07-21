@@ -522,7 +522,10 @@ namespace WPF_Multipack_Launcher
         private void bSettings_Click(object sender, RoutedEventArgs e)
         {
             this.Effect = new System.Windows.Media.Effects.BlurEffect();
-            new Settings().ShowDialog();
+
+            Settings stg = new Settings();
+            stg.lang = Variables.Lang;
+            stg.ShowDialog();
 
             this.Effect = null;
         }

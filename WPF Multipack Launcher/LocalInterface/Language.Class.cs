@@ -232,8 +232,8 @@ namespace WPF_Multipack_Launcher.LocalInterface
 
                 case "viewVideo": return lang == "ru" ? "Посмотреть видео" : "Show video";
 
-                case "bBalanceCPU1": return lang == "ru" ? "Нагрузка на все ядра ЦП" : "All cores CPU load";
-                case "bBalanceCPU0": return lang == "ru" ? "Нагрузка на 1 ядро ЦП" : "1 core CPU load";
+                case "cbCpuLoading1": return lang == "ru" ? "Нагрузка на все ядра ЦП" : "All cores CPU load";
+                case "cbCpuLoading0": return lang == "ru" ? "Нагрузка на 1 ядро ЦП" : "1 core CPU load";
 
                 case "badLink": return lang == "ru" ? "Ошибка открытия ссылки: " + additionalText : "Error while opening link: " + additionalText;
 
