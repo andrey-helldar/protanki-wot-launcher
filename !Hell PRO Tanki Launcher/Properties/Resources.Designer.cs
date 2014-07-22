@@ -140,26 +140,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Close {
-            get {
-                object obj = ResourceManager.GetObject("Close", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap CloseHover {
-            get {
-                object obj = ResourceManager.GetObject("CloseHover", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6.
         /// </summary>
         internal static string Code {
@@ -216,16 +196,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("Icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] IonicZip {
-            get {
-                object obj = ResourceManager.GetObject("IonicZip", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -313,26 +283,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MinimizeMain {
-            get {
-                object obj = ResourceManager.GetObject("MinimizeMain", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MinimizeMainHover {
-            get {
-                object obj = ResourceManager.GetObject("MinimizeMainHover", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to base.
         /// </summary>
         internal static string ModPackType {
@@ -347,16 +297,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         internal static string ModPackVersion {
             get {
                 return ResourceManager.GetString("ModPackVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Newtonsoft_Json {
-            get {
-                object obj = ResourceManager.GetObject("Newtonsoft_Json", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -521,46 +461,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("start", resourceCulture);
                 return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StatusBad {
-            get {
-                object obj = ResourceManager.GetObject("StatusBad", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StatusDisabled {
-            get {
-                object obj = ResourceManager.GetObject("StatusDisabled", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StatusGood {
-            get {
-                object obj = ResourceManager.GetObject("StatusGood", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StatusMedium {
-            get {
-                object obj = ResourceManager.GetObject("StatusMedium", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -50,7 +50,6 @@
             this.bSettings = new System.Windows.Forms.Button();
             this.bwVideo = new System.ComponentModel.BackgroundWorker();
             this.llActually = new System.Windows.Forms.LinkLabel();
-            this.llLauncherVersion = new System.Windows.Forms.LinkLabel();
             this.pbDownload = new System.Windows.Forms.ProgressBar();
             this.bShowVideo = new System.Windows.Forms.Button();
             this.bShowNews = new System.Windows.Forms.Button();
@@ -62,13 +61,9 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.pbWarning = new System.Windows.Forms.PictureBox();
             this.llVideoAll = new System.Windows.Forms.LinkLabel();
-            this.pbClose = new System.Windows.Forms.PictureBox();
-            this.pbMinimize = new System.Windows.Forms.PictureBox();
             this.contextMenu.SuspendLayout();
             this.pVideo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbWarning)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMinimize)).BeginInit();
             this.SuspendLayout();
             // 
             // bPlay
@@ -172,12 +167,12 @@
             this.linkLabel1.ActiveLinkColor = System.Drawing.Color.Red;
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.linkLabel1.Location = new System.Drawing.Point(611, 6);
+            this.linkLabel1.Location = new System.Drawing.Point(662, 6);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(191, 15);
+            this.linkLabel1.Size = new System.Drawing.Size(164, 15);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Developed by Andrey Helldar";
@@ -345,24 +340,6 @@
             this.llActually.VisitedLinkColor = System.Drawing.Color.Lime;
             this.llActually.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llActually_LinkClicked);
             // 
-            // llLauncherVersion
-            // 
-            this.llLauncherVersion.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llLauncherVersion.AutoSize = true;
-            this.llLauncherVersion.BackColor = System.Drawing.Color.Transparent;
-            this.llLauncherVersion.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.llLauncherVersion.Font = new System.Drawing.Font("Sochi2014", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.llLauncherVersion.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llLauncherVersion.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llLauncherVersion.Location = new System.Drawing.Point(529, 6);
-            this.llLauncherVersion.Name = "llLauncherVersion";
-            this.llLauncherVersion.Size = new System.Drawing.Size(49, 18);
-            this.llLauncherVersion.TabIndex = 0;
-            this.llLauncherVersion.TabStop = true;
-            this.llLauncherVersion.Text = "0.0.0.0";
-            this.llLauncherVersion.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llLauncherVersion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llLauncherVersion_LinkClicked);
-            // 
             // pbDownload
             // 
             this.pbDownload.Location = new System.Drawing.Point(12, 405);
@@ -508,34 +485,6 @@
             this.llVideoAll.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llVideoAll.Click += new System.EventHandler(this.label_Click);
             // 
-            // pbClose
-            // 
-            this.pbClose.BackColor = System.Drawing.Color.Transparent;
-            this.pbClose.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.Close;
-            this.pbClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbClose.Location = new System.Drawing.Point(833, 8);
-            this.pbClose.Name = "pbClose";
-            this.pbClose.Size = new System.Drawing.Size(15, 15);
-            this.pbClose.TabIndex = 33;
-            this.pbClose.TabStop = false;
-            this.pbClose.Click += new System.EventHandler(this.bExit_Click);
-            this.pbClose.MouseEnter += new System.EventHandler(this.pbClose_MouseEnter);
-            this.pbClose.MouseLeave += new System.EventHandler(this.pbClose_MouseLeave);
-            // 
-            // pbMinimize
-            // 
-            this.pbMinimize.BackColor = System.Drawing.Color.Transparent;
-            this.pbMinimize.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.MinimizeMain;
-            this.pbMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbMinimize.Location = new System.Drawing.Point(812, 8);
-            this.pbMinimize.Name = "pbMinimize";
-            this.pbMinimize.Size = new System.Drawing.Size(15, 15);
-            this.pbMinimize.TabIndex = 34;
-            this.pbMinimize.TabStop = false;
-            this.pbMinimize.Click += new System.EventHandler(this.pbMinimize_Click);
-            this.pbMinimize.MouseEnter += new System.EventHandler(this.pbMinimize_MouseEnter);
-            this.pbMinimize.MouseLeave += new System.EventHandler(this.pbMinimize_MouseLeave);
-            // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -543,8 +492,6 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(860, 460);
-            this.Controls.Add(this.pbMinimize);
-            this.Controls.Add(this.pbClose);
             this.Controls.Add(this.llVideoAll);
             this.Controls.Add(this.pbWarning);
             this.Controls.Add(this.pNews);
@@ -553,7 +500,6 @@
             this.Controls.Add(this.bShowNews);
             this.Controls.Add(this.bShowVideo);
             this.Controls.Add(this.pbDownload);
-            this.Controls.Add(this.llLauncherVersion);
             this.Controls.Add(this.llActually);
             this.Controls.Add(this.bSettings);
             this.Controls.Add(this.llTitle);
@@ -577,8 +523,6 @@
             this.pVideo.ResumeLayout(false);
             this.pVideo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbWarning)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMinimize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -607,7 +551,6 @@
         private System.Windows.Forms.Button bSettings;
         private System.ComponentModel.BackgroundWorker bwVideo;
         private System.Windows.Forms.LinkLabel llActually;
-        private System.Windows.Forms.LinkLabel llLauncherVersion;
         private System.Windows.Forms.Button bShowVideo;
         private System.Windows.Forms.Button bShowNews;
         private System.Windows.Forms.LinkLabel llBlockCaption;
@@ -619,8 +562,6 @@
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.PictureBox pbWarning;
         private System.Windows.Forms.LinkLabel llVideoAll;
-        private System.Windows.Forms.PictureBox pbClose;
-        private System.Windows.Forms.PictureBox pbMinimize;
     }
 }
 

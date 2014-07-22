@@ -1053,17 +1053,9 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 this.Text = Application.ProductName + " v" + modpackVersion.ToString();
                 this.Icon = Properties.Resources.Icon;
-
-                llLauncherVersion.Text = Application.ProductVersion;
-                llVersion.Text = modpackVersion.ToString();
+                llVersion.Text = String.Format("{0}.{1}.{2} #{3}", modpackVersion.Major.ToString(), modpackVersion.Minor.ToString(), modpackVersion.Build.ToString(), modpackVersion.Revision.ToString());
             }
-            catch (Exception ex)
-            {
-                Debug.Save("fIndex", "public fIndex()", "Применение заголовков и иконок приложения", ex.Message);
-            }
-
-            moveForm();
-            SetInterfaceLanguage();
+            catch (Exception ex) { Debug.Save("fIndex", "fIndex_Load()", ex.Message); }
 
             LoadForm();
         }
@@ -1107,8 +1099,6 @@ namespace _Hell_PRO_Tanki_Launcher
             moveForm();
 
             SetInterfaceLanguage();
-
-            //Ping();
         }
 
         private string DropSuffixVersion(Version ver)
@@ -1504,31 +1494,6 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 await Task.Delay(50);
             }
-        }
-
-        private void pbMinimize_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void pbClose_MouseEnter(object sender, EventArgs e)
-        {
-            pbClose.BackgroundImage = Properties.Resources.CloseHover;
-        }
-
-        private void pbClose_MouseLeave(object sender, EventArgs e)
-        {
-            pbClose.BackgroundImage = Properties.Resources.Close;
-        }
-
-        private void pbMinimize_MouseEnter(object sender, EventArgs e)
-        {
-            pbMinimize.BackgroundImage = Properties.Resources.MinimizeMainHover;
-        }
-
-        private void pbMinimize_MouseLeave(object sender, EventArgs e)
-        {
-            pbMinimize.BackgroundImage = Properties.Resources.MinimizeMain;
         }
 
         private void CheckUpdatesManual()

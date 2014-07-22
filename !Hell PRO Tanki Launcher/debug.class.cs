@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Collections.Specialized;
 using System.Net;
 using Ionic.Zip;
+using Newtonsoft.Json;
 
 
 namespace _Hell_PRO_Tanki_Launcher
@@ -24,18 +25,25 @@ namespace _Hell_PRO_Tanki_Launcher
         /// </summary>
         public void Save(string func, params string[] mess)
         {
-            string split =  Environment.NewLine + "-------------------------------" + Environment.NewLine;
-            string result = func + split;
+            try
+            {
+                string uid = UserID();
 
-            foreach(string str in mess){
-                result += str + split;
-            }            
+                Dictionary<string, string> jData = new Dictionary<string, string>();
+                jData.Add("uid", uid);
+                jData.Add("version", Application.ProductVersion);
+                jData.Add("date", DateTime.Now.ToString("yyyy-MM-dd h-m-s"));
+                jData.Add("module", func);
+                jData.Add("function", mess[0]);
 
-            if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
-            string filename = String.Format("{0}_-_{1}_{2}.debug", UserID(), Application.ProductVersion, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
-            File.WriteAllText(@"temp\" + filename, result, Encoding.UTF8);
+                for (int i = 1; i < mess.Length; i++)
+                    jData.Add("param" + i.ToString(), mess[i]);
 
-            //MessageBox.Show(fIndex.ActiveForm, result, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
+                string filename = String.Format("{0}_{1}.debug", Application.ProductVersion, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
+                File.WriteAllText(@"temp\" + filename, JsonConvert.SerializeObject(jData), Encoding.UTF8);
+            }
+            catch (Exception) { }
         }
 
         public void Archive(string path)
