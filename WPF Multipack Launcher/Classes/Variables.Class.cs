@@ -79,7 +79,7 @@ namespace WPF_Multipack_Launcher.Variables
         {
             try
             {
-                ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
+                ProductName = Application.Current.GetType().Assembly.GetName().Name;
 
                 GetApiKey();
 

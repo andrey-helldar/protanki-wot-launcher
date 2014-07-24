@@ -48,7 +48,7 @@ namespace WPF_Multipack_Launcher
             InitializeComponent();
             MouseDown += delegate { DragMove(); };
 
-            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { Variables.Start(); }))).Wait();
+            Task.Factory.StartNew(() => Variables.Start()).Wait();
         }
 
         private void MainForm_Loaded(object sender, RoutedEventArgs e)
