@@ -53,62 +53,74 @@ namespace WPF_Multipack_Launcher
 
         private void MainForm_Loaded(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { SetBackground(); })));
+            try
+            {
+                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { SetBackground(); })));
 
-            lMultipackVersion.Content = Variables.MultipackVersion.ToString();
+                lMultipackVersion.Content = Variables.MultipackVersion.ToString();
 
-            lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")";
-            lMultipackVersion.Content = LocalInterface.VersionToSharp(Variables.MultipackVersion);
-            lLauncherVersion.Content = LocalInterface.VersionToSharp(Variables.ProductVersion);
+                lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")";
+                lMultipackVersion.Content = LocalInterface.VersionToSharp(Variables.MultipackVersion);
 
-            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { Youtube(); })));
-            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { WargamingNews(); })));
+                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { Youtube(); })));
+                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { WargamingNews(); })));
 
-            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { CheckUpdates(); }))).Wait();
+                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { CheckUpdates(); }))).Wait();
 
-            // NotifyIcon
-            Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
-            if (iconStream != null)
-                notifyIcon.Icon = new System.Drawing.Icon(iconStream);
-            notifyIcon.Visible = true;
-            notifyIcon.Text = lCaption.Content.ToString();
-            notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
+                // NotifyIcon
+                Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
+                if (iconStream != null)
+                    notifyIcon.Icon = new System.Drawing.Icon(iconStream);
+                notifyIcon.Visible = true;
+                notifyIcon.Text = lCaption.Content.ToString();
+                notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
 
-            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang)); })));
-            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { VideoNotify(); })));
-            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { ShowUpdateWindow(); })));
+                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang)); })));
+                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { VideoNotify(); })));
+                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { ShowUpdateWindow(); })));
+            }
+            catch (Exception ex)
+            {
+                Debug.Save("MainWindow", "MainForm_Loaded()", ex.Message);
+                Process.Start("restart.exe", String.Format("\"{0}.exe\"", Process.GetCurrentProcess().ProcessName));
+                Process.GetCurrentProcess().Kill();
+            }
         }
 
         private void SetBackground()
         {
-            string uri = @"pack://application:,,,/" + Variables.ProductName + ";component/Resources/back_{0}.jpg";
-
-            if (Variables.BackgroundLoop)
+            try
             {
-                while (Variables.BackgroundLoop)
+                string uri = @"pack://application:,,,/" + Variables.ProductName + ";component/Resources/back_{0}.jpg";
+
+                if (Variables.BackgroundLoop)
                 {
+                    while (Variables.BackgroundLoop)
+                    {
+                        try
+                        {
+                            if (Variables.BackgroundIndex < 1 || Variables.BackgroundIndex > Variables.BackgroundMax) Variables.BackgroundIndex = 1;
+
+                            try { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex++).ToString())))); }
+                            catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
+                        }
+                        catch (Exception) { Thread.Sleep(5000); this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
+
+                        Thread.Sleep(Variables.BackgroundDelay);
+                    }
+                }
+                else
+                {
+
                     try
                     {
-                        if (Variables.BackgroundIndex < 1 || Variables.BackgroundIndex > Variables.BackgroundMax) Variables.BackgroundIndex = 1;
-
-                        try { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex++).ToString())))); }
-                        catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
+                        Variables.BackgroundIndex = new Random().Next(1, 7);
+                        this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, Variables.BackgroundIndex.ToString()))));
                     }
-                    catch (Exception) { Thread.Sleep(5000); this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
-
-                    Thread.Sleep(Variables.BackgroundDelay);
+                    catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
                 }
             }
-            else
-            {
-
-                try
-                {
-                    Variables.BackgroundIndex = new Random().Next(1, 7);
-                    this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, Variables.BackgroundIndex.ToString()))));
-                }
-                catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
-            }
+            catch (Exception ex) { Debug.Save("MainWindow", "SetBackground()", ex.Message); }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -124,7 +136,7 @@ namespace WPF_Multipack_Launcher
         private void Hyperlink_Open(object sender, RequestNavigateEventArgs e)
         {
             try { Process.Start(e.Uri.AbsoluteUri); }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { Debug.Save("MainWindow", "Hyperlink_Open()", "Link: " + e.Uri.AbsoluteUri, ex.Message); MessageBox.Show(ex.Message); }
             finally { }
         }
 
@@ -149,11 +161,14 @@ namespace WPF_Multipack_Launcher
             /// Tanks updates
             if (Variables.UpdateTanks)
             {
-                if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
-                    try { Process.Start(Variables.PathTanks + "WoTLauncher.exe"); }
-                    catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "UpdateTanks = " + Variables.UpdateTanks.ToString(), ex.Message); }
-                else
-                    Debug.Message(Variables.ProductName, LocalLanguage.DynamicLanguage("noTanks", Variables.Lang));
+                try
+                {
+                    if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
+                        Process.Start(Variables.PathTanks + "WoTLauncher.exe");
+                    else
+                        Debug.Message(Variables.ProductName, LocalLanguage.DynamicLanguage("noTanks", Variables.Lang));
+                }
+                catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "UpdateTanks = " + Variables.UpdateTanks.ToString(), ex.Message); }
             }
 
             /// Multipack updates
@@ -178,10 +193,14 @@ namespace WPF_Multipack_Launcher
 
         private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (Variables.AutoAero) Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
+            try
+            {
+                if (Variables.AutoAero) Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
 
-            notifyIcon.Dispose();
-            Variables.Doc.Save("settings.xml");
+                notifyIcon.Dispose();
+                Variables.Doc.Save("settings.xml");
+            }
+            catch (Exception ex) { Debug.Save("MainWindow", "MainForm_Closing()", ex.Message); }
         }
 
         private bool CheckUpdates()
@@ -264,7 +283,7 @@ namespace WPF_Multipack_Launcher
                     Process.Start(new ProcessStartInfo("cmd", @"/c " + Variables.PathTanks + file));
                 }
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("MainWindow", "StartGame()", "File: " + file, ex.Message); }
         }
 
         /// <summary>
@@ -276,19 +295,23 @@ namespace WPF_Multipack_Launcher
         /// <param name="select"></param>
         private void State()
         {
-            string select = "0";
-
-            if (Variables.Doc.Root.Element("launcher") != null)
-                if (Variables.Doc.Root.Element("launcher").Attribute("minimize") != null)
-                    select = Variables.Doc.Root.Element("launcher").Attribute("minimize").Value;
-
-            switch (select)
+            try
             {
-                case "1": Hide(); break;
-                case "2": WindowState = System.Windows.WindowState.Minimized; break;
-                case "3": Close(); break;
-                default: break;
+                string select = "0";
+
+                if (Variables.Doc.Root.Element("launcher") != null)
+                    if (Variables.Doc.Root.Element("launcher").Attribute("minimize") != null)
+                        select = Variables.Doc.Root.Element("launcher").Attribute("minimize").Value;
+
+                switch (select)
+                {
+                    case "1": Hide(); break;
+                    case "2": WindowState = System.Windows.WindowState.Minimized; break;
+                    case "3": Close(); break;
+                    default: break;
+                }
             }
+            catch (Exception ex) { Debug.Save("MainWindow", "State()", ex.Message); }
         }
 
         public void Youtube()
@@ -352,7 +375,7 @@ namespace WPF_Multipack_Launcher
                     }
                 }
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("MainWindow", "Youtube()", ex.Message); }
         }
 
         private void WargamingNews()
@@ -402,21 +425,19 @@ namespace WPF_Multipack_Launcher
                     else break;
                 }
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("MainWindow", "WargamingNews()", ex.Message); }
         }
 
         private string FormatDateNews(string dt)
         {
             try
             {
-                if (dt != null)
-                {
-                    DateTime nd = DateTime.Parse(dt);
-                    return nd.ToString("dd/MM").Replace(".", "/");
-                }
-                return "null";
+                if (dt == null) return "null";
+
+                DateTime nd = DateTime.Parse(dt);
+                return nd.ToString("dd/MM").Replace(".", "/");
             }
-            catch (Exception) { return "error"; }
+            catch (Exception ex) { Debug.Save("MainWindow", "FormatDateNews()", "Date: " + dt, ex.Message); return "error"; }
         }
 
         private string TrimText(string text, double maxWidth = 0, int fontSize = 14)
@@ -435,7 +456,7 @@ namespace WPF_Multipack_Launcher
                 else
                     return text;
             }
-            catch (Exception) { return text; }
+            catch (Exception ex) { Debug.Save("MainWindow", "TrimText()", ex.Message, text, "Max width: " + maxWidth.ToString(), "Font size: " + fontSize.ToString()); return text; }
         }
 
         private double TextWidth(string text, int fontSize = 14)
@@ -450,7 +471,7 @@ namespace WPF_Multipack_Launcher
                     System.Windows.Media.Brushes.Black
                 ).Width;
             }
-            catch (Exception) { return 0; }
+            catch (Exception ex) { Debug.Save("MainWindow", "TextWidth()", ex.Message, text, "Font size: " + fontSize.ToString()); return 0; }
         }
 
         private void ShowNotify(string text, string caption = null)
@@ -460,7 +481,7 @@ namespace WPF_Multipack_Launcher
                 caption = caption != null ? caption : lCaption.Content.ToString();
                 notifyIcon.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("MainWindow", "ShowNotify()", ex.Message, "Caption: " + caption, text); }
         }
 
         private void VideoNotify()
@@ -492,7 +513,7 @@ namespace WPF_Multipack_Launcher
                     Variables.Doc.Root.Element("youtube").Add(new XElement("video", el.ID));
                 }
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("MainWindow", "VideoNotify()", ex.Message); }
         }
 
         /// <summary>
@@ -506,43 +527,52 @@ namespace WPF_Multipack_Launcher
             try
             {
                 foreach (var el in YoutubeClass.List)
-                    if (!Variables.ParseDate(Variables.MultipackDate, el.Date))
-                        YoutubeClass.Delete(el.ID);
+                    try { if (!Variables.ParseDate(Variables.MultipackDate, el.Date)) YoutubeClass.Delete(el.ID); }
+                    catch (Exception ex0) { Debug.Save("MainWindow", "DeleteVideo()", "Element ID: " + el.ID, "Element title: " + el.Title, ex0.Message); }
             }
-            catch (Exception) { DeleteVideo(); }
+            catch (Exception ex) { Debug.Save("MainWindow", "DeleteVideo()", ex.Message); DeleteVideo(); }
         }
 
         private void bSettings_Click(object sender, RoutedEventArgs e)
         {
-            this.Effect = new System.Windows.Media.Effects.BlurEffect();
+            try
+            {
+                this.Effect = new System.Windows.Media.Effects.BlurEffect();
 
-            Settings stg = new Settings();
-            stg.lang = Variables.Lang;
-            stg.ShowDialog();
+                Settings stg = new Settings();
+                stg.lang = Variables.Lang;
+                stg.ShowDialog();
 
-            this.Effect = null;
+                this.Effect = null;
+            }
+            catch (Exception ex) { Debug.Save("MainWindow", "bSettings_Click()", ex.Message); }
         }
 
         private void NotifyClick(object sender, EventArgs e)
         {
-            OpenLink(Variables.notifyLink);
+            try { OpenLink(Variables.notifyLink); }
+            catch (Exception ex) { Debug.Save("MainWindow", "NotifyClick()", "Link: " + Variables.notifyLink, ex.Message); }
         }
 
         private void ShowUpdateWindow()
         {
-            if (Variables.Doc.Root.Element("notification") != null)
-                if (Variables.Doc.Root.Element("notification").Value != Variables.UpdateMultipackVersion.ToString())
-                {
-                    Notify MainNotify = new Notify();
-                    MainNotify.lCaption.Content = lStatusUpdates.Content;
-                    MainNotify.lCaption.FontSize = 16;
-                    MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
+            try
+            {
+                if (Variables.Doc.Root.Element("notification") != null)
+                    if (Variables.Doc.Root.Element("notification").Value != Variables.UpdateMultipackVersion.ToString())
+                    {
+                        Notify MainNotify = new Notify();
+                        MainNotify.lCaption.Content = lStatusUpdates.Content;
+                        MainNotify.lCaption.FontSize = 16;
+                        MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
 
-                    this.Effect = new System.Windows.Media.Effects.BlurEffect();
-                    MainNotify.ShowDialog();
+                        this.Effect = new System.Windows.Media.Effects.BlurEffect();
+                        MainNotify.ShowDialog();
 
-                    this.Effect = null;
-                }
+                        this.Effect = null;
+                    }
+            }
+            catch (Exception ex) { Debug.Save("MainWindow", "ShowUpdateWindow()", ex.Message); }
         }
     }
 }

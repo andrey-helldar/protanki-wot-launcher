@@ -12,6 +12,8 @@ namespace WPF_Multipack_Launcher.Classes
 {
     class Optimize
     {
+        Debug Debug = new Debug();
+
         public void Start(
             bool Kill = false,
             bool ForceKill = false,
@@ -36,7 +38,7 @@ namespace WPF_Multipack_Launcher.Classes
                     ++progress;
                 }
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Disable Windows Aero", ex.Message); }
 
 
             /***************************
@@ -80,11 +82,11 @@ namespace WPF_Multipack_Launcher.Classes
                     }
                 }
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Kill & Force Kill", ex.Message); }
 
 
             /***************************
-             * Kill & Force Kill
+             * Graphic optimize
              * *************************/
             try
             {
@@ -95,13 +97,13 @@ namespace WPF_Multipack_Launcher.Classes
                     ++progress;
                 }
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Graphic optimize", ex.Message); }
         }
 
         private void Sleep(int sec = 5)
         {
-            for (int i = 0; i < sec; i++)
-                Thread.Sleep(5000);
+            try { for (int i = 0; i < sec; i++) Thread.Sleep(5000); }
+            catch (Exception ex) { Debug.Save("Optimize.Class", "Sleep()", "Timeout is " + sec.ToString() + " seconds", ex.Message); }
         }
 
         private void Graphic(bool commonTest=false, bool weak = false)
@@ -218,54 +220,8 @@ namespace WPF_Multipack_Launcher.Classes
                 StreamWriter sw = new StreamWriter(pathPreferences);
                 sw.Write(content);
                 sw.Close();
-
-                /********************************************
-                 * Распаковываем архив с улучшениями графики
-                 * *****************************************/
-                UnzipResMods();
             }
-            finally { }
-        }
-
-        private void UnzipResMods()
-        {
-            try
-            {
-                /* ********************************************
-                 *  http://goo.gl/xLwuLq
-                 *  ******************************************/
-                if (!Directory.Exists("temp")) Directory.CreateDirectory("temp");
-                else if (File.Exists(@"temp\res_mods.zip")) File.Delete(@"temp\res_mods.zip");
-
-                File.WriteAllBytes(@"temp\res_mods.zip", Properties.Resources.res_mods);
-
-                using (ZipFile zip = ZipFile.Read(@"temp\res_mods.zip"))
-                {
-                    try
-                    {
-                        zip.ExtractAll(@"..\", ExtractExistingFileAction.OverwriteSilently);
-                        zip.Dispose();
-                    }
-                    catch (Exception)
-                    {
-                        // Если возникла ошибка (обычно если файлы *.tmp найдены),
-                        // то удаляем их и запускаем заново функцию
-                        foreach (string file in Directory.GetFiles(@"..\res_mods\", "*.tmp", SearchOption.AllDirectories))
-                            try { if (File.Exists(file)) File.Delete(file); }
-                            finally { }
-
-                        foreach (string file in Directory.GetFiles(@"..\res_mods\", "*.PendingOverwrite", SearchOption.AllDirectories))
-                            try { if (File.Exists(file)) File.Delete(file); }
-                            finally { }
-
-                        // И перезапускаем функцию
-                        UnzipResMods();
-                    }
-                }
-
-                if (File.Exists(@"temp\res_mods.zip")) File.Delete(@"temp\res_mods.zip");
-            }
-            finally { }
+            catch (Exception ex) { Debug.Save("Optimize.Class", "Graphic()", ex.Message); }
         }
     }
 }

@@ -23,7 +23,6 @@ namespace WPF_Multipack_Launcher.Variables
 
         // Product
         public string ProductName = String.Empty;
-        public Version ProductVersion = new Version("0.0.0.0");
         public string Lang = "en";
 
         // Background
@@ -76,12 +75,11 @@ namespace WPF_Multipack_Launcher.Variables
          * Functions
          * ******************/
 
-        public void Start()
+        public bool Start()
         {
             try
             {
                 ProductName = Application.Current.MainWindow.GetType().Assembly.GetName().Name;
-                ProductVersion = Application.Current.MainWindow.GetType().Assembly.GetName().Version;
 
                 GetApiKey();
 
@@ -91,6 +89,8 @@ namespace WPF_Multipack_Launcher.Variables
                 LoadSettings();
             }
             finally { }
+
+            return true;
         }
 
         private void LoadSettings()
