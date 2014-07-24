@@ -1,0 +1,15 @@
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\bin\Release\!Hell Debug Reader.exe.config
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\bin\Release\!Hell Debug Reader.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\bin\Release\!Hell Debug Reader.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\bin\Release\Newtonsoft.Json.dll
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\bin\Release\Ookii.Dialogs.Wpf.dll
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Release\MainWindow.baml
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Release\App.baml
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Release\MainWindow.g.cs
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Release\App.g.cs
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Release\!Hell Debug Reader_MarkupCompile.cache
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Release\!Hell Debug Reader.g.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Release\_Hell_Debug_Reader.Properties.Resources.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Release\!Hell Debug Reader.csproj.GenerateResource.Cache
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Release\!Hell Debug Reader.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Release\!Hell Debug Reader.pdb

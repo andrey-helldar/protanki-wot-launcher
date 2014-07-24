@@ -39,7 +39,7 @@ namespace _Hell_Debug_Reader
             if (lvDebugs.SelectedIndex > -1)
             {
                 Dictionary<string, string> result = Json(File.ReadAllText(tbPath.Text + @"\" + lvDebugs.SelectedItem.ToString()));
-                lParams.Text = String.Empty;
+                tbParams.Text = String.Empty;
 
                 string param = "{0}:\n----------\n{1}\n----------\n\n";
 
@@ -51,7 +51,7 @@ namespace _Hell_Debug_Reader
 
                 foreach (var res in result)
                     if (res.Key.IndexOf("param") > -1)
-                        lParams.Text += String.Format(param, res.Key, res.Value);
+                        tbParams.Text += String.Format(param, res.Key, res.Value);
             }
         }
 
@@ -77,21 +77,22 @@ namespace _Hell_Debug_Reader
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Вы действительно хотите удалить файл дебага \"" + lvDebugs.SelectedItem.ToString() + "\"?", "Удаление дебага", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
-            {
-                File.Delete(tbPath.Text + @"\" + lvDebugs.SelectedItem.ToString());
+            if (lvDebugs.SelectedIndex > -1)
+                if (MessageBox.Show("Вы действительно хотите удалить файл дебага \"" + lvDebugs.SelectedItem.ToString() + "\"?", "Удаление дебага", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                {
+                    File.Delete(tbPath.Text + @"\" + lvDebugs.SelectedItem.ToString());
 
-                lvDebugs.ItemsSource = new DirectoryInfo(tbPath.Text).GetFiles("*.debug");
+                    lvDebugs.ItemsSource = new DirectoryInfo(tbPath.Text).GetFiles("*.debug");
 
-                lModule.Content = "---";
-                lFunction.Content = "---";
-                lUserID.Content = "---";
-                lVersion.Content = "---";
-                lDate.Content = "---";
-                tbPath.Text = "---";
+                    lModule.Content = "---";
+                    lFunction.Content = "---";
+                    lUserID.Content = "---";
+                    lVersion.Content = "---";
+                    lDate.Content = "---";
+                    tbParams.Text = "---";
 
-                MessageBox.Show("Файл успешно удален!");
-            }
+                    MessageBox.Show("Файл успешно удален!");
+                }
         }
     }
 }

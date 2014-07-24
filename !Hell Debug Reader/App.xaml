@@ -3,6 +3,85 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
+        <LinearGradientBrush x:Key="GradientButton" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFB794F3" Offset="0"/>
+            <GradientStop Color="#FF6D26E8" Offset="1" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="GradientButtonHover" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFB794F3" Offset="0"/>
+            <GradientStop Color="#FF5D0AEC" Offset="1" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="GradientButtonFocused" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFB794F3" Offset="0"/>
+            <GradientStop Color="#FF7511C3" Offset="1" />
+        </LinearGradientBrush>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="{StaticResource GradientButton}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <!-- Inner Rectangle with rounded corners. -->
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" StrokeThickness="1" Fill="{TemplateBinding Background}" RadiusX="5" RadiusY="5" />
+
+                            <!-- Present Text of the button. -->
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Margin="5" Content="{TemplateBinding  Content}" TextBlock.FontFamily="Verdana" TextBlock.Foreground="#FFFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+
+                        <!-- Triggers -->
+                        <ControlTemplate.Triggers>
+                            <!-- Set properties when mouse pointer is over the button. -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <!-- Makes the text slightly blurry as though you were looking at it through blurry glass. -->
+                                <Setter Property="Background" Value="{StaticResource GradientButtonHover}" />
+                            </Trigger>
+
+                            <!-- Set properties when button has focus. -->
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Background" Value="{StaticResource GradientButtonFocused}"/>
+                            </Trigger>
+
+                            <!-- Set properties when button has unavailable -->
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#FF7511C3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="#FF310281"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Foreground" Value="#FF310281"/>
+            <Setter Property="BorderBrush" Value="#FFCCAFFC"/>
+        </Style>
+
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="#FF310281"/>
+            <Setter Property="BorderBrush" Value="#FFCCAFFC"/>
+        </Style>
+
+
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="Foreground" Value="#FF310281"/>
+            <Setter Property="BorderBrush" Value="#FFCCAFFC"/>
+        </Style>
+
     </Application.Resources>
 </Application>

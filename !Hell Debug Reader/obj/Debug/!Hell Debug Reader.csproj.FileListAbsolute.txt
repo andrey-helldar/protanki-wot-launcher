@@ -13,3 +13,4 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Debug\!Hell
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\bin\Debug\Newtonsoft.Json.dll
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Debug\!Hell Debug Reader.csprojResolveAssemblyReference.cache
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\bin\Debug\Ookii.Dialogs.Wpf.dll
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Debug Reader\obj\Debug\App.baml
