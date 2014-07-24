@@ -189,18 +189,22 @@ namespace WPF_Multipack_Launcher.Classes
 
         public string RequestInfo(string request)
         {
+            string result = String.Empty;
+
             try
             {
                 Dictionary<string, string> jData = new Dictionary<string, string>();
                 jData.Add("code", Properties.Resources.Code);
                 jData.Add("request", request);
 
-                Dictionary<string, string> status = FromJson(Send(Properties.Resources.DeveloperSite+ Properties.Resources.DeveloperInfo, "data=" + Json(jData)));
+                result = Send(Properties.Resources.DeveloperSite + Properties.Resources.DeveloperInfo, "data=" + Json(jData));
+
+                Dictionary<string, string> status = FromJson(result);
                 return status["info"];
             }
             catch (Exception ex)
             {
-                new Debug().Save("POST Class", ex.Message);
+                new Debug().Save("POST Class", "RequestInfo()", ex.Message, result);
                 return "FAIL";
             }
         }

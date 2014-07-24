@@ -1,6 +1,6 @@
 <engine_config.xml>
   <personality>	game	</personality>
-  <preferences>preferences.xml</preferences>
+  <preferences>preferences_ct.xml</preferences>
   <enableBalanceCPU>	false	</enableBalanceCPU>
   <renderer>
     <disableSLI>	false	</disableSLI>
@@ -174,6 +174,10 @@
       </project>
       <project>
         <name>fwc</name>
+      </project>
+      <project>
+        <name>plane</name>
+        <preload>	true	</preload>
       </project>
     </soundbanks>
     <networkUpdates>	false	</networkUpdates>

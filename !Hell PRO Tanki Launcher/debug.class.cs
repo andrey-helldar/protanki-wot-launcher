@@ -43,7 +43,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 string filename = String.Format("{0}_{1}.debug", Application.ProductVersion, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
                 File.WriteAllText(@"temp\" + filename, JsonConvert.SerializeObject(jData), Encoding.UTF8);
             }
-            catch (Exception) { }
+            finally { }
         }
 
         public void Archive(string path)

@@ -4,36 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace WPF_Multipack_Launcher.Classes
 {
     class Debug
     {
-        public void Save(string caption, params string[] args)
+        public void Save(string module, string func, params string[] args)
         {
             try
             {
-                if (Properties.Resources.Debug == "True")
-                {
-                    string export = String.Empty,
-                           template = "***************************************************" + Environment.NewLine +
-                                      "*    Function: " + caption + Environment.NewLine +
-                                      "***************************************************" + Environment.NewLine +
-                                      "{0}",
-                           split = Environment.NewLine + "------------------" + Environment.NewLine;
+                string ver = Application.Current.MainWindow.GetType().Assembly.GetName().Version.ToString();
 
-                    foreach (string str in args)
-                        export += str + split;
+                Dictionary<string, string> jData = new Dictionary<string, string>();
+                jData.Add("uid", new Variables.Variables().GetUserID());
+                jData.Add("version", ver);
+                jData.Add("date", DateTime.Now.ToString("yyyy-MM-dd h-m-s"));
+                jData.Add("module", module);
+                jData.Add("function", func);
 
-                    export = String.Format(template, export);
+                for (int i = 0; i < args.Length; i++)
+                    jData.Add("param" + i.ToString(), args[i]);
 
-                    if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
-                    File.WriteAllText(@"temp\" + String.Format("{0}_{1}.debug", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(), DateTime.Now.ToString("yyyy-MM-dd_h-m-s.ffffff")), export, Encoding.UTF8);
-                }
+                if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
+                string filename = String.Format("{0}_{1}.debug", ver, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
+                File.WriteAllText(@"temp\" + filename, JsonConvert.SerializeObject(jData), Encoding.UTF8);
             }
-            catch (Exception) { }
+            finally { }
         }
 
         public void Message(string caption, string text)

@@ -48,23 +48,23 @@ namespace WPF_Multipack_Launcher
             InitializeComponent();
             MouseDown += delegate { DragMove(); };
 
-            Variables.Start();
+            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { Variables.Start(); }))).Wait();
         }
 
         private void MainForm_Loaded(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() => SetBackground());
+            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { SetBackground(); })));
 
             lMultipackVersion.Content = Variables.MultipackVersion.ToString();
 
             lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")";
             lMultipackVersion.Content = LocalInterface.VersionToSharp(Variables.MultipackVersion);
             lLauncherVersion.Content = LocalInterface.VersionToSharp(Variables.ProductVersion);
-            
-            Task.Factory.StartNew(() => Youtube());
-            Task.Factory.StartNew(() => WargamingNews());
 
-            Task.Factory.StartNew(() => CheckUpdates()).Wait(); // Check multipack & tanks updates
+            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { Youtube(); })));
+            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { WargamingNews(); })));
+
+            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { CheckUpdates(); }))).Wait();
 
             // NotifyIcon
             Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
@@ -74,10 +74,9 @@ namespace WPF_Multipack_Launcher
             notifyIcon.Text = lCaption.Content.ToString();
             notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
 
-            ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang));
-            Task.Factory.StartNew(() => VideoNotify());
-
-            Task.Factory.StartNew(() => ShowUpdateWindow());
+            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang)); })));
+            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { VideoNotify(); })));
+            Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { ShowUpdateWindow(); })));
         }
 
         private void SetBackground()
@@ -185,7 +184,7 @@ namespace WPF_Multipack_Launcher
             Variables.Doc.Save("settings.xml");
         }
 
-        private void CheckUpdates()
+        private bool CheckUpdates()
         {
             try
             {
@@ -251,6 +250,8 @@ namespace WPF_Multipack_Launcher
                 }
             }
             catch (Exception ex) { Debug.Save("MainForm", "CheckUpdates()", ex.Message); }
+
+            return true;
         }
 
         private void StartGame(string file = "WorldOfTanks.exe")

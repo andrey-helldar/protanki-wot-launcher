@@ -69,6 +69,8 @@ namespace WPF_Multipack_Launcher.Variables
 
         public string notifyLink = Properties.Resources.LinkVideoAll;
 
+        Classes.Debug Debug = new Classes.Debug();
+
 
         /********************
          * Functions
@@ -131,14 +133,14 @@ namespace WPF_Multipack_Launcher.Variables
                 else
                 {
                     // Мультипак не обнаружен
-                    new Classes.Debug().Message(ProductName, new LocalInterface.Language().DynamicLanguage("noMods", Lang));
+                    Debug.Message(ProductName, new LocalInterface.Language().DynamicLanguage("noMods", Lang));
                 }
             }
             finally { }
 
 
             try { UpdateNotify = Doc.Root.Element("notification") != null ? Doc.Root.Element("notification").Value : String.Empty; }
-            catch(Exception ex) { new Classes.Debug().Message("LoadSettings", ex.Message); }
+            catch (Exception ex) { Debug.Message("LoadSettings", ex.Message); }
 
             try { ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true; }
             finally { }
@@ -167,11 +169,8 @@ namespace WPF_Multipack_Launcher.Variables
          * **********************/
         private void GetApiKey()
         {
-            try
-            {
-                Api = new Classes.POST().RequestInfo("api");
-            }
-            catch (Exception ex) { new Classes.Debug().Save("Variables Class", ex.Message); }
+            try { Api = new Classes.POST().RequestInfo("api"); }
+            catch (Exception ex) { Debug.Save("Variables.Class", "GetApiKey()", Api, ex.Message); }
         }
 
         private bool ReadCheckStateBool(XDocument doc, string attr)
@@ -202,7 +201,7 @@ namespace WPF_Multipack_Launcher.Variables
             }
             catch (Exception ex)
             {
-                new Classes.Debug().Save("fIndex", "GetTanksRegistry()", ex.Message);
+                Debug.Save("fIndex", "GetTanksRegistry()", ex.Message);
                 //MessageBox.Show(this, Language.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return null;
             }
@@ -223,7 +222,7 @@ namespace WPF_Multipack_Launcher.Variables
             }
             catch (Exception ex)
             {
-                new Classes.Debug().Save("fIndex", "CorrectPath", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message);
+                Debug.Save("fIndex", "CorrectPath", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message);
                 return sourcePath;
             }
         }
@@ -246,12 +245,17 @@ namespace WPF_Multipack_Launcher.Variables
                     return sBuilder.ToString();
                 }
             }
-            catch (Exception) { return null; }
+            catch (Exception ex)
+            {
+                Debug.Save("Variables.Class", "GetUserID()", ex.Message);
+                return null;
+            }
         }
 
         public Version Version(string version)
         {
-            return new Version(String.Format("{0}.{1}.{2}.{3}", TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version));
+            try { return new Version(String.Format("{0}.{1}.{2}.{3}", TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version)); }
+            catch (Exception ex) { Debug.Save("Variables.Class", "Version()", version, ex.Message); return new Version("0.0.0.0"); }
         }
 
 
@@ -271,7 +275,7 @@ namespace WPF_Multipack_Launcher.Variables
                     if (DateTime.Parse(newsDate) < DateTime.Parse(packDate)) { return false; }
                 return true;
             }
-            catch (Exception) { return true; }
+            catch (Exception ex) { Debug.Save("Variables.Class", "ParseDate()", "Pack Date = " + packDate, "News date = " + newsDate, ex.Message); return true; }
         }
     }
 }
