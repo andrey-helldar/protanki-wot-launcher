@@ -166,7 +166,7 @@ namespace WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://n.ai-rus.com.
+        ///   Looks up a localized string similar to http://ai-rus.com.
         /// </summary>
         public static string DeveloperSite {
             get {

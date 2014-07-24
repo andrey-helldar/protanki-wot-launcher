@@ -112,7 +112,7 @@ namespace WPF_Multipack_Launcher.Classes
                 finally { wr = null; }
             }
             catch (WebException we) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, we.Message); }
-            catch (Exception ex) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, we.Message); }
+            catch (Exception ex) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, ex.Message); }
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace WPF_Multipack_Launcher.Classes
         public string Json(Dictionary<string, string> dic)
         {
             try { return JsonConvert.SerializeObject(dic); }
-            catch (Exception) { return null; }
+            catch (Exception ex) { Debug.Save("POST.Class", "Json()", ex.Message); return null; }
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace WPF_Multipack_Launcher.Classes
         public Dictionary<string, string> FromJson(string json)
         {
             try { return JsonConvert.DeserializeObject<Dictionary<string, string>>(json); }
-            catch (Exception) { return null; }
+            catch (Exception ex) { Debug.Save("POST.Class", "FromJson()", json, ex.Message); return null; }
         }
 
         public JObject JsonResponse(string uri)
@@ -152,46 +152,49 @@ namespace WPF_Multipack_Launcher.Classes
                 do
                 {
                     count = resStream.Read(buf, 0, buf.Length);
-                    if (count != 0)
-                        sb.Append(Encoding.UTF8.GetString(buf, 0, count));
+                    if (count != 0)  sb.Append(Encoding.UTF8.GetString(buf, 0, count));
                 }
                 while (count > 0);
-                //return sb.ToString();
 
                 return JsonConvert.DeserializeObject<JObject>(sb.ToString());
             }
-            catch (Exception) { return null; }
+            catch (WebException we) { Debug.Save("POST.Class", "JsonResponse()", "URL: " + uri, we.Message); return null; }
+            catch (Exception ex) { Debug.Save("POST.Class", "JsonResponse()", "URL: " + uri, ex.Message); return null; }
         }
 
         public string DataRegex(string str)
         {
-            // Убираем лишние теги
-            string[] arrRegex = { @"\<font(.*?)\>", @"\<\/font\>", @"\<ul\>", @"\<\/ul\>", @"\<\/li\>" };
-            foreach (string reg in arrRegex)
+            try
             {
-                Regex myRegex = new Regex(reg, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                str = myRegex.Replace(str, @"");
+                // Убираем лишние теги
+                string[] arrRegex = { @"\<font(.*?)\>", @"\<\/font\>", @"\<ul\>", @"\<\/ul\>", @"\<\/li\>" };
+                foreach (string reg in arrRegex)
+                {
+                    Regex myRegex = new Regex(reg, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    str = myRegex.Replace(str, @"");
+                }
+
+                // Заменяем список
+                string[] arrRegex1 = { @"\<li\>" };
+                foreach (string reg in arrRegex1)
+                {
+                    Regex myRegex = new Regex(reg, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    str = myRegex.Replace(str, Environment.NewLine + " * ");
+                }
+
+                // Заменяем список
+                string[] arrRegex2 = { @"\<br\>" };
+                foreach (string reg in arrRegex2)
+                {
+                    Regex myRegex = new Regex(reg, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+                    str = myRegex.Replace(str, Environment.NewLine);
+                }
+
+                str = str.Replace("__________________________________________", Environment.NewLine + "__________________________________________");
+
+                return str;
             }
-
-            // Заменяем список
-            string[] arrRegex1 = { @"\<li\>" };
-            foreach (string reg in arrRegex1)
-            {
-                Regex myRegex = new Regex(reg, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                str = myRegex.Replace(str, Environment.NewLine + " * ");
-            }
-
-            // Заменяем список
-            string[] arrRegex2 = { @"\<br\>" };
-            foreach (string reg in arrRegex2)
-            {
-                Regex myRegex = new Regex(reg, RegexOptions.IgnoreCase | RegexOptions.Multiline);
-                str = myRegex.Replace(str, Environment.NewLine);
-            }
-
-            str = str.Replace("__________________________________________", Environment.NewLine + "__________________________________________");
-
-            return str;
+            catch (Exception ex) { Debug.Save("POST.Class", "DataRegex()", "Input string: " + str, ex.Message); return str; }
         }
 
         public string RequestInfo(string request)
@@ -211,7 +214,7 @@ namespace WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                new Debug().Save("POST Class", "RequestInfo()", ex.Message, result);
+                new Debug().Save("POST Class", "RequestInfo()", ex.Message, "Request: " + request, result);
                 return "FAIL";
             }
         }

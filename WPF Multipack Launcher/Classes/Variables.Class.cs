@@ -88,7 +88,7 @@ namespace WPF_Multipack_Launcher.Variables
                 if (File.Exists("settings.xml")) Doc = XDocument.Load("settings.xml");
                 LoadSettings();
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("Variables.Class", "Start()", ex.Message); }
 
             return true;
         }
@@ -97,7 +97,7 @@ namespace WPF_Multipack_Launcher.Variables
         {
             // Загружаем версию клиента игры
             try { PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry(); }
-            finally { }
+            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: PathTanks", ex.Message); }
 
             try
             {
@@ -114,7 +114,7 @@ namespace WPF_Multipack_Launcher.Variables
                         TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
                 }
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: TanksVersion", ex.Message); }
 
 
             // Загружаем config.ini
@@ -136,14 +136,14 @@ namespace WPF_Multipack_Launcher.Variables
                     Debug.Message(ProductName, new LocalInterface.Language().DynamicLanguage("noMods", Lang));
                 }
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message); }
 
 
             try { UpdateNotify = Doc.Root.Element("notification") != null ? Doc.Root.Element("notification").Value : String.Empty; }
-            catch (Exception ex) { Debug.Message("LoadSettings", ex.Message); }
+            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: UpdateNotify", ex.Message); }
 
             try { ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true; }
-            finally { }
+            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: ShowVideoNotify", ex.Message); }
 
             try
             {
@@ -158,10 +158,10 @@ namespace WPF_Multipack_Launcher.Variables
                     AutoCPU = Doc.Root.Element("settings").Attribute("balance") != null ? Doc.Root.Element("settings").Attribute("balance").Value == "True" : false;
                 }
             }
-            finally { }
+            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `settings`", ex.Message); }
 
             try { if (Doc.Root.Element("common.test") != null) CommonTest = true; }
-            finally { }
+            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `common.test`", ex.Message); }
         }
 
         /*************************
@@ -189,7 +189,7 @@ namespace WPF_Multipack_Launcher.Variables
                     }
                 return false;
             }
-            catch (Exception) { return false; }
+            catch (Exception ex) { Debug.Save("Variables.Class", "ReadCheckStateBool()",ex.Message, "Attribute: " + attr, doc.ToString()); return false; }
         }
 
         private string GetTanksRegistry()
@@ -199,12 +199,7 @@ namespace WPF_Multipack_Launcher.Variables
                 var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
                 return key != null ? (string)key.GetValue("InstallLocation") : null;
             }
-            catch (Exception ex)
-            {
-                Debug.Save("fIndex", "GetTanksRegistry()", ex.Message);
-                //MessageBox.Show(this, Language.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return null;
-            }
+            catch (Exception ex) { Debug.Save("Variables.Class", "GetTanksRegistry()", ex.Message); return null; }
         }
 
         private string CorrectPath(string sourcePath, int remove = 0)
@@ -222,7 +217,7 @@ namespace WPF_Multipack_Launcher.Variables
             }
             catch (Exception ex)
             {
-                Debug.Save("fIndex", "CorrectPath", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message);
+                Debug.Save("Variables.Class", "CorrectPath()", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message);
                 return sourcePath;
             }
         }
@@ -245,11 +240,7 @@ namespace WPF_Multipack_Launcher.Variables
                     return sBuilder.ToString();
                 }
             }
-            catch (Exception ex)
-            {
-                Debug.Save("Variables.Class", "GetUserID()", ex.Message);
-                return null;
-            }
+            catch (Exception ex) { Debug.Save("Variables.Class", "GetUserID()", ex.Message); return null; }
         }
 
         public Version Version(string version)

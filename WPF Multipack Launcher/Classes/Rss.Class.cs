@@ -16,43 +16,59 @@ namespace WPF_Multipack_Launcher.Classes
 
     public class YoutubeVideo
     {
+        Debug Debug = new Debug();
+
         public string mID, mTitle, mContent, mLink, mDate;
         public List<VideoLoading> List;
         public List<List<VideoLoading>> Range;
 
         public void Add(string id, string title, string content, string link, string date)
         {
-            try { if (List.Count <= 0) { } }
-            catch (Exception)
+            try
             {
-                List = new List<VideoLoading>();
-                Range = new List<List<VideoLoading>>();
+                try { if (List.Count <= 0) { } }
+                catch (Exception)
+                {
+                    List = new List<VideoLoading>();
+                    Range = new List<List<VideoLoading>>();
+                }
+
+                List.Add(new VideoLoading(id, title, content, link, date));
+                Range.Add(List);
+
+                mID = Range[0][0].ID;
+                mTitle = Range[0][0].Title;
+                mContent = Range[0][0].Content;
+                mLink = Range[0][0].Link;
+                mDate = Range[0][0].Date;
             }
-
-            List.Add(new VideoLoading(id, title, content, link, date));
-            Range.Add(List);
-
-            mID = Range[0][0].ID;
-            mTitle = Range[0][0].Title;
-            mContent = Range[0][0].Content;
-            mLink = Range[0][0].Link;
-            mDate = Range[0][0].Date;
+            catch (Exception ex)
+            {
+                Debug.Save("RSS.Class", "Add()", ex.Message,
+                    "ID: " + id,
+                    "Title: " + title,
+                    "Content: " + content,
+                    "Link: " + link,
+                    "Date: " + date);
+            }
         }
 
         public void Clear()
         {
-            if (List.Count > 0) List.Clear();
+            try { if (List.Count > 0) List.Clear(); }
+            catch (Exception ex) { Debug.Save("RSS.Class", "Clear()", ex.Message); }
         }
 
         public int IndexOf(string str)
         {
             try { if (List.Count > -1) { for (int i = 0; i < List.Count; i++) { if (List[i].ID == str) { return i; } } } return -1; }
-            catch (Exception) { return -1; }
+            catch (Exception ex) { Debug.Save("RSS.Class", "IndexOf()", ex.Message, "Search: " + str); return -1; }
         }
 
         public int Count()
         {
-            return List.Count;
+            try { return List.Count; }
+            catch (Exception ex) { Debug.Save("RSS.Class", "Count()", ex.Message); return 0; }
         }
 
         /// <summary>
@@ -67,7 +83,7 @@ namespace WPF_Multipack_Launcher.Classes
                     for (int i = 0; i < List.Count; i++)
                         if (List[i].ID == id) { List.RemoveAt(i); }
             }
-            catch (Exception) { Delete(id); }
+            catch (Exception ex) { Debug.Save("RSS.Class", "Count(id = " + id + ")", ex.Message); Delete(id); }
         }
     }
 }

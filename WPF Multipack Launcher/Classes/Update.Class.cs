@@ -20,7 +20,7 @@ namespace WPF_Multipack_Launcher.Classes
                 string Settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
                 if (!File.Exists(Settings)) { File.WriteAllText(Settings, Properties.Resources.SettingsXML); }
             }
-            catch (Exception ex) { new Debug().Save("UpdateLauncher", "SaveFromResources()", ex.Message); }
+            catch (Exception ex) { new Debug().Save("Update.Class", "SaveFromResources()", ex.Message); }
         }
     }
 }
