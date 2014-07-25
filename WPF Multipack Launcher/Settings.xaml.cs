@@ -70,6 +70,9 @@ namespace WPF_Multipack_Launcher
 
                 // Применяем язык
                 //lCaption.Content = InterfaceLang.DynamicLanguage();
+
+                // Загружаем список модулей
+                Task.Factory.StartNew(() => LoadModules());
             }
             catch (Exception ex) { Debug.Save("MainSettings", "MainSettings_Loaded()", ex.Message); }
         }
@@ -250,6 +253,10 @@ namespace WPF_Multipack_Launcher
                     default: return 2; // Средний
                 }
             }
+        }
+
+        private void LoadModules()
+        {
         }
 
         private void MainSettings_Closing(object sender, System.ComponentModel.CancelEventArgs e)

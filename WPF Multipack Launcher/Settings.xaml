@@ -51,12 +51,14 @@
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Подключенные модули" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Height="136" Width="525" Padding="5">
-                        <ListView x:Name="lvModules" HorizontalAlignment="Left" Height="114" VerticalAlignment="Top" Margin="0,0,-2,0" Width="501">
+                        <ListView x:Name="lvModules" Margin="0">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn/>
+                                    <GridViewColumn Header="Модуль" Width="330" DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="Версия" Width="160" DisplayMemberBinding="{Binding Version}"/>
                                 </GridView>
                             </ListView.View>
+
                         </ListView>
                     </GroupBox>
                 </Grid>
