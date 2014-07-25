@@ -54,6 +54,7 @@ namespace WPF_Multipack_Launcher.Classes
 
         // Launcher settings
         public XDocument Doc = null;
+
         public bool AutoKill = false,
                     AutoForceKill = false,
                     AutoAero = false,
@@ -139,7 +140,7 @@ namespace WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message); }
 
 
-            try { UpdateNotify = Doc.Root.Element("notification") != null ? Doc.Root.Element("notification").Value : String.Empty; }
+            try { UpdateNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("notification") != null ? Doc.Root.Element("info").Attribute("notification").Value : null) : null; }
             catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: UpdateNotify", ex.Message); }
 
             try { ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true; }

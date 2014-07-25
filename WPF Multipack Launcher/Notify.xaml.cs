@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics;
 
 namespace WPF_Multipack_Launcher
 {
@@ -14,6 +15,9 @@ namespace WPF_Multipack_Launcher
     /// </summary>
     public partial class Notify : Window
     {
+        public string DownloadLink = String.Empty;
+
+
         public Notify()
         {
             InitializeComponent();
@@ -21,28 +25,15 @@ namespace WPF_Multipack_Launcher
 
         private void bCancel_Click(object sender, RoutedEventArgs e)
         {
-            if (cbNotNotify.IsChecked.Value)
-            {
-                    Match vers = Regex.Match(lCaption.Content.ToString(), @"\((.*)\)");
-
-
-                XDocument doc = XDocument.Load("settings.xml");
-                if (doc.Root.Element("notification") == null)
-                    doc.Root.Add(new XElement("notification", vers.Groups[1].Value));
-                else
-                    doc.Root.Element("notification").SetValue(vers.Groups[1].Value);
-
-                doc.Save("settings.xml");
-            }
-
             Close();
         }
 
         private void bDownload_Click(object sender, RoutedEventArgs e)
         {
+            try { Process.Start(DownloadLink); }
+            catch (Exception ex) { new Classes.Debug().Save("MainNotify", "bDownload_Click()", "URL: " + DownloadLink, ex.Message); }
+
             Close();
         }
-
-
     }
 }

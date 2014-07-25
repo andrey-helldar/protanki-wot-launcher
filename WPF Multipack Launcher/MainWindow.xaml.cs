@@ -46,14 +46,14 @@ namespace WPF_Multipack_Launcher
         {
             InitializeComponent();
             MouseDown += delegate { DragMove(); };
-
-            Task.Factory.StartNew(() => Variables.Start()).Wait();
         }
 
         private void MainForm_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
+                Task.Factory.StartNew(() => Variables.Start()).Wait();
+
                 //Task.Factory.StartNew(() => SetBackground());
 
                 Dispatcher.BeginInvoke(new ThreadStart(delegate { lMultipackVersion.Content = Variables.MultipackVersion.ToString(); }));
@@ -75,7 +75,6 @@ namespace WPF_Multipack_Launcher
 
                 Task.Factory.StartNew(() => ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang)));
                 Task.Factory.StartNew(() => VideoNotify());
-                Task.Factory.StartNew(() => ShowUpdateWindow());
             }
             catch (Exception ex)
             {
@@ -167,7 +166,6 @@ namespace WPF_Multipack_Launcher
                 {
                     if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
                     {
-                        Optimize.Start(Variables.WinXP);
                         Process.Start(Variables.PathTanks + "WoTLauncher.exe");
                     }
                     else
@@ -283,6 +281,44 @@ namespace WPF_Multipack_Launcher
             }
             catch (Exception ex) { Debug.Save("MainForm", "CheckUpdates()", ex.Message); }
 
+
+            // Если есть новые версии, то выводим уведомление
+            try
+            {
+                if (Variables.UpdateNotify != Variables.UpdateMultipackVersion.ToString() && Variables.UpdateNotify != String.Empty)
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        Notify MainNotify = new Notify();
+                        MainNotify.lCaption.Content = lStatusUpdates.Content;
+                        MainNotify.lCaption.FontSize = 16;
+                        MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
+                        MainNotify.DownloadLink = Variables.UpdateLink;
+
+                        this.Effect = new System.Windows.Media.Effects.BlurEffect();
+                        MainNotify.ShowDialog();
+
+                        if (MainNotify.cbNotNotify.IsChecked.Value)
+                        {
+                            if (Variables.Doc.Root.Element("info") != null)
+                            {
+                                if (Variables.Doc.Root.Element("info").Attribute("notification") != null)
+                                    Variables.Doc.Root.Element("info").Attribute("notification").SetValue(Variables.UpdateMultipackVersion);
+                                else
+                                    Variables.Doc.Root.Element("info").Add(new XAttribute("notification", Variables.UpdateMultipackVersion));
+                            }
+                            else
+                                Variables.Doc.Root.Add(new XElement("info", new XAttribute("notification", Variables.UpdateMultipackVersion)));
+
+                            Variables.UpdateNotify = Variables.UpdateMultipackVersion.ToString(); // Обновляем значение
+                        }
+                        
+                        this.Effect = null;
+                    }));
+                }
+            }
+            catch (Exception ex) { Debug.Save("MainWindow", "ShowUpdateWindow()", ex.Message); }
+
             return true;
         }
 
@@ -358,8 +394,6 @@ namespace WPF_Multipack_Launcher
                     // Creating window controls
                     Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
-                        Debug.Save("MainWindow", "Youtube()", topOffset.ToString(), gGrid.RowDefinitions[3].Height.Value.ToString());
-
                         if (topOffset + fontSize + 6 < (int)gGrid.RowDefinitions[3].Height.Value)
                         {
                             // Date
@@ -594,30 +628,6 @@ namespace WPF_Multipack_Launcher
         {
             try { OpenLink(Variables.notifyLink); }
             catch (Exception ex) { Debug.Save("MainWindow", "NotifyClick()", "Link: " + Variables.notifyLink, ex.Message); }
-        }
-
-        private void ShowUpdateWindow()
-        {
-            try
-            {
-                if (Variables.Doc.Root.Element("notification") != null)
-                    if (Variables.Doc.Root.Element("notification").Value != Variables.UpdateMultipackVersion.ToString())
-                    {
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate
-                        {
-                            Notify MainNotify = new Notify();
-                            MainNotify.lCaption.Content = lStatusUpdates.Content;
-                            MainNotify.lCaption.FontSize = 16;
-                            MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
-
-                            this.Effect = new System.Windows.Media.Effects.BlurEffect();
-                            MainNotify.ShowDialog();
-
-                            this.Effect = null;
-                        }));
-                    }
-            }
-            catch (Exception ex) { Debug.Save("MainWindow", "ShowUpdateWindow()", ex.Message); }
         }
 
         private void Information(string text, MessageBoxButton mbb= MessageBoxButton.OK)

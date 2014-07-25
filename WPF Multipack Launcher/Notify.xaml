@@ -4,9 +4,9 @@
         Title="Notify" Height="400" Width="600" Background="#FF1F0101" Foreground="#FFFFB900" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Calibri" FontSize="14" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="71*"/>
-            <RowDefinition Height="14*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="284"/>
+            <RowDefinition Height="56"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
