@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -257,6 +259,13 @@ namespace WPF_Multipack_Launcher
 
         private void LoadModules()
         {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { lvModules.Items.Clear(); }));
+
+            foreach (FileInfo file in Directory(Environment.CurrentDirectory).GetFiles("*.dll", "*.exe"))
+            {
+                try { Dispatcher.BeginInvoke(new ThreadStart(delegate { lvModules.Items.Add(new { Name = file.FullName, Version = FileVersionInfo.GetVersionInfo(file.FullName).FileVersion }); })); }
+                catch (Exception ex) { Debug.Save("MainSettings", "LoadModules()", ex.Message, file.FullName); }
+            }
         }
 
         private void MainSettings_Closing(object sender, System.ComponentModel.CancelEventArgs e)
