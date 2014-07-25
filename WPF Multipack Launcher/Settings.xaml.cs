@@ -61,7 +61,7 @@ namespace WPF_Multipack_Launcher
 
                 ChangeState(cbNotifyVideo, "info", "video");
                 ChangeState(cbNotifyNews, "info", "news");
-                ChangeState(cbNotifyPack, "info", "multipack");                
+                ChangeState(cbNotifyPack, "info", "multipack");
 
                 //ChangeState(cbChangeBack, "settings", "background");
 
@@ -196,8 +196,8 @@ namespace WPF_Multipack_Launcher
             /*******************************
              * Изменяем файл настроек игры
              *******************************/
-           /* OptimizeGraphic OptimizeGraphic = new OptimizeGraphic();
-            Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, cbVideoQuality.Checked, cbVideoQualityWeak.Checked)).Wait();*/
+            /* OptimizeGraphic OptimizeGraphic = new OptimizeGraphic();
+             Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, cbVideoQuality.Checked, cbVideoQualityWeak.Checked)).Wait();*/
 
 
 
@@ -259,13 +259,22 @@ namespace WPF_Multipack_Launcher
 
         private void LoadModules()
         {
-            Dispatcher.BeginInvoke(new ThreadStart(delegate { lvModules.Items.Clear(); }));
-
-            foreach (FileInfo file in Directory(Environment.CurrentDirectory).GetFiles("*.dll", "*.exe"))
+            try
             {
-                try { Dispatcher.BeginInvoke(new ThreadStart(delegate { lvModules.Items.Add(new { Name = file.FullName, Version = FileVersionInfo.GetVersionInfo(file.FullName).FileVersion }); })); }
-                catch (Exception ex) { Debug.Save("MainSettings", "LoadModules()", ex.Message, file.FullName); }
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    Action<string> addInListAction = (string text) =>
+                            lvModules.Items.Add(new { Name = System.IO.Path.GetFileName(text), Version = FileVersionInfo.GetVersionInfo(text).FileVersion });
+                    SearchFilesInDirectory(Environment.CurrentDirectory, new List<string>() { "*.dll", "*.exe" }, addInListAction);
+
+                    /*foreach (FileInfo file in Directory(Environment.CurrentDirectory).GetFiles("*.dll", "*.exe"))
+                    {
+                        try { Dispatcher.BeginInvoke(new ThreadStart(delegate { lvModules.Items.Add(new { Name = file.FullName, Version = FileVersionInfo.GetVersionInfo(file.FullName).FileVersion }); })); }
+                        catch (Exception ex) { Debug.Save("MainSettings", "LoadModules()", ex.Message, file.FullName); }
+                    }*/
+                }));
             }
+            catch (Exception ex) { Debug.Save("MainSettings", "LoadModules()", ex.Message); };
         }
 
         private void MainSettings_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -281,6 +290,22 @@ namespace WPF_Multipack_Launcher
             SetXML("info", "video", cbNotifyVideo.IsChecked.ToString()); // Уведомлять о новых видео
             SetXML("info", "news", cbNotifyNews.IsChecked.ToString()); // Уведомлять о новых новостях
             SetXML("info", "multipack", cbNotifyPack.IsChecked.ToString()); // Уведомлять о новых версиях мультипака
+        }
+
+        public void SearchFilesInDirectory(String directory, IEnumerable<string> searchPatternList, Delegate method)
+        {
+            if ((searchPatternList == null) || (searchPatternList.Count<string>() == 0))
+                throw new ArgumentNullException("searchPatternList");
+            foreach (string searchPattern in searchPatternList)
+                using (var iterator = Directory.EnumerateFiles(directory, searchPattern).GetEnumerator())
+                    try
+                    { while (iterator.MoveNext()) Application.Current.Dispatcher.BeginInvoke(method, iterator.Current); }
+                    finally { }
+
+            using (var iterator = Directory.EnumerateDirectories(directory).GetEnumerator())
+                while (iterator.MoveNext())
+                    try { SearchFilesInDirectory(iterator.Current, searchPatternList, method); }
+                    finally { }
         }
     }
 }
