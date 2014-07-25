@@ -14,7 +14,7 @@ namespace WPF_Multipack_Launcher.LocalInterface
         private string ProductName = String.Empty;
         public bool loop = true;
 
-        public void Message(string text, string caption = null)
+        /*public void Message(string text, string caption = null)
         {
             try
             {
@@ -47,6 +47,6 @@ namespace WPF_Multipack_Launcher.LocalInterface
                 return String.Format("{0}.{1}.{2}.", exp[0], exp[1], exp[2]);
             }
             catch (Exception) { return "0.0.0."; }
-        }
+        }*/
     }
 }

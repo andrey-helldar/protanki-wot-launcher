@@ -19,7 +19,7 @@ namespace WPF_Multipack_Launcher.Classes
                 string version = Application.Current.GetType().Assembly.GetName().Version.ToString();
 
                 Dictionary<string, string> jData = new Dictionary<string, string>();
-                jData.Add("uid", new Variables.Variables().GetUserID());
+                jData.Add("uid", new Classes.Variables().GetUserID());
                 jData.Add("version", version);
                 jData.Add("date", DateTime.Now.ToString("yyyy-MM-dd h-m-s"));
                 jData.Add("module", module);
@@ -33,11 +33,6 @@ namespace WPF_Multipack_Launcher.Classes
                 File.WriteAllText(@"temp\" + filename, JsonConvert.SerializeObject(jData), Encoding.UTF8);
             }
             finally { }
-        }
-
-        public void Message(string caption, string text)
-        {
-            //MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

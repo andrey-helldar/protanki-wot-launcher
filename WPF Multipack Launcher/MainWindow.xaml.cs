@@ -32,8 +32,8 @@ namespace WPF_Multipack_Launcher
          * Variables
          * *******************/
         LocalInterface.LocInterface LocalInterface = new LocalInterface.LocInterface();
-        LocalInterface.Language LocalLanguage = new LocalInterface.Language();
-        Variables.Variables Variables = new Variables.Variables();
+        Classes.Language LocalLanguage = new Classes.Language();
+        Classes.Variables Variables = new Classes.Variables();
         Classes.Debug Debug = new Classes.Debug();
         Classes.Optimize Optimize = new Classes.Optimize();
         Classes.YoutubeVideo YoutubeClass = new Classes.YoutubeVideo();
@@ -124,16 +124,6 @@ namespace WPF_Multipack_Launcher
             catch (Exception ex) { Debug.Save("MainWindow", "SetBackground()", ex.Message); }
         }*/
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
         private void Hyperlink_Open(object sender, RequestNavigateEventArgs e)
         {
             try { Process.Start(e.Uri.AbsoluteUri); }
@@ -143,18 +133,30 @@ namespace WPF_Multipack_Launcher
 
         private void bPlay_Click(object sender, RoutedEventArgs e)
         {
-            try { StartGame(); }
-            catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message); }
+            Task.Factory.StartNew(() =>
+            {
+                try { Optimize.Start(); StartGame(); }
+                catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message); }
+            });
         }
 
         private void bLauncher_Click(object sender, RoutedEventArgs e)
         {
-            try
+            Task.Factory.StartNew(() =>
             {
-                Optimize.Start();
-                Process.Start(Variables.PathTanks + "WoTLauncher.exe");
-            }
-            catch (Exception ex) { Debug.Save("MainWindow", "bLauncher_Click()", ex.Message); }
+                try
+                {
+                    if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
+                    {
+                        Optimize.Start();
+                        Process.Start(Variables.PathTanks + "WoTLauncher.exe");
+                    }
+                    else
+                        Information("Клиент игры не обнаружен");
+
+                }
+                catch (Exception ex) { Debug.Save("MainWindow", "bLauncher_Click()", ex.Message); }
+            });
         }
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)
@@ -165,18 +167,25 @@ namespace WPF_Multipack_Launcher
                 try
                 {
                     if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
+                    {
+                        Optimize.Start();
                         Process.Start(Variables.PathTanks + "WoTLauncher.exe");
+                    }
                     else
-                        Debug.Message(Variables.ProductName, LocalLanguage.DynamicLanguage("noTanks", Variables.Lang));
+                        Information(LocalLanguage.DynamicLanguage("noTanks", Variables.Lang));
                 }
-                catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "UpdateTanks = " + Variables.UpdateTanks.ToString(), ex.Message); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bUpdate_Click()", "UpdateTanks = " + Variables.UpdateTanks.ToString(), ex.Message)); }
             }
 
             /// Multipack updates
             if (Variables.UpdateMultipack)
             {
                 try { OpenLink(Variables.UpdateLink); }
-                catch (Exception ex) { Debug.Save("MainWindow", "bUpdate_Click()", "LinkUpdate = " + Variables.UpdateLink, ex.Message); }
+                catch (Exception ex)
+                {
+                    Task.Factory.StartNew(() => Debug.Save("MainWindow", "bUpdate_Click()", "LinkUpdate = " + Variables.UpdateLink, ex.Message));
+                    Information(LocalLanguage.DynamicLanguage("noTanks", Variables.Lang));
+                }
             }
         }
 
@@ -189,7 +198,7 @@ namespace WPF_Multipack_Launcher
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
             try { Optimize.Start(Variables.AutoKill, Variables.AutoForceKill, Variables.AutoAero, Variables.AutoVideo, Variables.AutoWeak, true); }
-            catch (Exception ex) { Debug.Save("MainWindow", "bOptimize_Click()", ex.Message); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bOptimize_Click()", ex.Message)); }
         }
 
         private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -220,7 +229,7 @@ namespace WPF_Multipack_Launcher
                 Dictionary<string, string> json = new Dictionary<string, string>();
 
                 json.Add("code", Properties.Resources.Code);
-                json.Add("user", new Variables.Variables().GetUserID());
+                json.Add("user", new Classes.Variables().GetUserID());
                 json.Add("youtube", Properties.Resources.Youtube);
                 json.Add("test", Variables.CommonTest ? "1" : "0");
                 json.Add("version", Variables.TanksVersion.ToString());
@@ -566,17 +575,17 @@ namespace WPF_Multipack_Launcher
             try
             {
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
-               {
-                   this.Effect = new System.Windows.Media.Effects.BlurEffect();
+                {
+                    this.Effect = new System.Windows.Media.Effects.BlurEffect();
 
-                   Settings stg = new Settings();
-                   stg.lang = Variables.Lang;
-                   stg.ShowDialog();
+                    Settings stg = new Settings();
+                    stg.lang = Variables.Lang;
+                    stg.ShowDialog();
 
-                   this.Effect = null;
-               }));
+                    this.Effect = null;
+                }));
             }
-            catch (Exception ex) { Debug.Save("MainWindow", "bSettings_Click()", ex.Message); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bSettings_Click()", ex.Message)); }
         }
 
         private void NotifyClick(object sender, EventArgs e)
@@ -607,6 +616,17 @@ namespace WPF_Multipack_Launcher
                     }
             }
             catch (Exception ex) { Debug.Save("MainWindow", "ShowUpdateWindow()", ex.Message); }
+        }
+
+        private void Information(string text, MessageBoxButton mbb= MessageBoxButton.OK)
+        {
+            try { MessageBox.Show(text, Variables.ProductName, mbb, MessageBoxImage.Information); }
+            catch (Exception ex) { Debug.Save("MainWindow", "Information()", ex.Message, text); }
+        }
+
+        private void bExit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

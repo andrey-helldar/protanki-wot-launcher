@@ -11,7 +11,7 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using Ini;
 
-namespace WPF_Multipack_Launcher.Variables
+namespace WPF_Multipack_Launcher.Classes
 {
     class Variables
     {
@@ -68,7 +68,7 @@ namespace WPF_Multipack_Launcher.Variables
 
         public string notifyLink = Properties.Resources.LinkVideoAll;
 
-        Classes.Debug Debug = new Classes.Debug();
+        Debug Debug = new Debug();
 
 
         /********************
@@ -130,11 +130,6 @@ namespace WPF_Multipack_Launcher.Variables
                     MultipackVersion = new Version(new LocalInterface.LocInterface().VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
                     Lang = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language");
                 }
-                else
-                {
-                    // Мультипак не обнаружен
-                    Debug.Message(ProductName, new LocalInterface.Language().DynamicLanguage("noMods", Lang));
-                }
             }
             catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message); }
 
@@ -189,7 +184,7 @@ namespace WPF_Multipack_Launcher.Variables
                     }
                 return false;
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "ReadCheckStateBool()",ex.Message, "Attribute: " + attr, doc.ToString()); return false; }
+            catch (Exception ex) { Debug.Save("Variables.Class", "ReadCheckStateBool()", ex.Message, "Attribute: " + attr, doc.ToString()); return false; }
         }
 
         private string GetTanksRegistry()
@@ -267,6 +262,32 @@ namespace WPF_Multipack_Launcher.Variables
                 return true;
             }
             catch (Exception ex) { Debug.Save("Variables.Class", "ParseDate()", "Pack Date = " + packDate, "News date = " + newsDate, ex.Message); return true; }
+        }
+
+        /// <summary>
+        /// Формирование версии в решетку
+        /// </summary>
+        /// <param name="ver"></param>
+        /// <returns>формат 0.0.0 #0</returns>
+        public string VersionToSharp(Version ver)
+        {
+            try
+            {
+                string[] exp = ver.ToString().Split('.');
+                return String.Format("{0}.{1}.{2} #{3}", exp[0], exp[1], exp[2], exp[3]);
+            }
+            catch (Exception ex) { Debug.Save("Variables.Class", "VersionToSharp()", "Version: " + ver.ToString(), ex.Message); return "0.0.0 #0"; }
+        }
+
+        /// <summary>
+        /// Формирование префикса из версии
+        /// </summary>
+        /// <param name="ver"></param>
+        /// <returns></returns>
+        public string VersionPrefix(Version ver)
+        {
+            try { return String.Format("{0}.{1}.{2}.", ver.Major, ver.Minor, ver.Build); }
+            catch (Exception ex) { Debug.Save("Variables.Class", "VersionPrefix()", "Version: " + ver.ToString(), ex.Message); return "0.0.0."; }
         }
     }
 }

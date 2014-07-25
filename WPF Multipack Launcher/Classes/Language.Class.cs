@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WPF_Multipack_Launcher.LocalInterface
+namespace WPF_Multipack_Launcher.Classes
 {
     class Language
     {

@@ -21,7 +21,7 @@ namespace WPF_Multipack_Launcher
     /// </summary>
     public partial class Settings : Window
     {
-        LocalInterface.Language InterfaceLang = new LocalInterface.Language();
+        Classes.Language InterfaceLang = new Classes.Language();
 
         public XDocument doc = new XDocument();
         public string GameVersion = "0.0.0",
