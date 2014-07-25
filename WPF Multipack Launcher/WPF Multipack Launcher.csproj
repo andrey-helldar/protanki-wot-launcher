@@ -145,22 +145,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\back_1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\back_2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\back_3.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\back_5.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\back_6.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\back_7.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WOT.ico" />

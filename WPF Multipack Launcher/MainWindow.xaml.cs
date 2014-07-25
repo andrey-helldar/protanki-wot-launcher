@@ -358,6 +358,8 @@ namespace WPF_Multipack_Launcher
                     // Creating window controls
                     Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
+                        Debug.Save("MainWindow", "Youtube()", topOffset.ToString(), gGrid.RowDefinitions[3].Height.Value.ToString());
+
                         if (topOffset + fontSize + 6 < (int)gGrid.RowDefinitions[3].Height.Value)
                         {
                             // Date
@@ -369,13 +371,13 @@ namespace WPF_Multipack_Launcher
                             label.Margin = new Thickness(5, topOffset, 0, 0);
                             label.Content = FormatDateNews(el.Element(ns + "published").Value.Remove(10));
                             Grid.SetRow(label, 3);
-                            Grid.SetColumn(label, 1);
+                            Grid.SetColumn(label, 0);
                             gGrid.Children.Add(label);
 
                             // News title
                             Label labelT = new Label();
                             //Hyperlink hyperlink = new Hyperlink(new Run(content));
-                            Hyperlink hyperlink = new Hyperlink(new Run(TrimText(content, gGrid.ColumnDefinitions[1].ActualWidth - 100, fontSize)));
+                            Hyperlink hyperlink = new Hyperlink(new Run(TrimText(content, gGrid.ColumnDefinitions[0].ActualWidth - 100, fontSize)));
                             hyperlink.NavigateUri = new Uri(link);
                             hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
 
@@ -386,7 +388,7 @@ namespace WPF_Multipack_Launcher
                             labelT.VerticalAlignment = System.Windows.VerticalAlignment.Top;
                             labelT.Margin = new Thickness(60, topOffset, 0, 0);
                             Grid.SetRow(labelT, 3);
-                            Grid.SetColumn(labelT, 1);
+                            Grid.SetColumn(labelT, 0);
                             gGrid.Children.Add(labelT);
 
                             topOffset += fontSize + 6;
@@ -432,7 +434,7 @@ namespace WPF_Multipack_Launcher
                             // News title
                             Label labelT = new Label();
                             //Hyperlink hyperlink = new Hyperlink(new Run(el.Element("title").Value));
-                            Hyperlink hyperlink = new Hyperlink(new Run(TrimText(el.Element("title").Value, (int)gGrid.ColumnDefinitions[2].ActualWidth - 100, fontSize)));
+                            Hyperlink hyperlink = new Hyperlink(new Run(TrimText(el.Element("title").Value, (int)gGrid.ColumnDefinitions[1].ActualWidth - 100, fontSize)));
                             hyperlink.NavigateUri = new Uri(el.Element("link").Value);
                             hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
 

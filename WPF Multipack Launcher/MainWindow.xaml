@@ -3,43 +3,42 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Multipack Launcher" Height="480" Width="860" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Loaded="MainForm_Loaded" Icon="Resources/WOT.ico" Closing="MainForm_Closing">
     <Window.Background>
-        <ImageBrush ImageSource="Resources/back_1.jpg"/>
+        <ImageBrush ImageSource="Resources/back_3.jpg"/>
     </Window.Background>
     <Grid x:Name="gGrid" HorizontalAlignment="Left" Width="860" Height="480" VerticalAlignment="Top">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="54*"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="307*"/>
-            <RowDefinition Height="53*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="54"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="310"/>
+            <RowDefinition Height="52"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lMultipackVersion" Grid.ColumnSpan="2" Content="0.0.0 #0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="lCaption" Grid.ColumnSpan="2" Content="Loading..." HorizontalAlignment="Left" Margin="189,0,0,0" VerticalAlignment="Center" Foreground="#FFF37B10" FontFamily="Sochi2014" FontWeight="Bold" FontSize="16"/>
-        <Button x:Name="bLauncher" Content="Launcher" Grid.Column="1" HorizontalAlignment="Right" Margin="0,9,218,9" Grid.Row="4" VerticalAlignment="Center" Width="105" Click="bLauncher_Click"/>
-        <Button x:Name="bUpdate" Content="Update" Grid.Column="1" HorizontalAlignment="Right" Margin="0,9,115,9" Grid.Row="4" VerticalAlignment="Center" Width="98" Click="bUpdate_Click" IsEnabled="False"/>
-        <Button x:Name="bExit" Content="Exit" Grid.Column="2" HorizontalAlignment="Right" Margin="0,9,10,9" Grid.Row="4" VerticalAlignment="Center" Width="102" Click="bExit_Click"/>
-        <Button x:Name="bPlay" Content="Play" Grid.Column="1" HorizontalAlignment="Left" Margin="10,9,0,9" Grid.Row="4" VerticalAlignment="Center" Width="91" Click="bPlay_Click"/>
-        <TextBlock x:Name="DeveloperLink" Grid.Column="2" Grid.Row="4" Margin="88,17,0,16" Focusable="True" VerticalAlignment="Center" HorizontalAlignment="Left" Height="20" Width="179">
+        <Label x:Name="lMultipackVersion" Content="0.0.0 #0" Margin="10,2,0,0" VerticalAlignment="Center" Foreground="#FFF37B10" FontFamily="Sochi2014" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="28" HorizontalAlignment="Left" Width="61"/>
+        <Label x:Name="lCaption" Content="Loading..." Margin="200,0,50,0" Foreground="#FFF37B10" FontFamily="Sochi2014" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+        <Button x:Name="bLauncher" Content="Launcher" HorizontalAlignment="Right" Margin="0,10,219,10" Grid.Row="4" VerticalAlignment="Center" Width="105" Click="bLauncher_Click" Height="32"/>
+        <Button x:Name="bUpdate" Content="Update" HorizontalAlignment="Right" Margin="0,11,116,11" Grid.Row="4" VerticalAlignment="Center" Width="98" Click="bUpdate_Click" IsEnabled="False" Height="30"/>
+        <Button x:Name="bExit" Content="Exit" Grid.Column="1" HorizontalAlignment="Right" Margin="0,11,10,7" Grid.Row="4" VerticalAlignment="Center" Width="102" Click="bExit_Click" Height="34"/>
+        <Button x:Name="bPlay" Content="Play" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="91" Click="bPlay_Click" Height="31"/>
+        <TextBlock x:Name="DeveloperLink" Grid.Column="1" Grid.Row="4" Margin="88,19,0,13" Focusable="True" VerticalAlignment="Center" HorizontalAlignment="Left" Height="20" Width="179">
             <Hyperlink NavigateUri="http://ai-rus.com" RequestNavigate="Hyperlink_Open" Foreground="#FFF37B10">Developed by Andrey Helldar</Hyperlink>
         </TextBlock>
-        <Button x:Name="bSettings" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="40,13,0,0" Grid.Row="4" VerticalAlignment="Top" Width="32" Height="32" Click="bSettings_Click">
+        <Button x:Name="bSettings" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="40,13,0,0" Grid.Row="4" VerticalAlignment="Top" Width="32" Height="32" Click="bSettings_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/settings.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="bOptimize" Content="Optimize" Grid.Column="1" HorizontalAlignment="Left" Margin="320,9,0,9" Grid.Row="4" VerticalAlignment="Center" Width="100" Click="bOptimize_Click"/>
-        <Label x:Name="lStatusUpdates" Grid.ColumnSpan="3" Content="Loading status..." HorizontalAlignment="Center" Margin="20,0" Grid.Row="1" VerticalAlignment="Center" FontSize="18"/>
-        <Label Grid.ColumnSpan="2" Content="PROTanks: Video" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="16"/>
-        <Label Content="Wargaming.net: News" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="16"/>
-        <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,0,20,0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Sochi2014" FontSize="16" Focusable="True">
+        <Button x:Name="bOptimize" Content="Optimize" HorizontalAlignment="Left" Margin="319,10,0,11" Grid.Row="4" VerticalAlignment="Center" Width="100" Click="bOptimize_Click" Height="31"/>
+        <Label x:Name="lStatusUpdates" Content="Loading status..." Margin="10,5" Grid.Row="1" FontSize="18" Grid.ColumnSpan="2"/>
+        <Label Content="PROTanks: Video" HorizontalAlignment="Left" Margin="33,2,0,3" Grid.Row="2" VerticalAlignment="Center" FontSize="16" Height="30" Width="117"/>
+        <Label Content="Wargaming.net: News" Grid.Column="1" HorizontalAlignment="Left" Margin="10,2,0,3" Grid.Row="2" VerticalAlignment="Center" FontSize="16" Height="30" Width="146"/>
+        <TextBlock Grid.Row="2" Margin="0,8,20,7" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Sochi2014" FontSize="16" Focusable="True" Height="20" Width="59">
             <Hyperlink NavigateUri="http://goo.gl/LXaU7T" RequestNavigate="Hyperlink_Open" Foreground="#FFF37B10">All videos</Hyperlink>
         </TextBlock>
-        <TextBlock Grid.Column="2" Grid.Row="2" Margin="0,0,20,0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Sochi2014" FontSize="16">
+        <TextBlock Grid.Column="1" Grid.Row="2" Margin="0,8,20,7" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Sochi2014" FontSize="16" Height="20" Width="53">
             <Hyperlink NavigateUri="http://goo.gl/Wlrh9F" RequestNavigate="Hyperlink_Open" Foreground="#FFF37B10">All news</Hyperlink>
         </TextBlock>
     </Grid>
