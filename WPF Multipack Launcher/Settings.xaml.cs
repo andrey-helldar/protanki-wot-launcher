@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Processes_Library;
 
 namespace WPF_Multipack_Launcher
 {
@@ -26,6 +27,8 @@ namespace WPF_Multipack_Launcher
     public partial class Settings : Window
     {
         Classes.Language InterfaceLang = new Classes.Language();
+        ProcessesLibrary ProccessLibrary = new ProcessesLibrary();
+        ProcessList ProcessList = new ProcessList();
         Classes.Debug Debug = new Classes.Debug();
 
         public XDocument doc = new XDocument();
@@ -313,6 +316,9 @@ namespace WPF_Multipack_Launcher
             catch (Exception ex) { Debug.Save("MainSettings", "SearchFilesInDirectory()", ex.Message, "Directory: " + directory); }
         }
 
+        /// <summary>
+        /// http://msdn.microsoft.com/ru-ru/library/ms750972(v=vs.100).aspx
+        /// </summary>
         private void LoadProcesses()
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
@@ -334,17 +340,41 @@ namespace WPF_Multipack_Launcher
 
                         foreach (CheckBoxListViewItem o in lvProcessList.ItemsSource) o.IsChecked = true;*/
 
-
                         foreach (var process in myProcesses)
                             if (process.SessionId == processID)
-                            {
+                                //lvProcessList.Items.Add(new { Status = "---", Name = process.ProcessName, Description = process.MainModule.FileVersionInfo.FileDescription.Trim() });
+                                if (!ProcessList.IndexOf(process.ProcessName) && process.ProcessName != Process.GetCurrentProcess().ProcessName)
+                                    try { lvProcessList.Items.Add(new { Status = "---", Name = process.ProcessName, Description = process.MainModule.FileVersionInfo.FileDescription.Trim() }); }
+                                    catch (Exception) { }
 
-                                lvProcessList.Items.Add(new { Status = "---", Name = process.ProcessName, Description = process.MainModule.FileVersionInfo.FileDescription.Trim() });
-                            }
+                        /*for (int i = 1; i < ProcessList.Count(); i++)
+            {
+                try
+                {
+                    int pos = lvProcessesUser.Items.Add(ProcessList.List[i].Name).Index;
+                    lvProcessesUser.Items[pos].SubItems.Add(ProcessList.List[i].Description);
+
+                    // Процессы юзера
+                    if (userProcesses.IndexOf(ProcessList.List[i].Name) > -1)
+                    {
+                        lvProcessesUser.Items[pos].Checked = true;
+                        lvProcessesUser.Items[pos].BackColor = Color.LightGreen;
                     }
-                    catch (Exception ex) { Debug.Save("MainSettings", "LoadProcesses()", ex.Message); }
+
+                    // Глобальные процессы
+                    if (Array.IndexOf(ProccessLibrary.Processes(), ProcessList.List[i].Name) > -1)
+                    {
+                        lvProcessesUser.Items[pos].Checked = true;
+                        lvProcessesUser.Items[pos].BackColor = Color.Plum;
+                    }
+                }
+                catch (Exception ex) { Debug.Save("bwUserProcesses_RunWorkerCompleted()", ex.Message); }
+            }*/
+                    }
+                    finally { }
                 }));
         }
+
     }
 
     public class CheckBoxListViewItem : INotifyPropertyChanged { private bool isChecked; private string text; public bool IsChecked { get { return isChecked; } set { if (isChecked == value) return; isChecked = value; RaisePropertyChanged("IsChecked"); } } public String Text { get { return text; } set { if (text == value) return; text = value; RaisePropertyChanged("Text"); } } public CheckBoxListViewItem(string t, bool c) { this.Text = t; this.IsChecked = c; } public event PropertyChangedEventHandler PropertyChanged; private void RaisePropertyChanged(string propName) { PropertyChangedEventHandler eh = PropertyChanged; if (eh != null) { eh(this, new PropertyChangedEventArgs(propName)); } } }
