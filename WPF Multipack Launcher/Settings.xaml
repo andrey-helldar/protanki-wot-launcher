@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="MainSettings" x:Class="WPF_Multipack_Launcher.Settings"
-        Title="Settings" Height="519" Width="575" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SizeToContent="WidthAndHeight" WindowStyle="None" ShowInTaskbar="False" Loaded="MainSettings_Loaded">
+        Title="Settings" Height="519" Width="575" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SizeToContent="WidthAndHeight" WindowStyle="None" ShowInTaskbar="False" Loaded="MainSettings_Loaded" Closing="MainSettings_Closing">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
             <GradientStop Color="#FF232323" Offset="1"/>
@@ -15,9 +15,9 @@
             <RowDefinition Height="428"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="345,10,0,0" Grid.Row="2" VerticalAlignment="Center" Width="112" Click="Button_Click"/>
+        <Button x:Name="bSave" Content="Сохранить" HorizontalAlignment="Left" Margin="345,10,0,0" Grid.Row="2" VerticalAlignment="Center" Width="112" Click="bSave_Click"/>
         <Label x:Name="lCaption" Content="Настройки..." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="28" FontSize="16" Width="88"/>
-        <Label Content="Закрыть" HorizontalAlignment="Left" Margin="486,10,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="18" MouseDown="Label_MouseDown" Height="33" Width="70"/>
+        <Label x:Name="lClose" Content="Закрыть" HorizontalAlignment="Left" Margin="486,10,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="18" MouseDown="Label_MouseDown" Height="33" Width="70"/>
         <TabControl HorizontalAlignment="Left" Height="418" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="555" Background="{x:Null}">
             <TabItem Header="Оптимизация" Foreground="Black">
                 <TabItem.Background>
@@ -28,12 +28,13 @@
                 </TabItem.Background>
                 <Grid Margin="0,0,0,5">
                     <GroupBox Header="Другое" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Padding="5" Width="525">
-                        <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,-3,0" Width="506">
                             <CheckBox x:Name="cbNotifyVideo" Content="Уведомлять о новых видео" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top"/>
                             <CheckBox x:Name="cbNotifyNews" Content="Уведомлять о новых новостях" HorizontalAlignment="Left" Margin="5,25,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="cbNotifyPack" Content="Уведомлять о новых версиях мультипака" HorizontalAlignment="Left" Margin="239,5,0,0" VerticalAlignment="Top"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Оптимизация ПК и игры" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Padding="5" Width="525">
+                    <GroupBox x:Name="gbOptimize" Header="Оптимизация ПК и игры" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Padding="5" Width="525">
                         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,-12,0" Width="515">
                             <CheckBox x:Name="cbCloseProcess" Content="Закрывать процессы при запуске игры" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top"/>
                             <CheckBox x:Name="cbForceCloseProcess" Content="Принудительно закрывать процессы" HorizontalAlignment="Left" Margin="25,30,0,0" VerticalAlignment="Top"/>

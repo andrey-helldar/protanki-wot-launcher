@@ -57,13 +57,14 @@ namespace WPF_Multipack_Launcher
                 ChangeState(cbVeryWeakPC, "settings", "weak");
                 ChangeState(cbDisableWinAero, "settings", "aero");
 
-                ChangeState(cbNotifyVideo, "notify", "video");
-                ChangeState(cbNotifyNews, "notify", "news");
+                ChangeState(cbNotifyVideo, "info", "video");
+                ChangeState(cbNotifyNews, "info", "news");
+                ChangeState(cbNotifyPack, "info", "multipack");                
 
                 //ChangeState(cbChangeBack, "settings", "background");
 
                 ChangeIndex(cbGamePriority, "settings", "priority");
-                ChangeIndex(cbClosingLauncher, "launcher", "minimize");
+                ChangeIndex(cbClosingLauncher, "settings", "launcher");
 
                 cbCpuLoading.Content = InterfaceLang.DynamicLanguage((Directory.Exists(@"..\res_mods\" + GameVersionBase) ? (File.Exists(@"..\res_mods\" + GameVersionBase + @"\engine_config.xml") ? "cbCpuLoading0" : "cbCpuLoading1") : "cbCpuLoading1"), Lang);
 
@@ -101,8 +102,25 @@ namespace WPF_Multipack_Launcher
             catch (Exception ex)
             {
                 Debug.Save("MainSettings", "ChangeIndex()", ex.Message, "Element name: " + cb.Name, "XML Element: " + elem, "XML Attribute: " + attr);
-            cb.SelectedIndex = 0;
+                cb.SelectedIndex = 0;
             }
+        }
+
+        private void SetXML(string elem, string attr, string value)
+        {
+            try
+            {
+                if (doc.Root.Element(elem) != null)
+                {
+                    if (doc.Root.Element(elem).Attribute(attr) != null)
+                        doc.Root.Element(elem).Attribute(attr).SetValue(value);
+                    else
+                        doc.Root.Element(elem).Add(new XAttribute(attr, value));
+                }
+                else
+                    doc.Root.Add(new XElement(elem, new XAttribute(attr, value)));
+            }
+            catch (Exception ex) { Debug.Save("MainSettings", "SetXML", ex.Message, "Element: " + elem, "Attribute: " + attr, "Value: " + value); }
         }
 
         private void cbCpuLoading_Click(object sender, RoutedEventArgs e)
@@ -127,9 +145,126 @@ namespace WPF_Multipack_Launcher
             catch (Exception ex) { Debug.Save("MainSettings", "cbCpuLoading_Click()", ex.Message); }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void bSave_Click(object sender, RoutedEventArgs e)
         {
+            /*******************************
+             * Сохраняем приоритет в реестр
+             *******************************/
+            try
+            {
+                var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions", true);
+                key.SetValue("CpuPriorityClass", GetPriority(cbGamePriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    var key = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
+                    key.SetValue("CpuPriorityClass", GetPriority(cbGamePriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
+                }
+                catch (Exception ex) { Debug.Save("MainSettings", "bSave_Click()", ex.Message); }
+            }
+
+            /*******************************
+             * Сохраняем список процессов
+             *******************************/
+            /*if (lvProcessList.CheckedItems.Count > 0)
+            {
+                // Удаляем элемент
+                if (doc.Root.Element("processes") != null) doc.Root.Element("processes").Remove();
+
+                if (doc.Root.Element("processes") == null) { XElement el = new XElement("processes", null); doc.Root.Add(el); }
+
+                foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
+                {
+                    if (obj.BackColor != Color.Plum)
+                        doc.Root.Element("processes").Add(
+                            new XElement("process",
+                                new XAttribute("name", obj.Text),
+                                new XAttribute("description", obj.SubItems[1].Text)
+                        ));
+                }
+            }*/
+
+
+
+            /*******************************
+             * Изменяем файл настроек игры
+             *******************************/
+           /* OptimizeGraphic OptimizeGraphic = new OptimizeGraphic();
+            Task.Factory.StartNew(() => OptimizeGraphic.Optimize(commonTest, cbVideoQuality.Checked, cbVideoQualityWeak.Checked)).Wait();*/
+
+
+
+            /*******************************
+             * Отправляем данные на сайт
+             *******************************/
+            /*try
+            {
+                if (lvProcessesUser.CheckedItems.Count > 0)
+                {
+                    List<string> myJsonData = new List<string>();
+                    myJsonData.Add(Debug.Code);
+
+                    foreach (ListViewItem obj in lvProcessesUser.CheckedItems)
+                    {
+                        if (obj.BackColor != Color.Plum) // Если процесс не является глобальным, то добавляем данные для вывода
+                            myJsonData.Add(obj.Text + "|" + obj.SubItems[1].Text);
+                    }
+
+                    string json = JsonConvert.SerializeObject(myJsonData);
+
+                    //ProcessList.Send(Properties.Resources.de json);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Save("bwSave_RunWorkerCompleted()", "Send processes", ex.Message);
+            }*/
+
+
             Close();
+        }
+
+        private int GetPriority(int pr, bool save = true)
+        {
+            if (save)
+            {
+                switch (pr)
+                {
+                    case 0: return 3; //Высокий
+                    case 1: return 6; // Выше среднего
+                    case 3: return 5; // Ниже среднего
+                    case 4: return 1; // Низкий
+                    default: return 2; // Средний
+                }
+            }
+            else
+            {
+                switch (pr)
+                {
+                    case 3: return 0; //Высокий
+                    case 6: return 1; // Выше среднего
+                    case 5: return 3; // Ниже среднего
+                    case 1: return 4; // Низкий
+                    default: return 2; // Средний
+                }
+            }
+        }
+
+        private void MainSettings_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SetXML("settings", "kill", cbCloseProcess.IsChecked.ToString()); // Закрывать процессы
+            SetXML("settings", "force", cbForceCloseProcess.IsChecked.ToString()); // Принудительно закрывать процессы
+            SetXML("settings", "video", cbLowGraphic.IsChecked.ToString()); // Графика
+            SetXML("settings", "weak", cbVeryWeakPC.IsChecked.ToString()); // Очень слабый ПК
+            SetXML("settings", "aero", cbDisableWinAero.IsChecked.ToString()); // WinAero
+
+            SetXML("settings", "launcher", cbClosingLauncher.SelectedIndex.ToString()); // Действия с лаунчером при запуске игры
+
+            SetXML("info", "video", cbNotifyVideo.IsChecked.ToString()); // Уведомлять о новых видео
+            SetXML("info", "news", cbNotifyNews.IsChecked.ToString()); // Уведомлять о новых новостях
+            SetXML("info", "multipack", cbNotifyPack.IsChecked.ToString()); // Уведомлять о новых версиях мультипака
         }
     }
 }

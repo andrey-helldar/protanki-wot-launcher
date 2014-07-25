@@ -618,6 +618,8 @@ namespace WPF_Multipack_Launcher
                     Settings.doc = Variables.Doc;
                     Settings.Lang = Variables.Lang;
                     Settings.GameVersion = Variables.TanksVersion;
+                    Settings.cbDisableWinAero.IsEnabled = !Variables.WinXP;
+                    if (Variables.WinXP) Variables.Doc.Root.Element("settings").Attribute("aero").SetValue("False");
 
                     Settings.ShowDialog();
 

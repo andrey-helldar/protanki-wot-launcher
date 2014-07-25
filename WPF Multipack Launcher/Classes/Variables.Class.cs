@@ -295,7 +295,7 @@ namespace WPF_Multipack_Launcher.Classes
 
         public void ItXP()
         {
-            try { WinXP = new Version(Environment.OSVersion.ToString().Replace("Microsoft Windows NT ", "").Replace(" Service Pack 1", "")).Major == 5; }
+            try { WinXP = Environment.OSVersion.Version.Major == 5; }
             catch (Exception ex) { Debug.Save("Variables.Class", "ItXP()", ex.Message); }
         }
     }
