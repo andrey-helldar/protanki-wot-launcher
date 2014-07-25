@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
 using System.Text;
@@ -73,8 +75,9 @@ namespace WPF_Multipack_Launcher
                 // Применяем язык
                 //lCaption.Content = InterfaceLang.DynamicLanguage();
 
-                // Загружаем список модулей
-                Task.Factory.StartNew(() => LoadModules());
+
+                Task.Factory.StartNew(() => LoadModules()); // Загружаем список модулей
+                Task.Factory.StartNew(() => LoadProcesses()); // Загружаем список модулей
             }
             catch (Exception ex) { Debug.Save("MainSettings", "MainSettings_Loaded()", ex.Message); }
         }
@@ -265,17 +268,11 @@ namespace WPF_Multipack_Launcher
                 {
                     Action<string> addInListAction = (string text) =>
                            {
-                               if (System.IO.Path.GetFileName(text).IndexOf(Application.Current.GetType().Assembly.GetName().Name)  == -1)
+                               if (System.IO.Path.GetFileName(text).IndexOf(Application.Current.GetType().Assembly.GetName().Name) == -1)
                                    lvModules.Items.Add(new { Name = System.IO.Path.GetFileName(text), Version = FileVersionInfo.GetVersionInfo(text).FileVersion });
                            };
 
                     SearchFilesInDirectory(Environment.CurrentDirectory, new List<string>() { "*.dll", "*.exe" }, addInListAction);
-
-                    /*foreach (FileInfo file in Directory(Environment.CurrentDirectory).GetFiles("*.dll", "*.exe"))
-                    {
-                        try { Dispatcher.BeginInvoke(new ThreadStart(delegate { lvModules.Items.Add(new { Name = file.FullName, Version = FileVersionInfo.GetVersionInfo(file.FullName).FileVersion }); })); }
-                        catch (Exception ex) { Debug.Save("MainSettings", "LoadModules()", ex.Message, file.FullName); }
-                    }*/
                 }));
             }
             catch (Exception ex) { Debug.Save("MainSettings", "LoadModules()", ex.Message); };
@@ -296,20 +293,59 @@ namespace WPF_Multipack_Launcher
             SetXML("info", "multipack", cbNotifyPack.IsChecked.ToString()); // Уведомлять о новых версиях мультипака
         }
 
-        public void SearchFilesInDirectory(String directory, IEnumerable<string> searchPatternList, Delegate method)
+        private void SearchFilesInDirectory(String directory, IEnumerable<string> searchPatternList, Delegate method)
         {
-            if ((searchPatternList == null) || (searchPatternList.Count<string>() == 0))
-                throw new ArgumentNullException("searchPatternList");
-            foreach (string searchPattern in searchPatternList)
-                using (var iterator = Directory.EnumerateFiles(directory, searchPattern).GetEnumerator())
-                    try
-                    { while (iterator.MoveNext()) Application.Current.Dispatcher.BeginInvoke(method, iterator.Current); }
-                    finally { }
+            try
+            {
+                if ((searchPatternList == null) || (searchPatternList.Count<string>() == 0))
+                    throw new ArgumentNullException("searchPatternList");
+                foreach (string searchPattern in searchPatternList)
+                    using (var iterator = Directory.EnumerateFiles(directory, searchPattern).GetEnumerator())
+                        try
+                        { while (iterator.MoveNext()) Application.Current.Dispatcher.BeginInvoke(method, iterator.Current); }
+                        finally { }
 
-            using (var iterator = Directory.EnumerateDirectories(directory).GetEnumerator())
-                while (iterator.MoveNext())
-                    try { SearchFilesInDirectory(iterator.Current, searchPatternList, method); }
-                    finally { }
+                using (var iterator = Directory.EnumerateDirectories(directory).GetEnumerator())
+                    while (iterator.MoveNext())
+                        try { SearchFilesInDirectory(iterator.Current, searchPatternList, method); }
+                        finally { }
+            }
+            catch (Exception ex) { Debug.Save("MainSettings", "SearchFilesInDirectory()", ex.Message, "Directory: " + directory); }
+        }
+
+        private void LoadProcesses()
+        {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    try
+                    {
+                        lvProcessList.Items.Clear();
+
+                        Process[] myProcesses = Process.GetProcesses();
+                        int processID = Process.GetCurrentProcess().SessionId;
+
+
+                        /*ObservableCollection<CheckBoxListViewItem> items = new ObservableCollection<CheckBoxListViewItem>();
+
+                        foreach (Process process in myProcesses)
+                            items.Add(new CheckBoxListViewItem(process.ProcessName, false));
+
+                        lvProcessList.ItemsSource = items;
+
+                        foreach (CheckBoxListViewItem o in lvProcessList.ItemsSource) o.IsChecked = true;*/
+
+
+                        foreach (var process in myProcesses)
+                            if (process.SessionId == processID)
+                            {
+
+                                lvProcessList.Items.Add(new { Status = "---", Name = process.ProcessName, Description = process.MainModule.FileVersionInfo.FileDescription.Trim() });
+                            }
+                    }
+                    catch (Exception ex) { Debug.Save("MainSettings", "LoadProcesses()", ex.Message); }
+                }));
         }
     }
+
+    public class CheckBoxListViewItem : INotifyPropertyChanged { private bool isChecked; private string text; public bool IsChecked { get { return isChecked; } set { if (isChecked == value) return; isChecked = value; RaisePropertyChanged("IsChecked"); } } public String Text { get { return text; } set { if (text == value) return; text = value; RaisePropertyChanged("Text"); } } public CheckBoxListViewItem(string t, bool c) { this.Text = t; this.IsChecked = c; } public event PropertyChangedEventHandler PropertyChanged; private void RaisePropertyChanged(string propName) { PropertyChangedEventHandler eh = PropertyChanged; if (eh != null) { eh(this, new PropertyChangedEventArgs(propName)); } } }
 }

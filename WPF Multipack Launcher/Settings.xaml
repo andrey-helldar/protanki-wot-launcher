@@ -71,10 +71,16 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 <Grid HorizontalAlignment="Left" Height="389" VerticalAlignment="Top" Width="538">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
                     <ListView x:Name="lvProcessList" HorizontalAlignment="Left" Height="369" Margin="10,10,0,0" VerticalAlignment="Top" Width="518">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn/>
+                                <GridViewColumn Header="Статус" Width="50" DisplayMemberBinding="{Binding Status}" CellTemplate="{StaticResource FirstCell}"/>
+                                <GridViewColumn Header="Процесс" Width="200" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Описание" Width="250" DisplayMemberBinding="{Binding Description}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

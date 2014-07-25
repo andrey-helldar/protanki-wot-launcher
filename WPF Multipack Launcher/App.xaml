@@ -94,5 +94,11 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
+        <DataTemplate x:Key="FirstCell">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}}"/>
+            </StackPanel>
+        </DataTemplate>
     </Application.Resources>
 </Application>
