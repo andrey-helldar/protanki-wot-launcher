@@ -44,7 +44,7 @@ namespace WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                Debug.Save("RSS.Class", "Add()", ex.Message,
+                Debug.Save("Youtube.Class", "Add()", ex.Message,
                     "ID: " + id,
                     "Title: " + title,
                     "Content: " + content,
@@ -56,19 +56,19 @@ namespace WPF_Multipack_Launcher.Classes
         public void Clear()
         {
             try { if (List.Count > 0) List.Clear(); }
-            catch (Exception ex) { Debug.Save("RSS.Class", "Clear()", ex.Message); }
+            catch (Exception ex) { Debug.Save("Youtube.Class", "Clear()", ex.Message); }
         }
 
         public int IndexOf(string str)
         {
             try { if (List.Count > -1) { for (int i = 0; i < List.Count; i++) { if (List[i].ID == str) { return i; } } } return -1; }
-            catch (Exception ex) { Debug.Save("RSS.Class", "IndexOf()", ex.Message, "Search: " + str); return -1; }
+            catch (Exception ex) { Debug.Save("Youtube.Class", "IndexOf()", ex.Message, "Search: " + str); return -1; }
         }
 
         public int Count()
         {
             try { return List.Count; }
-            catch (Exception ex) { Debug.Save("RSS.Class", "Count()", ex.Message); return 0; }
+            catch (Exception ex) { Debug.Save("Youtube.Class", "Count()", ex.Message); return 0; }
         }
 
         /// <summary>
@@ -80,10 +80,15 @@ namespace WPF_Multipack_Launcher.Classes
             try
             {
                 if (List.Count > -1)
+                {
                     for (int i = 0; i < List.Count; i++)
                         if (List[i].ID == id) { List.RemoveAt(i); }
+                }
             }
-            catch (Exception ex) { Debug.Save("RSS.Class", "Count(id = " + id + ")", ex.Message); Delete(id); }
+            catch (Exception /*ex*/) { /*Debug.Save("Youtube.Class", "Count(id = " + id + ")", ex.Message);*/ Delete(id); }
+
+            try { List.TrimExcess(); }
+            catch (Exception ex) { Debug.Save("Youtube.Class", "Delete()", "Function: TrimExcess()", ex.Message); }
         }
     }
 }

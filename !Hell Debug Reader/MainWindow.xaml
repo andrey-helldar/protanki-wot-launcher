@@ -10,40 +10,31 @@
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="99*"/>
+            <RowDefinition Height="422*"/>
             <RowDefinition Height="49"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="279"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="lvDebugs" Margin="10" MouseDoubleClick="ListBox_MouseDoubleClick" Background="{x:Null}"/>
-        <GroupBox Header="Лог:" Margin="5,5,10,10" Grid.Column="1">
-            <Grid Margin="0,0,-5,1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="284*"/>
-                    <ColumnDefinition Width="221*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="98"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Content="Модуль:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="55"/>
-                <Label Content="Функция:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="26" Width="60"/>
-                <Label x:Name="lModule" Content="---" HorizontalAlignment="Left" Margin="86,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                <Label x:Name="lFunction" Content="---" HorizontalAlignment="Left" Margin="86,41,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                <Label Content="Версия:" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1"/>
-                <Label x:Name="lVersion" Content="---" HorizontalAlignment="Left" Margin="70,10,0,0" VerticalAlignment="Top" Grid.Column="1" FontWeight="Bold"/>
-                <Label Content="Дата:" HorizontalAlignment="Left" Margin="5,41,0,0" VerticalAlignment="Top" Height="26" Width="38" Grid.Column="1"/>
-                <Label x:Name="lDate" Content="---" HorizontalAlignment="Left" Margin="70,41,0,0" VerticalAlignment="Top" Grid.Column="1" FontWeight="Bold"/>
-                <TextBox x:Name="tbParams" Margin="10" TextWrapping="Wrap" Text="---" Grid.Row="1" Background="{x:Null}" VerticalScrollBarVisibility="Auto" UseLayoutRounding="True" Grid.ColumnSpan="2" IsReadOnly="True"/>
-                <Label Content="User ID:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
-                <Label x:Name="lUserID" Content="---" HorizontalAlignment="Left" Margin="86,72,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold"/>
-            </Grid>
-        </GroupBox>
-        <Button Content="Закрыть" Grid.Column="1" Margin="0,0,10,10" Grid.Row="1" Click="Button_Click" HorizontalAlignment="Right" Width="139" Height="29" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="tbPath" HorizontalAlignment="Left" Margin="10,0,0,10" Grid.Row="1" Width="469" Grid.ColumnSpan="2" VerticalContentAlignment="Center" IsReadOnly="True" Height="29" VerticalAlignment="Bottom" Background="{x:Null}"/>
-        <Button Grid.Column="1" Margin="219,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Height="29" Content="Обзор..." Click="Button_Click_1" HorizontalAlignment="Left" Width="75"/>
-        <Button Content="X" Grid.Column="1" Margin="0,0,154,10" Grid.Row="1" Click="Button_Click_2" HorizontalAlignment="Right" Width="32" Height="29" VerticalAlignment="Bottom"/>
+        <ListBox x:Name="lvDebugs" Margin="10,10,10,61" MouseDoubleClick="ListBox_MouseDoubleClick" Background="{x:Null}" Grid.RowSpan="2"/>
+        <Button Content="Закрыть" Grid.Column="1" Margin="0,0,10,10" Grid.Row="2" Click="Button_Click" HorizontalAlignment="Right" Width="139" Height="29" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="tbPath" HorizontalAlignment="Left" Margin="10,0,0,10" Grid.Row="2" Width="469" Grid.ColumnSpan="2" VerticalContentAlignment="Center" IsReadOnly="True" Height="29" VerticalAlignment="Bottom" Background="{x:Null}"/>
+        <Button Grid.Column="1" Margin="219,0,0,10" Grid.Row="2" VerticalAlignment="Bottom" Height="29" Content="Обзор..." Click="Button_Click_1" HorizontalAlignment="Left" Width="75"/>
+        <Button Content="Удалить выделенный" Margin="0,0,124,10" Grid.Row="1" Click="Button_Click_2" HorizontalAlignment="Right" Width="145" Height="29" VerticalAlignment="Bottom"/>
+        <Label Content="Модуль:" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Height="26" Width="55" Grid.Column="1"/>
+        <Label Content="Функция:" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Height="26" Width="60" Grid.Column="1"/>
+        <Label x:Name="lModule" Content="---" HorizontalAlignment="Left" Margin="86,12,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="lFunction" Content="---" HorizontalAlignment="Left" Margin="86,43,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.Column="1"/>
+        <Label Content="Версия:" HorizontalAlignment="Left" Margin="281,12,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1"/>
+        <Label x:Name="lVersion" Content="---" HorizontalAlignment="Left" Margin="346,12,0,0" VerticalAlignment="Top" Grid.Column="1" FontWeight="Bold"/>
+        <Label Content="Дата:" HorizontalAlignment="Left" Margin="281,43,0,0" VerticalAlignment="Top" Height="26" Width="38" Grid.Column="1"/>
+        <Label x:Name="lDate" Content="---" HorizontalAlignment="Left" Margin="346,43,0,0" VerticalAlignment="Top" Grid.Column="1" FontWeight="Bold"/>
+        <Label Content="User ID:" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1" Grid.RowSpan="2"/>
+        <Label x:Name="lUserID" Content="---" HorizontalAlignment="Left" Margin="86,74,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="2"/>
+        <TextBox x:Name="tbParams" Margin="10" TextWrapping="Wrap" Text="---" Background="{x:Null}" VerticalScrollBarVisibility="Auto" UseLayoutRounding="True" IsReadOnly="True" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Удалить все" Margin="0,0,10,10" Grid.Row="1" HorizontalAlignment="Right" Width="109" Height="29" VerticalAlignment="Bottom" Click="Button_Click_3"/>
+        <Button Content="Обновить" Grid.Column="1" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="Button_Click_4"/>
     </Grid>
 </Window>

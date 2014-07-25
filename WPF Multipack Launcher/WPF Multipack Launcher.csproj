@@ -86,7 +86,7 @@
     <Compile Include="Classes\INI.Class.cs" />
     <Compile Include="Classes\Optimize.Class.cs" />
     <Compile Include="Classes\POST.Class.cs" />
-    <Compile Include="Classes\Rss.Class.cs" />
+    <Compile Include="Classes\Youtube.Class.cs" />
     <Compile Include="Classes\Update.Class.cs" />
     <Compile Include="Classes\Variables.Class.cs" />
     <Compile Include="Settings.xaml.cs">

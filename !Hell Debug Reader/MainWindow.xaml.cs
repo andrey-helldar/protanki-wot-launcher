@@ -78,21 +78,55 @@ namespace _Hell_Debug_Reader
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             if (lvDebugs.SelectedIndex > -1)
-                if (MessageBox.Show("Вы действительно хотите удалить файл дебага \"" + lvDebugs.SelectedItem.ToString() + "\"?", "Удаление дебага", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
-                {
-                    File.Delete(tbPath.Text + @"\" + lvDebugs.SelectedItem.ToString());
+                if (File.Exists(tbPath.Text + @"\" + lvDebugs.SelectedItem.ToString()))
+                    if (MessageBox.Show("Вы действительно хотите удалить файл дебага \"" + lvDebugs.SelectedItem.ToString() + "\"?", "Удаление дебага", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                    {
+                        File.Delete(tbPath.Text + @"\" + lvDebugs.SelectedItem.ToString());
 
-                    lvDebugs.ItemsSource = new DirectoryInfo(tbPath.Text).GetFiles("*.debug");
+                        lvDebugs.ItemsSource = new DirectoryInfo(tbPath.Text).GetFiles("*.debug");
 
-                    lModule.Content = "---";
-                    lFunction.Content = "---";
-                    lUserID.Content = "---";
-                    lVersion.Content = "---";
-                    lDate.Content = "---";
-                    tbParams.Text = "---";
+                        lModule.Content = "---";
+                        lFunction.Content = "---";
+                        lUserID.Content = "---";
+                        lVersion.Content = "---";
+                        lDate.Content = "---";
+                        tbParams.Text = "---";
 
-                    MessageBox.Show("Файл успешно удален!");
-                }
+                        MessageBox.Show("Файл успешно удален!");
+                    }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить ВСЕ файлы дебага?", "Удаление дебага", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+            {
+                foreach (string file in lvDebugs.ItemsSource)
+                    if (File.Exists(tbPath.Text + @"\" + file.ToString()))
+                        File.Delete(tbPath.Text + @"\" + file.ToString());
+                              
+                lvDebugs.ItemsSource = new DirectoryInfo(tbPath.Text).GetFiles("*.debug");
+
+                lModule.Content = "---";
+                lFunction.Content = "---";
+                lUserID.Content = "---";
+                lVersion.Content = "---";
+                lDate.Content = "---";
+                tbParams.Text = "---";
+
+                MessageBox.Show("Все файлы успешно удалены!");
+            }
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            lvDebugs.ItemsSource = new DirectoryInfo(tbPath.Text).GetFiles("*.debug");
+
+            lModule.Content = "---";
+            lFunction.Content = "---";
+            lUserID.Content = "---";
+            lVersion.Content = "---";
+            lDate.Content = "---";
+            tbParams.Text = "---";
         }
     }
 }

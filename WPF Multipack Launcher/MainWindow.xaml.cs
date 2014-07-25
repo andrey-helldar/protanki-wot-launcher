@@ -55,17 +55,16 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { SetBackground(); })));
+                //Task.Factory.StartNew(() => SetBackground());
 
-                lMultipackVersion.Content = Variables.MultipackVersion.ToString();
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { lMultipackVersion.Content = Variables.MultipackVersion.ToString(); }));
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")"; }));
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { lMultipackVersion.Content = LocalInterface.VersionToSharp(Variables.MultipackVersion); }));
 
-                lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")";
-                lMultipackVersion.Content = LocalInterface.VersionToSharp(Variables.MultipackVersion);
+                Task.Factory.StartNew(() => Youtube());
+                Task.Factory.StartNew(() => WargamingNews());
 
-                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { Youtube(); })));
-                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { WargamingNews(); })));
-
-                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { CheckUpdates(); }))).Wait();
+                Task.Factory.StartNew(() => CheckUpdates());
 
                 // NotifyIcon
                 Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
@@ -75,9 +74,9 @@ namespace WPF_Multipack_Launcher
                 notifyIcon.Text = lCaption.Content.ToString();
                 notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
 
-                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang)); })));
-                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { VideoNotify(); })));
-                Task.Factory.StartNew(() => Dispatcher.BeginInvoke(new ThreadStart(delegate { ShowUpdateWindow(); })));
+                Task.Factory.StartNew(() => ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang)));
+                Task.Factory.StartNew(() => VideoNotify());
+                Task.Factory.StartNew(() => ShowUpdateWindow());
             }
             catch (Exception ex)
             {
@@ -87,7 +86,7 @@ namespace WPF_Multipack_Launcher
             }
         }
 
-        private void SetBackground()
+        /*private void SetBackground()
         {
             try
             {
@@ -101,10 +100,12 @@ namespace WPF_Multipack_Launcher
                         {
                             if (Variables.BackgroundIndex < 1 || Variables.BackgroundIndex > Variables.BackgroundMax) Variables.BackgroundIndex = 1;
 
-                            try { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex++).ToString())))); }
-                            catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
+                            
+                                try { Dispatcher.BeginInvoke(new ThreadStart(delegate  {this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex++).ToString()))));})); }
+                                catch (Exception) { Dispatcher.BeginInvoke(new ThreadStart(delegate { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); })); }
+                            
                         }
-                        catch (Exception) { Thread.Sleep(5000); this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); }
+                        catch (Exception) { Thread.Sleep(5000); Dispatcher.BeginInvoke(new ThreadStart(delegate { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, "1")))); })); }
 
                         Thread.Sleep(Variables.BackgroundDelay);
                     }
@@ -115,13 +116,13 @@ namespace WPF_Multipack_Launcher
                     try
                     {
                         Variables.BackgroundIndex = new Random().Next(1, 7);
-                        this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, Variables.BackgroundIndex.ToString()))));
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, Variables.BackgroundIndex.ToString())))); }));
                     }
-                    catch (Exception) { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); }
+                    catch (Exception) { Dispatcher.BeginInvoke(new ThreadStart(delegate { this.Background = new ImageBrush(new BitmapImage(new Uri(String.Format(uri, (Variables.BackgroundIndex - 1).ToString())))); })); }
                 }
             }
             catch (Exception ex) { Debug.Save("MainWindow", "SetBackground()", ex.Message); }
-        }
+        }*/
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -197,7 +198,7 @@ namespace WPF_Multipack_Launcher
             {
                 if (Variables.AutoAero) Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
 
-                notifyIcon.Dispose();
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { notifyIcon.Dispose(); }));
                 Variables.Doc.Save("settings.xml");
             }
             catch (Exception ex) { Debug.Save("MainWindow", "MainForm_Closing()", ex.Message); }
@@ -231,7 +232,7 @@ namespace WPF_Multipack_Launcher
                     Dictionary<string, string> postStatus = POST.FromJson(POST.Send(Properties.Resources.DeveloperSite + Properties.Resources.DeveloperWotVersion, "data=" + POST.Json(json)));
                     Variables.UpdateTanksVersion = postStatus["id"] != "0.0.0.0" ? new Version(postStatus["id"]) : Variables.TanksVersion;
                 }
-                catch (Exception) { Variables.UpdateTanksVersion = new Version("0.0.0.0"); }
+                catch (Exception ex0) { Debug.Save("MainWindow", "CheckUpdates()", ex0.Message); Variables.UpdateTanksVersion = new Version("0.0.0.0"); }
 
 
                 var remoteJson = POST.JsonResponse(Properties.Resources.JsonUpdates);
@@ -244,28 +245,31 @@ namespace WPF_Multipack_Launcher
                 {
                     Variables.UpdateMessage = remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString();
                     Variables.UpdateLink = remoteJson[Variables.MultipackType]["download"].ToString();
-                    lStatusUpdates.Content = String.Format("{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.UpdateMultipackVersion.ToString());
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        lStatusUpdates.Content = String.Format("{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.UpdateMultipackVersion.ToString());
+                    }));
                 }
 
                 if (Variables.UpdateTanks)
                 {
-                    lStatusUpdates.Content += String.Format(Environment.NewLine + "{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString());
-                    bPlay.IsEnabled = false;
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Content += String.Format(Environment.NewLine + "{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString()); }));
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { bPlay.IsEnabled = false; }));
                 }
                 else
-                    bPlay.IsEnabled = true;
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { bPlay.IsEnabled = true; }));
 
 
                 if (Variables.UpdateMultipack || Variables.UpdateTanks) // Если есть одно из обновлений
                 {
-                    bUpdate.IsEnabled = true; // Включаем кнопку обновлений
-                    lStatusUpdates.Foreground = System.Windows.Media.Brushes.Yellow;
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { bUpdate.IsEnabled = true;})); // Включаем кнопку обновлений
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Foreground = System.Windows.Media.Brushes.Yellow;}));
                 }
                 else
                 {
-                    bUpdate.IsEnabled = false; // Выключаем кнопку обновлений
-                    lStatusUpdates.Content = LocalLanguage.DynamicLanguage("llActuallyActually", Variables.Lang);
-                    lStatusUpdates.Foreground = System.Windows.Media.Brushes.GreenYellow;
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { bUpdate.IsEnabled = false;})); // Выключаем кнопку обновлений
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Content = LocalLanguage.DynamicLanguage("llActuallyActually", Variables.Lang);}));
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Foreground = System.Windows.Media.Brushes.GreenYellow; }));
                 }
             }
             catch (Exception ex) { Debug.Save("MainForm", "CheckUpdates()", ex.Message); }
@@ -303,13 +307,16 @@ namespace WPF_Multipack_Launcher
                     if (Variables.Doc.Root.Element("launcher").Attribute("minimize") != null)
                         select = Variables.Doc.Root.Element("launcher").Attribute("minimize").Value;
 
-                switch (select)
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
-                    case "1": Hide(); break;
-                    case "2": WindowState = System.Windows.WindowState.Minimized; break;
-                    case "3": Close(); break;
-                    default: break;
-                }
+                    switch (select)
+                    {
+                        case "1": Hide(); break;
+                        case "2": WindowState = System.Windows.WindowState.Minimized; break;
+                        case "3": Close(); break;
+                        default: break;
+                    }
+                }));
             }
             catch (Exception ex) { Debug.Save("MainWindow", "State()", ex.Message); }
         }
@@ -340,39 +347,43 @@ namespace WPF_Multipack_Launcher
                         );
 
                     // Creating window controls
-                    if (topOffset + fontSize + 6 < gGrid.RowDefinitions[3].Height.Value)
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
-                        // Date
-                        Label label = new Label();
-                        label.Foreground = new SolidColorBrush(Colors.LightGray);
-                        label.FontSize = fontSize;
-                        label.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                        label.VerticalAlignment = System.Windows.VerticalAlignment.Top;
-                        label.Margin = new Thickness(5, topOffset, 0, 0);
-                        label.Content = FormatDateNews(el.Element(ns + "published").Value.Remove(10));
-                        Grid.SetRow(label, 3);
-                        Grid.SetColumn(label, 1);
-                        gGrid.Children.Add(label);
+                        if (topOffset + fontSize + 6 < (int)gGrid.RowDefinitions[3].Height.Value)
+                        {
+                            // Date
+                            Label label = new Label();
+                            label.Foreground = new SolidColorBrush(Colors.LightGray);
+                            label.FontSize = fontSize;
+                            label.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                            label.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                            label.Margin = new Thickness(5, topOffset, 0, 0);
+                            label.Content = FormatDateNews(el.Element(ns + "published").Value.Remove(10));
+                            Grid.SetRow(label, 3);
+                            Grid.SetColumn(label, 1);
+                            gGrid.Children.Add(label);
 
-                        // News title
-                        Label labelT = new Label();
-                        //Hyperlink hyperlink = new Hyperlink(new Run(content));
-                        Hyperlink hyperlink = new Hyperlink(new Run(TrimText(content, gGrid.ColumnDefinitions[1].ActualWidth - 100, fontSize)));
-                        hyperlink.NavigateUri = new Uri(link);
-                        hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
+                            // News title
+                            Label labelT = new Label();
+                            //Hyperlink hyperlink = new Hyperlink(new Run(content));
+                            Hyperlink hyperlink = new Hyperlink(new Run(TrimText(content, gGrid.ColumnDefinitions[1].ActualWidth - 100, fontSize)));
+                            hyperlink.NavigateUri = new Uri(link);
+                            hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
 
-                        labelT.Content = hyperlink;
-                        labelT.FontSize = fontSize;
-                        labelT.ToolTip = content;
-                        labelT.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                        labelT.VerticalAlignment = System.Windows.VerticalAlignment.Top;
-                        labelT.Margin = new Thickness(60, topOffset, 0, 0);
-                        Grid.SetRow(labelT, 3);
-                        Grid.SetColumn(labelT, 1);
-                        gGrid.Children.Add(labelT);
+                            labelT.Content = hyperlink;
+                            labelT.FontSize = fontSize;
+                            labelT.ToolTip = content;
+                            labelT.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                            labelT.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                            labelT.Margin = new Thickness(60, topOffset, 0, 0);
+                            Grid.SetRow(labelT, 3);
+                            Grid.SetColumn(labelT, 1);
+                            gGrid.Children.Add(labelT);
 
-                        topOffset += fontSize + 6;
-                    }
+                            topOffset += fontSize + 6;
+                            //Thread.Sleep(100);
+                        }
+                    }));
                 }
             }
             catch (Exception ex) { Debug.Save("MainWindow", "Youtube()", ex.Message); }
@@ -385,42 +396,49 @@ namespace WPF_Multipack_Launcher
                 int topOffset = 0,
                     fontSize = 16;
 
+                int height = 100;
+
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { height = (int)gGrid.RowDefinitions[3].Height.Value; }));
+
                 XDocument doc = XDocument.Load(Variables.Lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
 
                 foreach (XElement el in doc.Root.Element("channel").Elements("item"))
                 {
-                    if (topOffset + fontSize + 6 < gGrid.RowDefinitions[3].Height.Value)
+                    if (topOffset + fontSize + 6 < height)
                     {
-                        // Date
-                        Label label = new Label();
-                        label.Foreground = new SolidColorBrush(Colors.LightGray);
-                        label.FontSize = fontSize;
-                        label.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                        label.VerticalAlignment = System.Windows.VerticalAlignment.Top;
-                        label.Margin = new Thickness(5, topOffset, 0, 0);
-                        label.Content = FormatDateNews(el.Element("pubDate").Value);
-                        Grid.SetRow(label, 3);
-                        Grid.SetColumn(label, 2);
-                        gGrid.Children.Add(label);
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            // Date
+                            Label label = new Label();
+                            label.Foreground = new SolidColorBrush(Colors.LightGray);
+                            label.FontSize = fontSize;
+                            label.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                            label.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                            label.Margin = new Thickness(5, topOffset, 0, 0);
+                            label.Content = FormatDateNews(el.Element("pubDate").Value);
+                            Grid.SetRow(label, 3);
+                            Grid.SetColumn(label, 2);
+                            gGrid.Children.Add(label);
 
-                        // News title
-                        Label labelT = new Label();
-                        //Hyperlink hyperlink = new Hyperlink(new Run(el.Element("title").Value));
-                        Hyperlink hyperlink = new Hyperlink(new Run(TrimText(el.Element("title").Value, gGrid.ColumnDefinitions[2].ActualWidth - 100, fontSize)));
-                        hyperlink.NavigateUri = new Uri(el.Element("link").Value);
-                        hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
+                            // News title
+                            Label labelT = new Label();
+                            //Hyperlink hyperlink = new Hyperlink(new Run(el.Element("title").Value));
+                            Hyperlink hyperlink = new Hyperlink(new Run(TrimText(el.Element("title").Value, (int)gGrid.ColumnDefinitions[2].ActualWidth - 100, fontSize)));
+                            hyperlink.NavigateUri = new Uri(el.Element("link").Value);
+                            hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_Open);
 
-                        labelT.Content = hyperlink;
-                        labelT.ToolTip = el.Element("title").Value;
-                        labelT.FontSize = fontSize;
-                        labelT.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                        labelT.VerticalAlignment = System.Windows.VerticalAlignment.Top;
-                        labelT.Margin = new Thickness(60, topOffset, 0, 0);
-                        Grid.SetRow(labelT, 3);
-                        Grid.SetColumn(labelT, 2);
-                        gGrid.Children.Add(labelT);
+                            labelT.Content = hyperlink;
+                            labelT.ToolTip = el.Element("title").Value;
+                            labelT.FontSize = fontSize;
+                            labelT.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                            labelT.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                            labelT.Margin = new Thickness(60, topOffset, 0, 0);
+                            Grid.SetRow(labelT, 3);
+                            Grid.SetColumn(labelT, 2);
+                            gGrid.Children.Add(labelT);
 
-                        topOffset += fontSize + 6;
+                            topOffset += fontSize + 6;
+                        })).Wait();
                     }
                     else break;
                 }
@@ -433,9 +451,7 @@ namespace WPF_Multipack_Launcher
             try
             {
                 if (dt == null) return "null";
-
-                DateTime nd = DateTime.Parse(dt);
-                return nd.ToString("dd/MM").Replace(".", "/");
+                return DateTime.Parse(dt).ToString("dd/MM").Replace(".", "/");
             }
             catch (Exception ex) { Debug.Save("MainWindow", "FormatDateNews()", "Date: " + dt, ex.Message); return "error"; }
         }
@@ -456,7 +472,10 @@ namespace WPF_Multipack_Launcher
                 else
                     return text;
             }
-            catch (Exception ex) { Debug.Save("MainWindow", "TrimText()", ex.Message, text, "Max width: " + maxWidth.ToString(), "Font size: " + fontSize.ToString()); return text; }
+            catch (Exception /*ex*/)
+            {/* Debug.Save("MainWindow", "TrimText()", ex.Message, text, "Max width: " + maxWidth.ToString(), "Font size: " + fontSize.ToString());*/
+                return text;
+            }
         }
 
         private double TextWidth(string text, int fontSize = 14)
@@ -478,8 +497,11 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                caption = caption != null ? caption : lCaption.Content.ToString();
-                notifyIcon.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+               {
+                   caption = caption != null ? caption : lCaption.Content.ToString();
+                   notifyIcon.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
+               }));
             }
             catch (Exception ex) { Debug.Save("MainWindow", "ShowNotify()", ex.Message, "Caption: " + caption, text); }
         }
@@ -528,22 +550,31 @@ namespace WPF_Multipack_Launcher
             {
                 foreach (var el in YoutubeClass.List)
                     try { if (!Variables.ParseDate(Variables.MultipackDate, el.Date)) YoutubeClass.Delete(el.ID); }
-                    catch (Exception ex0) { Debug.Save("MainWindow", "DeleteVideo()", "Element ID: " + el.ID, "Element title: " + el.Title, ex0.Message); }
+                    catch (Exception ex0)
+                    { Debug.Save("MainWindow", "DeleteVideo()", "Element ID: " + el.ID, "Element title: " + el.Title, ex0.Message);
+                        DeleteVideo();
+                    }
             }
-            catch (Exception ex) { Debug.Save("MainWindow", "DeleteVideo()", ex.Message); DeleteVideo(); }
+            catch (Exception /*ex*/)
+            { /*Debug.Save("MainWindow", "DeleteVideo()", ex.Message);*/
+                DeleteVideo();
+            }
         }
 
         private void bSettings_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                this.Effect = new System.Windows.Media.Effects.BlurEffect();
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+               {
+                   this.Effect = new System.Windows.Media.Effects.BlurEffect();
 
-                Settings stg = new Settings();
-                stg.lang = Variables.Lang;
-                stg.ShowDialog();
+                   Settings stg = new Settings();
+                   stg.lang = Variables.Lang;
+                   stg.ShowDialog();
 
-                this.Effect = null;
+                   this.Effect = null;
+               }));
             }
             catch (Exception ex) { Debug.Save("MainWindow", "bSettings_Click()", ex.Message); }
         }
@@ -561,15 +592,18 @@ namespace WPF_Multipack_Launcher
                 if (Variables.Doc.Root.Element("notification") != null)
                     if (Variables.Doc.Root.Element("notification").Value != Variables.UpdateMultipackVersion.ToString())
                     {
-                        Notify MainNotify = new Notify();
-                        MainNotify.lCaption.Content = lStatusUpdates.Content;
-                        MainNotify.lCaption.FontSize = 16;
-                        MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            Notify MainNotify = new Notify();
+                            MainNotify.lCaption.Content = lStatusUpdates.Content;
+                            MainNotify.lCaption.FontSize = 16;
+                            MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
 
-                        this.Effect = new System.Windows.Media.Effects.BlurEffect();
-                        MainNotify.ShowDialog();
+                            this.Effect = new System.Windows.Media.Effects.BlurEffect();
+                            MainNotify.ShowDialog();
 
-                        this.Effect = null;
+                            this.Effect = null;
+                        }));
                     }
             }
             catch (Exception ex) { Debug.Save("MainWindow", "ShowUpdateWindow()", ex.Message); }
