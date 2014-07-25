@@ -89,6 +89,11 @@
     <Compile Include="Classes\Youtube.Class.cs" />
     <Compile Include="Classes\Update.Class.cs" />
     <Compile Include="Classes\Variables.Class.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -121,11 +126,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -154,7 +154,6 @@
     <Resource Include="Resources\settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\res_mods.zip" />
     <None Include="Resources\settings.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -182,9 +181,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Splash1.png" />
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Resources\Splash2.png" />

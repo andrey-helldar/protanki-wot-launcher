@@ -220,16 +220,6 @@ namespace WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] res_mods {
-            get {
-                object obj = ResourceManager.GetObject("res_mods", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         public static byte[] restart {
             get {
                 object obj = ResourceManager.GetObject("restart", resourceCulture);
@@ -308,16 +298,6 @@ namespace WPF_Multipack_Launcher.Properties {
         public static string SettingsXML {
             get {
                 return ResourceManager.GetString("SettingsXML", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap Splash {
-            get {
-                object obj = ResourceManager.GetObject("Splash", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
