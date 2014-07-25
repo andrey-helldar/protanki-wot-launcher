@@ -61,6 +61,9 @@ namespace WPF_Multipack_Launcher.Classes
                     AutoWeak = false,
                     AutoCPU = true;
 
+        // OS Version
+        public bool WinXP = true;
+
         // Other
         public string TempStatus = "Loading status...";
         public bool ShowVideoNotify = true,
@@ -82,10 +85,10 @@ namespace WPF_Multipack_Launcher.Classes
                 ProductName = Application.Current.GetType().Assembly.GetName().Name;
 
                 GetApiKey();
+                ItXP();
 
                 new Classes.Update().SaveFromResources();
 
-                if (File.Exists("settings.xml")) Doc = XDocument.Load("settings.xml");
                 LoadSettings();
             }
             catch (Exception ex) { Debug.Save("Variables.Class", "Start()", ex.Message); }
@@ -95,6 +98,8 @@ namespace WPF_Multipack_Launcher.Classes
 
         private void LoadSettings()
         {
+            if (File.Exists("settings.xml")) Doc = XDocument.Load("settings.xml");
+
             // Загружаем версию клиента игры
             try { PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry(); }
             catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: PathTanks", ex.Message); }
@@ -284,6 +289,12 @@ namespace WPF_Multipack_Launcher.Classes
         {
             try { return String.Format("{0}.{1}.{2}.", ver.Major, ver.Minor, ver.Build); }
             catch (Exception ex) { Debug.Save("Variables.Class", "VersionPrefix()", "Version: " + ver.ToString(), ex.Message); return "0.0.0."; }
+        }
+
+        public void ItXP()
+        {
+            try { WinXP = new Version(Environment.OSVersion.ToString().Replace("Microsoft Windows NT ", "").Replace(" Service Pack 1", "")).Major == 5; }
+            catch (Exception ex) { Debug.Save("Variables.Class", "ItXP()", ex.Message); }
         }
     }
 }

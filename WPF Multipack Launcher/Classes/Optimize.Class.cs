@@ -15,6 +15,7 @@ namespace WPF_Multipack_Launcher.Classes
         Debug Debug = new Debug();
 
         public void Start(
+            bool WinXP = true,
             bool Kill = false,
             bool ForceKill = false,
             bool Aero = false,
@@ -31,12 +32,13 @@ namespace WPF_Multipack_Launcher.Classes
              * *************************/
             try
             {
-                if (Manual || Aero)
-                {
-                    ++maxProgress;
-                    Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms"));
-                    ++progress;
-                }
+                if (!WinXP)
+                    if (Manual || Aero)
+                    {
+                        ++maxProgress;
+                        Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms"));
+                        ++progress;
+                    }
             }
             catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Disable Windows Aero", ex.Message); }
 

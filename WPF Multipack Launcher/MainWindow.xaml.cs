@@ -134,7 +134,7 @@ namespace WPF_Multipack_Launcher
         {
             Task.Factory.StartNew(() =>
             {
-                try { Optimize.Start(); StartGame(); }
+                try { Optimize.Start(Variables.WinXP); StartGame(); }
                 catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message); }
             });
         }
@@ -147,7 +147,7 @@ namespace WPF_Multipack_Launcher
                 {
                     if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
                     {
-                        Optimize.Start();
+                        Optimize.Start(Variables.WinXP);
                         Process.Start(Variables.PathTanks + "WoTLauncher.exe");
                     }
                     else
@@ -167,7 +167,7 @@ namespace WPF_Multipack_Launcher
                 {
                     if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
                     {
-                        Optimize.Start();
+                        Optimize.Start(Variables.WinXP);
                         Process.Start(Variables.PathTanks + "WoTLauncher.exe");
                     }
                     else
@@ -196,7 +196,7 @@ namespace WPF_Multipack_Launcher
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
-            try { Optimize.Start(Variables.AutoKill, Variables.AutoForceKill, Variables.AutoAero, Variables.AutoVideo, Variables.AutoWeak, true); }
+            try { Optimize.Start(Variables.WinXP, Variables.AutoKill, Variables.AutoForceKill, Variables.AutoAero, Variables.AutoVideo, Variables.AutoWeak, true); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bOptimize_Click()", ex.Message)); }
         }
 
@@ -204,10 +204,11 @@ namespace WPF_Multipack_Launcher
         {
             try
             {
-                if (Variables.AutoAero) Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
+                if (!Variables.WinXP)
+                    if (Variables.AutoAero) Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
 
-                Dispatcher.BeginInvoke(new ThreadStart(delegate { notifyIcon.Dispose(); }));
                 Variables.Doc.Save("settings.xml");
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { notifyIcon.Dispose(); })).Wait();
             }
             catch (Exception ex) { Debug.Save("MainWindow", "MainForm_Closing()", ex.Message); }
         }
@@ -255,7 +256,7 @@ namespace WPF_Multipack_Launcher
                     Variables.UpdateLink = remoteJson[Variables.MultipackType]["download"].ToString();
                     Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
-                        lStatusUpdates.Content = String.Format("{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.UpdateMultipackVersion.ToString());
+                        lStatusUpdates.Content = String.Format("{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.VersionToSharp(Variables.UpdateMultipackVersion));
                     }));
                 }
 
