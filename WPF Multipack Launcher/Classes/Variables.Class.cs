@@ -26,10 +26,10 @@ namespace WPF_Multipack_Launcher.Classes
         public string Lang = "en";
 
         // Background
-        public int BackgroundMax = 7,
+        /*public int BackgroundMax = 7,
                    BackgroundIndex = 1,
                    BackgroundDelay = 10000;
-        public bool BackgroundLoop = true;
+        public bool BackgroundLoop = true;*/
 
         // Multipack
         public Version MultipackVersion = new Version("0.0.0.0");
@@ -142,6 +142,7 @@ namespace WPF_Multipack_Launcher.Classes
 
             try { UpdateNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("notification") != null ? Doc.Root.Element("info").Attribute("notification").Value : null) : null; }
             catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: UpdateNotify", ex.Message); }
+
 
             try { ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true; }
             catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: ShowVideoNotify", ex.Message); }

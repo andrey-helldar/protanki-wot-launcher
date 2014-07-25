@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
   <info video="True" notification="0.9.1.11" />
-  <settings kill="False" force="False" aero="False" video="Unchecked" weak="False" />
-  <launcher minimize="0" background="True" />
+  <settings kill="True" force="True" aero="True" video="True" weak="True" />
+  <launcher minimize="0" />
   <youtube>
     <video>JaeoPYrCpIY</video>
     <video>zTvm5eVQEmg</video>

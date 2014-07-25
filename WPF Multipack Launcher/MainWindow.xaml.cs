@@ -614,9 +614,14 @@ namespace WPF_Multipack_Launcher
                 {
                     this.Effect = new System.Windows.Media.Effects.BlurEffect();
 
-                    Settings stg = new Settings();
-                    stg.lang = Variables.Lang;
-                    stg.ShowDialog();
+                    Settings Settings = new Settings();
+                    Settings.doc = Variables.Doc;
+                    Settings.Lang = Variables.Lang;
+                    Settings.GameVersion = Variables.TanksVersion;
+
+                    Settings.ShowDialog();
+
+                    if (Settings.SaveData) Variables.Doc = Settings.doc;
 
                     this.Effect = null;
                 }));

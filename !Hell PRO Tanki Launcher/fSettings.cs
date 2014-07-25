@@ -23,7 +23,7 @@ namespace _Hell_PRO_Tanki_Launcher
         Language Language = new Language();
         Debug Debug = new Debug();
 
-        string //title,
+        public string //title,
             version = "0.0.0.0",
             type = "full",
             notification,
