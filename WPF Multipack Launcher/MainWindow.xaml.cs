@@ -31,7 +31,6 @@ namespace WPF_Multipack_Launcher
         /*********************
          * Variables
          * *******************/
-        LocalInterface.LocInterface LocalInterface = new LocalInterface.LocInterface();
         Classes.Language LocalLanguage = new Classes.Language();
         Classes.Variables Variables = new Classes.Variables();
         Classes.Debug Debug = new Classes.Debug();
@@ -59,7 +58,7 @@ namespace WPF_Multipack_Launcher
 
                 Dispatcher.BeginInvoke(new ThreadStart(delegate { lMultipackVersion.Content = Variables.MultipackVersion.ToString(); }));
                 Dispatcher.BeginInvoke(new ThreadStart(delegate { lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")"; }));
-                Dispatcher.BeginInvoke(new ThreadStart(delegate { lMultipackVersion.Content = LocalInterface.VersionToSharp(Variables.MultipackVersion); }));
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { lMultipackVersion.Content = Variables.VersionToSharp(Variables.MultipackVersion); }));
 
                 Task.Factory.StartNew(() => Youtube());
                 Task.Factory.StartNew(() => WargamingNews());

@@ -127,7 +127,7 @@ namespace WPF_Multipack_Launcher.Classes
 
                     MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
                     MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
-                    MultipackVersion = new Version(new LocalInterface.LocInterface().VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
+                    MultipackVersion = new Version(VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
                     Lang = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language");
                 }
             }
@@ -271,11 +271,7 @@ namespace WPF_Multipack_Launcher.Classes
         /// <returns>формат 0.0.0 #0</returns>
         public string VersionToSharp(Version ver)
         {
-            try
-            {
-                string[] exp = ver.ToString().Split('.');
-                return String.Format("{0}.{1}.{2} #{3}", exp[0], exp[1], exp[2], exp[3]);
-            }
+            try { return String.Format("{0}.{1}.{2} #{3}", ver.Major, ver.Minor, ver.Build, ver.Revision); }
             catch (Exception ex) { Debug.Save("Variables.Class", "VersionToSharp()", "Version: " + ver.ToString(), ex.Message); return "0.0.0 #0"; }
         }
 
