@@ -54,7 +54,7 @@
                         <ListView x:Name="lvModules" Margin="0">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Модуль" Width="330" DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="Модуль" Width="310" DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Версия" Width="160" DisplayMemberBinding="{Binding Version}"/>
                                 </GridView>
                             </ListView.View>

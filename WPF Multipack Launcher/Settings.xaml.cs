@@ -37,7 +37,7 @@ namespace WPF_Multipack_Launcher
 
         public Settings()
         {
-            try { InitializeComponent(); }
+            try { InitializeComponent(); MouseDown += delegate { DragMove(); }; }
             catch (Exception ex) { Debug.Save("MainSettings", "Settings()", ex.Message); Close(); }
         }
 
@@ -264,7 +264,11 @@ namespace WPF_Multipack_Launcher
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
                     Action<string> addInListAction = (string text) =>
-                            lvModules.Items.Add(new { Name = System.IO.Path.GetFileName(text), Version = FileVersionInfo.GetVersionInfo(text).FileVersion });
+                           {
+                               if (System.IO.Path.GetFileName(text).IndexOf(Application.Current.GetType().Assembly.GetName().Name)  == -1)
+                                   lvModules.Items.Add(new { Name = System.IO.Path.GetFileName(text), Version = FileVersionInfo.GetVersionInfo(text).FileVersion });
+                           };
+
                     SearchFilesInDirectory(Environment.CurrentDirectory, new List<string>() { "*.dll", "*.exe" }, addInListAction);
 
                     /*foreach (FileInfo file in Directory(Environment.CurrentDirectory).GetFiles("*.dll", "*.exe"))
