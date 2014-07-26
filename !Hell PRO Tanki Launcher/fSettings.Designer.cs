@@ -51,10 +51,8 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bwUserProcesses = new System.ComponentModel.BackgroundWorker();
             this.gbPriority = new System.Windows.Forms.GroupBox();
-            this.bBalanceCPU = new System.Windows.Forms.Button();
             this.cbPriority = new System.Windows.Forms.ComboBox();
             this.llRecoverySettings = new System.Windows.Forms.LinkLabel();
-            this.cbChangeBack = new System.Windows.Forms.CheckBox();
             this.gbOptimization.SuspendLayout();
             this.gbOther.SuspendLayout();
             this.gbProcesses.SuspendLayout();
@@ -72,7 +70,7 @@
             this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSave.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bSave.Location = new System.Drawing.Point(138, 528);
+            this.bSave.Location = new System.Drawing.Point(129, 509);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 50);
             this.bSave.TabIndex = 14;
@@ -91,7 +89,7 @@
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCancel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bCancel.Location = new System.Drawing.Point(309, 528);
+            this.bCancel.Location = new System.Drawing.Point(300, 509);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(150, 50);
             this.bCancel.TabIndex = 15;
@@ -171,13 +169,12 @@
             // gbOther
             // 
             this.gbOther.BackColor = System.Drawing.Color.Transparent;
-            this.gbOther.Controls.Add(this.cbChangeBack);
             this.gbOther.Controls.Add(this.cbMinimize);
             this.gbOther.Controls.Add(this.cbVideo);
             this.gbOther.ForeColor = System.Drawing.Color.White;
             this.gbOther.Location = new System.Drawing.Point(12, 120);
             this.gbOther.Name = "gbOther";
-            this.gbOther.Size = new System.Drawing.Size(276, 90);
+            this.gbOther.Size = new System.Drawing.Size(276, 71);
             this.gbOther.TabIndex = 7;
             this.gbOther.TabStop = false;
             this.gbOther.Text = "Другие:";
@@ -240,7 +237,7 @@
             this.gbProcesses.Controls.Add(this.panel1);
             this.gbProcesses.Controls.Add(this.lvProcessesUser);
             this.gbProcesses.ForeColor = System.Drawing.Color.Black;
-            this.gbProcesses.Location = new System.Drawing.Point(12, 216);
+            this.gbProcesses.Location = new System.Drawing.Point(12, 197);
             this.gbProcesses.Name = "gbProcesses";
             this.gbProcesses.Size = new System.Drawing.Size(573, 306);
             this.gbProcesses.TabIndex = 12;
@@ -344,36 +341,14 @@
             // gbPriority
             // 
             this.gbPriority.BackColor = System.Drawing.Color.Transparent;
-            this.gbPriority.Controls.Add(this.bBalanceCPU);
             this.gbPriority.Controls.Add(this.cbPriority);
             this.gbPriority.ForeColor = System.Drawing.Color.White;
             this.gbPriority.Location = new System.Drawing.Point(294, 120);
             this.gbPriority.Name = "gbPriority";
-            this.gbPriority.Size = new System.Drawing.Size(291, 90);
+            this.gbPriority.Size = new System.Drawing.Size(291, 71);
             this.gbPriority.TabIndex = 9;
             this.gbPriority.TabStop = false;
             this.gbPriority.Text = "Приоритет игры в системе:";
-            // 
-            // bBalanceCPU
-            // 
-            this.bBalanceCPU.BackColor = System.Drawing.Color.Transparent;
-            this.bBalanceCPU.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.lamp_on;
-            this.bBalanceCPU.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.bBalanceCPU.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bBalanceCPU.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.bBalanceCPU.FlatAppearance.BorderSize = 0;
-            this.bBalanceCPU.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
-            this.bBalanceCPU.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.bBalanceCPU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bBalanceCPU.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bBalanceCPU.ForeColor = System.Drawing.Color.White;
-            this.bBalanceCPU.Location = new System.Drawing.Point(6, 49);
-            this.bBalanceCPU.Name = "bBalanceCPU";
-            this.bBalanceCPU.Size = new System.Drawing.Size(279, 28);
-            this.bBalanceCPU.TabIndex = 11;
-            this.bBalanceCPU.Text = "Нагрузка ЦП распределена";
-            this.bBalanceCPU.UseVisualStyleBackColor = false;
-            this.bBalanceCPU.Click += new System.EventHandler(this.bBalanceCPU_Click);
             // 
             // cbPriority
             // 
@@ -415,26 +390,13 @@
             this.llRecoverySettings.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
             this.llRecoverySettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llRecoverySettings_LinkClicked);
             // 
-            // cbChangeBack
-            // 
-            this.cbChangeBack.AutoSize = true;
-            this.cbChangeBack.Checked = true;
-            this.cbChangeBack.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbChangeBack.ForeColor = System.Drawing.Color.Black;
-            this.cbChangeBack.Location = new System.Drawing.Point(12, 67);
-            this.cbChangeBack.Name = "cbChangeBack";
-            this.cbChangeBack.Size = new System.Drawing.Size(266, 17);
-            this.cbChangeBack.TabIndex = 10;
-            this.cbChangeBack.Text = "Изменять фоновый рисунок каждые 10 секунд";
-            this.cbChangeBack.UseVisualStyleBackColor = true;
-            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.FonSetting;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(597, 590);
+            this.ClientSize = new System.Drawing.Size(597, 570);
             this.Controls.Add(this.llRecoverySettings);
             this.Controls.Add(this.gbPriority);
             this.Controls.Add(this.gbProcesses);
@@ -488,8 +450,6 @@
         private System.Windows.Forms.CheckBox cbVideoQuality;
         private System.Windows.Forms.LinkLabel llRecoverySettings;
         private System.Windows.Forms.CheckBox cbVideoQualityWeak;
-        private System.Windows.Forms.Button bBalanceCPU;
         private System.Windows.Forms.ComboBox cbMinimize;
-        private System.Windows.Forms.CheckBox cbChangeBack;
     }
 }

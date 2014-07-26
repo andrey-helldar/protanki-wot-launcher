@@ -37,6 +37,9 @@ namespace _Hell_PRO_Tanki_Launcher
         public fSettings()
         {
             InitializeComponent();
+
+            try { XDocument docTmp = XDocument.Load(patoToSettings); }
+            catch (Exception) { File.Delete(patoToSettings); }
         }
 
         private void loadLang()
@@ -45,7 +48,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 SetLanguageControl(control);
 
             // Нагрузка на ЦП
-            if (!File.Exists(@"..\res_mods\" + Properties.Resources.ModPackVersion + @"\engine_config.xml"))
+            /*if (!File.Exists(@"..\res_mods\" + Properties.Resources.ModPackVersion + @"\engine_config.xml"))
             {
                 bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU1", lang);
                 bBalanceCPU.BackgroundImage = Properties.Resources.lamp_on;
@@ -54,7 +57,7 @@ namespace _Hell_PRO_Tanki_Launcher
             {
                 bBalanceCPU.Text = Language.DynamicLanguage("bBalanceCPU0", lang);
                 bBalanceCPU.BackgroundImage = Properties.Resources.lamp_off;
-            }
+            }*/
         }
 
         private void SetLanguageControl(Control control)
@@ -329,7 +332,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 //AddAttributeSettings(doc, "balance", cbBalanceCPU.Checked.ToString());
 
                 AddAttributeSettings(doc, "launcher", "minimize", cbMinimize.SelectedIndex.ToString());
-                AddAttributeSettings(doc, "launcher", "background", cbChangeBack.Checked.ToString());
+                //AddAttributeSettings(doc, "launcher", "background", cbChangeBack.Checked.ToString());
 
                 if (lvProcessesUser.CheckedItems.Count > 0)
                 {
@@ -461,7 +464,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 //cbBalanceCPU.Checked = ReadSettingsStatus(doc, "balance");
 
                 cbMinimize.SelectedIndex = ReadIntStatus(doc, "launcher", "minimize");
-                cbChangeBack.Checked = ReadSettingsStatus(doc, "launcher", "background", true);
+                //cbChangeBack.Checked = ReadSettingsStatus(doc, "launcher", "background", true);
 
                 userProcesses.Clear();
                 if (doc.Root.Element("processes") != null) foreach (XElement el in doc.Root.Element("processes").Elements("process")) { userProcesses.Add(el.Attribute("name").Value); }
@@ -507,7 +510,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 cbVideoQuality.CheckState = CheckState.Indeterminate;
         }
 
-        private void bBalanceCPU_Click(object sender, EventArgs e)
+        /*private void bBalanceCPU_Click(object sender, EventArgs e)
         {
             try
             {
@@ -526,6 +529,6 @@ namespace _Hell_PRO_Tanki_Launcher
             }
             catch (Exception ex) { Debug.Save("bBalanceCPU_Click", "Возможно, файл балансировки не найден", ex.Message); }
             finally { }
-        }
+        }*/
     }
 }

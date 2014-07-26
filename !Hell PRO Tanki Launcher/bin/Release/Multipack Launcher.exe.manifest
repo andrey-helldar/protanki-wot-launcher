@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.1.16.239" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher" version="1.1.17.240" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="1736704">
-      <assemblyIdentity name="Multipack Launcher" version="1.1.16.239" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="1102848">
+      <assemblyIdentity name="Multipack Launcher" version="1.1.17.240" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>LJXT9/r/4+A6G2ecUs78x2HbMOfhpiunM246Gj/mgRw=</dsig:DigestValue>
+        <dsig:DigestValue>hoM/gil+kDzLpVQtWI8IMG+ZsDV166g6mHitvtuaZ3U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,17 +98,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dZelqA4yR/y38YOUWuxgqIP61zOINovaPFMW8TH/IZg=</dsig:DigestValue>
+        <dsig:DigestValue>Yl2NGfOIA388XvNzW5OO7P0YmuTA67tY/UuvXav5+kI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="changelog.txt" size="1971">
+  <file name="changelog.txt" size="2362">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>hJKDXHb3Mh/UPC8RVypTaR67NyIyi3ecodlis7FRaXo=</dsig:DigestValue>
+      <dsig:DigestValue>2PokuPa+xyqUgSKDRfdAaaBic9hKz05ZmMoTNQM0Tx0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Multipack Launcher.exe.config" size="144">

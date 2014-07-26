@@ -265,7 +265,7 @@ namespace _Hell_PRO_Tanki_Launcher
         }
 
         // Выбираем изображение для установки фона
-        public async Task setBackground()
+        /*public async Task setBackground()
         {
             try
             {
@@ -304,7 +304,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 Debug.Save("fIndex", "setBackground()", ex.Message);
             }
 
-        }
+        }*/
 
         private void bExit_Click(object sender, EventArgs e)
         {
@@ -1095,7 +1095,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
             GetVipProcesses();
 
-            setBackground();
+            //setBackground();
             moveForm();
 
             SetInterfaceLanguage();
