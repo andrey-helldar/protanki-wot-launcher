@@ -50,26 +50,26 @@ namespace _Hell_PRO_Tanki_Launcher
         {
             try
             {
-                Delete(path);
-
-                if (Directory.Exists(path + @"\temp"))
+                if (File.Exists("Ionic.Zip.dll"))
                 {
-                    if (!Directory.Exists(path + @"\debug")) { Directory.CreateDirectory(path + @"\debug"); }
+                    Delete(path);
 
-                    using (ZipFile zip = new ZipFile())
+                    if (Directory.Exists(path + @"\temp"))
                     {
-                        zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
-                        zip.AddDirectory(path + @"\temp");
-                        zip.Save(path + @"\debug\" + UserID() + "_-_" + "_" + Application.ProductVersion + "_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
-                    }
+                        if (!Directory.Exists(path + @"\debug")) { Directory.CreateDirectory(path + @"\debug"); }
 
-                    Directory.Delete(path + @"\temp", true);
+                        using (ZipFile zip = new ZipFile())
+                        {
+                            zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
+                            zip.AddDirectory(path + @"\temp");
+                            zip.Save(path + @"\debug\" + UserID() + "_-_" + "_" + Application.ProductVersion + "_" + DateTime.Now.ToString("yyyy-MM-dd h-m-s") + ".zip");
+                        }
+
+                        Directory.Delete(path + @"\temp", true);
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                Save("public bool Archive()", ex.Message);
-            }
+            catch (Exception ex) { Save("public bool Archive()", ex.Message); }
         }
 
         public void Delete(string path=null)

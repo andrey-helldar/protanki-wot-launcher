@@ -3,7 +3,7 @@
   NodeType="AppfuscatorMap">
   <ProjectInfo
     Version="2.6.0.38751"
-    Created="2014-07-31 00:25:49Z" />
+    Created="2014-07-31 23:23:32Z" />
   <Childs>
     <Node
       NodeType="Assembly"
@@ -11,13 +11,13 @@
       NewName="Multipack Launcher">
       <AssemblyInfo
         Name="Multipack Launcher"
-        Version="1.1.17.242"
+        Version="1.1.17.243"
         AssemblyId="7b4de905-37af-430b-8e0b-c4e96e1e9e9c"
         FileName="Multipack Launcher.exe">
         <Sources>
           <AssemblyInfo
             Name="Multipack Launcher"
-            Version="1.1.17.242"
+            Version="1.1.17.243"
             AssemblyId="7b4de905-37af-430b-8e0b-c4e96e1e9e9c"
             FileName="Multipack Launcher.exe" />
           <AssemblyInfo
@@ -35,7 +35,7 @@
           ExcludedByReasons="ModuleType" />
         <Node
           NodeType="Type"
-          OldName="&lt;PrivateImplementationDetails&gt;{5E315A0C-E36D-4866-AD12-40AE5D60F526}"
+          OldName="&lt;PrivateImplementationDetails&gt;{7B22154A-9D85-4879-AF5C-C802F228C051}"
           NewName="a">
           <Childs>
             <Node

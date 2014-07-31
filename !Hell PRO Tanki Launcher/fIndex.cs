@@ -308,10 +308,14 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void bExit_Click(object sender, EventArgs e)
         {
-            psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
-            Process.Start(psi);
+            try
+            {
+                psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
+                Process.Start(psi);
 
-            this.Close();
+                this.Close();
+            }
+            finally { }
         }
 
         private void bVideo_Click(object sender, EventArgs e)
@@ -641,25 +645,13 @@ namespace _Hell_PRO_Tanki_Launcher
 
         private void fIndex_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Архивируем папку дебага
             Debug.Archive(Application.StartupPath);
 
-            // Отключаем иконку в трее
-            notifyIcon.Dispose();
+            try { notifyIcon.Dispose(); }
+            finally { }
 
-            try
-            {
-                // Раньше проверяли выли ли внесены изменения, сейчас просто запускаем aero...
-                if (autoOptimizePC)
-                {
-                    psi = new ProcessStartInfo("cmd", @"/c net start uxsms");
-                    Process.Start(psi);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("fIndex", "fIndex_FormClosing()", "psi = new ProcessStartInfo(\"cmd\", @\"/c net start uxsms\");", ex.Message);
-            }
+            try { if (autoOptimizePC) Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms")); }
+            catch (Exception ex) { Debug.Save("fIndex", "FormClosing()", "new ProcessStartInfo()", ex.Message); }
         }
 
         private void llTitle_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
