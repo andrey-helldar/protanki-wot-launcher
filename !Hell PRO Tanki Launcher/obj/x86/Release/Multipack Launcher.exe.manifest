@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.1.17.241" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher" version="1.1.17.242" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -56,13 +56,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="1102848">
-      <assemblyIdentity name="Multipack Launcher" version="1.1.17.241" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Multipack Launcher" version="1.1.17.242" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>l95XQHC6y34cMsrNyKibp7expv/DxPR0khFxmklEJ6E=</dsig:DigestValue>
+        <dsig:DigestValue>1pr82y+Tw8U5KRIizlpqPPwzKSDtptAa8DMYDjrjots=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -102,13 +102,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="changelog.txt" size="2496">
+  <file name="changelog.txt" size="2628">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>3mfM5F3U/uiNPboKjf+0JrS1wd3y/cpJPtrBussrQBY=</dsig:DigestValue>
+      <dsig:DigestValue>UKbz3Y/CZ1wjim+t4fNHwEErwryPZxyTT7+ahfzSaLU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Multipack Launcher.exe.config" size="144">

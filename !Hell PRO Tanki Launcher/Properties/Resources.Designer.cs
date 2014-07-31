@@ -170,7 +170,7 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://wot.ai-rus.com/pro/.
+        ///   Looks up a localized string similar to http://ai-rus.com/pro/.
         /// </summary>
         internal static string LibraryVersions {
             get {
@@ -278,7 +278,7 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://wot.ai-rus.com/wot/link/.
+        ///   Looks up a localized string similar to http://ai-rus.com/wot/link/.
         /// </summary>
         internal static string PostLink {
             get {
@@ -287,7 +287,7 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://wot.ai-rus.com/wot/ticket/.
+        ///   Looks up a localized string similar to http://ai-rus.com/wot/ticket/.
         /// </summary>
         internal static string PostTicket {
             get {
@@ -296,7 +296,7 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://wot.ai-rus.com/wot/version/.
+        ///   Looks up a localized string similar to http://ai-rus.com/wot/version/.
         /// </summary>
         internal static string PostVersion {
             get {
