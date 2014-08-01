@@ -158,12 +158,6 @@ namespace _Hell_WPF_Multipack_Launcher {
             return;
             case 6:
             this.bClose = ((System.Windows.Controls.Button)(target));
-            
-            #line 21 "..\..\MainWindow.xaml"
-            this.bClose.Click += new System.Windows.RoutedEventHandler(this.bClose_Click);
-            
-            #line default
-            #line hidden
             return;
             case 7:
             this.bMinimize = ((System.Windows.Controls.Button)(target));

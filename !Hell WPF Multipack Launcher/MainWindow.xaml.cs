@@ -24,5 +24,10 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
         }
+
+        private void bClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
