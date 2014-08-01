@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="386" d:DesignWidth="538"
-	Title="General">
+	Title="General" Background="#FFEC6969">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,5 +16,15 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Rectangle Margin="0" Grid.ColumnSpan="2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#FF5D00FF" Offset="1"/>
+                    <GradientStop Color="#FFF55C5C"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Content="НОВОСТИ" HorizontalAlignment="Left" Margin="31,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="ВИДЕО" Grid.Column="1" HorizontalAlignment="Left" Margin="54,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

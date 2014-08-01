@@ -79,13 +79,13 @@ namespace WPF_Multipack_Launcher.Classes
         {
             try
             {
-                if (List.Count > -1)
+                if (List.Count > 0)
                 {
                     for (int i = 0; i < List.Count; i++)
                         if (List[i].ID == id) { List.RemoveAt(i); }
                 }
             }
-            catch (Exception /*ex*/) { /*Debug.Save("Youtube.Class", "Count(id = " + id + ")", ex.Message);*/ Delete(id); }
+            catch (Exception /*ex*/) { /*Debug.Save("Youtube.Class", "Count(id = " + id + ")", ex.Message);*/ /*Delete(id);*/ }
 
             try { List.TrimExcess(); }
             catch (Exception ex) { Debug.Save("Youtube.Class", "Delete()", "Function: TrimExcess()", ex.Message); }

@@ -56,10 +56,10 @@ namespace WPF_Multipack_Launcher
 
                 //Task.Factory.StartNew(() => SetBackground());
 
-                Dispatcher.BeginInvoke(new ThreadStart(delegate { lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")"; }));
+                //Dispatcher.BeginInvoke(new ThreadStart(delegate { lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")"; }));
 
-                Task.Factory.StartNew(() => Youtube());
-                Task.Factory.StartNew(() => WargamingNews());
+                //Task.Factory.StartNew(() => Youtube());
+                //Task.Factory.StartNew(() => WargamingNews());
 
                 Task.Factory.StartNew(() => CheckUpdates());
 
@@ -68,7 +68,7 @@ namespace WPF_Multipack_Launcher
                 if (iconStream != null)
                     notifyIcon.Icon = new System.Drawing.Icon(iconStream);
                 notifyIcon.Visible = true;
-                notifyIcon.Text = lCaption.Content.ToString();
+                notifyIcon.Text = /*lCaption.Content.ToString();*/"AAA";
                 notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
 
                 Task.Factory.StartNew(() => ShowNotify(LocalLanguage.DynamicLanguage("welcome", Variables.Lang)));
@@ -250,15 +250,15 @@ namespace WPF_Multipack_Launcher
                 {
                     Variables.UpdateMessage = remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString();
                     Variables.UpdateLink = remoteJson[Variables.MultipackType]["download"].ToString();
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    /*Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
                         lStatusUpdates.Content = String.Format("{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.VersionToSharp(Variables.UpdateMultipackVersion));
-                    }));
+                    }));*/
                 }
 
                 if (Variables.UpdateTanks)
                 {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Content += String.Format(Environment.NewLine + "{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString()); }));
+                    //Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Content += String.Format(Environment.NewLine + "{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString()); }));
                     Dispatcher.BeginInvoke(new ThreadStart(delegate { bPlay.IsEnabled = false; }));
                 }
                 else
@@ -268,13 +268,13 @@ namespace WPF_Multipack_Launcher
                 if (Variables.UpdateMultipack || Variables.UpdateTanks) // Если есть одно из обновлений
                 {
                     Dispatcher.BeginInvoke(new ThreadStart(delegate { bUpdate.IsEnabled = true;})); // Включаем кнопку обновлений
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Foreground = System.Windows.Media.Brushes.Yellow;}));
+                   // Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Foreground = System.Windows.Media.Brushes.Yellow;}));
                 }
                 else
                 {
                     Dispatcher.BeginInvoke(new ThreadStart(delegate { bUpdate.IsEnabled = false;})); // Выключаем кнопку обновлений
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Content = LocalLanguage.DynamicLanguage("llActuallyActually", Variables.Lang);}));
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Foreground = System.Windows.Media.Brushes.GreenYellow; }));
+                    //Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Content = LocalLanguage.DynamicLanguage("llActuallyActually", Variables.Lang);}));
+                    //Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Foreground = System.Windows.Media.Brushes.GreenYellow; }));
                 }
             }
             catch (Exception ex) { Debug.Save("MainForm", "CheckUpdates()", ex.Message); }
@@ -528,7 +528,7 @@ namespace WPF_Multipack_Launcher
                 return new FormattedText(text,
                     System.Globalization.CultureInfo.CurrentUICulture,
                     FlowDirection.LeftToRight,
-                    new Typeface(lCaption.FontFamily, FontStyles.Normal, FontWeights.Normal, FontStretches.Normal),
+                    new Typeface(bPlay.FontFamily, FontStyles.Normal, FontWeights.Normal, FontStretches.Normal),
                     fontSize,
                     System.Windows.Media.Brushes.Black
                 ).Width;
@@ -542,7 +542,7 @@ namespace WPF_Multipack_Launcher
             {
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                {
-                   caption = caption != null ? caption : lCaption.Content.ToString();
+                   caption = caption != null ? caption : /*lCaption.Content.ToString()*/"BBB";
                    notifyIcon.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
                }));
             }
