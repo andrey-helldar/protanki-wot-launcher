@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ai.rus>
-  <Ionic.Zip ext="dll" checksum="6DED8FCBF5F1D9E422B327CA51625E24" important="False" user="true">1.9.1.8</Ionic.Zip>
-  <launcher ext="exe" checksum="3DB00DB12EAEF75EDE5D54315E5322A1" important="False" user="false">1.1.17.242</launcher>
+  <changelog ext="xml" checksum="82B5A16833F3D42A727625397A5D10CE" important="False" user="true"></changelog>
+  <Ionic.Zip ext="dll" checksum="6DED8FCBF5F1D9E422B327CA51625E24" important="True" user="true">1.9.1.8</Ionic.Zip>
+  <launcher ext="exe" checksum="B6C196B10977B5287D41B16D7E5F9D64" important="False" user="false">1.1.17.243</launcher>
   <ProcessesLibrary ext="dll" checksum="0E4F91058013090DC2D3C34A60BDD8B9" important="True" user="true">1.0.8.31</ProcessesLibrary>
   <restart ext="exe" checksum="94CC2929E5A665F7B9F4F872D90AE71F" important="True" user="true">1.0.3.13</restart>
 </ai.rus>

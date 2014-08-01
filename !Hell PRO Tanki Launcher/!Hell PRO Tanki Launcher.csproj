@@ -204,6 +204,7 @@
     <None Include="bin\Debug\settings.xml" />
     <Content Include="changelog.txt" />
     <None Include="Resources\engine_config.xml" />
+    <Content Include="changelog.xml" />
     <Content Include="Resources\FonUPD.jpg" />
     <None Include="Resources\back_6.jpg" />
   </ItemGroup>
