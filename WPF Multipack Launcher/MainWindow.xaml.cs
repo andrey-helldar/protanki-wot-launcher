@@ -647,5 +647,10 @@ namespace WPF_Multipack_Launcher
         {
             Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.NavigationService.Navigate(new Uri("Feedback.xaml", UriKind.Relative));
+        }
     }
 }

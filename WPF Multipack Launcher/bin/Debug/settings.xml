@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <info video="True" news="True" multipack="True" notification="0.9.1.11" />
+  <info video="True" news="True" multipack="True" notification="0.9.1.3" />
   <settings kill="True" force="True" aero="True" video="True" weak="True" launcher="0" />
   <youtube>
     <video>JaeoPYrCpIY</video>
