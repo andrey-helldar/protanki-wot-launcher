@@ -46,3 +46,5 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Debug\W
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Debug\Multipack Launcher 2.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Debug\Multipack Launcher 2.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\bin\Debug\Newtonsoft.Json.dll
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Debug\Feedback.baml
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\WPF Multipack Launcher\obj\Debug\Feedback.g.cs
