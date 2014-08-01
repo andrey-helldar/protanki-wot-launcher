@@ -6,7 +6,7 @@ using System.Text;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace Processes_Library
+namespace Processes
 {
     public class Range
     {
@@ -15,7 +15,7 @@ namespace Processes_Library
         public Range() { Name = ""; Description = ""; }
     }
 
-    public class ProcessList
+    public class Listing
     {
         public string mName, mDescription;
         public List<Range> List;
@@ -105,7 +105,7 @@ namespace Processes_Library
         }
     }
 
-    public class ProcessesLibrary
+    public class Global
     {
         public Array Processes()
         {

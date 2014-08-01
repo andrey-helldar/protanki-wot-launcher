@@ -35,9 +35,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\!!other_dll\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\!!other_dll\4.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf">
+      <HintPath>..\!!other_dll\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ProcessesLibrary, Version=1.2.10.33, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Processes Library\bin\Release\ProcessesLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="restart, Version=1.1.4.14, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\!Hell Restarter\bin\Release\restart.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -63,6 +81,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Classes\Debug.Class.cs" />
+    <Compile Include="Classes\INI.Class.cs" />
+    <Compile Include="Classes\Optimize.Class.cs" />
+    <Compile Include="Classes\POST.Class.cs" />
+    <Compile Include="Classes\Update.Class.cs" />
+    <Compile Include="Classes\Variables.Class.cs" />
+    <Compile Include="Classes\Youtube.Class.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -97,6 +122,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WOT.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ProcessesLibrary.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\restart.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\settings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

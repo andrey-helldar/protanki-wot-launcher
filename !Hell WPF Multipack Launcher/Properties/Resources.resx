@@ -117,8 +117,74 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Code" xml:space="preserve">
+    <value>TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6</value>
+  </data>
+  <data name="Default_Lang" xml:space="preserve">
+    <value>ru</value>
+    <comment>Дефолтный язык</comment>
+  </data>
+  <data name="Default_Multipack_Type" xml:space="preserve">
+    <value>Base</value>
+  </data>
+  <data name="Developer" xml:space="preserve">
+    <value>http://ai-rus.com</value>
+    <comment>БЕЗ СЛЕША В КОНЦЕ!!!</comment>
+  </data>
+  <data name="DeveloperInfo" xml:space="preserve">
+    <value>/wot/info/</value>
+  </data>
+  <data name="DeveloperLinkSite" xml:space="preserve">
+    <value>http://goo.gl/5PR4ma</value>
+    <comment>Developer's site (http://ai-rus.com)</comment>
+  </data>
+  <data name="DeveloperProcesses" xml:space="preserve">
+    <value>/wot/processes/</value>
+  </data>
+  <data name="DeveloperUsers" xml:space="preserve">
+    <value>/wot/users/</value>
+  </data>
+  <data name="DeveloperWotVersion" xml:space="preserve">
+    <value>/wot/version/</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WOT.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="INI" xml:space="preserve">
+    <value>protanki</value>
+  </data>
+  <data name="JsonUpdates" xml:space="preserve">
+    <value>http://file.theaces.ru/mods/proupdate/update.json</value>
+  </data>
+  <data name="LinkNewsAll" xml:space="preserve">
+    <value>http://goo.gl/Wlrh9F</value>
+  </data>
+  <data name="LinkVideoAll" xml:space="preserve">
+    <value>http://goo.gl/LXaU7T</value>
+  </data>
+  <data name="ProcessesLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProcessesLibrary.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="restart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\restart.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RssWotEn" xml:space="preserve">
+    <value>http://worldoftanks.com/en/rss/news/</value>
+  </data>
+  <data name="RssWotRU" xml:space="preserve">
+    <value>http://worldoftanks.ru/ru/rss/news/</value>
+  </data>
+  <data name="RssYoutube" xml:space="preserve">
+    <value>https://gdata.youtube.com/feeds/api/users/{0}/uploads</value>
+  </data>
+  <data name="SettingsMultipack" xml:space="preserve">
+    <value>config.ini</value>
+  </data>
+  <data name="SettingsXML" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="YoutubeChannel" xml:space="preserve">
+    <value>PROTankiWoT</value>
   </data>
 </root>
