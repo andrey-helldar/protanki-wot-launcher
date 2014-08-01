@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<changelog>
+  <release>
+    <version>2.2.19.263</version>
+    
+    <fixed>
+      
+    </fixed>
+
+    <changed>
+      <row>Принцип перезапуска приложения;</row>
+      <row>Структура настроек;</row>
+    </changed>
+
+    <updated>
+      
+    </updated>
+
+    <added>
+      <row>Функция шифрования/дешифрования данных при сохранении логов и отправке запросов;</row>
+    </added>
+  </release>
+</changelog>

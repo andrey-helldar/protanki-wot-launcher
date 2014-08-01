@@ -23,17 +23,11 @@ namespace WPF_Multipack_Launcher.Classes
 
         // Product
         public string ProductName = String.Empty;
-        public string Lang = "en";
-
-        // Background
-        /*public int BackgroundMax = 7,
-                   BackgroundIndex = 1,
-                   BackgroundDelay = 10000;
-        public bool BackgroundLoop = true;*/
+        public string Lang = Properties.Resources.Default_Lang;
 
         // Multipack
         public Version MultipackVersion = new Version("0.0.0.0");
-        public string MultipackType = "Base",
+        public string MultipackType = Properties.Resources.Default_Multipack_Type,
                       MultipackDate = "1970-1-1";
 
         // Tanks
@@ -66,7 +60,6 @@ namespace WPF_Multipack_Launcher.Classes
         public bool WinXP = true;
 
         // Other
-        public string TempStatus = "Loading status...";
         public bool ShowVideoNotify = true,
                     CommonTest = false;
 
@@ -126,10 +119,10 @@ namespace WPF_Multipack_Launcher.Classes
             // Загружаем config.ini
             try
             {
-                if (File.Exists(Properties.Resources.SettingsPathMultipack))
+                if (File.Exists(Properties.Resources.SettingsMultipack))
                 {
                     // Загружаем данные
-                    string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsPathMultipack;
+                    string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsMultipack;
 
                     MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
                     MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();

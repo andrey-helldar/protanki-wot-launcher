@@ -623,7 +623,7 @@ namespace WPF_Multipack_Launcher
 
                     Settings.ShowDialog();
 
-                    if (Settings.SaveData) Variables.Doc = Settings.doc;
+                    Variables.Doc = Settings.doc;
 
                     this.Effect = null;
                 }));
@@ -634,13 +634,13 @@ namespace WPF_Multipack_Launcher
         private void NotifyClick(object sender, EventArgs e)
         {
             try { OpenLink(Variables.notifyLink); }
-            catch (Exception ex) { Debug.Save("MainWindow", "NotifyClick()", "Link: " + Variables.notifyLink, ex.Message); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + Variables.notifyLink, ex.Message)); }
         }
 
         private void Information(string text, MessageBoxButton mbb= MessageBoxButton.OK)
         {
             try { MessageBox.Show(text, Variables.ProductName, mbb, MessageBoxImage.Information); }
-            catch (Exception ex) { Debug.Save("MainWindow", "Information()", ex.Message, text); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Information()", ex.Message, text)); }
         }
 
         private void bExit_Click(object sender, RoutedEventArgs e)

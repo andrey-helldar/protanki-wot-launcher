@@ -27,28 +27,26 @@ namespace WPF_Multipack_Launcher
     public partial class Settings : Window
     {
         Classes.Language InterfaceLang = new Classes.Language();
+        Classes.Debug Debug = new Classes.Debug();
         ProcessesLibrary ProccessLibrary = new ProcessesLibrary();
         ProcessList ProcessList = new ProcessList();
-        Classes.Debug Debug = new Classes.Debug();
 
         public XDocument doc = new XDocument();
 
-        public string Lang = "en";
+        public string Lang = Properties.Resources.Default_Lang;
+
         public Version GameVersion = new Version("0.0.0.0");
         public Version GameVersionBase = new Version("0.0.0");
-
-        public bool SaveData = true;
 
 
         public Settings()
         {
             try { InitializeComponent(); MouseDown += delegate { DragMove(); }; }
-            catch (Exception ex) { Debug.Save("MainSettings", "Settings()", ex.Message); Close(); }
+            catch (Exception ex) { Debug.Save("MainSettings", "Settings()", ex.Message); Debug.Restart(); }
         }
 
-        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        private void lClose_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            SaveData = false;
             Close();
         }
 
@@ -68,12 +66,8 @@ namespace WPF_Multipack_Launcher
                 ChangeState(cbNotifyNews, "info", "news");
                 ChangeState(cbNotifyPack, "info", "multipack");
 
-                //ChangeState(cbChangeBack, "settings", "background");
-
                 ChangeIndex(cbGamePriority, "settings", "priority");
                 ChangeIndex(cbClosingLauncher, "settings", "launcher");
-
-                cbCpuLoading.Content = InterfaceLang.DynamicLanguage((Directory.Exists(@"..\res_mods\" + GameVersionBase) ? (File.Exists(@"..\res_mods\" + GameVersionBase + @"\engine_config.xml") ? "cbCpuLoading0" : "cbCpuLoading1") : "cbCpuLoading1"), Lang);
 
                 // Применяем язык
                 //lCaption.Content = InterfaceLang.DynamicLanguage();
@@ -134,30 +128,65 @@ namespace WPF_Multipack_Launcher
             catch (Exception ex) { Debug.Save("MainSettings", "SetXML", ex.Message, "Element: " + elem, "Attribute: " + attr, "Value: " + value); }
         }
 
-        private void cbCpuLoading_Click(object sender, RoutedEventArgs e)
+        private int GetPriority(int pr, bool save = true)
+        {
+            if (save)
+            {
+                switch (pr)
+                {
+                    case 0: return 3; //Высокий
+                    case 1: return 6; // Выше среднего
+                    case 3: return 5; // Ниже среднего
+                    case 4: return 1; // Низкий
+                    default: return 2; // Средний
+                }
+            }
+            else
+            {
+                switch (pr)
+                {
+                    case 3: return 0; //Высокий
+                    case 6: return 1; // Выше среднего
+                    case 5: return 3; // Ниже среднего
+                    case 1: return 4; // Низкий
+                    default: return 2; // Средний
+                }
+            }
+        }
+
+        private void LoadModules()
         {
             try
             {
-                if (!Directory.Exists(@"..\res_mods\" + GameVersionBase))
-                    Directory.CreateDirectory(@"..\res_mods\" + GameVersionBase);
-
-
-                if (File.Exists(@"..\res_mods\" + GameVersionBase + @"\engine_config.xml"))
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
-                    cbCpuLoading.Content = InterfaceLang.DynamicLanguage("cbCpuLoading1", Lang);
-                    File.Delete(@"..\res_mods\" + GameVersionBase + @"\engine_config.xml");
-                }
-                else
-                {
-                    cbCpuLoading.Content = InterfaceLang.DynamicLanguage("cbCpuLoading0", Lang);
-                    File.WriteAllText(@"..\res_mods\" + GameVersionBase + @"\engine_config.xml", Properties.Resources.engine_config);
-                }
+                    Action<string> addInListAction = (string text) =>
+                           {
+                               if (System.IO.Path.GetFileName(text).IndexOf(Application.Current.GetType().Assembly.GetName().Name) == -1)
+                                   try { lvModules.Items.Add(new { Name = System.IO.Path.GetFileName(text), Version = FileVersionInfo.GetVersionInfo(text).FileVersion }); }
+                                   catch (Exception) { lvModules.Items.Add(new { Name = System.IO.Path.GetFileName(text), Version = "---" }); }
+                           };
+
+                    SearchFilesInDirectory(Environment.CurrentDirectory, new List<string>() { "*.dll", "*.exe" }, addInListAction);
+                }));
             }
-            catch (Exception ex) { Debug.Save("MainSettings", "cbCpuLoading_Click()", ex.Message); }
+            catch (Exception ex) { Debug.Save("MainSettings", "LoadModules()", ex.Message); };
         }
 
-        private void bSave_Click(object sender, RoutedEventArgs e)
+        private void MainSettings_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            SetXML("settings", "kill", cbCloseProcess.IsChecked.ToString()); // Закрывать процессы
+            SetXML("settings", "force", cbForceCloseProcess.IsChecked.ToString()); // Принудительно закрывать процессы
+            SetXML("settings", "video", cbLowGraphic.IsChecked.ToString()); // Графика
+            SetXML("settings", "weak", cbVeryWeakPC.IsChecked.ToString()); // Очень слабый ПК
+            SetXML("settings", "aero", cbDisableWinAero.IsChecked.ToString()); // WinAero
+
+            SetXML("settings", "launcher", cbClosingLauncher.SelectedIndex.ToString()); // Действия с лаунчером при запуске игры
+
+            SetXML("info", "video", cbNotifyVideo.IsChecked.ToString()); // Уведомлять о новых видео
+            SetXML("info", "news", cbNotifyNews.IsChecked.ToString()); // Уведомлять о новых новостях
+            SetXML("info", "multipack", cbNotifyPack.IsChecked.ToString()); // Уведомлять о новых версиях мультипака
+
             /*******************************
              * Сохраняем приоритет в реестр
              *******************************/
@@ -234,66 +263,6 @@ namespace WPF_Multipack_Launcher
             }*/
 
 
-            Close();
-        }
-
-        private int GetPriority(int pr, bool save = true)
-        {
-            if (save)
-            {
-                switch (pr)
-                {
-                    case 0: return 3; //Высокий
-                    case 1: return 6; // Выше среднего
-                    case 3: return 5; // Ниже среднего
-                    case 4: return 1; // Низкий
-                    default: return 2; // Средний
-                }
-            }
-            else
-            {
-                switch (pr)
-                {
-                    case 3: return 0; //Высокий
-                    case 6: return 1; // Выше среднего
-                    case 5: return 3; // Ниже среднего
-                    case 1: return 4; // Низкий
-                    default: return 2; // Средний
-                }
-            }
-        }
-
-        private void LoadModules()
-        {
-            try
-            {
-                Dispatcher.BeginInvoke(new ThreadStart(delegate
-                {
-                    Action<string> addInListAction = (string text) =>
-                           {
-                               if (System.IO.Path.GetFileName(text).IndexOf(Application.Current.GetType().Assembly.GetName().Name) == -1)
-                                   lvModules.Items.Add(new { Name = System.IO.Path.GetFileName(text), Version = FileVersionInfo.GetVersionInfo(text).FileVersion });
-                           };
-
-                    SearchFilesInDirectory(Environment.CurrentDirectory, new List<string>() { "*.dll", "*.exe" }, addInListAction);
-                }));
-            }
-            catch (Exception ex) { Debug.Save("MainSettings", "LoadModules()", ex.Message); };
-        }
-
-        private void MainSettings_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            SetXML("settings", "kill", cbCloseProcess.IsChecked.ToString()); // Закрывать процессы
-            SetXML("settings", "force", cbForceCloseProcess.IsChecked.ToString()); // Принудительно закрывать процессы
-            SetXML("settings", "video", cbLowGraphic.IsChecked.ToString()); // Графика
-            SetXML("settings", "weak", cbVeryWeakPC.IsChecked.ToString()); // Очень слабый ПК
-            SetXML("settings", "aero", cbDisableWinAero.IsChecked.ToString()); // WinAero
-
-            SetXML("settings", "launcher", cbClosingLauncher.SelectedIndex.ToString()); // Действия с лаунчером при запуске игры
-
-            SetXML("info", "video", cbNotifyVideo.IsChecked.ToString()); // Уведомлять о новых видео
-            SetXML("info", "news", cbNotifyNews.IsChecked.ToString()); // Уведомлять о новых новостях
-            SetXML("info", "multipack", cbNotifyPack.IsChecked.ToString()); // Уведомлять о новых версиях мультипака
         }
 
         private void SearchFilesInDirectory(String directory, IEnumerable<string> searchPatternList, Delegate method)
@@ -330,46 +299,11 @@ namespace WPF_Multipack_Launcher
                         Process[] myProcesses = Process.GetProcesses();
                         int processID = Process.GetCurrentProcess().SessionId;
 
-
-                        /*ObservableCollection<CheckBoxListViewItem> items = new ObservableCollection<CheckBoxListViewItem>();
-
-                        foreach (Process process in myProcesses)
-                            items.Add(new CheckBoxListViewItem(process.ProcessName, false));
-
-                        lvProcessList.ItemsSource = items;
-
-                        foreach (CheckBoxListViewItem o in lvProcessList.ItemsSource) o.IsChecked = true;*/
-
                         foreach (var process in myProcesses)
                             if (process.SessionId == processID)
-                                //lvProcessList.Items.Add(new { Status = "---", Name = process.ProcessName, Description = process.MainModule.FileVersionInfo.FileDescription.Trim() });
                                 if (!ProcessList.IndexOf(process.ProcessName) && process.ProcessName != Process.GetCurrentProcess().ProcessName)
                                     try { lvProcessList.Items.Add(new { Status = "---", Name = process.ProcessName, Description = process.MainModule.FileVersionInfo.FileDescription.Trim() }); }
                                     catch (Exception) { }
-
-                        /*for (int i = 1; i < ProcessList.Count(); i++)
-            {
-                try
-                {
-                    int pos = lvProcessesUser.Items.Add(ProcessList.List[i].Name).Index;
-                    lvProcessesUser.Items[pos].SubItems.Add(ProcessList.List[i].Description);
-
-                    // Процессы юзера
-                    if (userProcesses.IndexOf(ProcessList.List[i].Name) > -1)
-                    {
-                        lvProcessesUser.Items[pos].Checked = true;
-                        lvProcessesUser.Items[pos].BackColor = Color.LightGreen;
-                    }
-
-                    // Глобальные процессы
-                    if (Array.IndexOf(ProccessLibrary.Processes(), ProcessList.List[i].Name) > -1)
-                    {
-                        lvProcessesUser.Items[pos].Checked = true;
-                        lvProcessesUser.Items[pos].BackColor = Color.Plum;
-                    }
-                }
-                catch (Exception ex) { Debug.Save("bwUserProcesses_RunWorkerCompleted()", ex.Message); }
-            }*/
                     }
                     finally { }
                 }));

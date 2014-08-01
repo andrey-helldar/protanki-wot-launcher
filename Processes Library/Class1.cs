@@ -17,18 +17,13 @@ namespace Processes_Library
 
     public class ProcessList
     {
-        private static string code = "TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6";
-
         public string mName, mDescription;
         public List<Range> List;
         public List<List<Range>> subRange;
 
         public void Add(string name, string description)
         {
-            try
-            {
-                if (List.Count <= 0) { }
-            }
+            try { if (List.Count <= 0) { } }
             catch (Exception)
             {
                 List = new List<Range>();
@@ -61,63 +56,52 @@ namespace Processes_Library
             try
             {
                 foreach (var pr in List)
-                {
                     if (pr.Name == str) return true;
-                }
                 return false;
             }
-            catch (Exception)
-            {
-                return false;
-            }
+            catch (Exception) { return false; }
         }
 
         public int Count()
         {
-            try
-            {
-                return List.Count;
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
+            try { return List.Count; }
+            catch (Exception) { return 0; }
         }
 
         public string Send(string address, string json)
         {
-            try
-            {
-                //return POST("http://ai-rus.com/wot/processes/", "data=" + json);
-                return POST(address, "data=" + json);
-            }
+            try { return POST(address, "data=" + json); }
             catch (Exception) { return "FAIL"; }
         }
 
         private static string POST(string Url, string Data)
         {
-            System.Net.WebRequest req = System.Net.WebRequest.Create(Url);
-            req.Method = "POST";
-            req.Timeout = 100000;
-            req.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
-            byte[] sentData = Encoding.GetEncoding("Utf-8").GetBytes(Data);
-            req.ContentLength = sentData.Length;
-            System.IO.Stream sendStream = req.GetRequestStream();
-            sendStream.Write(sentData, 0, sentData.Length);
-            sendStream.Close();
-            System.Net.WebResponse res = req.GetResponse();
-            System.IO.Stream ReceiveStream = res.GetResponseStream();
-            System.IO.StreamReader sr = new System.IO.StreamReader(ReceiveStream, Encoding.UTF8);
-            Char[] read = new Char[256];
-            int count = sr.Read(read, 0, 256);
-            string Out = String.Empty;
-            while (count > 0)
+            try
             {
-                String str = new String(read, 0, count);
-                Out += str;
-                count = sr.Read(read, 0, 256);
+                System.Net.WebRequest req = System.Net.WebRequest.Create(Url);
+                req.Method = "POST";
+                req.Timeout = 100000;
+                req.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+                byte[] sentData = Encoding.GetEncoding("Utf-8").GetBytes(Data);
+                req.ContentLength = sentData.Length;
+                System.IO.Stream sendStream = req.GetRequestStream();
+                sendStream.Write(sentData, 0, sentData.Length);
+                sendStream.Close();
+                System.Net.WebResponse res = req.GetResponse();
+                System.IO.Stream ReceiveStream = res.GetResponseStream();
+                System.IO.StreamReader sr = new System.IO.StreamReader(ReceiveStream, Encoding.UTF8);
+                Char[] read = new Char[256];
+                int count = sr.Read(read, 0, 256);
+                string Out = String.Empty;
+                while (count > 0)
+                {
+                    String str = new String(read, 0, count);
+                    Out += str;
+                    count = sr.Read(read, 0, 256);
+                }
+                return Out;
             }
-            return Out;
+            catch (Exception) { return "FAIL"; }
         }
     }
 
@@ -128,9 +112,12 @@ namespace Processes_Library
             string[] vipProcess = {
                 Process.GetCurrentProcess().ProcessName.ToString(),
                 "Multipack Launcher.vshost",
+                "s",
+                "s.bat",
 				"restart",
 				"WorldOfTanks",
 				"WoTLauncher",
+
 				"CCC",
 				"atieclxx",
 				"MOM",
@@ -196,8 +183,6 @@ namespace Processes_Library
                 "avastui",
                 "WoTLogger3",
                 "InputPersonalization",
-                "s",
-                "s.bat",
                 "TOTALCMD",
                 "TOTALCMD32",
                 "TOTALCMD64",
@@ -250,7 +235,6 @@ namespace Processes_Library
                 "SoundMAX",
                 "cis",
                 "cistray",
-                "1cv7l",
 "1cv7l",
 "1cv8",
 "1cv8c",

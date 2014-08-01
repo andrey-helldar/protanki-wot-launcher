@@ -15,9 +15,8 @@
             <RowDefinition Height="428"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Button x:Name="bSave" Content="Сохранить" HorizontalAlignment="Left" Margin="345,10,0,0" Grid.Row="2" VerticalAlignment="Center" Width="112" Click="bSave_Click"/>
         <Label x:Name="lCaption" Content="Настройки..." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="28" FontSize="16" Width="88"/>
-        <Label x:Name="lClose" Content="Закрыть" HorizontalAlignment="Left" Margin="486,10,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="18" MouseDown="Label_MouseDown" Height="33" Width="70"/>
+        <Label x:Name="lClose" Content="Закрыть" HorizontalAlignment="Left" Margin="486,10,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="18" MouseDown="lClose_MouseDown" Height="33" Width="70"/>
         <TabControl HorizontalAlignment="Left" Height="418" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="555" Background="{x:Null}">
             <TabItem Header="Оптимизация" Foreground="Black">
                 <TabItem.Background>
@@ -41,7 +40,6 @@
                             <CheckBox x:Name="cbLowGraphic" Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="5,50,0,0" VerticalAlignment="Top"/>
                             <CheckBox x:Name="cbVeryWeakPC" Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="25,70,0,0" VerticalAlignment="Top"/>
                             <CheckBox x:Name="cbDisableWinAero" Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="5,90,0,0" VerticalAlignment="Top"/>
-                            <Button x:Name="cbCpuLoading" Content="Нагрузка на все ядра" HorizontalAlignment="Left" Margin="277,55,0,0" VerticalAlignment="Top" Width="227" Click="cbCpuLoading_Click"/>
                             <ComboBox x:Name="cbGamePriority" HorizontalAlignment="Left" Margin="277,5,-13,0" VerticalAlignment="Top" Width="227" SelectedIndex="0">
                                 <ComboBoxItem Content="Высокий приоритет игры в системе"/>
                             </ComboBox>
@@ -80,7 +78,7 @@
                             <GridView>
                                 <GridViewColumn Header="Статус" Width="50" DisplayMemberBinding="{Binding Status}" CellTemplate="{StaticResource FirstCell}"/>
                                 <GridViewColumn Header="Процесс" Width="200" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Описание" Width="250" DisplayMemberBinding="{Binding Description}"/>
+                                <GridViewColumn Header="Описание" Width="240" DisplayMemberBinding="{Binding Description}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

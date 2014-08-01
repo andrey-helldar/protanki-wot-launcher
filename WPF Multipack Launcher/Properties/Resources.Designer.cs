@@ -80,11 +80,20 @@ namespace WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to True.
+        ///   Looks up a localized string similar to ru.
         /// </summary>
-        public static string Debug {
+        public static string Default_Lang {
             get {
-                return ResourceManager.GetString("Debug", resourceCulture);
+                return ResourceManager.GetString("Default_Lang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base.
+        /// </summary>
+        public static string Default_Multipack_Type {
+            get {
+                return ResourceManager.GetString("Default_Multipack_Type", resourceCulture);
             }
         }
         
@@ -302,9 +311,9 @@ namespace WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized string similar to config.ini.
         /// </summary>
-        public static string SettingsPathMultipack {
+        public static string SettingsMultipack {
             get {
-                return ResourceManager.GetString("SettingsPathMultipack", resourceCulture);
+                return ResourceManager.GetString("SettingsMultipack", resourceCulture);
             }
         }
         

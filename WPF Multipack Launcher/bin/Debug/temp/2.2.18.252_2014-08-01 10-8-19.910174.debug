@@ -1,0 +1,1 @@
+﻿{"uid":"64935334dc97650ae4e896ceebd4cae7","version":"2.2.18.252","date":"2014-08-01 10-8-19","module":"Youtube.Class","function":"Delete()","param0":"Function: TrimExcess()","param1":"Длина результирующего массива недостаточна. Проверьте значения destIndex и length, а также нижние границы массива."}

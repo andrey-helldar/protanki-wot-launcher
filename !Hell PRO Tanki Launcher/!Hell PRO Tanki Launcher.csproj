@@ -202,7 +202,6 @@
     <None Include="Resources\WOT.ico" />
     <None Include="Resources\FonSetting.jpg" />
     <None Include="bin\Debug\settings.xml" />
-    <Content Include="changelog.txt" />
     <None Include="Resources\engine_config.xml" />
     <Content Include="changelog.xml" />
     <Content Include="Resources\FonUPD.jpg" />

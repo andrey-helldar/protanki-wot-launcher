@@ -30,9 +30,42 @@ namespace WPF_Multipack_Launcher.Classes
 
                 if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
                 string filename = String.Format("{0}_{1}.debug", version, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
-                File.WriteAllText(@"temp\" + filename, JsonConvert.SerializeObject(jData), Encoding.UTF8);
+                File.WriteAllText(@"temp\" + filename, Crypt(JsonConvert.SerializeObject(jData)), Encoding.UTF8);
             }
             finally { }
+        }
+
+        public void Restart()
+        {
+            // функция перезапуска приложения
+        }
+
+        /// <summary>
+        /// Шифруем сообщение перед сохранением/отправкой
+        /// </summary>
+        /// <param name="input">Входная строка</param>
+        /// <returns>Шифрованная строка</returns>
+        public string Crypt(string input)
+        {
+            try
+            {
+                return input;
+            }
+            catch (Exception) { return input; }
+        }
+
+        /// <summary>
+        /// Дешифруем входящую строку
+        /// </summary>
+        /// <param name="input">Зашифрованная строка</param>
+        /// <returns>Дешифрованная строка</returns>
+        public string Decrypt(string input)
+        {
+            try
+            {
+                return input;
+            }
+            catch (Exception) { return input; }
         }
     }
 }
