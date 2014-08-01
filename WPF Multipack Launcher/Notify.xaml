@@ -1,7 +1,9 @@
-﻿<Window x:Name="MainNotify" x:Class="WPF_Multipack_Launcher.Notify"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Notify" Height="400" Width="600" Background="#FF1F0101" Foreground="#FFFFB900" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Calibri" FontSize="14" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Topmost="True">
+﻿<Page x:Name="MainNotify" x:Class="WPF_Multipack_Launcher.Notify"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        Title="Notify" Height="400" Width="600" Background="#FF1F0101" Foreground="#FFFFB900" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Calibri" FontSize="14">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -18,4 +20,4 @@
         <TextBlock x:Name="tbDescription" HorizontalAlignment="Left" Margin="20,10" Grid.Row="1" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Top"/>
 
     </Grid>
-</Window>
+</Page>

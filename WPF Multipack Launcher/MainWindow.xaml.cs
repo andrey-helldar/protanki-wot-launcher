@@ -56,9 +56,7 @@ namespace WPF_Multipack_Launcher
 
                 //Task.Factory.StartNew(() => SetBackground());
 
-                Dispatcher.BeginInvoke(new ThreadStart(delegate { lMultipackVersion.Content = Variables.MultipackVersion.ToString(); }));
                 Dispatcher.BeginInvoke(new ThreadStart(delegate { lCaption.Content = Variables.ProductName + " (" + LocalLanguage.DynamicLanguage("WindowCaption", Variables.Lang, Variables.MultipackType) + ")"; }));
-                Dispatcher.BeginInvoke(new ThreadStart(delegate { lMultipackVersion.Content = Variables.VersionToSharp(Variables.MultipackVersion); }));
 
                 Task.Factory.StartNew(() => Youtube());
                 Task.Factory.StartNew(() => WargamingNews());
@@ -285,7 +283,7 @@ namespace WPF_Multipack_Launcher
             // Если есть новые версии, то выводим уведомление
             try
             {
-                if (Variables.UpdateNotify != Variables.UpdateMultipackVersion.ToString() && Variables.UpdateNotify != String.Empty)
+               /* if (Variables.UpdateNotify != Variables.UpdateMultipackVersion.ToString() && Variables.UpdateNotify != String.Empty)
                 {
                     Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
@@ -315,7 +313,7 @@ namespace WPF_Multipack_Launcher
                         
                         this.Effect = null;
                     }));
-                }
+                }*/
             }
             catch (Exception ex) { Debug.Save("MainWindow", "ShowUpdateWindow()", ex.Message); }
 
@@ -643,14 +641,9 @@ namespace WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Information()", ex.Message, text)); }
         }
 
-        private void bExit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /*private void Button_Click(object sender, RoutedEventArgs e)
         {
             mainFrame.NavigationService.Navigate(new Uri("Feedback.xaml", UriKind.Relative));
-        }
+        }*/
     }
 }

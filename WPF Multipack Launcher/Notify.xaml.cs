@@ -6,6 +6,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using System.Diagnostics;
 
 namespace WPF_Multipack_Launcher
@@ -13,7 +21,7 @@ namespace WPF_Multipack_Launcher
     /// <summary>
     /// Interaction logic for Notify.xaml
     /// </summary>
-    public partial class Notify : Window
+    public partial class Notify : Page
     {
         public string DownloadLink = String.Empty;
 
@@ -25,7 +33,7 @@ namespace WPF_Multipack_Launcher
 
         private void bCancel_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            //Close();
         }
 
         private void bDownload_Click(object sender, RoutedEventArgs e)
@@ -33,7 +41,7 @@ namespace WPF_Multipack_Launcher
             try { Process.Start(DownloadLink); }
             catch (Exception ex) { new Classes.Debug().Save("MainNotify", "bDownload_Click()", "URL: " + DownloadLink, ex.Message); }
 
-            Close();
+            //Close();
         }
     }
 }
