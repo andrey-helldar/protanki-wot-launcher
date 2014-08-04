@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
 using Microsoft.Win32;
@@ -78,28 +79,42 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 GetApiKey();
                 ItXP();
 
-                new Classes.Update().SaveFromResources();
+                Task.Factory.StartNew(() => new Update().SaveFromResources()).Wait();
 
-                LoadSettings();
+                Task.Factory.StartNew(() => LoadSettings()).Wait();
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "Start()", ex.Message); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", ex.Message)); }
 
             return true;
         }
 
         private void LoadSettings()
         {
-            if (File.Exists("settings.xml")) Doc = XDocument.Load("settings.xml");
+            string tmpLang = Properties.Resources.Default_Lang;
+
+            string Settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
+            if (File.Exists(Settings)) Doc = XDocument.Load(Settings);
 
             // Загружаем версию клиента игры
-            try { PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry(); }
-            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: PathTanks", ex.Message); }
+            try
+            {
+                if (Doc.Root.Element("game") != null)
+                    if (Doc.Root.Element("game").Element("path") != null)
+                        PathTanks = Doc.Root.Element("game").Element("path").Value;
+
+                if (PathTanks == String.Empty) PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry();
+            }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: PathTanks", ex.Message));
+                PathTanks = String.Empty;
+            }
 
             try
             {
-                if (File.Exists(@"..\version.xml") && PathTanks != String.Empty)
+                if (File.Exists(@"..\version.xml"))
                 {
-                    XDocument doc = XDocument.Load(PathTanks + "version.xml");
+                    XDocument doc = XDocument.Load(@"..\version.xml");
 
                     if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
                     {
@@ -108,9 +123,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     }
                     else
                         TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
+
+
+                    tmpLang = doc.Root.Element("meta").Element("localization").Value.Trim();
+                    tmpLang = tmpLang.Remove(0, tmpLang.IndexOf(" ")+1).ToLower();
                 }
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: TanksVersion", ex.Message); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: TanksVersion", ex.Message)); }
 
 
             // Загружаем config.ini
@@ -124,7 +143,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
                     MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
                     MultipackVersion = new Version(VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
-                    Lang = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language");
+
+                    Lang = Properties.Resources.Default_Settings_Priority == "multipack" ? new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language") : tmpLang;
                 }
             }
             catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message); }

@@ -108,6 +108,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to multipack.
+        /// </summary>
+        public static string Default_Settings_Priority {
+            get {
+                return ResourceManager.GetString("Default_Settings_Priority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://ai-rus.com.
         /// </summary>
         public static string Developer {
@@ -181,6 +190,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Ionic_Zip {
+            get {
+                object obj = ResourceManager.GetObject("Ionic_Zip", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://file.theaces.ru/mods/proupdate/update.json.
         /// </summary>
         public static string JsonUpdates {
@@ -204,6 +223,26 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         public static string LinkVideoAll {
             get {
                 return ResourceManager.GetString("LinkVideoAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Newtonsoft_Json {
+            get {
+                object obj = ResourceManager.GetObject("Newtonsoft_Json", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Ookii_Dialogs_Wpf {
+            get {
+                object obj = ResourceManager.GetObject("Ookii_Dialogs_Wpf", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

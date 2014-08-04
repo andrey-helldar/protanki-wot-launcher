@@ -55,30 +55,32 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
-                if (iconStream != null)
-                    notifyIcon.Icon = new System.Drawing.Icon(iconStream);
-                notifyIcon.Visible = true;
-                notifyIcon.Text = Variables.ProductName;
-                notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded()", "iconStream", ex.Message)); }
 
             try
             {
                 Task.Factory.StartNew(() => Variables.Start()).Wait();
                 Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!"));
                 Task.Factory.StartNew(() => VideoNotify());
-
-                MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative));
             }
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded()", ex.Message)).Wait();
                 Task.Factory.StartNew(() => Debug.Restart());
             }
+
+            try
+            {
+                Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
+                if (iconStream != null) notifyIcon.Icon = new System.Drawing.Icon(iconStream);
+                notifyIcon.Visible = true;
+                notifyIcon.Text = Variables.ProductName;
+                notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded()", "iconStream", ex.Message)); }
+
+
+            try { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "General form loading", ex.Message)); }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -116,7 +118,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
-                    caption = caption != null ? caption : /*lCaption.Content.ToString()*/"BBB";
+                    caption = caption != null ? caption : Variables.ProductName;
                     notifyIcon.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
                 }));
             }
