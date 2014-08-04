@@ -59,6 +59,7 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 Task.Factory.StartNew(() => Variables.Start()).Wait();
+                Task.Factory.StartNew(() => YoutubeClass.Start()).Wait();
                 Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!"));
                 Task.Factory.StartNew(() => VideoNotify());
             }
@@ -133,25 +134,28 @@ namespace _Hell_WPF_Multipack_Launcher
                     foreach (var el in Variables.Doc.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
                 else Variables.Doc.Root.Add(new XElement("youtube", null));
 
-                DeleteVideo(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
+                Task.Factory.StartNew(() => DeleteOldVideo()); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
 
                 foreach (var el in YoutubeClass.List)
                 {
                     Thread.Sleep(5000);
 
-                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 7 секунд перед повторным запуском
+                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
                     {
                         while (System.Diagnostics.Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
                             System.Diagnostics.Process.GetProcessesByName("WoTLauncher").Length > 0)
                             Thread.Sleep(5000);
 
-                        Thread.Sleep(7000);
+                        Thread.Sleep(5000);
                     }
 
                     Variables.notifyLink = el.Link;
-                    ShowNotify(/*LocalLanguage.DynamicLanguage("viewVideo", Variables.Lang), el.Title*/"Смотреть видео");
+                    Task.Factory.StartNew(() => ShowNotify(/*LocalLanguage.DynamicLanguage("viewVideo", Variables.Lang), el.Title*/"Смотреть видео"));
 
-                    Variables.Doc.Root.Element("youtube").Add(new XElement("video", el.ID));
+                    if (Variables.Doc.Root.Element("youtube") != null)
+                        Variables.Doc.Root.Element("youtube").Add(new XElement("video", el.ID));
+                    else
+                        Variables.Doc.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
                 }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "VideoNotify()", ex.Message)); }
@@ -163,24 +167,49 @@ namespace _Hell_WPF_Multipack_Launcher
         /// элементы не будут удалены из списка. Profit!
         /// </summary>
         /// <returns>Функция как таковая ничего не возвращает</returns>
-        private void DeleteVideo()
+        private void DeleteOldVideo()
         {
             try
             {
                 foreach (var el in YoutubeClass.List)
                     try { if (!Variables.ParseDate(Variables.MultipackDate, el.Date)) YoutubeClass.Delete(el.ID); }
-                    catch (Exception /*ex0*/)
-                    {
-                        /*Task.Factory.StartNew(() => Debug.Save("MainWindow", "DeleteVideo()", "Element ID: " + el.ID, "Element title: " + el.Title, ex0.Message));*/
-                        DeleteVideo();
-                    }
+                    catch (Exception) { DeleteOldVideo(); }
             }
-            catch (Exception) { DeleteVideo(); }
+            finally { }
         }
 
         private void bPlay_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("OK");
+        }
+
+        private void WargamingNews()
+        {
+            try
+            {
+                int i = -1;
+
+                XDocument doc = XDocument.Load(lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
+
+                newsTitle.Clear();
+                newsLink.Clear();
+                newsDate.Clear();
+
+                foreach (XElement el in doc.Root.Element("channel").Elements("item"))
+                {
+                    if (i > 10 || showNewsTop > 290) { break; }
+
+                    newsDate.Add(el.Element("pubDate").Value);
+                    newsTitle.Add(el.Element("title").Value);
+                    newsLink.Add(el.Element("link").Value);
+
+                    bwNews.ReportProgress(++i);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Save("fIndex", "bwVideo_DoWork()", "XmlDocument doc = new XmlDocument();", ex.Message);
+            }
         }
     }
 }
