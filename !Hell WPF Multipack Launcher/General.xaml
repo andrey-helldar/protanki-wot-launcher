@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="300"
-	Title="General" Width="538" Height="600">
+	Title="General" Width="538" Height="600" Loaded="Page_Loaded">
     <Page.Background>
         <ImageBrush ImageSource="Resources/backGeneral.png" Stretch="Fill" TileMode="None"/>
     </Page.Background>
@@ -36,5 +36,7 @@
         <Label Content="НОВОСТИ" HorizontalAlignment="Left" Style="{StaticResource LabelStyleHeaderWhite}" Margin="10,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="87"/>
         <Label Content="© 2014 «AI RUS – Professional IT-support»" HorizontalAlignment="Left" Style="{StaticResource LabelStyleTextBlack}" Margin="110,16,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="18" Width="242"/>
         <Label Content="Design by D Jinjolava" HorizontalAlignment="Left" Style="{StaticResource LabelStyleTextBlack}" Margin="110,34,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="18" Width="115"/>
+        <ScrollViewer x:Name="svNews" Margin="0,10,5,0" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <ScrollViewer x:Name="svVideo" Grid.Column="2" Margin="5,10,5,0" Grid.Row="3" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>

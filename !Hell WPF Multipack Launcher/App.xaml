@@ -556,6 +556,7 @@
                             <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Foreground" Value="White" />
                                 <Setter Property="FontSize" Value="14pt" />
+                                <Setter Property="Cursor" Value="Hand" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -581,6 +582,7 @@
                                 <Setter Property="FontFamily" Value="Sochi2014" />
                                 <Setter Property="Foreground" Value="#FF585654" />
                                 <Setter Property="FontSize" Value="14pt" />
+                                <Setter Property="Cursor" Value="Hand" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -606,6 +608,7 @@
                                 <Setter Property="FontFamily" Value="Sochi2014" />
                                 <Setter Property="Foreground" Value="#FF585654" />
                                 <Setter Property="FontSize" Value="14px" />
+                                <Setter Property="Cursor" Value="Hand" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

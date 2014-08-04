@@ -48,7 +48,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 InitializeComponent();
                 MouseDown += delegate { DragMove(); };
 
-                MainFrame.NavigationService.Navigate(new Uri("Loading.xaml", UriKind.Relative));
+                //MainFrame.NavigationService.Navigate(new Uri("Loading.xaml", UriKind.Relative));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message)); }
         }
@@ -79,6 +79,11 @@ namespace _Hell_WPF_Multipack_Launcher
                 Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded()", ex.Message)).Wait();
                 Task.Factory.StartNew(() => Debug.Restart());
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            notifyIcon.Dispose();
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
