@@ -22,7 +22,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public List<VideoLoading> List;
         public List<List<VideoLoading>> Range;
 
-        public void Start()
+        public Task Start()
         {
             try
             {

@@ -34,6 +34,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Debug Debug = new Classes.Debug();
         Classes.Optimize Optimize = new Classes.Optimize();
         Classes.YoutubeVideo YoutubeClass = new Classes.YoutubeVideo();
+        Classes.Wargaming WargamingClass = new Classes.Wargaming();
 
 
 
@@ -58,8 +59,14 @@ namespace _Hell_WPF_Multipack_Launcher
 
             try
             {
-                Task.Factory.StartNew(() => Variables.Start()).Wait();
-                Task.Factory.StartNew(() => YoutubeClass.Start()).Wait();
+                Task[] task = new Task[3];
+
+                task[0] = Variables.Start();
+                task[1] = YoutubeClass.Start();
+                task[2] = WargamingClass.Start();
+
+                Task.WaitAll(task);
+
                 Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!"));
                 Task.Factory.StartNew(() => VideoNotify());
             }
@@ -181,35 +188,6 @@ namespace _Hell_WPF_Multipack_Launcher
         private void bPlay_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("OK");
-        }
-
-        private void WargamingNews()
-        {
-            try
-            {
-                int i = -1;
-
-                XDocument doc = XDocument.Load(lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
-
-                newsTitle.Clear();
-                newsLink.Clear();
-                newsDate.Clear();
-
-                foreach (XElement el in doc.Root.Element("channel").Elements("item"))
-                {
-                    if (i > 10 || showNewsTop > 290) { break; }
-
-                    newsDate.Add(el.Element("pubDate").Value);
-                    newsTitle.Add(el.Element("title").Value);
-                    newsLink.Add(el.Element("link").Value);
-
-                    bwNews.ReportProgress(++i);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.Save("fIndex", "bwVideo_DoWork()", "XmlDocument doc = new XmlDocument();", ex.Message);
-            }
         }
     }
 }

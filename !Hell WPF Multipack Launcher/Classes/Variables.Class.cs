@@ -70,7 +70,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
          * Functions
          * ******************/
 
-        public bool Start()
+        public Task Start()
         {
             try
             {
@@ -84,8 +84,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Task.Factory.StartNew(() => LoadSettings()).Wait();
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", ex.Message)); }
-
-            return true;
         }
 
         private void LoadSettings()
