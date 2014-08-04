@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>if9sNlOeNcpOmnHV4sqq9hyBhEteJsIa6ksltN14JSY=</dsig:DigestValue>
+        <dsig:DigestValue>WRMYL4oAnwSOhz3cbKgDqcXLIGW2kofHfQXXAnssKO0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -80,13 +80,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="22016">
-      <assemblyIdentity name="ProcessesLibrary" version="1.1.9.32" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="ProcessesLibrary" version="1.3.11.34" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>paUGQvYG4lMpeHJrHiy2Fn/tKWgKiEpgkYZD0uea3F8=</dsig:DigestValue>
+        <dsig:DigestValue>+ouILElLO60cucn+ZI6JCGYuZnP4MiE/Q9wS8IRU4LQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -102,13 +102,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="changelog.txt" size="2628">
+  <file name="changelog.xml" size="3669" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>UKbz3Y/CZ1wjim+t4fNHwEErwryPZxyTT7+ahfzSaLU=</dsig:DigestValue>
+      <dsig:DigestValue>/C+KTk7fNiFUizIzTv2MbXTDyD4sTxOtAFHTp6gt29s=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Multipack Launcher.exe.config" size="144">

@@ -17,7 +17,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Processes_Library;
 
 namespace WPF_Multipack_Launcher
 {
@@ -28,8 +27,8 @@ namespace WPF_Multipack_Launcher
     {
         Classes.Language InterfaceLang = new Classes.Language();
         Classes.Debug Debug = new Classes.Debug();
-        ProcessesLibrary ProccessLibrary = new ProcessesLibrary();
-        ProcessList ProcessList = new ProcessList();
+        Processes.Global ProccessLibrary = new Processes.Global();
+        Processes.Listing ProcessList = new Processes.Listing();
 
         public XDocument doc = new XDocument();
 

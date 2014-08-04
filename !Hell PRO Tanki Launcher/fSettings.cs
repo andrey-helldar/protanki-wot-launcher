@@ -12,14 +12,14 @@ using System.Net;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Processes_Library;
+using Processes;
 
 namespace _Hell_PRO_Tanki_Launcher
 {
     public partial class fSettings : Form
     {
-        ProcessesLibrary ProccessLibrary = new ProcessesLibrary();
-        ProcessList ProcessList = new ProcessList();
+        Processes.Global ProccessLibrary = new Processes.Global();
+        Processes.Listing ProcessList = new Processes.Listing();
         Language Language = new Language();
         Debug Debug = new Debug();
 

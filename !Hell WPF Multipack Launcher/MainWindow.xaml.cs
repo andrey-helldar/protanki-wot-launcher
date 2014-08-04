@@ -67,11 +67,8 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 Task.Factory.StartNew(() => Variables.Start()).Wait();
-                Task.Factory.StartNew(() => CheckUpdates());
                 Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!"));
                 Task.Factory.StartNew(() => VideoNotify());
-
-                lType.Content = Variables.MultipackType;
             }
             catch (Exception ex)
             {
@@ -102,117 +99,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try { Process.Start(url); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "OpenLink()", "URL = " + url, ex.Message)); }
-        }
-
-        private bool CheckUpdates()
-        {
-            try
-            {
-                Classes.POST POST = new Classes.POST();
-                string status = String.Empty;
-
-                if (Variables.CommonTest)
-                    if (Variables.Doc.Root.Element("common.test") == null) Variables.Doc.Root.Add(new XElement("common.test", null));
-                    else
-                        if (Variables.Doc.Root.Element("common.test") != null) Variables.Doc.Root.Element("common.test").Remove();
-
-
-                Dictionary<string, string> json = new Dictionary<string, string>();
-
-                json.Add("code", Properties.Resources.Code);
-                json.Add("user", new Classes.Variables().GetUserID());
-                json.Add("youtube", Properties.Resources.YoutubeChannel);
-                json.Add("test", Variables.CommonTest ? "1" : "0");
-                json.Add("version", Variables.TanksVersion.ToString());
-                json.Add("lang", Variables.Lang);
-                json.Add("resolution", SystemParameters.PrimaryScreenWidth.ToString() + "x" + SystemParameters.PrimaryScreenHeight.ToString());
-
-                try // Check updates tanks version
-                {
-                    Dictionary<string, string> postStatus = POST.FromJson(POST.Send(Properties.Resources.Developer + Properties.Resources.DeveloperWotVersion, "data=" + POST.Json(json)));
-                    Variables.UpdateTanksVersion = postStatus["id"] != "0.0.0.0" ? new Version(postStatus["id"]) : Variables.TanksVersion;
-                }
-                catch (Exception ex0) { Debug.Save("MainWindow", "CheckUpdates()", ex0.Message); Variables.UpdateTanksVersion = new Version("0.0.0.0"); }
-
-
-                var remoteJson = POST.JsonResponse(Properties.Resources.JsonUpdates);
-                Variables.UpdateMultipackVersion = Variables.Version(remoteJson[Variables.MultipackType]["version"].ToString());
-
-                Variables.UpdateTanks = Variables.TanksVersion < Variables.UpdateTanksVersion; // Сравниваем версии танков
-                Variables.UpdateMultipack = Variables.MultipackVersion < Variables.UpdateMultipackVersion; // Сравниваем версии мультипака
-
-                if (Variables.UpdateMultipack)
-                {
-                    Variables.UpdateMessage = remoteJson[Variables.MultipackType]["changelog"][Variables.Lang].ToString();
-                    Variables.UpdateLink = remoteJson[Variables.MultipackType]["download"].ToString();
-                    /*Dispatcher.BeginInvoke(new ThreadStart(delegate
-                    {
-                        lStatusUpdates.Content = String.Format("{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewMods", Variables.Lang), Variables.VersionToSharp(Variables.UpdateMultipackVersion));
-                    }));*/
-                }
-
-                if (Variables.UpdateTanks)
-                {
-                    //Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Content += String.Format(Environment.NewLine + "{0} ({1})", LocalLanguage.DynamicLanguage("llActuallyNewGame", Variables.Lang), Variables.UpdateTanksVersion.ToString()); }));
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { bPlay.IsEnabled = false; }));
-                }
-                else
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { bPlay.IsEnabled = true; }));
-
-
-                if (Variables.UpdateMultipack || Variables.UpdateTanks) // Если есть одно из обновлений
-                {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { bUpdate.IsEnabled = true; })); // Включаем кнопку обновлений
-                    // Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Foreground = System.Windows.Media.Brushes.Yellow;}));
-                }
-                else
-                {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { bUpdate.IsEnabled = false; })); // Выключаем кнопку обновлений
-                    //Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Content = LocalLanguage.DynamicLanguage("llActuallyActually", Variables.Lang);}));
-                    //Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatusUpdates.Foreground = System.Windows.Media.Brushes.GreenYellow; }));
-                }
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainForm", "CheckUpdates()", ex.Message)); }
-
-
-            // Если есть новые версии, то выводим уведомление
-            try
-            {
-                /* if (Variables.UpdateNotify != Variables.UpdateMultipackVersion.ToString() && Variables.UpdateNotify != String.Empty)
-                 {
-                     Dispatcher.BeginInvoke(new ThreadStart(delegate
-                     {
-                         Notify MainNotify = new Notify();
-                         MainNotify.lCaption.Content = lStatusUpdates.Content;
-                         MainNotify.lCaption.FontSize = 16;
-                         MainNotify.tbDescription.Text = new Classes.POST().DataRegex(Variables.UpdateMessage);
-                         MainNotify.DownloadLink = Variables.UpdateLink;
-
-                         this.Effect = new System.Windows.Media.Effects.BlurEffect();
-                         MainNotify.ShowDialog();
-
-                         if (MainNotify.cbNotNotify.IsChecked.Value)
-                         {
-                             if (Variables.Doc.Root.Element("info") != null)
-                             {
-                                 if (Variables.Doc.Root.Element("info").Attribute("notification") != null)
-                                     Variables.Doc.Root.Element("info").Attribute("notification").SetValue(Variables.UpdateMultipackVersion);
-                                 else
-                                     Variables.Doc.Root.Element("info").Add(new XAttribute("notification", Variables.UpdateMultipackVersion));
-                             }
-                             else
-                                 Variables.Doc.Root.Add(new XElement("info", new XAttribute("notification", Variables.UpdateMultipackVersion)));
-
-                             Variables.UpdateNotify = Variables.UpdateMultipackVersion.ToString(); // Обновляем значение
-                         }
-                        
-                         this.Effect = null;
-                     }));
-                 }*/
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ShowUpdateWindow()", ex.Message)); }
-
-            return true;
         }
 
         private void ShowNotify(string text, string caption = null)
@@ -279,6 +165,11 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
             }
             catch (Exception) { DeleteVideo(); }
+        }
+
+        private void bPlay_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("OK");
         }
     }
 }

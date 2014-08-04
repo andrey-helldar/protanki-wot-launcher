@@ -50,8 +50,8 @@ namespace WPF_Multipack_Launcher.Classes
             {
                 if (Manual || Kill)
                 {
-                    Processes_Library.ProcessesLibrary processesLibrary = new Processes_Library.ProcessesLibrary();
-                    Processes_Library.ProcessList processList = new Processes_Library.ProcessList();
+                    Processes.Global processesLibrary = new Processes.Global();
+                    Processes.Listing processList = new Processes.Listing();
 
                     int session = Process.GetCurrentProcess().SessionId;
                     bool kill = false;

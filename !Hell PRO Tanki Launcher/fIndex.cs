@@ -18,7 +18,6 @@ using System.Threading.Tasks;
 using System.Reflection;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
-using Processes_Library;
 using Newtonsoft.Json;
 using Ionic.Zip;
 
@@ -30,7 +29,7 @@ namespace _Hell_PRO_Tanki_Launcher
         YoutubeVideo YoutubeVideo = new YoutubeVideo();
         SendPOST SendPOST = new SendPOST();
         Debug Debug = new Debug();
-        ProcessList ProcessList = new ProcessList();
+        Processes.Listing ProcessList = new Processes.Listing();
 
         string pathToTanks = "",
 
@@ -1319,7 +1318,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     int sessionId = Process.GetCurrentProcess().SessionId;
 
                     maxPercentUpdateStatus += autoForceKill ? processCount * 2 - 2 : processCount - 1; // Расчитываем значение прогресс бара                    
-                    ProcessesLibrary proccessLibrary = new ProcessesLibrary();  // получаем имена процессов, завершать которые НЕЛЬЗЯ
+                    Processes.Global proccessLibrary = new Processes.Global();  // получаем имена процессов, завершать которые НЕЛЬЗЯ
 
                     bool kill = false;
 
