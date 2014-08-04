@@ -615,7 +615,35 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-        
+
+
+
+
+
+        <!-- *******************************
+                        Status label
+            *********************************-->
+        <Style x:Key="LabelStyleStatus" TargetType="{x:Type Label}">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <Border>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            RecognizesAccessKey="True" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="FontFamily" Value="Sochi2014" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="FontSize" Value="20px" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
     </Application.Resources>
 </Application>

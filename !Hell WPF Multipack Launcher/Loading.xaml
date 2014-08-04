@@ -8,7 +8,7 @@
 	Title="Loading" Width="538" Height="600">
 
     <Grid Background="Black" Opacity="0.5">
-        <Label Content="Loading..." Margin="0" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="24" FontFamily="Sochi2014"/>
+        <Label Content="Loading..." Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Style="{StaticResource LabelStyleStatus}"/>
 
     </Grid>
 </Page>

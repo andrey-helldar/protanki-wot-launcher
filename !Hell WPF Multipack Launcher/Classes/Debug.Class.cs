@@ -43,6 +43,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         }
 
         /// <summary>
+        /// Если в настройках включен параметр дебага, выводить сообщения на форму
+        /// </summary>
+        private void Message()
+        {
+            //MainFrame.NavigationService.Navigate(new Uri("Error.xaml", UriKind.Relative));
+        }
+
+        /// <summary>
         /// Шифруем сообщение перед сохранением/отправкой
         /// </summary>
         /// <param name="input">Входная строка</param>

@@ -1,4 +1,4 @@
-﻿<Window x:Class="_Hell_WPF_Multipack_Launcher.MainWindow"
+﻿<Window x:Name="MainProject" x:Class="_Hell_WPF_Multipack_Launcher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Multipack Launcher" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Resources/WOT.ico" WindowStyle="None" Loaded="Window_Loaded" Closing="Window_Closing">
