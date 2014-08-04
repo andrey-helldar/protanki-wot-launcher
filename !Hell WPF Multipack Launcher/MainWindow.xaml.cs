@@ -47,6 +47,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 InitializeComponent();
                 MouseDown += delegate { DragMove(); };
+
+                MainFrame.NavigationService.Navigate(new Uri("Loading.xaml", UriKind.Relative));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message)); }
         }
@@ -69,6 +71,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 Task.Factory.StartNew(() => Variables.Start()).Wait();
                 Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!"));
                 Task.Factory.StartNew(() => VideoNotify());
+
+                MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative));
             }
             catch (Exception ex)
             {
