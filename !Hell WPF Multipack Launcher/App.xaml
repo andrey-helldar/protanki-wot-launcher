@@ -556,7 +556,6 @@
                             <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Foreground" Value="White" />
                                 <Setter Property="FontSize" Value="14pt" />
-                                <Setter Property="Cursor" Value="Hand" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
