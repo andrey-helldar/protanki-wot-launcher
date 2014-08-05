@@ -33,9 +33,8 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Variables Variables = new Classes.Variables();
         Classes.Debug Debug = new Classes.Debug();
         Classes.Optimize Optimize = new Classes.Optimize();
-        Classes.YoutubeVideo YoutubeClass = new Classes.YoutubeVideo();
-        Classes.Wargaming WargamingClass = new Classes.Wargaming();
 
+        XDocument docTmp = new XDocument();
 
 
         /*********************
@@ -49,7 +48,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 InitializeComponent();
                 MouseDown += delegate { DragMove(); };
 
-                //MainFrame.NavigationService.Navigate(new Uri("Loading.xaml", UriKind.Relative));
+                try { MainFrame.NavigationService.Navigate(new Uri("Loading.xaml", UriKind.Relative)); }
+                catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", "Loading page: Loading.xaml", ex0.Message)); }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message)); }
         }
@@ -59,16 +59,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
             try
             {
-                Task[] task = new Task[3];
-
-                task[0] = Variables.Start();
-                task[1] = YoutubeClass.Start();
-                task[2] = WargamingClass.Start();
-
-                Task.WaitAll(task);
-
+                Task.Factory.StartNew(() => Variables.Start()).Wait();
                 Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!"));
-                Task.Factory.StartNew(() => VideoNotify());
             }
             catch (Exception ex)
             {
@@ -131,58 +123,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 }));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ShowNotify()", ex.Message, "Caption: " + caption, text)); }
-        }
-
-        private void VideoNotify()
-        {
-            try
-            {
-                if (Variables.Doc.Root.Element("youtube") != null)
-                    foreach (var el in Variables.Doc.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
-                else Variables.Doc.Root.Add(new XElement("youtube", null));
-
-                Task.Factory.StartNew(() => DeleteOldVideo()); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
-
-                foreach (var el in YoutubeClass.List)
-                {
-                    Thread.Sleep(5000);
-
-                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
-                    {
-                        while (System.Diagnostics.Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
-                            System.Diagnostics.Process.GetProcessesByName("WoTLauncher").Length > 0)
-                            Thread.Sleep(5000);
-
-                        Thread.Sleep(5000);
-                    }
-
-                    Variables.notifyLink = el.Link;
-                    Task.Factory.StartNew(() => ShowNotify(/*LocalLanguage.DynamicLanguage("viewVideo", Variables.Lang), el.Title*/"Смотреть видео"));
-
-                    if (Variables.Doc.Root.Element("youtube") != null)
-                        Variables.Doc.Root.Element("youtube").Add(new XElement("video", el.ID));
-                    else
-                        Variables.Doc.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
-                }
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "VideoNotify()", ex.Message)); }
-        }
-
-        /// <summary>
-        /// Если мы удалили 1 пункт из списка, то дальнейший перебор невозможен.
-        /// Но используя рекурсию мы повторяем перебор до тех пор, пока все ненужные
-        /// элементы не будут удалены из списка. Profit!
-        /// </summary>
-        /// <returns>Функция как таковая ничего не возвращает</returns>
-        private void DeleteOldVideo()
-        {
-            try
-            {
-                foreach (var el in YoutubeClass.List)
-                    try { if (!Variables.ParseDate(Variables.MultipackDate, el.Date)) YoutubeClass.Delete(el.ID); }
-                    catch (Exception) { DeleteOldVideo(); }
-            }
-            finally { }
         }
 
         private void bPlay_Click(object sender, RoutedEventArgs e)
