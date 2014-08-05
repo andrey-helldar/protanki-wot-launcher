@@ -96,30 +96,50 @@ namespace _Hell_WPF_Multipack_Launcher
                                 gridPanel0.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
 
                                 RowDefinition gridRow1 = new RowDefinition();
-                                gridRow1.Height = new GridLength(20);
+                                gridRow1.Height = new GridLength(30);
                                 gridPanel0.RowDefinitions.Add(gridRow1);
                                 gridPanel0.RowDefinitions.Add(new RowDefinition());
 
                                 ColumnDefinition gridColumn1 = new ColumnDefinition();
-                                gridColumn1.Width = new GridLength(30);
+                                gridColumn1.Width = new GridLength(100);
                                 gridPanel0.ColumnDefinitions.Add(gridColumn1);
                                 gridPanel0.ColumnDefinitions.Add(new ColumnDefinition());
 
                                 Label labelDate = new Label();
+                                labelDate.Height = double.NaN;
+                                labelDate.Margin = new Thickness(0, 0, 0, 0);
+                                labelDate.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                                labelDate.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
                                 try { labelDate.Content = YoutubeClass.List[i].Date; }
                                 catch (Exception) { labelDate.Content = "1970-1-1"; }
                                 Grid.SetRow(labelDate, 0);
+                                Grid.SetColumn(labelDate, 0);
                                 gridPanel0.Children.Add(labelDate);
 
                                 Button buttonClose = new Button();
                                 buttonClose.Content = "X :: id: " + i.ToString();
+                                buttonClose.Width = double.NaN;
+                                buttonClose.Height = double.NaN;
+                                buttonClose.Margin = new Thickness(0, 0, 0, 0);
+                                buttonClose.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                                buttonClose.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
                                 Grid.SetRow(buttonClose, 0);
+                                Grid.SetColumn(buttonClose, 1);
                                 gridPanel0.Children.Add(buttonClose);
 
-                                Label labelTitle = new Label();
-                                try { labelTitle.Content = YoutubeClass.List[i].Title; }
-                                catch (Exception) { labelTitle.Content = "Error loading (id" + i.ToString() + ")"; }
-                                gridPanel0.Children.Add(labelTitle);
+                                TextBlock blockTitle = new TextBlock();
+                                blockTitle.TextWrapping = TextWrapping.Wrap;
+                                blockTitle.Width = double.NaN;
+                                blockTitle.Height = double.NaN;
+                                blockTitle.Margin = new Thickness(0, 0, 0, 0);
+                                blockTitle.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                                blockTitle.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                try { blockTitle.Text = YoutubeClass.List[i].Title; }
+                                catch (Exception) { blockTitle.Text = "Error loading (id" + i.ToString() + ")"; }
+                                Grid.SetRow(blockTitle, 1);
+                                Grid.SetColumn(blockTitle, 0);
+                                Grid.SetColumnSpan(blockTitle, 2);
+                                gridPanel0.Children.Add(blockTitle);
 
                                 /*try { this.Dispatcher.BeginInvoke(new ThreadStart(delegate { svVideo.Content = panel; })); }
                                 catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", "Apply video to form", ex0.Message, ex0.StackTrace)); }*/
