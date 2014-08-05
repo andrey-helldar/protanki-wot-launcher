@@ -28,6 +28,9 @@ namespace _Hell_WPF_Multipack_Launcher
         public static System.Windows.Forms.NotifyIcon Notifier { get { return notifier; } }
         private static System.Windows.Forms.NotifyIcon notifier;
 
+        public static Frame MainFrame0 { get { return mainFrame; } }
+        private static Frame mainFrame;
+
         /*********************
          * Variables
          * *******************/
@@ -38,6 +41,7 @@ namespace _Hell_WPF_Multipack_Launcher
         XDocument docTmp = new XDocument();
 
         public static string MultipackDate = "1970-1-1";
+        public static string ProductName = String.Empty;
 
 
         /*********************
@@ -54,6 +58,9 @@ namespace _Hell_WPF_Multipack_Launcher
                 notifier = this.notifyIcon;
                 this.Closing += delegate { notifier = null; };
 
+                mainFrame = this.MainFrame;
+                this.Closing += delegate { mainFrame = null; };
+
                 try { MainFrame.NavigationService.Navigate(new Uri("Loading.xaml", UriKind.Relative)); }
                 catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", "Loading page: Loading.xaml", ex0.Message)); }
             }
@@ -67,6 +74,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 Task.Factory.StartNew(() => Variables.Start()).Wait();
                 MultipackDate = Variables.MultipackDate;
+                ProductName = Variables.ProductName;
             }
             catch (Exception ex)
             {

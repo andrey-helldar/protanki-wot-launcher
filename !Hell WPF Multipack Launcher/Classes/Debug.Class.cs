@@ -13,6 +13,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Debug
     {
+        public static string Error { get { return error; } }
+        private static string error;
+
         public void Save(string module, string func, params string[] args)
         {
             try
@@ -29,10 +32,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 for (int i = 0; i < args.Length; i++)
                     jData.Add("param" + i.ToString(), args[i]);
 
+                string result = Crypt(JsonConvert.SerializeObject(jData));
+
                 if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
                 string filename = String.Format("{0}_{1}.debug", version, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
-                File.WriteAllText(@"temp\" + filename, Crypt(JsonConvert.SerializeObject(jData)), Encoding.UTF8);
+                File.WriteAllText(@"temp\" + filename, result, Encoding.UTF8);
+
+                Message(result);
             }
+            catch (IOException) { Thread.Sleep(3000); Save(module, func, args); }
+            catch (Exception) { }
             finally { }
         }
 
@@ -45,9 +54,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <summary>
         /// Если в настройках включен параметр дебага, выводить сообщения на форму
         /// </summary>
-        private void Message()
+        private void Message(string message)
         {
-            //MainFrame.NavigationService.Navigate(new Uri("Error.xaml", UriKind.Relative));
+            error = message;
+            MainWindow.MainFrame0.NavigationService.Navigate(new Uri("Error.xaml", UriKind.Relative));
         }
 
         /// <summary>

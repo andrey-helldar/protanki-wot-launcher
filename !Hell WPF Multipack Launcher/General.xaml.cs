@@ -68,26 +68,29 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     for (int i = 0; i < YoutubeClass.Count(); i++)
                     {
-                        StackPanel panel = new StackPanel();
-                        panel.Width = 100;
-                        panel.Height = 50;
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            StackPanel panel = new StackPanel();
+                            panel.Width = 100;
+                            panel.Height = 50;
 
-                        Grid gridItem = new Grid();
+                            Grid gridItem = new Grid();
 
-                        Label labelDate = new Label();
-                        labelDate.Content = YoutubeClass.List[i].Date;
-                        gridItem.DataContext = labelDate;
+                            Label labelDate = new Label();
+                            labelDate.Content = YoutubeClass.List[i].Date;
+                            gridItem.DataContext = labelDate;
 
-                        Button buttonClose = new Button();
-                        buttonClose.Content = "X";
-                        gridItem.DataContext = buttonClose;
+                            Button buttonClose = new Button();
+                            buttonClose.Content = "X";
+                            gridItem.DataContext = buttonClose;
 
-                        Label labelTitle = new Label();
-                        labelTitle.Content = YoutubeClass.List[i].Title;
-                        gridItem.DataContext = labelTitle;
+                            Label labelTitle = new Label();
+                            labelTitle.Content = YoutubeClass.List[i].Title;
+                            gridItem.DataContext = labelTitle;
 
-                        panel.DataContext = gridItem;
-                        svVideo.Content = panel;
+                            panel.DataContext = gridItem;
+                            svVideo.Content = panel;
+                        }));
                     }
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", "Apply video to form", ex.Message)); }
@@ -153,7 +156,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
-                    caption = caption != null ? caption : "AAA";
+                    caption = caption != null ? caption : MainWindow.ProductName;
                     MainWindow.Notifier.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
                 }));
             }

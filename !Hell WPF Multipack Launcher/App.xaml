@@ -589,6 +589,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
 
 
         <!-- *******************************
@@ -603,6 +604,7 @@
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             RecognizesAccessKey="True" />
                         </Border>
+                            
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="FontFamily" Value="Sochi2014" />

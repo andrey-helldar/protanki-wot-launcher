@@ -31,7 +31,11 @@
         <Button Grid.Column="3" Style="{DynamicResource ButtonStyleFAQ}" Margin="0,5,31,5" HorizontalAlignment="Right" Width="24"/>
         <Button x:Name="bUpdate" Grid.Column="3" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleUpdate}" Margin="0,5,57,5" Width="24"/>
         <Label x:Name="lType" Content="Расширенная версия" Style="{StaticResource LabelStyleHeaderBlack}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,2" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Height="24" Width="157"/>
-        <Rectangle Fill="Red" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,5,0" Opacity="0.5"/>
+        <Rectangle Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,5,0" Opacity="0.5">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="Resources/backGeneralLine.png" TileMode="FlipY"/>
+            </Rectangle.Fill>
+        </Rectangle>
         <Label Content="ВИДЕО" Grid.Column="2" Style="{StaticResource LabelStyleHeaderWhite}" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="61"/>
         <Label Content="НОВОСТИ" HorizontalAlignment="Left" Style="{StaticResource LabelStyleHeaderWhite}" Margin="10,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="87"/>
         <Label Content="© 2014 «AI RUS – Professional IT-support»" HorizontalAlignment="Left" Style="{StaticResource LabelStyleTextBlack}" Margin="110,16,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="18" Width="242"/>
