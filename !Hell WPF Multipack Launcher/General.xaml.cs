@@ -66,29 +66,39 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    for (int i = 0; i < YoutubeClass.Count(); i++)
-                    {                        
-                            StackPanel panel = new StackPanel();
-                            panel.Width = 100;
-                            panel.Height = 50;
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        for (int i = 0; i < YoutubeClass.Count(); i++)
+                        {
+                            Thread thr = new Thread(() =>
+                            {
+                                StackPanel panel = new StackPanel();
+                                panel.Width = 100;
+                                panel.Height = 50;
 
-                            Grid gridItem = new Grid();
+                                Grid gridItem = new Grid();
 
-                            Label labelDate = new Label();
-                            labelDate.Content = YoutubeClass.List[i].Date;
-                            gridItem.Children.Add(labelDate);
+                                Label labelDate = new Label();
+                                try { labelDate.Content = YoutubeClass.List[i].Date; }
+                                catch (Exception) { labelDate.Content = "1970-1-1"; }
+                                gridItem.Children.Add(labelDate);
 
-                            Button buttonClose = new Button();
-                            buttonClose.Content = "X";
-                            gridItem.Children.Add(buttonClose);
+                                Button buttonClose = new Button();
+                                buttonClose.Content = "X";
+                                gridItem.Children.Add(buttonClose);
 
-                            Label labelTitle = new Label();
-                            labelTitle.Content = YoutubeClass.List[i].Title;
-                            gridItem.Children.Add(labelTitle);
+                                Label labelTitle = new Label();
+                                try { labelTitle.Content = YoutubeClass.List[i].Title; }
+                                catch (Exception) { labelTitle.Content = "Error loading (id" + i.ToString() + ")"; }
+                                gridItem.Children.Add(labelTitle);
 
-                            panel.Children.Add(gridItem);
-                            Dispatcher.BeginInvoke(new ThreadStart(delegate { svVideo.Content = panel; }));
-                    }
+                                panel.Children.Add(gridItem);
+                                Dispatcher.BeginInvoke(new ThreadStart(delegate { svVideo.Content = panel; }));
+                            });
+                            thr.SetApartmentState(ApartmentState.STA);
+                            thr.Start();
+                        }
+                    }));
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", "Apply video to form", ex.Message)); }
             });
