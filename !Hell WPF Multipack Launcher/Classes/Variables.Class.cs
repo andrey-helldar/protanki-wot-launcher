@@ -70,7 +70,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
          * Functions
          * ******************/
 
-        public Task Start()
+        public Task<bool> Start()
         {
             try
             {
@@ -84,6 +84,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Task.Factory.StartNew(() => LoadSettings()).Wait();
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", ex.Message)); }
+            
+            return true;
         }
 
         private void LoadSettings()
@@ -257,26 +259,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try { return new Version(String.Format("{0}.{1}.{2}.{3}", TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version)); }
             catch (Exception ex) { Debug.Save("Variables.Class", "Version()", version, ex.Message); return new Version("0.0.0.0"); }
-        }
-
-
-        /// <summary>
-        /// Если дата новости старее даты выпуска модпака,
-        /// то выводим в результат "false" как запрет на вывод.
-        /// </summary>
-        /// <param name="packDate"></param>
-        /// <param name="newsDate"></param>
-        /// <returns>Во всех иных случаях выводим "true",
-        /// то есть дата валидная</returns>
-        public bool ParseDate(string packDate = null, string newsDate = null)
-        {
-            try
-            {
-                if (packDate != null && newsDate != null)
-                    if (DateTime.Parse(newsDate) < DateTime.Parse(packDate)) { return false; }
-                return true;
-            }
-            catch (Exception ex) { Debug.Save("Variables.Class", "ParseDate()", "Pack Date = " + packDate, "News date = " + newsDate, ex.Message); return true; }
         }
 
         /// <summary>

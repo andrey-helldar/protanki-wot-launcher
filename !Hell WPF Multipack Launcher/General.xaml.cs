@@ -26,8 +26,9 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.YoutubeVideo YoutubeClass = new Classes.YoutubeVideo();
         Classes.Wargaming WargamingClass = new Classes.Wargaming();
 
-
         public XDocument XmlGeneral = new XDocument();
+
+        string NotifyLink = String.Empty;
 
 
         public General()
@@ -37,6 +38,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!"));
+
             // Устанавливаем заголовок в зависимости от типа версии
             if (XmlGeneral.Root != null)
                 if (XmlGeneral.Root.Element("multipack") != null)
@@ -113,8 +116,9 @@ namespace _Hell_WPF_Multipack_Launcher
                         Thread.Sleep(5000);
                     }
 
-                    XmlGeneral.Root.Element("info").Element("notify_link").SetValue(el.Link);
-                    Task.Factory.StartNew(() => ShowNotify(/*LocalLanguage.DynamicLanguage("viewVideo", Variables.Lang), el.Title*/"Смотреть видео"));
+                    NotifyLink = el.Link;
+
+                    Task.Factory.StartNew(() => ShowNotify("Смотреть видео"));
 
                     if (XmlGeneral.Root.Element("youtube") != null)
                         XmlGeneral.Root.Element("youtube").Add(new XElement("video", el.ID));
@@ -122,7 +126,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         XmlGeneral.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "VideoNotify()", ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", ex.Message)); }
         }
 
         /// <summary>
@@ -136,23 +140,23 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 foreach (var el in YoutubeClass.List)
-                    try { if (!Variables.ParseDate(Variables.MultipackDate, el.Date)) YoutubeClass.Delete(el.ID); }
+                    try { if (!YoutubeClass.CheckDate(MainWindow.MultipackDate, el.Date)) YoutubeClass.Delete(el.ID); }
                     catch (Exception) { DeleteOldVideo(); }
             }
             finally { }
         }
 
-        private void SetElement(params string[] args)
+        private void ShowNotify(string text, string caption = null)
         {
-            if(XmlGeneral.Root.Element(args[0])!=null)
-
-
-        }
-
-        private bool CheckElement(string args)
-        {
-            try {if() }
-            catch (Exception ex) { }
+            try
+            {
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    caption = caption != null ? caption : "AAA";
+                    MainWindow.Notifier.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
+                }));
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", ex.Message, "Caption: " + caption, text)); }
         }
     }
 }

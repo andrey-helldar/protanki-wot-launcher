@@ -22,7 +22,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public List<VideoLoading> List;
         public List<List<VideoLoading>> Range;
 
-        public Task Start()
+        public Task<bool> Start()
         {
             try
             {
@@ -44,6 +44,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
             }
             catch (Exception ex) { Debug.Save("Youtube.Class", "Start()", ex.Message); }
+
+            return true;
         }
 
         public void Add(string id, string title, string content, string link, string date)
@@ -113,6 +115,25 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
             try { List.TrimExcess(); }
             catch (Exception ex) { Debug.Save("Youtube.Class", "Delete()", "Function: TrimExcess()", ex.Message); }
+        }
+
+
+        /// <summary>
+        /// Если дата старее даты выпуска модпака,
+        /// то выводим в результат "false" как запрет на вывод.
+        /// </summary>
+        /// <param name="packDate">Дата выпуска мультипака</param>
+        /// <param name="videoDate">Дата видео</param>
+        /// <returns>Во всех иных случаях выводим "true", то есть дата валидная</returns>
+        public bool CheckDate(string packDate = null, string videoDate = null)
+        {
+            try
+            {
+                if (packDate != null && videoDate != null)
+                    if (DateTime.Parse(videoDate) < DateTime.Parse(packDate)) { return false; }
+                return true;
+            }
+            catch (Exception ex) { Debug.Save("Youtube.Class", "ParseDate()", "Pack Date = " + packDate, "Video date = " + videoDate, ex.Message); return true; }
         }
     }
 }

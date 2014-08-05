@@ -24,8 +24,9 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
-
+        public System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+        public static System.Windows.Forms.NotifyIcon Notifier { get { return notifier; } }
+        private static System.Windows.Forms.NotifyIcon notifier;
 
         /*********************
          * Variables
@@ -35,6 +36,8 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Optimize Optimize = new Classes.Optimize();
 
         XDocument docTmp = new XDocument();
+
+        public static string MultipackDate = "1970-1-1";
 
 
         /*********************
@@ -48,6 +51,9 @@ namespace _Hell_WPF_Multipack_Launcher
                 InitializeComponent();
                 MouseDown += delegate { DragMove(); };
 
+                notifier = this.notifyIcon;
+                this.Closing += delegate { notifier = null; };
+
                 try { MainFrame.NavigationService.Navigate(new Uri("Loading.xaml", UriKind.Relative)); }
                 catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", "Loading page: Loading.xaml", ex0.Message)); }
             }
@@ -60,7 +66,6 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 Task.Factory.StartNew(() => Variables.Start()).Wait();
-                Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!"));
             }
             catch (Exception ex)
             {
@@ -110,19 +115,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try { Process.Start(url); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "OpenLink()", "URL = " + url, ex.Message)); }
-        }
-
-        private void ShowNotify(string text, string caption = null)
-        {
-            try
-            {
-                Dispatcher.BeginInvoke(new ThreadStart(delegate
-                {
-                    caption = caption != null ? caption : Variables.ProductName;
-                    notifyIcon.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
-                }));
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ShowNotify()", ex.Message, "Caption: " + caption, text)); }
         }
 
         private void bPlay_Click(object sender, RoutedEventArgs e)

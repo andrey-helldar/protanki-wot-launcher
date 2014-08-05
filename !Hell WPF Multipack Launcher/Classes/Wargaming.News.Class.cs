@@ -22,7 +22,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public List<Loading> List;
         public List<List<Loading>> Range;
 
-        public Task Start(string lang = "en")
+        public Task<bool> Start(string lang = "en")
         {
             try
             {
