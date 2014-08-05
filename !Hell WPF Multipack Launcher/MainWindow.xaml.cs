@@ -66,6 +66,7 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 Task.Factory.StartNew(() => Variables.Start()).Wait();
+                MultipackDate = Variables.MultipackDate;
             }
             catch (Exception ex)
             {

@@ -54,10 +54,10 @@ namespace _Hell_WPF_Multipack_Launcher
 
 
             // Загружаем список видео и новостей
-            Task[] task = new Task[3];
-            task[1] = YoutubeClass.Start();
-            task[2] = WargamingClass.Start();
-            Task.WaitAll(task);
+            Task.WaitAll(new Task[]{
+                Task.Factory.StartNew(() => YoutubeClass.Start()),
+                Task.Factory.StartNew(() => WargamingClass.Start())                
+            });
 
             Task.Factory.StartNew(() => VideoNotify()); // Выводим уведомления
 
@@ -87,6 +87,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         gridItem.DataContext = labelTitle;
 
                         panel.DataContext = gridItem;
+                        svVideo.Content = panel;
                     }
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", "Apply video to form", ex.Message)); }

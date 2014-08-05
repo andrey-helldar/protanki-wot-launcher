@@ -22,7 +22,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public List<VideoLoading> List;
         public List<List<VideoLoading>> Range;
 
-        public Task<bool> Start()
+        public void Start()
         {
             try
             {
@@ -44,8 +44,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
             }
             catch (Exception ex) { Debug.Save("Youtube.Class", "Start()", ex.Message); }
-
-            return true;
         }
 
         public void Add(string id, string title, string content, string link, string date)
