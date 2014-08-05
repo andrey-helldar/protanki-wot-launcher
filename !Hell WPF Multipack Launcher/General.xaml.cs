@@ -67,9 +67,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 try
                 {
                     for (int i = 0; i < YoutubeClass.Count(); i++)
-                    {
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate
-                        {
+                    {                        
                             StackPanel panel = new StackPanel();
                             panel.Width = 100;
                             panel.Height = 50;
@@ -78,19 +76,18 @@ namespace _Hell_WPF_Multipack_Launcher
 
                             Label labelDate = new Label();
                             labelDate.Content = YoutubeClass.List[i].Date;
-                            gridItem.DataContext = labelDate;
+                            gridItem.Children.Add(labelDate);
 
                             Button buttonClose = new Button();
                             buttonClose.Content = "X";
-                            gridItem.DataContext = buttonClose;
+                            gridItem.Children.Add(buttonClose);
 
                             Label labelTitle = new Label();
                             labelTitle.Content = YoutubeClass.List[i].Title;
-                            gridItem.DataContext = labelTitle;
+                            gridItem.Children.Add(labelTitle);
 
-                            panel.DataContext = gridItem;
-                            svVideo.Content = panel;
-                        }));
+                            panel.Children.Add(gridItem);
+                            Dispatcher.BeginInvoke(new ThreadStart(delegate { svVideo.Content = panel; }));
                     }
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", "Apply video to form", ex.Message)); }
