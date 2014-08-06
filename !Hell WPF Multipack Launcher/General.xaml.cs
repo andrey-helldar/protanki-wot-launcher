@@ -50,8 +50,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
             // Загружаем список видео и новостей
             Task.WaitAll(new Task[]{
-                Task.Factory.StartNew(() => YoutubeClass.Start()),
-                Task.Factory.StartNew(() => WargamingClass.Start())                
+                Task.Factory.StartNew(() => YoutubeClass.Start(XmlGeneral)),
+                Task.Factory.StartNew(() => WargamingClass.Start(XmlGeneral))                
             });
 
             Task.WaitAll(new Task[]{

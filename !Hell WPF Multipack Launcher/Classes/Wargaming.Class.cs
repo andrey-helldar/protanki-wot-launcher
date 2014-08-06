@@ -18,25 +18,52 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
     {
         Debug Debug = new Debug();
 
+        private XDocument tmpDoc = new XDocument();
+
         public string mTitle, mLink, mDate, mDateShort;
         public List<Loading> List;
         public List<List<Loading>> Range;
 
-        public void Start(string lang = "en")
+        public void Start(XDocument XmlGeneral, string lang = "en")
         {
             try
             {
                 XDocument doc = XDocument.Load(lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
 
+                tmpDoc = XmlGeneral;
+
                 foreach (XElement el in doc.Root.Element("channel").Elements("item"))
-                    Add(
-                        el.Element("title").Value,
-                        el.Element("link").Value,
-                        el.Element("pubDate").Value,
-                        DateTime.Parse(el.Element("pubDate").Value).ToString("dd.MM"));
+                    if (!ElementBan(el.Element("link").Value))
+                    {
+                        Add(
+                            el.Element("title").Value,
+                            el.Element("link").Value,
+                            el.Element("pubDate").Value,
+                            DateTime.Parse(el.Element("pubDate").Value).ToString("dd.MM"));
+                    }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Start()", ex.Message)); }
         }
+
+        /// <summary>
+        /// Проверка внесен ли элемент новости/видео в так называемый "черный список"
+        /// </summary>
+        /// <param name="item">Входящий идентификатор записи для проверки</param>
+        /// <returns>
+        ///     TRUE - запись находится в черном списке;
+        ///     FALSE - запись "чистая"
+        /// </returns>
+        private bool ElementBan(string item)
+        {
+            if (tmpDoc.Root.Element("do_not_display") != null)
+                if (tmpDoc.Root.Element("do_not_display").Element("news") != null)
+                    if (tmpDoc.Root.Element("do_not_display").Element("news").Element("item") != null)
+                        foreach (string str in tmpDoc.Root.Element("do_not_display").Element("news").Elements("item"))
+                            if (str == item) return true;
+
+            return false;
+        }
+
 
         public void Add(string title, string link, string date, string dateShort)
         {

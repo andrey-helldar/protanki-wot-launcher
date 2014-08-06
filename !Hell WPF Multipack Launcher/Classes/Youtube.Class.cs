@@ -22,28 +22,54 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public List<VideoLoading> List;
         public List<List<VideoLoading>> Range;
 
-        public void Start()
+        private XDocument tmpDoc = new XDocument();
+
+        public void Start(XDocument XmlGeneral)
         {
             try
             {
                 XDocument doc = XDocument.Load(String.Format(Properties.Resources.RssYoutube, Properties.Resources.YoutubeChannel));
                 XNamespace ns = "http://www.w3.org/2005/Atom";
 
+                tmpDoc = XmlGeneral;
+
                 foreach (XElement el in doc.Root.Elements(ns + "entry"))
                 {
-                    string link = "";
-                    foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
+                    if (!ElementBan(el.Element(ns + "id").Value.Remove(0, 42)))
+                    {
+                        string link = "";
+                        foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
 
-                    Add(
-                        el.Element(ns + "id").Value.Remove(0, 42),
-                        (el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value),
-                        el.Element(ns + "content").Value.Remove(256) + (el.Element(ns + "content").Value.Length > 256 ? "..." : ""),
-                        link,
-                        el.Element(ns + "published").Value.Remove(10),
-                        DateTime.Parse(el.Element(ns + "published").Value.Remove(10)).ToString("dd.MM"));
+                        Add(
+                            el.Element(ns + "id").Value.Remove(0, 42),
+                            (el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value),
+                            el.Element(ns + "content").Value.Remove(256) + (el.Element(ns + "content").Value.Length > 256 ? "..." : ""),
+                            link,
+                            el.Element(ns + "published").Value.Remove(10),
+                            DateTime.Parse(el.Element(ns + "published").Value.Remove(10)).ToString("dd.MM"));
+                    }
                 }
             }
             catch (Exception ex) { Debug.Save("Youtube.Class", "Start()", ex.Message); }
+        }
+
+        /// <summary>
+        /// Проверка внесен ли элемент новости/видео в так называемый "черный список"
+        /// </summary>
+        /// <param name="item">Входящий идентификатор записи для проверки</param>
+        /// <returns>
+        ///     TRUE - запись находится в черном списке;
+        ///     FALSE - запись "чистая"
+        /// </returns>
+        private bool ElementBan(string item)
+        {
+            if (tmpDoc.Root.Element("do_not_display") != null)
+                if (tmpDoc.Root.Element("do_not_display").Element("video") != null)
+                    if (tmpDoc.Root.Element("do_not_display").Element("video").Element("item") != null)
+                        foreach (string str in tmpDoc.Root.Element("do_not_display").Element("video").Elements("item"))
+                            if (str == item) return true;
+
+            return false;
         }
 
         public void Add(string id, string title, string content, string link, string date, string dateShort)

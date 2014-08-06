@@ -9,4 +9,12 @@
     <path></path>
   </game>
   <youtube />
+  <do_not_display>
+    <video>
+      <item>thisIsId</item>
+    </video>
+    <news>
+      <item>thisIsId</item>
+    </news>
+  </do_not_display>
 </pro>

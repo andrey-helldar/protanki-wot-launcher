@@ -102,7 +102,7 @@
     <Compile Include="Classes\POST.Class.cs" />
     <Compile Include="Classes\Update.Class.cs" />
     <Compile Include="Classes\Variables.Class.cs" />
-    <Compile Include="Classes\Wargaming.News.Class.cs" />
+    <Compile Include="Classes\Wargaming.Class.cs" />
     <Compile Include="Classes\Youtube.Class.cs" />
     <Compile Include="Error.xaml.cs">
       <DependentUpon>Error.xaml</DependentUpon>
