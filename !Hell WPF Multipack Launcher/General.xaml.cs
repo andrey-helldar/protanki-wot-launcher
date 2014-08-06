@@ -76,16 +76,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    int pos = 0;
-
                     Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
-                        /*Grid gridPanel = new Grid();
-                        gridPanel.Width = double.NaN;
-                        gridPanel.Height = double.NaN;
-                        gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                        gridPanel.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;*/
-
                         for (int i = 0; i < (youtube ? YoutubeClass.Count() : WargamingClass.Count()); i++)
                         {
                             // Панель для размещения на форме
@@ -96,7 +88,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             panel.Background = new SolidColorBrush(Colors.Aqua);
                             panel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                             panel.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-                            panel.Name = "Panel" + i.ToString();
+                            panel.Name = String.Format("Panel_{0}_{1}", i.ToString(), youtube.ToString()).ToLower();
 
                             // Добавляем решетку для лучшего размещения элементов
                             Grid gridPanel0 = new Grid();
@@ -135,8 +127,9 @@ namespace _Hell_WPF_Multipack_Launcher
                             blockClose.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                             blockClose.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
 
+                            // ГИперссылка для кнопки "Закрыть"
                             Hyperlink hyperClose = new Hyperlink(new Run("X"));
-                            hyperClose.NavigateUri = new Uri(String.Format("http://Panel.{0}.{1}", i.ToString(), youtube.ToString()));
+                            hyperClose.NavigateUri = new Uri("http://" + panel.Name);
                             hyperClose.RequestNavigate += new RequestNavigateEventHandler(CloseBlock_RequestNavigate);
                             blockClose.Inlines.Clear();
                             blockClose.Inlines.Add(hyperClose);
@@ -153,6 +146,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             blockTitle.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                             blockTitle.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
                             
+                            // Гиперссылка для заголовка
                             Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
                             hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
                             hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
