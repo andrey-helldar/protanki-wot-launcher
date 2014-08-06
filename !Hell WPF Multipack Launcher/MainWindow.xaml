@@ -27,7 +27,7 @@
         <Button Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleVideoRight}" Margin="0,0,13,18" Grid.Row="1" VerticalAlignment="Bottom" Width="40"/>
         <Button Grid.Column="1" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleVideoLeft}" Margin="13,0,0,18" Grid.Row="1" VerticalAlignment="Bottom" Width="40"/>
         <Rectangle Grid.Column="1" Fill="Red" Opacity="0.5" HorizontalAlignment="Left" Height="36" Margin="18,5,0,0" Grid.Row="4" Width="36"/>
-        <Button Grid.Column="1" Style="{DynamicResource ButtonStyleLogotype}" Margin="71,10,71,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="120"/>
+        <Button x:Name="bLauncherWOT" Grid.Column="1" Style="{DynamicResource ButtonStyleLogotype}" Margin="71,10,71,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="120" Click="bLauncherWOT_Click"/>
         <Button x:Name="bAirus" Grid.Column="1" Style="{DynamicResource ButtonStyleAIRUS}" Margin="0,30,0,0" Grid.Row="3" VerticalAlignment="Top" Width="212" Height="68" Click="bAirus_Click"/>
         <Frame Grid.Column="1" Height="180" Margin="0" Grid.Row="2" Background="Red" Opacity="0.5" Width="250"/>
     </Grid>

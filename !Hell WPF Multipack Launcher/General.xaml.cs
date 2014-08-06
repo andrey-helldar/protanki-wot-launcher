@@ -269,11 +269,5 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "CloseBlock()", ex.Message)); }
         }
-
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            try { Process.Start(new ProcessStartInfo((sender as Hyperlink).NavigateUri.AbsoluteUri)); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Hyperlink_Click()", ex.Message, "Link: " + (sender as Hyperlink).NavigateUri.AbsoluteUri)); }
-        }
     }
 }

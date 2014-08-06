@@ -128,13 +128,44 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bPlay_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("OK");
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    if (File.Exists(Variables.PathTanks + "WorldOfTanks.exe"))
+                    {
+                        Optimize.Start(Variables.WinXP);
+                        Process.Start(new ProcessStartInfo(Variables.PathTanks + "WorldOfTanks.exe"));
+                    }
+                    else
+                        MessageBox.Show("Клиент игры не обнаружен!");
+                }
+                catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message); }
+            });
         }
 
         private void bAirus_Click(object sender, RoutedEventArgs e)
         {
             try { Process.Start(new ProcessStartInfo(Properties.Resources.Developer)); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bAirus_Click()", ex.Message, "Link: " + Properties.Resources.Developer)); }
+        }
+
+        private void bLauncherWOT_Click(object sender, RoutedEventArgs e)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
+                    {
+                        Optimize.Start(Variables.WinXP);
+                        Process.Start(new ProcessStartInfo(Variables.PathTanks + "WoTLauncher.exe"));
+                    }
+                    else
+                        MessageBox.Show("Клиент игры не обнаружен!");
+                }
+                catch (Exception ex) { Debug.Save("MainWindow", "bLauncher_Click()", ex.Message); }
+            });
         }
     }
 }
