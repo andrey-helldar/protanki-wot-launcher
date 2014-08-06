@@ -339,7 +339,7 @@
             </Setter>
         </Style>
 
-        
+
         <!-- *******************************
                         FEEDBACK
             *********************************-->
@@ -588,7 +588,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
 
 
         <!-- *******************************
@@ -603,7 +603,7 @@
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             RecognizesAccessKey="True" />
                         </Border>
-                            
+
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="FontFamily" Value="Sochi2014" />
@@ -645,6 +645,40 @@
             </Setter>
         </Style>
 
+
+
+
+
+        <!-- *******************************
+                        LISTBOX 
+            *********************************-->
+        <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <!-- Применяем стили для элементов внутри ListBox -->
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="brd" Background="{TemplateBinding Background}" 
+                                          BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <RadioButton Focusable="False" Margin="{TemplateBinding Padding}" Foreground="{TemplateBinding Foreground}"
+                                                          IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}">
+                                <ContentPresenter/>
+                            </RadioButton>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter Property="Background" Value="Aquamarine"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="LimeGreen"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Application.Resources>
 </Application>

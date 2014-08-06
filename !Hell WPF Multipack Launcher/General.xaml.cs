@@ -80,6 +80,8 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         for (int i = 0; i < (youtube ? YoutubeClass.Count() : WargamingClass.Count()); i++)
                         {
+                            ListBoxItem lbi = new ListBoxItem();
+
                             // Панель для размещения на форме
                             StackPanel panel = new StackPanel();
                             panel.Height = 70;
@@ -162,14 +164,14 @@ namespace _Hell_WPF_Multipack_Launcher
                             catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", "Apply video to form", ex0.Message, ex0.StackTrace)); }*/
 
                             panel.Children.Add(gridPanel0);
-
+                            lbi.Content = panel;
                             
                             try
                             {
                                 if (youtube)
-                                    lbVideo.Items.Add(panel);
+                                    lbVideo.Items.Add(lbi);
                                 else
-                                    lbNews.Items.Add(panel);
+                                    lbNews.Items.Add(lbi);
                             }
                             catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex0.Message, ex0.StackTrace)); }
                         }
