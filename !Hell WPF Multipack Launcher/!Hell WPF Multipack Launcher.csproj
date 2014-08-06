@@ -158,12 +158,6 @@
     <Resource Include="Resources\settings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\backGeneral.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -178,7 +172,13 @@
     <None Include="Resources\Ionic.Zip.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\backGeneral.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\backGeneralLine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

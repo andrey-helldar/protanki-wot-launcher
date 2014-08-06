@@ -38,8 +38,11 @@
         </Rectangle>
         <Label Content="ВИДЕО" Grid.Column="2" Style="{StaticResource LabelStyleHeaderWhite}" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="61"/>
         <Label Content="НОВОСТИ" HorizontalAlignment="Left" Style="{StaticResource LabelStyleHeaderWhite}" Margin="10,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="87"/>
-        <Label Content="© 2014 «AI RUS – Professional IT-support»" HorizontalAlignment="Left" Style="{StaticResource LabelStyleTextBlack}" Margin="110,16,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="18" Width="242"/>
-        <Label Content="Design by D Jinjolava" HorizontalAlignment="Left" Style="{StaticResource LabelStyleTextBlack}" Margin="110,34,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="18" Width="115"/>
+        <TextBlock Margin="110,0,0,0" Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Center" FontFamily="Sochi2014" FontSize="14" TextWrapping="Wrap">
+            <Hyperlink NavigateUri="http://ai-rus.com" Click="Hyperlink_Click"><Run Text="2014 © «AI RUS – Professional IT-support»&#10;"/></Hyperlink>
+            <Hyperlink NavigateUri="https://vk.com/id7327559" Click="Hyperlink_Click"><Run Text="Design by D Jinjolava&#10;"/></Hyperlink>
+            <Hyperlink NavigateUri="https://vk.com/amiramedia" Click="Hyperlink_Click"><Run Text="Translated by Dmitry Voronov"/></Hyperlink>
+        </TextBlock>
         <ListBox x:Name="lbNews" Margin="0,10,5,0" Grid.Row="3" Grid.ColumnSpan="2"/>
         <ListBox x:Name="lbVideo" Grid.ColumnSpan="2" Grid.Column="2" Margin="0,10,5,0" Grid.Row="3"/>
     </Grid>
