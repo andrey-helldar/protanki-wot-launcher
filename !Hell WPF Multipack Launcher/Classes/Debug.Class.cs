@@ -13,9 +13,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Debug
     {
-        public static string Error { get { return error; } }
-        private static string error;
-
         public void Save(string module, string func, params string[] args)
         {
             try
@@ -56,8 +53,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </summary>
         private void Message(string message)
         {
-            error = message;
-            MainWindow.MainFrame0.NavigationService.Navigate(new Uri("Error.xaml", UriKind.Relative));
+            MainWindow.Navigator("Error", "Debug.Class");
         }
 
         /// <summary>

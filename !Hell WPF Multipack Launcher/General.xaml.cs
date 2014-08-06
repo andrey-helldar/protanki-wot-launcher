@@ -395,7 +395,24 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Navigator("Optimize", "General.xaml");
+            new Classes.Optimize().Start(
+                GetElement("settings", "winxp"),
+                GetElement("settings", "kill"),
+                GetElement("settings", "force"),
+                GetElement("settings", "aero"),
+                GetElement("settings", "video"),
+                GetElement("settings", "weak"),
+                true
+                );
+        }
+
+        private bool GetElement(string block, string attr)
+        {
+            if (MainWindow.XmlDocument.Root.Element(block) != null)
+                if (MainWindow.XmlDocument.Root.Element(block).Attribute(attr) != null)
+                    return MainWindow.XmlDocument.Root.Element(block).Attribute(attr).Value == "True";
+
+            return true;
         }
 
         private void bSettings_Click(object sender, RoutedEventArgs e)

@@ -49,7 +49,7 @@ namespace _Hell_WPF_Multipack_Launcher
          * Functions
          * *******************/
 
-        public static bool Navigator(string page = "General", string from=null)
+        public static bool Navigator(string page = "General", string from = null)
         {
             try { MainFrame0.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
             catch (Exception ex) { MessageBox.Show(ex.Message); }

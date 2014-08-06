@@ -14,6 +14,6 @@
                 <GradientStop Color="#FF6C6C6C"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label x:Name="lStatus" Content="Loading error text..." Margin="0" Style="{StaticResource LabelStyleStatus}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBlock x:Name="tbStatus" Margin="10" TextWrapping="Wrap" Text="TextBlock" Foreground="White" FontSize="14" FontFamily="Verdana" HorizontalAlignment="Center" VerticalAlignment="Center" TextOptions.TextHintingMode="Animated"/>
     </Grid>
 </Page>
