@@ -228,7 +228,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     try { if (!YoutubeClass.CheckDate(MainWindow.MultipackDate, el.Date)) YoutubeClass.Delete(el.ID); }
                     catch (Exception) { DeleteOldVideo(); }
             }
-            finally { }
+            catch (Exception) { }
         }
 
         private void ShowNotify(string text, string caption = null)

@@ -31,7 +31,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 foreach (XElement el in doc.Root.Elements(ns + "entry"))
                 {
-                    if (!new Classes.Variables().ElementBan(el.Element(ns + "id").Value.Remove(0, 42)))
+                    if (!new Classes.Variables().ElementBan(el.Element(ns + "id").Value.Remove(0, 42).ToUpper()))
                     {
                         string link = "";
                         foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
@@ -92,17 +92,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try { if (List.Count > -1) { for (int i = 0; i < List.Count; i++) { if (List[i].ID == str) { return i; } } } return -1; }
             catch (Exception ex) { Debug.Save("Youtube.Class", "IndexOf()", ex.Message, "Search: " + str); return -1; }
-        }
-
-        /// <summary>
-        /// Функция возврата идентификатора массива по ссылке
-        /// </summary>
-        /// <param name="link">Ссылка на запись в Инете</param>
-        /// <returns>ID записи</returns>
-        public string GetID(string link)
-        {
-            try { if (List.Count > -1) { for (int i = 0; i < List.Count; i++) { if (List[i].Link == link) { return List[i].ID; } } } return "none"; }
-            catch (Exception ex) { Debug.Save("Youtube.Class", "GetID()", ex.Message, "Search: " + link); return "error"; }
         }
 
         public int Count()
