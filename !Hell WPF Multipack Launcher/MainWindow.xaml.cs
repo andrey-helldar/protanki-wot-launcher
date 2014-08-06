@@ -48,6 +48,13 @@ namespace _Hell_WPF_Multipack_Launcher
          * Functions
          * *******************/
 
+        public static bool Navigator(string page = "General", string from=null)
+        {
+            try { MainFrame0.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
+            catch (Exception) { }
+            return true;
+        }
+
         public MainWindow()
         {
             try
@@ -55,14 +62,15 @@ namespace _Hell_WPF_Multipack_Launcher
                 InitializeComponent();
                 MouseDown += delegate { DragMove(); };
 
+                // Делаем общей иконку в трее
                 notifier = this.notifyIcon;
                 this.Closing += delegate { notifier = null; };
 
+                // Делаем общим фрейм
                 mainFrame = this.MainFrame;
                 this.Closing += delegate { mainFrame = null; };
-
-                try { MainFrame.NavigationService.Navigate(new Uri("Loading.xaml", UriKind.Relative)); }
-                catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", "Loading page: Loading.xaml", ex0.Message)); }
+                
+                Navigator("Loading"); // Изменение страницы
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message)); }
         }

@@ -269,5 +269,35 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "CloseBlock()", ex.Message)); }
         }
+
+        private void bOptimize_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigator("Optimize", "General.xaml");
+        }
+
+        private void bSettings_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigator("Settings", "General.xaml");
+        }
+
+        private void bFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigator("Feedback", "General.xaml");
+        }
+
+        private void bUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigator("Update", "General.xaml");
+        }
+
+        private void bNotification_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigator("Notification", "General.xaml");
+        }
+
+        private void bUserProfile_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigator("UserProfile", "General.xaml");
+        }
     }
 }

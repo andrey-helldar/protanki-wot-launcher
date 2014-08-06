@@ -24,12 +24,12 @@
             <RowDefinition Height="208*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <Button x:Name="bOptimize" Grid.Column="3" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleOptimize}" Margin="0,0,5,0" Grid.Row="4" Width="36" Height="36"/>
-        <Button x:Name="bFeedback" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleFeedback}" Margin="59,17,0,17" Grid.Row="4" Width="42" Height="36"/>
-        <Button x:Name="bSettings" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleSettings}" Margin="15,17,0,17" Grid.Row="4" Width="36" Height="36"/>
-        <Button x:Name="bAbout" Grid.Column="3" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleAbout}" Margin="0,5,5,5" Width="24"/>
-        <Button Grid.Column="3" Style="{DynamicResource ButtonStyleFAQ}" Margin="0,5,31,5" HorizontalAlignment="Right" Width="24"/>
-        <Button x:Name="bUpdate" Grid.Column="3" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleUpdate}" Margin="0,5,57,5" Width="24"/>
+        <Button x:Name="bOptimize" Grid.Column="3" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleOptimize}" Margin="0,0,5,0" Grid.Row="4" Width="36" Height="36" Click="bOptimize_Click"/>
+        <Button x:Name="bFeedback" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleFeedback}" Margin="59,17,0,17" Grid.Row="4" Width="42" Height="36" Click="bFeedback_Click"/>
+        <Button x:Name="bSettings" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleSettings}" Margin="15,17,0,17" Grid.Row="4" Width="36" Height="36" Click="bSettings_Click"/>
+        <Button x:Name="bUserProfile" Grid.Column="3" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleAbout}" Margin="0,5,5,5" Width="24" Click="bUserProfile_Click"/>
+        <Button x:Name="bNotification" Grid.Column="3" Style="{DynamicResource ButtonStyleFAQ}" Margin="0,5,31,5" HorizontalAlignment="Right" Width="24" Click="bNotification_Click"/>
+        <Button x:Name="bUpdate" Grid.Column="3" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleUpdate}" Margin="0,5,57,5" Width="24" Click="bUpdate_Click"/>
         <Label x:Name="lType" Content="Базовая версия" Style="{StaticResource LabelStyleHeaderBlack}" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,2" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Height="24" Width="157"/>
         <Rectangle Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,5,0" Opacity="0.5">
             <Rectangle.Fill>
