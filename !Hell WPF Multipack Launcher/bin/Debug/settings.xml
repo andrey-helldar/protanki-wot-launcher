@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
   <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru">
     <notify_link></notify_link>
@@ -8,9 +8,16 @@
   <game>
     <path></path>
   </game>
-  <youtube />
+  <youtube>
+    <video>SRCPzexTv5U</video>
+    <video>KEYO-6ghrho</video>
+  </youtube>
   <do_not_display>
-    <video />
-    <news />
+    <video>
+      <item></item>
+    </video>
+    <news>
+      <item>CloseWargaming_2</item>
+    </news>
   </do_not_display>
 </pro>

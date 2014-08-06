@@ -16,7 +16,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Variables
     {
-        public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings2.xml";
+        //public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings2.xml";
+        public string SettingsPath = "settings.xml";
 
         // Wargaming API
         public string Api = String.Empty;
@@ -304,30 +305,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             if (str == item) return true;
 
             return false;
-        }
-
-        public bool ElementToBan(string block, string item)
-        {
-            if (MainWindow.XmlDocument.Root.Element("do_not_display") != null)
-                if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block) != null)
-                    if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Element("item") != null)
-                        if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item").Count() > 0)
-                        {
-                            foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item"))
-                                if (str == item) return true;
-
-                            MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Add(new XElement("item", item));
-                        }
-                        else
-                            MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Element("item").SetValue(item);
-                    else
-                        MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Add(new XElement("item", item));
-                else
-                    MainWindow.XmlDocument.Root.Element("do_not_display").Add(new XElement(block, new XElement("item", item)));
-            else
-                MainWindow.XmlDocument.Root.Add(new XElement("do_not_display", new XElement(block, new XElement("item", item))));
-
-            return true;
         }
     }
 }

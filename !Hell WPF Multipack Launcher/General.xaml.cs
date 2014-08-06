@@ -27,8 +27,6 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.YoutubeVideo YoutubeClass = new Classes.YoutubeVideo();
         Classes.Wargaming WargamingClass = new Classes.Wargaming();
 
-        public XDocument XmlGeneral = new XDocument();
-
         string NotifyLink = String.Empty;
 
 
@@ -37,16 +35,13 @@ namespace _Hell_WPF_Multipack_Launcher
             InitializeComponent();
 
             // Устанавливаем заголовок в зависимости от типа версии
-            if (XmlGeneral.Root != null)
-                if (XmlGeneral.Root.Element("multipack") != null)
-                    if (XmlGeneral.Root.Element("multipack").Element("type") != null)
-                        lType.Content = XmlGeneral.Root.Element("multipack").Element("type").Value == "base" ? "Базовая версия" : "Расширенная версия";
-                    else
-                        lType.Content = "Базовая версия";
-                else
-                    lType.Content = "Базовая версия";
-            else
-                lType.Content = "Базовая версия";
+            lType.Content = "Базовая версия";
+
+            if (MainWindow.XmlDocument.Root != null)
+                if (MainWindow.XmlDocument.Root.Element("multipack") != null)
+                    if (MainWindow.XmlDocument.Root.Element("multipack").Element("type") != null)
+                        lType.Content = MainWindow.XmlDocument.Root.Element("multipack").Element("type").Value == "base" ? "Базовая версия" : "Расширенная версия";
+                    
 
             // Загружаем список видео и новостей
             Task.WaitAll(new Task[]{
@@ -172,9 +167,9 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (XmlGeneral.Root.Element("youtube") != null)
-                    foreach (var el in XmlGeneral.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
-                else XmlGeneral.Root.Add(new XElement("youtube", null));
+                if (MainWindow.XmlDocument.Root.Element("youtube") != null)
+                    foreach (var el in MainWindow.XmlDocument.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
+                else MainWindow.XmlDocument.Root.Add(new XElement("youtube", null));
 
                 Task.Factory.StartNew(() => DeleteOldVideo()); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
 
@@ -201,10 +196,10 @@ namespace _Hell_WPF_Multipack_Launcher
 
                         Task.Factory.StartNew(() => ShowNotify("Смотреть видео"));
 
-                        if (XmlGeneral.Root.Element("youtube") != null)
-                            XmlGeneral.Root.Element("youtube").Add(new XElement("video", el.ID));
+                        if (MainWindow.XmlDocument.Root.Element("youtube") != null)
+                            MainWindow.XmlDocument.Root.Element("youtube").Add(new XElement("video", el.ID));
                         else
-                            XmlGeneral.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
+                            MainWindow.XmlDocument.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
                     }
                     catch (Exception) { }
                 }
@@ -268,12 +263,12 @@ namespace _Hell_WPF_Multipack_Launcher
                 string[] arr = (sender as Button).Name.Split('_');
 
                 switch(arr[0]){
-                    case "CloseWargaming_":
-                        new Classes.Variables().ElementToBan("video", (sender as Button).Name); 
+                    case "CloseWargaming":
+                        ElementToBan("news", (sender as Button).Name); 
                         break;
 
                     default:
-                        new Classes.Variables().ElementToBan("video", YoutubeClass.GetID((sender as Button).Name));
+                        ElementToBan("video", YoutubeClass.GetID((sender as Button).Name));
                         break;
                 }
                      
@@ -281,6 +276,30 @@ namespace _Hell_WPF_Multipack_Launcher
                 lb.Items.Remove(lb.SelectedItem);
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "CloseBlock()", ex.Message)); }
+        }
+
+        public bool ElementToBan(string block, string item)
+        {
+            if (MainWindow.XmlDocument.Root.Element("do_not_display") != null)
+                if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block) != null)
+                    if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Element("item") != null)
+                        if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item").Count() > 0)
+                        {
+                            foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item"))
+                                if (str == item) return true;
+
+                            MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Add(new XElement("item", item));
+                        }
+                        else
+                            MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Element("item").SetValue(item);
+                    else
+                        MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Add(new XElement("item", item));
+                else
+                    MainWindow.XmlDocument.Root.Element("do_not_display").Add(new XElement(block, new XElement("item", item)));
+            else
+                MainWindow.XmlDocument.Root.Add(new XElement("do_not_display", new XElement(block, new XElement("item", item))));
+
+            return true;
         }
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
