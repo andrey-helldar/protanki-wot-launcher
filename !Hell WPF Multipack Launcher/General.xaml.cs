@@ -50,8 +50,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
             // Загружаем список видео и новостей
             Task.WaitAll(new Task[]{
-                Task.Factory.StartNew(() => YoutubeClass.Start(XmlGeneral)),
-                Task.Factory.StartNew(() => WargamingClass.Start(XmlGeneral))                
+                Task.Factory.StartNew(() => YoutubeClass.Start()),
+                Task.Factory.StartNew(() => WargamingClass.Start())                
             });
 
             Task.WaitAll(new Task[]{
@@ -263,6 +263,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 ListBoxItem el = (((sender as Button).Parent as Grid).Parent as ListBoxItem);
                 ListBox lb = ((((sender as Button).Parent as Grid).Parent as ListBoxItem).Parent as ListBox);
+
                 
                 el.IsSelected = true;
                 lb.Items.Remove(lb.SelectedItem);

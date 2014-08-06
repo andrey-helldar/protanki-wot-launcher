@@ -16,6 +16,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Variables
     {
+        public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
+
         // Wargaming API
         public string Api = String.Empty;
 
@@ -80,7 +82,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 ItXP();
 
                 Task.Factory.StartNew(() => new Update().SaveFromResources()).Wait();
-
                 Task.Factory.StartNew(() => LoadSettings()).Wait();
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", ex.Message)); }
@@ -90,8 +91,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             string tmpLang = Properties.Resources.Default_Lang;
 
-            string Settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
-            if (File.Exists(Settings)) Doc = XDocument.Load(Settings);
+            if (File.Exists(SettingsPath)) Doc = XDocument.Load(SettingsPath);
 
             // Загружаем версию клиента игры
             try
@@ -124,7 +124,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
 
                     tmpLang = doc.Root.Element("meta").Element("localization").Value.Trim();
-                    tmpLang = tmpLang.Remove(0, tmpLang.IndexOf(" ")+1).ToLower();
+                    tmpLang = tmpLang.Remove(0, tmpLang.IndexOf(" ") + 1).ToLower();
                 }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: TanksVersion", ex.Message)); }
@@ -285,6 +285,25 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try { WinXP = Environment.OSVersion.Version.Major == 5; }
             catch (Exception ex) { Debug.Save("Variables.Class", "ItXP()", ex.Message); }
+        }
+
+        /// <summary>
+        /// Проверка внесен ли элемент новости/видео в так называемый "черный список"
+        /// </summary>
+        /// <param name="item">Входящий идентификатор записи для проверки</param>
+        /// <returns>
+        ///     TRUE - запись находится в черном списке;
+        ///     FALSE - запись "чистая"
+        /// </returns>
+        public bool ElementBan(string item, string block = "video")
+        {
+            if (MainWindow.XmlDocument.Root.Element("do_not_display") != null)
+                if (MainWindow.XmlDocument.Root.Element("do_not_display").Element("block") != null)
+                    if (MainWindow.XmlDocument.Root.Element("do_not_display").Element("block").Element("item") != null)
+                        foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element("block").Elements("item"))
+                            if (str == item) return true;
+
+            return false;
         }
     }
 }

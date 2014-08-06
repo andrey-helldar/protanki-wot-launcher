@@ -18,28 +18,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
     {
         Debug Debug = new Debug();
 
-        private XDocument tmpDoc = new XDocument();
-
         public string mTitle, mLink, mDate, mDateShort;
         public List<Loading> List;
         public List<List<Loading>> Range;
 
-        public void Start(XDocument XmlGeneral)
+        public void Start()
         {
             try
             {
                 string lang = Properties.Resources.Default_Lang;
 
-                if (XmlGeneral.Root.Element("info") != null)
-                    if (XmlGeneral.Root.Element("info").Attribute("language") != null)
-                        lang = XmlGeneral.Root.Element("info").Attribute("language").Value;
+                if (MainWindow.XmlDocument.Root.Element("info") != null)
+                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
+                        lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
 
                 XDocument doc = XDocument.Load(lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
 
-                tmpDoc = XmlGeneral;
-
                 foreach (XElement el in doc.Root.Element("channel").Elements("item"))
-                    if (!ElementBan(el.Element("link").Value))
+                    if (!new Classes.Variables().ElementBan(el.Element("link").Value, "news"))
                     {
                         Add(
                             el.Element("title").Value,
@@ -47,29 +43,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             el.Element("pubDate").Value,
                             DateTime.Parse(el.Element("pubDate").Value).ToString("dd.MM"));
                     }
-
-                tmpDoc.Remove();
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Start()", ex.Message, XmlGeneral.ToString())); }
-        }
-
-        /// <summary>
-        /// Проверка внесен ли элемент новости/видео в так называемый "черный список"
-        /// </summary>
-        /// <param name="item">Входящий идентификатор записи для проверки</param>
-        /// <returns>
-        ///     TRUE - запись находится в черном списке;
-        ///     FALSE - запись "чистая"
-        /// </returns>
-        private bool ElementBan(string item)
-        {
-            if (tmpDoc.Root.Element("do_not_display") != null)
-                if (tmpDoc.Root.Element("do_not_display").Element("news") != null)
-                    if (tmpDoc.Root.Element("do_not_display").Element("news").Element("item") != null)
-                        foreach (string str in tmpDoc.Root.Element("do_not_display").Element("news").Elements("item"))
-                            if (str == item) return true;
-
-            return false;
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Start()", ex.Message, MainWindow.XmlDocument.ToString())); }
         }
 
 

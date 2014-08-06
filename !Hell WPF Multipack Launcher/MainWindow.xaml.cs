@@ -31,14 +31,15 @@ namespace _Hell_WPF_Multipack_Launcher
         public static Frame MainFrame0 { get { return mainFrame; } }
         private static Frame mainFrame;
 
+        public static XDocument XmlDocument { get { return xmlDocument; } }
+        private static XDocument xmlDocument;
+
         /*********************
          * Variables
          * *******************/
         Classes.Variables Variables = new Classes.Variables();
         Classes.Debug Debug = new Classes.Debug();
         Classes.Optimize Optimize = new Classes.Optimize();
-
-        XDocument docTmp = new XDocument();
 
         public static string MultipackDate = "1970-1-1";
         public static string ProductName = String.Empty;
@@ -69,7 +70,12 @@ namespace _Hell_WPF_Multipack_Launcher
                 // Делаем общим фрейм
                 mainFrame = this.MainFrame;
                 this.Closing += delegate { mainFrame = null; };
-                
+
+                // Загружаем настройки из XML-файла
+                if(File.Exists(Variables.SettingsPath))
+                    xmlDocument = XDocument.Load(Variables.SettingsPath);
+                this.Closing += delegate { xmlDocument = null; };
+
                 Navigator("Loading"); // Изменение страницы
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message)); }

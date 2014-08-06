@@ -22,20 +22,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public List<VideoLoading> List;
         public List<List<VideoLoading>> Range;
 
-        private XDocument tmpDoc = new XDocument();
-
-        public void Start(XDocument XmlGeneral)
+        public void Start()
         {
             try
             {
                 XDocument doc = XDocument.Load(String.Format(Properties.Resources.RssYoutube, Properties.Resources.YoutubeChannel));
                 XNamespace ns = "http://www.w3.org/2005/Atom";
 
-                tmpDoc = XmlGeneral;
-
                 foreach (XElement el in doc.Root.Elements(ns + "entry"))
                 {
-                    if (!ElementBan(el.Element(ns + "id").Value.Remove(0, 42)))
+                    if (!new Classes.Variables().ElementBan(el.Element(ns + "id").Value.Remove(0, 42)))
                     {
                         string link = "";
                         foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
@@ -51,25 +47,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
             }
             catch (Exception ex) { Debug.Save("Youtube.Class", "Start()", ex.Message); }
-        }
-
-        /// <summary>
-        /// Проверка внесен ли элемент новости/видео в так называемый "черный список"
-        /// </summary>
-        /// <param name="item">Входящий идентификатор записи для проверки</param>
-        /// <returns>
-        ///     TRUE - запись находится в черном списке;
-        ///     FALSE - запись "чистая"
-        /// </returns>
-        private bool ElementBan(string item)
-        {
-            if (tmpDoc.Root.Element("do_not_display") != null)
-                if (tmpDoc.Root.Element("do_not_display").Element("video") != null)
-                    if (tmpDoc.Root.Element("do_not_display").Element("video").Element("item") != null)
-                        foreach (string str in tmpDoc.Root.Element("do_not_display").Element("video").Elements("item"))
-                            if (str == item) return true;
-
-            return false;
         }
 
         public void Add(string id, string title, string content, string link, string date, string dateShort)
