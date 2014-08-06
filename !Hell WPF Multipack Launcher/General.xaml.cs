@@ -104,7 +104,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             labelDate.Margin = new Thickness(0, 0, 0, 0);
                             labelDate.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                             labelDate.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-                            try { labelDate.Content = youtube ? YoutubeClass.List[i].Date : WargamingClass.List[i].Date; }
+                            try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
                             catch (Exception) { labelDate.Content = "1970-1-1"; }
                             Grid.SetRow(labelDate, 0);
                             Grid.SetColumn(labelDate, 0);

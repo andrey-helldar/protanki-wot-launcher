@@ -9,16 +9,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     public class VideoLoading
     {
-        public string ID, Title, Content, Link, Date;
-        public VideoLoading(string mProcess, string mDescription, string mContent, string mLink, string mDate) { ID = mProcess; Title = mDescription; Content = mContent; Link = mLink; Date = mDate; }
-        public VideoLoading() { ID = ""; Title = ""; Content = ""; Link = ""; Date = ""; }
+        public string ID, Title, Content, Link, Date, DateShort;
+        public VideoLoading(string mProcess, string mDescription, string mContent, string mLink, string mDate, string mDateShort) { ID = mProcess; Title = mDescription; Content = mContent; Link = mLink; Date = mDate; DateShort = mDateShort; }
+        public VideoLoading() { ID = ""; Title = ""; Content = ""; Link = ""; Date = ""; DateShort = ""; }
     }
 
     public class YoutubeVideo
     {
         Debug Debug = new Debug();
 
-        public string mID, mTitle, mContent, mLink, mDate;
+        public string mID, mTitle, mContent, mLink, mDate, mDateShort;
         public List<VideoLoading> List;
         public List<List<VideoLoading>> Range;
 
@@ -39,14 +39,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         (el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value),
                         el.Element(ns + "content").Value.Remove(256) + (el.Element(ns + "content").Value.Length > 256 ? "..." : ""),
                         link,
-                        el.Element(ns + "published").Value.Remove(10)
-                    );
+                        el.Element(ns + "published").Value.Remove(10),
+                        DateTime.Parse(el.Element(ns + "published").Value.Remove(10)).ToString("dd.MM"));
                 }
             }
             catch (Exception ex) { Debug.Save("Youtube.Class", "Start()", ex.Message); }
         }
 
-        public void Add(string id, string title, string content, string link, string date)
+        public void Add(string id, string title, string content, string link, string date, string dateShort)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     Range = new List<List<VideoLoading>>();
                 }
 
-                List.Add(new VideoLoading(id, title, content, link, date));
+                List.Add(new VideoLoading(id, title, content, link, date, dateShort));
                 Range.Add(List);
 
                 mID = Range[0][0].ID;
@@ -65,6 +65,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 mContent = Range[0][0].Content;
                 mLink = Range[0][0].Link;
                 mDate = Range[0][0].Date;
+                mDateShort = Range[0][0].DateShort;
             }
             catch (Exception ex)
             {
@@ -73,7 +74,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     "Title: " + title,
                     "Content: " + content,
                     "Link: " + link,
-                    "Date: " + date);
+                    "Date: " + date,
+                    "Short Date: " + dateShort);
             }
         }
 

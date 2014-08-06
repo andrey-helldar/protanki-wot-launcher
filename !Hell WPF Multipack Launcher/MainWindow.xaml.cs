@@ -130,5 +130,11 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             MessageBox.Show("OK");
         }
+
+        private void bAirus_Click(object sender, RoutedEventArgs e)
+        {
+            try { Process.Start(new ProcessStartInfo(Properties.Resources.Developer)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bAirus_Click()", ex.Message, "Link: " + Properties.Resources.Developer)); }
+        }
     }
 }

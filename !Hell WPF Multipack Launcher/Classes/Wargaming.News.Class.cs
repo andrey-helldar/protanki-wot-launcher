@@ -9,16 +9,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     public class Loading
     {
-        public string Title, Link, Date;
-        public Loading(string mTitle, string mLink, string mDate) { Title = mTitle; Link = mLink; Date = mDate; }
-        public Loading() { Title = ""; Link = ""; Date = ""; }
+        public string Title, Link, Date, DateShort;
+        public Loading(string mTitle, string mLink, string mDate, string mDateShort) { Title = mTitle; Link = mLink; Date = mDate; DateShort = mDateShort; }
+        public Loading() { Title = ""; Link = ""; Date = ""; DateShort = ""; }
     }
 
     public class Wargaming
     {
         Debug Debug = new Debug();
 
-        public string mTitle, mLink, mDate;
+        public string mTitle, mLink, mDate, mDateShort;
         public List<Loading> List;
         public List<List<Loading>> Range;
 
@@ -29,12 +29,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 XDocument doc = XDocument.Load(lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
 
                 foreach (XElement el in doc.Root.Element("channel").Elements("item"))
-                    Add(el.Element("title").Value, el.Element("link").Value, el.Element("pubDate").Value);
+                    Add(
+                        el.Element("title").Value,
+                        el.Element("link").Value,
+                        el.Element("pubDate").Value,
+                        DateTime.Parse(el.Element("pubDate").Value).ToString("dd.MM"));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Start()", ex.Message)); }
         }
 
-        public void Add(string title, string link, string date)
+        public void Add(string title, string link, string date, string dateShort)
         {
             try
             {
@@ -45,19 +49,21 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     Range = new List<List<Loading>>();
                 }
 
-                List.Add(new Loading(title, link, date));
+                List.Add(new Loading(title, link, date, dateShort));
                 Range.Add(List);
 
                 mTitle = Range[0][0].Title;
                 mLink = Range[0][0].Link;
                 mDate = Range[0][0].Date;
+                mDateShort = Range[0][0].DateShort;
             }
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Add()", ex.Message,
                     "Title: " + title,
                     "Link: " + link,
-                    "Date: " + date));
+                    "Date: " + date,
+                    "Date Short: " + dateShort));
             }
         }
 
