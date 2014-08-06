@@ -128,13 +128,19 @@ namespace _Hell_WPF_Multipack_Launcher
                             blockTitle.Margin = new Thickness(0);
                             blockTitle.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                             blockTitle.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+
+                            // Добавляем идентификатор записи
+                            Hyperlink hyperID = new Hyperlink(new Run(""));
+                            hyperID.NavigateUri = new Uri(youtube ? "http://" + YoutubeClass.List[i].ID : WargamingClass.List[i].Link);
+                            hyperID.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
+                            this.RegisterName(hyperID.Name, hyperID);
                             
                             // Гиперссылка для заголовка
                             Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
                             hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
                             hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
-                            hyperlink.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
                             blockTitle.Inlines.Add(hyperlink);
+                            blockTitle.Inlines.Add(hyperID);
 
                             Grid.SetRow(blockTitle, 1);
                             Grid.SetColumn(blockTitle, 0);
@@ -262,20 +268,21 @@ namespace _Hell_WPF_Multipack_Launcher
                 ListBox lb = ((((sender as Button).Parent as Grid).Parent as ListBoxItem).Parent as ListBox);
 
                 string[] arr = (sender as Button).Name.Split('_');
-
+                
                 switch(arr[0]){
                     case "CloseWargaming":
-                        ElementToBan("news", (sender as Button).Name); 
+                        Hyperlink elem = Find(el, "LinkWargaming_" + arr[1]);
+                        if (elem != null) ElementToBan("news", elem.NavigateUri.AbsoluteUri);
                         break;
 
                     default:
-                        /*
-                         * LinkYoutube_
-                         * LinkWargaming_
-                         * */
-
-
-                        ElementToBan("video", (LinkYoutube_ + arr[1]).NavigateUri.AbsoluteUri);
+                        Hyperlink elemY = Find(el, "LinkYoutube_" + arr[1]);
+                        
+                        if (elemY != null)
+                        {
+                            string[] item = elemY.NavigateUri.AbsoluteUri.Split('/');
+                            ElementToBan("video", item[2].ToUpper());
+                        }
                         break;
                 }
                      
@@ -307,6 +314,21 @@ namespace _Hell_WPF_Multipack_Launcher
                 MainWindow.XmlDocument.Root.Add(new XElement("do_not_display", new XElement(block, new XElement("item", item))));
 
             return true;
+        }
+
+        /// <summary>
+        /// Ищем элемент по имени
+        /// </summary>
+        /// <param name="sender">Передаем строку ListBox</param>
+        /// <param name="name">Передаем имя искомого элемента</param>
+        /// <returns>Возвращаем элемент</returns>
+        private Hyperlink Find(ListBoxItem sender, string name)
+        {
+            object wantedNode = sender.FindName(name);
+            if (wantedNode is Hyperlink)
+                return wantedNode as Hyperlink;
+            else
+                return null;
         }
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
