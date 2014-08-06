@@ -651,7 +651,6 @@
         <!-- *******************************
                         LISTBOX 
             *********************************-->
-        <!--<Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">-->
         <Style x:Key="ListBoxItemGeneral" TargetType="{x:Type ListBoxItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -668,15 +667,15 @@
                                 <Setter Property="Margin" Value="0,0,0,5" />
                                 <Setter Property="Width" Value="240" />
                             </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="LimeGreen"/>
-                                <Setter Property="BorderThickness" Value="1"/>
-                                <Setter Property="BorderBrush" Value="Black"/>
-                            </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="Margin" Value="0" />
                                 <Setter Property="Width" Value="240" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="LimeGreen"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

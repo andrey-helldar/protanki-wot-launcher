@@ -96,8 +96,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
         public int Count()
         {
-            try { return List.Count; }
-            catch (Exception ex) { Debug.Save("Youtube.Class", "Count()", ex.Message); return 0; }
+            try { return List.Count > 0 ? List.Count : 0; }
+            catch (Exception) { return 0; }
         }
 
         /// <summary>
@@ -109,10 +109,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 if (List.Count > 0)
-                {
                     for (int i = 0; i < List.Count; i++)
                         if (List[i].ID == id) { List.RemoveAt(i); }
-                }
             }
             catch (Exception /*ex*/) { /*Debug.Save("Youtube.Class", "Count(id = " + id + ")", ex.Message);*/ /*Delete(id);*/ }
 

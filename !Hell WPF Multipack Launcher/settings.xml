@@ -10,53 +10,7 @@
   </game>
   <youtube />
   <do_not_display>
-    <video>
-      <item>KEYO-6GHRHO</item>
-      <item>LKRM8B0LZVS</item>
-      <item>SRCPZEXTV5U</item>
-      <item>OMAQCSWGVP4</item>
-      <item>SRE-WZOL0LO</item>
-      <item>OFWRFMG19JC</item>
-      <item>GMRBK8FDH9E</item>
-      <item>9FIA9KTZLCA</item>
-      <item>IR16A09TKVM</item>
-      <item>1JK5ICYP37I</item>
-      <item>EIVH9YB1PXE</item>
-      <item>QGKRSS0QCYI</item>
-      <item>ET8B1BSGGWW</item>
-      <item>UWVSLWGI6KK</item>
-      <item>26RX2_TJ-L4</item>
-      <item>WK1J-6IUFFW</item>
-      <item>HDT-9FNH78O</item>
-      <item>JBY9A6ZELAO</item>
-      <item>L-1CTG8QSNE</item>
-      <item>G6XTQW2O0-I</item>
-      <item>ZTVM5EVQEMG</item>
-      <item>GGQGGDVB3QY</item>
-      <item>DHFSKINMBY8</item>
-      <item>LEXH2Z3VB7E</item>
-      <item>-GQXDMMP6D8</item>
-    </video>
-    <news>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/9/compensation_5_august/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/tournaments/masterclass-5/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/11/special_prem_august/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/1/social_networks_08_05/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/3/tank_booking_contest/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/1/tank_biatlon_beginning/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/1/in_the_commanders_cabin_LP2/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/1/lets_comfort_2/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/3/clock_contest/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/1/wot_fan_08-05/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/2/tech_works_04_08/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/tournaments/kubinka-cup-2014/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/11/combat_mission_strongholds/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/14/stream_review_04_08/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/1/strongholds_guide_video/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/tournaments/national-cups/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/7/press_review_04_08/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/1/fan_video_08-02/</item>
-      <item>http://worldoftanks.ru/ru/news/pc-browser/11/wg_birthday/</item>
-    </news>
+    <video />
+    <news />
   </do_not_display>
 </pro>
