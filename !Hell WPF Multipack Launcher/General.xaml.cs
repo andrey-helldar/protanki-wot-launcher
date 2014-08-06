@@ -87,7 +87,6 @@ namespace _Hell_WPF_Multipack_Launcher
                             gridPanel.Margin = new Thickness(0);
                             gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                             /*gridPanel.VerticalAlignment = System.Windows.VerticalAlignment.Top;*/
-                            gridPanel.Name = String.Format("Panel_{0}_{1}", i.ToString(), youtube.ToString()).ToLower();
 
                             RowDefinition gridRow1 = new RowDefinition();
                             gridRow1.Height = new GridLength(30);
@@ -112,22 +111,17 @@ namespace _Hell_WPF_Multipack_Launcher
                             gridPanel.Children.Add(labelDate);
 
                             // Кнопка "Закрыть"
-                            TextBlock blockClose = new TextBlock();
-                            blockClose.Width = 20;
-                            blockClose.Height = double.NaN;
-                            blockClose.Margin = new Thickness(20,0,0,0);
-                            blockClose.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                            blockClose.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-
-                            // Гиперссылка для кнопки "Закрыть"
-                            Hyperlink hyperClose = new Hyperlink(new Run("X"));
-                            hyperClose.NavigateUri = new Uri("http://" + gridPanel.Name);
-                            hyperClose.RequestNavigate += new RequestNavigateEventHandler(CloseBlock_RequestNavigate);
-                            blockClose.Inlines.Clear();
-                            blockClose.Inlines.Add(hyperClose);
-                            Grid.SetRow(blockClose, 0);
-                            Grid.SetColumn(blockClose, 1);
-                            gridPanel.Children.Add(blockClose);
+                            Button buttonClose = new Button();
+                            buttonClose.Content = "X";
+                            buttonClose.Width = 20;
+                            buttonClose.Height = double.NaN;
+                            buttonClose.Margin = new Thickness(20, 0, 0, 0);
+                            buttonClose.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                            buttonClose.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                            buttonClose.Click += CloseBlock;
+                            Grid.SetRow(buttonClose, 0);
+                            Grid.SetColumn(buttonClose, 1);
+                            gridPanel.Children.Add(buttonClose);
 
                             // Добавляем заголовок в гиперссылку
                             TextBlock blockTitle = new TextBlock();
@@ -263,14 +257,17 @@ namespace _Hell_WPF_Multipack_Launcher
         }
 
 
-        private void CloseBlock_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        private void CloseBlock(object sender, RoutedEventArgs e)
         {
             try
             {
-                MessageBox.Show("Инициировано удаление записи с идентификатором: " + e.Uri.AbsoluteUri);
-                e.Handled = true;
+                ListBoxItem el = (((sender as Button).Parent as Grid).Parent as ListBoxItem);
+                ListBox lb = ((((sender as Button).Parent as Grid).Parent as ListBoxItem).Parent as ListBox);
+                
+                el.IsSelected = true;
+                lb.Items.Remove(lb.SelectedItem);
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "CloseBlock_RequestNavigate()", ex.Message, "Action: " + e.Uri.AbsoluteUri)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "CloseBlock()", ex.Message)); }
         }
     }
 }
