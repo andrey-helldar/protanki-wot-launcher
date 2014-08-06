@@ -82,8 +82,9 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             // Добавляем решетку для размещения элементов
                             Grid gridPanel = new Grid();
-                            /*gridPanel.Width = double.NaN;*/
-                            gridPanel.Height = 70;
+                            gridPanel.Width = double.NaN;
+                            /*gridPanel.Height = 70;*/
+                            gridPanel.Margin = new Thickness(0);
                             gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                             /*gridPanel.VerticalAlignment = System.Windows.VerticalAlignment.Top;*/
                             gridPanel.Name = String.Format("Panel_{0}_{1}", i.ToString(), youtube.ToString()).ToLower();
@@ -94,7 +95,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             gridPanel.RowDefinitions.Add(new RowDefinition());
 
                             ColumnDefinition gridColumn1 = new ColumnDefinition();
-                            gridColumn1.Width = new GridLength(100);
+                            gridColumn1.Width = GridLength.Auto;
                             gridPanel.ColumnDefinitions.Add(gridColumn1);
                             gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
 
@@ -114,7 +115,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             TextBlock blockClose = new TextBlock();
                             blockClose.Width = 20;
                             blockClose.Height = double.NaN;
-                            blockClose.Margin = new Thickness(0);
+                            blockClose.Margin = new Thickness(20,0,0,0);
                             blockClose.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                             blockClose.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
 
@@ -133,27 +134,16 @@ namespace _Hell_WPF_Multipack_Launcher
                             blockTitle.TextWrapping = TextWrapping.Wrap;
                             blockTitle.Width = double.NaN;
                             blockTitle.Height = double.NaN;
-                            blockTitle.Margin = new Thickness(0, 0, 0, 0);
+                            blockTitle.Padding = new Thickness(5);
+                            blockTitle.Margin = new Thickness(0);
                             blockTitle.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                             blockTitle.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-
-                            TextBlock hyperText = new TextBlock();
-                            hyperText.Text = youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title;
-                            hyperText.TextWrapping = TextWrapping.WrapWithOverflow;
-                            hyperText.Margin = new Thickness(2);
-                            hyperText.Width = double.NaN;
-                            hyperText.Height = double.NaN;
-                            hyperText.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                            hyperText.VerticalAlignment = System.Windows.VerticalAlignment.Top;
                             
                             // Гиперссылка для заголовка
-                            //Hyperlink hyperlink = new Hyperlink(new Run(hyperText.Text));
-                            Hyperlink hyperlink = new Hyperlink();
-                            //Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
+                            Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
                             hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
                             hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
-                            hyperlink.Inlines.Add(hyperText);
-                            blockTitle.Inlines.Add(hyperlink.Inlines.FirstInline);
+                            blockTitle.Inlines.Add(hyperlink);
 
                             Grid.SetRow(blockTitle, 1);
                             Grid.SetColumn(blockTitle, 0);
@@ -164,6 +154,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", "Apply video to form", ex0.Message, ex0.StackTrace)); }*/
 
                             ListBoxItem lbi = new ListBoxItem();
+                            lbi.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemGeneral");
                             lbi.Content = gridPanel;
                             
                             try
