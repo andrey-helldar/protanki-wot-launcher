@@ -24,10 +24,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public List<Loading> List;
         public List<List<Loading>> Range;
 
-        public void Start(XDocument XmlGeneral, string lang = "en")
+        public void Start(XDocument XmlGeneral)
         {
             try
             {
+                string lang = Properties.Resources.Default_Lang;
+
+                if (XmlGeneral.Root.Element("info") != null)
+                    if (XmlGeneral.Root.Element("info").Attribute("language") != null)
+                        lang = XmlGeneral.Root.Element("info").Attribute("language").Value;
+
                 XDocument doc = XDocument.Load(lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
 
                 tmpDoc = XmlGeneral;
@@ -41,8 +47,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             el.Element("pubDate").Value,
                             DateTime.Parse(el.Element("pubDate").Value).ToString("dd.MM"));
                     }
+
+                tmpDoc.Remove();
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Start()", ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Start()", ex.Message, XmlGeneral.ToString())); }
         }
 
         /// <summary>
