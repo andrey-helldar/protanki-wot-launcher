@@ -151,6 +151,17 @@ namespace _Hell_WPF_Multipack_Launcher
                     if (File.Exists(Variables.PathTanks + "WorldOfTanks.exe"))
                     {
                         Optimize.Start(Variables.WinXP);
+
+                        Optimize.Start(
+                                GetElement("settings", "winxp"),
+                                GetElement("settings", "kill"),
+                                GetElement("settings", "force"),
+                                GetElement("settings", "aero"),
+                                GetElement("settings", "video"),
+                                GetElement("settings", "weak"),
+                                true
+                            );
+
                         Process.Start(new ProcessStartInfo(Variables.PathTanks + "WorldOfTanks.exe"));
                     }
                     else

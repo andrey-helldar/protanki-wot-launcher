@@ -396,13 +396,13 @@ namespace _Hell_WPF_Multipack_Launcher
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
             new Classes.Optimize().Start(
-                GetElement("settings", "winxp"),
-                GetElement("settings", "kill"),
-                GetElement("settings", "force"),
-                GetElement("settings", "aero"),
-                GetElement("settings", "video"),
-                GetElement("settings", "weak"),
-                true
+                    GetElement("settings", "winxp"),
+                    GetElement("settings", "kill"),
+                    GetElement("settings", "force"),
+                    GetElement("settings", "aero"),
+                    GetElement("settings", "video"),
+                    GetElement("settings", "weak"),
+                    true
                 );
         }
 
