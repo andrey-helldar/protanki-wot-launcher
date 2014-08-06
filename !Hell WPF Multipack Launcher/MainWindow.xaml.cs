@@ -114,6 +114,8 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             notifyIcon.Dispose();
+
+            xmlDocument.Save(Variables.SettingsPath);
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)

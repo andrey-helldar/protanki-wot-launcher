@@ -16,7 +16,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Variables
     {
-        public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
+        public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings2.xml";
 
         // Wargaming API
         public string Api = String.Empty;

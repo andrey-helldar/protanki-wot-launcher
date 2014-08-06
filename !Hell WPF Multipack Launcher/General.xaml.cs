@@ -265,11 +265,18 @@ namespace _Hell_WPF_Multipack_Launcher
                 ListBoxItem el = (((sender as Button).Parent as Grid).Parent as ListBoxItem);
                 ListBox lb = ((((sender as Button).Parent as Grid).Parent as ListBoxItem).Parent as ListBox);
 
-                string[] arr = 
+                string[] arr = (sender as Button).Name.Split('_');
 
-                new Classes.Variables().ElementToBan("new", el.
-                   
-                
+                switch(arr[0]){
+                    case "CloseWargaming_":
+                        new Classes.Variables().ElementToBan("video", (sender as Button).Name); 
+                        break;
+
+                    default:
+                        new Classes.Variables().ElementToBan("video", YoutubeClass.GetID((sender as Button).Name));
+                        break;
+                }
+                     
                 el.IsSelected = true;
                 lb.Items.Remove(lb.SelectedItem);
             }
