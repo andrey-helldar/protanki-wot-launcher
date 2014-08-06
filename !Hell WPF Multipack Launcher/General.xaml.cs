@@ -113,6 +113,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             // Кнопка "Закрыть"
                             Button buttonClose = new Button();
                             buttonClose.Content = "X";
+                            buttonClose.Name = (youtube ? "CloseYoutube_" : "CloseWargaming_") + i.ToString();
                             buttonClose.Width = 20;
                             buttonClose.Height = double.NaN;
                             buttonClose.Margin = new Thickness(20, 0, 0, 0);
@@ -264,6 +265,10 @@ namespace _Hell_WPF_Multipack_Launcher
                 ListBoxItem el = (((sender as Button).Parent as Grid).Parent as ListBoxItem);
                 ListBox lb = ((((sender as Button).Parent as Grid).Parent as ListBoxItem).Parent as ListBox);
 
+                string[] arr = 
+
+                new Classes.Variables().ElementToBan("new", el.
+                   
                 
                 el.IsSelected = true;
                 lb.Items.Remove(lb.SelectedItem);

@@ -298,12 +298,36 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public bool ElementBan(string item, string block = "video")
         {
             if (MainWindow.XmlDocument.Root.Element("do_not_display") != null)
-                if (MainWindow.XmlDocument.Root.Element("do_not_display").Element("block") != null)
-                    if (MainWindow.XmlDocument.Root.Element("do_not_display").Element("block").Element("item") != null)
-                        foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element("block").Elements("item"))
+                if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block) != null)
+                    if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item").Count() > 0)
+                        foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item"))
                             if (str == item) return true;
 
             return false;
+        }
+
+        public bool ElementToBan(string block, string item)
+        {
+            if (MainWindow.XmlDocument.Root.Element("do_not_display") != null)
+                if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block) != null)
+                    if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Element("item") != null)
+                        if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item").Count() > 0)
+                        {
+                            foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item"))
+                                if (str == item) return true;
+
+                            MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Add(new XElement("item", item));
+                        }
+                        else
+                            MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Element("item").SetValue(item);
+                    else
+                        MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Add(new XElement("item", item));
+                else
+                    MainWindow.XmlDocument.Root.Element("do_not_display").Add(new XElement(block, new XElement("item", item)));
+            else
+                MainWindow.XmlDocument.Root.Add(new XElement("do_not_display", new XElement(block, new XElement("item", item))));
+
+            return true;
         }
     }
 }

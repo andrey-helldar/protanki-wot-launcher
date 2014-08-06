@@ -94,6 +94,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("Youtube.Class", "IndexOf()", ex.Message, "Search: " + str); return -1; }
         }
 
+        /// <summary>
+        /// Функция возврата идентификатора массива по ссылке
+        /// </summary>
+        /// <param name="link">Ссылка на запись в Инете</param>
+        /// <returns>ID записи</returns>
+        public string GetID(string link)
+        {
+            try { if (List.Count > -1) { for (int i = 0; i < List.Count; i++) { if (List[i].Link == link) { return List[i].ID; } } } return null; }
+            catch (Exception ex) { Debug.Save("Youtube.Class", "IndexOf()", ex.Message, "Search: " + link); return null; }
+        }
+
         public int Count()
         {
             try { return List.Count; }

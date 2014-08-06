@@ -10,11 +10,7 @@
   </game>
   <youtube />
   <do_not_display>
-    <video>
-      <item>thisIsId</item>
-    </video>
-    <news>
-      <item>thisIsId</item>
-    </news>
+    <video />
+    <news />
   </do_not_display>
 </pro>
