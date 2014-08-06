@@ -10,14 +10,9 @@
   </game>
   <youtube>
     <video>SRCPzexTv5U</video>
-    <video>KEYO-6ghrho</video>
   </youtube>
   <do_not_display>
-    <video>
-      <item></item>
-    </video>
-    <news>
-      <item>CloseWargaming_2</item>
-    </news>
+    <video />
+    <news />
   </do_not_display>
 </pro>

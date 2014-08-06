@@ -133,6 +133,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
                             hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
                             hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
+                            hyperlink.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
                             blockTitle.Inlines.Add(hyperlink);
 
                             Grid.SetRow(blockTitle, 1);
@@ -268,7 +269,13 @@ namespace _Hell_WPF_Multipack_Launcher
                         break;
 
                     default:
-                        ElementToBan("video", YoutubeClass.GetID((sender as Button).Name));
+                        /*
+                         * LinkYoutube_
+                         * LinkWargaming_
+                         * */
+
+
+                        ElementToBan("video", (LinkYoutube_ + arr[1]).NavigateUri.AbsoluteUri);
                         break;
                 }
                      
