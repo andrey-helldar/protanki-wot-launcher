@@ -19,9 +19,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         //public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings2.xml";
         public string SettingsPath = "settings.xml";
 
-        // Wargaming API
-        public string Api = String.Empty;
-
         // Product
         public string ProductName = String.Empty;
         public string Lang = Properties.Resources.Default_Lang;
@@ -79,7 +76,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 ProductName = Application.Current.GetType().Assembly.GetName().Name;
 
-                GetApiKey();
                 ItXP();
 
                 Task.Factory.StartNew(() => new Update().SaveFromResources()).Wait();
@@ -173,15 +169,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
             try { if (Doc.Root.Element("common.test") != null) CommonTest = true; }
             catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `common.test`", ex.Message); }
-        }
-
-        /*************************
-         * GET Wargaming API key
-         * **********************/
-        private void GetApiKey()
-        {
-            try { Api = new Classes.POST().RequestInfo("api"); }
-            catch (Exception ex) { Debug.Save("Variables.Class", "GetApiKey()", Api, ex.Message); }
         }
 
         private bool ReadCheckStateBool(XDocument doc, string attr)
@@ -305,6 +292,22 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             if (str == item) return true;
 
             return false;
+        }
+
+
+        /// <summary>
+        /// Достаем булевое значение элемента
+        /// </summary>
+        /// <param name="block">Имя ключевого элемента</param>
+        /// <param name="attr">Имя аттрибута</param>
+        /// <returns>Булевое значение существования элемента</returns>
+        public bool GetElement(string block, string attr)
+        {
+            if (MainWindow.XmlDocument.Root.Element(block) != null)
+                if (MainWindow.XmlDocument.Root.Element(block).Attribute(attr) != null)
+                    return MainWindow.XmlDocument.Root.Element(block).Attribute(attr).Value == "True";
+
+            return true;
         }
     }
 }

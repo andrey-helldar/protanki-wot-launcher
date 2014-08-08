@@ -61,6 +61,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 05b877de3962048c5d1bd7cc18d4b286.
+        /// </summary>
+        public static string API {
+            get {
+                return ResourceManager.GetString("API", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap BackGeneral {

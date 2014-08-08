@@ -59,7 +59,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!"));
+            Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!", "", false));
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         NotifyLink = el.Link;
 
-                        Task.Factory.StartNew(() => ShowNotify("Смотреть видео"));
+                        Task.Factory.StartNew(() => ShowNotify("Смотреть видео", el.Title));
 
                         if (MainWindow.XmlDocument.Root.Element("youtube") != null)
                             MainWindow.XmlDocument.Root.Element("youtube").Add(new XElement("video", el.ID));
@@ -278,14 +278,25 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception) { }
         }
 
-        private void ShowNotify(string text, string caption = null)
+        private void ShowNotify(string text, string caption = null, bool isPopup = true)
         {
             try
             {
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
-                    caption = caption != null ? caption : MainWindow.ProductName;
-                    MainWindow.Notifier.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
+                    if (isPopup)
+                    {
+                        try
+                        {
+                            caption = caption != null ? caption : MainWindow.ProductName;
+                            MainWindow.Notifier.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
+                        }
+                        catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", ex0.Message, "Caption: " + caption, text)); }
+                    }
+                    else
+                    {
+                        lStatus.Content = text;
+                    }
                 }));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", ex.Message, "Caption: " + caption, text)); }
@@ -395,24 +406,17 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
+            Classes.Variables Vars = new Classes.Variables();
+
             new Classes.Optimize().Start(
-                    GetElement("settings", "winxp"),
-                    GetElement("settings", "kill"),
-                    GetElement("settings", "force"),
-                    GetElement("settings", "aero"),
-                    GetElement("settings", "video"),
-                    GetElement("settings", "weak"),
+                    Vars.GetElement("settings", "winxp"),
+                    Vars.GetElement("settings", "kill"),
+                    Vars.GetElement("settings", "force"),
+                    Vars.GetElement("settings", "aero"),
+                    Vars.GetElement("settings", "video"),
+                    Vars.GetElement("settings", "weak"),
                     true
                 );
-        }
-
-        private bool GetElement(string block, string attr)
-        {
-            if (MainWindow.XmlDocument.Root.Element(block) != null)
-                if (MainWindow.XmlDocument.Root.Element(block).Attribute(attr) != null)
-                    return MainWindow.XmlDocument.Root.Element(block).Attribute(attr).Value == "True";
-
-            return true;
         }
 
         private void bSettings_Click(object sender, RoutedEventArgs e)

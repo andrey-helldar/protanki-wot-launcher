@@ -153,12 +153,12 @@ namespace _Hell_WPF_Multipack_Launcher
                         Optimize.Start(Variables.WinXP);
 
                         Optimize.Start(
-                                GetElement("settings", "winxp"),
-                                GetElement("settings", "kill"),
-                                GetElement("settings", "force"),
-                                GetElement("settings", "aero"),
-                                GetElement("settings", "video"),
-                                GetElement("settings", "weak"),
+                                Variables.GetElement("settings", "winxp"),
+                                Variables.GetElement("settings", "kill"),
+                                Variables.GetElement("settings", "force"),
+                                Variables.GetElement("settings", "aero"),
+                                Variables.GetElement("settings", "video"),
+                                Variables.GetElement("settings", "weak"),
                                 true
                             );
 

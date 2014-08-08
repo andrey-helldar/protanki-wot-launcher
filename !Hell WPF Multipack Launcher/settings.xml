@@ -3,7 +3,7 @@
   <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru">
     <notify_link />
   </info>
-  <settings kill="True" force="True" aero="True" video="True" weak="True" winxp="False" launcher="0" />
+  <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
   <multipack type="base" version="0.0.0.0" />
   <game>
     <path></path>
