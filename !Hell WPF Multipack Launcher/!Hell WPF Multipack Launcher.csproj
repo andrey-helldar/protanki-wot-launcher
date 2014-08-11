@@ -82,6 +82,9 @@
     <Compile Include="SettingsOptimize.xaml.cs">
       <DependentUpon>SettingsOptimize.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingsProcesses.xaml.cs">
+      <DependentUpon>SettingsProcesses.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Update.xaml.cs">
       <DependentUpon>Update.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingsOptimize.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingsProcesses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

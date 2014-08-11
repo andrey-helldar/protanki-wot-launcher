@@ -9,20 +9,44 @@
 
     <Grid>
         <ScrollViewer HorizontalAlignment="Left" Height="480" Margin="10,10,0,0" VerticalAlignment="Top" Width="380">
-            <Grid>
+            <Grid Margin="10" Background="#FFF9EFEF">
                 <GroupBox Height="235" VerticalAlignment="Top" Margin="10,10,10,0" Header="Оптимизация ПК и игры:">
-                    <Grid>
+                    <Grid Margin="10" Background="LightGray">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28*"/>
+                            <RowDefinition Height="26*"/>
+                            <RowDefinition Height="26*"/>
+                            <RowDefinition Height="26*"/>
+                            <RowDefinition Height="19*"/>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="23*"/>
+                        </Grid.RowDefinitions>
                         <CheckBox Content="Закрывать процессы при запуске игры" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
-                        <CheckBox Content="Принудительно закрывать процессы" HorizontalAlignment="Left" Margin="33,31,0,0" VerticalAlignment="Top"/>
-                        <CheckBox Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top"/>
-                        <CheckBox Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top"/>
-                        <CheckBox Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="43,86,0,0" VerticalAlignment="Top"/>
-                        <ComboBox HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="285" Margin="0,177,0,0" SelectedIndex="0">
+                        <CheckBox Content="Принудительно закрывать процессы" HorizontalAlignment="Left" Margin="33,3,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                        <CheckBox Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+                        <CheckBox Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,1,0,0" VerticalAlignment="Top" Grid.Row="4"/>
+                        <CheckBox Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="43,6,0,0" VerticalAlignment="Top" Grid.Row="3"/>
+                        <ComboBox HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="285" Margin="0,7,0,-9" SelectedIndex="0" Grid.Row="6">
                             <ComboBoxItem Content="Не закрывать лаунчер"/>
                         </ComboBox>
-                        <ComboBox HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="285" Margin="0,128,0,0" SelectedIndex="0">
+                        <ComboBox HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Width="285" Margin="0,3,0,0" SelectedIndex="0" Grid.Row="5">
                             <ComboBoxItem Content="Высокий приоритет игры в системе"/>
                         </ComboBox>
+                    </Grid>
+                </GroupBox>
+
+
+                <GroupBox VerticalAlignment="Top" Margin="10,245,10,0" Header="Другое">
+                    <Grid Margin="10" VerticalAlignment="Center" Background="#FFBFAEAE">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="145*"/>
+                            <ColumnDefinition Width="146*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <CheckBox Content="Уведомлять о новых видео" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                        <CheckBox Content="Уведомлять о новых новостях" Grid.Column="1" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top"/>
                     </Grid>
                 </GroupBox>
             </Grid>
