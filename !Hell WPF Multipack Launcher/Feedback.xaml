@@ -49,7 +49,7 @@
                             <ColumnDefinition Width="155*"/>
                             <ColumnDefinition Width="179*"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="bClose" Content="Выход" Margin="10" Width="100" Grid.Column="1" Height="25"/>
+                        <Button x:Name="bClose" Content="Выход" Margin="10" Width="100" Grid.Column="1" Height="25" Click="bClose_Click"/>
                         <Button x:Name="bSend" Content="Отправить" Margin="10" Width="100" Height="25"/>
                     </Grid>
                 </StackPanel>

@@ -204,7 +204,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 Dictionary<string, string> jData = new Dictionary<string, string>();
-                jData.Add("code", Properties.Resources.Code);
+                jData.Add("code", Properties.Resources.API);
                 jData.Add("request", request);
 
                 result = Send(Properties.Resources.Developer + Properties.Resources.DeveloperInfo, "data=" + Json(jData));

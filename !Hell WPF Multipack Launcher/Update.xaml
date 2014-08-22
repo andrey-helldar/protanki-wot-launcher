@@ -1,0 +1,41 @@
+﻿<Page x:Class="_Hell_WPF_Multipack_Launcher.Update"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="Update" Width="538" Height="600" Background="#FFB9B9B9">
+
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="449*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="71*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Новая версия доступна по ссылке в описании к видео" HorizontalAlignment="Left" Margin="177,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <CheckBox Content="Не уведомлять меня об этой версии" HorizontalAlignment="Left" Margin="186,10,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <StackPanel HorizontalAlignment="Left" Height="51" Margin="135,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="268" Background="#FF917979">
+            <Grid Background="#FFAC5555" VerticalAlignment="Center" Height="49">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="133*"/>
+                    <ColumnDefinition Width="135*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Скачать" HorizontalAlignment="Left" Margin="29,10,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button Content="Не надо" Grid.Column="1" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="75"/>
+            </Grid>
+        </StackPanel>
+        <GroupBox Header="Обнаружена новая версия:" HorizontalAlignment="Left" Margin="29,33,0,0" VerticalAlignment="Top" Height="396" Width="458">
+            <Grid HorizontalAlignment="Left" Height="374" VerticalAlignment="Top" Width="446" Background="#FFCDBCBC">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="83*"/>
+                    <RowDefinition Height="291*"/>
+                </Grid.RowDefinitions>
+                <Label Content="0.9.1 #11" HorizontalAlignment="Left" Margin="190,31,0,0" VerticalAlignment="Top"/>
+                <ScrollViewer HorizontalAlignment="Left" Height="271" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="426"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Page>

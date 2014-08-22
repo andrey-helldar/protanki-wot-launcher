@@ -26,9 +26,13 @@
         <Button x:Name="bMinimize" Content="Minimize" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleMin}" Margin="0,1,41,0" VerticalAlignment="Top" Width="30" Click="bMinimize_Click" Grid.Column="1" Height="30"/>
         <Button x:Name="bPreviewNext" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleVideoRight}" Margin="0,0,10,18" Grid.Row="1" VerticalAlignment="Bottom" Width="40"/>
         <Button x:Name="bPreviewPrev" Grid.Column="1" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleVideoLeft}" Margin="13,0,0,18" Grid.Row="1" VerticalAlignment="Bottom" Width="40"/>
-        <Rectangle x:Name="rectLanguage" Grid.Column="1" Fill="Red" Opacity="0.5" HorizontalAlignment="Left" Height="36" Margin="18,5,0,0" Grid.Row="4" Width="36"/>
         <Button x:Name="bLauncherWOT" Grid.Column="1" Style="{DynamicResource ButtonStyleLogotype}" Margin="71,10,71,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="120" Click="bLauncherWOT_Click"/>
         <Button x:Name="bAirus" Grid.Column="1" Style="{DynamicResource ButtonStyleAIRUS}" Margin="0,30,0,0" Grid.Row="3" VerticalAlignment="Top" Width="212" Height="68" Click="bAirus_Click"/>
         <Frame x:Name="FramePreview" Grid.Column="1" Height="180" Margin="0" Grid.Row="2" Background="Red" Opacity="0.5" Width="250"/>
+        <Button x:Name="bChangeLang" Grid.Column="1" HorizontalAlignment="Left" Margin="13,21,0,0" Grid.Row="4" VerticalAlignment="Top" Width="48" Height="48">
+            <Button.Background>
+                <SolidColorBrush Color="Red" Opacity="0.4"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

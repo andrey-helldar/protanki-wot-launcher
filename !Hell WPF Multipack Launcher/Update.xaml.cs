@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace _Hell_WPF_Multipack_Launcher
 {
     /// <summary>
-    /// Interaction logic for Feedback.xaml
+    /// Interaction logic for Update.xaml
     /// </summary>
-    public partial class Feedback : Page
+    public partial class Update : Page
     {
-        public Feedback()
+        public Update()
         {
             InitializeComponent();
-        }
-
-        private void bClose_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.Navigator("General", "Settings.xaml");
         }
     }
 }
