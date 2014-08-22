@@ -33,7 +33,7 @@
                     <RowDefinition Height="291*"/>
                 </Grid.RowDefinitions>
                 <Label Content="0.9.1 #11" HorizontalAlignment="Left" Margin="190,31,0,0" VerticalAlignment="Top"/>
-                <ScrollViewer HorizontalAlignment="Left" Height="271" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="426"/>
+                <ScrollViewer HorizontalAlignment="Left" Height="271" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="426" Background="#FFBB8D8D"/>
             </Grid>
         </GroupBox>
 
