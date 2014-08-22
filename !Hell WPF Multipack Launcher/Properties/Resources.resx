@@ -129,20 +129,20 @@
     <value>http://ai-rus.com</value>
     <comment>БЕЗ СЛЕША В КОНЦЕ!!!</comment>
   </data>
-  <data name="DeveloperInfo" xml:space="preserve">
+  <data name="Developer_Info" xml:space="preserve">
     <value>info</value>
   </data>
-  <data name="DeveloperLinkSite" xml:space="preserve">
+  <data name="Developer_Link_Site" xml:space="preserve">
     <value>http://goo.gl/5PR4ma</value>
     <comment>Developer's site (http://ai-rus.com)</comment>
   </data>
-  <data name="DeveloperProcesses" xml:space="preserve">
+  <data name="Developer_Processes" xml:space="preserve">
     <value>processes</value>
   </data>
-  <data name="DeveloperUser" xml:space="preserve">
+  <data name="Developer_User" xml:space="preserve">
     <value>user</value>
   </data>
-  <data name="DeveloperGameVersion" xml:space="preserve">
+  <data name="Developer_Game_Version" xml:space="preserve">
     <value>version</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -220,15 +220,15 @@
     <value>05b877de3962048c5d1bd7cc18d4b286</value>
     <comment>WargamingAPI code</comment>
   </data>
-  <data name="DeveloperAPI" xml:space="preserve">
+  <data name="Developer_API" xml:space="preserve">
     <value>2.0</value>
     <comment>Версия API на сайте разработчика</comment>
   </data>
-  <data name="DeveloperAPI_Format" xml:space="preserve">
+  <data name="Developer_API_Format" xml:space="preserve">
     <value>{0}/api/{1}/{2}</value>
     <comment>http://ai-rus.com/api/2.0/version</comment>
   </data>
-  <data name="DeveloperClan" xml:space="preserve">
+  <data name="Developer_Clan" xml:space="preserve">
     <value>clan</value>
     <comment>Информация о клане</comment>
   </data>

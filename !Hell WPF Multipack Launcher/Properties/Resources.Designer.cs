@@ -138,72 +138,72 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 2.0.
         /// </summary>
-        public static string DeveloperAPI {
+        public static string Developer_API {
             get {
-                return ResourceManager.GetString("DeveloperAPI", resourceCulture);
+                return ResourceManager.GetString("Developer_API", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0}/api/{1}/{2}.
         /// </summary>
-        public static string DeveloperAPI_Format {
+        public static string Developer_API_Format {
             get {
-                return ResourceManager.GetString("DeveloperAPI_Format", resourceCulture);
+                return ResourceManager.GetString("Developer_API_Format", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to clan.
         /// </summary>
-        public static string DeveloperClan {
+        public static string Developer_Clan {
             get {
-                return ResourceManager.GetString("DeveloperClan", resourceCulture);
+                return ResourceManager.GetString("Developer_Clan", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to version.
         /// </summary>
-        public static string DeveloperGameVersion {
+        public static string Developer_Game_Version {
             get {
-                return ResourceManager.GetString("DeveloperGameVersion", resourceCulture);
+                return ResourceManager.GetString("Developer_Game_Version", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to info.
         /// </summary>
-        public static string DeveloperInfo {
+        public static string Developer_Info {
             get {
-                return ResourceManager.GetString("DeveloperInfo", resourceCulture);
+                return ResourceManager.GetString("Developer_Info", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to http://goo.gl/5PR4ma.
         /// </summary>
-        public static string DeveloperLinkSite {
+        public static string Developer_Link_Site {
             get {
-                return ResourceManager.GetString("DeveloperLinkSite", resourceCulture);
+                return ResourceManager.GetString("Developer_Link_Site", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to processes.
         /// </summary>
-        public static string DeveloperProcesses {
+        public static string Developer_Processes {
             get {
-                return ResourceManager.GetString("DeveloperProcesses", resourceCulture);
+                return ResourceManager.GetString("Developer_Processes", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to user.
         /// </summary>
-        public static string DeveloperUser {
+        public static string Developer_User {
             get {
-                return ResourceManager.GetString("DeveloperUser", resourceCulture);
+                return ResourceManager.GetString("Developer_User", resourceCulture);
             }
         }
         
