@@ -136,7 +136,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /wot/info/.
+        ///   Looks up a localized string similar to 2.0.
+        /// </summary>
+        public static string DeveloperAPI {
+            get {
+                return ResourceManager.GetString("DeveloperAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /info/.
         /// </summary>
         public static string DeveloperInfo {
             get {
@@ -154,7 +163,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /wot/processes/.
+        ///   Looks up a localized string similar to /processes/.
         /// </summary>
         public static string DeveloperProcesses {
             get {
@@ -163,7 +172,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /wot/users/.
+        ///   Looks up a localized string similar to /users/.
         /// </summary>
         public static string DeveloperUsers {
             get {
@@ -172,7 +181,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /wot/version/.
+        ///   Looks up a localized string similar to /version/.
         /// </summary>
         public static string DeveloperWotVersion {
             get {

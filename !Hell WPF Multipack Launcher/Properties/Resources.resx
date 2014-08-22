@@ -130,20 +130,20 @@
     <comment>БЕЗ СЛЕША В КОНЦЕ!!!</comment>
   </data>
   <data name="DeveloperInfo" xml:space="preserve">
-    <value>/wot/info/</value>
+    <value>/info/</value>
   </data>
   <data name="DeveloperLinkSite" xml:space="preserve">
     <value>http://goo.gl/5PR4ma</value>
     <comment>Developer's site (http://ai-rus.com)</comment>
   </data>
   <data name="DeveloperProcesses" xml:space="preserve">
-    <value>/wot/processes/</value>
+    <value>/processes/</value>
   </data>
   <data name="DeveloperUsers" xml:space="preserve">
-    <value>/wot/users/</value>
+    <value>/users/</value>
   </data>
   <data name="DeveloperWotVersion" xml:space="preserve">
-    <value>/wot/version/</value>
+    <value>/version/</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -219,5 +219,9 @@
   <data name="API" xml:space="preserve">
     <value>05b877de3962048c5d1bd7cc18d4b286</value>
     <comment>WargamingAPI code</comment>
+  </data>
+  <data name="DeveloperAPI" xml:space="preserve">
+    <value>2.0</value>
+    <comment>Версия API на сайте разработчика</comment>
   </data>
 </root>
