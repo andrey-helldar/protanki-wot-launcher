@@ -145,7 +145,34 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /info/.
+        ///   Looks up a localized string similar to {0}/api/{1}/{2}.
+        /// </summary>
+        public static string DeveloperAPI_Format {
+            get {
+                return ResourceManager.GetString("DeveloperAPI_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to clan.
+        /// </summary>
+        public static string DeveloperClan {
+            get {
+                return ResourceManager.GetString("DeveloperClan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to version.
+        /// </summary>
+        public static string DeveloperGameVersion {
+            get {
+                return ResourceManager.GetString("DeveloperGameVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to info.
         /// </summary>
         public static string DeveloperInfo {
             get {
@@ -163,7 +190,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /processes/.
+        ///   Looks up a localized string similar to processes.
         /// </summary>
         public static string DeveloperProcesses {
             get {
@@ -172,20 +199,11 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /users/.
+        ///   Looks up a localized string similar to user.
         /// </summary>
-        public static string DeveloperUsers {
+        public static string DeveloperUser {
             get {
-                return ResourceManager.GetString("DeveloperUsers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to /version/.
-        /// </summary>
-        public static string DeveloperWotVersion {
-            get {
-                return ResourceManager.GetString("DeveloperWotVersion", resourceCulture);
+                return ResourceManager.GetString("DeveloperUser", resourceCulture);
             }
         }
         
