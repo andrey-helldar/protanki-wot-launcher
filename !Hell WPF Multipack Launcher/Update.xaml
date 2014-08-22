@@ -23,7 +23,7 @@
                     <ColumnDefinition Width="135*"/>
                 </Grid.ColumnDefinitions>
                 <Button Content="Скачать" HorizontalAlignment="Left" Margin="29,10,0,0" VerticalAlignment="Top" Width="75"/>
-                <Button Content="Не надо" Grid.Column="1" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button Content="Не надо" Grid.Column="1" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
             </Grid>
         </StackPanel>
         <GroupBox Header="Обнаружена новая версия:" HorizontalAlignment="Left" Margin="29,33,0,0" VerticalAlignment="Top" Height="396" Width="458">

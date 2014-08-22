@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace _Hell_WPF_Multipack_Launcher
 {
     /// <summary>
-    /// Interaction logic for Update.xaml
+    /// Interaction logic for Clan.xaml
     /// </summary>
-    public partial class Update : Page
+    public partial class Clan : Page
     {
-        public Update()
+        public Clan()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.Navigator("General", "Update.xaml");
         }
     }
 }
