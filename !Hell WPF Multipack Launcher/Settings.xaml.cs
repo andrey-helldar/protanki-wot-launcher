@@ -19,9 +19,43 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class Settings : Page
     {
+        private bool openedPage = true;
+
         public Settings()
         {
             InitializeComponent();
+
+            try { SettingsFrame.NavigationService.Navigate(new Uri("SettingsOptimize.xaml", UriKind.Relative)); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void bChangeSettingsPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (openedPage)
+            {
+                try
+                {
+                    SettingsFrame.NavigationService.Navigate(new Uri("SettingsProcesses.xaml", UriKind.Relative));
+                    bChangeSettingsPage.Content = "Оптимизация";
+                    openedPage = false;
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+            else
+            {
+                try
+                {
+                    SettingsFrame.NavigationService.Navigate(new Uri("SettingsOptimize.xaml", UriKind.Relative));
+                    bChangeSettingsPage.Content = "Процессы";
+                    openedPage = true;
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+        }
+
+        private void bClose_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigator("General", "Settings.xaml");
         }
     }
 }
