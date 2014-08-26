@@ -208,6 +208,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to hell-protanki-launcher.
+        /// </summary>
+        public static string Google_API {
+            get {
+                return ResourceManager.GetString("Google_API", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         public static System.Drawing.Icon Icon {

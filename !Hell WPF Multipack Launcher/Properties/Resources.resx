@@ -232,4 +232,8 @@
     <value>clan</value>
     <comment>Информация о клане</comment>
   </data>
+  <data name="Google_API" xml:space="preserve">
+    <value>hell-protanki-launcher</value>
+    <comment>Google API Code</comment>
+  </data>
 </root>
