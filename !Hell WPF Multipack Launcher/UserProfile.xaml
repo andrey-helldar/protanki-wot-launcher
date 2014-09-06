@@ -8,6 +8,10 @@
 	Title="UserProfile" Width="538" Height="600" Background="#FFC1C1C1">
 
     <Grid Background="#FFC39494">
-        
+        <Label Content="Привет, First_Helldar!" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbSettingsTitle" HorizontalAlignment="Left" Margin="24,41,0,0" TextWrapping="Wrap" Text="Ух ты! Ты состоишь в клане -PR0 вот уже 20 дней!" VerticalAlignment="Top">
+                    <Run FontSize="20">Настройки ></Run>
+                    <Run FontSize="16">Оптимизация</Run>
+        </TextBlock>
     </Grid>
 </Page>

@@ -194,5 +194,11 @@ namespace _Hell_WPF_Multipack_Launcher
                 catch (Exception ex) { Debug.Save("MainWindow", "bLauncher_Click()", ex.Message); }
             });
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "General form loading", ex.Message)); }
+        }
     }
 }

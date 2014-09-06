@@ -34,5 +34,6 @@
                 <SolidColorBrush Color="Red" Opacity="0.4"/>
             </Button.Background>
         </Button>
+        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="13,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="40" Click="Button_Click"/>
     </Grid>
 </Window>
