@@ -28,5 +28,10 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             MainWindow.Navigator("General", "Settings.xaml");
         }
+
+        private void bAttach_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

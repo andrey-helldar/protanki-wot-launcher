@@ -205,6 +205,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                             lbVideo.Items.Add(lbi);
                                         else
                                             lbNews.Items.Add(lbi);
+
+                                        Thread.Sleep(50);
                                     }
                                     catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex0.Message, ex0.StackTrace)); }
                                 }

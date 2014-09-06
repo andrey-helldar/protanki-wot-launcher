@@ -31,13 +31,13 @@
                         </Grid.RowDefinitions>
                         <TextBlock Margin="10,10,10,5" TextWrapping="Wrap" Text="Если у Вас возникли проблемы в работе лаунчера и/или модов, или же есть какие-либо пожелания, Вы можете заполнить форму ниже и отправить сообщение разработчикам:" Grid.ColumnSpan="3"/>
                         <Label Content="Выберите категорию:" Margin="10,5" Padding="0" Grid.Row="1" Grid.ColumnSpan="3"/>
-                        <RadioButton x:Name="rbWishMultipack" Content="Пожелания к мультипаку" Margin="10,5,9.61,0" Grid.Row="2" VerticalAlignment="Top" Height="16"/>
+                        <RadioButton x:Name="rbWishMultipack" Content="Пожелания к мультипаку" Margin="10,5,9.61,0" Grid.Row="2" VerticalAlignment="Top" Height="16" IsChecked="True"/>
                         <RadioButton x:Name="rbWishLauncher" Content="Пожелания к лаунчеру" Margin="10,30,9.61,0" Grid.Row="2" VerticalAlignment="Top" Height="16"/>
                         <RadioButton x:Name="rbErrorMultipack" Content="Найдена ошибка в мультипаке" Margin="2.39,5,10,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1" Height="16"/>
                         <RadioButton x:Name="rbErrorLauncher" Content="Найдена ошибка в лаунчере" Margin="2.39,30,10,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1" Height="16"/>
                         <TextBox x:Name="tbMessage" Margin="10,5" Grid.Row="3" TextWrapping="Wrap" Text="TextBox" Grid.ColumnSpan="3"/>
                         <Label Content="Введите Ваш email:" Margin="10,5" Grid.Row="4" Padding="0" Grid.ColumnSpan="3"/>
-                        <Button x:Name="bAttach" Content="Прикрепить файл" Grid.Column="2" Margin="10,5,5,0" Grid.Row="5" VerticalAlignment="Top" HorizontalContentAlignment="Center" Padding="1"/>
+                        <Button x:Name="bAttach" Content="Прикрепить файл" Grid.Column="2" Margin="10,5,5,0" Grid.Row="5" VerticalAlignment="Top" HorizontalContentAlignment="Center" Padding="1" Click="bAttach_Click"/>
                         <TextBox Margin="10,5,0,0" Grid.Row="5" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                         <RadioButton x:Name="rbWishInstaller" Content="Пожелания к установщику" Margin="10,55,9.61,0" Grid.Row="2" VerticalAlignment="Top" Height="16"/>
                         <RadioButton x:Name="rbErrorInstaller" Content="Найдена ошибка в установщике" Grid.Column="1" Margin="5.39,55,10,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="16"/>
