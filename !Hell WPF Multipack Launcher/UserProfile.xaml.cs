@@ -23,5 +23,10 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Navigator("General", "Settings.xaml");
+        }
     }
 }

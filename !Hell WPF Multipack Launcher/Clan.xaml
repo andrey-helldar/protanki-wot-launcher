@@ -8,6 +8,27 @@
 	Title="Clan" Width="538" Height="600" Background="#FFC1C1C1">
 
     <Grid Background="#FFCFC6C6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="83*"/>
+            <RowDefinition Height="517*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="tbUpClan" HorizontalAlignment="Left" Margin="28,29,0,0" TextWrapping="Wrap" Text="---">
+                    <Run>Клан</Run>
+                    <Run FontSize="14" FontWeight="Bold">-PR0</Run>
+        </TextBlock>
         
+        
+        <TabControl Margin="0" Grid.Row="1" Height="507">
+            <TabItem Header="Состав">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Список боев">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Владения">
+                <Grid HorizontalAlignment="Left" Height="475" VerticalAlignment="Top" Width="528"/>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Page>
