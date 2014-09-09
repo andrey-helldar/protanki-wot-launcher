@@ -408,17 +408,20 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
-            Classes.Variables Vars = new Classes.Variables();
+            if (MessageBox.Show("Вы точно хотите оптимизировать ПК вручную?", "Launcher", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                Classes.Variables Vars = new Classes.Variables();
 
-            new Classes.Optimize().Start(
-                    Vars.GetElement("settings", "winxp"),
-                    Vars.GetElement("settings", "kill"),
-                    Vars.GetElement("settings", "force"),
-                    Vars.GetElement("settings", "aero"),
-                    Vars.GetElement("settings", "video"),
-                    Vars.GetElement("settings", "weak"),
-                    true
-                );
+                new Classes.Optimize().Start(
+                        Vars.GetElement("settings", "winxp"),
+                        Vars.GetElement("settings", "kill"),
+                        Vars.GetElement("settings", "force"),
+                        Vars.GetElement("settings", "aero"),
+                        Vars.GetElement("settings", "video"),
+                        Vars.GetElement("settings", "weak"),
+                        true
+                    );
+            }
         }
 
         private void bSettings_Click(object sender, RoutedEventArgs e)

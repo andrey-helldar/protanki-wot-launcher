@@ -33,5 +33,35 @@ namespace _Hell_WPF_Multipack_Launcher
         {
 
         }
+
+        private void bSend_Click(object sender, RoutedEventArgs e)
+        {
+            Dictionary<string, string> json = new Dictionary<string, string>();
+            Classes.POST POST = new Classes.POST();
+
+            json.Add("api", Properties.Resources.API);
+            json.Add("youtube", Properties.Resources.YoutubeChannel);
+            json.Add("project", new Classes.Variables().ProductName);
+            json.Add("project_version", new Classes.Variables().MultipackVersion.ToString());
+
+            string cat = String.Empty;
+            if (rbWishMultipack.IsChecked == true)
+            {
+                cat = "WM";
+            }else
+                if (rbWishLauncher.IsChecked == true)
+                {
+                    cat = "WL";
+                }else
+                    if (rbWishInstaller.IsChecked == true)
+                    {
+                        cat = "WI";
+                    } if (rbErrorMultipack.IsChecked == true)
+
+
+            json.Add("category", cat);
+            json.Add("message",  POST.Shield(tbMessage.Text));
+            json.Add("email", POST.Shield(tbEmail.Text));
+        }
     }
 }

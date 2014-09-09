@@ -218,5 +218,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 return "FAIL";
             }
         }
+
+        public string Shield(string text)
+        {
+            return text.Replace("\"", "\\\"").Trim();
+        }
     }
 }

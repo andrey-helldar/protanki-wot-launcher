@@ -16,11 +16,13 @@
                     <Run>Клан</Run>
                     <Run FontSize="14" FontWeight="Bold">-PR0</Run>
         </TextBlock>
-        
-        
+
+
         <TabControl Margin="0" Grid.Row="1" Height="507">
             <TabItem Header="Состав">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <ListBox HorizontalAlignment="Left" Height="427" Margin="10,10,0,0" VerticalAlignment="Top" Width="483"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Список боев">
                 <Grid Background="#FFE5E5E5"/>
@@ -29,7 +31,7 @@
                 <Grid HorizontalAlignment="Left" Height="475" VerticalAlignment="Top" Width="528"/>
             </TabItem>
         </TabControl>
-        <Button Content="Button" HorizontalAlignment="Left" Height="63" Margin="423,10,0,0" VerticalAlignment="Top" Width="86"/>
+        <Button Content="Лого клана" HorizontalAlignment="Left" Height="63" Margin="423,10,0,0" VerticalAlignment="Top" Width="86"/>
 
     </Grid>
 </Page>
