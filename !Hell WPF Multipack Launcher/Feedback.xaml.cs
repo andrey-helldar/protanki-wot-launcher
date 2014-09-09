@@ -36,6 +36,17 @@ namespace _Hell_WPF_Multipack_Launcher
 
         }
 
+        /// <summary>
+        /// Формирование и отправка сообщения на сайт разработчика
+        /// 
+        /// Категории ответов:
+        ///     OK - Сервер дал добро на добавление записи
+        ///     ANSWER - Сервер вернул текстовый результат (ответил)
+        ///     Hacking attempt! - Неавторизованный доступ к серверу
+        ///     BANNED - Идентификатор пользователя заблокирован
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bSend_Click(object sender, RoutedEventArgs e)
         {
             if (tbMessage.Text.Length >= Convert.ToInt16(Properties.Resources.Developer_Feedback_Symbols))
@@ -81,6 +92,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 switch (answer["status"])
                 {
                     case "OK": status = "Ваше сообщение принято под номером " + answer["id"]; break;
+                    case "ANSWER": status = "Сервер ответил: " + answer["content"]; break;
                     case "Hacking attempt!": status = "Ошибка доступа к сервису"; break;
                     case "BANNED": status = "Ваше сообщение принято к обработке"; break;
                     default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;
