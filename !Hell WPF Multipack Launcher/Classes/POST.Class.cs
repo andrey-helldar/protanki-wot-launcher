@@ -43,7 +43,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     Out += str;
                     count = sr.Read(read, 0, 256);
                 }
-                return Out;
+                return "data=" + Out;
             }
             catch (WebException we) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, we.Message); return "FAIL"; }
             catch (Exception ex) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, ex.Message); return "FAIL"; }

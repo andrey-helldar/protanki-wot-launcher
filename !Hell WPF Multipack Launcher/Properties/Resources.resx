@@ -236,4 +236,8 @@
     <value>hell-protanki-launcher</value>
     <comment>Google API Code</comment>
   </data>
+  <data name="Developer_Feedback_Symbols" xml:space="preserve">
+    <value>50</value>
+    <comment>Минимальное количество символов в отправляемом сообщении</comment>
+  </data>
 </root>
