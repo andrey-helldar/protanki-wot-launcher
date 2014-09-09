@@ -88,7 +88,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     Properties.Resources.Developer_API,
                     "feedback"
                     ), POST.Json(json)));
-
+                
                 switch (answer["status"])
                 {
                     case "OK": status = "Ваше сообщение принято под номером " + answer["id"]; break;
