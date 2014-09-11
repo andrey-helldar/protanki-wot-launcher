@@ -51,6 +51,11 @@ namespace _Hell_WPF_Multipack_Launcher
             cbWeak.IsChecked = Check("settings", "weak");
             cbAero.IsChecked = Check("settings", "aero");
 
+            if(Check("settings", "winxp")){
+                cbAero.IsChecked = false;
+                cbAero.IsEnabled = false;
+            }
+
             // Определяем приоритет игры в системе
             try
             {
