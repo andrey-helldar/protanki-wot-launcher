@@ -58,7 +58,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 cbPriority.SelectedIndex = getPriority((int)key.GetValue("CpuPriorityClass"), false);
             }
             catch (Exception ex) { cbPriority.SelectedIndex = 2;/* Debug.Save("public fSettings()", "Priority", ex.Message);*/ }
-            finally { cbPriority.SelectionChanged += cbPriority_SelectionChanged(); }
+            finally { cbPriority.SelectionChanged += cbPriority_SelectionChanged; }
 
             // Устанавливаем значение чекбокса лаунчера
             try
@@ -119,6 +119,12 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { }
         }
 
+        /// <summary>
+        ///  Загрузка и сохранение приоритета в системе
+        /// </summary>
+        /// <param name="pr">Компонент для считывания/сохранения результата</param>
+        /// <param name="save">Сохранять или загружать?</param>
+        /// <returns>Возвращает идентификатор приоритета</returns>
         private int getPriority(int pr, bool save = true)
         {
             /*
@@ -189,15 +195,7 @@ namespace _Hell_WPF_Multipack_Launcher
         }
 
         private void cbPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            /*
-             * case "priority0": return "Высокий";
-             * case "priority1": return "Выше среднего";
-             * case "priority2": return "Средний";
-             * case "priority3": return "Ниже среднего";
-             * case "priority4": return "Низкий";
-             */ 
-                    
+        {                    
             // Сохраняем приоритет в реестр
             try
             {
