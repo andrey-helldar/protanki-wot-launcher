@@ -8,12 +8,6 @@
 	Title="SettingsProcesses" Width="400" Height="500" Background="#FFAC9595">
 
     <Grid>
-        <ListView Margin="10">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ListBox x:Name="lbProcesses" Margin="10"/>
     </Grid>
 </Page>
