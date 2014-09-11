@@ -144,5 +144,21 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             Set("info", "news", cbNotifyNews.IsChecked.ToString());
         }
+
+        private void cbPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*
+             * case "priority0": return "Высокий";
+             *                       case "priority1": return "Выше среднего";
+             *                       case "priority2": return "Средний";
+             *                       case "priority3": return "Ниже среднего";
+             *                       case "priority4": return "Низкий";
+             */ 
+        }
+
+        private void cbLauncher_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Set("settings", "launcher", cbLauncher.SelectedIndex.ToString());
+        }
     }
 }
