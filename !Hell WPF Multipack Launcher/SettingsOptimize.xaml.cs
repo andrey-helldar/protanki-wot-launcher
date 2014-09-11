@@ -110,6 +110,40 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { }
         }
 
+        private int getPriority(int pr, bool save = true)
+        {
+            /*
+             * case "priority0": return "Высокий";
+             * case "priority1": return "Выше среднего";
+             * case "priority2": return "Средний";
+             * case "priority3": return "Ниже среднего";
+             * case "priority4": return "Низкий";
+             */ 
+
+            if (save)
+            {
+                switch (pr)
+                {
+                    case 0: return 3; //Высокий
+                    case 1: return 6; // Выше среднего
+                    case 3: return 5; // Ниже среднего
+                    case 4: return 1; // Низкий
+                    default: return 2; // Средний
+                }
+            }
+            else
+            {
+                switch (pr)
+                {
+                    case 3: return 0; //Высокий
+                    case 6: return 1; // Выше среднего
+                    case 5: return 3; // Ниже среднего
+                    case 1: return 4; // Низкий
+                    default: return 2; // Средний
+                }
+            }
+        }
+
         private void cbKill_Click(object sender, RoutedEventArgs e)
         {
             Set("settings", "kill", cbKill.IsChecked.ToString());
@@ -149,11 +183,30 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             /*
              * case "priority0": return "Высокий";
-             *                       case "priority1": return "Выше среднего";
-             *                       case "priority2": return "Средний";
-             *                       case "priority3": return "Ниже среднего";
-             *                       case "priority4": return "Низкий";
+             * case "priority1": return "Выше среднего";
+             * case "priority2": return "Средний";
+             * case "priority3": return "Ниже среднего";
+             * case "priority4": return "Низкий";
              */ 
+                    
+            // Сохраняем приоритет в реестр
+            try
+            {
+                var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions", true);
+                key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    var key = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
+                    key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
+                }
+                catch (Exception)
+                {
+                    //MessageBox.Show(this, Language.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void cbLauncher_SelectionChanged(object sender, SelectionChangedEventArgs e)

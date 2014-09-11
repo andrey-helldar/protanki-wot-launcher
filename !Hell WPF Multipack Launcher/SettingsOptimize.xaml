@@ -30,7 +30,7 @@
                         <CheckBox x:Name="cbAero" Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="4" Height="16" Width="157" Click="cbAero_Click"/>
                         <CheckBox x:Name="cbWeak" Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="3" Height="16" Width="161" Click="cbWeak_Click"/>
                         <ComboBox x:Name="cbPriority" VerticalAlignment="Top" Margin="10,5,10,0" SelectedIndex="0" Grid.Row="5" Height="22" SelectionChanged="cbPriority_SelectionChanged">
-                            <ComboBoxItem Content="Высокий приоритет игры в системе"/>
+                            <ComboBoxItem Content="---"/>
                         </ComboBox>
                     </Grid>
                 </GroupBox>
@@ -49,7 +49,7 @@
                         <CheckBox x:Name="cbNotifyVideo" Content="Уведомлять о новых видео" Margin="10,5,0,4" Click="cbNotifyVideo_Click"/>
                         <CheckBox x:Name="cbNotifyNews" Content="Уведомлять о новых новостях" Margin="10,6,0,3" Grid.Row="1" Click="cbNotifyNews_Click"/>
                         <ComboBox x:Name="cbLauncher" VerticalAlignment="Top" Margin="10" SelectedIndex="0" Grid.Row="2" SelectionChanged="cbLauncher_SelectionChanged">
-                            <ComboBoxItem Content="Не закрывать лаунчер"/>
+                            <ComboBoxItem Content="---"/>
                         </ComboBox>
                     </Grid>
                 </GroupBox>
