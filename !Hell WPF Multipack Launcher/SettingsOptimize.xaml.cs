@@ -51,6 +51,15 @@ namespace _Hell_WPF_Multipack_Launcher
             cbWeak.IsChecked = Check("settings", "weak");
             cbAero.IsChecked = Check("settings", "aero");
 
+            // Определяем приоритет игры в системе
+            try
+            {
+                var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
+                cbPriority.SelectedIndex = getPriority((int)key.GetValue("CpuPriorityClass"), false);
+            }
+            catch (Exception ex) { cbPriority.SelectedIndex = 2;/* Debug.Save("public fSettings()", "Priority", ex.Message);*/ }
+            finally { cbPriority.SelectionChanged += cbPriority_SelectionChanged(); }
+
             // Устанавливаем значение чекбокса лаунчера
             try
             {

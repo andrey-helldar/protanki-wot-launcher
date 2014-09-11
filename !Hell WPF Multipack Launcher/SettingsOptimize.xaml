@@ -29,7 +29,7 @@
                         <CheckBox x:Name="cbVideo" Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="2" Height="16" Width="218" Click="cbVideo_Click"/>
                         <CheckBox x:Name="cbAero" Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="4" Height="16" Width="157" Click="cbAero_Click"/>
                         <CheckBox x:Name="cbWeak" Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="3" Height="16" Width="161" Click="cbWeak_Click"/>
-                        <ComboBox x:Name="cbPriority" VerticalAlignment="Top" Margin="10,5,10,0" SelectedIndex="0" Grid.Row="5" Height="22" SelectionChanged="cbPriority_SelectionChanged">
+                        <ComboBox x:Name="cbPriority" VerticalAlignment="Top" Margin="10,5,10,0" SelectedIndex="0" Grid.Row="5" Height="22">
                             <ComboBoxItem Content="---"/>
                         </ComboBox>
                     </Grid>
