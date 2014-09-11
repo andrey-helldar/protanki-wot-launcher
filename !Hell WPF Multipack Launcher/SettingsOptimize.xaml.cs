@@ -70,8 +70,8 @@ namespace _Hell_WPF_Multipack_Launcher
             /*
              * <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru">
              */
-            cbNotifyVideo.IsChecked = Check("settings", "video");
-            cbNotifyNews.IsChecked = Check("settings", "news");
+            cbNotifyVideo.IsChecked = Check("info", "video");
+            cbNotifyNews.IsChecked = Check("info", "news");
         }
 
         /// <summary>
@@ -91,6 +91,58 @@ namespace _Hell_WPF_Multipack_Launcher
                         return true;
 
             return false;
+        }
+
+        /// <summary>
+        /// Изменяем значения параметров
+        /// </summary>
+        /// <param name="el">Блок элемента</param>
+        /// <param name="attr">Проверяемый аттрибут</param>
+        /// <param name="val">Значение</param>
+        private void Set(string el, string attr, string val)
+        {
+            try
+            {
+                if (MainWindow.XmlDocument.Root.Element(el) != null)
+                    if (MainWindow.XmlDocument.Root.Element(el).Attribute(attr) != null)
+                        MainWindow.XmlDocument.Root.Element(el).Attribute(attr).SetValue(val);
+            }
+            catch (Exception ex) { }
+        }
+
+        private void cbKill_Click(object sender, RoutedEventArgs e)
+        {
+            Set("settings", "kill", cbKill.IsChecked.ToString());
+        }
+
+        private void cbForce_Click(object sender, RoutedEventArgs e)
+        {
+            Set("settings", "force", cbForce.IsChecked.ToString());
+        }
+
+        private void cbVideo_Click(object sender, RoutedEventArgs e)
+        {
+            Set("settings", "video", cbVideo.IsChecked.ToString());
+        }
+
+        private void cbWeak_Click(object sender, RoutedEventArgs e)
+        {
+            Set("settings", "weak", cbWeak.IsChecked.ToString());
+        }
+
+        private void cbAero_Click(object sender, RoutedEventArgs e)
+        {
+            Set("settings", "aero", cbAero.IsChecked.ToString());
+        }
+
+        private void cbNotifyVideo_Click(object sender, RoutedEventArgs e)
+        {
+            Set("info", "video", cbNotifyVideo.IsChecked.ToString());
+        }
+
+        private void cbNotifyNews_Click(object sender, RoutedEventArgs e)
+        {
+            Set("info", "news", cbNotifyNews.IsChecked.ToString());
         }
     }
 }
