@@ -5,9 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="SettingsProcesses" Width="400" Height="500" Background="#FFAC9595">
+	Title="SettingsProcesses" Width="Auto" Height="Auto" Background="#FFAC9595">
 
     <Grid>
-        <ListBox x:Name="lbProcesses" Margin="10"/>
+        <ListBox x:Name="lbProcesses" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
+        </ListBox>
     </Grid>
 </Page>

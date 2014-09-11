@@ -34,6 +34,7 @@ namespace _Hell_WPF_Multipack_Launcher
              */
             Grid gridPanel0 = new Grid();
             gridPanel0.Width = double.NaN;
+            gridPanel0.Height = double.NaN;
             gridPanel0.Margin = new Thickness(5, 5, 5, 5);
             gridPanel0.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
 
@@ -42,32 +43,41 @@ namespace _Hell_WPF_Multipack_Launcher
             gridPanel0.ColumnDefinitions.Add(gridColumn0);
 
             ColumnDefinition gridColumn02 = new ColumnDefinition();
-            gridColumn02.Width = ;
             gridPanel0.ColumnDefinitions.Add(gridColumn02);
             gridPanel0.ColumnDefinitions.Add(new ColumnDefinition());
 
             Label label0 = new Label();
             label0.Margin = new Thickness(0);
-            label0.Width = 30;
             label0.Content = "#";
+            label0.Margin = new Thickness(5);
+            label0.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            label0.VerticalAlignment = System.Windows.VerticalAlignment.Center;
             Grid.SetRow(label0, 0);
             Grid.SetColumn(label0, 0);
             gridPanel0.Children.Add(label0);
 
             Label label1 = new Label();
             label1.Content = "Process";
+            label1.Margin = new Thickness(5);
+            label1.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            label1.VerticalAlignment = System.Windows.VerticalAlignment.Center;
             Grid.SetRow(label1, 0);
             Grid.SetColumn(label1, 1);
             gridPanel0.Children.Add(label1);
 
             Label label2 = new Label();
             label2.Content = "Description";
+            label2.Margin = new Thickness(5);
+            label2.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            label2.VerticalAlignment = System.Windows.VerticalAlignment.Center;
             Grid.SetRow(label2, 0);
             Grid.SetColumn(label2, 2);
             gridPanel0.Children.Add(label2);
 
             ListBoxItem lbi0 = new ListBoxItem();
-            lbi0.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemGeneral");
+            //lbi0.Width = double.NaN;
+            lbi0.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            lbi0.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemProcesses");
             lbi0.Content = gridPanel0;
 
             lbProcesses.Items.Add(lbi0);
@@ -84,6 +94,10 @@ namespace _Hell_WPF_Multipack_Launcher
                 ColumnDefinition gridColumn1 = new ColumnDefinition();
                 gridColumn1.Width = GridLength.Auto;
                 gridPanel.ColumnDefinitions.Add(gridColumn1);
+
+                ColumnDefinition gridColumn2 = new ColumnDefinition();
+                gridColumn2.Width = GridLength.Auto;
+                gridPanel.ColumnDefinitions.Add(gridColumn2);
                 gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
 
                 CheckBox checkBox = new CheckBox();
@@ -95,13 +109,21 @@ namespace _Hell_WPF_Multipack_Launcher
 
 
                 Label label = new Label();
-                label.Content = "THIS IS A PROCESS!!! : " + i.ToString();
+                label.Content = "THIS IS A PROCESS!!!";
                 Grid.SetRow(label, 0);
                 Grid.SetColumn(label, 1);
                 gridPanel.Children.Add(label);
 
+                Label label12 = new Label();
+                label12.Content = "DESC : " + i.ToString();
+                Grid.SetRow(label12, 0);
+                Grid.SetColumn(label12, 2);
+                gridPanel.Children.Add(label12);
+
                 ListBoxItem lbi = new ListBoxItem();
-                lbi.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemGeneral");
+                //lbi.Width = double.NaN;
+                lbi.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                lbi.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemProcesses");
                 lbi.Content = gridPanel;
 
                 lbProcesses.Items.Add(lbi);
