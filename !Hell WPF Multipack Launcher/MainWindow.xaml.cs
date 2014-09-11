@@ -34,6 +34,7 @@ namespace _Hell_WPF_Multipack_Launcher
         public static XDocument XmlDocument { get { return xmlDocument; } }
         private static XDocument xmlDocument;
 
+
         /*********************
          * Variables
          * *******************/
@@ -75,6 +76,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 if(File.Exists(Variables.SettingsPath))
                     xmlDocument = XDocument.Load(Variables.SettingsPath);
                 this.Closing += delegate { xmlDocument = null; };
+
 
                 Navigator("Loading"); // Изменение страницы
             }

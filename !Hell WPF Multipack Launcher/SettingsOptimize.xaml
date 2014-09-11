@@ -24,12 +24,12 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="32"/>
                         </Grid.RowDefinitions>
-                        <CheckBox Content="Закрывать процессы при запуске игры" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Height="16" Width="232"/>
-                        <CheckBox Content="Принудительно закрывать процессы" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="1" Height="16" Width="220"/>
-                        <CheckBox Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="2" Height="16" Width="218"/>
-                        <CheckBox Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="4" Height="16" Width="157"/>
-                        <CheckBox Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="3" Height="16" Width="161"/>
-                        <ComboBox VerticalAlignment="Top" Margin="10,5,10,0" SelectedIndex="0" Grid.Row="5" Height="22">
+                        <CheckBox x:Name="cbKill" Content="Закрывать процессы при запуске игры" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Height="16" Width="232"/>
+                        <CheckBox x:Name="cbForce" Content="Принудительно закрывать процессы" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="1" Height="16" Width="220"/>
+                        <CheckBox x:Name="cbVideo" Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="2" Height="16" Width="218"/>
+                        <CheckBox x:Name="cbAero" Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="4" Height="16" Width="157"/>
+                        <CheckBox x:Name="cbWeak" Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="3" Height="16" Width="161"/>
+                        <ComboBox x:Name="cbPriority" VerticalAlignment="Top" Margin="10,5,10,0" SelectedIndex="0" Grid.Row="5" Height="22">
                             <ComboBoxItem Content="Высокий приоритет игры в системе"/>
                         </ComboBox>
                     </Grid>
@@ -46,9 +46,9 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <CheckBox Content="Уведомлять о новых видео" Margin="10,5,0,4"/>
-                        <CheckBox Content="Уведомлять о новых новостях" Margin="10,6,0,3" Grid.Row="1"/>
-                        <ComboBox VerticalAlignment="Top" Margin="10" SelectedIndex="0" Grid.Row="2">
+                        <CheckBox x:Name="cbNotifyVideo" Content="Уведомлять о новых видео" Margin="10,5,0,4"/>
+                        <CheckBox x:Name="cbNotifyNews" Content="Уведомлять о новых новостях" Margin="10,6,0,3" Grid.Row="1"/>
+                        <ComboBox x:Name="cbLauncher" VerticalAlignment="Top" Margin="10" SelectedIndex="0" Grid.Row="2">
                             <ComboBoxItem Content="Не закрывать лаунчер"/>
                         </ComboBox>
                     </Grid>

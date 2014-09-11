@@ -82,6 +82,7 @@
     <Compile Include="Clan.xaml.cs">
       <DependentUpon>Clan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Language.Class.cs" />
     <Compile Include="Language.xaml.cs">
       <DependentUpon>Language.xaml</DependentUpon>
     </Compile>

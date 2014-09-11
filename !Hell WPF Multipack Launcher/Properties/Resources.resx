@@ -240,4 +240,8 @@
     <value>50</value>
     <comment>Минимальное количество символов в отправляемом сообщении</comment>
   </data>
+  <data name="Sleeping_News" xml:space="preserve">
+    <value>0</value>
+    <comment>Таймаут перед созданием следующей записи на форме</comment>
+  </data>
 </root>

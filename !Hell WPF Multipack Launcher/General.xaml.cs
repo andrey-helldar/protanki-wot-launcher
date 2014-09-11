@@ -34,6 +34,11 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
+            Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!", "", false));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
             // Устанавливаем заголовок в зависимости от типа версии
             lType.Content = "Базовая версия";
 
@@ -41,7 +46,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (MainWindow.XmlDocument.Root.Element("multipack") != null)
                     if (MainWindow.XmlDocument.Root.Element("multipack").Element("type") != null)
                         lType.Content = MainWindow.XmlDocument.Root.Element("multipack").Element("type").Value == "base" ? "Базовая версия" : "Расширенная версия";
-                    
+
 
             // Загружаем список видео и новостей
             Task.WaitAll(new Task[]{
@@ -55,11 +60,6 @@ namespace _Hell_WPF_Multipack_Launcher
             });
 
             Task.Factory.StartNew(() => VideoNotify()); // Выводим уведомления
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            Task.Factory.StartNew(() => ShowNotify("Добро пожаловать!", "", false));
         }
 
         /// <summary>
@@ -212,6 +212,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                 }
                                 catch (Exception ex1) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "FOR: " + i.ToString(), ex1.Message, ex1.StackTrace)); }
                             }
+
+                        Thread.Sleep(Convert.ToInt16(Properties.Resources.Sleeping_News));
                     }));
 
                 }

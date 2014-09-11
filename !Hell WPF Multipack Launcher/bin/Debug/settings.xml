@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <pro>
   <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru">
     <notify_link />
@@ -8,11 +8,7 @@
   <game>
     <path></path>
   </game>
-  <youtube>
-    <video>XWFxfgTZ50M</video>
-    <video>59UrDHlfsgE</video>
-    <video>8qKoY2WGwss</video>
-  </youtube>
+  <youtube />
   <do_not_display>
     <video />
     <news />
