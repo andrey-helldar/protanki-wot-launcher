@@ -34,15 +34,15 @@ namespace _Hell_WPF_Multipack_Launcher
              */
             Grid gridPanel0 = new Grid();
             gridPanel0.Width = double.NaN;
-            gridPanel0.Height = double.NaN;
-            gridPanel0.Margin = new Thickness(5, 5, 5, 5);
+            gridPanel0.Margin = new Thickness(0);
             gridPanel0.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
 
             ColumnDefinition gridColumn0 = new ColumnDefinition();
-            gridColumn0.Width = GridLength.Auto;
+            gridColumn0.Width = new GridLength(30, GridUnitType.Pixel);
             gridPanel0.ColumnDefinitions.Add(gridColumn0);
 
             ColumnDefinition gridColumn02 = new ColumnDefinition();
+            gridColumn02.Width = new GridLength(120, GridUnitType.Pixel);
             gridPanel0.ColumnDefinitions.Add(gridColumn02);
             gridPanel0.ColumnDefinitions.Add(new ColumnDefinition());
 
@@ -77,7 +77,7 @@ namespace _Hell_WPF_Multipack_Launcher
             ListBoxItem lbi0 = new ListBoxItem();
             //lbi0.Width = double.NaN;
             lbi0.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            lbi0.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemProcesses");
+            lbi0.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemProcessesCaption");
             lbi0.Content = gridPanel0;
 
             lbProcesses.Items.Add(lbi0);
@@ -87,21 +87,24 @@ namespace _Hell_WPF_Multipack_Launcher
             for (int i = 0; i < 10; i++)
             {
                 Grid gridPanel = new Grid();
-                gridPanel.Width = double.MaxValue;
-                gridPanel.Margin = new Thickness(5, 5, 5, 5);
+                gridPanel.Width = double.NaN;
+                gridPanel.Margin = new Thickness(0);
                 gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
 
                 ColumnDefinition gridColumn1 = new ColumnDefinition();
-                gridColumn1.Width = GridLength.Auto;
+                //gridColumn1.Width = GridLength.Auto;
+                gridColumn1.Width = new GridLength(30, GridUnitType.Pixel);
                 gridPanel.ColumnDefinitions.Add(gridColumn1);
 
                 ColumnDefinition gridColumn2 = new ColumnDefinition();
-                gridColumn2.Width = GridLength.Auto;
+                gridColumn2.Width = new GridLength(120, GridUnitType.Pixel);
                 gridPanel.ColumnDefinitions.Add(gridColumn2);
                 gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
 
                 CheckBox checkBox = new CheckBox();
-                checkBox.Margin = new Thickness(0);
+                checkBox.Margin = new Thickness(5,0,0,0);
+                checkBox.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                checkBox.IsChecked = true;
                 checkBox.Checked += ProcessChanged;
                 Grid.SetRow(checkBox, 0);
                 Grid.SetColumn(checkBox, 0);
@@ -110,12 +113,14 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 Label label = new Label();
                 label.Content = "THIS IS A PROCESS!!!";
+                label.VerticalAlignment = System.Windows.VerticalAlignment.Center;
                 Grid.SetRow(label, 0);
                 Grid.SetColumn(label, 1);
                 gridPanel.Children.Add(label);
 
                 Label label12 = new Label();
-                label12.Content = "DESC : " + i.ToString();
+                label12.Content = "DESCRIPTION : " + i.ToString();
+                label12.VerticalAlignment = System.Windows.VerticalAlignment.Center;
                 Grid.SetRow(label12, 0);
                 Grid.SetColumn(label12, 2);
                 gridPanel.Children.Add(label12);

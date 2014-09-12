@@ -723,5 +723,40 @@
             </Setter>
         </Style>
 
+
+
+
+
+        <!-- *******************************
+                    LISTBOX PROCESSES
+            *********************************-->
+        <Style x:Key="ListBoxItemProcessesCaption" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <!-- Применяем стили для элементов внутри ListBox -->
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="brd" Background="{TemplateBinding Background}" 
+                                          BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter Property="Background" Value="BlueViolet"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Margin" Value="0,0,0,5" />
+                                <Setter Property="Width" Value="300"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Margin" Value="0" />
+                                <Setter Property="Width" Value="300"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>
