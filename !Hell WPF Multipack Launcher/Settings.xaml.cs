@@ -25,7 +25,7 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            try { SettingsFrame.NavigationService.Navigate(new Uri("SettingsOptimize.xaml", UriKind.Relative)); }
+            try { SettingsFrame.NavigationService.Navigate(new Uri("SettingsGeneral.xaml", UriKind.Relative)); }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
@@ -36,7 +36,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 try
                 {
                     SettingsFrame.NavigationService.Navigate(new Uri("SettingsProcesses.xaml", UriKind.Relative));
-                    bChangeSettingsPage.Content = "Оптимизация";
+                    bChangeSettingsPage.Content = "Общие";
                     tbSettingsSubTitle.Text = "Процессы";
                     openedPage = false;
                 }
@@ -46,9 +46,9 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    SettingsFrame.NavigationService.Navigate(new Uri("SettingsOptimize.xaml", UriKind.Relative));
+                    SettingsFrame.NavigationService.Navigate(new Uri("SettingsGeneral.xaml", UriKind.Relative));
                     bChangeSettingsPage.Content = "Процессы";
-                    tbSettingsSubTitle.Text = "Оптимизация";
+                    tbSettingsSubTitle.Text = "Общие";
                     openedPage = true;
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }

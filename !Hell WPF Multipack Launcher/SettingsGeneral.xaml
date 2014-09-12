@@ -13,8 +13,9 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <GroupBox VerticalAlignment="Top" Margin="0" Header="Оптимизация ПК и игры:">
+                <GroupBox VerticalAlignment="Top" Margin="0,5,0,0" Header="Оптимизация ПК и игры:" Grid.Row="1">
                     <Grid Margin="5" Background="LightGray" VerticalAlignment="Top">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -36,7 +37,7 @@
                 </GroupBox>
 
 
-                <GroupBox VerticalAlignment="Top" Margin="0,5,0,-190" Header="Другое" Grid.Row="1">
+                <GroupBox VerticalAlignment="Top" Margin="0,5" Header="Другое:" Grid.Row="2">
                     <Grid Margin="5" Background="#FFBFAEAE">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -52,6 +53,9 @@
                             <ComboBoxItem Content="---"/>
                         </ComboBox>
                     </Grid>
+                </GroupBox>
+                <GroupBox Header="Игровой ник:" Margin="0,5" VerticalAlignment="Top">
+                    <TextBox Height="25" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Margin="5"/>
                 </GroupBox>
             </Grid>
         </ScrollViewer>
