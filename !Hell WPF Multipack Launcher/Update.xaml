@@ -32,8 +32,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="newVersion" Content="0.0.0 #0" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" FontFamily="Sochi2014"/>
                 <ScrollViewer Margin="5" Grid.Row="1" Background="#FFBB8D8D" MinWidth="300" MinHeight="200"/>
+                <Label x:Name="newVersion" Content="0.0.0 #0" HorizontalAlignment="Center" Margin="0,20" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Sochi2014" FontSize="20"/>
             </Grid>
         </GroupBox>
 

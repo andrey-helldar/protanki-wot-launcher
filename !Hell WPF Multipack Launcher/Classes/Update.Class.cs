@@ -10,6 +10,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Update
     {
+        /// <summary>
+        /// ИЗвлечение ресурсов, если оригинальные файлы не найдены
+        /// </summary>
+        /// <returns>TRUE при успешном извлечении, иначе - FALSE</returns>
         public bool SaveFromResources()
         {
             try
@@ -31,6 +35,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Task.Factory.StartNew(() => new Debug().Save("Update.Class", "SaveFromResources()", ex.Message));
                 return false;
             }
+        }
+
+        public bool MultipackUpdate()
+        {
+
         }
     }
 }
