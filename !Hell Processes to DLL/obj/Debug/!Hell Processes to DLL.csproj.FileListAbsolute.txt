@@ -6,3 +6,4 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\!
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\!Hell Processes to DLL.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\!Hell Processes to DLL.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Debug\_Hell_Processes_to_DLL.fIndex.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Debug\settings.xml

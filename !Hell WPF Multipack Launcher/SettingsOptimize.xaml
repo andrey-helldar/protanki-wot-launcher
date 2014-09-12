@@ -4,11 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-	Title="SettingsOptimize" Width="400" Height="500" Background="#FFAC9595">
+      d:DesignHeight="429" d:DesignWidth="411"
+	Title="SettingsOptimize" Width="Auto" Height="Auto" Background="#FFAC9595">
 
     <Grid>
-        <ScrollViewer HorizontalAlignment="Left" Height="480" Margin="10,10,0,0" VerticalAlignment="Top" Width="380">
+        <ScrollViewer Margin="10">
             <Grid Margin="0" Background="#FFF9EFEF">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
