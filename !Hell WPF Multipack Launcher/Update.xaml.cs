@@ -26,6 +26,17 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (cbNotify.IsChecked == true)
+            {
+                string ver = newVersion.Content;
+                MainWindow.XmlDocument.Root.Element("info").Attribute("notification").SetValue(new Classes.Variables().VersionFromSharp(ver));
+            }
+
+            MainWindow.Navigator("General", "Update.xaml");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
             MainWindow.Navigator("General", "Update.xaml");
         }
     }

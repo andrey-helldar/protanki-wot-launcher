@@ -264,10 +264,21 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         }
 
         /// <summary>
+        /// Преобразование версии из решетки в нормальную
+        /// </summary>
+        /// <param name="ver">Входящий формат вида 0.0.0. #0</param>
+        /// <returns>0.0.0.0</returns>
+        public Version VersionFromSharp(string ver)
+        {
+            try { return new Version(ver.Replace(" #", ".")); }
+            catch (Exception) { return new Version("0.0.0.0"); }
+        }
+
+        /// <summary>
         /// Формирование префикса из версии
         /// </summary>
-        /// <param name="ver"></param>
-        /// <returns></returns>
+        /// <param name="ver">Версия для преобразования</param>
+        /// <returns>формат 0.0.0.</returns>
         public string VersionPrefix(Version ver)
         {
             try { return String.Format("{0}.{1}.{2}.", ver.Major, ver.Minor, ver.Build); }
