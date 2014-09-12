@@ -33,153 +33,100 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-             Processes();
+            Processes();
         }
 
         private void Processes()
-        {Task.Factory.StartNew(() => {
-            Dispatcher.BeginInvoke(new ThreadStart(delegate
-                    {
-                        lbProcesses.Items.Clear();
-                        /*
-                         *  Добавляем шапку
-                         */
-                        Grid gridPanel0 = new Grid();
-                        gridPanel0.Width = double.NaN;
-                        gridPanel0.Margin = new Thickness(0);
-                        gridPanel0.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-
-                        ColumnDefinition gridColumn0 = new ColumnDefinition();
-                        gridColumn0.Width = new GridLength(30, GridUnitType.Pixel);
-                        gridPanel0.ColumnDefinitions.Add(gridColumn0);
-
-                        ColumnDefinition gridColumn02 = new ColumnDefinition();
-                        gridColumn02.Width = new GridLength(150, GridUnitType.Pixel);
-                        gridPanel0.ColumnDefinitions.Add(gridColumn02);
-                        gridPanel0.ColumnDefinitions.Add(new ColumnDefinition());
-
-                        Label label0 = new Label();
-                        label0.Margin = new Thickness(0);
-                        label0.Content = "#";
-                        label0.Margin = new Thickness(5);
-                        label0.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-                        label0.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                        Grid.SetRow(label0, 0);
-                        Grid.SetColumn(label0, 0);
-                        gridPanel0.Children.Add(label0);
-
-                        Label label1 = new Label();
-                        label1.Content = "Process";
-                        label1.Margin = new Thickness(5);
-                        label1.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-                        label1.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                        Grid.SetRow(label1, 0);
-                        Grid.SetColumn(label1, 1);
-                        gridPanel0.Children.Add(label1);
-
-                        Label label2 = new Label();
-                        label2.Content = "Description";
-                        label2.Margin = new Thickness(5);
-                        label2.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-                        label2.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                        Grid.SetRow(label2, 0);
-                        Grid.SetColumn(label2, 2);
-                        gridPanel0.Children.Add(label2);
-
-                        ListBoxItem lbi0 = new ListBoxItem();
-                        //lbi0.Width = double.NaN;
-                        lbi0.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                        lbi0.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemProcessesCaption");
-                        lbi0.Content = gridPanel0;
-
-                        lbProcesses.Items.Add(lbi0);
-
-
-                        /*
-                         * Загружаем список процессов
-                         */
-                        Process[] myProcesses = Process.GetProcesses();
-                        int processID = Process.GetCurrentProcess().SessionId;
-
-                        List<string> DoubleProcess = new List<string>();
-
-                        for (int i = 1; i < myProcesses.Length; i++)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
-                            try
+                            lbProcesses.Items.Clear();
+
+
+                            Process[] myProcesses = Process.GetProcesses();
+                            int processID = Process.GetCurrentProcess().SessionId;
+
+                            List<string> DoubleProcess = new List<string>();
+
+                            for (int i = 1; i < myProcesses.Length; i++)
                             {
-                                if (myProcesses[i].SessionId == processID)
-                                    if (!ProcessList.IndexOf(myProcesses[i].ProcessName) && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
-                                    {
-                                        //  Проверяем список на наличие дубликатов
-                                        if (DoubleProcess.IndexOf(myProcesses[i].ProcessName) == -1)
+                                try
+                                {
+                                    if (myProcesses[i].SessionId == processID)
+                                        if (!ProcessList.IndexOf(myProcesses[i].ProcessName) && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
                                         {
-                                            DoubleProcess.Add(myProcesses[i].ProcessName);
-
-                                            //  Заполняем данные
-                                            Grid gridPanel = new Grid();
-                                            gridPanel.Width = double.NaN;
-                                            gridPanel.Margin = new Thickness(0);
-                                            gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-
-                                            ColumnDefinition gridColumn1 = new ColumnDefinition();
-                                            gridColumn1.Width = new GridLength(30, GridUnitType.Pixel);
-                                            gridPanel.ColumnDefinitions.Add(gridColumn1);
-
-                                            ColumnDefinition gridColumn2 = new ColumnDefinition();
-                                            gridColumn2.Width = new GridLength(150, GridUnitType.Pixel);
-                                            gridPanel.ColumnDefinitions.Add(gridColumn2);
-                                            gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
-
-                                            CheckBox checkBox = new CheckBox();
-                                            checkBox.Margin = new Thickness(5, 0, 0, 0);
-                                            checkBox.Name = "Cb" + myProcesses[i].ProcessName;
-                                            checkBox.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-
-                                            if (ProccessLibrary.Search(myProcesses[i].ProcessName))
+                                            //  Проверяем список на наличие дубликатов
+                                            if (DoubleProcess.IndexOf(myProcesses[i].ProcessName) == -1)
                                             {
-                                                checkBox.IsChecked = true;
-                                                checkBox.IsEnabled = false;
+                                                DoubleProcess.Add(myProcesses[i].ProcessName);
+
+                                                //  Заполняем данные
+                                                Grid gridPanel = new Grid();
+                                                gridPanel.Width = double.NaN;
+                                                gridPanel.Margin = new Thickness(0);
+                                                gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+
+                                                ColumnDefinition gridColumn1 = new ColumnDefinition();
+                                                gridColumn1.Width = new GridLength(30, GridUnitType.Pixel);
+                                                gridPanel.ColumnDefinitions.Add(gridColumn1);
+
+                                                ColumnDefinition gridColumn2 = new ColumnDefinition();
+                                                gridColumn2.Width = new GridLength(150, GridUnitType.Pixel);
+                                                gridPanel.ColumnDefinitions.Add(gridColumn2);
+                                                gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
+
+                                                CheckBox checkBox = new CheckBox();
+                                                checkBox.Margin = new Thickness(5, 0, 0, 0);
+                                                checkBox.Name = "Cb" + myProcesses[i].ProcessName;
+                                                checkBox.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+
+                                                if (ProccessLibrary.Search(myProcesses[i].ProcessName))
+                                                {
+                                                    checkBox.IsChecked = true;
+                                                    checkBox.IsEnabled = false;
+                                                }
+                                                else
+                                                {
+                                                    checkBox.IsChecked = CheckUserProcess(myProcesses[i].ProcessName);
+                                                    checkBox.IsEnabled = true;
+                                                }
+                                                checkBox.Click += ProcessChanged;
+                                                Grid.SetRow(checkBox, 0);
+                                                Grid.SetColumn(checkBox, 0);
+                                                gridPanel.Children.Add(checkBox);
+
+
+                                                Label label = new Label();
+                                                label.Content = myProcesses[i].ProcessName;
+                                                label.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                                                Grid.SetRow(label, 0);
+                                                Grid.SetColumn(label, 1);
+                                                gridPanel.Children.Add(label);
+
+                                                Label label12 = new Label();
+                                                label12.Content = myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim();
+                                                label12.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                                                Grid.SetRow(label12, 0);
+                                                Grid.SetColumn(label12, 2);
+                                                gridPanel.Children.Add(label12);
+
+                                                ListBoxItem lbi = new ListBoxItem();
+                                                lbi.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                                                lbi.SetResourceReference(TextBlock.StyleProperty, Style(myProcesses[i].ProcessName));
+                                                lbi.Content = gridPanel;
+
+                                                lbProcesses.Items.Add(lbi);
                                             }
-                                            else
-                                            {
-                                                checkBox.IsChecked = CheckUserProcess(myProcesses[i].ProcessName);
-                                                checkBox.IsEnabled = true;
-                                            }
-                                            checkBox.Click += ProcessChanged;
-                                            Grid.SetRow(checkBox, 0);
-                                            Grid.SetColumn(checkBox, 0);
-                                            gridPanel.Children.Add(checkBox);
-
-
-                                            Label label = new Label();
-                                            label.Content = myProcesses[i].ProcessName;
-                                            label.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                                            Grid.SetRow(label, 0);
-                                            Grid.SetColumn(label, 1);
-                                            gridPanel.Children.Add(label);
-
-                                            Label label12 = new Label();
-                                            label12.Content = myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim();
-                                            label12.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                                            Grid.SetRow(label12, 0);
-                                            Grid.SetColumn(label12, 2);
-                                            gridPanel.Children.Add(label12);
-
-                                            ListBoxItem lbi = new ListBoxItem();
-                                            lbi.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                                            lbi.SetResourceReference(TextBlock.StyleProperty, Style(myProcesses[i].ProcessName));
-                                            lbi.Content = gridPanel;
-
-                                            lbProcesses.Items.Add(lbi);
                                         }
-                                    }
+                                }
+                                catch (Exception ex) { /*Debug.Save("bwUserProcesses_DoWork()", myProcesses[i].ProcessName, ex.Message);*/ }
                             }
-                            catch (Exception ex) { /*Debug.Save("bwUserProcesses_DoWork()", myProcesses[i].ProcessName, ex.Message);*/ }
-                        }
 
-                        DoubleProcess = null;
-                    }));
-        });
+                            DoubleProcess = null;
+                        }));
+            });
         }
 
         /// <summary>

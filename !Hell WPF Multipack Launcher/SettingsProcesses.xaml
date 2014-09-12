@@ -4,11 +4,47 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="482" d:DesignWidth="463"
 	Title="SettingsProcesses" Width="Auto" Height="Auto" Background="#FFAC9595" Loaded="Page_Loaded">
 
     <Grid>
-        <ListBox x:Name="lbProcesses" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="344*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="lbProcesses" Margin="10,10,10,12" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="1" Grid.ColumnSpan="2">
         </ListBox>
+        <StackPanel Margin="5,0" Background="#FFBF5757" Grid.ColumnSpan="2">
+            <Grid Background="#FF339E42">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="31*"/>
+                    <ColumnDefinition Width="156*"/>
+                    <ColumnDefinition Width="93*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="#" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
+                <Label Content="Процессы" Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
+                <Label Content="Описание" Grid.Column="2" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+        <Canvas Height="40" Margin="10,10,10,0" Grid.Row="2" VerticalAlignment="Top" Background="#FFE398FF"/>
+        <Canvas Height="40" Margin="10,55,10,0" Grid.Row="2" VerticalAlignment="Top" Background="Honeydew"/>
+        <Canvas Height="40" Margin="10,100,10,0" Grid.Row="2" VerticalAlignment="Top" Background="#FFFFEFEF"/>
+        <TextBlock Margin="0,10,10,0" Grid.Row="2" VerticalAlignment="Top" TextTrimming="WordEllipsis" TextWrapping="Wrap" Grid.Column="1">
+            <Run>Глобальный список процессов</Run><LineBreak/>
+            <Run>Отключение процессов из данного списка невозможно</Run>
+        </TextBlock>
+        <TextBlock Margin="0,55,10,0" Grid.Row="2" VerticalAlignment="Top" TextTrimming="WordEllipsis" TextWrapping="Wrap" Grid.Column="1">
+            <Run>Процессы, которые НЕЛЬЗЯ закрывать</Run><LineBreak/>
+            <Run>Процессы, которые будут игнорироваться лаунчером при оптимизации ПК</Run>
+        </TextBlock>
+        <TextBlock Margin="0,100,10,0" Grid.Row="2" VerticalAlignment="Top" TextTrimming="WordEllipsis" TextWrapping="Wrap" Grid.Column="1">
+            <Run>Процессы, не имеющие приоритета</Run><LineBreak/>
+            <Run>Процессы, которые будут завершаться при оптимизации ПК</Run>
+        </TextBlock>
     </Grid>
 </Page>
