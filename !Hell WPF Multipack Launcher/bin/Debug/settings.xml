@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <pro>
-  <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru">
+  <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru" player="">
     <notify_link />
   </info>
   <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
@@ -8,12 +8,10 @@
   <game>
     <path></path>
   </game>
-  <youtube>
-    <video>XWFxfgTZ50M</video>
-  </youtube>
+  <youtube/>
   <do_not_display>
     <video />
     <news />
   </do_not_display>
-  <processes />
+  <processes/>
 </pro>

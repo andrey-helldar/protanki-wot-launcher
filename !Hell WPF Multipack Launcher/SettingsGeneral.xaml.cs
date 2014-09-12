@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -37,21 +38,30 @@ namespace _Hell_WPF_Multipack_Launcher
                 cbLauncher.Items.Add(Lang.Set("Settings", "minimize" + i.ToString(), MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value));
 
 
+            /*
+             *  Блок Имя игрока
+             */
+            if (MainWindow.XmlDocument.Root.Element("info") != null)
+                if (MainWindow.XmlDocument.Root.Element("info").Attribute("player") != null)
+                    tbPlayerName.Text = MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value;
 
-                /*
-                 *  Блок ОПТИМИЗАЦИЯ
-                 */
 
-                /*
-                 * <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
-                 */
-                cbKill.IsChecked = Check("settings", "kill");
+
+            /*
+             *  Блок ОПТИМИЗАЦИЯ
+             */
+
+            /*
+             * <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
+             */
+            cbKill.IsChecked = Check("settings", "kill");
             cbForce.IsChecked = Check("settings", "force");
             cbVideo.IsChecked = Check("settings", "video");
             cbWeak.IsChecked = Check("settings", "weak");
             cbAero.IsChecked = Check("settings", "aero");
 
-            if(Check("settings", "winxp")){
+            if (Check("settings", "winxp"))
+            {
                 cbAero.IsChecked = false;
                 cbAero.IsEnabled = false;
             }
@@ -138,7 +148,7 @@ namespace _Hell_WPF_Multipack_Launcher
              * case "priority2": return "Средний";
              * case "priority3": return "Ниже среднего";
              * case "priority4": return "Низкий";
-             */ 
+             */
 
             if (save)
             {
@@ -200,7 +210,7 @@ namespace _Hell_WPF_Multipack_Launcher
         }
 
         private void cbPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {                    
+        {
             // Сохраняем приоритет в реестр
             try
             {
@@ -224,6 +234,22 @@ namespace _Hell_WPF_Multipack_Launcher
         private void cbLauncher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Set("settings", "launcher", cbLauncher.SelectedIndex.ToString());
+        }
+
+        private void tbPlayerName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (MainWindow.XmlDocument.Root.Element("info") == null)
+                    MainWindow.XmlDocument.Root.Add(new XElement("info", new XAttribute("player", "")));
+
+                if (MainWindow.XmlDocument.Root.Element("info").Attribute("player") == null)
+                    MainWindow.XmlDocument.Root.Element("info").Add(new XAttribute("player", ""));
+
+                try { MainWindow.XmlDocument.Root.Element("info").Attribute("player").SetValue(tbPlayerName.Text); }
+                catch (Exception) { MainWindow.XmlDocument.Root.Element("info").Attribute("player").SetValue(""); }
+            }
+            catch (Exception) { }
         }
     }
 }

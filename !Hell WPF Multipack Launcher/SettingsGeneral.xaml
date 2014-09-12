@@ -47,15 +47,15 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <CheckBox x:Name="cbNotifyVideo" Content="Уведомлять о новых видео" Margin="10,5,0,4" Click="cbNotifyVideo_Click"/>
-                        <CheckBox x:Name="cbNotifyNews" Content="Уведомлять о новых новостях" Margin="10,6,0,3" Grid.Row="1" Click="cbNotifyNews_Click"/>
+                        <CheckBox x:Name="cbNotifyVideo" Content="Уведомлять о новых видео" Margin="10,5,0,4" Click="cbNotifyVideo_Click" IsChecked="True"/>
+                        <CheckBox x:Name="cbNotifyNews" Content="Уведомлять о новых новостях" Margin="10,6,0,3" Grid.Row="1" Click="cbNotifyNews_Click" IsChecked="True"/>
                         <ComboBox x:Name="cbLauncher" VerticalAlignment="Top" Margin="10" SelectedIndex="0" Grid.Row="2" SelectionChanged="cbLauncher_SelectionChanged">
                             <ComboBoxItem Content="---"/>
                         </ComboBox>
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="Игровой ник:" Margin="0,5" VerticalAlignment="Top">
-                    <TextBox Height="25" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Margin="5"/>
+                    <TextBox x:Name="tbPlayerName" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5" TextChanged="tbPlayerName_TextChanged"/>
                 </GroupBox>
             </Grid>
         </ScrollViewer>
