@@ -22,6 +22,11 @@ namespace _Hell_WPF_Multipack_Launcher
         public UserProfile()
         {
             InitializeComponent();
+
+            if (MainWindow.XmlDocument.Root.Element("info") != null)
+                if (MainWindow.XmlDocument.Root.Element("info").Attribute("player") != null)
+                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value != "")
+                        runPlayer.Text = MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

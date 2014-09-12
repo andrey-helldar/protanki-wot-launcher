@@ -14,12 +14,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="tbUpHello" HorizontalAlignment="Left" Margin="10,10,0,5" TextWrapping="Wrap" Text="---">
+        <TextBlock x:Name="tbUpHello" HorizontalAlignment="Left" Margin="10,10,0,5" TextWrapping="Wrap">
                     <Run>Привет</Run>
-                    <Run FontSize="14" FontWeight="Bold">First_Helldar</Run>
+                    <Run FontSize="14" FontWeight="Bold" x:Name="runPlayer"></Run>
                     <Run>!</Run>
         </TextBlock>
-        <TextBlock x:Name="tbUpClan" HorizontalAlignment="Left" Margin="10,5,0,5" TextWrapping="Wrap" Text="---" Grid.Row="1">
+        <TextBlock x:Name="tbUpClan" HorizontalAlignment="Left" Margin="10,5,0,5" TextWrapping="Wrap" Grid.Row="1">
                     <Run>Ух ты! Ты состоишь в клане </Run>
                     <Run FontSize="14" FontWeight="Bold">-PR0</Run>
             <Run>вот уже </Run>
