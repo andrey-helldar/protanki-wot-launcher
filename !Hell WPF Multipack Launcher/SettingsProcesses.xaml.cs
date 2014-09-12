@@ -163,7 +163,24 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (MainWindow.XmlDocument.Root.Element("processes").Element(proc) != null)
                     return true;
 
-                return false;
+            return false;
+        }
+
+
+        /// <summary>
+        /// Проверка входит ли процесс в список запрещенных к закрытию
+        /// </summary>
+        /// <param name="process">Имя процесса</param>
+        /// <returns>Применяемый визуальный стиль</returns>
+        private string Style(string process)
+        {
+            try
+            {
+                if (ProccessLibrary.Search(process)) return "ProcessesCheckedGlobal";
+                if (CheckUserProcess(process)) return "ProcessesChecked";
+                return "ProcessesUnChecked";
+            }
+            catch (Exception) { return "ProcessesUnChecked"; }
         }
 
         private void ProcessChanged(object sender, RoutedEventArgs e)

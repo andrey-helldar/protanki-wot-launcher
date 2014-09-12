@@ -107,6 +107,18 @@ namespace Processes
 
     public class Global
     {
+        public bool Search(string process)
+        {
+            try
+            {
+                foreach(string proc in Processes())
+                    if (proc == process) return true;
+            }
+            catch (Exception) { return false; }
+
+            return false;
+        }
+
         public Array Processes()
         {
             string[] vipProcess = {
