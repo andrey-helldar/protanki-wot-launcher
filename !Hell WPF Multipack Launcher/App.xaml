@@ -690,7 +690,7 @@
         <!-- *******************************
                     LISTBOX PROCESSES
             *********************************-->
-        <Style x:Key="ListBoxItemProcesses" TargetType="{x:Type ListBoxItem}">
+        <Style x:Key="ProcessesUnChecked" TargetType="{x:Type ListBoxItem}">
             <Setter Property="Template">
                 <Setter.Value>
                     <!-- Применяем стили для элементов внутри ListBox -->
@@ -701,21 +701,53 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="True">
-                                <Setter Property="Background" Value="Aquamarine"/>
+                                <Setter Property="Background" Value="#FFFFEFEF"/>
+                                <Setter Property="Foreground" Value="#FF8F0C0C"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="Margin" Value="0,0,0,5" />
-                                <Setter Property="Width" Value="300"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="Background" Value="#FFB8B8B8"/>
+                                <Setter Property="Foreground" Value="#FF4F4F4F"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="Margin" Value="0" />
-                                <Setter Property="Width" Value="300"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="LimeGreen"/>
-                                <Setter Property="BorderBrush" Value="Black"/>
-                                <Setter Property="Width" Value="300"/>
+                                <Setter Property="Background" Value="#FFF9C5C5"/>
+                                <Setter Property="Foreground" Value="#FF8F0C0C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="ProcessesChecked" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <!-- Применяем стили для элементов внутри ListBox -->
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="brd" Background="{TemplateBinding Background}" 
+                                          BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter Property="Background" Value="Honeydew"/>
+                                <Setter Property="Foreground" Value="#FF0C8F12"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Margin" Value="0,0,0,5" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#FFB8B8B8"/>
+                                <Setter Property="Foreground" Value="#FF4F4F4F"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Margin" Value="0" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#FFC5F9C5"/>
+                                <Setter Property="Foreground" Value="#FF0C8F12"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -744,13 +776,11 @@
                                 <Setter Property="Background" Value="BlueViolet"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="Margin" Value="0,0,0,5" />
-                                <Setter Property="Width" Value="300"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Background" Value="Gray"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="Margin" Value="0" />
-                                <Setter Property="Width" Value="300"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

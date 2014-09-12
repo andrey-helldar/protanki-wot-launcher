@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,9 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class SettingsProcesses : Page
     {
+        Processes.Global ProccessLibrary = new Processes.Global();
+        Processes.Listing ProcessList = new Processes.Listing();
+
         public SettingsProcesses()
         {
             InitializeComponent();
@@ -42,7 +46,7 @@ namespace _Hell_WPF_Multipack_Launcher
             gridPanel0.ColumnDefinitions.Add(gridColumn0);
 
             ColumnDefinition gridColumn02 = new ColumnDefinition();
-            gridColumn02.Width = new GridLength(120, GridUnitType.Pixel);
+            gridColumn02.Width = new GridLength(150, GridUnitType.Pixel);
             gridPanel0.ColumnDefinitions.Add(gridColumn02);
             gridPanel0.ColumnDefinitions.Add(new ColumnDefinition());
 
@@ -83,56 +87,83 @@ namespace _Hell_WPF_Multipack_Launcher
             lbProcesses.Items.Add(lbi0);
 
 
+            /*
+             * Загружаем список процессов
+             */
+            Process[] myProcesses = Process.GetProcesses();
+            int processID = Process.GetCurrentProcess().SessionId;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 1; i < myProcesses.Length; i++)
             {
-                Grid gridPanel = new Grid();
-                gridPanel.Width = double.NaN;
-                gridPanel.Margin = new Thickness(0);
-                gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                try
+                {
+                    if (myProcesses[i].SessionId == processID)
+                        if (!ProcessList.IndexOf(myProcesses[i].ProcessName) && myProcesses[i].ProcessName != Process.GetCurrentProcess().ProcessName)
+                        {
+                            Grid gridPanel = new Grid();
+                            gridPanel.Width = double.NaN;
+                            gridPanel.Margin = new Thickness(0);
+                            gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
 
-                ColumnDefinition gridColumn1 = new ColumnDefinition();
-                //gridColumn1.Width = GridLength.Auto;
-                gridColumn1.Width = new GridLength(30, GridUnitType.Pixel);
-                gridPanel.ColumnDefinitions.Add(gridColumn1);
+                            ColumnDefinition gridColumn1 = new ColumnDefinition();
+                            //gridColumn1.Width = GridLength.Auto;
+                            gridColumn1.Width = new GridLength(30, GridUnitType.Pixel);
+                            gridPanel.ColumnDefinitions.Add(gridColumn1);
 
-                ColumnDefinition gridColumn2 = new ColumnDefinition();
-                gridColumn2.Width = new GridLength(120, GridUnitType.Pixel);
-                gridPanel.ColumnDefinitions.Add(gridColumn2);
-                gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
+                            ColumnDefinition gridColumn2 = new ColumnDefinition();
+                            gridColumn2.Width = new GridLength(150, GridUnitType.Pixel);
+                            gridPanel.ColumnDefinitions.Add(gridColumn2);
+                            gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
 
-                CheckBox checkBox = new CheckBox();
-                checkBox.Margin = new Thickness(5,0,0,0);
-                checkBox.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                checkBox.IsChecked = true;
-                checkBox.Checked += ProcessChanged;
-                Grid.SetRow(checkBox, 0);
-                Grid.SetColumn(checkBox, 0);
-                gridPanel.Children.Add(checkBox);
+                            CheckBox checkBox = new CheckBox();
+                            checkBox.Margin = new Thickness(5, 0, 0, 0);
+                            checkBox.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                            checkBox.IsChecked = CheckUserProcess(myProcesses[i].ProcessName);
+                            checkBox.Checked += ProcessChanged;
+                            Grid.SetRow(checkBox, 0);
+                            Grid.SetColumn(checkBox, 0);
+                            gridPanel.Children.Add(checkBox);
 
 
-                Label label = new Label();
-                label.Content = "THIS IS A PROCESS!!!";
-                label.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                Grid.SetRow(label, 0);
-                Grid.SetColumn(label, 1);
-                gridPanel.Children.Add(label);
+                            Label label = new Label();
+                            label.Content = myProcesses[i].ProcessName;
+                            label.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                            Grid.SetRow(label, 0);
+                            Grid.SetColumn(label, 1);
+                            gridPanel.Children.Add(label);
 
-                Label label12 = new Label();
-                label12.Content = "DESCRIPTION : " + i.ToString();
-                label12.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                Grid.SetRow(label12, 0);
-                Grid.SetColumn(label12, 2);
-                gridPanel.Children.Add(label12);
+                            Label label12 = new Label();
+                            label12.Content = myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim();
+                            label12.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                            Grid.SetRow(label12, 0);
+                            Grid.SetColumn(label12, 2);
+                            gridPanel.Children.Add(label12);
 
-                ListBoxItem lbi = new ListBoxItem();
-                //lbi.Width = double.NaN;
-                lbi.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                lbi.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemProcesses");
-                lbi.Content = gridPanel;
+                            ListBoxItem lbi = new ListBoxItem();
+                            //lbi.Width = double.NaN;
+                            lbi.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                            lbi.SetResourceReference(TextBlock.StyleProperty, CheckUserProcess(myProcesses[i].ProcessName) ? "ProcessesChecked" : "ProcessesUnChecked");
+                            lbi.Content = gridPanel;
 
-                lbProcesses.Items.Add(lbi);
+                            lbProcesses.Items.Add(lbi);
+                        }
+                }
+                catch (Exception ex) { /*Debug.Save("bwUserProcesses_DoWork()", myProcesses[i].ProcessName, ex.Message);*/ }
             }
+        }
+
+        /// <summary>
+        /// Запрещал ли пользователь закрытие процесса при оптимизации ПК?
+        /// </summary>
+        /// <param name="proc">Имя процесса для проверки</param>
+        /// <returns>Если процесс есть в списке, выводим TRUE, иначе - FALSE</returns>
+        private bool CheckUserProcess(string proc)
+        {
+            if (MainWindow.XmlDocument.Root.Element("processes") != null)
+                if (MainWindow.XmlDocument.Root.Element("processes").Element(proc) != null)
+                    return true;
+
+                return false;
         }
 
         private void ProcessChanged(object sender, RoutedEventArgs e)

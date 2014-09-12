@@ -11,9 +11,27 @@
   <youtube>
     <video>XWFxfgTZ50M</video>
     <video>59UrDHlfsgE</video>
+    <video>8qKoY2WGwss</video>
+    <video>nWULk_rbz8M</video>
+    <video>e3frdhW2ve8</video>
+    <video>2_hcB1xpoSI</video>
+    <video>z9okYTNdGSM</video>
+    <video>e3G7YxlXJ-0</video>
+    <video>EPeXSUign5Y</video>
+    <video>GG7k30IsUnk</video>
+    <video>Y19LxbFevCw</video>
+    <video>EwIQCuw40Gs</video>
+    <video>tirXZMiagRU</video>
+    <video>DHl1KOojXyg</video>
+    <video>zYW97NMf3BY</video>
+    <video>j97nmFML3CA</video>
+    <video>mCmYpHfdeyQ</video>
   </youtube>
   <do_not_display>
     <video />
     <news />
   </do_not_display>
+  <processes>
+    <chrome />
+  </processes>
 </pro>
