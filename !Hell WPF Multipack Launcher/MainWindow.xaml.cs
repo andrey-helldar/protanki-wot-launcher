@@ -72,11 +72,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 mainFrame = this.MainFrame;
                 this.Closing += delegate { mainFrame = null; };
 
-                // Загружаем настройки из XML-файла
-                if(File.Exists(Variables.SettingsPath))
-                    xmlDocument = XDocument.Load(Variables.SettingsPath);
-                this.Closing += delegate { xmlDocument = null; };
-
 
                 Navigator("Loading"); // Изменение страницы
             }
@@ -88,9 +83,17 @@ namespace _Hell_WPF_Multipack_Launcher
 
             try
             {
-                Task.Factory.StartNew(() => Variables.Start()).Wait();
-                MultipackDate = Variables.MultipackDate;
-                ProductName = Variables.ProductName;
+                Task.Factory.StartNew(() =>
+                {
+                    Variables.Start();
+                    MultipackDate = Variables.MultipackDate;
+                    ProductName = Variables.ProductName;
+
+                    // Загружаем настройки из XML-файла
+                    if (File.Exists(Variables.SettingsPath))
+                        xmlDocument = XDocument.Load(Variables.SettingsPath);
+                    this.Closing += delegate { xmlDocument = null; };
+                }).Wait();
             }
             catch (Exception ex)
             {

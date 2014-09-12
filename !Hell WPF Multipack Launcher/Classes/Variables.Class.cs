@@ -95,9 +95,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 if (Doc.Root.Element("game") != null)
                     if (Doc.Root.Element("game").Element("path") != null)
-                        PathTanks = Doc.Root.Element("game").Element("path").Value;
-
-                if (PathTanks == String.Empty) PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry();
+                        if (Doc.Root.Element("game").Element("path").Value != "")
+                            PathTanks = Doc.Root.Element("game").Element("path").Value;
+                        else
+                        {
+                            PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry();
+                            Doc.Root.Element("game").Element("path").SetValue(PathTanks);
+                            Doc.Save(SettingsPath);
+                        }
             }
             catch (Exception ex)
             {

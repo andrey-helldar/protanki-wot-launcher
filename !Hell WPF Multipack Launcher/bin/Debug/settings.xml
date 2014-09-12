@@ -1,36 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru" player="First_Helldar">
+  <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru" player="">
     <notify_link />
   </info>
   <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
   <multipack type="base" version="0.0.0.0" />
   <game>
-    <path></path>
+    <path>d:\Games\World_of_Tanks\</path>
   </game>
   <youtube>
     <video>XWFxfgTZ50M</video>
-    <video>59UrDHlfsgE</video>
-    <video>8qKoY2WGwss</video>
-    <video>nWULk_rbz8M</video>
-    <video>e3frdhW2ve8</video>
-    <video>2_hcB1xpoSI</video>
-    <video>z9okYTNdGSM</video>
-    <video>e3G7YxlXJ-0</video>
-    <video>EPeXSUign5Y</video>
-    <video>GG7k30IsUnk</video>
-    <video>Y19LxbFevCw</video>
-    <video>EwIQCuw40Gs</video>
-    <video>tirXZMiagRU</video>
-    <video>DHl1KOojXyg</video>
-    <video>zYW97NMf3BY</video>
-    <video>j97nmFML3CA</video>
-    <video>mCmYpHfdeyQ</video>
-    <video>f3mb8eVHO2k</video>
-    <video>EDU1uAWf8zQ</video>
-    <video>XeAj300fN5c</video>
-    <video>GwaT7OZYRpA</video>
-    <video>roacX4K9tUU</video>
   </youtube>
   <do_not_display>
     <video />
