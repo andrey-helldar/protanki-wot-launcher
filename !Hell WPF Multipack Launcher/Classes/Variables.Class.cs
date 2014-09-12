@@ -125,6 +125,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
 
 
+                    if (MainWindow.XmlDocument.Root.Element("game") != null)
+                        if (MainWindow.XmlDocument.Root.Element("game").Element("version") != null)
+                            MainWindow.XmlDocument.Root.Element("game").Element("version").SetValue(TanksVersion.ToString());
+
                     tmpLang = doc.Root.Element("meta").Element("localization").Value.Trim();
                     tmpLang = tmpLang.Remove(0, tmpLang.IndexOf(" ") + 1).ToLower();
                 }

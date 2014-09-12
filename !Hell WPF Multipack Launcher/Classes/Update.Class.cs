@@ -36,10 +36,5 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 return false;
             }
         }
-
-        public bool MultipackUpdate()
-        {
-
-        }
     }
 }

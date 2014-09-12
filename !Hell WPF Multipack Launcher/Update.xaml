@@ -22,18 +22,18 @@
                     <ColumnDefinition Width="133*"/>
                     <ColumnDefinition Width="135*"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Скачать" Margin="20,0" VerticalAlignment="Center" Width="120" HorizontalAlignment="Center" Click="Button_Click_1"/>
-                <Button Content="Не надо" Grid.Column="1" HorizontalAlignment="Center" Margin="20,0" VerticalAlignment="Center" Width="120" Click="Button_Click"/>
+                <Button x:Name="bUpdate" Content="Скачать" Margin="20,0" VerticalAlignment="Center" Width="120" HorizontalAlignment="Center" Click="bUpdate_Click"/>
+                <Button x:Name="bCancel" Content="Не надо" Grid.Column="1" HorizontalAlignment="Center" Margin="20,0" VerticalAlignment="Center" Width="120" Click="bCancel_Click"/>
             </Grid>
         </StackPanel>
         <GroupBox Header="Обнаружена новая версия:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFCDBCBC">
+            <Grid Background="#FFCDBCBC">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ScrollViewer Margin="5" Grid.Row="1" Background="#FFBB8D8D" MinWidth="300" MinHeight="200"/>
                 <Label x:Name="newVersion" Content="0.0.0 #0" HorizontalAlignment="Center" Margin="0,20" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Sochi2014" FontSize="20"/>
+                <TextBlock x:Name="tbContent" Margin="5" Grid.Row="1" TextWrapping="Wrap" Text="tbContent" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
 
