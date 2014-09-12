@@ -13,7 +13,5 @@
     <video />
     <news />
   </do_not_display>
-  <processes>
-    <chrome/>
-  </processes>
+  <processes/>
 </pro>

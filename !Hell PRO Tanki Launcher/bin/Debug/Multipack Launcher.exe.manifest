@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZIHezdPKlq6tScexWKjWr0VakieQ1KEcqqEcsCN/4Hg=</dsig:DigestValue>
+        <dsig:DigestValue>6EzJ+icNmL4jElTAz70G+E/P8fZJiLXWjaUhzl/1tfg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="22016">
-      <assemblyIdentity name="ProcessesLibrary" version="1.3.11.34" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProcessesLibrary.dll" size="22528">
+      <assemblyIdentity name="ProcessesLibrary" version="1.3.12.35" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4+PKABXlg91beJXJDaNETDg7SXSFQLzUuj8Y/dG4pzs=</dsig:DigestValue>
+        <dsig:DigestValue>66374gi10RnBd+zesI4G0ZAvcM78/0bJ5NSu7QuGX5o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
