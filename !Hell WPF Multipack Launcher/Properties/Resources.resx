@@ -256,4 +256,8 @@
     <value>3</value>
     <comment>Время жизни логов дебага в сутках</comment>
   </data>
+  <data name="API_Account_Info" xml:space="preserve">
+    <value>https://api.worldoftanks.ru/wot/account/info/</value>
+    <comment>Получение информации о конкретном пользователе</comment>
+  </data>
 </root>
