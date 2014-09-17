@@ -23,7 +23,7 @@
             <RowDefinition Height="428*"/>
             <RowDefinition Height="51*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="tbUpHello" HorizontalAlignment="Left" Margin="10,10,0,10" TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.RowSpan="3">
+        <TextBlock x:Name="tbUpHello" HorizontalAlignment="Left" Margin="10,10,0,10" TextWrapping="Wrap" Grid.ColumnSpan="2">
                     <Run>Привет, </Run>
                     <Run FontSize="14" FontWeight="Bold" x:Name="PlayerName">Гость</Run>
                     <Run>!</Run>

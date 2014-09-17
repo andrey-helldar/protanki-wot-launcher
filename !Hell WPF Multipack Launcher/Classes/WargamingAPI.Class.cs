@@ -49,6 +49,33 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         }
 
 
+        //public Dictionary<string, string> AccountInfo(string account_id)
+        public string AccountInfo(string account_id)
+        {
+            // https://ru.wargaming.net/developers/api_reference/wot/account/info/
+
+            string Data = "application_id=" + Properties.Resources.API;
+            Data += "&fields=" + "clan_id,global_rating,private.credits,private.free_xp,private.gold,private.is_premium,private.premium_expires_at,statistics.all.battle_avg_xp,statistics.all.battles";
+            Data += "&account_id=" + account_id;
+
+            return POST(Properties.Resources.API_Account_Info, Data);
+            /*JObject obj = JObject.Parse(POST(Properties.Resources.API_Account_Info, Data));
+            Dictionary<string, string> Account = new Dictionary<string, string>();
+
+            Account.Add("status", obj.SelectToken("status").ToString());
+
+            try
+            {
+                if (obj.SelectToken("status").ToString() == "ok")
+                    for (int i = 0; i < Convert.ToInt16(obj.SelectToken("count").ToString()); i++)
+                        Account.Add(obj.SelectToken("data[" + i.ToString() + "].nickname").ToString(), obj.SelectToken("data[" + i.ToString() + "].account_id").ToString());
+
+                return Account;
+            }
+            catch (Exception) { return Account; }   */    
+        }
+
+
         /// <summary>
         /// Отправка запросов на сервер методом POST
         /// </summary>

@@ -35,11 +35,23 @@ namespace _Hell_WPF_Multipack_Launcher
         private void AccountInfo()
         {
             if (MainWindow.XmlDocument.Root.Element("info") != null)
-                if (MainWindow.XmlDocument.Root.Element("info").Attribute("player") != null)
-                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value != "")
-                        PlayerName.Text = MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value;
+                if (MainWindow.XmlDocument.Root.Element("info").Attribute("account_id") != null)
+                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value != "")
+                    {
+                        Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
 
+                       // Dictionary<string, string> Account = WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value);
+                        MessageBox.Show(WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value));
 
+                        /*if (Account["status"] == "ok")
+                        {
+                            PlayerClan.Text = Account["clan_id"].ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show(Account["status"]);
+                        }*/
+                    }
         }
     }
 }
