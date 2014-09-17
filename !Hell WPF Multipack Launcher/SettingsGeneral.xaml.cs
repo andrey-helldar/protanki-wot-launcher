@@ -257,7 +257,18 @@ namespace _Hell_WPF_Multipack_Launcher
             if (tbPlayerName.Text.Trim().Length > 0)
             {
                 Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
-                MessageBox.Show(WarAPI.AccountList(tbPlayerName.Text));
+
+                Dictionary<string, string> users = WarAPI.AccountList(tbPlayerName.Text);
+
+                if (users["status"] == "ok")
+                {
+                    foreach (KeyValuePair<string, string> user in users)
+                        lbResult.Items.Add(String.Format("User: %s\t\t\tID: %s", user.Value, user.Key));
+                }
+                else
+                {
+                    MessageBox.Show("Error!");
+                }
             }
         }
     }

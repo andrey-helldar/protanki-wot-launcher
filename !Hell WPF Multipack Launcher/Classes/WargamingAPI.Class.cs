@@ -14,7 +14,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         POST POST = new POST();
         Debug Debug = new Debug();
 
-        public string AccountID(string name="null")
+        public string AccountID(string name = "null")
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(
                 String.Format("%s/account/list/?application_id=%s&search=%s",
@@ -45,14 +45,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
         }
 
-        public string AccountList(string name)
+        public Dictionary<string, string> AccountList(string name)
         {
             string Data = String.Empty;
 
             try
             {
-                Data = "application_id="+ Properties.Resources.API;
-                Data += "&fields="+ "nickname,account_id";
+                Data = "application_id=" + Properties.Resources.API;
+                Data += "&fields=" + "nickname,account_id";
                 Data += "&search=" + name;
 
                 //return Data;
@@ -78,18 +78,37 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     Out += str;
                     count = sr.Read(read, 0, 256);
                 }
-                return Out;
+                //return Out;
+
+                var result = JsonConvert.DeserializeObject<List<UsersJson>>(Out);
+
+                result
 
                 //public Dictionary<string, string> FromJson(string json)
                 Dictionary<string, string> json = POST.FromJson(Out);
-                Dictionary<string, string> Export = new Dictionary<string, string>();
-                json = POST.FromJson(Out);
+                Dictionary<string, string> jsonData = POST.FromJson(json["data"]);
 
-                Export.Add("status", json["status"]);
-                //Export.Add();
+                return jsonData;
             }
-            catch (WebException we) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, we.Message); return "FAIL"; }
-            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, ex.Message); return "FAIL"; }
+            catch (WebException we) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, we.Message); return null; }
+            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, ex.Message); return null; }
         }
     }
+
+    
+
+public class UsersJson
+{
+    [JsonProperty("data")]
+    public Users Users { get; set; }
+}
+
+public class Users
+{
+    [JsonProperty("nickname")]
+    public string Nickname { get; set; }
+
+    [JsonProperty("account_id")]
+    public string ID { get; set; }
+}
 }
