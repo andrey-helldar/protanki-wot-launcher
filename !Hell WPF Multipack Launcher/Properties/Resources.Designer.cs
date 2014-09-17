@@ -70,6 +70,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.worldoftanks.ru/wot.
+        /// </summary>
+        public static string APIlink {
+            get {
+                return ResourceManager.GetString("APIlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap BackGeneral {
@@ -278,6 +287,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         public static string LinkVideoAll {
             get {
                 return ResourceManager.GetString("LinkVideoAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        public static string LogDays {
+            get {
+                return ResourceManager.GetString("LogDays", resourceCulture);
             }
         }
         

@@ -83,5 +83,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception) { return input; }
         }
+
+        /// <summary>
+        /// Очистка папки с логами.
+        /// Время жизни логов задается в ресурсах
+        /// </summary>
+        public void ClearLogs()
+        {
+            //Properties.Resources.LogDays;
+        }
     }
 }

@@ -39,11 +39,14 @@
         <Label Content="ВИДЕО" Grid.Column="2" Style="{StaticResource LabelStyleHeaderWhite}" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="61"/>
         <Label Content="НОВОСТИ" HorizontalAlignment="Left" Style="{StaticResource LabelStyleHeaderWhite}" Margin="10,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="87"/>
         <TextBlock Margin="110,0,0,0" Grid.Row="4" Grid.ColumnSpan="3" FontFamily="Verdana" TextWrapping="Wrap" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Run Text="2014 © «AI RUS – Professional IT-support»"/>
+            <Run Text="2014 ©"/>
+            <Run Text="«AI RUS – Professional IT-support»" FontWeight="Bold" Cursor="Hand"/>
             <LineBreak/>
-            <Run Text="Design by D Jinjolava"/>
+            <Run Text="Design by"/>
+            <Run Text="D Jinjolava" FontWeight="Bold" Cursor="Hand"/>
             <LineBreak/>
-            <Run Text="Translated by Dmitry Voronov"/>
+            <Run Text="Translated by"/>
+            <Run Text="Dmitry Voronov" FontWeight="Bold" Cursor="Hand"/>
         </TextBlock>
         <ListBox x:Name="lbNews" Margin="0,10,5,0" Grid.Row="3" Grid.ColumnSpan="2"/>
         <ListBox x:Name="lbVideo" Grid.ColumnSpan="2" Grid.Column="2" Margin="0,10,5,0" Grid.Row="3"/>
