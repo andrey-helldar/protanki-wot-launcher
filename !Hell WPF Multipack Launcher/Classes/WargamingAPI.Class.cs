@@ -136,11 +136,20 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
         public Dictionary<string, string> Token(string Uri)
         {
-            Uri = Uri.Remove(0, Uri.IndexOf("?")+1);
-            Uri = Uri.Replace("&", "','").Replace("=", "':'");
-            Uri = "{" + Uri.Remove(0, 2) + "'}";
+            Uri = Uri.Remove(0, Uri.IndexOf("?") + 1);
+            Uri = Uri.Replace("&", "\",\"").Replace("=", "\":\"");
+            Uri = "{" + Uri.Remove(0, 2) + "\"}";
 
             return FromJSON(Uri);
+        }
+
+        public string TokenString(string Uri)
+        {
+            Uri = Uri.Remove(0, Uri.IndexOf("?") + 1);
+            Uri = Uri.Replace("&", "\",\"").Replace("=", "\":\"");
+            Uri = "{" + Uri.Remove(0, 2) + "\"}";
+
+            return Uri;
         }
 
 

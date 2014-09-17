@@ -33,6 +33,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     Dictionary<string, string> Token = WarAPI.Token(WB.Source.ToString());
 
+                    MessageBox.Show(WarAPI.TokenString(WB.Source.ToString()));
+
                     if (Token["access_token"].ToString() == "ok")
                     {
                         if (MainWindow.XmlDocument.Root.Element("token") != null)
