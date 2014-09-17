@@ -22,9 +22,14 @@ namespace _Hell_WPF_Multipack_Launcher
     {
         Classes.Language Lang = new Classes.Language();
 
+        Dictionary<string, string> users = new Dictionary<string, string>();
+
+
         public SettingsOptimize()
         {
             InitializeComponent();
+
+            gbUsername.Visibility = Visibility.Hidden;
 
             /*
              * Загружаем заголовки
@@ -254,24 +259,45 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (tbPlayerName.Text.Trim().Length > 0)
+            try
             {
-                Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
-
-                Dictionary<string, string> users = WarAPI.AccountList(tbPlayerName.Text);
-
-                if (users["status"] == "ok")
+                if (tbPlayerName.Text.Trim().Length > 0)
                 {
-                    RunCount.Text = (users.Count-1).ToString();
+                    Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
 
-                    foreach (KeyValuePair<string, string> user in users)
-                        lbResult.Items.Add(String.Format("User: %s\t\t\tID: %s", user.Value, user.Key));
-                }
-                else
-                {
-                    MessageBox.Show(users["status"]);
+                    users = WarAPI.AccountList(tbPlayerName.Text);
+
+                    if (users["status"] == "ok")
+                    {
+                        gbUsername.Visibility = Visibility.Visible;
+
+                        RunCount.Text = (users.Count - 1).ToString();
+
+                        foreach (KeyValuePair<string, string> user in users)
+                            if (user.Key != "status")
+                                lbResult.Items.Add(user.Key);
+                    }
+                    else
+                    {
+                        MessageBox.Show(users["status"]);
+                    }
                 }
             }
+            catch (Exception) { }
+        }
+
+        private void lbResult_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            SelectID.Text = users[lbResult.SelectedItem.ToString()].ToString();
+
+            if (MainWindow.XmlDocument.Root.Element("info") == null)
+                MainWindow.XmlDocument.Root.Add(new XElement("info", new XAttribute("account_id", "")));
+
+            if (MainWindow.XmlDocument.Root.Element("info").Attribute("account_id") == null)
+                MainWindow.XmlDocument.Root.Element("info").Add(new XAttribute("account_id", ""));
+
+            try { MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").SetValue(SelectID.Text); }
+            catch (Exception) { MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").SetValue(""); }
         }
     }
 }

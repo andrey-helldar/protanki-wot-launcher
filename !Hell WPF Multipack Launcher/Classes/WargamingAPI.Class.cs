@@ -59,7 +59,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     if (obj.SelectToken("status").ToString() == "ok")
                     {
                         for (int i = 0; i < Convert.ToInt16(obj.SelectToken("count").ToString()); i++)
-                            users.Add(obj.SelectToken("data[" + i.ToString() + "].account_id").ToString(), obj.SelectToken("data[" + i.ToString() + "].nickname").ToString());
+                            users.Add(obj.SelectToken("data[" + i.ToString() + "].nickname").ToString(), obj.SelectToken("data[" + i.ToString() + "].account_id").ToString());
                     }
 
                     return users;

@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru" player="Yusha">
+  <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru" player="Yusha" account_id="266350">
     <notify_link />
   </info>
   <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
@@ -9,12 +9,14 @@
   </multipack>
   <game>
     <version>0.0.0.0</version>
-    <path></path>
+    <path>g:\Games\World_of_Tanks\</path>
   </game>
-  <youtube/>
+  <youtube>
+    <video>m0LXJ_iFNeQ</video>
+  </youtube>
   <do_not_display>
     <video />
     <news />
   </do_not_display>
-  <processes/>
+  <processes />
 </pro>
