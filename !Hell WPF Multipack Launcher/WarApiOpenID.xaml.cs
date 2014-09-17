@@ -35,9 +35,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            eeeew.Text = WB.Source.ToString() + Environment.NewLine + Environment.NewLine +
-                new Classes.WargamingAPI().Token(MainWindow.XmlDocument.Root.Element("account").Element("token").Attribute("access_token").Value)["access_token"] + Environment.NewLine + Environment.NewLine +
-                MainWindow.XmlDocument.Root.Element("account").Element("token").Attribute("access_token").Value + Environment.NewLine + Environment.NewLine;
+            eeeew.Text = vrevrev.Text + Environment.NewLine + Environment.NewLine +
+                new Classes.WargamingAPI().Token(vrevrev.Text)["access_token"] + Environment.NewLine + Environment.NewLine;
         }
     }
 }
