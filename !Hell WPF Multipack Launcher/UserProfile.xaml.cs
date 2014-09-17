@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,15 +24,22 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            if (MainWindow.XmlDocument.Root.Element("info") != null)
-                if (MainWindow.XmlDocument.Root.Element("info").Attribute("player") != null)
-                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value != "")
-                        runPlayer.Text = MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value;
+            Task.Factory.StartNew(() => { AccountInfo(); });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Navigator("General", "Settings.xaml");
+        }
+
+        private void AccountInfo()
+        {
+            if (MainWindow.XmlDocument.Root.Element("info") != null)
+                if (MainWindow.XmlDocument.Root.Element("info").Attribute("player") != null)
+                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value != "")
+                        PlayerName.Text = MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value;
+
+
         }
     }
 }
