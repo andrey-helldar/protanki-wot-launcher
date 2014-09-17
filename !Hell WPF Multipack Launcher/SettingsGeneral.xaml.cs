@@ -264,6 +264,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (tbPlayerName.Text.Trim().Length > 0)
                 {
                     Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
+                    lbResult.Items.Clear();
 
                     users = WarAPI.AccountList(tbPlayerName.Text);
 
@@ -296,7 +297,11 @@ namespace _Hell_WPF_Multipack_Launcher
             if (MainWindow.XmlDocument.Root.Element("info").Attribute("account_id") == null)
                 MainWindow.XmlDocument.Root.Element("info").Add(new XAttribute("account_id", ""));
 
-            try { MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").SetValue(SelectID.Text); }
+            try
+            {
+                tbPlayerName.Text = lbResult.SelectedItem.ToString();
+                MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").SetValue(SelectID.Text);
+            }
             catch (Exception) { MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").SetValue(""); }
         }
     }

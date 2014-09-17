@@ -14,6 +14,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         POST POST = new POST();
         Debug Debug = new Debug();
 
+
+        /// <summary>
+        /// Запрашиваем список пользователей для вычисления ACCOUNT_ID
+        /// </summary>
+        /// <param name="name">Имя пользователя для начала поиска (поисковый запрос)</param>
+        /// <returns>Выводим список пользователей с идентификаторами</returns>
         public Dictionary<string, string> AccountList(string name)
         {
             string Data = String.Empty;
@@ -23,31 +29,27 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Data = "application_id=" + Properties.Resources.API;
                 Data += "&fields=" + "nickname,account_id";
                 Data += "&search=" + name;
-
-                //return Data;
-
+                
                 WebRequest req = WebRequest.Create(Properties.Resources.API_Account_List);
                 req.Method = "POST";
                 req.Timeout = 100000;
-                req.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
+                req.ContentType = "text/json; charset=UTF-8";
                 byte[] sentData = Encoding.GetEncoding("Utf-8").GetBytes(Data);
                 req.ContentLength = sentData.Length;
-                System.IO.Stream sendStream = req.GetRequestStream();
+                Stream sendStream = req.GetRequestStream();
                 sendStream.Write(sentData, 0, sentData.Length);
                 sendStream.Close();
                 System.Net.WebResponse res = req.GetResponse();
-                System.IO.Stream ReceiveStream = res.GetResponseStream();
-                System.IO.StreamReader sr = new System.IO.StreamReader(ReceiveStream, Encoding.UTF8);
+                Stream ReceiveStream = res.GetResponseStream();
+                StreamReader sr = new StreamReader(ReceiveStream, Encoding.UTF8);
                 Char[] read = new Char[256];
                 int count = sr.Read(read, 0, 256);
                 string Out = String.Empty;
                 while (count > 0)
                 {
-                    String str = new String(read, 0, count);
-                    Out += str;
+                    Out += new String(read, 0, count);
                     count = sr.Read(read, 0, 256);
                 }
-                //return Out;
 
                 JObject obj = JObject.Parse(Out);
                 Dictionary<string, string> users = new Dictionary<string, string>();
@@ -57,10 +59,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 try
                 {
                     if (obj.SelectToken("status").ToString() == "ok")
-                    {
                         for (int i = 0; i < Convert.ToInt16(obj.SelectToken("count").ToString()); i++)
                             users.Add(obj.SelectToken("data[" + i.ToString() + "].nickname").ToString(), obj.SelectToken("data[" + i.ToString() + "].account_id").ToString());
-                    }
 
                     return users;
                 }
