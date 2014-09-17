@@ -135,13 +135,18 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
         public Dictionary<string, string> Token(string Uri)
         {
-            Uri.Remove(0, Uri.IndexOf("?"));
+            Uri = Uri.Remove(0, Uri.IndexOf("?")+1);
+            Uri = Uri.Replace("&amp;", "','").Replace("=", "':'");
+            Uri = "{" + Uri.Remove(0, 2) + "'}";
 
-            Dictionary<string, string> result = new Dictionary<string, string>();
-            result.Add("access_token", Uri.ToString());
-            result.Add("expires_at", "");
+            return FromJSON(Uri);
+        }
 
-            return result;
+
+        private Dictionary<string, string> FromJSON(string json)
+        {
+            try { return JsonConvert.DeserializeObject<Dictionary<string, string>>(json); }
+            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "FromJSON()", json, ex.Message); return null; }
         }
     }
 }
