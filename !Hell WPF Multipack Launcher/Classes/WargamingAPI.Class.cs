@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -13,20 +15,19 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
     {
         Debug Debug = new Debug();
 
+
+        /// <summary>
+        /// Формирование ссылки для авторизации приложения в системе Wargaming OpenID
+        /// </summary>
+        /// <returns>Ссылка на авторизацию методом GET</returns>
         public string OpenID()
         {
             try
             {
-                string Data = "application_id=" + Properties.Resources.API;
+                string Data = "?application_id=" + Properties.Resources.API;
                 Data += "&display=page";
-                /*
-                //return POST(Properties.Resources.API_OpenID, Data);
-                File.AppendAllText("access.html", POST(Properties.Resources.API_OpenID, Data));
-                File.Open("access.html", FileMode.Open);*/
 
-                //System.Diagnostics.Process.Start(Properties.Resources.API_OpenID+"?"+Data);
-                
-                return "OK";
+                return Properties.Resources.API_OpenID + Data;
             }
             catch (Exception) { return "FAIL"; }
         }
@@ -129,6 +130,18 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (WebException we) { Debug.Save("WargamingAPI.Class", "POST()", "Url: " + Url, "Data: " + Data, we.Message); return null; }
             catch (Exception ex) { Debug.Save("WargamingAPI.Class", "POST()", "Url: " + Url, "Data: " + Data, ex.Message); return null; }
+        }
+
+
+        public Dictionary<string, string> Token(string Uri)
+        {
+            Uri.Remove(0, Uri.IndexOf("?"));
+
+            Dictionary<string, string> result = new Dictionary<string, string>();
+            result.Add("access_token", Uri.ToString());
+            result.Add("expires_at", "");
+
+            return result;
         }
     }
 }

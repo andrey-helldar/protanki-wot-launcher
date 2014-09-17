@@ -1,11 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pro>
-  <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru" player="">
+  <account>
+    <token access_token="" expires_at=""/>
+  </account>
+  <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru" player="Yusha" account_id="266350">
     <notify_link />
   </info>
   <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
-  <multipack type="base" version="0.0.0.0" />
+  <multipack type="base" version="0.0.0.0">
+    <link></link>
+  </multipack>
   <game>
+    <version>0.0.0.0</version>
     <path></path>
   </game>
   <youtube/>

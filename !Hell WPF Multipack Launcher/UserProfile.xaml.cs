@@ -40,17 +40,18 @@ namespace _Hell_WPF_Multipack_Launcher
                     if (MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value != "")
                     {
                         Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
-
-                        //MessageBox.Show(WarAPI.OpenID());
-
+                                
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
-                    {
-                        WarApiOpenID WarApiOpenID = new WarApiOpenID();
-                        WarApiOpenID.ShowDialog();
-                    }));
+                        {
+                            WarApiOpenID WarApiOpenID = new WarApiOpenID();
+                            //WarApiOpenID.WB.Source = new Uri(WarAPI.OpenID());
+                            WarApiOpenID.ShowDialog();
+
+                            //MessageBox.Show(WarAPI.Token(MainWindow.XmlDocument.Root.Element("account").Element("token").Attribute("access_token").Value)["access_token"]);
+                        }));
 
                        // Dictionary<string, string> Account = WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value);
-                        MessageBox.Show(WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value));
+                       // MessageBox.Show(WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value));
 
                         /*if (Account["status"] == "ok")
                         {
