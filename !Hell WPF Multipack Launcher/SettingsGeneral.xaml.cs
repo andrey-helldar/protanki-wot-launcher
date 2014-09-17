@@ -251,5 +251,14 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception) { }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbPlayerName.Text.Trim().Length > 0)
+            {
+                Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
+                MessageBox.Show(WarAPI.AccountList(tbPlayerName.Text));
+            }
+        }
     }
 }

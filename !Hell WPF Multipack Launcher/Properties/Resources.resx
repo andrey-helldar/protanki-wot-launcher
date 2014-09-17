@@ -248,6 +248,10 @@
     <value>https://api.worldoftanks.ru/wot</value>
     <comment>БЕЗ СЛЕША НА КОНЦЕ!!!</comment>
   </data>
+  <data name="API_Account_List" xml:space="preserve">
+    <value>https://api.worldoftanks.ru/wot/account/list/</value>
+    <comment>Получение списка пользователей для определения ID</comment>
+  </data>
   <data name="LogDays" xml:space="preserve">
     <value>3</value>
     <comment>Время жизни логов дебага в сутках</comment>

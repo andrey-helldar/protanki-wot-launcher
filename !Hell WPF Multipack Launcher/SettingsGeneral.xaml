@@ -54,8 +54,28 @@
                         </ComboBox>
                     </Grid>
                 </GroupBox>
+
                 <GroupBox Header="Игровой ник:" Margin="0,5" VerticalAlignment="Top">
-                    <TextBox x:Name="tbPlayerName" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5" TextChanged="tbPlayerName_TextChanged"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="tbPlayerName" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5" TextChanged="tbPlayerName_TextChanged"/>
+                        <Button Content="Найти" Grid.Column="1" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Top" Padding="10,1" Click="Button_Click"/>
+                        <ListView Margin="5" Grid.Row="1" Grid.ColumnSpan="2" MinHeight="100" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+
                 </GroupBox>
             </Grid>
         </ScrollViewer>

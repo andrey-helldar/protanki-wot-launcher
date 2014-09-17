@@ -70,6 +70,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.worldoftanks.ru/wot/account/list/.
+        /// </summary>
+        public static string API_Account_List {
+            get {
+                return ResourceManager.GetString("API_Account_List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://api.worldoftanks.ru/wot.
         /// </summary>
         public static string APIlink {
