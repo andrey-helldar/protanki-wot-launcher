@@ -18,6 +18,8 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class WarApiOpenID : Window
     {
+        Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
+
         public WarApiOpenID()
         {
             InitializeComponent();
@@ -25,22 +27,38 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void WebBrowser_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (MainWindow.XmlDocument.Root.Element("account") != null)
-                if (MainWindow.XmlDocument.Root.Element("account").Element("token") != null)
-                    if (MainWindow.XmlDocument.Root.Element("account").Element("token").Attribute("access_token") != null)
-                        MainWindow.XmlDocument.Root.Element("account").Element("token").Attribute("access_token").SetValue(WB.Source.ToString());
-            /* else
-                 MainWindow.XmlDocument.Root.Element("account").Element("token").SetValue(WB.Source.ToString());*/
-        }
+            try
+            {
+                if (WB.Source.ToString().IndexOf("t.ai-rus.com") > 0 && WB.Source.ToString().IndexOf("access_token") > 0)
+                {
+                    Dictionary<string, string> Token = WarAPI.Token(WB.Source.ToString());
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            eeeew.Text = vrevrev.Text + Environment.NewLine + Environment.NewLine +
-                new Classes.WargamingAPI().Token(vrevrev.Text)["status"] + Environment.NewLine + Environment.NewLine +
-                new Classes.WargamingAPI().Token(vrevrev.Text)["access_token"] + Environment.NewLine + Environment.NewLine +
-                new Classes.WargamingAPI().Token(vrevrev.Text)["nickname"] + Environment.NewLine + Environment.NewLine +
-                new Classes.WargamingAPI().Token(vrevrev.Text)["account_id"] + Environment.NewLine + Environment.NewLine +
-                new Classes.WargamingAPI().Token(vrevrev.Text)["expires_at"];
+                    if (Token["access_token"].ToString() == "ok")
+                    {
+                        if (MainWindow.XmlDocument.Root.Element("token") != null)
+                        {
+                            if (MainWindow.XmlDocument.Root.Element("token").Attribute("access_token") != null)
+                                MainWindow.XmlDocument.Root.Element("token").Attribute("access_token").SetValue(Token["access_token"].ToString());
+
+                            if (MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at") != null)
+                                MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at").SetValue(Token["expires_at"].ToString());
+
+                            if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
+                                MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").SetValue(Token["nickname"].ToString());
+
+                            if (MainWindow.XmlDocument.Root.Element("token").Attribute("account_id") != null)
+                                MainWindow.XmlDocument.Root.Element("token").Attribute("account_id").SetValue(Token["account_id"].ToString());
+                        }
+
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(WB.Source.ToString());
+                    }
+                }
+            }
+            catch (Exception) { MessageBox.Show(WB.Source.ToString()); }
         }
     }
 }

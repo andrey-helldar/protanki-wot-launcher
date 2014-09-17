@@ -35,11 +35,12 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void AccountInfo()
         {
-            if (MainWindow.XmlDocument.Root.Element("info") != null)
+            /*if (MainWindow.XmlDocument.Root.Element("info") != null)
                 if (MainWindow.XmlDocument.Root.Element("info").Element("token") != null)
-                    if (MainWindow.XmlDocument.Root.Element("info").Element("token").Attribute("account_id") != null)
-                        if (MainWindow.XmlDocument.Root.Element("info").Element("token").Attribute("account_id").Value != "")
-                    {
+                    if (MainWindow.XmlDocument.Root.Element("info").Element("token").Attribute("expires_at") != null)
+                        if (MainWindow.XmlDocument.Root.Element("info").Element("token").Attribute("expires_at").Value != "")
+                            if (DateTime.Parse(MainWindow.XmlDocument.Root.Element("info").Element("token").Attribute("expires_at").Value) <= DateTime.Now)
+                    {*/
                         Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
                                 
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
@@ -47,22 +48,8 @@ namespace _Hell_WPF_Multipack_Launcher
                             WarApiOpenID WarApiOpenID = new WarApiOpenID();
                             WarApiOpenID.WB.Source = new Uri(WarAPI.OpenID());
                             WarApiOpenID.ShowDialog();
-
-                            MessageBox.Show(WarAPI.Token(MainWindow.XmlDocument.Root.Element("account").Element("token").Attribute("access_token").Value)["access_token"]);
                         }));
-
-                       // Dictionary<string, string> Account = WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value);
-                       // MessageBox.Show(WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value));
-
-                        /*if (Account["status"] == "ok")
-                        {
-                            PlayerClan.Text = Account["clan_id"].ToString();
-                        }
-                        else
-                        {
-                            MessageBox.Show(Account["status"]);
-                        }*/
-                    }
+                    /*}*/
         }
     }
 }

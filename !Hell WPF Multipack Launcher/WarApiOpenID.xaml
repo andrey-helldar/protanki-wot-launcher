@@ -4,13 +4,9 @@
         Title="Wargaming OpenID" Height="600" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="Resources/WOT.ico" HorizontalAlignment="Center" VerticalAlignment="Center">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="106*"/>
-            <RowDefinition Height="179*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <WebBrowser x:Name="WB" Margin="0,10,0,0" LoadCompleted="WebBrowser_LoadCompleted" Grid.Row="1"/>
-        <Button Content="Button" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="22"/>
-        <TextBox x:Name="eeeew" Margin="10,10,400,0" TextWrapping="Wrap" Text="TextBox" AcceptsReturn="True"/>
-        <TextBox x:Name="vrevrev" HorizontalAlignment="Right" Height="86" Margin="0" TextWrapping="Wrap" Text="https://api.worldoftanks.ru/wot/blank/?&amp;amp;status=ok&amp;amp;access_token=32351795cac8c2d3c54762181871a2f8e8089d3e&amp;amp;nickname=First_Helldar&amp;amp;account_id=2732865&amp;amp;expires_at=1412174395" VerticalAlignment="Bottom" Width="380"/>
+        <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WebBrowser_LoadCompleted"/>
 
     </Grid>
 </Window>

@@ -25,6 +25,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 string Data = "?application_id=" + Properties.Resources.API;
+                Data += "&redirect_uri=http://t.ai-rus.com/tk.html";
                 Data += "&display=page";
 
                 return Properties.Resources.API_OpenID + Data;
@@ -136,7 +137,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public Dictionary<string, string> Token(string Uri)
         {
             Uri = Uri.Remove(0, Uri.IndexOf("?")+1);
-            Uri = Uri.Replace("&amp;", "','").Replace("=", "':'");
+            Uri = Uri.Replace("&", "','").Replace("=", "':'");
             Uri = "{" + Uri.Remove(0, 2) + "'}";
 
             return FromJSON(Uri);
