@@ -258,7 +258,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
 
-                Dictionary<string, string> users = WarAPI.AccountList(tbPlayerName.Text);
+                /*Dictionary<string, string> users = WarAPI.AccountList(tbPlayerName.Text);
 
                 if (users["status"] == "ok")
                 {
@@ -268,7 +268,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 else
                 {
                     MessageBox.Show("Error!");
-                }
+                }*/
+                MessageBox.Show(WarAPI.AccountList(tbPlayerName.Text));
             }
         }
     }

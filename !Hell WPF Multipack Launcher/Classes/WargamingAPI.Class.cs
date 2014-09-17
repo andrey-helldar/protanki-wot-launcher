@@ -45,7 +45,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
         }
 
-        public Dictionary<string, string> AccountList(string name)
+        public string AccountList(string name)
         {
             string Data = String.Empty;
 
@@ -80,35 +80,28 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
                 //return Out;
 
-                var result = JsonConvert.DeserializeObject<List<UsersJson>>(Out);
+                JObject obj = JObject.Parse(Out);
+                JObject sobj;
+                try
+                {
+                    string tre = obj.SelectToken("data[]").ToString();
+                    sobj = JObject.Parse(tre);
+                    string resu="";
 
-                result
+                    return sobj.ToString();
 
-                //public Dictionary<string, string> FromJson(string json)
-                Dictionary<string, string> json = POST.FromJson(Out);
-                Dictionary<string, string> jsonData = POST.FromJson(json["data"]);
+                    /*resu += String.Format("User: %s\t\t\tID: %s", sobj[0].SelectToken["account_id"], sobj[0].SelectToken["nickname"]) + Environment.NewLine;
+                    resu += String.Format("User: %s\t\t\tID: %s", sobj[1].SelectToken["account_id"], sobj[1].SelectToken["nickname"]) + Environment.NewLine;
+                    resu += String.Format("User: %s\t\t\tID: %s", sobj[2].SelectToken["account_id"], sobj[2].SelectToken["nickname"]) + Environment.NewLine;
+                    resu += String.Format("User: %s\t\t\tID: %s", sobj[3].SelectToken["account_id"], sobj[3].SelectToken["nickname"]) + Environment.NewLine;
+                    return resu;*/
+                }
+                catch (Exception) { }
 
-                return jsonData;
+                return null;
             }
             catch (WebException we) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, we.Message); return null; }
             catch (Exception ex) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, ex.Message); return null; }
         }
     }
-
-    
-
-public class UsersJson
-{
-    [JsonProperty("data")]
-    public Users Users { get; set; }
-}
-
-public class Users
-{
-    [JsonProperty("nickname")]
-    public string Nickname { get; set; }
-
-    [JsonProperty("account_id")]
-    public string ID { get; set; }
-}
 }
