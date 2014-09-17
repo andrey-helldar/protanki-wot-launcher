@@ -14,37 +14,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         POST POST = new POST();
         Debug Debug = new Debug();
 
-        public string AccountID(string name = "null")
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(
-                String.Format("%s/account/list/?application_id=%s&search=%s",
-                Properties.Resources.APIlink,
-                Properties.Resources.API,
-                name)
-                );
-
-            request.Method = "GET";
-            request.ContentType = "text/json";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            string result;
-            using (var sr = new StreamReader(response.GetResponseStream()))
-            {
-                result = sr.ReadToEnd();
-            }
-            JObject obj = JObject.Parse(result);
-            string id;
-            try
-            {
-                //id = obj.SelectToken("data[0].id").ToString();
-                return obj.SelectToken("data[0].id").ToString();
-            }
-            catch
-            {
-                //do something
-                return "null";
-            }
-        }
-
         public string AccountList(string name)
         {
             string Data = String.Empty;
@@ -81,20 +50,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 //return Out;
 
                 JObject obj = JObject.Parse(Out);
-                JObject sobj;
                 try
                 {
-                    string tre = obj.SelectToken("data[]").ToString();
-                    sobj = JObject.Parse(tre);
-                    string resu="";
+                    string resu = "";
 
-                    return sobj.ToString();
+                    for (int i = 0; i < Convert.ToInt16(obj.SelectToken("count").ToString()); i++)
+                    {
+                        resu += String.Format("User: {0}\t\t\tID: {1}", obj.SelectToken("data[" + i.ToString() + "].account_id").ToString(), obj.SelectToken("data[" + i.ToString() + "].nickname").ToString()) + Environment.NewLine;
+                    }
 
-                    /*resu += String.Format("User: %s\t\t\tID: %s", sobj[0].SelectToken["account_id"], sobj[0].SelectToken["nickname"]) + Environment.NewLine;
-                    resu += String.Format("User: %s\t\t\tID: %s", sobj[1].SelectToken["account_id"], sobj[1].SelectToken["nickname"]) + Environment.NewLine;
-                    resu += String.Format("User: %s\t\t\tID: %s", sobj[2].SelectToken["account_id"], sobj[2].SelectToken["nickname"]) + Environment.NewLine;
-                    resu += String.Format("User: %s\t\t\tID: %s", sobj[3].SelectToken["account_id"], sobj[3].SelectToken["nickname"]) + Environment.NewLine;
-                    return resu;*/
+                    return resu;
                 }
                 catch (Exception) { }
 

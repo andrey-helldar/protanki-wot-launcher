@@ -9,9 +9,11 @@
   </multipack>
   <game>
     <version>0.0.0.0</version>
-    <path>d:\Games\World_of_Tanks\</path>
+    <path>g:\Games\World_of_Tanks\</path>
   </game>
-  <youtube />
+  <youtube>
+    <video>m0LXJ_iFNeQ</video>
+  </youtube>
   <do_not_display>
     <video />
     <news />
