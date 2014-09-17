@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <pro>
   <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru" player="Yusha">
     <notify_link />
@@ -9,14 +9,12 @@
   </multipack>
   <game>
     <version>0.0.0.0</version>
-    <path>g:\Games\World_of_Tanks\</path>
+    <path></path>
   </game>
-  <youtube>
-    <video>m0LXJ_iFNeQ</video>
-  </youtube>
+  <youtube/>
   <do_not_display>
     <video />
     <news />
   </do_not_display>
-  <processes />
+  <processes/>
 </pro>

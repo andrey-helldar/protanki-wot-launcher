@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="429" d:DesignWidth="411"
+      d:DesignHeight="691" d:DesignWidth="463"
 	Title="SettingsOptimize" Width="Auto" Height="Auto" Background="#FFAC9595">
 
     <Grid>
@@ -65,9 +65,31 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBox x:Name="tbPlayerName" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5" TextChanged="tbPlayerName_TextChanged"/>
-                        <Button Content="Найти" Grid.Column="1" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Top" Padding="10,1" Click="Button_Click"/>
-                        <ListBox x:Name="lbResult" Margin="5" Grid.Row="1" MinHeight="100" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="tbPlayerName" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,7,5,5" TextChanged="tbPlayerName_TextChanged"/>
+                        <Button Content="Найти" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,5,0" VerticalAlignment="Top" Padding="10,1" Click="Button_Click"/>
+                        <GroupBox Header="Найдите свой ник в списке:" Margin="10,0,10,5" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="221*"/>
+                                    <ColumnDefinition Width="161*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="5" VerticalAlignment="Center">
+                                    <Run>Найдено совпадений:</Run>
+                                    <Run x:Name="RunCount" FontWeight="Bold">0</Run>
+                                </TextBlock>
+                                <ListBox x:Name="lbResult" Margin="10,0,10,5" MinHeight="100" Grid.Row="1" MaxHeight="300" Grid.ColumnSpan="2"  />
+                                <Button Content="Применить ник" HorizontalAlignment="Center" Margin="0,5" Grid.Row="2" VerticalAlignment="Top" Padding="10,1" Grid.ColumnSpan="2"/>
+                                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,5,0,5" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center">
+                                    <Run>Выбран ID:</Run>
+                                    <Run x:Name="SelectID" FontWeight="Bold">0</Run>
+                                </TextBlock>
+                            </Grid>
+                        </GroupBox>
                     </Grid>
 
                 </GroupBox>

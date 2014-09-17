@@ -14,7 +14,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         POST POST = new POST();
         Debug Debug = new Debug();
 
-        public string AccountList(string name)
+        public Dictionary<string, string> AccountList(string name)
         {
             string Data = String.Empty;
 
@@ -50,20 +50,21 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 //return Out;
 
                 JObject obj = JObject.Parse(Out);
+                Dictionary<string, string> users = new Dictionary<string, string>();
+
+                users.Add("status", obj.SelectToken("status").ToString());
+
                 try
                 {
-                    string resu = "";
-
-                    for (int i = 0; i < Convert.ToInt16(obj.SelectToken("count").ToString()); i++)
+                    if (obj.SelectToken("status").ToString() == "ok")
                     {
-                        resu += String.Format("User: {0}\t\t\tID: {1}", obj.SelectToken("data[" + i.ToString() + "].account_id").ToString(), obj.SelectToken("data[" + i.ToString() + "].nickname").ToString()) + Environment.NewLine;
+                        for (int i = 0; i < Convert.ToInt16(obj.SelectToken("count").ToString()); i++)
+                            users.Add(obj.SelectToken("data[" + i.ToString() + "].account_id").ToString(), obj.SelectToken("data[" + i.ToString() + "].nickname").ToString());
                     }
 
-                    return resu;
+                    return users;
                 }
-                catch (Exception) { }
-
-                return null;
+                catch (Exception) { return users; }                
             }
             catch (WebException we) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, we.Message); return null; }
             catch (Exception ex) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, ex.Message); return null; }
