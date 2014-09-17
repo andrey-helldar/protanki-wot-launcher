@@ -88,6 +88,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.worldoftanks.ru/wot/auth/login/.
+        /// </summary>
+        public static string API_OpenID {
+            get {
+                return ResourceManager.GetString("API_OpenID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://api.worldoftanks.ru/wot.
         /// </summary>
         public static string APIlink {

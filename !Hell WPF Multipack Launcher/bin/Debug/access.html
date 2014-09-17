@@ -1,0 +1,1027 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head><script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <title>
+    Вход | Wargaming.net ID
+</title>
+
+    
+
+    
+    <link rel="stylesheet" type="text/css" href="/id/static/1.13.0/wgnet/css/style.css" media="screen, projection" />
+    
+    
+
+    <script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/plugins/json2.js"></script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/plugins/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/plugins/underscore/underscore-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/plugins/backbone/backbone-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/plugins/uri/URI.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/plugins/store/store.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/plugins/spin/spin.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/plugins/jquery/jquery.cookie.js"></script>
+<!--[if lt IE 9]>
+    <script src="/id/static/1.13.0/wgnet/js/html5.js"></script>
+<![endif]-->
+
+    
+
+    <script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/wgnet/js/application.js"></script>
+<script src="/id/static/1.13.0/i18n/ru.js"></script>
+<script type="text/javascript">
+    window.Settings = window.Settings || {};
+    window.Settings.PROJECT = "wgni";
+    window.Settings.REALM = "ru";
+    
+    window.Settings.CSRF_TOKEN = "6GSe2ZKbBU8Ywi3i1EPwIrpqSknsJIcB";
+    window.Settings.SITE_PATH = "/id/";
+    window.Settings.STATIC_URL = "/id/static/1.13.0/";
+    window.Settings.HOME_URL = "/";
+    
+
+    window.Settings.MOBILE_BROWSER_FORCE_DESKTOP_COOKIE_NAME = "wgn_mobile_browser_force_desktop";
+
+    // SPA ID for partner system.
+        window.wg_suid = 0;
+
+    // add CSRF token for all AJAX requests
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            // Only send the token to relative URLs i.e. locally.
+            // This test for relative URL is ugly, but saves the legacy behaviour.
+            var isRelative = !(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url));
+            if (isRelative) {
+                xhr.setRequestHeader("X-CSRFToken", "6GSe2ZKbBU8Ywi3i1EPwIrpqSknsJIcB");
+            }
+        }
+    });
+</script>
+<script type="text/javascript">
+    (function(settings, $, _, window, undefined) {
+        var enableMobileStyles = function() {
+            var staticUrl = settings.STATIC_URL,
+                stylesheets = ['<link rel="stylesheet" type="text/css" href="' + staticUrl + 'wgnet/css/mobile_all.css" />'];
+
+            if (window.Settings.PROJECT === 'wgni') {
+                stylesheets.push('<link rel="stylesheet" type="text/css" href="' + staticUrl + 'wgnet/css/mobile.css" />');
+            }
+
+            var head = $('head');
+            _.each(stylesheets, function(stylesheet) {
+                head.append(stylesheet);
+            });
+        };
+
+        window.Application.on('mobile-browser-detected', function(options) {
+            if (options.detected && !options.forceDesktop) {
+                enableMobileStyles();
+            }
+        });
+
+        window.Application.on('enable-mobile-styles', function(options) {
+            enableMobileStyles();
+        });
+
+        window.Application.on('mobile-browser-detected-onload', function(options) {
+            if (options.detected && options.forceDesktop) {
+                $('.js-mobile-browser-force-desktop-item').show();
+            }
+        });
+
+        $(function() {
+            $('.js-mobile-browser-force-desktop-link').on('click', function() {
+                window.Application.trigger('mobile-browser-force-desktop');
+            });
+        });
+
+    })(window.Settings || {}, jQuery, _, window);
+
+</script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/wgnet/js/mobile.js"></script>
+
+<script type="text/javascript">
+    (function(_, window) {
+        window.Messages = _.extend({
+            'JSBASE_UNKNOWN_ERROR': 'Неизвестная ошибка. Повторите попытку позже.',
+            'JSBASE_TIMEOUT_ERROR': 'Превышено время ожидания. Попробуйте ещё раз.',
+            'JSBASE_SERVER_ERROR': 'Сервер временно недоступен. Повторите попытку позже.',
+            'JSBASE_PARSE_RESPONSE_ERROR': 'Неверный ответ сервера.'
+        }, window.Messages || {});
+    })(_, window);
+</script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/jsbase/js/scripts.js"></script>
+
+
+<script type="text/javascript">
+(function(window) {
+    window.Settings = window.Settings || {};
+    window.Settings.Validation = {};
+    window.Settings.Validation.Spa = {
+        'ACCOUNT_PASSWORD_MIN_LENGTH': 6,
+        'ACCOUNT_PASSWORD_MAX_LENGTH': 100,
+        'ACCOUNT_PASSWORD_REGEX': /^[a-zA-Z0-9_]+$/,
+        'ACCOUNT_NAME_MIN_LENGTH': 3,
+        'ACCOUNT_NAME_MAX_LENGTH': 24,
+        'ACCOUNT_NAME_REGEX': /^[a-zA-Z0-9_]+$/,
+        'ACCOUNT_LOGIN_MIN_LENGTH': 1,
+        'ACCOUNT_LOGIN_MAX_LENGTH': 50,
+        'ACCOUNT_LOGIN_REGEX': /^[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z]{2,4}$/
+    };
+})(window);
+</script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/clientvalidation/js/forms.js"></script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/clientvalidation/js/formsvalidation.js"></script>
+
+
+
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/wgnet/js/base.js"></script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/wgnet/js/wg_combobox.js"></script>
+
+<script type="text/javascript">
+(function(window) {
+    window.Settings = window.Settings || {};
+    window.Settings.AuthenticationBase = {
+        'ErrorCodeUnauthorized': 401
+    };
+})(window);
+</script>
+
+
+<script type="text/javascript">
+(function(window) {
+    window.Settings = window.Settings || {};
+    window.Settings.Authentication = {"ExternalStatusStateQueryParameter": "external_status_state", "ExternalSelectQueryParameter": "external", "ExternalStatusUrlTemplate": "/id/signin/external/status/<%= token %>/", "ExternalProviders": ["facebook", "google"], "UIExternalCreateCompleteDelay": 2.0, "ExternalErrorQueryParameter": "external_error", "LogoutUrl": "/id/sso/signout/", "ExternalProvidersNames": {"google": "Google", "facebook": "Facebook", "vkontakte": "\u0412\u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0435", "gamecenter": "Gamecenter"}, "UIEscHandlerEnabled": true, "ExternalOauthErrorAccessDenied": "access_denied", "ExternalCreateUrlTemplate": "/id/signin/external/"};
+})(window);
+</script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/authentication/js/scripts.js"></script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/plugins/jquery-placeholder/jquery.placeholder.js"></script>
+    
+    
+    <script type="text/javascript">
+    (function(window) {
+        window.PENDING_OPERATION_JAVASCRIPT_TIMEOUT = 15;
+        window.PENDING_OPERATION_JAVASCRIPT_WAIT = 1;
+    })(window);
+    </script>
+
+    <script type="text/javascript">
+(function(window) {
+    window.Settings = window.Settings || {};
+    window.Settings.Captcha = {"ShowUrl": "/id/captcha/"};
+})(window);
+</script>
+<script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/wgnet/js/captcha.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/authentication/js/basicauthentication.js"></script>
+
+
+    <script type="text/javascript" charset="utf-8" src="/id/static/1.13.0/authentication/js/externalauthentication.js"></script>
+    <script type="text/template" id="js-tmpl-external-authentication-create">
+    <p class="b-paragraph__indent5">Войдите с помощью социальной сети:</p>
+    <ul class="b-social-signin">
+    <% _.each(providers, function(provider, index) { %>
+        <li class="b-social-signin_item js-authentication-external-service-wrapper" data-external-service="<%- provider %>">
+            <a id="js-authentication-external-service_<%- provider %>" class="b-social-signin_bg b-social-signin_bg__<%- provider %> js-authentication-external-service" href="#">
+                <span class="b-social-signin_ico b-social-signin_ico__<%- provider %>"><%- providersNames[provider] %></span>
+                <span class="b-social-signin_name"><%- providersNames[provider] %></span>
+            </a>
+        </li>
+    <% }); %>
+    </ul>
+</script>
+<script type="text/template" id="js-tmpl-external-authentication-bind">
+    <% if (picture) { %>
+    <div class="b-social-avatar">
+        <img class="b-social-avatar_img" src="<%- picture %>" alt="">
+    </div>
+    <% } %>
+    <p class="b-social-text"><span class="b-bold"><%- name %></span>, ваш профиль в <%- providerName %> пока не связан ни с одним игровым аккаунтом.</p>
+    <div class="b-login-social">
+        <p class="b-login-social_text">Чтобы использовать <%- providerName %> в дальнейшем, войдите, используя свой аккаунт Wargaming.net.</p>
+        <form id="js-authentication-external-bind-form" method="POST"
+              action="/id/signin/external/bind/"
+              class="b-form -visor-no-click"
+        >
+            <div class="b-message-error js-form-errors-block" style="display:none">
+                <div class="b-message-error_content">
+                    <p class="js-form-errors-content"></p>
+                </div>
+            </div>
+            <fieldset class="b-form_fieldgroup">
+                <div class="b-form_input-field-wr b-form_input-field-wr__focus">
+                    <input id="id_login" name="login" type="email"
+                           class="b-form_input-field -metrika-nokeys"
+                           maxlength="50"
+                           placeholder="Электронная почта"
+                           <% if (login) { %>
+                           value="<%- login %>"
+                           <% } %>
+                    />
+                </div>
+            </fieldset>
+            <fieldset class="b-form_fieldgroup">
+                <div class="b-form_input-field-wr">
+                    <input id="id_password" name="password" type="password"
+                           class="b-form_input-field -metrika-nokeys"
+                           maxlength="100"
+                           placeholder="Пароль"
+                    />
+                </div>
+            </fieldset>
+            <fieldset class="b-form_fieldgroup js-captcha-external-authentication <% if (!enableCaptcha) { %>hidden<% } %>">
+                <label for="id_cap_1" class="b-form_label">Введите символы с картинки</label>
+                <div class="b-captcha">
+                    <div class="b-captcha_img">
+                        <img class="js-captcha-image" />
+                        <input class="js-captcha-image-hidden-input" id="id_cap_0" type="hidden" value="1bd1daf30e9a4026836a2b62e09fbd9b" name="cap_0">
+                    </div>
+                    <div class="b-captcha_field">
+                        <div class="b-form_input-field-wr">
+                            <input type="text" id="id_cap_1" name="cap_1" class="b-form_input-field js-captcha-input" maxlength="6" autocomplete="off" />
+                        </div>
+                    </div>
+                    <a class="b-captcha_reload-link js-captcha-reload" href="#"><span class="js-captcha-reload-title hidden">Другая картинка</span></a>
+                </div>
+                <div class="b-form_input-error js-form-field-error-content"></div>
+            </fieldset>
+            <fieldset class="b-form_fieldgroup b-form_fieldgroup__mobile-hide">
+                <input class="b-form_checkbox" id="id_remember" name="remember" type="checkbox" />
+                <label class="b-form_label-checkbox" for="id_remember">Запомнить меня</label>
+            </fieldset>
+            <fieldset class="b-form_fieldgroup b-form_fieldgroup__noindent">
+                <div class="b-big-orange-buttonarea b-big-orange-buttonarea__view-mobile b-big-orange-buttonarea__width-100 js-auth-throbbing-element">
+                    <div class="b-big-orange-button">
+                        <div class="b-big-orange-button_waiting">
+                            <input type="submit" class="b-big-orange-button_right api-auth-submit" value="Войти"/>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="b-login-info b-login-info__login-social">
+                <p class="b-login-info_text">Не удаётся войти? <a class="b-login-info_link" href="https://ru.wargaming.net/personal/password_reset/new/">Восстановить</a></p>
+                <a class="b-login-info_mobile" href="https://ru.wargaming.net/personal/password_reset/new/"><span>Не удаётся войти? Восстановить аккаунт</span></a>
+                
+                
+                <p class="b-login-info_text">Нет Wargaming.net ID? <a class="b-login-info_link js-registration-link" href="https://ru.wargaming.net/registration/" data-url="https://ru.wargaming.net/registration/">Создать аккаунт</a></p>
+                <a class="b-login-info_mobile js-registration-link" href="https://ru.wargaming.net/registration/" data-url="https://ru.wargaming.net/registration/">Нет Wargaming.net ID? Создать аккаунт</a>
+                
+            </div>
+        </form>
+    </div>
+</script>
+
+
+<script type="text/template" id="js-tmpl-external-authentication-invalid_params">
+    Вход через выбранный сервис временно невозможен.
+</script>
+<script type="text/template" id="js-tmpl-external-authentication-access_denied">
+    Не удалось войти. Необходим доступ к данным социальной сети.
+</script>
+<script type="text/template" id="js-tmpl-external-authentication-login_temporarily_unavailable">
+    Вход через выбранный сервис временно невозможен.
+</script>
+<script type="text/template" id="js-tmpl-external-authentication-bind-login_temporarily_unavailable">
+    Вход временно невозможен.
+</script>
+<script type="text/template" id="js-tmpl-external-authentication-account_not_activated">
+    Аккаунт не активирован.
+</script>
+<script type="text/template" id="js-tmpl-external-authentication-invalid_credentials">
+    Неверный email или пароль.
+</script>
+<script type="text/template" id="js-tmpl-external-authentication-unknown_external_account">
+    Выбранный профиль не связан ни с одним игровым аккаунтом. Войдите, используя аккаунт Wargaming.net.
+</script>
+<script type="text/template" id="js-tmpl-external-authentication-ban_by_ip">
+    Слишком много попыток входа с вашего IP-адреса. Повторите попытку через несколько секунд.
+</script>
+<script type="text/template" id="js-tmpl-external-authentication-captcha-required">
+    Обязательное поле.
+</script>
+<script type="text/template" id="js-tmpl-external-authentication-captcha-invalid">
+    Символы указаны неверно. Попробуйте ещё раз.
+</script>
+
+
+    
+    
+</head>
+<!--[if lte IE 8]><body class="ie lang-ru display-page"><![endif]-->
+<!--[if !(lte IE 8)]><!--><body class="lang-ru display-page"><!--<![endif]-->
+    <div class="b-main js-main ">
+        
+        <div class="b-global-wrap">
+    <div class="b-global-nav js-global-nav">
+        <ul class="b-global-nav_service">
+            
+    
+    
+    
+    <li class="b-global-nav_item">
+        <a href="http://ru.wargaming.net" class="js-menu-link b-global-nav_link">
+            <span class="b-global-nav_bg b-global-nav__home">
+                <span class="b-global-nav_home-ico"></span>
+            </span>
+        </a>
+    </li>
+    
+    
+    
+    <li class="js-menu b-global-nav_item">
+        <a href="#" class="js-menu-link b-global-nav_link">
+            <span class="b-global-nav_bg b-global-nav__arrow">
+                Игры
+                <span class="b-global-nav_arrow"></span>
+            </span>
+        </a>
+        <ul class="b-global-nav_submenu b-global-nav_submenu__game">
+            <li class="b-global-nav_game">
+        <a href="http://worldoftanks.ru" class="b-global-nav_game-link">
+            <span class="b-global-nav_game-logo b-global-nav_game-logo__wot">World of Tanks</span>
+            <span class="b-global-nav_game-text">
+                <span class="b-global-nav_game-name">World of Tanks</span>
+                Масштабные танковые онлайн-баталии. Лучшая игра рунета и один из лидеров free-to-play MMO.
+            </span>
+        </a>
+    </li>
+            <li class="b-global-nav_game">
+        <a href="http://worldofwarplanes.ru" class="b-global-nav_game-link">
+            <span class="b-global-nav_game-logo b-global-nav_game-logo__wowp">World of Warplanes</span>
+            <span class="b-global-nav_game-text">
+                <span class="b-global-nav_game-name">World of Warplanes</span>
+                Ожесточённая борьба за господство в воздухе. Один из самых ожидаемых ММО-проектов года.
+            </span>
+        </a>
+    </li>
+            <li class="b-global-nav_game">
+        <a href="http://worldofwarships.ru" class="b-global-nav_game-link">
+            <span class="b-global-nav_game-logo b-global-nav_game-logo__wows">World of Warships</span>
+            <span class="b-global-nav_game-text">
+                <span class="b-global-nav_game-name">World of Warships</span>
+                Территория эпичных морских сражений с огромным выбором военных кораблей прошлого столетия.
+            </span>
+        </a>
+    </li>
+            <li class="b-global-nav_game">
+                <ul class="b-game-other">
+                    <li class="b-game-other_item"><a href="http://wotgenerals.ru" class="b-game-other_wotg"></a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    
+    <li class="b-global-nav_item">
+        <a class="b-global-nav_link" href="https://ru.wargaming.net/support/">
+            <span class="b-global-nav_bg">Поддержка</span>
+        </a>
+    </li>
+    <li class="b-global-nav_item">
+        <a class="b-global-nav_link" href="http://wargag.ru">
+            <span class="b-global-nav_bg">WarGag</span>
+        </a>
+    </li>
+    <li class="b-global-nav_item">
+        <a class="b-global-nav_link" href="http://wiki.worldoftanks.ru">
+            <span class="b-global-nav_bg">Wiki</span>
+        </a>
+    </li>
+    
+    <li class="js-menu b-global-nav_item">
+        <a href="#" class="js-menu-link b-global-nav_link">
+            <span class="b-global-nav_bg b-global-nav__arrow">
+                Форумы
+                <span class="b-global-nav_arrow"></span>
+            </span>
+        </a>
+        <ul class="b-global-nav_submenu b-global-nav_submenu__forum">
+            
+    <li class="b-global-nav_forum b-global-nav_forum__wot">
+        <a class="b-global-nav_forum-link" href="http://forum.worldoftanks.ru">
+            <span class="b-global-nav_forum-ico b-global-nav_forum-ico__wot">World of Tanks</span>
+            <span class="b-global-nav_forum-name">World of Tanks</span>
+        </a>
+    </li>
+            
+    <li class="b-global-nav_forum b-global-nav_forum__wowp">
+        <a class="b-global-nav_forum-link" href="http://forum.worldofwarplanes.ru">
+            <span class="b-global-nav_forum-ico b-global-nav_forum-ico__wowp">World of Warplanes</span>
+            <span class="b-global-nav_forum-name">World of Warplanes</span>
+        </a>
+    </li>
+            
+    <li class="b-global-nav_forum b-global-nav_forum__wows">
+        <a class="b-global-nav_forum-link" href="http://forum.worldofwarships.ru">
+            <span class="b-global-nav_forum-ico b-global-nav_forum-ico__wows">World of Warships</span>
+            <span class="b-global-nav_forum-name">World of Warships</span>
+        </a>
+    </li>
+        </ul>
+    </li>
+    
+
+
+    
+    <li class="js-mobile-menu b-global-nav_item b-global-nav_item__mobile" data-menu-content-selector="#menu-content-projects">
+        <a href="#" class="js-menu-link b-global-nav_link">
+            <span class="b-global-nav_bg b-global-nav__projects b-global-nav__arrow">
+                <span class="b-global-nav_projects-ico">Игры и сервисы</span>
+                <span class="b-global-nav_arrow"></span>
+            </span>
+        </a>
+    </li>
+    
+    <li class="js-mobile-menu b-global-nav_item b-global-nav_item__mobile" data-menu-content-selector="#menu-content-regions">
+        <a href="#" class="js-menu-link b-global-nav_link">
+            <span class="b-global-nav_bg b-global-nav__region b-global-nav__arrow">
+                <span class="b-global-nav_region-ico"></span>
+                <span class="b-global-nav_arrow"></span>
+            </span>
+        </a>
+    </li>
+
+        </ul>
+        <ul class="b-global-nav_login">
+            
+    
+        
+    
+        <li class="b-global-nav_item b-global-nav_item__nologin">
+            
+            
+                
+                <a href="https://ru.wargaming.net/registration/" class="b-global-nav_link js-registration-link" data-url="https://ru.wargaming.net/registration/">Создать аккаунт</a>
+                
+            
+        </li>
+        
+
+    <li class="b-global-nav_item b-global-nav_item__mobile b-global-nav_item__nologin">
+        <a href="https://ru.wargaming.net/registration/" class="b-global-nav_link js-registration-link" data-url="https://ru.wargaming.net/registration/">Создать аккаунт</a>
+    </li>
+
+    
+    
+        <li class="js-menu b-global-nav_item">
+            <a href="#" class="js-menu-link b-global-nav_link">
+                <span class="b-global-nav_bg b-global-nav__region b-global-nav__arrow">
+                    <span class="b-global-nav_region-ico"></span>
+                    <span class="b-global-nav_arrow"></span>
+                </span>
+            </a>
+            <div class="b-global-nav_submenu b-global-nav_submenu__region">
+                <div class="b-global-nav_regionbg">
+                    <ul class="b-global-nav_region">
+                        
+                            <li class="b-global-nav_region_item">
+                                <a class="b-global-nav_region_name" href="/">Россия</a>
+                                <ul class="b-global-nav_language-list">
+                                    
+                                        <li class="b-global-nav_language-item active"><a class="b-global-nav_language" href="?sso_notifications=disable&amp;trust_root=https%3A%2F%2Fapi.worldoftanks.ru%2F&amp;language=ru&amp;next=%2Fid%2Fopenid%2F68938479561568194%2F">Русский</a></li>
+                                    
+                                </ul>
+                            </li>
+                        
+                            <li class="b-global-nav_region_item">
+                                <a class="b-global-nav_region_name" href="http://na.wargaming.net/?change_realm=1">North America</a>
+                                <ul class="b-global-nav_language-list">
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://na.wargaming.net/?change_realm=1&amp;language=en">English</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://na.wargaming.net/?change_realm=1&amp;language=es-ar">Español</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://na.wargaming.net/?change_realm=1&amp;language=pt-br">Português</a></li>
+                                    
+                                </ul>
+                            </li>
+                        
+                            <li class="b-global-nav_region_item">
+                                <a class="b-global-nav_region_name" href="http://eu.wargaming.net/?change_realm=1">Europe</a>
+                                <ul class="b-global-nav_language-list">
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://eu.wargaming.net/?change_realm=1&amp;language=en">English</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://eu.wargaming.net/?change_realm=1&amp;language=cs">Čeština</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://eu.wargaming.net/?change_realm=1&amp;language=de">Deutsch</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://eu.wargaming.net/?change_realm=1&amp;language=es">Español</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://eu.wargaming.net/?change_realm=1&amp;language=fr">Français</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://eu.wargaming.net/?change_realm=1&amp;language=pl">Polski</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://eu.wargaming.net/?change_realm=1&amp;language=tr">Türkçe</a></li>
+                                    
+                                </ul>
+                            </li>
+                        
+                            <li class="b-global-nav_region_item">
+                                <a class="b-global-nav_region_name" href="http://asia.wargaming.net/?change_realm=1">Asia</a>
+                                <ul class="b-global-nav_language-list">
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://asia.wargaming.net/?change_realm=1&amp;language=en">English</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://asia.wargaming.net/?change_realm=1&amp;language=ja">日本語</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://asia.wargaming.net/?change_realm=1&amp;language=th">ไทย</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://asia.wargaming.net/?change_realm=1&amp;language=vi">Tiếng Việt</a></li>
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://asia.wargaming.net/?change_realm=1&amp;language=zh-tw">繁體中文</a></li>
+                                    
+                                </ul>
+                            </li>
+                        
+                            <li class="b-global-nav_region_item">
+                                <a class="b-global-nav_region_name" href="http://kr.wargaming.net/?change_realm=1">대한민국</a>
+                                <ul class="b-global-nav_language-list">
+                                    
+                                        <li class="b-global-nav_language-item"><a class="b-global-nav_language" href="http://kr.wargaming.net/?change_realm=1&amp;language=ko">한국어</a></li>
+                                    
+                                </ul>
+                            </li>
+                        
+                    </ul>
+                    <div class="b-global-nav_info">
+                        <p class="b-global-nav_info-text">Ваш аккаунт действителен только для одного региона.</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    
+
+        </ul>
+    </div>
+</div>
+
+
+    
+    <ul id="menu-content-projects" class="b-submenu-mobile">
+        
+        <li class="b-submenu-mobile_item">
+            <a class="b-submenu-mobile_link" href="http://ru.wargaming.net">Wargaming.net</a>
+        </li>
+        
+        <li class="b-submenu-mobile_item js-submenu">
+            <a class="b-submenu-mobile_link js-submenu-link" href="#">Игры <span class="b-submenu-mobile_arrow"></span></a>
+            <ul class="b-submenu-mobile_submenu">
+                
+    <li class="b-submenu-mobile_submenu-item">
+        <a href="http://worldoftanks.ru" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__game">
+            <span class="b-submenu-mobile_game-ico b-submenu-mobile_game-ico__wot"></span>
+            <span class="b-submenu-mobile_game">World of Tanks</span>
+        </a>
+    </li>
+                
+    <li class="b-submenu-mobile_submenu-item">
+        <a href="http://worldofwarplanes.ru" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__game">
+            <span class="b-submenu-mobile_game-ico b-submenu-mobile_game-ico__wowp"></span>
+            <span class="b-submenu-mobile_game">World of Warplanes</span>
+        </a>
+    </li>
+                
+    <li class="b-submenu-mobile_submenu-item">
+        <a href="http://worldofwarships.ru" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__game">
+            <span class="b-submenu-mobile_game-ico b-submenu-mobile_game-ico__wows"></span>
+            <span class="b-submenu-mobile_game">World of Warships</span>
+        </a>
+    </li>
+                
+    <li class="b-submenu-mobile_submenu-item">
+        <a href="http://wotgenerals.ru" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__game">
+            <span class="b-submenu-mobile_game-ico b-submenu-mobile_game-ico__wotg"></span>
+            <span class="b-submenu-mobile_game">World of Tanks: Generals</span>
+        </a>
+    </li>
+            </ul>
+        </li>
+        <li class="b-submenu-mobile_item js-submenu">
+            <a class="b-submenu-mobile_link js-submenu-link" href="#">Форумы <span class="b-submenu-mobile_arrow"></span></a>
+            <ul class="b-submenu-mobile_submenu">
+                <li class="b-submenu-mobile_submenu-item">
+        <a href="http://forum.worldoftanks.ru" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__game">
+            <span class="b-submenu-mobile_game-ico b-submenu-mobile_game-ico__wot"></span>
+            <span class="b-submenu-mobile_game">World of Tanks</span>
+        </a>
+    </li>
+                <li class="b-submenu-mobile_submenu-item">
+        <a href="http://forum.worldofwarplanes.ru" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__game">
+            <span class="b-submenu-mobile_game-ico b-submenu-mobile_game-ico__wowp"></span>
+            <span class="b-submenu-mobile_game">World of Warplanes</span>
+        </a>
+    </li>
+                <li class="b-submenu-mobile_submenu-item">
+        <a href="http://forum.worldofwarships.ru" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__game">
+            <span class="b-submenu-mobile_game-ico b-submenu-mobile_game-ico__wows"></span>
+            <span class="b-submenu-mobile_game">World of Warships</span>
+        </a>
+    </li>
+                
+            </ul>
+        </li>
+        
+    <li class="b-submenu-mobile_item">
+        <a class="b-submenu-mobile_link" href="https://ru.wargaming.net/support/">Поддержка</a>
+    </li>
+    
+        
+    <li class="b-submenu-mobile_item">
+        <a class="b-submenu-mobile_link" href="http://wargag.ru">WarGag</a>
+    </li>
+    
+        
+    <li class="b-submenu-mobile_item">
+        <a class="b-submenu-mobile_link" href="http://wiki.worldoftanks.ru">Wiki</a>
+    </li>
+    
+    </ul>
+    
+    <ul id="menu-content-regions" class="b-submenu-mobile">
+        
+        <li class="b-submenu-mobile_item js-submenu">
+                    <a class="b-submenu-mobile_link js-submenu-link" href="#">Россия<span class="b-submenu-mobile_arrow"></span></a>
+                    <ul class="b-submenu-mobile_submenu">
+                        <li class="b-submenu-mobile_submenu-item b-submenu-mobile_submenu-item__active">
+                                <a href="?sso_notifications=disable&amp;trust_root=https%3A%2F%2Fapi.worldoftanks.ru%2F&amp;language=ru&amp;next=%2Fid%2Fopenid%2F68938479561568194%2F" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__ru">ru</span>
+                                    <span class="b-submenu-mobile_language">Русский</span>
+                                </a>
+                            </li>
+                    </ul>
+                </li><li class="b-submenu-mobile_item js-submenu">
+                    <a class="b-submenu-mobile_link js-submenu-link" href="#">North America<span class="b-submenu-mobile_arrow"></span></a>
+                    <ul class="b-submenu-mobile_submenu">
+                        <li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://na.wargaming.net/?change_realm=1&amp;language=en" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__en">en</span>
+                                    <span class="b-submenu-mobile_language">English</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://na.wargaming.net/?change_realm=1&amp;language=es-ar" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__es-ar">es-ar</span>
+                                    <span class="b-submenu-mobile_language">Español</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://na.wargaming.net/?change_realm=1&amp;language=pt-br" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__pt-br">pt-br</span>
+                                    <span class="b-submenu-mobile_language">Português</span>
+                                </a>
+                            </li>
+                    </ul>
+                </li><li class="b-submenu-mobile_item js-submenu">
+                    <a class="b-submenu-mobile_link js-submenu-link" href="#">Europe<span class="b-submenu-mobile_arrow"></span></a>
+                    <ul class="b-submenu-mobile_submenu">
+                        <li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://eu.wargaming.net/?change_realm=1&amp;language=en" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__en">en</span>
+                                    <span class="b-submenu-mobile_language">English</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://eu.wargaming.net/?change_realm=1&amp;language=cs" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__cs">cs</span>
+                                    <span class="b-submenu-mobile_language">Čeština</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://eu.wargaming.net/?change_realm=1&amp;language=de" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__de">de</span>
+                                    <span class="b-submenu-mobile_language">Deutsch</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://eu.wargaming.net/?change_realm=1&amp;language=es" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__es">es</span>
+                                    <span class="b-submenu-mobile_language">Español</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://eu.wargaming.net/?change_realm=1&amp;language=fr" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__fr">fr</span>
+                                    <span class="b-submenu-mobile_language">Français</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://eu.wargaming.net/?change_realm=1&amp;language=pl" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__pl">pl</span>
+                                    <span class="b-submenu-mobile_language">Polski</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://eu.wargaming.net/?change_realm=1&amp;language=tr" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__tr">tr</span>
+                                    <span class="b-submenu-mobile_language">Türkçe</span>
+                                </a>
+                            </li>
+                    </ul>
+                </li><li class="b-submenu-mobile_item js-submenu">
+                    <a class="b-submenu-mobile_link js-submenu-link" href="#">Asia<span class="b-submenu-mobile_arrow"></span></a>
+                    <ul class="b-submenu-mobile_submenu">
+                        <li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://asia.wargaming.net/?change_realm=1&amp;language=en" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__en">en</span>
+                                    <span class="b-submenu-mobile_language">English</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://asia.wargaming.net/?change_realm=1&amp;language=ja" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__ja">ja</span>
+                                    <span class="b-submenu-mobile_language">日本語</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://asia.wargaming.net/?change_realm=1&amp;language=th" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__th">th</span>
+                                    <span class="b-submenu-mobile_language">ไทย</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://asia.wargaming.net/?change_realm=1&amp;language=vi" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__vi">vi</span>
+                                    <span class="b-submenu-mobile_language">Tiếng Việt</span>
+                                </a>
+                            </li><li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://asia.wargaming.net/?change_realm=1&amp;language=zh-tw" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__zh-tw">zh-tw</span>
+                                    <span class="b-submenu-mobile_language">繁體中文</span>
+                                </a>
+                            </li>
+                    </ul>
+                </li><li class="b-submenu-mobile_item js-submenu">
+                    <a class="b-submenu-mobile_link js-submenu-link" href="#">대한민국<span class="b-submenu-mobile_arrow"></span></a>
+                    <ul class="b-submenu-mobile_submenu">
+                        <li class="b-submenu-mobile_submenu-item ">
+                                <a href="http://kr.wargaming.net/?change_realm=1&amp;language=ko" class="b-submenu-mobile_submenu-link b-submenu-mobile_submenu-link__language">
+                                    <span class="b-submenu-mobile_language-ico b-submenu-mobile_language-ico__ko">ko</span>
+                                    <span class="b-submenu-mobile_language">한국어</span>
+                                </a>
+                            </li>
+                    </ul>
+                </li>
+    </ul>
+
+        
+
+        <!-- header: start -->
+        
+        <header class="b-header js-header">
+        
+            <div class="b-header_content js-header-content">
+                <a class="b-logo " href="/">wargaming.net</a>
+            </div>
+        
+        </header>
+        
+        <!-- header: end -->
+
+        <div class="b-content clearfix js-content ">
+            
+            
+            <!-- content_body: start -->
+            
+            
+    <script type="text/javascript">
+        (function(settings, $, _, window, undefined) {
+            if (settings.Mobile.useMobile) {
+                $('.js-header').hide();
+            }
+        })(window.Settings || {}, jQuery, _, window);
+    </script>
+    
+    <!-- to avoid javascript XSS: WOTP-3535 -->
+    <span id="js-next-url-value" style="display:none">/id/openid/68938479561568194/</span>
+
+    <div id="js-authentication-content-body">
+    
+    <h1>Вход</h1>
+
+
+    <div class="l-tree-arrow clearfix">
+        <div class="l-tree-content">
+            
+    <form class="b-form -visor-no-click" id="js-auth-form" action="https://ru.wargaming.net/id/signin/process/" method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="6GSe2ZKbBU8Ywi3i1EPwIrpqSknsJIcB" />
+        <div class="l-fieldset-fix">
+            <input name="next" type="hidden" value="/id/openid/68938479561568194/" />
+            <div class="b-message-error js-form-errors-block" style="display:none">
+                <div class="b-message-error_content">
+                    <p class="js-form-errors-content api-auth-error" data-api-auth-error-code=""></p>
+                </div>
+            </div>
+            <div id="js-authentication-external-services"></div>
+            <p class="b-login_text">Вы также можете войти, используя свой аккаунт Wargaming.net</p>
+        </div>
+        <div class="clearfix">
+            <div class="l-fieldset">
+                <fieldset class="b-form_fieldgroup">
+                    <div class="b-form_input-field-wr b-form_input-field-wr__focus">
+                        <input placeholder="Электронная почта" class="b-form_input-field -metrika-nokeys api-auth-login-input" id="id_login" name="login" type="email" autofocus="autofocus" maxlength="50" />
+                    </div>
+                </fieldset>
+                <fieldset class="b-form_fieldgroup">
+                    <div class="b-form_input-field-wr">
+                        <input placeholder="Пароль" class="b-form_input-field -metrika-nokeys api-auth-password-input" id="id_password" name="password" type="password" maxlength="100" />
+                    </div>
+                </fieldset>
+                
+                    
+                
+                <fieldset class="b-form_fieldgroup js-captcha-authentication  ">
+        <label for="id_cap_1" class="b-form_label">Введите символы с картинки</label>
+        <div class="b-captcha clearfix">
+            <div class="b-captcha_img">
+                
+                    
+                <img class="js-captcha-image api-captcha-image" src="/id/captcha/?session_key=d568a3c75b804cdaae43aa27e0363056"/>
+                <input class="js-captcha-image-hidden-input" id="id_cap_0" type="hidden" value="d568a3c75b804cdaae43aa27e0363056" name="cap_0">
+            </div>
+            <div class="b-captcha_input-field">
+                <div class="b-form_input-field-wr">
+                    <input type="text" id="id_cap_1" name="cap_1" class="b-form_input-field js-captcha-input api-captcha-input" maxlength="6" autocomplete="off" />
+                </div>
+            </div>
+            <a class="b-captcha_reload-link js-captcha-reload" href="#"><span class="js-captcha-reload-title hidden">Другая картинка</span></a>
+        </div>
+        <div class="b-form_input-error js-form-field-error-content api-captcha-error" data-api-captcha-error-code=""></div>
+    </fieldset>
+                <fieldset class="b-form_fieldgroup b-form_fieldgroup__mobile-hide">
+                    <input class="b-form_checkbox" id="id_remember" name="remember" type="checkbox" />
+                    <label class="b-form_label-checkbox" for="id_remember">Запомнить меня</label>
+                </fieldset>
+                <fieldset class="b-form_fieldgroup b-form_fieldgroup__noindent">
+                    <div class="b-big-orange-buttonarea b-big-orange-buttonarea__view-mobile b-big-orange-buttonarea__mobile-submit js-auth-throbbing-element">
+                        <div class="b-big-orange-button">
+                            <div class="b-big-orange-button_waiting">
+                                <input type="submit" class="b-big-orange-button_right api-auth-submit" value="Войти"/>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="b-login-info">
+                <p class="b-login-info_text">Не удаётся войти? <a class="b-login-info_link" href="https://ru.wargaming.net/personal/password_reset/new/">Восстановить</a></p>
+                <a class="b-login-info_mobile" href="https://ru.wargaming.net/personal/password_reset/new/"><span>Не удаётся войти? Восстановить аккаунт</span></a>
+                
+                
+                <p class="b-login-info_text">Нет Wargaming.net ID? <a class="b-login-info_link" href="https://ru.wargaming.net/registration/">Создать аккаунт</a></p>
+                <a class="b-login-info_mobile" href="https://ru.wargaming.net/registration/">Нет Wargaming.net ID? Создать аккаунт</a>
+                
+            </div>
+        </div>
+    </form>
+
+        </div>
+        <div class="l-tree-minor">
+            <div class="l-tree-minor_item b-minor-info">
+                <img class="b-minor-info_img" src="/id/static/1.13.0/wgnet/img/info_community_ico.png" width="216" height="101" alt="Community" />
+                <p class="b-minor-info_text">Wargaming.net ID — это ваш единый аккаунт для всех проектов, входящих во вселенную Wargaming.net. Зарегистрируйтесь в одном из проектов и получите доступ ко всем сервисам Wargaming.net!</p>
+                
+            </div>
+            <div class="l-tree-minor_item b-minor-info">
+                <img class="b-minor-info_img" src="/id/static/1.13.0/wgnet/img/info_wg_ico.png" width="216" height="101" alt="WG" />
+                <p class="b-minor-info_text">Удобная и безопасная система OpenID позволит использовать сервис Wargaming.net ID для доступа к фан-ресурсам и партнёрским сайтам Wargaming.net.</p>
+                
+            </div>
+        </div>
+    </div>
+    </div>
+
+            <!-- content_body: end -->
+        </div>
+    </div>
+
+
+
+<footer class="b-footer js-footer">
+    <div class="b-footer-content">
+        <div class="l-footer-wrap clearfix">
+            <ul class="b-footer-menu">
+                
+                
+                <li class="b-footer-menu_title b-footer-menu_title__wot">
+                    <a class="b-footer-menu_project" href="http://worldoftanks.ru">World of Tanks</a>
+                    <ul class="b-footer-menu_list">
+                        
+                            
+                        <li class="b-footer-menu_item"><a href="http://worldoftanks.ru/update" class="b-footer-menu_link">Скачать игру</a></li>
+                        <li class="b-footer-menu_item"><a href="http://worldoftanks.ru/game/" class="b-footer-menu_link">О проекте</a></li>
+                        <li class="b-footer-menu_item"><a href="http://worldoftanks.ru/media/" class="b-footer-menu_link">Медиа</a></li>
+                    </ul>
+                </li>
+                
+                
+                <li class="b-footer-menu_title b-footer-menu_title__wowp">
+                    <a class="b-footer-menu_project" href="http://worldofwarplanes.ru">World of Warplanes</a>
+                    <ul class="b-footer-menu_list">
+                        
+                            
+                                
+                        <li class="b-footer-menu_item"><a href="http://worldofwarplanes.ru/update/" class="b-footer-menu_link">Скачать игру</a></li>
+                        
+                        <li class="b-footer-menu_item"><a href="http://worldofwarplanes.ru/game/" class="b-footer-menu_link">О проекте</a></li>
+                        <li class="b-footer-menu_item"><a href="http://worldofwarplanes.ru/media/" class="b-footer-menu_link">Медиа</a></li>
+                    </ul>
+                </li>
+                
+                
+                <li class="b-footer-menu_title b-footer-menu_title__wobs">
+                    <a class="b-footer-menu_project" href="http://worldofwarships.ru">World of Warships</a>
+                    <ul class="b-footer-menu_list">
+                        <li class="b-footer-menu_item"><a href="http://worldofwarships.ru" class="b-footer-menu_link">О проекте</a></li>
+                        <li class="b-footer-menu_item"><a href="http://blog.worldofwarships.ru" class="b-footer-menu_link">Блог разработчиков</a></li>
+                    </ul>
+                </li>
+                
+                
+                <li class="b-footer-menu_title b-footer-menu_title__support">
+                    <a class="b-footer-menu_project" href="https://ru.wargaming.net/support/">Поддержка</a>
+                    <ul class="b-footer-menu_list">
+                        <li class="b-footer-menu_item"><a href="https://ru.wargaming.net/support/Tickets/Submit" class="b-footer-menu_link">Связаться с нами</a></li>
+                        <li class="b-footer-menu_item"><a href="http://ru.wargaming.net/user_agreement/" class="b-footer-menu_link">Пользовательское соглашение</a></li>
+                        <li class="b-footer-menu_item"><a href="http://ru.wargaming.net/privacy_policy/" class="b-footer-menu_link">Политика конфиденциальности</a></li>
+                        
+                        <li class="b-footer-menu_item js-mobile-browser-force-desktop-item hidden">
+                            <a href="#" class="b-footer-menu_link js-mobile-browser-force-desktop-link">Мобильная версия</a>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+            <div class="b-copyright">
+                
+                <a class="b-copyright_wg-logo" href="http://wargaming.com">
+                    <img src="/id/static/1.13.0/wgnet/img/footer_wg_logo.png" width="179" height="98" alt="Wargaming.net" />
+                </a>
+                
+                <ul class="b-resource">
+                    
+                    <li class="b-resource_item"><a class="b-resource_ico b-resource_ico__youtube" href="http://www.youtube.com/user/wargamingNETcom"></a></li>
+                    <li class="b-resource_item"><a class="b-resource_ico b-resource_ico__facebook" href="http://www.facebook.com/pages/WARGAMINGNET/296467814480"></a></li>
+                    <li class="b-resource_item"><a class="b-resource_ico b-resource_ico__twitter" href="https://twitter.com/ru_wargamingnet"></a></li>
+                    
+                    <li class="b-resource_item"><a class="b-resource_ico b-resource_ico__vk" href="http://vk.com/wargaming_net"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="b-ratings clearfix">
+            <p class="b-ratings_copyright">© 2012–2014 <span class="b-ratings_copyright__bold">Wargaming.net.</span> 12+<br/>
+            Все права защищены.<br/>
+            Powered by BigWorld Technology™ ©</p>
+        <ul class="b-ratings_list">
+            
+                <li class="b-ratings_item b-ratings__mcaffee">
+                    <!-- START MCAFEESECURE CODE -->
+<a target="_blank" href="https://www.mcafeesecure.com/RatingVerify?ref=ru.wargaming.net">
+    <img width="65" height="37" border="0" src="//images.mcafeesecure.com/meter/ru.wargaming.net/55.gif" alt="McAfee SECURE sites help keep you safe from identity theft, credit card fraud, spyware, spam, viruses and online scams" oncontextmenu="alert('Copying Prohibited by Law - McAfee SECURE is a Trademark of McAfee, Inc.'); return false;">
+</a>
+<!-- END MCAFEESECURE CODE -->
+                </li>
+            
+        </ul>
+        </div>
+    </div>
+    <div class="b-mobile">
+        <a class="b-copyright-logo" href="http://wargaming.com">Wargaming.net</a>
+        <p class="b-copyright-text">© 2012–2014 <span class="b-ratings_copyright__bold">Wargaming.net.</span> 12+<br/>
+        Все права защищены.<br/>
+        Powered by BigWorld Technology™&nbsp;©</p>
+        
+        <ul class="b-footer-mobile-menu">
+            <li class="b-footer-mobile-menu_item">
+                <a class="b-footer-mobile-menu_link" href="http://ru.wargaming.net/privacy_policy/">Политика конфиденциальности</a>
+            </li>
+            <li class="b-footer-mobile-menu_item">
+                <a class="b-footer-mobile-menu_link" href="http://ru.wargaming.net/user_agreement/">Пользовательское соглашение</a>
+            </li>
+            
+        </ul>
+        <ul class="b-footer-mobile-menu">
+            <li class="b-footer-mobile-menu_item">
+                <a class="b-footer-mobile-menu_link" href="https://ru.wargaming.net/support/Tickets/Submit">Связаться с нами</a>
+            </li>
+            <li class="b-footer-mobile-menu_item">
+                <a class="b-footer-mobile-menu_link js-mobile-browser-force-desktop-link" href="#">Полная версия</a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+
+
+
+
+
+
+    
+
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-H42C"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer', 'GTM-H42C');
+    </script>
+
+
+<script type="text/javascript">if(!NREUMQ.f){NREUMQ.f=function(){NREUMQ.push(["load",new Date().getTime()]);var e=document.createElement("script");e.type="text/javascript";e.src=(("http:"===document.location.protocol)?"http:":"https:")+"//"+"js-agent.newrelic.com/nr-100.js";document.body.appendChild(e);if(NREUMQ.a)NREUMQ.a();};NREUMQ.a=window.onload;window.onload=NREUMQ.f;};NREUMQ.push(["nrfj","beacon-1.newrelic.com","6815601b35","1830874","DQklBh4gIzo1NAEzNzRDAScCIjkgOzlaOy0uBCI8GCguKCA+GjR2LAUiJR97DygnPhYcNygBETsJNg==",0,59,new Date().getTime(),"","","","",""]);</script></body>
+</html>

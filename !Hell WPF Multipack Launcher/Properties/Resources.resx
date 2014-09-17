@@ -260,4 +260,8 @@
     <value>https://api.worldoftanks.ru/wot/account/info/</value>
     <comment>Получение информации о конкретном пользователе</comment>
   </data>
+  <data name="API_OpenID" xml:space="preserve">
+    <value>https://api.worldoftanks.ru/wot/auth/login/</value>
+    <comment>Аутентификация пользователя</comment>
+  </data>
 </root>

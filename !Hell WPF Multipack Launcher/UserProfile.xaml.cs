@@ -40,6 +40,8 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
 
+                        MessageBox.Show(WarAPI.OpenID());
+
                        // Dictionary<string, string> Account = WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value);
                         MessageBox.Show(WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value));
 
