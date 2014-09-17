@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,7 +41,13 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
 
-                        MessageBox.Show(WarAPI.OpenID());
+                        //MessageBox.Show(WarAPI.OpenID());
+
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        WarApiOpenID WarApiOpenID = new WarApiOpenID();
+                        WarApiOpenID.ShowDialog();
+                    }));
 
                        // Dictionary<string, string> Account = WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value);
                         MessageBox.Show(WarAPI.AccountInfo(MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").Value));

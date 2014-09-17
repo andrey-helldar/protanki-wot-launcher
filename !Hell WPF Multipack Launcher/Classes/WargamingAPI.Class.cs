@@ -24,8 +24,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 File.AppendAllText("access.html", POST(Properties.Resources.API_OpenID, Data));
                 File.Open("access.html", FileMode.Open);*/
 
-                System.Diagnostics.Process.Start(Properties.Resources.API_OpenID+"?"+Data);
-
+                //System.Diagnostics.Process.Start(Properties.Resources.API_OpenID+"?"+Data);
+                
                 return "OK";
             }
             catch (Exception) { return "FAIL"; }
