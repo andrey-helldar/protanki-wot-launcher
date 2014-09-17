@@ -46,12 +46,12 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             // Устанавливаем заголовок в зависимости от типа версии
-            lType.Content = "Базовая версия";
+            //lType.Content = "Базовая версия";
 
-            if (MainWindow.XmlDocument.Root != null)
+            /*if (MainWindow.XmlDocument.Root != null)
                 if (MainWindow.XmlDocument.Root.Element("multipack") != null)
                     if (MainWindow.XmlDocument.Root.Element("multipack").Element("type") != null)
-                        lType.Content = MainWindow.XmlDocument.Root.Element("multipack").Element("type").Value == "base" ? "Базовая версия" : "Расширенная версия";
+                        lType.Content = MainWindow.XmlDocument.Root.Element("multipack").Element("type").Value == "base" ? "Базовая версия" : "Расширенная версия";*/
 
 
             // Загружаем список видео и новостей
@@ -305,7 +305,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                     else
                     {
-                        lStatus.Content = text;
+                        lStatus.Text = text;
                     }
                 }));
             }
