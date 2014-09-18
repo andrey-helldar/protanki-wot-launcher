@@ -81,16 +81,32 @@ namespace _Hell_WPF_Multipack_Launcher
 
                            JObject obj = JObject.Parse(WarAPI.AccountInfo(GetElement("account_id"), GetElement("access_token")));
 
-                           if (obj.SelectToken("status").ToString() =="ok")
+                           if (SelectToken(obj, "status", false).ToString() == "ok")
                            {
                                // Клан
-                               PlayerClan.Text = obj.SelectToken("data."+GetElement("account_id")+".clan_id").ToString();
+                               PlayerClan.Text = SelectToken(obj, "clan_id");
                                PlayerClanDays.Text = "---";
+
+                               PlayerGold.Text = SelectToken(obj, "private.gold");
+                               rating.Content = SelectToken(obj, "global_rating");
+                               credit.Content = SelectToken(obj, "private.credits");
                            }
                        }
                        catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
                    }));
             }
+        }
+
+        /// <summary>
+        /// Из объекта JObject выбираем нужный токен.
+        /// </summary>
+        /// <param name="obj">JObject</param>
+        /// <param name="key">Ключ выборки</param>
+        /// <param name="data">Если TRUE, то выбираем ключ из массива DATA информации о пользователе</param>
+        /// <returns>Возвращаем значение элемента в текстовом формате</returns>
+        private string SelectToken(JObject obj, string key, bool data = true)
+        {
+            return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", GetElement("account_id"), key)).ToString();
         }
 
         /// <summary>
