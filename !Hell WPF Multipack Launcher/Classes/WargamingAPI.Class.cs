@@ -25,10 +25,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 string Data = "?application_id=" + Properties.Resources.API;
-                Data += "&redirect_uri=http://t.ai-rus.com/tk.html";
+                Data += "&redirect_uri="+Properties.Resources.Developer+"/tk.html";
                 Data += "&display=page";
 
-                return Properties.Resources.API_OpenID + Data;
+                return Properties.Resources.API_Protocol+ Properties.Resources.API_OpenID + Data;
             }
             catch (Exception) { return "FAIL"; }
         }
@@ -49,7 +49,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Data += "&fields=" + "nickname,account_id";
                 Data += "&search=" + name;
 
-                JObject obj = JObject.Parse(POST(Properties.Resources.API_Account_List, Data));
+                JObject obj = JObject.Parse(POST(Properties.Resources.API_Protocol + Properties.Resources.API_Account_List, Data));
                 Dictionary<string, string> users = new Dictionary<string, string>();
 
                 users.Add("status", obj.SelectToken("status").ToString());
@@ -78,21 +78,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             Data += "&fields=" + "clan_id,global_rating,private.credits,private.free_xp,private.gold,private.is_premium,private.premium_expires_at,statistics.all.battle_avg_xp,statistics.all.battles";
             Data += "&account_id=" + account_id;
 
-            return POST(Properties.Resources.API_Account_Info, Data);
-            /*JObject obj = JObject.Parse(POST(Properties.Resources.API_Account_Info, Data));
-            Dictionary<string, string> Account = new Dictionary<string, string>();
-
-            Account.Add("status", obj.SelectToken("status").ToString());
-
-            try
-            {
-                if (obj.SelectToken("status").ToString() == "ok")
-                    for (int i = 0; i < Convert.ToInt16(obj.SelectToken("count").ToString()); i++)
-                        Account.Add(obj.SelectToken("data[" + i.ToString() + "].nickname").ToString(), obj.SelectToken("data[" + i.ToString() + "].account_id").ToString());
-
-                return Account;
-            }
-            catch (Exception) { return Account; }   */    
+            return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Account_Info, Data);
         }
 
 

@@ -245,11 +245,11 @@
     <comment>Таймаут перед созданием следующей записи на форме</comment>
   </data>
   <data name="APIlink" xml:space="preserve">
-    <value>https://api.worldoftanks.ru/wot</value>
+    <value>api.worldoftanks.ru/wot</value>
     <comment>БЕЗ СЛЕША НА КОНЦЕ!!!</comment>
   </data>
   <data name="API_Account_List" xml:space="preserve">
-    <value>https://api.worldoftanks.ru/wot/account/list/</value>
+    <value>api.worldoftanks.ru/wot/account/list/</value>
     <comment>Получение списка пользователей для определения ID</comment>
   </data>
   <data name="LogDays" xml:space="preserve">
@@ -257,11 +257,15 @@
     <comment>Время жизни логов дебага в сутках</comment>
   </data>
   <data name="API_Account_Info" xml:space="preserve">
-    <value>https://api.worldoftanks.ru/wot/account/info/</value>
+    <value>api.worldoftanks.ru/wot/account/info/</value>
     <comment>Получение информации о конкретном пользователе</comment>
   </data>
   <data name="API_OpenID" xml:space="preserve">
-    <value>https://api.worldoftanks.ru/wot/auth/login/</value>
+    <value>api.worldoftanks.ru/wot/auth/login/</value>
     <comment>Аутентификация пользователя</comment>
+  </data>
+  <data name="API_Protocol" xml:space="preserve">
+    <value>https://</value>
+    <comment>Протокол передачи запросов Wargaming API</comment>
   </data>
 </root>

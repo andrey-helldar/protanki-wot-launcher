@@ -29,8 +29,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            gbUsername.Visibility = Visibility.Hidden;
-
             /*
              * Загружаем заголовки
              */
@@ -42,16 +40,7 @@ namespace _Hell_WPF_Multipack_Launcher
             for (int i = 0; i < Convert.ToInt16(Lang.Set("Settings", "minimize")); i++)
                 cbLauncher.Items.Add(Lang.Set("Settings", "minimize" + i.ToString(), MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value));
 
-
-            /*
-             *  Блок Имя игрока
-             */
-            if (MainWindow.XmlDocument.Root.Element("info") != null)
-                if (MainWindow.XmlDocument.Root.Element("info").Attribute("player") != null)
-                    tbPlayerName.Text = MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value;
-
-
-
+            
             /*
              *  Блок ОПТИМИЗАЦИЯ
              */
@@ -239,70 +228,6 @@ namespace _Hell_WPF_Multipack_Launcher
         private void cbLauncher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Set("settings", "launcher", cbLauncher.SelectedIndex.ToString());
-        }
-
-        private void tbPlayerName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (MainWindow.XmlDocument.Root.Element("info") == null)
-                    MainWindow.XmlDocument.Root.Add(new XElement("info", new XAttribute("player", "")));
-
-                if (MainWindow.XmlDocument.Root.Element("info").Attribute("player") == null)
-                    MainWindow.XmlDocument.Root.Element("info").Add(new XAttribute("player", ""));
-
-                try { MainWindow.XmlDocument.Root.Element("info").Attribute("player").SetValue(tbPlayerName.Text); }
-                catch (Exception) { MainWindow.XmlDocument.Root.Element("info").Attribute("player").SetValue(""); }
-            }
-            catch (Exception) { }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (tbPlayerName.Text.Trim().Length > 0)
-                {
-                    Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
-                    lbResult.Items.Clear();
-
-                    users = WarAPI.AccountList(tbPlayerName.Text);
-
-                    if (users["status"] == "ok")
-                    {
-                        gbUsername.Visibility = Visibility.Visible;
-
-                        RunCount.Text = (users.Count - 1).ToString();
-
-                        foreach (KeyValuePair<string, string> user in users)
-                            if (user.Key != "status")
-                                lbResult.Items.Add(user.Key);
-                    }
-                    else
-                    {
-                        MessageBox.Show(users["status"]);
-                    }
-                }
-            }
-            catch (Exception) { }
-        }
-
-        private void lbResult_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            SelectID.Text = users[lbResult.SelectedItem.ToString()].ToString();
-
-            if (MainWindow.XmlDocument.Root.Element("info") == null)
-                MainWindow.XmlDocument.Root.Add(new XElement("info", new XAttribute("account_id", "")));
-
-            if (MainWindow.XmlDocument.Root.Element("info").Attribute("account_id") == null)
-                MainWindow.XmlDocument.Root.Element("info").Add(new XAttribute("account_id", ""));
-
-            try
-            {
-                tbPlayerName.Text = lbResult.SelectedItem.ToString();
-                MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").SetValue(SelectID.Text);
-            }
-            catch (Exception) { MainWindow.XmlDocument.Root.Element("info").Attribute("account_id").SetValue(""); }
         }
     }
 }

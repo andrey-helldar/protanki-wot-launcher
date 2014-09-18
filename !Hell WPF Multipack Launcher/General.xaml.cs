@@ -34,13 +34,13 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            string player = "";
-            if (MainWindow.XmlDocument.Root.Element("info") != null)
-                if (MainWindow.XmlDocument.Root.Element("info").Attribute("player") != null)
-                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value != "")
-                    player = ", " + MainWindow.XmlDocument.Root.Element("info").Attribute("player").Value;
+            string nickname = "";
+            if (MainWindow.XmlDocument.Root.Element("token") != null)
+                if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
+                    if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value != "")
+                        nickname = ", " + MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value;
 
-            Task.Factory.StartNew(() => ShowNotify("Добро пожаловать" + player + "!", "", false));
+            Task.Factory.StartNew(() => ShowNotify("Добро пожаловать" + nickname + "!", "", false));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

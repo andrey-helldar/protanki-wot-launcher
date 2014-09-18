@@ -4,14 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="691" d:DesignWidth="463"
+      d:DesignHeight="508" d:DesignWidth="450"
 	Title="SettingsOptimize" Width="Auto" Height="Auto" Background="#FFAC9595">
 
     <Grid>
         <ScrollViewer Margin="10">
             <Grid Margin="0" Background="#FFF9EFEF">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -37,7 +36,7 @@
                 </GroupBox>
 
 
-                <GroupBox VerticalAlignment="Top" Margin="0,5" Header="Другое:" Grid.Row="1">
+                <GroupBox VerticalAlignment="Top" Margin="0,5,0,0" Header="Другое:" Grid.Row="1">
                     <Grid Margin="5" Background="#FFBFAEAE">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -53,43 +52,6 @@
                             <ComboBoxItem Content="---"/>
                         </ComboBox>
                     </Grid>
-                </GroupBox>
-
-                <GroupBox Header="Игровой ник:" Margin="0,5" VerticalAlignment="Top" Grid.Row="2">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <TextBox x:Name="tbPlayerName" TextWrapping="Wrap" VerticalAlignment="Center" Margin="5" TextChanged="tbPlayerName_TextChanged"/>
-                        <Button Content="Найти" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,5,0" VerticalAlignment="Top" Padding="10,1" Click="Button_Click"/>
-                        <GroupBox x:Name="gbUsername" Header="Найдите свой ник в списке:" Margin="10,0,10,5" Grid.Row="1" Grid.ColumnSpan="2">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="221*"/>
-                                    <ColumnDefinition Width="161*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Margin="5,6,5,5" VerticalAlignment="Center">
-                                    <Run>Найдено совпадений:</Run>
-                                    <Run x:Name="RunCount" FontWeight="Bold">0</Run>
-                                </TextBlock>
-                                <ListBox x:Name="lbResult" Margin="10,0,10,10" MinHeight="100" Grid.Row="1" MaxHeight="200" Grid.ColumnSpan="2" MouseUp="lbResult_MouseUp"  />
-                                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,6,0,5" TextWrapping="Wrap" VerticalAlignment="Center">
-                                    <Run>Выбран ID:</Run>
-                                    <Run x:Name="SelectID" FontWeight="Bold">0</Run>
-                                </TextBlock>
-                            </Grid>
-                        </GroupBox>
-                    </Grid>
-
                 </GroupBox>
             </Grid>
         </ScrollViewer>

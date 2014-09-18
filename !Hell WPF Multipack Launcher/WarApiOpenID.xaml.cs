@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -29,27 +31,27 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (WB.Source.ToString().IndexOf("t.ai-rus.com") > 0 && WB.Source.ToString().IndexOf("access_token") > 0)
+                if (WB.Source.ToString().IndexOf(Properties.Resources.Developer) > -1 && WB.Source.ToString().IndexOf("access_token") > 0)
                 {
                     Dictionary<string, string> Token = WarAPI.Token(WB.Source.ToString());
 
                     MessageBox.Show(WarAPI.TokenString(WB.Source.ToString()));
 
-                    if (Token["access_token"].ToString() == "ok")
+                    if (Token["status"] == "ok")
                     {
                         if (MainWindow.XmlDocument.Root.Element("token") != null)
                         {
                             if (MainWindow.XmlDocument.Root.Element("token").Attribute("access_token") != null)
-                                MainWindow.XmlDocument.Root.Element("token").Attribute("access_token").SetValue(Token["access_token"].ToString());
+                                MainWindow.XmlDocument.Root.Element("token").Attribute("access_token").SetValue(Token["access_token"]);
 
                             if (MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at") != null)
-                                MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at").SetValue(Token["expires_at"].ToString());
+                                MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at").SetValue(Token["expires_at"]);
 
                             if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
-                                MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").SetValue(Token["nickname"].ToString());
+                                MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").SetValue(Token["nickname"]);
 
                             if (MainWindow.XmlDocument.Root.Element("token").Attribute("account_id") != null)
-                                MainWindow.XmlDocument.Root.Element("token").Attribute("account_id").SetValue(Token["account_id"].ToString());
+                                MainWindow.XmlDocument.Root.Element("token").Attribute("account_id").SetValue(Token["account_id"]);
                         }
 
                         this.Close();
