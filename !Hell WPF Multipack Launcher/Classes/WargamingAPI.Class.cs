@@ -109,6 +109,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             return null;
         }
 
+        public string ClanBattles(string clan_id, string fields = "")
+        {
+            /*
+             * api.worldoftanks.ru/wot/clan/battles/
+             */
+            string Data = String.Empty;
+
+            try
+            {
+                Data = "application_id=" + Properties.Resources.API;
+                Data += "&clan_id=" + clan_id;
+                if (fields.Trim().Length > 0) Data += "&fields=" + fields;
+
+                return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Clan_Battles, Data);
+            }
+            catch (Exception) { return null; }
+        }
+
 
         /*public string ClanMember(string account_id)
         {

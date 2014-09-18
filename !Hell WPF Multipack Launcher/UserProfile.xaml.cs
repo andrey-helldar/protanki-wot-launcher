@@ -79,14 +79,18 @@ namespace _Hell_WPF_Multipack_Launcher
 
                            PlayerName.Text = GetElement("nickname");
 
-                           JObject obj = JObject.Parse(WarAPI.AccountInfo(GetElement("account_id"), GetElement("access_token"))),
-                                   Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id")));
+                           JObject obj = JObject.Parse(WarAPI.AccountInfo(GetElement("account_id"), GetElement("access_token")));
+                           JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id")));
 
                            if (SelectToken(obj, "status", false).ToString() == "ok")
                            {
                                // Клан
-                               PlayerClan.Text = SelectToken(Clan, "name", true, true);
-                               PlayerClanDays.Text = SelectToken(Clan, "name", true, true);
+
+                               DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                               dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + GetElement("account_id") + ".created_at"))).ToLocalTime();
+
+                               PlayerClan.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
+                               PlayerClanDays.Text = dtDateTime.ToString();
 
                                PlayerGold.Text = SelectToken(obj, "private.gold");
                                rating.Content = "Личный рейтинг: "+SelectToken(obj, "global_rating");
@@ -103,7 +107,16 @@ namespace _Hell_WPF_Multipack_Launcher
                                LossPercent.Text = (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.losses")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString();
                                WhoPercent.Text = (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.draws")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString();
 
-                               AvgXP.Text = SelectToken(obj, "statistics.all.battle_avg_xp");                                 
+                               AvgXP.Text = SelectToken(obj, "statistics.all.battle_avg_xp");  
+                               
+
+                               /*
+                                *   ВКЛАДКА КЛАН
+                                *       Обшая информация
+                                */
+                               ClanFullname.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
+                               ClanAbbr.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
+                               ClanCount.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members_count");
                            }
                        }
                        catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
@@ -117,12 +130,15 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="obj">JObject</param>
         /// <param name="key">Ключ выборки</param>
         /// <param name="data">Если TRUE, то выбираем ключ из массива DATA информации о пользователе</param>
-        /// <param name="is_clan">Если TRUE, то выводим информацию о клане</param>
         /// <returns>Возвращаем значение элемента в текстовом формате</returns>
-        private string SelectToken(JObject obj, string key, bool data = true, bool is_clan = false)
+        private string SelectToken(JObject obj, string key, bool data = true)
         {
-            string newKey = !is_clan ? GetElement("account_id") : obj.SelectToken(String.Format("data.{0}.{1}", GetElement("account_id"), "clan_id")).ToString();
-            return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", newKey, key)).ToString();
+            return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", GetElement("account_id"), key)).ToString();
+        }
+
+        private string SelectTokenClan(JObject obj, string clan_id, string key, bool data = true)
+        {
+            return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", clan_id, key)).ToString();
         }
 
         /// <summary>
