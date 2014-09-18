@@ -88,8 +88,21 @@ namespace _Hell_WPF_Multipack_Launcher
                                PlayerClanDays.Text = "---";
 
                                PlayerGold.Text = SelectToken(obj, "private.gold");
-                               rating.Content = SelectToken(obj, "global_rating");
-                               credit.Content = SelectToken(obj, "private.credits");
+                               rating.Content = "Личный рейтинг: "+SelectToken(obj, "global_rating");
+                               credit.Content = "Кредитов: " + SelectToken(obj, "private.credits");
+                               opit.Content = "Свободный опыт: " + SelectToken(obj, "private.free_xp");
+
+                               prem.Content = SelectToken(obj, "private.is_premium") == "True" ? "Премиум аккаунт" : "Базовый аккаунт";
+
+                               Batles.Text = SelectToken(obj, "statistics.all.battles");                               
+                               Wins.Text = SelectToken(obj, "statistics.all.wins");
+                               Loss.Text = SelectToken(obj, "statistics.all.losses");
+
+                               WinsPercent.Text = (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.wins")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString();
+                               LossPercent.Text = (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.losses")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString();
+                               WhoPercent.Text = (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.draws")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString();
+
+                               AvgXP.Text = SelectToken(obj, "statistics.all.battle_avg_xp");                                 
                            }
                        }
                        catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }

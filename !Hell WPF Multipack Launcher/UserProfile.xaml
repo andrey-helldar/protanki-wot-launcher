@@ -9,44 +9,43 @@
 
     <Grid Background="#FFC39494">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90*"/>
-            <ColumnDefinition Width="93*"/>
-            <ColumnDefinition Width="177*"/>
-            <ColumnDefinition Width="85*"/>
-            <ColumnDefinition Width="93*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="36"/>
-            <RowDefinition Height="46"/>
-            <RowDefinition Height="39"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="428*"/>
-            <RowDefinition Height="51*"/>
+            <RowDefinition Height="549"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="tbUpHello" HorizontalAlignment="Left" Margin="10,10,0,10" TextWrapping="Wrap" Grid.ColumnSpan="2">
+        <TextBlock x:Name="tbUpHello" HorizontalAlignment="Left" Margin="10,10,0,523" TextWrapping="Wrap">
                     <Run>Привет, </Run>
                     <Run FontSize="14" FontWeight="Bold" x:Name="PlayerName">Гость</Run>
                     <Run>!</Run>
         </TextBlock>
-        <TextBlock x:Name="tbUpClan" Margin="10,3,0,6" TextWrapping="Wrap" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left">
+        <TextBlock x:Name="tbUpClan" Margin="10,39,0,473" TextWrapping="Wrap" HorizontalAlignment="Left">
                     <Run>Ты состоишь в клане </Run>
                     <Run FontSize="14" FontWeight="Bold" x:Name="PlayerClan">___</Run>
             <Run>вот уже </Run>
             <Run FontWeight="Bold" x:Name="PlayerClanDays">__</Run>
             <Run> дней!</Run>
         </TextBlock>
-        <Button Content="Премиум" HorizontalAlignment="Right" Margin="0,5,10,6" Width="113" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <Button x:Name="credit" Content="Кредитов: 500" Margin="11,7,16,0" VerticalAlignment="Top" Grid.Column="2" Height="22" Grid.Row="2"/>
-        <Button x:Name="opit" Content="Свободного опыта: 950" HorizontalAlignment="Right" Margin="0,7,10,0" VerticalAlignment="Top" Width="150" Grid.Column="3" Grid.ColumnSpan="2" Height="22" Grid.Row="2"/>
-        <Button x:Name="pobedi" Content="Процент побед: 48,71%" HorizontalAlignment="Left" Margin="10,4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="70" Height="70" UseLayoutRounding="False" TextOptions.TextFormattingMode="Display" FontWeight="Bold"/>
-        <Button x:Name="boev" Content="Количество боев 4136" HorizontalAlignment="Left" Margin="10,4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="70" Height="70" FontWeight="Bold" Grid.Column="1"/>
-        <Button x:Name="rating" Content="Личный рейтинг 3868" Margin="11,3,16,0" Grid.Row="4" VerticalAlignment="Top" Height="150" FontWeight="Bold" Grid.Column="2"/>
-        <Button x:Name="avgopit" Content="Средний опыт за бой 305" HorizontalAlignment="Right" Margin="0,4,7,0" Grid.Row="4" VerticalAlignment="Top" Width="70" Height="70" FontWeight="Bold" Grid.Column="3"/>
-        <Button x:Name="avguron" Content="Средний нанесенный урон за бой 452" HorizontalAlignment="Right" Margin="0,4,10,0" Grid.Row="4" VerticalAlignment="Top" Width="70" Height="70" FontWeight="Bold" Grid.Column="4"/>
-        <Button Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="5" VerticalAlignment="Bottom" Padding="20,5" Click="Button_Click" Grid.Column="3" Grid.ColumnSpan="2" Height="30" Width="89"/>
-        <TextBlock HorizontalAlignment="Left" Margin="27,7,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="72" Grid.ColumnSpan="2" Grid.Row="2">
+        <Button x:Name="prem" Content="Премиум" HorizontalAlignment="Right" Margin="0,5,10,473" Width="113"/>
+        <Button x:Name="credit" Content="Кредитов: 500" Margin="141,89,232,0" VerticalAlignment="Top" Height="22"/>
+        <Button x:Name="opit" Content="Свободного опыта: 950" HorizontalAlignment="Right" Margin="0,89,10,0" VerticalAlignment="Top" Width="208" Height="22"/>
+        <Button x:Name="rating" Content="Личный рейтинг 3868" Margin="194,124,194,0" VerticalAlignment="Top" Height="150" FontWeight="Bold"/>
+        <Button Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="1" VerticalAlignment="Bottom" Padding="20,5" Click="Button_Click" Height="30" Width="89"/>
+        <TextBlock HorizontalAlignment="Left" Margin="27,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="72">
             <Run>Золота:</Run>
             <Run x:Name="PlayerGold" FontWeight="Bold">0</Run>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center">
+            <Run>Всего боев:</Run><LineBreak/><Run x:Name="Batles">0</Run><LineBreak/><LineBreak/>
+            <Run>Всего побед:</Run><LineBreak/><Run x:Name="Wins">0</Run><LineBreak/><LineBreak/>
+            <Run>Всего Поражений:</Run><LineBreak/><Run x:Name="Loss">0</Run><LineBreak/><LineBreak/> 
+            
+            <Run>Процент побед</Run><LineBreak/><Run x:Name="WinsPercent">0</Run><Run>%</Run>     <LineBreak/>   
+            <Run>Процент поражений</Run><LineBreak/><Run x:Name="LossPercent">0</Run><Run>%</Run>   <LineBreak/>     
+            <Run>Процент ничьих</Run><LineBreak/><Run x:Name="WhoPercent">0</Run><Run>%</Run><LineBreak/><LineBreak/> 
+            
+            <Run>Средний опыт за бой:</Run><LineBreak/><Run x:Name="AvgXP">0</Run>
         </TextBlock>
     </Grid>
 </Page>

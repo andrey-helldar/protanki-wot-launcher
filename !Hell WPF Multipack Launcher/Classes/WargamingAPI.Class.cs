@@ -69,13 +69,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         }
 
 
-        //public Dictionary<string, string> AccountInfo(string account_id)
         public string AccountInfo(string account_id, string access_token="")
         {
-            // https://ru.wargaming.net/developers/api_reference/wot/account/info/
+            /*
+             * https://ru.wargaming.net/developers/api_reference/wot/account/info/
+             */
 
             string Data = "application_id=" + Properties.Resources.API;
-            Data += "&fields=" + "clan_id,global_rating,private.credits,private.free_xp,private.gold,private.is_premium,private.premium_expires_at,statistics.all.battle_avg_xp,statistics.all.battles";
+            //Data += "&fields=" + "clan_id,global_rating,private.credits,private.free_xp,private.gold,private.is_premium,private.premium_expires_at,statistics.all.battle_avg_xp,statistics.all.battles";
             Data += "&account_id=" + account_id;
             if (access_token.Length > 0) Data += "&access_token=" + access_token;
 
