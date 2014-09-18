@@ -244,10 +244,6 @@
     <value>0</value>
     <comment>Таймаут перед созданием следующей записи на форме</comment>
   </data>
-  <data name="APIlink" xml:space="preserve">
-    <value>api.worldoftanks.ru/wot</value>
-    <comment>БЕЗ СЛЕША НА КОНЦЕ!!!</comment>
-  </data>
   <data name="API_Account_List" xml:space="preserve">
     <value>api.worldoftanks.ru/wot/account/list/</value>
     <comment>Получение списка пользователей для определения ID</comment>
@@ -267,5 +263,9 @@
   <data name="API_Protocol" xml:space="preserve">
     <value>https://</value>
     <comment>Протокол передачи запросов Wargaming API</comment>
+  </data>
+  <data name="API_Clan_Info" xml:space="preserve">
+    <value>api.worldoftanks.ru/wot/clan/info/</value>
+    <comment>Данные о клане</comment>
   </data>
 </root>

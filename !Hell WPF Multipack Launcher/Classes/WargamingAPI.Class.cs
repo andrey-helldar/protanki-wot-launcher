@@ -68,7 +68,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, ex.Message); return null; }
         }
 
-
+        /// <summary>
+        /// Получение информации о пользователе
+        /// </summary>
+        /// <param name="account_id">Идентификатор пользователя</param>
+        /// <param name="access_token">Если ключ введен, отображается личная информация, иначе только общая</param>
+        /// <returns>Возврат данных в формате JSON</returns>
         public string AccountInfo(string account_id, string access_token="")
         {
             /*
@@ -82,6 +87,36 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
             return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Account_Info, Data);
         }
+
+        public string ClanInfo(string clan_id, string fields="")
+        {
+            /*
+             * https://api.worldoftanks.ru/wot/clan/info/
+             */
+
+            string Data = String.Empty;
+
+            try
+            {
+                Data = "application_id=" + Properties.Resources.API;
+                Data += "&clan_id=" + clan_id;
+                if (fields.Trim().Length > 0) Data += "&fields=" + fields;
+
+                return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Clan_Info, Data);
+            }
+            catch (Exception) { }
+
+            return null;
+        }
+
+
+        /*public string ClanMember(string account_id)
+        {
+            /*
+             * https://api.worldoftanks.ru/wot/clan/membersinfo/
+             *
+            return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Account_Info, Data);
+        }*/
 
 
         /// <summary>

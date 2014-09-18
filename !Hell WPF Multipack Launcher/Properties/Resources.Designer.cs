@@ -88,6 +88,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/clan/info/.
+        /// </summary>
+        public static string API_Clan_Info {
+            get {
+                return ResourceManager.GetString("API_Clan_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to api.worldoftanks.ru/wot/auth/login/.
         /// </summary>
         public static string API_OpenID {
@@ -102,15 +111,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         public static string API_Protocol {
             get {
                 return ResourceManager.GetString("API_Protocol", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to api.worldoftanks.ru/wot.
-        /// </summary>
-        public static string APIlink {
-            get {
-                return ResourceManager.GetString("APIlink", resourceCulture);
             }
         }
         
