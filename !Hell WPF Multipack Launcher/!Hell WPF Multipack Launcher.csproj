@@ -84,7 +84,9 @@
       <DependentUpon>Clan.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Language.Class.cs" />
+    <Compile Include="Classes\MainVM.Class.cs" />
     <Compile Include="Classes\WargamingAPI.Class.cs" />
+    <Compile Include="Classes\WPFCharting.Class.cs" />
     <Compile Include="Language.xaml.cs">
       <DependentUpon>Language.xaml</DependentUpon>
     </Compile>
