@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -40,10 +42,9 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         private void AccountInfo()
         {
-            bool active = false;
+            Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
 
-            active = GetElement("access_token") && GetElement("expires_at") && GetElement("nickname") && GetElement("account_id");
-            //if (active) active = DateTime.UtcNow.Subtract(DateTime.Parse(MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at").Value)) <= DateTime.UtcNow;
+            bool active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
 
             if (active)
             {
@@ -55,8 +56,6 @@ namespace _Hell_WPF_Multipack_Launcher
 
             if (!active)
             {
-                Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
-
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
                     try
@@ -70,19 +69,60 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             else
             {
-                /*
-                 *      Читаем информацию о пользователе
-                 */
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                   {
+                       try
+                       {
+                           string toMess = "null";
+                           /*
+                            *      Читаем информацию о пользователе
+                            */
+
+                           PlayerName.Text = GetElement("nickname");
+
+                           JObject obj = JObject.Parse(WarAPI.AccountInfo(GetElement("account_id"), GetElement("access_token")));
+
+                           if (obj.SelectToken("status").ToString() =="ok")
+                           {
+
+                               MessageBox.Show("data[" + GetElement("account_id") + "].clan_id");
+
+                               PlayerClan.Text = obj.SelectToken("data[" + GetElement("account_id") + "].clan_id").ToString();
+                           }
+
+                           MessageBox.Show(toMess);
+                       }
+                       catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
+                   }));
             }
         }
 
-        private bool GetElement(string attr)
+        /// <summary>
+        /// Проверяем существует ли аттрибут
+        /// </summary>
+        /// <param name="attr">Аттрибут для проверки</param>
+        /// <returns>TRUE - существует, FALSE - не существует</returns>
+        private bool CheckElement(string attr)
         {
             if (MainWindow.XmlDocument.Root.Element("token") != null)
                 if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr) != null)
                     if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value != "")
                         return true;
             return false;
+        }
+
+        /// <summary>
+        /// Получаем значение аттрибута
+        /// </summary>
+        /// <param name="attr">Аттрибут</param>
+        /// <returns>Значение</returns>
+        private string GetElement(string attr)
+        {
+            if (MainWindow.XmlDocument.Root.Element("token") != null)
+                if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr) != null)
+                    if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value != "")
+                        return MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value;
+            return "NULL";
         }
     }
 }

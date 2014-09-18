@@ -29,7 +29,7 @@
                     <Run>!</Run>
         </TextBlock>
         <TextBlock x:Name="tbUpClan" Margin="10,3,0,6" TextWrapping="Wrap" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left">
-                    <Run>Ух ты! Ты состоишь в клане </Run>
+                    <Run>Ты состоишь в клане </Run>
                     <Run FontSize="14" FontWeight="Bold" x:Name="PlayerClan">___</Run>
             <Run>вот уже </Run>
             <Run FontWeight="Bold" x:Name="PlayerClanDays">__</Run>
