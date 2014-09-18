@@ -73,7 +73,6 @@ namespace _Hell_WPF_Multipack_Launcher
                    {
                        try
                        {
-                           string toMess = "null";
                            /*
                             *      Читаем информацию о пользователе
                             */
@@ -84,13 +83,10 @@ namespace _Hell_WPF_Multipack_Launcher
 
                            if (obj.SelectToken("status").ToString() =="ok")
                            {
-
-                               MessageBox.Show("data[" + GetElement("account_id") + "].clan_id");
-
-                               PlayerClan.Text = obj.SelectToken("data[" + GetElement("account_id") + "].clan_id").ToString();
+                               // Клан
+                               PlayerClan.Text = obj.SelectToken("data."+GetElement("account_id")+".clan_id").ToString();
+                               PlayerClanDays.Text = "---";
                            }
-
-                           MessageBox.Show(toMess);
                        }
                        catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
                    }));
