@@ -1,1 +1,0 @@
-﻿{"uid":"f39d3705d0925c26120f42599dc7d336","version":"2.3.20.277","date":"2014-09-10 12-29-31","module":"POST.Class","function":"FromJson()","param0":"data={\"status\":\"ANSWER\",\"id\":\"0\",\"content\":\"Alles gut, kamrad!\"}","param1":"Unexpected character encountered while parsing value: d. Path '', line 0, position 0."}

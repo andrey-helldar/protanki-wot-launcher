@@ -1,1 +1,0 @@
-﻿{"uid":"64935334dc97650ae4e896ceebd4cae7","version":"2.3.22.280","date":"2014-09-17 7-9-35","module":"POST.Class","function":"FromJson()","param0":"{\"status\":\"ok\",\"count\":1,\"data\":[{\"nickname\":\"First_Helldar\",\"account_id\":2732865}]}","param1":"Error reading string. Unexpected token: StartArray. Path 'data', line 1, position 33."}
