@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pro>
+  <token access_token="6ad398683640110e0d42c5a95ac7eda6c92c9962" expires_at="1412214576" nickname="First_Helldar" account_id="2732865" />
+  <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru">
+    <notify_link />
+  </info>
+  <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
+  <multipack type="base" version="0.0.0.0">
+    <link></link>
+  </multipack>
+  <game>
+    <version>0.0.0.0</version>
+    <path></path>
+  </game>
+  <youtube/>
+  <do_not_display>
+    <video />
+    <news />
+  </do_not_display>
+  <processes/>
+</pro>
