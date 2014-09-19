@@ -3,8 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" 
-      xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=WPFToolkit.Extended"
+        xmlns:pie="clr-namespace:PieControls;assembly=PieControls"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="UserProfile" Width="538" Height="600" Background="#FFC1C1C1">
@@ -36,20 +36,12 @@
             <TabItem Header="Персональная информация">
                 <Grid Background="#FFE5E5E5">
                     <TextBlock HorizontalAlignment="Left" Margin="10,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center"><Run Text="Всего боев:"/><LineBreak/><Run x:Name="Batles" Text="0"/><LineBreak/><LineBreak/><Run Text="Всего побед:"/><LineBreak/><Run x:Name="Wins" Text="0"/><LineBreak/><LineBreak/><Run Text="Всего Поражений:"/><LineBreak/><Run x:Name="Loss" Text="0"/><LineBreak/><LineBreak/><Run Text="Процент побед"/><LineBreak/><Run x:Name="WinsPercent" Text="0"/><Run Text="%"/><LineBreak/><Run Text="Процент поражений"/><LineBreak/><Run x:Name="LossPercent" Text="0"/><Run Text="%"/><LineBreak/><Run Text="Процент ничьих"/><LineBreak/><Run x:Name="WhoPercent" Text="0"/><Run Text="%"/><LineBreak/><LineBreak/><Run Text="Средний опыт за бой:"/><LineBreak/><Run x:Name="AvgXP" Text="0"/></TextBlock>
-                    <Button x:Name="rating" Content="Личный рейтинг 0" Margin="337,61,10,0" VerticalAlignment="Top" Height="41" FontWeight="Bold"/>
+                    <Button x:Name="rating" Content="Личный рейтинг 0" Margin="337,61,10,0" VerticalAlignment="Top" Height="41" FontWeight="Bold" Click="rating_Click"/>
                     <Button x:Name="credit" Content="Кредитов: 0" Margin="224,7,108,0" VerticalAlignment="Top" Height="22"/>
                     <Button x:Name="opit" Content="Свободного опыта: 0" HorizontalAlignment="Right" Margin="0,34,76,0" VerticalAlignment="Top" Width="208" Height="22"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="72"><Run Text="Золота:"/><Run Text=" "/><Run x:Name="PlayerGold" FontWeight="Bold" Text="0"/></TextBlock>
-                    <chartingToolkit:Chart  x:Name="PieChart1" Width="373"
-                    		VerticalAlignment="Bottom" Margin="0" Height="304" HorizontalAlignment="Right">
-                            <chartingToolkit:PieSeries DependentValuePath="Value"
-                    			IndependentValuePath="Key" ItemsSource="{Binding}"
-                    			IsSelectionEnabled="True" TransitionDuration="0:0:2" SnapsToDevicePixels="True" Margin="10" />
-                    </chartingToolkit:Chart>
 
-                    <StackPanel>
-                        
-                    </StackPanel>
+                    <pie:PieChart x:Name="chart1" Width="350" Height="230" PieWidth="130" PieHeight="130" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                 </Grid>
             </TabItem>
             <TabItem Header="Клан">
