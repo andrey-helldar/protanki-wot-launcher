@@ -83,6 +83,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                            obj["data"][GetElement("account_id")]["clan_id"] = 103556;
                            JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id")));
+                           JObject Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id")));
                            
 
                            if (SelectToken(obj, "status", false).ToString() == "ok")
@@ -147,15 +148,12 @@ namespace _Hell_WPF_Multipack_Launcher
                                /*
                                 *       Бои клана
                                 */
-                               JObject battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id")));
-
                                ClanBattles.Items.Clear();
 
-                               MessageBox.Show(battles.ToString());
-
-                               if (SelectToken(battles, "status", false).ToString() == "ok")
+                               if (SelectTokenClan(Battles, SelectToken(obj, "clan_id"), "status", false).ToString() == "ok")
                                {
-                                   foreach (var battle in battles)
+                                   MessageBox.Show(Battles["data"][SelectToken(obj, "clan_id")][0].ToString());
+                                   foreach (var battle in (JObject)Battles["data"][SelectToken(obj, "clan_id")][0])
                                    {
                                        /*
                                         * Тип
@@ -164,9 +162,15 @@ namespace _Hell_WPF_Multipack_Launcher
                                         * Игровая карта
                                         */
 
+                                       MessageBox.Show(battle.ToString());
+
                                        ClanBattles.Items.Add(
-                                           
-                                       );
+                                           String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
+                                                (string)battle.Value["type"],
+                                                (string)battle.Value["time"],
+                                                (string)battle.Value["provinces"][0],
+                                                (string)battle.Value["arenas"][0]["name_i18n"]
+                                       ));
                                    }
                                }
                            }
