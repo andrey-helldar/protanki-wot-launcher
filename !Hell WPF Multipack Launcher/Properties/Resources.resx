@@ -272,4 +272,8 @@
     <value>api.worldoftanks.ru/wot/clan/info/</value>
     <comment>Данные о клане</comment>
   </data>
+  <data name="API_Clan_Provinces" xml:space="preserve">
+    <value>api.worldoftanks.ru/wot/clan/provinces/</value>
+    <comment>Провинции клана</comment>
+  </data>
 </root>

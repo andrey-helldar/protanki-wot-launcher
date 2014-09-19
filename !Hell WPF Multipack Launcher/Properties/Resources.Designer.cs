@@ -106,6 +106,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/clan/provinces/.
+        /// </summary>
+        public static string API_Clan_Provinces {
+            get {
+                return ResourceManager.GetString("API_Clan_Provinces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to api.worldoftanks.ru/wot/auth/login/.
         /// </summary>
         public static string API_OpenID {

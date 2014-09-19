@@ -88,7 +88,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Account_Info, Data);
         }
 
-        public string ClanInfo(string clan_id, string fields="")
+        /// <summary>
+        /// Информация о клане
+        /// </summary>
+        /// <param name="clan_id">ID клана</param>
+        /// <param name="access_token">Токен</param>
+        /// <param name="fields">Запрос определенных полей</param>
+        /// <returns>JSON ответ</returns>
+        public string ClanInfo(string clan_id, string access_token="", string fields="")
         {
             /*
              * https://api.worldoftanks.ru/wot/clan/info/
@@ -100,6 +107,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 Data = "application_id=" + Properties.Resources.API;
                 Data += "&clan_id=" + clan_id;
+                if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
                 if (fields.Trim().Length > 0) Data += "&fields=" + fields;
 
                 return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Clan_Info, Data);
@@ -108,8 +116,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
             return null;
         }
-
-        public string ClanBattles(string clan_id, string fields = "")
+        
+        /// <summary>
+        /// Список боев клана
+        /// </summary>
+        /// <param name="clan_id">ID клана</param>
+        /// <param name="access_token">Токен</param>
+        /// <param name="fields">Запрос определенных полей</param>
+        /// <returns>JSON ответ</returns>
+        public string ClanBattles(string clan_id, string access_token="", string fields = "")
         {
             /*
              * api.worldoftanks.ru/wot/clan/battles/
@@ -120,9 +135,36 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 Data = "application_id=" + Properties.Resources.API;
                 Data += "&clan_id=" + clan_id;
+                if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
                 if (fields.Trim().Length > 0) Data += "&fields=" + fields;
 
                 return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Clan_Battles, Data);
+            }
+            catch (Exception) { return null; }
+        }
+
+        /// <summary>
+        /// Провинции клана
+        /// </summary>
+        /// <param name="clan_id">ID клана</param>
+        /// <param name="access_token">Токен</param>
+        /// <param name="fields">Запрос определенных полей</param>
+        /// <returns>JSON ответ</returns>
+        public string ClanProvinces(string clan_id, string access_token = "", string fields = "")
+        {
+            /*
+             * api.worldoftanks.ru/wot/clan/provinces/
+             */
+            string Data = String.Empty;
+
+            try
+            {
+                Data = "application_id=" + Properties.Resources.API;
+                Data += "&clan_id=" + clan_id;
+                if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
+                if (fields.Trim().Length > 0) Data += "&fields=" + fields;
+
+                return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Clan_Provinces, Data);
             }
             catch (Exception) { return null; }
         }

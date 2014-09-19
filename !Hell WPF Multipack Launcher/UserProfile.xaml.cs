@@ -82,9 +82,10 @@ namespace _Hell_WPF_Multipack_Launcher
                            JObject obj = JObject.Parse(WarAPI.AccountInfo(GetElement("account_id"), GetElement("access_token")));
 
                            obj["data"][GetElement("account_id")]["clan_id"] = 103556;
-                           JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id")));
-                           JObject Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id")));
-                           
+                           JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id"), GetElement("access_token")));
+                           JObject Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id"), GetElement("access_token")));
+                           JObject Provinces = JObject.Parse(WarAPI.ClanProvinces(SelectToken(obj, "clan_id"), GetElement("access_token")));   
+
 
                            if (SelectToken(obj, "status", false).ToString() == "ok")
                            {
@@ -152,8 +153,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                if (SelectTokenClan(Battles, SelectToken(obj, "clan_id"), "status", false).ToString() == "ok")
                                {
-                                   MessageBox.Show(Battles["data"][SelectToken(obj, "clan_id")][0].ToString());
-                                   foreach (var battle in (JObject)Battles["data"][SelectToken(obj, "clan_id")][0])
+                                   foreach (var battle in (JArray)Battles["data"][SelectToken(obj, "clan_id")])
                                    {
                                        /*
                                         * Тип
@@ -162,16 +162,21 @@ namespace _Hell_WPF_Multipack_Launcher
                                         * Игровая карта
                                         */
 
-                                       MessageBox.Show(battle.ToString());
+                                       MessageBox.Show(SelectTokenClan(Provinces, SelectToken(obj, "clan_id"), (string)battle["provinces"][0]));
 
                                        ClanBattles.Items.Add(
                                            String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
-                                                (string)battle.Value["type"],
-                                                (string)battle.Value["time"],
-                                                (string)battle.Value["provinces"][0],
-                                                (string)battle.Value["arenas"][0]["name_i18n"]
+                                                (string)battle["type"],
+                                                (string)battle["time"],
+                                                SelectTokenClan(Provinces, SelectToken(obj, "clan_id"), (string)battle["provinces"][0] + ".name"),
+                                                //(string)battle["provinces"][0],
+                                                (string)battle["arenas"][0]["name_i18n"]
                                        ));
                                    }
+                               }
+                               else
+                               {
+                                   MessageBox.Show("STATUS NOT OK");
                                }
                            }
                        }
