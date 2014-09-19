@@ -31,58 +31,8 @@ namespace _Hell_WPF_Multipack_Launcher
             InitializeComponent();
 
             Task.Factory.StartNew(() => { AccountInfo(); });
-
-            PopulateCharts();
         }
         
-        List<Classes.PieDataCollection<PieSegment>> collectionList = new List<Classes.PieDataCollection<PieSegment>>();
-        Classes.PieDataCollection<PieSegment> collection1;
-        Classes.PieDataCollection<PieSegment> collection2;
-        Classes.PieDataCollection<PieSegment> collection3;
-        Classes.PieDataCollection<PieSegment> collection4;
-
-        void PopulateCharts()
-        {
-            collection1 = new Classes.PieDataCollection<PieSegment>();
-            collection1.CollectionName = "Animals";
-            collection1.Add(new PieSegment { Color = Colors.Green, Value = 5, Name = "Dogs" });
-            collection1.Add(new PieSegment { Color = Colors.Yellow, Value = 12, Name = "Cats" });
-            collection1.Add(new PieSegment { Color = Colors.Red, Value = 20, Name = "Mice" });
-            collection1.Add(new PieSegment { Color = Colors.DarkCyan, Value = 22, Name = "Lizards" });
-
-            collection2 = new Classes.PieDataCollection<PieSegment>();
-            collection2.CollectionName = "Foods";
-            collection2.Add(new PieSegment { Color = Colors.Green, Value = 20, Name = "Dairy" });
-            collection2.Add(new PieSegment { Color = Colors.Yellow, Value = 10, Name = "Fruites" });
-            collection2.Add(new PieSegment { Color = Colors.Red, Value = 10, Name = "Vegetables" });
-            collection2.Add(new PieSegment { Color = Colors.DarkCyan, Value = 18, Name = "Meat" });
-            collection2.Add(new PieSegment { Color = Colors.Wheat, Value = 20, Name = "Grains" });
-            collection2.Add(new PieSegment { Color = Colors.Gold, Value = 8, Name = "Sweets" });
-
-            collection3 = new Classes.PieDataCollection<PieSegment>();
-            collection3.CollectionName = "Fruites";
-            collection3.Add(new PieSegment { Color = Colors.Green, Value = 200, Name = "Apples" });
-            collection3.Add(new PieSegment { Color = Colors.Yellow, Value = 150, Name = "Oranges" });
-            collection3.Add(new PieSegment { Color = Colors.Red, Value = 250, Name = "Grapes" });
-            collection3.Add(new PieSegment { Color = Colors.DarkCyan, Value = 100, Name = "Melons" });
-            collection3.Add(new PieSegment { Color = Colors.Brown, Value = 140, Name = "Peaches" });
-
-            collection4 = new Classes.PieDataCollection<PieSegment>();
-            collection4.CollectionName = "Furniture";
-            collection4.Add(new PieSegment { Color = Colors.Green, Value = 8.5, Name = "Tables" });
-            collection4.Add(new PieSegment { Color = Colors.Yellow, Value = 7.5, Name = "Chairs" });
-            collection4.Add(new PieSegment { Color = Colors.Red, Value = 9.2, Name = "Beds" });
-
-            //pie1.Data = collection1;
-            //pie2.Data = collection2;
-            //pie1.PopupBrush = Brushes.LightGray;
-            chart1.Data = collection3;
-            chart1.PopupBrush = Brushes.LightBlue;
-            //chart2.Data = collection4;
-            //chart2.PopupBrush = Brushes.LightCoral;
-            collectionList.AddRange(new[] { collection1, collection2, collection3, collection4 });
-        }
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -140,11 +90,12 @@ namespace _Hell_WPF_Multipack_Launcher
                            JObject Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id"), GetElement("access_token")));
                            JObject Provinces = JObject.Parse(WarAPI.ClanProvinces(SelectToken(obj, "clan_id"), GetElement("access_token"), "type,name,arena_i18n,prime_time,revenue,occupancy_time,attacked"));
                            
-
+                           
                            if (SelectToken(obj, "status", false) == "ok")
                            {
-                               // Клан
-
+                               /* =========================================
+                                *       Общая информация о пользователе
+                                * =========================================*/
                                DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
                                try
                                {                                   
@@ -173,13 +124,22 @@ namespace _Hell_WPF_Multipack_Launcher
                                AvgXP.Text = SelectToken(obj, "statistics.all.battle_avg_xp");
 
 
+                               /*
+                                *   ГРАФИК
+                                */
+                               List<Classes.PieDataCollection<PieSegment>> collectionList = new List<Classes.PieDataCollection<PieSegment>>();
+                               Classes.PieDataCollection<PieSegment> collection;
 
+                               collection = new Classes.PieDataCollection<PieSegment>();
+                               collection.CollectionName = "Percents";
+                               collection.Add(new PieSegment { Color = Colors.Green, Value = 5, Name = "Победы" });
+                               collection.Add(new PieSegment { Color = Colors.Yellow, Value = 12, Name = "Поражения" });
+                               collection.Add(new PieSegment { Color = Colors.Red, Value = 20, Name = "Ничьи" });
 
-                               /*List<KeyValuePair<string, int>> MyValue = new List<KeyValuePair<string, int>>();
-                               MyValue.Add(new KeyValuePair<string, int>("Победы", Convert.ToInt16(SelectToken(obj, "statistics.all.wins"))));
-                               MyValue.Add(new KeyValuePair<string, int>("Поражения", Convert.ToInt16(SelectToken(obj, "statistics.all.losses"))));
-                               MyValue.Add(new KeyValuePair<string, int>("Ничьи", Convert.ToInt16(SelectToken(obj, "statistics.all.draws"))));
-                               PieChart1.DataContext = MyValue;*/
+                               chart1.Data = collection;
+                               chart1.PopupBrush = Brushes.LightBlue;
+
+                               collectionList.AddRange(new[] { collection });
                                
 
                                /*
@@ -363,23 +323,5 @@ namespace _Hell_WPF_Multipack_Launcher
                         return MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value;
             return "NULL";
         }
-
-        private void rating_Click(object sender, RoutedEventArgs e)
-        {
-            Xceed.Wpf.Toolkit.MessageBox.Show("STATUS OK _1");
-
-            Random rand = new Random();
-            for (int i = collectionList.Count - 1; i > 0; i--) //Knuth-Fisher-Yates shuffle algorithm
-            {
-                int next = rand.Next(i + 1);
-                var temp = collectionList[i];
-                collectionList[i] = collectionList[next];
-                collectionList[next] = temp;
-            }
-            chart1.Data = collectionList[2];
-            //this.InvalidateVisual();
-        }
-
-
     }
 }
