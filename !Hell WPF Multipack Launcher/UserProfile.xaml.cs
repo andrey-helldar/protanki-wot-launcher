@@ -81,7 +81,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                            JObject obj = JObject.Parse(WarAPI.AccountInfo(GetElement("account_id"), GetElement("access_token")));
 
-                           obj["data"][GetElement("account_id")]["clan_id"] = 104058;
+                           obj["data"][GetElement("account_id")]["clan_id"] = 103556;
                            JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id")));
                            
 
@@ -143,10 +143,32 @@ namespace _Hell_WPF_Multipack_Launcher
                                }
 
 
+
                                /*
                                 *       Бои клана
                                 */
+                               JObject battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id")));
+
                                ClanBattles.Items.Clear();
+
+                               MessageBox.Show(battles.ToString());
+
+                               if (SelectToken(battles, "status", false).ToString() == "ok")
+                               {
+                                   foreach (var battle in battles)
+                                   {
+                                       /*
+                                        * Тип
+                                        * Время
+                                        * Провинция
+                                        * Игровая карта
+                                        */
+
+                                       ClanBattles.Items.Add(
+                                           
+                                       );
+                                   }
+                               }
                            }
                        }
                        catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }

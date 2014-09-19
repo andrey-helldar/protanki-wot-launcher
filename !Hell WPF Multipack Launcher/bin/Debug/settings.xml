@@ -12,9 +12,7 @@
     <version>0.0.0.0</version>
     <path>D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\</path>
   </game>
-  <youtube>
-    <video>f6IAUlQmTwo</video>
-  </youtube>
+  <youtube />
   <do_not_display>
     <video />
     <news />
