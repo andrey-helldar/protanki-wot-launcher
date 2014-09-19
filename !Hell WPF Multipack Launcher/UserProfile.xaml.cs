@@ -127,7 +127,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                prem.Content = SelectToken(obj, "private.is_premium") == "True" ? "Премиум аккаунт" : "Базовый аккаунт";
 
-                               Batles.Text = SelectToken(obj, "statistics.all.battles");                               
+                               /*Batles.Text = SelectToken(obj, "statistics.all.battles");                               
                                Wins.Text = SelectToken(obj, "statistics.all.wins");
                                Loss.Text = SelectToken(obj, "statistics.all.losses");
 
@@ -135,16 +135,34 @@ namespace _Hell_WPF_Multipack_Launcher
                                LossPercent.Text = (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.losses")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString();
                                WhoPercent.Text = (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.draws")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString();
 
-                               AvgXP.Text = SelectToken(obj, "statistics.all.battle_avg_xp");
+                               AvgXP.Text = SelectToken(obj, "statistics.all.battle_avg_xp");*/
 
 
                                /*
                                 *   ГРАФИК
                                 */
-                               JObject
+                               JObject objChart = new JObject(
+                                   new JProperty("wins",
+                                       new JObject(
+                                           new JProperty("name", "Победы"),
+                                           new JProperty("total", Convert.ToDouble(SelectToken(obj, "statistics.all.wins")))
+                                       )
+                                   ),
+                                   new JProperty("losses",
+                                       new JObject(
+                                           new JProperty("name", "Поражения"),
+                                           new JProperty("total", Convert.ToDouble(SelectToken(obj, "statistics.all.losses")))
+                                       )
+                                   ),
+                                   new JProperty("draws",
+                                       new JObject(
+                                           new JProperty("name", "Ничьи"),
+                                           new JProperty("total", Convert.ToDouble(SelectToken(obj, "statistics.all.draws")))
+                                       )
+                                   )
+                               );
 
-                               classes = new ObservableCollection<AssetClass>(AssetClass.ConstructTestData());
-                               this.DataContext = classes;    
+                               this.DataContext = new ObservableCollection<AssetClass>(AssetClass.ConstructTestData(objChart));
 
                                /*List<Classes.PieDataCollection<PieSegment>> collectionList = new List<Classes.PieDataCollection<PieSegment>>();
                                Classes.PieDataCollection<PieSegment> collection;

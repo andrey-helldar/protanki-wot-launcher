@@ -79,9 +79,9 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 else
                 {
-                    assetClasses.Add(new AssetClass() { Class = "Cash", Fund = 1.56, Total = 1.56, Benchmark = 4.82 });
-                    assetClasses.Add(new AssetClass() { Class = "Bonds", Fund = 2.92, Total = 2.92, Benchmark = 17.91 });
-                    assetClasses.Add(new AssetClass() { Class = "Real Estate", Fund = 13.24, Total = 0, Benchmark = 0.04 });
+                    assetClasses.Add(new AssetClass() { Class = "Null", Fund = 1.56, Total = 1.56, Benchmark = 4.82 });
+                    assetClasses.Add(new AssetClass() { Class = "Null", Fund = 2.92, Total = 2.92, Benchmark = 17.91 });
+                    assetClasses.Add(new AssetClass() { Class = "Null", Fund = 13.24, Total = 0, Benchmark = 0.04 });
                 }
 
                 return assetClasses;
