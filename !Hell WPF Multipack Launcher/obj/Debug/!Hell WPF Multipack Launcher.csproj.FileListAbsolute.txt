@@ -94,4 +94,3 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\D
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Debug\Multipack Launcher 2.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Debug\WPFToolkit.dll
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.pdb
