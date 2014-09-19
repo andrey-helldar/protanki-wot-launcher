@@ -84,8 +84,8 @@ namespace _Hell_WPF_Multipack_Launcher
                            obj["data"][GetElement("account_id")]["clan_id"] = 103556;
                            JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id"), GetElement("access_token")));
                            JObject Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id"), GetElement("access_token")));
-                           JObject Provinces = JObject.Parse(WarAPI.ClanProvinces(SelectToken(obj, "clan_id"), GetElement("access_token")));   
-
+                           //JObject Provinces = JObject.Parse(WarAPI.ClanProvinces(SelectToken(obj, "clan_id"), GetElement("access_token")));  
+                           
 
                            if (SelectToken(obj, "status", false).ToString() == "ok")
                            {
@@ -161,15 +161,13 @@ namespace _Hell_WPF_Multipack_Launcher
                                         * Провинция
                                         * Игровая карта
                                         */
-                                       MessageBox.Show((string)battle["provinces"][0]);
-                                       MessageBox.Show(SelectTokenNoClan(Provinces, (string)battle["provinces"][0]));
+                                       JObject GlobalProvinces = JObject.Parse(WarAPI.GlobalProvinces((string)battle["provinces"][0]));
 
                                        ClanBattles.Items.Add(
                                            String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
                                                 (string)battle["type"],
                                                 (string)battle["time"],
-                                                SelectTokenNoClan(Provinces, (string)battle["provinces"][0] + ".name"),
-                                                //(string)battle["provinces"][0],
+                                                SelectTokenNoClan(GlobalProvinces, (string)battle["provinces"][0] + ".province_i18n"),
                                                 (string)battle["arenas"][0]["name_i18n"]
                                        ));
                                    }

@@ -174,10 +174,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// Список провинций Глобальной карты
         /// При передаче ID конкретной провинции, можно получить данные только по ней
         /// </summary>
+        /// <param name="province_id">Идентификатор провинции</param>
         /// <param name="map_id">Идентификатор Глобальной карты:  globalwars</param>
-        /// <param name="province_id"></param>
-        /// <returns></returns>
-        public string GlobalProvinces(string map_id, string province_id = "")
+        /// <returns>JSON ответ</returns>
+        public string GlobalProvinces(string province_id = "", string map_id = "globalmap")
         {
             /*
              * api.worldoftanks.ru/wot/globalwar/provinces/
