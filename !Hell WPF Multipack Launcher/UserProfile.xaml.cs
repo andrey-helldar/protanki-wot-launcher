@@ -13,10 +13,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using System.Windows.Media.Animation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using PieControls;
-using Xceed.Wpf.Toolkit;
+using ScottLogic.Shapes;
 
 
 namespace _Hell_WPF_Multipack_Launcher
@@ -26,6 +27,19 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class UserProfile : Page
     {
+        private ObservableCollection<AssetClass> classes;
+
+        /// <summary>
+        /// Handle clicks on the listview column heading
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnColumnHeaderClick(object sender, RoutedEventArgs e)
+        {
+            GridViewColumn column = ((GridViewColumnHeader)e.OriginalSource).Column;
+            piePlotter.PlottedProperty = column.Header.ToString();
+        }
+
         public UserProfile()
         {
             InitializeComponent();
@@ -68,7 +82,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         WarApiOpenID.WB.Source = new Uri(WarAPI.OpenID());
                         WarApiOpenID.ShowDialog();
                     }
-                    catch (Exception ex) { Xceed.Wpf.Toolkit.MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
+                    catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
                 }));
             }
             else
@@ -127,7 +141,12 @@ namespace _Hell_WPF_Multipack_Launcher
                                /*
                                 *   ГРАФИК
                                 */
-                               List<Classes.PieDataCollection<PieSegment>> collectionList = new List<Classes.PieDataCollection<PieSegment>>();
+                               JObject
+
+                               classes = new ObservableCollection<AssetClass>(AssetClass.ConstructTestData());
+                               this.DataContext = classes;    
+
+                               /*List<Classes.PieDataCollection<PieSegment>> collectionList = new List<Classes.PieDataCollection<PieSegment>>();
                                Classes.PieDataCollection<PieSegment> collection;
 
                                collection = new Classes.PieDataCollection<PieSegment>();
@@ -139,7 +158,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                Percents.Data = collection;
                                Percents.PopupBrush = Brushes.LightBlue;
 
-                               collectionList.AddRange(new[] { collection });
+                               collectionList.AddRange(new[] { collection });*/
                                
 
                                /*
@@ -201,7 +220,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                    }
                                }
                                else
-                                   Xceed.Wpf.Toolkit.MessageBox.Show("STATUS NOT OK");
+                                   MessageBox.Show("STATUS NOT OK");
 
 
                                /*
@@ -248,12 +267,12 @@ namespace _Hell_WPF_Multipack_Launcher
                                    }
                                }
                                else
-                                   Xceed.Wpf.Toolkit.MessageBox.Show("STATUS NOT OK");
+                                   MessageBox.Show("STATUS NOT OK");
                            }
                            else
-                               Xceed.Wpf.Toolkit.MessageBox.Show("STATUS NOT OK _0");
+                               MessageBox.Show("STATUS NOT OK _0");
                        }
-                       catch (Exception ex) { Xceed.Wpf.Toolkit.MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
+                       catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
                    }));
             }
         }
