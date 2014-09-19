@@ -161,14 +161,14 @@ namespace _Hell_WPF_Multipack_Launcher
                                         * Провинция
                                         * Игровая карта
                                         */
-
-                                       MessageBox.Show(SelectTokenClan(Provinces, SelectToken(obj, "clan_id"), (string)battle["provinces"][0]));
+                                       MessageBox.Show((string)battle["provinces"][0]);
+                                       MessageBox.Show(SelectTokenNoClan(Provinces, (string)battle["provinces"][0]));
 
                                        ClanBattles.Items.Add(
                                            String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
                                                 (string)battle["type"],
                                                 (string)battle["time"],
-                                                SelectTokenClan(Provinces, SelectToken(obj, "clan_id"), (string)battle["provinces"][0] + ".name"),
+                                                SelectTokenNoClan(Provinces, (string)battle["provinces"][0] + ".name"),
                                                 //(string)battle["provinces"][0],
                                                 (string)battle["arenas"][0]["name_i18n"]
                                        ));
@@ -197,10 +197,24 @@ namespace _Hell_WPF_Multipack_Launcher
             return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", GetElement("account_id"), key)).ToString();
         }
 
+        /// <summary>
+        /// Из объекта клана JObject выбираем нужный токен.
+        /// </summary>
+        /// <param name="obj">JObject</param>
+        /// <param name="clan_id">Идентификатор клана</param>
+        /// <param name="key">Ключ выборки</param>
+        /// <param name="data">Если TRUE, то выбираем ключ из массива DATA информации о пользователе</param>
+        /// <returns>Возвращаем значение элемента в текстовом формате</returns>
         private string SelectTokenClan(JObject obj, string clan_id, string key, bool data = true)
         {
             return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", clan_id, key)).ToString();
         }
+
+        private string SelectTokenNoClan(JObject obj, string key, bool data = true)
+        {
+            return obj.SelectToken(!data ? key : String.Format("data.{0}", key)).ToString();
+        }
+
 
         /// <summary>
         /// Проверяем существует ли аттрибут

@@ -276,4 +276,8 @@
     <value>api.worldoftanks.ru/wot/clan/provinces/</value>
     <comment>Провинции клана</comment>
   </data>
+  <data name="API_Global_Provinces" xml:space="preserve">
+    <value>api.worldoftanks.ru/wot/globalwar/provinces/</value>
+    <comment>Провинции Глобальной карты</comment>
+  </data>
 </root>
