@@ -141,7 +141,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                /*
                                 *   ГРАФИК
                                 */
-
                                this.DataContext = new ObservableCollection<AssetClass>(AssetClass.ConstructTestData(new JObject(
                                    new JProperty("wins",
                                        new JObject(
@@ -163,20 +162,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                    )
                                )));
 
-                               /*List<Classes.PieDataCollection<PieSegment>> collectionList = new List<Classes.PieDataCollection<PieSegment>>();
-                               Classes.PieDataCollection<PieSegment> collection;
-
-                               collection = new Classes.PieDataCollection<PieSegment>();
-                               collection.CollectionName = "Percents";
-                               collection.Add(new PieSegment { Color = Colors.LightGreen, Value = Convert.ToDouble(SelectToken(obj, "statistics.all.wins")), Name = "Победы" });
-                               collection.Add(new PieSegment { Color = Colors.OrangeRed, Value = Convert.ToDouble(SelectToken(obj, "statistics.all.losses")), Name = "Поражения" });
-                               collection.Add(new PieSegment { Color = Colors.Black, Value = Convert.ToDouble(SelectToken(obj, "statistics.all.draws")), Name = "Ничьи" });
-
-                               Percents.Data = collection;
-                               Percents.PopupBrush = Brushes.LightBlue;
-
-                               collectionList.AddRange(new[] { collection });*/
-                               
 
                                /*
                                 *   ВКЛАДКА КЛАН

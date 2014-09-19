@@ -10,12 +10,9 @@
 	Title="UserProfile" Width="538" Height="600" Background="#FFC1C1C1">
     <Page.Resources>
         <x:ArrayExtension Type="{x:Type Brush}" x:Key="brushes">
-            <SolidColorBrush Color="#9F15C3"/>
-            <SolidColorBrush Color="#FF8E01"/>
-            <SolidColorBrush Color="#339933"/>
-            <SolidColorBrush Color="#00AAFF"/>
-            <SolidColorBrush Color="#818183"/>
-            <SolidColorBrush Color="#000033"/>
+            <SolidColorBrush Color="#FF159927"/>
+            <SolidColorBrush Color="#FFFF7575"/>
+            <SolidColorBrush Color="#FF2679A8"/>
         </x:ArrayExtension>
     </Page.Resources>
 
