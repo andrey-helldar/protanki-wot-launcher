@@ -57,7 +57,7 @@
                         </TabItem>
                         <TabItem Header="Список боев">
                             <Grid Background="#FFE5E5E5">
-                                <ListBox HorizontalAlignment="Left" Height="100" Margin="151,108,0,0" VerticalAlignment="Top" Width="100"/>
+                                <ListBox x:Name="ClanBattles" Margin="0"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Список владений">

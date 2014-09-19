@@ -132,19 +132,21 @@ namespace _Hell_WPF_Multipack_Launcher
                                ClanMembers.Items.Clear();
                                int i = 0;
 
-                               var Members =
-                                    from p in Clan["data"][SelectToken(obj, "clan_id")]
-                                    select (string)p["members"];
-
-                               foreach (var member in Members)
+                               foreach (var member in (JObject)Clan["data"][SelectToken(obj, "clan_id")]["members"])
                                {
                                    ClanMembers.Items.Add(String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
                                        (++i).ToString(),
-                                       (JToken)member["account_name"].ToString(),
-                                       (JToken)member["role_i18n"].ToString(),
-                                       (JToken)member["created_at"].ToString()
+                                       (string)member.Value["account_name"],
+                                       (string)member.Value["role_i18n"],
+                                       (string)member.Value["created_at"]
                                    ));
                                }
+
+
+                               /*
+                                *       Бои клана
+                                */
+                               ClanBattles.Items.Clear();
                            }
                        }
                        catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
