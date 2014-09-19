@@ -3,6 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" 
+      xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="UserProfile" Width="538" Height="600" Background="#FFC1C1C1">
@@ -38,8 +40,12 @@
                     <Button x:Name="credit" Content="Кредитов: 0" Margin="224,7,108,0" VerticalAlignment="Top" Height="22"/>
                     <Button x:Name="opit" Content="Свободного опыта: 0" HorizontalAlignment="Right" Margin="0,34,76,0" VerticalAlignment="Top" Width="208" Height="22"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="72"><Run Text="Золота:"/><Run Text=" "/><Run x:Name="PlayerGold" FontWeight="Bold" Text="0"/></TextBlock>
-                    <StackPanel>
-                    </StackPanel>
+                    <chartingToolkit:Chart  x:Name="PieChart1" Width="284"
+                    		VerticalAlignment="Bottom" Margin="0" Height="207" HorizontalAlignment="Right">
+                        <chartingToolkit:PieSeries DependentValuePath="Value"
+                    			IndependentValuePath="Key" ItemsSource="{Binding}"
+                    			IsSelectionEnabled="True" />
+                    </chartingToolkit:Chart>
                 </Grid>
             </TabItem>
             <TabItem Header="Клан">

@@ -8,12 +8,12 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\D
 _Hell_WPF_Multipack_Launcher
 none
 false
-DEBUG;TRACE
+TRACE;DEBUG;ENTERPRISE
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\App.xaml
 14-845373121
 
 28-1130698413
-20-2033542755
+23-1008736594
 About.xaml;Clan.xaml;Error.xaml;Feedback.xaml;General.xaml;Language.xaml;Loading.xaml;MainWindow.xaml;Settings.xaml;SettingsGeneral.xaml;SettingsProcesses.xaml;Update.xaml;UserProfile.xaml;WarApiOpenID.xaml;
 
 False

@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+
 namespace _Hell_WPF_Multipack_Launcher
 {
     /// <summary>
@@ -84,7 +85,7 @@ namespace _Hell_WPF_Multipack_Launcher
                            obj["data"][GetElement("account_id")]["clan_id"] = 103556;
                            JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id"), GetElement("access_token")));
                            JObject Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id"), GetElement("access_token")));
-                           JObject Provinces = JObject.Parse(WarAPI.ClanProvinces(SelectToken(obj, "clan_id"), GetElement("access_token"), "type,name,arena_i18n,prime_time,revenue,occupancy_time,attacked"));  
+                           JObject Provinces = JObject.Parse(WarAPI.ClanProvinces(SelectToken(obj, "clan_id"), GetElement("access_token"), "type,name,arena_i18n,prime_time,revenue,occupancy_time,attacked"));
                            
 
                            if (SelectToken(obj, "status", false) == "ok")
@@ -116,7 +117,16 @@ namespace _Hell_WPF_Multipack_Launcher
                                LossPercent.Text = (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.losses")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString();
                                WhoPercent.Text = (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.draws")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString();
 
-                               AvgXP.Text = SelectToken(obj, "statistics.all.battle_avg_xp");  
+                               AvgXP.Text = SelectToken(obj, "statistics.all.battle_avg_xp");
+
+
+
+
+                               List<KeyValuePair<string, int>> MyValue = new List<KeyValuePair<string, int>>();
+                               MyValue.Add(new KeyValuePair<string, int>("Победы", Convert.ToInt16(SelectToken(obj, "statistics.all.wins"))));
+                               MyValue.Add(new KeyValuePair<string, int>("Поражения", Convert.ToInt16(SelectToken(obj, "statistics.all.losses"))));
+                               MyValue.Add(new KeyValuePair<string, int>("Ничьи", Convert.ToInt16(SelectToken(obj, "statistics.all.draws"))));
+                               PieChart1.DataContext = MyValue;
                                
 
                                /*
