@@ -110,15 +110,21 @@ namespace _Hell_WPF_Multipack_Launcher
                                /* =========================================
                                 *       Общая информация о пользователе
                                 * =========================================*/
-                               DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                               try
-                               {                                   
-                                   dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + GetElement("account_id") + ".created_at"))).ToLocalTime();
-                               }
-                               catch (Exception) { }
+                               string timestamp = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + GetElement("account_id") + ".created_at");
 
-                               PlayerClan.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
-                               PlayerClanDays.Text = dtDateTime.ToString();
+                               if (timestamp != "0")
+                               {
+                                   DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                                   try { dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + GetElement("account_id") + ".created_at"))).ToLocalTime(); }
+                                   catch (Exception) { }
+
+                                   PlayerClan.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
+                                   PlayerClanDays.Text = dtDateTime.ToString();
+                               }
+                               else
+                               {
+                                   tbUpClan.Text = "Произошла ошибка или ты не состоишь в клане " + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
+                               }
 
                                PlayerGold.Text = SelectToken(obj, "private.gold");
                                rating.Content = "Личный рейтинг: "+SelectToken(obj, "global_rating");

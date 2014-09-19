@@ -48,7 +48,7 @@
                         <Run Text="Всего Поражений:"/><LineBreak/><Run x:Name="Loss" Text="0"/><LineBreak/><LineBreak/>
                         <Run Text="Средний опыт за бой:"/><LineBreak/><Run x:Name="AvgXP" Text="0"/>
                     </TextBlock>//-->
-                    
+
                     <Button x:Name="rating" Content="Личный рейтинг 0" Margin="337,61,10,0" VerticalAlignment="Top" Height="41" FontWeight="Bold" />
                     <Button x:Name="credit" Content="Кредитов: 0" Margin="224,7,108,0" VerticalAlignment="Top" Height="22"/>
                     <Button x:Name="opit" Content="Свободного опыта: 0" HorizontalAlignment="Right" Margin="0,34,76,0" VerticalAlignment="Top" Width="208" Height="22"/>
@@ -70,10 +70,14 @@
                     <TabControl Margin="10">
                         <TabItem Header="Общая информация">
                             <Grid Background="#FFE5E5E5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="103*"/>
+                                    <RowDefinition Height="268*"/>
+                                </Grid.RowDefinitions>
                                 <TextBlock x:Name="ClanFullname" HorizontalAlignment="Left" Margin="16,15,0,0" TextWrapping="Wrap" Text="Полное название: " VerticalAlignment="Top"/>
                                 <TextBlock x:Name="ClanAbbr" HorizontalAlignment="Left" Margin="20,45,0,0" TextWrapping="Wrap" Text="Сокращенное название: " VerticalAlignment="Top"/>
-                                <GroupBox Header="Список бойцов клана:" HorizontalAlignment="Left" Margin="30,114,0,0" VerticalAlignment="Top" Height="238" Width="438">
-                                    <ListBox x:Name="ClanMembers"/>
+                                <GroupBox Header="Список бойцов клана:" Margin="5,0,5,5" Grid.Row="1">
+                                    <ListBox x:Name="ClanMembers" Margin="5"/>
                                 </GroupBox>
                                 <TextBlock x:Name="ClanCount" HorizontalAlignment="Left" Margin="24,76,0,0" TextWrapping="Wrap" Text="Всего бойцов: " VerticalAlignment="Top"/>
                             </Grid>
