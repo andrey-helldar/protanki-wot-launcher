@@ -60,8 +60,8 @@
                         <Run x:Name="PlayerGold" FontWeight="Bold" Text="0"/>
                     </TextBlock>
 
-                    <c:PieChartLayout HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"
-                              x:Name="piePlotter" PlottedProperty="Статистика игрока" Margin="151,123,10,10" Width="347">
+                    <c:PieChartLayout Grid.Row="0" Grid.Column="0"
+                              x:Name="piePlotter" PlottedProperty="Statistic" Margin="0,0,0,10" VerticalAlignment="Bottom">
                         <c:PieChartLayout.ColorSelector>
                             <c:IndexedColourSelector Brushes="{StaticResource brushes}"/>
                         </c:PieChartLayout.ColorSelector>

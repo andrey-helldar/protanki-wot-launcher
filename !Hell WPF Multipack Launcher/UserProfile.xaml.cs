@@ -141,28 +141,27 @@ namespace _Hell_WPF_Multipack_Launcher
                                /*
                                 *   ГРАФИК
                                 */
-                               JObject objChart = new JObject(
+
+                               this.DataContext = new ObservableCollection<AssetClass>(AssetClass.ConstructTestData(new JObject(
                                    new JProperty("wins",
                                        new JObject(
                                            new JProperty("name", "Победы"),
-                                           new JProperty("total", Convert.ToDouble(SelectToken(obj, "statistics.all.wins")))
+                                           new JProperty("total", Convert.ToInt16(SelectToken(obj, "statistics.all.wins")))
                                        )
                                    ),
                                    new JProperty("losses",
                                        new JObject(
                                            new JProperty("name", "Поражения"),
-                                           new JProperty("total", Convert.ToDouble(SelectToken(obj, "statistics.all.losses")))
+                                           new JProperty("total", Convert.ToInt16(SelectToken(obj, "statistics.all.losses")))
                                        )
                                    ),
                                    new JProperty("draws",
                                        new JObject(
                                            new JProperty("name", "Ничьи"),
-                                           new JProperty("total", Convert.ToDouble(SelectToken(obj, "statistics.all.draws")))
+                                           new JProperty("total", Convert.ToInt16(SelectToken(obj, "statistics.all.draws")))
                                        )
                                    )
-                               );
-
-                               this.DataContext = new ObservableCollection<AssetClass>(AssetClass.ConstructTestData(objChart));
+                               )));
 
                                /*List<Classes.PieDataCollection<PieSegment>> collectionList = new List<Classes.PieDataCollection<PieSegment>>();
                                Classes.PieDataCollection<PieSegment> collection;

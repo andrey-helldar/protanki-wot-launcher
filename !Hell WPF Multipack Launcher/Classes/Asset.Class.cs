@@ -21,39 +21,15 @@ namespace _Hell_WPF_Multipack_Launcher
             }
         }
 
-        private double fund;
+        private double statistic;
 
-        public double Fund
+        public double Statistic
         {
-            get { return fund; }
+            get { return statistic; }
             set
             {
-                fund = value;
-                RaisePropertyChangeEvent("Fund");
-            }
-        }
-
-        private double total;
-
-        public double Total
-        {
-            get { return total; }
-            set
-            {
-                total = value;
-                RaisePropertyChangeEvent("Total");
-            }
-        }
-
-        private double benchmark;
-
-        public double Benchmark
-        {
-            get { return benchmark; }
-            set
-            {
-                benchmark = value;
-                RaisePropertyChangeEvent("Benchmark");
+                statistic = value;
+                RaisePropertyChangeEvent("Statistic");
             }
         }
 
@@ -71,17 +47,15 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         assetClasses.Add(new AssetClass() {
                             Class = (string)item.Value["name"],
-                            Fund = (double)item.Value["total"],
-                            Total = 0,
-                            Benchmark = 0
+                            Statistic = (int)item.Value["total"],
                         });
                     }
                 }
                 else
                 {
-                    assetClasses.Add(new AssetClass() { Class = "Null", Fund = 1.56, Total = 1.56, Benchmark = 4.82 });
-                    assetClasses.Add(new AssetClass() { Class = "Null", Fund = 2.92, Total = 2.92, Benchmark = 17.91 });
-                    assetClasses.Add(new AssetClass() { Class = "Null", Fund = 13.24, Total = 0, Benchmark = 0.04 });
+                    assetClasses.Add(new AssetClass() { Class = "Null", Statistic = 1 });
+                    assetClasses.Add(new AssetClass() { Class = "Null", Statistic = 1 });
+                    assetClasses.Add(new AssetClass() { Class = "Null", Statistic = 1 });
                 }
 
                 return assetClasses;
