@@ -41,7 +41,7 @@
                     <Button x:Name="opit" Content="Свободного опыта: 0" HorizontalAlignment="Right" Margin="0,34,76,0" VerticalAlignment="Top" Width="208" Height="22"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="72"><Run Text="Золота:"/><Run Text=" "/><Run x:Name="PlayerGold" FontWeight="Bold" Text="0"/></TextBlock>
 
-                    <pie:PieChart x:Name="chart1" Width="350" Height="230" PieWidth="130" PieHeight="130" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                    <pie:PieChart x:Name="Percents" Width="350" Height="230" PieWidth="130" PieHeight="130" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                 </Grid>
             </TabItem>
             <TabItem Header="Клан">

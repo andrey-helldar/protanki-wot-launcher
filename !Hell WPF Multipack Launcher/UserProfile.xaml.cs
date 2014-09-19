@@ -132,12 +132,12 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                collection = new Classes.PieDataCollection<PieSegment>();
                                collection.CollectionName = "Percents";
-                               collection.Add(new PieSegment { Color = Colors.Green, Value = 5, Name = "Победы" });
-                               collection.Add(new PieSegment { Color = Colors.Yellow, Value = 12, Name = "Поражения" });
-                               collection.Add(new PieSegment { Color = Colors.Red, Value = 20, Name = "Ничьи" });
+                               collection.Add(new PieSegment { Color = Colors.LightGreen, Value = Convert.ToDouble(SelectToken(obj, "statistics.all.wins")), Name = "Победы" });
+                               collection.Add(new PieSegment { Color = Colors.OrangeRed, Value = Convert.ToDouble(SelectToken(obj, "statistics.all.losses")), Name = "Поражения" });
+                               collection.Add(new PieSegment { Color = Colors.Black, Value = Convert.ToDouble(SelectToken(obj, "statistics.all.draws")), Name = "Ничьи" });
 
-                               chart1.Data = collection;
-                               chart1.PopupBrush = Brushes.LightBlue;
+                               Percents.Data = collection;
+                               Percents.PopupBrush = Brushes.LightBlue;
 
                                collectionList.AddRange(new[] { collection });
                                
