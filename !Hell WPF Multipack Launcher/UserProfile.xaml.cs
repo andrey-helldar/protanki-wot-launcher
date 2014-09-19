@@ -84,10 +84,10 @@ namespace _Hell_WPF_Multipack_Launcher
                            obj["data"][GetElement("account_id")]["clan_id"] = 103556;
                            JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id"), GetElement("access_token")));
                            JObject Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id"), GetElement("access_token")));
-                           //JObject Provinces = JObject.Parse(WarAPI.ClanProvinces(SelectToken(obj, "clan_id"), GetElement("access_token")));  
+                           JObject Provinces = JObject.Parse(WarAPI.ClanProvinces(SelectToken(obj, "clan_id"), GetElement("access_token"), "type,name,arena_i18n,prime_time,revenue,occupancy_time,attacked"));  
                            
 
-                           if (SelectToken(obj, "status", false).ToString() == "ok")
+                           if (SelectToken(obj, "status", false) == "ok")
                            {
                                // Клан
 
@@ -151,7 +151,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 */
                                ClanBattles.Items.Clear();
 
-                               if (SelectTokenClan(Battles, SelectToken(obj, "clan_id"), "status", false).ToString() == "ok")
+                               if (SelectTokenClan(Battles, SelectToken(obj, "clan_id"), "status", false) == "ok")
                                {
                                    foreach (var battle in (JArray)Battles["data"][SelectToken(obj, "clan_id")])
                                    {
@@ -193,9 +193,42 @@ namespace _Hell_WPF_Multipack_Launcher
                                 * Прайм-тайм
                                 * Доход
                                 * Время владения
+                                * Провинция атакована
+                                * 
+                                * type
+                                * name
+                                * arena_i18n
+                                * prime_time
+                                * revenue
+                                * occupancy_time
+                                * attacked
                                 */
 
+                               if (SelectTokenClan(Provinces, SelectToken(obj, "clan_id"), "status", false) == "ok")
+                               {
+                                   ClanProvinces.Items.Clear();
+
+                                   foreach (var province in (JObject)Provinces["data"])
+                                   {
+                                       ClanProvinces.Items.Add(
+                                           String.Format(
+                                            "{0}\t::\t{1}\t::\t{2}\t::\t{3}\t::\t{4}\t::\t{5}\t::\t{6}",
+                                            (string)province.Value["type"],
+                                            (string)province.Value["name"],
+                                            (string)province.Value["arena_i18n"],
+                                            (string)province.Value["prime_time"],
+                                            (string)province.Value["revenue"],
+                                            (string)province.Value["occupancy_time"],
+                                            (string)province.Value["attacked"]
+                                           )
+                                       );
+                                   }
+                               }
+                               else
+                                   MessageBox.Show("STATUS NOT OK");
                            }
+                           else
+                               MessageBox.Show("STATUS NOT OK _0");
                        }
                        catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
                    }));
@@ -227,6 +260,13 @@ namespace _Hell_WPF_Multipack_Launcher
             return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", clan_id, key)).ToString();
         }
 
+        /// <summary>
+        /// Получение информации из раздела
+        /// </summary>
+        /// <param name="obj">JObject</param>
+        /// <param name="key">Ключ</param>
+        /// <param name="data">Искать в разделе DATA?</param>
+        /// <returns>JSON</returns>
         private string SelectTokenNoClan(JObject obj, string key, bool data = true)
         {
             return obj.SelectToken(!data ? key : String.Format("data.{0}", key)).ToString();
