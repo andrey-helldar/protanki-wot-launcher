@@ -62,7 +62,7 @@
                         </TabItem>
                         <TabItem Header="Список владений">
                             <Grid HorizontalAlignment="Left" Height="372" VerticalAlignment="Top" Width="478">
-                                <ListBox HorizontalAlignment="Left" Height="100" Margin="161,86,0,0" VerticalAlignment="Top" Width="100"/>
+                                <ListBox Margin="0"/>
                             </Grid>
                         </TabItem>
                     </TabControl>

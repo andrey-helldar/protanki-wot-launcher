@@ -160,9 +160,14 @@ namespace _Hell_WPF_Multipack_Launcher
                                         * Время
                                         * Провинция
                                         * Игровая карта
+                                        * 
+                                        * Тип боя:
+                                        *       for_province — бой за провинцию;
+                                        *       meeting_engagement — встречный бой;
+                                        *       landing — бой за высадку.
                                         */
                                        JObject GlobalProvinces = JObject.Parse(WarAPI.GlobalProvinces((string)battle["provinces"][0]));
-
+                                       
                                        ClanBattles.Items.Add(
                                            String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
                                                 (string)battle["type"],
@@ -173,9 +178,23 @@ namespace _Hell_WPF_Multipack_Launcher
                                    }
                                }
                                else
-                               {
                                    MessageBox.Show("STATUS NOT OK");
-                               }
+
+
+                               /*
+                                *       Провинции клана
+                                *       
+                                * Тип:
+                                *   Стартовая
+                                *   Обычная
+                                *   Ключевая
+                                * Название
+                                * Игровая карта
+                                * Прайм-тайм
+                                * Доход
+                                * Время владения
+                                */
+
                            }
                        }
                        catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
