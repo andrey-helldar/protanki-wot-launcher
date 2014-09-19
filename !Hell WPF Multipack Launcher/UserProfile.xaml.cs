@@ -80,14 +80,21 @@ namespace _Hell_WPF_Multipack_Launcher
                            PlayerName.Text = GetElement("nickname");
 
                            JObject obj = JObject.Parse(WarAPI.AccountInfo(GetElement("account_id"), GetElement("access_token")));
+
+                           obj["data"][GetElement("account_id")]["clan_id"] = 104058;
                            JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id")));
+                           
 
                            if (SelectToken(obj, "status", false).ToString() == "ok")
                            {
                                // Клан
 
                                DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                               dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + GetElement("account_id") + ".created_at"))).ToLocalTime();
+                               try
+                               {                                   
+                                   dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + GetElement("account_id") + ".created_at"))).ToLocalTime();
+                               }
+                               catch (Exception) { }
 
                                PlayerClan.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
                                PlayerClanDays.Text = dtDateTime.ToString();
@@ -117,6 +124,27 @@ namespace _Hell_WPF_Multipack_Launcher
                                ClanFullname.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
                                ClanAbbr.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
                                ClanCount.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members_count");
+
+
+                               /*
+                                *       Члены клана
+                                */
+                               ClanMembers.Items.Clear();
+                               int i = 0;
+
+                               var Members =
+                                    from p in Clan["data"][SelectToken(obj, "clan_id")]
+                                    select (string)p["members"];
+
+                               foreach (var member in Members)
+                               {
+                                   ClanMembers.Items.Add(String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
+                                       (++i).ToString(),
+                                       (JToken)member["account_name"].ToString(),
+                                       (JToken)member["role_i18n"].ToString(),
+                                       (JToken)member["created_at"].ToString()
+                                   ));
+                               }
                            }
                        }
                        catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
