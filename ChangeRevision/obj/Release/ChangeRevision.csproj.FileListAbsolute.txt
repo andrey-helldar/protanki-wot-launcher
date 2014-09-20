@@ -3,3 +3,4 @@ F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ChangeRevision\bin\Release\ChangeRevision.pdb
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ChangeRevision\obj\Release\ChangeRevision.exe
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ChangeRevision\obj\Release\ChangeRevision.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ChangeRevision\obj\Release\ChangeRevision.csprojResolveAssemblyReference.cache
