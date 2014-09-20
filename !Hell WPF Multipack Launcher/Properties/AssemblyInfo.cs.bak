@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("!Hell Multi-Pack Launcher")]
+[assembly: AssemblyTitle("!Hell WPF Multipack Launcher")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AI RUS - Professional IT support")]
-[assembly: AssemblyProduct("!Hell Multi-Pack Launcher")]
+[assembly: AssemblyProduct("!Hell WPF Multipack Launcher")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
