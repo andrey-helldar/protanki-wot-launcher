@@ -8,7 +8,7 @@ F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 _Hell_WPF_Multipack_Launcher
 none
 false
-TRACE;DEBUG;ENTERPRISE
+TRACE;DEBUG;PERSONAL
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\App.xaml
 17-716871297
 
@@ -16,5 +16,5 @@ F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 20-619936894
 About.xaml;Clan.xaml;Error.xaml;Feedback.xaml;General.xaml;Language.xaml;Loading.xaml;MainWindow.xaml;ScottLogic\PieChart\Legend.xaml;ScottLogic\PieChart\PieChartLayout.xaml;ScottLogic\PieChart\PiePlotter.xaml;Settings.xaml;SettingsGeneral.xaml;SettingsProcesses.xaml;Update.xaml;UserProfile.xaml;WarApiOpenID.xaml;
 
-True
+False
 
