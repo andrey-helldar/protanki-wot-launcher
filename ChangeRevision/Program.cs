@@ -12,27 +12,32 @@ namespace ChangeRevision
     {
         static void Main(string[] args)
         {
-            /*
-             * args[0] - Путь к файлу
-             * args[1] - Номер ревизии
-             * args[2] - release или debug ?
-             */
-            //string text = File.ReadAllText(args[0] + @"Properties\AssemblyInfo.cs");
-            string text = File.ReadAllText(args[0]);
+
 
             /*
-             *      AssemblyVersion
+             *      Изменяем версию в файле
+             *      Чтение из GIT
              */
+
+            Console.WriteLine("f:");
+            Console.WriteLine("cd ");
+
+            /*
+             * args[0] - Путь к проекту
+             * args[1] - release или debug ?
+             */
+            string text = File.ReadAllText(args[0] + @"Properties\AssemblyInfo.cs");
+
             Match match = new Regex("AssemblyVersion\\(\"(.*?)\"\\)").Match(text);
             Version ver = new Version(match.Groups[1].Value);
-            int build = args[2] == "Release" ? ver.Build + 1 : ver.Build;
-            Version newVer = new Version(ver.Major, ver.Minor, build, Convert.ToInt16(args[1]));
+            int build = args[в] == "Release" ? ver.Build + 1 : ver.Build;
+            Version newVer = new Version(ver.Major, ver.Minor, build, Convert.ToInt16(args[сс]));
 
             text = Regex.Replace(text, @"AssemblyVersion\((.*?)\)", "AssemblyVersion(\"" + newVer.ToString() + "\")");
             text = Regex.Replace(text, @"AssemblyFileVersionAttribute\((.*?)\)", "AssemblyFileVersionAttribute(\"" + newVer.ToString() + "\")");
             text = Regex.Replace(text, @"AssemblyFileVersion\((.*?)\)", "AssemblyFileVersion(\"" + newVer.ToString() + "\")");
 
-            File.WriteAllText(args[0], text);
+            File.WriteAllText(args[0] + @"Properties\AssemblyInfo.cs", text);
 
             Console.ReadLine();
         }
