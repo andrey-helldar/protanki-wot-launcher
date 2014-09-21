@@ -53,12 +53,10 @@ namespace ChangeRevision
                         text = Regex.Replace(text, @"AssemblyVersion\((.*?)\)", "AssemblyVersion(\"" + newVer.ToString() + "\")");
                         text = Regex.Replace(text, @"AssemblyFileVersionAttribute\((.*?)\)", "AssemblyFileVersionAttribute(\"" + newVer.ToString() + "\")");
                         text = Regex.Replace(text, @"AssemblyFileVersion\((.*?)\)", "AssemblyFileVersion(\"" + newVer.ToString() + "\")");
-                        
+
                         File.WriteAllText(args[0] + @"\Properties\AssemblyInfo.cs", text);
                     }
                 }
-
-                Console.ReadLine();
             }
             catch (Exception ex)
             {
