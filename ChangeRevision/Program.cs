@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
@@ -15,15 +16,66 @@ namespace ChangeRevision
         {
             try
             {
-
-                /*
-                 *      Изменяем версию в файле
-                 *      Чтение из GIT
-                 */
                 if (File.Exists(args[0] + @"\revision.txt")) File.Delete(args[0] + @"\revision.txt");
-                Process.Start(@"c:\Program Files (x86)\Git\cmd\git.exe shoerlog -s >> " + "\"" + args[0] + "\\revision.txt\"");
 
-                string rev = File.ReadAllText(@"revision.txt").Trim();
+                Process process = new Process();
+
+                process.StartInfo.FileName = "\"c:\\Program Files (x86)\\Git\\cmd\\git.exe\"";
+                process.StartInfo.Arguments = @"rev-list master --count";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.RedirectStandardError = true;
+
+                StringBuilder output = new StringBuilder();
+
+                int timeout = 5000;
+
+                using (AutoResetEvent outputWaitHandle = new AutoResetEvent(false))
+                using (AutoResetEvent errorWaitHandle = new AutoResetEvent(false))
+                {
+                    process.OutputDataReceived += (sender, e) =>
+                    {
+                        if (e.Data == null)
+                        {
+                            outputWaitHandle.Set();
+                        }
+                        else
+                        {
+                            output.AppendLine(e.Data);
+                        }
+                    };
+
+                    process.Start();
+                    process.BeginOutputReadLine();
+
+                    if (process.WaitForExit(timeout) && outputWaitHandle.WaitOne(timeout))
+                    {
+                        File.WriteAllText("4.txt", output.ToString());
+                    }
+                }
+
+
+                
+
+
+                //Process.Start(@"c:\Program Files (x86)\Git\cmd\git.exe", @"shortlog -s >> revision.txt");
+
+                int i = 0;
+                while (i < 10)
+                {
+                    if (!File.Exists(args[0] + @"\revision.txt"))
+                    {
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Sleepeng: " + i.ToString());
+                    }
+                    else
+                    {
+                        i = 20;
+                    }
+                    i++;
+                }
+
+                string rev = File.ReadAllText(args[0] + @"\revision.txt").Trim();
                 rev = rev.Remove(rev.IndexOf("	"));
 
                 /*
@@ -42,7 +94,7 @@ namespace ChangeRevision
                 text = Regex.Replace(text, @"AssemblyFileVersion\((.*?)\)", "AssemblyFileVersion(\"" + newVer.ToString() + "\")");
 
                 File.WriteAllText(args[0] + @"\Properties\AssemblyInfo.cs", text);
-
+                Console.ReadLine();
             }
             catch (Exception ex)
             {
