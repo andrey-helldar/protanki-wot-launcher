@@ -17,6 +17,7 @@ namespace ChangeRevision
             try
             {                
                 Process process = new Process();
+                process.StartInfo.WorkingDirectory = args[2];
                 process.StartInfo.FileName = "\"c:\\Program Files (x86)\\Git\\cmd\\git.exe\"";
                 process.StartInfo.Arguments = @"rev-list master --count";
                 process.StartInfo.UseShellExecute = false;
@@ -24,7 +25,7 @@ namespace ChangeRevision
                 process.StartInfo.RedirectStandardError = true;
 
                 StringBuilder output = new StringBuilder();
-                int timeout = 5000;
+                int timeout = 10000;
 
                 using (AutoResetEvent outputWaitHandle = new AutoResetEvent(false))
                 using (AutoResetEvent errorWaitHandle = new AutoResetEvent(false))
@@ -52,10 +53,12 @@ namespace ChangeRevision
                         text = Regex.Replace(text, @"AssemblyVersion\((.*?)\)", "AssemblyVersion(\"" + newVer.ToString() + "\")");
                         text = Regex.Replace(text, @"AssemblyFileVersionAttribute\((.*?)\)", "AssemblyFileVersionAttribute(\"" + newVer.ToString() + "\")");
                         text = Regex.Replace(text, @"AssemblyFileVersion\((.*?)\)", "AssemblyFileVersion(\"" + newVer.ToString() + "\")");
-
+                        
                         File.WriteAllText(args[0] + @"\Properties\AssemblyInfo.cs", text);
                     }
                 }
+
+                Console.ReadLine();
             }
             catch (Exception ex)
             {
