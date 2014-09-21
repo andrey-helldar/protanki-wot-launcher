@@ -15,7 +15,9 @@ namespace ChangeRevision
         static void Main(string[] args)
         {
             try
-            {                
+            {
+                File.WriteAllText(Environment.CurrentDirectory+"1.txt",args[1]);
+
                 Process process = new Process();
                 process.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
                 process.StartInfo.FileName = "\"c:\\Program Files (x86)\\Git\\cmd\\git.exe\"";
