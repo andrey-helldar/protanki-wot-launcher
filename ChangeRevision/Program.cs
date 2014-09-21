@@ -17,7 +17,7 @@ namespace ChangeRevision
             try
             {                
                 Process process = new Process();
-                process.StartInfo.WorkingDirectory = args[2];
+                process.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
                 process.StartInfo.FileName = "\"c:\\Program Files (x86)\\Git\\cmd\\git.exe\"";
                 process.StartInfo.Arguments = @"rev-list master --count";
                 process.StartInfo.UseShellExecute = false;
