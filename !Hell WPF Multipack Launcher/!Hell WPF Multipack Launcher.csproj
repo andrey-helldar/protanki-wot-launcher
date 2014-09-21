@@ -304,8 +304,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>echo "ChangeRevision.exe" "$(ProjectName)" $(ConfigurationName) &gt; "$(SolutionDir)ChangeRevision.bat"
-start "$(SolutionDir)ChangeRevision.bat"</PreBuildEvent>
+    <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" "$(ProjectName)" $(ConfigurationName)</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
