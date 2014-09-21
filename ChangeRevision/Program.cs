@@ -18,8 +18,8 @@ namespace ChangeRevision
             {
                 if (File.Exists(args[0] + @"\revision.txt")) File.Delete(args[0] + @"\revision.txt");
 
+                
                 Process process = new Process();
-
                 process.StartInfo.FileName = "\"c:\\Program Files (x86)\\Git\\cmd\\git.exe\"";
                 process.StartInfo.Arguments = @"rev-list master --count";
                 process.StartInfo.UseShellExecute = false;
@@ -27,7 +27,6 @@ namespace ChangeRevision
                 process.StartInfo.RedirectStandardError = true;
 
                 StringBuilder output = new StringBuilder();
-
                 int timeout = 5000;
 
                 using (AutoResetEvent outputWaitHandle = new AutoResetEvent(false))
@@ -50,17 +49,23 @@ namespace ChangeRevision
 
                     if (process.WaitForExit(timeout) && outputWaitHandle.WaitOne(timeout))
                     {
-                        File.WriteAllText("4.txt", output.ToString());
+                        string text = File.ReadAllText(args[0] + @"\Properties\AssemblyInfo.cs");
+
+                        Match match = new Regex("AssemblyVersion\\(\"(.*?)\"\\)").Match(text);
+                        Version ver = new Version(match.Groups[1].Value);
+                        int build = args[1] == "Release" ? ver.Build + 1 : ver.Build;
+                        Version newVer = new Version(ver.Major, ver.Minor, build, Convert.ToInt16(output.ToString().Trim()));
+
+                        text = Regex.Replace(text, @"AssemblyVersion\((.*?)\)", "AssemblyVersion(\"" + newVer.ToString() + "\")");
+                        text = Regex.Replace(text, @"AssemblyFileVersionAttribute\((.*?)\)", "AssemblyFileVersionAttribute(\"" + newVer.ToString() + "\")");
+                        text = Regex.Replace(text, @"AssemblyFileVersion\((.*?)\)", "AssemblyFileVersion(\"" + newVer.ToString() + "\")");
+
+                        File.WriteAllText(args[0] + @"\Properties\AssemblyInfo.cs", text);
                     }
                 }
 
 
-                
-
-
-                //Process.Start(@"c:\Program Files (x86)\Git\cmd\git.exe", @"shortlog -s >> revision.txt");
-
-                int i = 0;
+                /*int i = 0;
                 while (i < 10)
                 {
                     if (!File.Exists(args[0] + @"\revision.txt"))
@@ -73,15 +78,15 @@ namespace ChangeRevision
                         i = 20;
                     }
                     i++;
-                }
+                }*/
 
-                string rev = File.ReadAllText(args[0] + @"\revision.txt").Trim();
+                /*string rev = File.ReadAllText(args[0] + @"\revision.txt").Trim();
                 rev = rev.Remove(rev.IndexOf("	"));
 
                 /*
                  * args[0] - Project name
                  * args[1] - release или debug ?
-                 */
+                 *
                 string text = File.ReadAllText(args[0] + @"\Properties\AssemblyInfo.cs");
 
                 Match match = new Regex("AssemblyVersion\\(\"(.*?)\"\\)").Match(text);
@@ -94,7 +99,7 @@ namespace ChangeRevision
                 text = Regex.Replace(text, @"AssemblyFileVersion\((.*?)\)", "AssemblyFileVersion(\"" + newVer.ToString() + "\")");
 
                 File.WriteAllText(args[0] + @"\Properties\AssemblyInfo.cs", text);
-                Console.ReadLine();
+                Console.ReadLine();*/
             }
             catch (Exception ex)
             {
