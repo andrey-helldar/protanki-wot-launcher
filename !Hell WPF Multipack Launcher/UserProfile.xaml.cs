@@ -99,7 +99,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                            JObject obj = JObject.Parse(WarAPI.AccountInfo(GetElement("account_id"), GetElement("access_token")));
 
-                           obj["data"][GetElement("account_id")]["clan_id"] = 103556;
+                           //obj["data"][GetElement("account_id")]["clan_id"] = 103556;
                            JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id"), GetElement("access_token")));
                            JObject Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id"), GetElement("access_token")));
                            JObject Provinces = JObject.Parse(WarAPI.ClanProvinces(SelectToken(obj, "clan_id"), GetElement("access_token"), "type,name,arena_i18n,prime_time,revenue,occupancy_time,attacked"));
@@ -110,21 +110,23 @@ namespace _Hell_WPF_Multipack_Launcher
                                /* =========================================
                                 *       Общая информация о пользователе
                                 * =========================================*/
-                               string timestamp = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + GetElement("account_id") + ".created_at");
-
-                               if (timestamp != "0")
+                               try
                                {
-                                   DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                                   try { dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + GetElement("account_id") + ".created_at"))).ToLocalTime(); }
-                                   catch (Exception) { }
+                                   DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                                   dt = dt.AddSeconds(Convert.ToDouble(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + GetElement("account_id") + ".created_at")));
+                                   TimeSpan ts = DateTime.Now - dt;
+
+
+                                   /*DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                                   dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + GetElement("account_id") + ".created_at")));
+                                   DateTime dtNow = new DateTime();
+                                   TimeSpan dtDays = dtNow - dtDateTime;*/
 
                                    PlayerClan.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
-                                   PlayerClanDays.Text = dtDateTime.ToString();
+                                   PlayerClanDays.Text = ts.Days.ToString();
                                }
-                               else
-                               {
-                                   tbUpClan.Text = "Произошла ошибка или ты не состоишь в клане " + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
-                               }
+                               catch (Exception) { tbUpClan.Text = "Произошла ошибка или ты не состоишь в клане " + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name"); }
+                               
 
                                PlayerGold.Text = SelectToken(obj, "private.gold");
                                rating.Content = "Личный рейтинг: "+SelectToken(obj, "global_rating");
