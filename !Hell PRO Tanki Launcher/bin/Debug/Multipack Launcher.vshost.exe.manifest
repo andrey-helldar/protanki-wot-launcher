@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.1.17.243" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher" version="1.1.19.554" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="1110016">
-      <assemblyIdentity name="Multipack Launcher" version="1.1.17.243" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2072064">
+      <assemblyIdentity name="Multipack Launcher" version="1.1.19.554" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VR82h64E/tKcXE34CwaEex9BDBY/wSRZ/DdWs9UOpRk=</dsig:DigestValue>
+        <dsig:DigestValue>9wPOGZrV8QXSU+k5XIAZkpFnhBDSwMeasToPyFioFoo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -86,7 +86,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>pRa+AYyskka4VyOyAAVPuZ2BerYHNfycRrBwMao++5o=</dsig:DigestValue>
+        <dsig:DigestValue>3zXwfwsyWuyYSF1oMUJA1gPMtcFrbMSR4X0/nR+g8iI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,7 +98,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dNTc+w9AWk9vEAfOQc7LlfoLVLQmrO7hccKVwdT0YqE=</dsig:DigestValue>
+        <dsig:DigestValue>Njs6/iAYhVgmodmd8BlINACkI28v75BysYwEIsPXFKo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

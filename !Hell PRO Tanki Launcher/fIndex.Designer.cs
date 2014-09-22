@@ -95,7 +95,7 @@
             this.bLauncher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bLauncher.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bLauncher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bLauncher.Location = new System.Drawing.Point(644, 109);
+            this.bLauncher.Location = new System.Drawing.Point(644, 107);
             this.bLauncher.Margin = new System.Windows.Forms.Padding(0);
             this.bLauncher.Name = "bLauncher";
             this.bLauncher.Size = new System.Drawing.Size(200, 50);
@@ -115,7 +115,7 @@
             this.bUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bUpdate.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bUpdate.Location = new System.Drawing.Point(644, 179);
+            this.bUpdate.Location = new System.Drawing.Point(644, 175);
             this.bUpdate.Margin = new System.Windows.Forms.Padding(0);
             this.bUpdate.Name = "bUpdate";
             this.bUpdate.Size = new System.Drawing.Size(200, 50);
@@ -134,7 +134,7 @@
             this.bVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bVideo.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bVideo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bVideo.Location = new System.Drawing.Point(644, 249);
+            this.bVideo.Location = new System.Drawing.Point(644, 243);
             this.bVideo.Margin = new System.Windows.Forms.Padding(0);
             this.bVideo.Name = "bVideo";
             this.bVideo.Size = new System.Drawing.Size(200, 50);
@@ -153,7 +153,7 @@
             this.bExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bExit.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bExit.Location = new System.Drawing.Point(644, 389);
+            this.bExit.Location = new System.Drawing.Point(644, 379);
             this.bExit.Margin = new System.Windows.Forms.Padding(0);
             this.bExit.Name = "bExit";
             this.bExit.Size = new System.Drawing.Size(200, 50);
@@ -170,7 +170,7 @@
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.linkLabel1.Location = new System.Drawing.Point(662, 6);
+            this.linkLabel1.Location = new System.Drawing.Point(660, 436);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(164, 15);
             this.linkLabel1.TabIndex = 0;
@@ -269,7 +269,7 @@
             this.bOptimizePC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bOptimizePC.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bOptimizePC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.bOptimizePC.Location = new System.Drawing.Point(644, 319);
+            this.bOptimizePC.Location = new System.Drawing.Point(644, 311);
             this.bOptimizePC.Margin = new System.Windows.Forms.Padding(0);
             this.bOptimizePC.Name = "bOptimizePC";
             this.bOptimizePC.Size = new System.Drawing.Size(200, 50);
@@ -284,12 +284,12 @@
             this.llTitle.AutoSize = true;
             this.llTitle.BackColor = System.Drawing.Color.Transparent;
             this.llTitle.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.llTitle.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llTitle.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llTitle.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llTitle.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llTitle.Location = new System.Drawing.Point(189, 3);
+            this.llTitle.Location = new System.Drawing.Point(189, 6);
             this.llTitle.Name = "llTitle";
-            this.llTitle.Size = new System.Drawing.Size(84, 20);
+            this.llTitle.Size = new System.Drawing.Size(79, 17);
             this.llTitle.TabIndex = 0;
             this.llTitle.TabStop = true;
             this.llTitle.Text = "Загрузка...";

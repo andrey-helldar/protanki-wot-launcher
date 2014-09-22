@@ -1,1 +1,9 @@
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Release\!Hell Processes to DLL.exe.config
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Release\settings.xml
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Release\!Hell Processes to DLL.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\bin\Release\!Hell Processes to DLL.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Release\_Hell_Processes_to_DLL.fIndex.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Release\_Hell_Processes_to_DLL.Properties.Resources.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Release\!Hell Processes to DLL.csproj.GenerateResource.Cache
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Release\!Hell Processes to DLL.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Release\!Hell Processes to DLL.pdb
