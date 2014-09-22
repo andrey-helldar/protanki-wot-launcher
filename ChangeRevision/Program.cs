@@ -45,14 +45,23 @@ namespace ChangeRevision
                     {
                         string text = File.ReadAllText(@"..\..\..\"+args[1]+@"\Properties\AssemblyInfo.cs");
 
-                        Match match = new Regex("AssemblyVersion\\(\"(.*?)\"\\)").Match(text);
+                        //Match match = new Regex("AssemblyVersion\\(\"(.*?)\"\\)").Match(text);
 
-                        Version ver;
-                        try { ver = new Version(match.Groups[1].Value); }
-                        catch (Exception)
+                        Version ver = new Version();
+
+                        foreach (Match m in Regex.Matches(text, "AssemblyVersion\\(\"(.*?)\"\\)"))
                         {
-                            match.NextMatch();
-                            ver = new Version(match.Groups[1].Value);
+                            try
+                            {
+                                ver = new Version(m.Groups[1].Value);
+                                break;
+                            }
+                            catch (Exception)
+                            {
+                                m.NextMatch();
+                                ver = new Version(m.Groups[1].Value);
+                                break;
+                            }
                         }
 
                         int build = args[0] == "Release" ? ver.Build + 1 : ver.Build;
