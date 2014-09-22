@@ -3,3 +3,8 @@ F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ChangeRevision\bin\Release\ChangeRevision.pdb
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ChangeRevision\obj\Release\ChangeRevision.exe
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ChangeRevision\obj\Release\ChangeRevision.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\bin\Release\ChangeRevision.exe.config
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\bin\Release\ChangeRevision.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\bin\Release\ChangeRevision.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\obj\Release\ChangeRevision.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\obj\Release\ChangeRevision.pdb

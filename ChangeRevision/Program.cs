@@ -16,8 +16,6 @@ namespace ChangeRevision
         {
             try
             {
-                File.WriteAllText(Environment.CurrentDirectory+"1.txt",args[1]);
-
                 Process process = new Process();
                 process.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
                 process.StartInfo.FileName = "\"c:\\Program Files (x86)\\Git\\cmd\\git.exe\"";
@@ -45,18 +43,18 @@ namespace ChangeRevision
 
                     if (process.WaitForExit(timeout) && outputWaitHandle.WaitOne(timeout))
                     {
-                        string text = File.ReadAllText(args[0] + @"\Properties\AssemblyInfo.cs");
+                        string text = File.ReadAllText(@"..\..\Properties\AssemblyInfo.cs");
 
                         Match match = new Regex("AssemblyVersion\\(\"(.*?)\"\\)").Match(text);
                         Version ver = new Version(match.Groups[1].Value);
-                        int build = args[1] == "Release" ? ver.Build + 1 : ver.Build;
+                        int build = args[0] == "Release" ? ver.Build + 1 : ver.Build;
                         Version newVer = new Version(ver.Major, ver.Minor, build, Convert.ToInt16(output.ToString().Trim()));
 
                         text = Regex.Replace(text, @"AssemblyVersion\((.*?)\)", "AssemblyVersion(\"" + newVer.ToString() + "\")");
                         text = Regex.Replace(text, @"AssemblyFileVersionAttribute\((.*?)\)", "AssemblyFileVersionAttribute(\"" + newVer.ToString() + "\")");
                         text = Regex.Replace(text, @"AssemblyFileVersion\((.*?)\)", "AssemblyFileVersion(\"" + newVer.ToString() + "\")");
 
-                        File.WriteAllText(args[0] + @"\Properties\AssemblyInfo.cs", text);
+                        File.WriteAllText(@"..\..\Properties\AssemblyInfo.cs", text);
                     }
                 }
             }
