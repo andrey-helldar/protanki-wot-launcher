@@ -2,7 +2,9 @@
 <ai.rus>
   <changelog ext="xml" checksum="82B5A16833F3D42A727625397A5D10CE" important="False" user="true"></changelog>
   <Ionic.Zip ext="dll" checksum="6DED8FCBF5F1D9E422B327CA51625E24" important="True" user="true">1.9.1.8</Ionic.Zip>
-  <launcher ext="exe" checksum="B6C196B10977B5287D41B16D7E5F9D64" important="False" user="false">1.1.17.243</launcher>
-  <ProcessesLibrary ext="dll" checksum="0E4F91058013090DC2D3C34A60BDD8B9" important="True" user="true">1.0.8.31</ProcessesLibrary>
-  <restart ext="exe" checksum="94CC2929E5A665F7B9F4F872D90AE71F" important="True" user="true">1.0.3.13</restart>
+  <launcher ext="exe" checksum="7772363DA031082EC0F04B8746AB28B3" important="False" user="false">1.1.20.554</launcher>
+  <Newtonsoft.Json ext="dll" checksum="E6EC270F6DCDCF4784CA23D8B173A109" important="True" user="true">6.0.3.17227</Newtonsoft.Json>
+  <Ookii.Dialogs.Wpf ext="dll" checksum="5926472580C7A7B45CD611DC0FB06244" important="True" user="true">1.0.0.0</Ookii.Dialogs.Wpf>
+  <ProcessesLibrary ext="dll" checksum="5169E3C7992BCE680F0CC351701641C1" important="True" user="true">1.3.12.36</ProcessesLibrary>
+  <restart ext="exe" checksum="02D11857649DE84EA28B65952B8D839B" important="True" user="true">1.1.4.14</restart>
 </ai.rus>
