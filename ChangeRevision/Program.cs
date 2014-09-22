@@ -43,7 +43,7 @@ namespace ChangeRevision
 
                     if (process.WaitForExit(timeout) && outputWaitHandle.WaitOne(timeout))
                     {
-                        string text = File.ReadAllText(@"..\..\Properties\AssemblyInfo.cs");
+                        string text = File.ReadAllText(@"..\..\..\"+args[1]+@"\Properties\AssemblyInfo.cs");
 
                         Match match = new Regex("AssemblyVersion\\(\"(.*?)\"\\)").Match(text);
                         Version ver = new Version(match.Groups[1].Value);
@@ -54,7 +54,7 @@ namespace ChangeRevision
                         text = Regex.Replace(text, @"AssemblyFileVersionAttribute\((.*?)\)", "AssemblyFileVersionAttribute(\"" + newVer.ToString() + "\")");
                         text = Regex.Replace(text, @"AssemblyFileVersion\((.*?)\)", "AssemblyFileVersion(\"" + newVer.ToString() + "\")");
 
-                        File.WriteAllText(@"..\..\Properties\AssemblyInfo.cs", text);
+                        File.WriteAllText(@"..\..\..\" + args[1] + @"\Properties\AssemblyInfo.cs", text);
                     }
                 }
             }

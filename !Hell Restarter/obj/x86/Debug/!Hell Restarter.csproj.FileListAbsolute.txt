@@ -9,4 +9,3 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\bin\Debug\restart.
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\bin\Debug\restart.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\obj\x86\Debug\restart.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\obj\x86\Debug\restart.pdb
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\obj\x86\Debug\!Hell Restarter.csprojResolveAssemblyReference.cache

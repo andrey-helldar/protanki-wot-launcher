@@ -6,6 +6,5 @@ F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\bin\Debug\ChangeRevision.exe.config
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\bin\Debug\ChangeRevision.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\bin\Debug\ChangeRevision.pdb
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\obj\Debug\ChangeRevision.csprojResolveAssemblyReference.cache
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\obj\Debug\ChangeRevision.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\ChangeRevision\obj\Debug\ChangeRevision.pdb
