@@ -7,82 +7,99 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Language
     {
-        public string Set(string form, string control, string lang = "", string additional = "")
+        public string Set(string page, string control, string lang = "", string text = "")
         {
-            // Set default language
             try { if (lang == "") lang = Properties.Resources.Default_Lang; }
             catch (Exception) { }
 
+            string toReturn = "null";
 
-            try
+            switch (page)
             {
-                switch (lang)
-                {
-                    /*
-                     * RUSSIAN
-                     */
-                    case "ru":
-                        switch (form)
-                        {
-                            // SETTINGS
-                            case "Settings":
-                                switch (control)
-                                {
-                                    case "priority": return "5";
-                                    case "priority0": return "Высокий";
-                                    case "priority1": return "Выше среднего";
-                                    case "priority2": return "Средний";
-                                    case "priority3": return "Ниже среднего";
-                                    case "priority4": return "Низкий";
+                case "PageSettings":     // Settings Page
+                    switch (control)
+                    {
+                        /*
+                         *  PRIORITY
+                         */
+                        case "priority": return "5";
+
+                        case "priority0":
+                            switch (lang)
+                            {
+                                case "ru": return "Высокий";
+                                case "en": return "High priority";
+                                default: return toReturn;
+                            }
+                        case "priority1":
+                            switch (lang)
+                            {
+                                case "ru": return "Выше среднего";
+                                case "en": return "Above average";
+                                default: return toReturn;
+                            }
+                        case "priority2":
+                            switch (lang)
+                            {
+                                case "ru": return "Средний";
+                                case "en": return "Average priority";
+                                default: return toReturn;
+                            }
+                        case "priority3":
+                            switch (lang)
+                            {
+                                case "ru": return "Ниже среднего";
+                                case "en": return "Below average";
+                                default: return toReturn;
+                            }
+                        case "priority4":
+                            switch (lang)
+                            {
+                                case "ru": return "Низкий";
+                                case "en": return "Low priority";
+                                default: return toReturn;
+                            }
+
+                        /*
+                         *      MINIMIZE
+                         */
+                        case "minimize": return "4";
 
 
-                                    case "minimize": return "4";
-                                    case "minimize0": return "Не закрывать лаунчер";
-                                    case "minimize1": return "Сворачивать в трей при запуске игры";
-                                    case "minimize2": return "Минимизировать лаунчер на панель задач";
-                                    case "minimize3": return "Закрывать при запуске игры";
+                        case "minimize0":
+                            switch (lang)
+                            {
+                                case "ru": return "Не закрывать лаунчер";
+                                case "en": return "Do not close the Launcher";
+                                default: return toReturn;
+                            }
+                        case "minimize1":
+                            switch (lang)
+                            {
+                                case "ru": return "Сворачивать в трей при запуске игры";
+                                case "en": return "Minimize to tray when the game starts";
+                                default: return toReturn;
+                            }
+                        case "minimize2":
+                            switch (lang)
+                            {
+                                case "ru": return "Минимизировать лаунчер на панель задач";
+                                case "en": return "Minimize Launcher to the taskbar";
+                                default: return toReturn;
+                            }
+                        case "minimize3":
+                            switch (lang)
+                            {
+                                case "ru": return "Закрывать при запуске игры";
+                                case "en": return "Close when the game starts";
+                                default: return toReturn;
+                            }
 
-                                    default: return "null";
-                                }
-                            default: return "null";
-                        }
+                        default: return toReturn;
+                    }
 
-
-
-
-                    /*
-                     * ENGLISH
-                     */
-                    case "en":
-                        switch (form)
-                        {
-                            // SETTINGS
-                            case "Settings":
-                                switch (control)
-                                {
-                                    case "priority": return "5";
-                                    case "priority0": return "High priority";
-                                    case "priority1": return "Above average";
-                                    case "priority2": return "Average priority";
-                                    case "priority3": return "Below average";
-                                    case "priority4": return "Low priority";
-
-
-                                    case "minimize": return "4";
-                                    case "minimize0": return "Do not close the Launcher";
-                                    case "minimize1": return "Minimize to tray when the game starts";
-                                    case "minimize2": return "Minimize Launcher to the taskbar";
-                                    case "minimize3": return "Close when the game starts";
-
-                                    default: return "null";
-                                }
-                            default: return "null";
-                        }
-
-                    default: return "null";
-                }
+                default: return "null";
             }
-            catch (Exception ex) { return "null"; }
         }
     }
 }

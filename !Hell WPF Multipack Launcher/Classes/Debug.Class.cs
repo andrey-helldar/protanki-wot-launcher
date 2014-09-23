@@ -22,11 +22,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 JObject json = new JObject(
                     new JProperty("uid", new Classes.Variables().GetUserID()),
-                                           new JProperty("version", version),
-                                           new JProperty("date", DateTime.Now.ToString("yyyy-MM-dd h-m-s")),
-                                           new JProperty("module", module),
-                                           new JProperty("function", func)
-                                       );
+                    new JProperty("version", version),
+                    new JProperty("date", DateTime.Now.ToString("yyyy-MM-dd h-m-s")),
+                    new JProperty("module", module),
+                    new JProperty("function", func)
+                );
 
                 for (int i = 0; i < args.Length; i++)
                     json.Add(new JProperty("param" + i.ToString(), args[i]));
