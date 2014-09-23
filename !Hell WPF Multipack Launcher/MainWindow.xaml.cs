@@ -53,7 +53,7 @@ namespace _Hell_WPF_Multipack_Launcher
         public static bool Navigator(string page = "General", string from = null)
         {
             try { MainFrame0.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, ex.StackTrace); }
             return true;
         }
 
@@ -73,14 +73,13 @@ namespace _Hell_WPF_Multipack_Launcher
                 this.Closing += delegate { mainFrame = null; };
 
 
-                Navigator("Loading"); // Изменение страницы
+                Task.Factory.StartNew(() => Navigator("Loading")); // Изменение страницы
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 Task.Factory.StartNew(() =>
@@ -97,7 +96,7 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded()", ex.Message)).Wait();
+                Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded()", ex.Message, ex.StackTrace)).Wait();
                 Task.Factory.StartNew(() => Debug.Restart());
             }
 
@@ -109,42 +108,48 @@ namespace _Hell_WPF_Multipack_Launcher
                 notifyIcon.Text = Variables.ProductName;
                 notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded()", "iconStream", ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded()", "iconStream", ex.Message, ex.StackTrace)); }
 
 
-            try { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "General form loading", ex.Message)); }
+            try { Task.Factory.StartNew(() => MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative))); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "General form loading", ex.Message, ex.StackTrace)); }
+
+
+            try { Task.Factory.StartNew(() => Debug.ClearLogs()); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Debug.ClearLogs()", ex.Message, ex.StackTrace)); }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            notifyIcon.Dispose();
+            try { notifyIcon.Dispose(); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing()", "notifyIcon.Dispose();", ex.Message, ex.StackTrace)); }
 
-            xmlDocument.Save(Variables.SettingsPath);
+            try { xmlDocument.Save(Variables.SettingsPath); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing()", "xmlDocument.Save();", ex.Message, ex.StackTrace)); }
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
             try { Close(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bClose_Click()", ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bClose_Click()", ex.Message, ex.StackTrace)); }
         }
 
         private void bMinimize_Click(object sender, RoutedEventArgs e)
         {
             try { this.WindowState = WindowState.Minimized; }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bMinimize_Click()", ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bMinimize_Click()", ex.Message, ex.StackTrace)); }
         }
 
         private void NotifyClick(object sender, EventArgs e)
         {
             try { OpenLink(Variables.notifyLink); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + Variables.notifyLink, ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + Variables.notifyLink, ex.Message, ex.StackTrace)); }
         }
 
         private void OpenLink(string url)
         {
-            try { Process.Start(url); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "OpenLink()", "URL = " + url, ex.Message)); }
+            try { ProcessStart(url); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "OpenLink()", "URL = " + url, ex.Message, ex.StackTrace)); }
         }
 
         private void bPlay_Click(object sender, RoutedEventArgs e)
@@ -167,18 +172,18 @@ namespace _Hell_WPF_Multipack_Launcher
                                 true
                             );
 
-                        Process.Start(new ProcessStartInfo(Variables.PathTanks + "WorldOfTanks.exe"));
+                        ProcessStart(Variables.PathTanks, "WorldOfTanks.exe");
                     }
                     else
                         MessageBox.Show("Клиент игры не обнаружен!");
                 }
-                catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message); }
+                catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message, ex.StackTrace); }
             });
         }
 
         private void bAirus_Click(object sender, RoutedEventArgs e)
         {
-            try { Process.Start(new ProcessStartInfo(Properties.Resources.Developer)); }
+            try { ProcessStart(Properties.Resources.Developer); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bAirus_Click()", ex.Message, "Link: " + Properties.Resources.Developer)); }
         }
 
@@ -191,7 +196,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
                     {
                         Optimize.Start(Variables.WinXP);
-                        Process.Start(new ProcessStartInfo(Variables.PathTanks + "WoTLauncher.exe"));
+                        ProcessStart(Variables.PathTanks, "WoTLauncher.exe");
                     }
                     else
                         MessageBox.Show("Клиент игры не обнаружен!");
@@ -206,9 +211,23 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "General form loading", ex.Message)); }
         }
 
-        private void bChangeLang_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Запуск приложения или ссылки
+        /// </summary>
+        /// <param name="path">Пусть к файлу или ссылка</param>
+        /// <param name="filename">Если используется запуск приложения, то обязательно указать имя файла</param>
+        private void ProcessStart(string path, string filename = "")
         {
+            try
+            {
+                Process process = new Process();
+                process.StartInfo.WorkingDirectory = path;
+                process.StartInfo.FileName = filename == "" ? path : path + filename;
+                process.StartInfo.UseShellExecute = false;
 
+                process.Start();
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: \"" + filename + "\"", ex.Message, ex.StackTrace)); }
         }
     }
 }

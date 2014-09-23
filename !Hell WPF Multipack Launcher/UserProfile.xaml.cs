@@ -28,7 +28,6 @@ namespace _Hell_WPF_Multipack_Launcher
     public partial class UserProfile : Page
     {
         Classes.Debug Debug = new Classes.Debug();
-
         private ObservableCollection<AssetClass> classes;
 
         /// <summary>

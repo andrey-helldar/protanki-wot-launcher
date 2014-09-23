@@ -37,7 +37,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     JObject Token = WarAPI.Token(WB.Source.ToString());
 
-                    if(Token.SelectToken("status").ToString() == "ok"){
+                    if (Token.SelectToken("status").ToString() == "ok")
+                    {
 
                         SetValue("access_token", Token.SelectToken("access_token").ToString());
                         SetValue("expires_at", Token.SelectToken("expires_at").ToString());
@@ -71,7 +72,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     MainWindow.XmlDocument.Root.Add(new XElement("token",
                         new XAttribute(attr, val)));
             }
-            catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, obj.ToString(), ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
         }
     }
 }
