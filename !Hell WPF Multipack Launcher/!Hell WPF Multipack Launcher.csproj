@@ -101,9 +101,6 @@
     <Compile Include="Classes\Asset.Class.cs" />
     <Compile Include="Classes\Language.Class.cs" />
     <Compile Include="Classes\WargamingAPI.Class.cs" />
-    <Compile Include="Language.xaml.cs">
-      <DependentUpon>Language.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ScottLogic\BaseWPFHelpers.cs" />
     <Compile Include="ScottLogic\PieChart\ColourConverter.cs" />
     <Compile Include="ScottLogic\PieChart\IColorSelector.cs" />
@@ -152,10 +149,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="General.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Language.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -273,6 +266,7 @@
     <Resource Include="Resources\settings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="settings.json" />
     <None Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -4,11 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-	Title="Loading" Width="538" Height="600">
+      d:DesignHeight="586.017" d:DesignWidth="527.542"
+	Title="Loading" Width="Auto" Height="Auto">
 
     <Grid Background="Black" Opacity="0.5">
         <Label Content="Loading..." Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Style="{StaticResource LabelStyleStatus}"/>
-
     </Grid>
 </Page>

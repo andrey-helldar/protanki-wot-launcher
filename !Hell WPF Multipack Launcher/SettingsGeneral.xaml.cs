@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -21,8 +23,7 @@ namespace _Hell_WPF_Multipack_Launcher
     public partial class SettingsOptimize : Page
     {
         Classes.Language Lang = new Classes.Language();
-
-        Dictionary<string, string> users = new Dictionary<string, string>();
+        Classes.Debug Debug = new Classes.Debug();
 
 
         public SettingsOptimize()
@@ -32,15 +33,23 @@ namespace _Hell_WPF_Multipack_Launcher
             /*
              * Загружаем заголовки
              */
-            cbPriority.Items.Clear();
-            for (int i = 0; i < Convert.ToInt16(Lang.Set("Settings", "priority")); i++)
-                cbPriority.Items.Add(Lang.Set("Settings", "priority" + i.ToString(), MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value));
+            try
+            {
+                cbPriority.Items.Clear();
+                for (int i = 0; i < Convert.ToInt16(Lang.Set("Settings", "priority")); i++)
+                    cbPriority.Items.Add(Lang.Set("Settings", "priority" + i.ToString(), MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value));
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "cbPriority.Items", ex.Message, ex.StackTrace)); }
 
-            cbLauncher.Items.Clear();
-            for (int i = 0; i < Convert.ToInt16(Lang.Set("Settings", "minimize")); i++)
-                cbLauncher.Items.Add(Lang.Set("Settings", "minimize" + i.ToString(), MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value));
+            try
+            {
+                cbLauncher.Items.Clear();
+                for (int i = 0; i < Convert.ToInt16(Lang.Set("Settings", "minimize")); i++)
+                    cbLauncher.Items.Add(Lang.Set("Settings", "minimize" + i.ToString(), MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value));
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "cbLauncher.Items", ex.Message, ex.StackTrace)); }
 
-            
+
             /*
              *  Блок ОПТИМИЗАЦИЯ
              */
@@ -48,17 +57,21 @@ namespace _Hell_WPF_Multipack_Launcher
             /*
              * <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
              */
-            cbKill.IsChecked = Check("settings", "kill");
-            cbForce.IsChecked = Check("settings", "force");
-            cbVideo.IsChecked = Check("settings", "video");
-            cbWeak.IsChecked = Check("settings", "weak");
-            cbAero.IsChecked = Check("settings", "aero");
-
-            if (Check("settings", "winxp"))
+            try
             {
-                cbAero.IsChecked = false;
-                cbAero.IsEnabled = false;
+                cbKill.IsChecked = Check("settings", "kill");
+                cbForce.IsChecked = Check("settings", "force");
+                cbVideo.IsChecked = Check("settings", "video");
+                cbWeak.IsChecked = Check("settings", "weak");
+                cbAero.IsChecked = Check("settings", "aero");
+
+                if (Check("settings", "winxp"))
+                {
+                    cbAero.IsChecked = false;
+                    cbAero.IsEnabled = false;
+                }
             }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "cbKill, cbForce ...", ex.Message, ex.StackTrace)); }
 
             // Определяем приоритет игры в системе
             try
@@ -66,7 +79,11 @@ namespace _Hell_WPF_Multipack_Launcher
                 var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
                 cbPriority.SelectedIndex = getPriority((int)key.GetValue("CpuPriorityClass"), false);
             }
-            catch (Exception ex) { cbPriority.SelectedIndex = 2;/* Debug.Save("public fSettings()", "Priority", ex.Message);*/ }
+            catch (Exception ex)
+            {
+                cbPriority.SelectedIndex = 2;
+                Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "Reestr Reading", ex.Message, ex.StackTrace));
+            }
             finally { cbPriority.SelectionChanged += cbPriority_SelectionChanged; }
 
             // Устанавливаем значение чекбокса лаунчера
@@ -78,7 +95,11 @@ namespace _Hell_WPF_Multipack_Launcher
                     if (MainWindow.XmlDocument.Root.Element("settings").Attribute("launcher") != null)
                         cbLauncher.SelectedIndex = Convert.ToInt16(MainWindow.XmlDocument.Root.Element("settings").Attribute("launcher").Value);
             }
-            catch (Exception ex) { cbLauncher.SelectedIndex = 0; }
+            catch (Exception ex)
+            {
+                cbLauncher.SelectedIndex = 0;
+                Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "cbLauncher.SelectedIndex = 0;", ex.Message, ex.StackTrace));
+            }
 
 
             /*
@@ -88,8 +109,12 @@ namespace _Hell_WPF_Multipack_Launcher
             /*
              * <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru">
              */
-            cbNotifyVideo.IsChecked = Check("info", "video");
-            cbNotifyNews.IsChecked = Check("info", "news");
+            try
+            {
+                cbNotifyVideo.IsChecked = Check("info", "video");
+                cbNotifyNews.IsChecked = Check("info", "news");
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "cbNotifyVideo.IsChecked, cbNotifyNews.IsChecked", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -103,10 +128,14 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </returns>
         private bool Check(string el, string attr)
         {
-            if (MainWindow.XmlDocument.Root.Element(el) != null)
-                if (MainWindow.XmlDocument.Root.Element(el).Attribute(attr) != null)
-                    if (MainWindow.XmlDocument.Root.Element(el).Attribute(attr).Value == "True")
-                        return true;
+            try
+            {
+                if (MainWindow.XmlDocument.Root.Element(el) != null)
+                    if (MainWindow.XmlDocument.Root.Element(el).Attribute(attr) != null)
+                        if (MainWindow.XmlDocument.Root.Element(el).Attribute(attr).Value == "True")
+                            return true;
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "Check()", "Element: " + el, "Attribute: " + attr, ex.Message, ex.StackTrace)); }
 
             return false;
         }
@@ -125,7 +154,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     if (MainWindow.XmlDocument.Root.Element(el).Attribute(attr) != null)
                         MainWindow.XmlDocument.Root.Element(el).Attribute(attr).SetValue(val);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "Set()", "Element: " + el, "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -143,28 +172,35 @@ namespace _Hell_WPF_Multipack_Launcher
              * case "priority3": return "Ниже среднего";
              * case "priority4": return "Низкий";
              */
-
-            if (save)
+            try
             {
-                switch (pr)
+                if (save)
                 {
-                    case 0: return 3; //Высокий
-                    case 1: return 6; // Выше среднего
-                    case 3: return 5; // Ниже среднего
-                    case 4: return 1; // Низкий
-                    default: return 2; // Средний
+                    switch (pr)
+                    {
+                        case 0: return 3; //Высокий
+                        case 1: return 6; // Выше среднего
+                        case 3: return 5; // Ниже среднего
+                        case 4: return 1; // Низкий
+                        default: return 2; // Средний
+                    }
+                }
+                else
+                {
+                    switch (pr)
+                    {
+                        case 3: return 0; //Высокий
+                        case 6: return 1; // Выше среднего
+                        case 5: return 3; // Ниже среднего
+                        case 1: return 4; // Низкий
+                        default: return 2; // Средний
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                switch (pr)
-                {
-                    case 3: return 0; //Высокий
-                    case 6: return 1; // Выше среднего
-                    case 5: return 3; // Ниже среднего
-                    case 1: return 4; // Низкий
-                    default: return 2; // Средний
-                }
+                Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "getPriority()", "Priority: " + pr.ToString(), "Save: " + save.ToString(), ex.Message, ex.StackTrace));
+                return 2;
             }
         }
 
@@ -218,10 +254,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     var key = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
                     key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
                 }
-                catch (Exception)
-                {
-                    //MessageBox.Show(this, Language.DynamicLanguage("admin", lang), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                catch (Exception) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "cbPriority_SelectionChanged()", ex.Message, ex.StackTrace)); }
             }
         }
 
