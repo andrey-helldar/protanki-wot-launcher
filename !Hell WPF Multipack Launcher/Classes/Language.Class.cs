@@ -98,7 +98,32 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         default: return toReturn;
                     }
 
-                default: return "null";
+                    /*
+                     *      Page Error
+                     */
+                case "PageError":
+                    switch (control)
+                    {
+                        case "Error1":
+                            switch (lang)
+                            {
+                                case "ru": return "Ошибка";
+                                case "en": return "Error";
+                                default: return toReturn;
+                            }
+
+                        case "ErrorStatus":
+                            switch (lang)
+                            {
+                                case "ru": return "Произошла ошибка";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        default: return toReturn;
+                    }
+
+                default: return toReturn;
             }
         }
     }
