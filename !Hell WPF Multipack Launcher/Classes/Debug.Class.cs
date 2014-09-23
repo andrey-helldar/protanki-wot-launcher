@@ -21,26 +21,20 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 string version = Application.Current.GetType().Assembly.GetName().Version.ToString();
 
                 JObject json = new JObject(
-                    new JProperty
-                    );
-
-                Dictionary<string, string> jData = new Dictionary<string, string>();
-                jData.Add("uid", new Classes.Variables().GetUserID());
-                jData.Add("version", version);
-                jData.Add("date", DateTime.Now.ToString("yyyy-MM-dd h-m-s"));
-                jData.Add("module", module);
-                jData.Add("function", func);
+                                           new JProperty("uid", new Classes.Variables().GetUserID()),
+                                           new JProperty("version", version),
+                                           new JProperty("date", DateTime.Now.ToString("yyyy-MM-dd h-m-s")),
+                                           new JProperty("module", module),
+                                           new JProperty("function", func),
+                                       );
 
                 for (int i = 0; i < args.Length; i++)
-                    jData.Add("param" + i.ToString(), args[i]);
-
-                string result = Crypt(JsonConvert.SerializeObject(jData));
+                    json.Add(new JProperty("param" + i.ToString(), args[i]));
 
                 if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
-                string filename = String.Format("{0}_{1}.debug", version, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
-                File.WriteAllText(@"temp\" + filename, result, Encoding.UTF8);
 
-                Message(result);
+                string filename = String.Format("{0}_{1}.debug", version, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
+                File.WriteAllText(@"temp\" + filename, Crypt(json.ToString()), Encoding.UTF8);
             }
             catch (IOException) { Thread.Sleep(3000); Save(module, func, args); }
             catch (Exception) { }
