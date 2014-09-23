@@ -10,10 +10,15 @@
     <Grid Opacity="0.7">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="1"/>
-                <GradientStop Color="#FF6C6C6C"/>
+                <GradientStop Color="#FF191919" Offset="1"/>
+                <GradientStop Color="#E5A40707"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <TextBlock x:Name="tbStatus" Margin="10" TextWrapping="Wrap" Text="TextBlock" Foreground="White" FontSize="14" FontFamily="Verdana" HorizontalAlignment="Center" VerticalAlignment="Center" TextOptions.TextHintingMode="Animated"/>
+        <TextBlock Margin="10" TextWrapping="Wrap" Foreground="White" FontFamily="Verdana" HorizontalAlignment="Center" VerticalAlignment="Center" TextOptions.TextHintingMode="Animated">
+            <Run FontSize="14pt">Error:</Run>
+            <Run x:Name="ErrorIdForm" FontSize="14pt">0</Run><Run FontSize="14pt">x</Run><Run x:Name="ErrorIdNum" FontSize="14pt">0</Run>
+            <LineBreak/>
+            <Run x:Name="ErrorStatus" FontSize="11pt">Произошла ошибка</Run>
+        </TextBlock>
     </Grid>
 </Page>

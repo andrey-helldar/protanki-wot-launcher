@@ -14,3 +14,4 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell MD5files\obj\Debug\_Hell_MD5
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell MD5files\obj\Debug\!Hell MD5files.csproj.GenerateResource.Cache
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell MD5files\obj\Debug\MD5files.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell MD5files\obj\Debug\MD5files.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell MD5files\obj\Debug\!Hell MD5files.csprojResolveAssemblyReference.cache
