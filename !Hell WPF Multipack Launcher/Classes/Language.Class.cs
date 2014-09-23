@@ -531,6 +531,57 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         default: return toReturn;
                     }
 
+
+
+                /* =====================================
+                 *      Update page
+                 * =====================================*/
+                case "PageUpdate":
+                    switch (control)
+                    {
+                        case "gbCaption":
+                            switch (lang)
+                            {
+                                case "ru": return "Обнаружена новая версия:";
+                                case "en": return "Error";
+                                default: return toReturn;
+                            }
+
+                        case "lDownloadFromLink":
+                            switch (lang)
+                            {
+                                case "ru": return "Новая версия доступна по ссылке в описании к видео";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "cbNotify":
+                            switch (lang)
+                            {
+                                case "ru": return "Не уведомлять меня об этой версии";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "bUpdate":
+                            switch (lang)
+                            {
+                                case "ru": return "Скачать";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "bCancel":
+                            switch (lang)
+                            {
+                                case "ru": return "Не надо";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        default: return toReturn;
+                    }
+
                 default: return toReturn;
             }
         }
