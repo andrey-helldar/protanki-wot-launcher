@@ -136,5 +136,42 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex) { Save("Debug.Class", "ArchiveLogs()", ex.Message, ex.StackTrace); }
         }
+
+        /// <summary>
+        /// Вывод кода ошибки
+        /// </summary>
+        /// <param name="formID">Идентификатор формы</param>
+        /// <param name="func">Имя функции для определения кода ошибки</param>
+        /// <returns>Код ошибки в формате "0x1", где:
+        /// 0 - код формы
+        /// 1 - код функции
+        /// </returns>
+        public string ErrorCode(string formID, string func)
+        {
+            string form = "0";
+            int num = 0;
+
+            int Null = 5;
+
+            switch(formID){
+                case "MainWindow":
+                    form = "1";
+
+                    switch (func)
+                    {
+                        "Navigator":num = "1";
+                    }
+            break;
+
+                default: break;
+            }
+
+            return String.Format("{0}x{1}", form, num);
+        }
+
+        private string FormatNum(int i)
+        {
+
+        }
     }
 }
