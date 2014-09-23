@@ -254,7 +254,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     var key = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
                     key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
                 }
-                catch (Exception) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "cbPriority_SelectionChanged()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "cbPriority_SelectionChanged()", ex.Message, ex.StackTrace)); }
             }
         }
 

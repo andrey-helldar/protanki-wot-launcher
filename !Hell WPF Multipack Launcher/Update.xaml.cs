@@ -11,6 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -20,29 +23,40 @@ namespace _Hell_WPF_Multipack_Launcher
     public partial class Update : Page
     {
         Classes.POST POST = new Classes.POST();
+        Classes.Debug Debug = new Classes.Debug();
+
+        private string downloadLink = String.Empty;
 
 
         public Update()
         {
             InitializeComponent();
 
-            MultipackUpdate();
+            Task.Factory.StartNew(() => MultipackUpdate());
         }
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (cbNotify.IsChecked == true)
-                MainWindow.XmlDocument.Root.Element("info").Attribute("notification").SetValue(new Classes.Variables().VersionFromSharp(newVersion.Content.ToString()));
+            try
+            {
+                if (cbNotify.IsChecked == true)
+                    MainWindow.XmlDocument.Root.Element("info").Attribute("notification").SetValue(new Classes.Variables().VersionFromSharp(newVersion.Content.ToString()));
 
-            MainWindow.Navigator("General", "Update.xaml");
+                if (downloadLink!=String.Empty)
+                    Process.Start(downloadLink);
+
+                MainWindow.Navigator("General", "Update.xaml");
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
         }
 
         private void bCancel_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Navigator("General", "Update.xaml");
+            try { MainWindow.Navigator("General", "Update.xaml"); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "bCancel_Click()", ex.Message, ex.StackTrace)); }
         }
 
-        public bool MultipackUpdate()
+        public void MultipackUpdate()
         {
             try
             {
@@ -66,14 +80,16 @@ namespace _Hell_WPF_Multipack_Launcher
                         if (MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value != "")
                             lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
 
-                Version remoteVersion = new Version(new Classes.Variables().VersionPrefix(new Version(thisVersion)) + json[mType]["version"]);
+                if (MainWindow.XmlDocument.Root.Element("multipack") != null)
+                    if (MainWindow.XmlDocument.Root.Element("multipack").Element("link") != null)
+                        if (MainWindow.XmlDocument.Root.Element("multipack").Element("link").Value != "")
+                            downloadLink = MainWindow.XmlDocument.Root.Element("multipack").Element("link").Value;
 
-                newVersion.Content = remoteVersion.ToString();
+
+                newVersion.Content = new Version(new Classes.Variables().VersionPrefix(new Version(thisVersion)) + json[mType]["version"]).ToString();
                 tbContent.Text = json[mType]["changelog"][lang].ToString();
-
-                return true;
             }
-            catch (Exception) { return false; }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "MultipackUpdate()", ex.Message, ex.StackTrace)); }
         }
     }
 }
