@@ -33,7 +33,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
 
-                string filename = String.Format("{0}_{1}.debug", version, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
+                string filename = String.Format("{0}_{1}_{2}.debug", version, ErrorCode(module, func), DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
 
                 string encoded = new Crypt().Encode(json.ToString());
                 if (encoded != "FAIL") File.WriteAllText(@"temp\" + filename, new Crypt().Encode(json.ToString()), Encoding.UTF8);
@@ -148,30 +148,62 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </returns>
         public string ErrorCode(string formID, string func)
         {
-            string form = "0";
-            int num = 0;
-
-            int Null = 5;
+            int form = 0;
+            string num = "0";
 
             switch(formID){
                 case "MainWindow":
-                    form = "1";
+                    form = 1;
 
                     switch (func)
                     {
-                        "Navigator":num = "1";
+                        case "MainWindow()": num = FormatNum(1); break;
+                        case "Window_Loaded(2)": num = FormatNum(2); break;
+                        case "Window_Loaded(3)": num = FormatNum(3); break;
+                        case "Window_Loaded(4)": num = FormatNum(4); break;
+                        case "Debug.ClearLogs()": num = FormatNum(5); break;
+                        case "Window_Closing(0)": num = FormatNum(6); break;
+                        case "Window_Closing(1)": num = FormatNum(7); break;
+                        case "bClose_Click()": num = FormatNum(8); break;
+                        case "bMinimize_Click()": num = FormatNum(9); break;
+                        case "NotifyClick()": num = FormatNum(10); break;
+                        case "OpenLink()": num = FormatNum(11); break;
+                        case "bPlay_Click()": num = FormatNum(12); break;
+                        case "bAirus_Click()": num = FormatNum(13); break;
+                        case "bLauncher_Click()": num = FormatNum(14); break;
+                        case "Button_Click()": num = FormatNum(15); break;
+                        case "ProcessStart()": num = FormatNum(16); break;
+
+                        default: num = FormatNum(0); break;
                     }
             break;
 
-                default: break;
+                default: form = 0; break;
             }
 
-            return String.Format("{0}x{1}", form, num);
+            return String.Format("{0}x{1}", form, form == 0 ? FormatNum(0) : num);
         }
 
-        private string FormatNum(int i)
+        /// <summary>
+        /// Форматирование строки по минимальному количеству знаков.
+        /// По-умолчанию 4 знака, то есть входящее число 4 на выходе будет иметь вид "00004"
+        /// </summary>
+        /// <param name="num">Число</param>
+        /// <returns>Формат в соответствии с количеством символов кода</returns>
+        private string FormatNum(int num)
         {
+            int nums = 4;
+            string result = String.Empty;
 
+            int max = nums - num.ToString().Length;
+
+            if (max > 0)
+            for (int i = 0; i < max; i++)
+                result += "0";
+
+            result += max.ToString();
+
+            return result;
         }
     }
 }

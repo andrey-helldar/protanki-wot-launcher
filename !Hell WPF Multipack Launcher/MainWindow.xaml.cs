@@ -53,7 +53,7 @@ namespace _Hell_WPF_Multipack_Launcher
         public static bool Navigator(string page = "General", string from = null)
         {
             try { MainFrame0.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
-            catch (Exception ex) { MessageBox.Show(ex.Message, ex.StackTrace); }
+            catch (Exception) { }
             return true;
         }
 
@@ -96,7 +96,7 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded()", ex.Message, ex.StackTrace)).Wait();
+                Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)).Wait();
                 Task.Factory.StartNew(() => Debug.Restart());
             }
 
@@ -108,11 +108,11 @@ namespace _Hell_WPF_Multipack_Launcher
                 notifyIcon.Text = Variables.ProductName;
                 notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded()", "iconStream", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
 
 
             try { Task.Factory.StartNew(() => MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative))); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "General form loading", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(4)", ex.Message, ex.StackTrace)); }
 
 
             try { Task.Factory.StartNew(() => Debug.ClearLogs()); }
@@ -122,10 +122,10 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try { notifyIcon.Dispose(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing()", "notifyIcon.Dispose();", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing(0)", "notifyIcon.Dispose();", ex.Message, ex.StackTrace)); }
 
             try { xmlDocument.Save(Variables.SettingsPath); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing()", "xmlDocument.Save();", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing(1)", "xmlDocument.Save();", ex.Message, ex.StackTrace)); }
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
@@ -208,7 +208,7 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "General form loading", ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Button_Click()", ex.Message)); }
         }
 
         /// <summary>
