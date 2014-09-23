@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,7 @@ namespace _Hell_WPF_Multipack_Launcher
     public partial class WarApiOpenID : Window
     {
         Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
+        Classes.Debug Debug = new Classes.Debug();
 
         public WarApiOpenID()
         {
@@ -33,36 +35,38 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 if (WB.Source.ToString().IndexOf(Properties.Resources.Developer) > -1 && WB.Source.ToString().IndexOf("access_token") > 0)
                 {
-                    Dictionary<string, string> Token = WarAPI.Token(WB.Source.ToString());
+                    JObject Token = WarAPI.Token(WB.Source.ToString());
 
-                    MessageBox.Show(WarAPI.TokenString(WB.Source.ToString()));
+                    if(Token.SelectToken("status").ToString() == "ok"){
 
-                    if (Token["status"] == "ok")
-                    {
-                        if (MainWindow.XmlDocument.Root.Element("token") != null)
-                        {
-                            if (MainWindow.XmlDocument.Root.Element("token").Attribute("access_token") != null)
-                                MainWindow.XmlDocument.Root.Element("token").Attribute("access_token").SetValue(Token["access_token"]);
-
-                            if (MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at") != null)
-                                MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at").SetValue(Token["expires_at"]);
-
-                            if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
-                                MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").SetValue(Token["nickname"]);
-
-                            if (MainWindow.XmlDocument.Root.Element("token").Attribute("account_id") != null)
-                                MainWindow.XmlDocument.Root.Element("token").Attribute("account_id").SetValue(Token["account_id"]);
-                        }
+                        SetValue("access_token", Token.SelectToken("access_token").ToString());
+                        SetValue("expires_at", Token.SelectToken("expires_at").ToString());
+                        SetValue("nickname", Token.SelectToken("nickname").ToString());
+                        SetValue("account_id", Token.SelectToken("account_id").ToString());
 
                         this.Close();
                     }
-                    else
-                    {
-                        MessageBox.Show(WB.Source.ToString());
-                    }
                 }
             }
-            catch (Exception) { MessageBox.Show(WB.Source.ToString()); }
+            catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "WebBrowser_LoadCompleted()", ex.Message, ex.StackTrace)); }
+        }
+
+        private void SetValue(string attr, string val)
+        {
+            try
+            {
+                XElement el = MainWindow.XmlDocument.Root.Element("token");
+
+                if (el != null)
+                    if (el.Attribute(attr) != null)
+                        el.Attribute(attr).SetValue(val);
+                    else
+                        el.Add(new XAttribute(attr, val));
+                else
+                    MainWindow.XmlDocument.Root.Add(new XElement("token",
+                        new XAttribute(attr, val)));
+            }
+            catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, obj.ToString(), ex.Message, ex.StackTrace)); }
         }
     }
 }
