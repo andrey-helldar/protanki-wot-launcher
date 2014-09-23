@@ -27,7 +27,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.YoutubeVideo YoutubeClass = new Classes.YoutubeVideo();
         Classes.Wargaming WargamingClass = new Classes.Wargaming();
 
-        string NotifyLink = String.Empty;
+        private string NotifyLink = String.Empty;
 
 
         public General()
@@ -35,10 +35,16 @@ namespace _Hell_WPF_Multipack_Launcher
             InitializeComponent();
 
             string nickname = "";
-            if (MainWindow.XmlDocument.Root.Element("token") != null)
-                if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
-                    if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value != "")
-                        nickname = ", " + MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value;
+            try
+            {
+                if (MainWindow.XmlDocument.Root.Element("token") != null)
+                    if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
+                        if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value != "")
+                            nickname = ", " + MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value;
+                        else
+                            MainWindow.XmlDocument.Root.Element("token").Remove();
+            }
+            catch (Exception) { }
 
             Task.Factory.StartNew(() => ShowNotify("Добро пожаловать" + nickname + "!", "", false));
         }
@@ -55,17 +61,21 @@ namespace _Hell_WPF_Multipack_Launcher
 
 
             // Загружаем список видео и новостей
-            Task.WaitAll(new Task[]{
+            try
+            {
+                Task.WaitAll(new Task[]{
                 Task.Factory.StartNew(() => YoutubeClass.Start()),
                 Task.Factory.StartNew(() => WargamingClass.Start())                
             });
 
-            Task.WaitAll(new Task[]{
+                Task.WaitAll(new Task[]{
                 Task.Factory.StartNew(() => ViewNews()),
                 Task.Factory.StartNew(() => ViewNews(false))
             });
 
-            Task.Factory.StartNew(() => VideoNotify()); // Выводим уведомления
+                Task.Factory.StartNew(() => VideoNotify()); // Выводим уведомления
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -73,158 +83,166 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         private void ViewNews(bool youtube = true)
         {
-            Task.Factory.StartNew(() =>
+            try
             {
-                try
+                Task.Factory.StartNew(() =>
                 {
-                    int count = youtube ? YoutubeClass.Count() : WargamingClass.Count();
-
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    try
                     {
+                        int count = youtube ? YoutubeClass.Count() : WargamingClass.Count();
 
-                        if (count == 0)
-                        { // Если список пуст, то добавляем одну строку с уведомлением
-                            Grid gridPanel = new Grid();
-                            gridPanel.Width = double.NaN;
-                            gridPanel.Margin = new Thickness(0);
-                            gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
 
-                            Label labelNotify = new Label();
-                            labelNotify.Height = double.NaN;
-                            labelNotify.Margin = new Thickness(0);
-                            labelNotify.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                            labelNotify.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-                            labelNotify.Content = "Записи не обнаружены";
-                            Grid.SetRow(labelNotify, 0);
-                            Grid.SetColumn(labelNotify, 0);
-                            gridPanel.Children.Add(labelNotify);
-
-                            ListBoxItem lbi = new ListBoxItem();
-                            lbi.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemGeneral");
-                            lbi.Content = gridPanel;
-
-                            try { if (youtube) lbVideo.Items.Add(lbi); else lbNews.Items.Add(lbi); }
-                            catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Count " + (youtube ? "VIDEO" : "NEWS") + " is "+count.ToString(), ex0.Message, ex0.StackTrace)); }
-
-                        }
-                        else
-                            for (int i = 0; i < count; i++)
-                            {
+                            if (count == 0)
+                            { // Если список пуст, то добавляем одну строку с уведомлением
                                 try
                                 {
-                                    // Добавляем решетку для размещения элементов
                                     Grid gridPanel = new Grid();
                                     gridPanel.Width = double.NaN;
-                                    /*gridPanel.Height = 70;*/
                                     gridPanel.Margin = new Thickness(0);
                                     gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                                    /*gridPanel.VerticalAlignment = System.Windows.VerticalAlignment.Top;*/
 
-                                    RowDefinition gridRow1 = new RowDefinition();
-                                    gridRow1.Height = new GridLength(30);
-                                    gridPanel.RowDefinitions.Add(gridRow1);
-                                    gridPanel.RowDefinitions.Add(new RowDefinition());
-
-                                    ColumnDefinition gridColumn1 = new ColumnDefinition();
-                                    gridColumn1.Width = GridLength.Auto;
-                                    gridPanel.ColumnDefinitions.Add(gridColumn1);
-                                    gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
-
-                                    // Добавляем дату
-                                    Label labelDate = new Label();
-                                    labelDate.Height = double.NaN;
-                                    labelDate.Margin = new Thickness(0, 0, 0, 0);
-                                    labelDate.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                                    labelDate.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-                                    try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
-                                    catch (Exception) { labelDate.Content = "1970-1-1"; }
-                                    Grid.SetRow(labelDate, 0);
-                                    Grid.SetColumn(labelDate, 0);
-                                    gridPanel.Children.Add(labelDate);
-
-                                    // Кнопка "Воспроизвести"
-                                    Button buttonPlay = new Button();
-                                    buttonPlay.Content = ">";
-                                    buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
-                                    buttonPlay.Width = 20;
-                                    buttonPlay.Height = double.NaN;
-                                    buttonPlay.Margin = new Thickness(20, 0, 0, 0);
-                                    buttonPlay.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                                    buttonPlay.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-                                    buttonPlay.Click += PlayPreview;
-                                    Grid.SetRow(buttonPlay, 0);
-                                    Grid.SetColumn(buttonPlay, 1);
-                                    gridPanel.Children.Add(buttonPlay);
-
-                                    // Кнопка "Закрыть"
-                                    Button buttonClose = new Button();
-                                    buttonClose.Content = "X";
-                                    buttonClose.Name = (youtube ? "CloseYoutube_" : "CloseWargaming_") + i.ToString();
-                                    buttonClose.Width = 20;
-                                    buttonClose.Height = double.NaN;
-                                    buttonClose.Margin = new Thickness(50, 0, 0, 0);
-                                    buttonClose.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                                    buttonClose.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-                                    buttonClose.Click += CloseBlock;
-                                    Grid.SetRow(buttonClose, 0);
-                                    Grid.SetColumn(buttonClose, 1);
-                                    gridPanel.Children.Add(buttonClose);
-
-                                    // Добавляем заголовок в гиперссылку
-                                    TextBlock blockTitle = new TextBlock();
-                                    blockTitle.TextWrapping = TextWrapping.Wrap;
-                                    blockTitle.Width = double.NaN;
-                                    blockTitle.Height = double.NaN;
-                                    blockTitle.Padding = new Thickness(5);
-                                    blockTitle.Margin = new Thickness(0);
-                                    blockTitle.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                                    blockTitle.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-
-                                    // Добавляем идентификатор записи
-                                    Hyperlink hyperID = new Hyperlink(new Run(""));
-                                    hyperID.NavigateUri = new Uri(youtube ? "http://" + YoutubeClass.List[i].ID : WargamingClass.List[i].Link);
-                                    hyperID.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
-                                    this.RegisterName(hyperID.Name, hyperID);
-
-                                    // Гиперссылка для заголовка
-                                    Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
-                                    hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
-                                    hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
-                                    blockTitle.Inlines.Add(hyperlink);
-                                    blockTitle.Inlines.Add(hyperID);
-
-                                    Grid.SetRow(blockTitle, 1);
-                                    Grid.SetColumn(blockTitle, 0);
-                                    Grid.SetColumnSpan(blockTitle, 2);
-                                    gridPanel.Children.Add(blockTitle);
-
-                                    /*try { this.Dispatcher.BeginInvoke(new ThreadStart(delegate { svVideo.Content = panel; })); }
-                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", "Apply video to form", ex0.Message, ex0.StackTrace)); }*/
+                                    Label labelNotify = new Label();
+                                    labelNotify.Height = double.NaN;
+                                    labelNotify.Margin = new Thickness(0);
+                                    labelNotify.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                                    labelNotify.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                    labelNotify.Content = "Записи не обнаружены";
+                                    Grid.SetRow(labelNotify, 0);
+                                    Grid.SetColumn(labelNotify, 0);
+                                    gridPanel.Children.Add(labelNotify);
 
                                     ListBoxItem lbi = new ListBoxItem();
                                     lbi.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemGeneral");
                                     lbi.Content = gridPanel;
 
+                                    try { if (youtube) lbVideo.Items.Add(lbi); else lbNews.Items.Add(lbi); }
+                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Count " + (youtube ? "VIDEO" : "NEWS") + " is " + count.ToString(), ex0.Message, ex0.StackTrace)); }
+                                }
+                                catch (Exception ex1) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "if (count == 0)", "Записи не обнаружены", ex1.Message, ex1.StackTrace)); }
+
+                            }
+                            else
+                                for (int i = 0; i < count; i++)
+                                {
                                     try
                                     {
-                                        if (youtube)
-                                            lbVideo.Items.Add(lbi);
-                                        else
-                                            lbNews.Items.Add(lbi);
+                                        // Добавляем решетку для размещения элементов
+                                        Grid gridPanel = new Grid();
+                                        gridPanel.Width = double.NaN;
+                                        /*gridPanel.Height = 70;*/
+                                        gridPanel.Margin = new Thickness(0);
+                                        gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                                        /*gridPanel.VerticalAlignment = System.Windows.VerticalAlignment.Top;*/
 
-                                        Thread.Sleep(50);
+                                        RowDefinition gridRow1 = new RowDefinition();
+                                        gridRow1.Height = new GridLength(30);
+                                        gridPanel.RowDefinitions.Add(gridRow1);
+                                        gridPanel.RowDefinitions.Add(new RowDefinition());
+
+                                        ColumnDefinition gridColumn1 = new ColumnDefinition();
+                                        gridColumn1.Width = GridLength.Auto;
+                                        gridPanel.ColumnDefinitions.Add(gridColumn1);
+                                        gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
+
+                                        // Добавляем дату
+                                        Label labelDate = new Label();
+                                        labelDate.Height = double.NaN;
+                                        labelDate.Margin = new Thickness(0, 0, 0, 0);
+                                        labelDate.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                                        labelDate.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                        try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
+                                        catch (Exception) { labelDate.Content = "1970-1-1"; }
+                                        Grid.SetRow(labelDate, 0);
+                                        Grid.SetColumn(labelDate, 0);
+                                        gridPanel.Children.Add(labelDate);
+
+                                        // Кнопка "Воспроизвести"
+                                        Button buttonPlay = new Button();
+                                        buttonPlay.Content = ">";
+                                        buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
+                                        buttonPlay.Width = 20;
+                                        buttonPlay.Height = double.NaN;
+                                        buttonPlay.Margin = new Thickness(20, 0, 0, 0);
+                                        buttonPlay.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                                        buttonPlay.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                        buttonPlay.Click += PlayPreview;
+                                        Grid.SetRow(buttonPlay, 0);
+                                        Grid.SetColumn(buttonPlay, 1);
+                                        gridPanel.Children.Add(buttonPlay);
+
+                                        // Кнопка "Закрыть"
+                                        Button buttonClose = new Button();
+                                        buttonClose.Content = "X";
+                                        buttonClose.Name = (youtube ? "CloseYoutube_" : "CloseWargaming_") + i.ToString();
+                                        buttonClose.Width = 20;
+                                        buttonClose.Height = double.NaN;
+                                        buttonClose.Margin = new Thickness(50, 0, 0, 0);
+                                        buttonClose.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                                        buttonClose.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                        buttonClose.Click += CloseBlock;
+                                        Grid.SetRow(buttonClose, 0);
+                                        Grid.SetColumn(buttonClose, 1);
+                                        gridPanel.Children.Add(buttonClose);
+
+                                        // Добавляем заголовок в гиперссылку
+                                        TextBlock blockTitle = new TextBlock();
+                                        blockTitle.TextWrapping = TextWrapping.Wrap;
+                                        blockTitle.Width = double.NaN;
+                                        blockTitle.Height = double.NaN;
+                                        blockTitle.Padding = new Thickness(5);
+                                        blockTitle.Margin = new Thickness(0);
+                                        blockTitle.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                                        blockTitle.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+
+                                        // Добавляем идентификатор записи
+                                        Hyperlink hyperID = new Hyperlink(new Run(""));
+                                        hyperID.NavigateUri = new Uri(youtube ? "http://" + YoutubeClass.List[i].ID : WargamingClass.List[i].Link);
+                                        hyperID.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
+                                        this.RegisterName(hyperID.Name, hyperID);
+
+                                        // Гиперссылка для заголовка
+                                        Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
+                                        hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
+                                        hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
+                                        blockTitle.Inlines.Add(hyperlink);
+                                        blockTitle.Inlines.Add(hyperID);
+
+                                        Grid.SetRow(blockTitle, 1);
+                                        Grid.SetColumn(blockTitle, 0);
+                                        Grid.SetColumnSpan(blockTitle, 2);
+                                        gridPanel.Children.Add(blockTitle);
+
+                                        /*try { this.Dispatcher.BeginInvoke(new ThreadStart(delegate { svVideo.Content = panel; })); }
+                                        catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", "Apply video to form", ex0.Message, ex0.StackTrace)); }*/
+
+                                        ListBoxItem lbi = new ListBoxItem();
+                                        lbi.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemGeneral");
+                                        lbi.Content = gridPanel;
+
+                                        try
+                                        {
+                                            if (youtube)
+                                                lbVideo.Items.Add(lbi);
+                                            else
+                                                lbNews.Items.Add(lbi);
+
+                                            Thread.Sleep(50);
+                                        }
+                                        catch (Exception ex2) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex2.Message, ex2.StackTrace)); }
                                     }
-                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex0.Message, ex0.StackTrace)); }
+                                    catch (Exception ex3) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "FOR: " + i.ToString(), ex3.Message, ex3.StackTrace)); }
                                 }
-                                catch (Exception ex1) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "FOR: " + i.ToString(), ex1.Message, ex1.StackTrace)); }
-                            }
 
-                        Thread.Sleep(Convert.ToInt16(Properties.Resources.Sleeping_News));
-                    }));
+                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Sleeping_News));
+                        }));
 
-                }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex.Message, ex.StackTrace)); }
-            });
+                    }
+                    catch (Exception ex4) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex4.Message, ex4.StackTrace)); }
+                });
+            }
+            catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Youtube = " + youtube.ToString(), e.Message, e.StackTrace)); }
         }
 
         private void VideoNotify()
@@ -245,6 +263,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         try
                         {
+                            // Если запущен клиент игры - ждем 5 секунд до следующей проверки
                             while (System.Diagnostics.Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
                                 System.Diagnostics.Process.GetProcessesByName("WoTLauncher").Length > 0)
                                 Thread.Sleep(5000);
@@ -265,10 +284,10 @@ namespace _Hell_WPF_Multipack_Launcher
                         else
                             MainWindow.XmlDocument.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
                     }
-                    catch (Exception) { }
+                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", el.ToString(), ex0.Message, ex0.StackTrace)); }
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -288,6 +307,12 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception) { }
         }
 
+        /// <summary>
+        /// Вывод уведомления либо в строку статуса, либо всплывающим уведомлением в системном трее
+        /// </summary>
+        /// <param name="text">Текст отображения</param>
+        /// <param name="caption">Заголовок</param>
+        /// <param name="isPopup">TRUE - вывод в системном трее, иначе - в строке статуса формы</param>
         private void ShowNotify(string text, string caption = null, bool isPopup = true)
         {
             try
@@ -301,15 +326,13 @@ namespace _Hell_WPF_Multipack_Launcher
                             caption = caption != null ? caption : MainWindow.ProductName;
                             MainWindow.Notifier.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
                         }
-                        catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", ex0.Message, "Caption: " + caption, text)); }
+                        catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", "Caption: " + caption, text, "IsPopup = " + isPopup.ToString(), ex0.Message, ex0.StackTrace)); }
                     }
                     else
-                    {
                         lStatus.Text = text;
-                    }
                 }));
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", ex.Message, "Caption: " + caption, text)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", "Caption: " + caption, text, "IsPopup = " + isPopup.ToString(), ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -324,7 +347,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
                 e.Handled = true;
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Hyperlink_RequestNavigate()", ex.Message, "Link: " + e.Uri.AbsoluteUri)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Hyperlink_RequestNavigate()", "Link: " + e.Uri.AbsoluteUri, ex.Message, ex.StackTrace)); }
         }
 
 
@@ -362,7 +385,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 el.IsSelected = true;
                 lb.Items.Remove(lb.SelectedItem);
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "CloseBlock()", ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "CloseBlock()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -372,31 +395,44 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="e"></param>
         private void PlayPreview(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("OK");
+            try
+            {
+                MessageBox.Show("OK");
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "PlayPreview()", ex.Message, ex.StackTrace)); }
         }
 
         public bool ElementToBan(string block, string item)
         {
-            if (MainWindow.XmlDocument.Root.Element("do_not_display") != null)
-                if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block) != null)
-                    if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Element("item") != null)
-                        if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item").Count() > 0)
-                        {
-                            foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item"))
-                                if (str == item) return true;
+            try
+            {
+                XElement el = MainWindow.XmlDocument.Root.Element("do_not_display");
+                if (el != null)
+                    if (el.Element(block) != null)
+                        if (el.Element(block).Element("item") != null)
+                            if (el.Element(block).Elements("item").Count() > 0)
+                            {
+                                foreach (string str in el.Element(block).Elements("item"))
+                                    if (str == item) return true;
 
-                            MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Add(new XElement("item", item));
-                        }
+                                el.Element(block).Add(new XElement("item", item));
+                            }
+                            else
+                                el.Element(block).Element("item").SetValue(item);
                         else
-                            MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Element("item").SetValue(item);
+                            el.Element(block).Add(new XElement("item", item));
                     else
-                        MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Add(new XElement("item", item));
+                        el.Add(new XElement(block, new XElement("item", item)));
                 else
-                    MainWindow.XmlDocument.Root.Element("do_not_display").Add(new XElement(block, new XElement("item", item)));
-            else
-                MainWindow.XmlDocument.Root.Add(new XElement("do_not_display", new XElement(block, new XElement("item", item))));
+                    MainWindow.XmlDocument.Root.Add(new XElement("do_not_display", new XElement(block, new XElement("item", item))));
 
-            return true;
+                return true;
+            }
+            catch (Exception ex0)
+            {
+                Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex0.Message, ex0.StackTrace));
+                return true;
+            }
         }
 
         /// <summary>
@@ -407,54 +443,76 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <returns>Возвращаем элемент</returns>
         private Hyperlink Find(ListBoxItem sender, string name)
         {
-            object wantedNode = sender.FindName(name);
-            if (wantedNode is Hyperlink)
-                return wantedNode as Hyperlink;
-            else
+            try
+            {
+                object wantedNode = sender.FindName(name);
+                if (wantedNode is Hyperlink)
+                    return wantedNode as Hyperlink;
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debug.Save("General.xaml", "Find()", "Find name: " + name, ex.Message, ex.StackTrace));
                 return null;
+            }
         }
 
         private void bOptimize_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Вы точно хотите оптимизировать ПК вручную?", "Launcher", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            try
             {
-                Classes.Variables Vars = new Classes.Variables();
+                if (MessageBox.Show("Вы точно хотите оптимизировать ПК вручную?", "Launcher", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Classes.Variables Vars = new Classes.Variables();
 
-                new Classes.Optimize().Start(
-                        Vars.GetElement("settings", "winxp"),
-                        Vars.GetElement("settings", "kill"),
-                        Vars.GetElement("settings", "force"),
-                        Vars.GetElement("settings", "aero"),
-                        Vars.GetElement("settings", "video"),
-                        Vars.GetElement("settings", "weak"),
-                        true
-                    );
+                    new Classes.Optimize().Start(
+                            Vars.GetElement("settings", "winxp"),
+                            Vars.GetElement("settings", "kill"),
+                            Vars.GetElement("settings", "force"),
+                            Vars.GetElement("settings", "aero"),
+                            Vars.GetElement("settings", "video"),
+                            Vars.GetElement("settings", "weak"),
+                            true
+                        );
+                }
             }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bOptimize_Click()", ex.Message, ex.StackTrace)); }
         }
 
         private void bSettings_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Navigator("Settings", "General.xaml");
+            Task.Factory.StartNew(() => OpenPage("Settings"));
         }
 
         private void bFeedback_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Navigator("Feedback", "General.xaml");
+            Task.Factory.StartNew(() => OpenPage("Feedback"));
         }
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Navigator("Update", "General.xaml");
+            Task.Factory.StartNew(() => OpenPage("Update"));
         }
 
         private void bNotification_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Navigator("Notification", "General.xaml");
+            Task.Factory.StartNew(() => OpenPage("Notification"));
         }
 
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Navigator("UserProfile", "General.xaml");
+            Task.Factory.StartNew(() => OpenPage("UserProfile"));
+        }
+
+        /// <summary>
+        /// Сводим смену контента формы к одной функции для более легкого дебага
+        /// </summary>
+        /// <param name="page">Имя открываемой формы</param>
+        private void OpenPage(string page)
+        {
+            try { MainWindow.Navigator(page, "General.xaml"); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "OpenPage()", "Page : " + page, ex.Message, ex.StackTrace)); }
         }
     }
 }
