@@ -172,6 +172,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FAIL.
+        /// </summary>
+        public static string Class_Fail {
+            get {
+                return ResourceManager.GetString("Class_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ru.
         /// </summary>
         public static string Default_Lang {

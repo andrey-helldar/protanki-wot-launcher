@@ -280,4 +280,8 @@
     <value>api.worldoftanks.ru/wot/globalwar/provinces/</value>
     <comment>Провинции Глобальной карты</comment>
   </data>
+  <data name="Class_Fail" xml:space="preserve">
+    <value>FAIL</value>
+    <comment>Строка, выводимая при ошибках работы функции</comment>
+  </data>
 </root>

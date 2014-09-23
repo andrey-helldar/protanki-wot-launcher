@@ -99,6 +99,7 @@
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Asset.Class.cs" />
+    <Compile Include="Classes\Crypt.Class.cs" />
     <Compile Include="Classes\Language.Class.cs" />
     <Compile Include="Classes\WargamingAPI.Class.cs" />
     <Compile Include="ScottLogic\BaseWPFHelpers.cs" />
