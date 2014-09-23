@@ -8,6 +8,7 @@ using System.Windows;
 using System.IO;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher.Classes
 {
@@ -18,6 +19,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 string version = Application.Current.GetType().Assembly.GetName().Version.ToString();
+
+                JObject json = new JObject(
+                    new JProperty
+                    );
 
                 Dictionary<string, string> jData = new Dictionary<string, string>();
                 jData.Add("uid", new Classes.Variables().GetUserID());
@@ -44,8 +49,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
         public void Restart()
         {
-            Process.Start("restart.exe", String.Format("\"{0}.exe\"", Process.GetCurrentProcess().ProcessName));
-            Process.GetCurrentProcess().Kill();
+            try
+            {
+                Process.Start("restart.exe", String.Format("\"{0}.exe\"", Process.GetCurrentProcess().ProcessName));
+                Process.GetCurrentProcess().Kill();
+            }
+            catch (Exception ex) { Task.Factory.StartNew(()=Save("Debug.Class", "Restart()", ex.Message, ex.StackTrace));}
         }
 
         /// <summary>
@@ -63,10 +72,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <returns>Шифрованная строка</returns>
         public string Crypt(string input)
         {
-            try
-            {
-                return input;
-            }
+            try { return input; }
             catch (Exception) { return input; }
         }
 
@@ -77,10 +83,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <returns>Дешифрованная строка</returns>
         public string Decrypt(string input)
         {
-            try
-            {
-                return input;
-            }
+            try { return input; }
             catch (Exception) { return input; }
         }
 

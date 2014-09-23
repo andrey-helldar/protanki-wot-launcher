@@ -51,6 +51,11 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "WebBrowser_LoadCompleted()", ex.Message, ex.StackTrace)); }
         }
 
+        /// <summary>
+        /// Устанавливаем значение в ключ токена XML
+        /// </summary>
+        /// <param name="attr">Ключ токена</param>
+        /// <param name="val">Значение</param>
         private void SetValue(string attr, string val)
         {
             try
