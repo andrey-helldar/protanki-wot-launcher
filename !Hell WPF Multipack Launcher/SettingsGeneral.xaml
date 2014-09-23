@@ -1,4 +1,4 @@
-﻿<Page x:Class="_Hell_WPF_Multipack_Launcher.SettingsOptimize"
+﻿<Page x:Name="PageSettingsGeneral" x:Class="_Hell_WPF_Multipack_Launcher.SettingsOptimize"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,7 +14,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <GroupBox VerticalAlignment="Top" Margin="0,5,0,0" Header="Оптимизация ПК и игры:" Grid.Row="0">
+                <GroupBox x:Name="gbOptimize" VerticalAlignment="Top" Margin="0,5,0,0" Header="Оптимизация ПК и игры:" Grid.Row="0">
                     <Grid Margin="5" Background="LightGray" VerticalAlignment="Top">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -22,21 +22,21 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <CheckBox x:Name="cbKill" Content="Закрывать процессы при запуске игры" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Height="16" Width="232" Click="cbKill_Click"/>
                         <CheckBox x:Name="cbForce" Content="Принудительно закрывать процессы" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="1" Height="16" Width="220" Click="cbForce_Click"/>
                         <CheckBox x:Name="cbVideo" Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="2" Height="16" Width="218" Click="cbVideo_Click"/>
                         <CheckBox x:Name="cbAero" Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="4" Height="16" Width="157" Click="cbAero_Click"/>
                         <CheckBox x:Name="cbWeak" Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="3" Height="16" Width="161" Click="cbWeak_Click"/>
-                        <ComboBox x:Name="cbPriority" VerticalAlignment="Top" Margin="10,5,10,0" SelectedIndex="0" Grid.Row="5" Height="22">
+                        <ComboBox x:Name="cbPriority" VerticalAlignment="Top" Margin="10,5" SelectedIndex="0" Grid.Row="5" Height="22">
                             <ComboBoxItem Content="---"/>
                         </ComboBox>
                     </Grid>
                 </GroupBox>
 
 
-                <GroupBox VerticalAlignment="Top" Margin="0,5,0,0" Header="Другое:" Grid.Row="1">
+                <GroupBox x:Name="gbOther" VerticalAlignment="Top" Margin="0,5,0,0" Header="Другое:" Grid.Row="1">
                     <Grid Margin="5" Background="#FFBFAEAE">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>

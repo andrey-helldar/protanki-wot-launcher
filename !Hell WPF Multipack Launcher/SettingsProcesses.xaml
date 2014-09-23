@@ -1,4 +1,4 @@
-﻿<Page x:Class="_Hell_WPF_Multipack_Launcher.SettingsProcesses"
+﻿<Page x:Name="PageSettingsProcesses" x:Class="_Hell_WPF_Multipack_Launcher.SettingsProcesses"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,24 +27,24 @@
                     <ColumnDefinition Width="93*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="#" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
-                <Label Content="Процессы" Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
-                <Label Content="Описание" Grid.Column="2" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
+                <Label x:Name="lProcesses" Content="Процессы" Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
+                <Label x:Name="lDescription" Content="Описание" Grid.Column="2" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
             </Grid>
         </StackPanel>
         <Canvas Height="40" Margin="10,10,10,0" Grid.Row="2" VerticalAlignment="Top" Background="#FFE398FF"/>
         <Canvas Height="40" Margin="10,55,10,0" Grid.Row="2" VerticalAlignment="Top" Background="Honeydew"/>
         <Canvas Height="40" Margin="10,100,10,0" Grid.Row="2" VerticalAlignment="Top" Background="#FFFFEFEF"/>
         <TextBlock Margin="0,10,10,0" Grid.Row="2" VerticalAlignment="Top" TextTrimming="WordEllipsis" TextWrapping="Wrap" Grid.Column="1">
-            <Run>Глобальный список процессов</Run><LineBreak/>
-            <Run>Отключение процессов из данного списка невозможно</Run>
+            <Run x:Name="statusGlobal">Глобальный список процессов</Run><LineBreak/>
+            <Run x:Name="statusGlobalDesc">Отключение процессов из данного списка невозможно</Run>
         </TextBlock>
         <TextBlock Margin="0,55,10,0" Grid.Row="2" VerticalAlignment="Top" TextTrimming="WordEllipsis" TextWrapping="Wrap" Grid.Column="1">
-            <Run>Процессы, которые НЕЛЬЗЯ закрывать</Run><LineBreak/>
-            <Run>Процессы, которые будут игнорироваться лаунчером при оптимизации ПК</Run>
+            <Run x:Name="statusUser">Процессы, которые НЕЛЬЗЯ закрывать</Run><LineBreak/>
+            <Run x:Name="statusUserDesc">Процессы, которые будут игнорироваться лаунчером при оптимизации ПК</Run>
         </TextBlock>
         <TextBlock Margin="0,100,10,0" Grid.Row="2" VerticalAlignment="Top" TextTrimming="WordEllipsis" TextWrapping="Wrap" Grid.Column="1">
-            <Run>Процессы, не имеющие приоритета</Run><LineBreak/>
-            <Run>Процессы, которые будут завершаться при оптимизации ПК</Run>
+            <Run x:Name="statusNormal">Процессы, не имеющие приоритета</Run><LineBreak/>
+            <Run x:Name="statusNormalDesc">Процессы, которые будут завершаться при оптимизации ПК</Run>
         </TextBlock>
     </Grid>
 </Page>

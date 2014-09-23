@@ -36,8 +36,8 @@
                 <ImageBrush ImageSource="Resources/backGeneralLine.png" TileMode="FlipY"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Label Content="ВИДЕО" Grid.Column="2" Style="{StaticResource LabelStyleHeaderWhite}" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="61"/>
-        <Label Content="НОВОСТИ" HorizontalAlignment="Left" Style="{StaticResource LabelStyleHeaderWhite}" Margin="10,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="87"/>
+        <Label x:Name="lVideo" Content="ВИДЕО" Grid.Column="2" Style="{StaticResource LabelStyleHeaderWhite}" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="61"/>
+        <Label x:Name="lNews" Content="НОВОСТИ" HorizontalAlignment="Left" Style="{StaticResource LabelStyleHeaderWhite}" Margin="10,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="87"/>
         <TextBlock Margin="110,0,0,0" Grid.Row="4" Grid.ColumnSpan="3" FontFamily="Verdana" TextWrapping="Wrap" FontSize="11" VerticalAlignment="Center" HorizontalAlignment="Left">
             <Run Text="2014 ©"/>
             <Run Text="«AI RUS – Professional IT support»" FontWeight="Bold" Cursor="Hand"/>
