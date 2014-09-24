@@ -40,14 +40,14 @@
             // 
             // bDownload
             // 
-            this.bDownload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bDownload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bDownload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bDownload.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bDownload.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bDownload.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bDownload.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bDownload.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bDownload.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bDownload.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bDownload.ForeColor = System.Drawing.Color.White;
             this.bDownload.Location = new System.Drawing.Point(144, 344);
             this.bDownload.Margin = new System.Windows.Forms.Padding(0);
             this.bDownload.Name = "bDownload";
@@ -59,14 +59,14 @@
             // 
             // bCancel
             // 
-            this.bCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bCancel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bCancel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bCancel.ForeColor = System.Drawing.Color.White;
             this.bCancel.Location = new System.Drawing.Point(368, 344);
             this.bCancel.Margin = new System.Windows.Forms.Padding(0);
             this.bCancel.Name = "bCancel";
@@ -80,26 +80,27 @@
             // 
             this.cbNotification.AutoSize = true;
             this.cbNotification.BackColor = System.Drawing.Color.Transparent;
+            this.cbNotification.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cbNotification.ForeColor = System.Drawing.Color.White;
-            this.cbNotification.Location = new System.Drawing.Point(368, 321);
+            this.cbNotification.Location = new System.Drawing.Point(368, 319);
             this.cbNotification.Name = "cbNotification";
-            this.cbNotification.Size = new System.Drawing.Size(212, 17);
+            this.cbNotification.Size = new System.Drawing.Size(233, 19);
             this.cbNotification.TabIndex = 2;
             this.cbNotification.Text = "Не уведомлять меня об этой версии";
             this.cbNotification.UseVisualStyleBackColor = false;
             // 
             // llVersion
             // 
-            this.llVersion.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVersion.ActiveLinkColor = System.Drawing.Color.White;
             this.llVersion.AutoSize = true;
             this.llVersion.BackColor = System.Drawing.Color.Transparent;
-            this.llVersion.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llVersion.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llVersion.DisabledLinkColor = System.Drawing.Color.White;
+            this.llVersion.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llVersion.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llVersion.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVersion.LinkColor = System.Drawing.Color.White;
             this.llVersion.Location = new System.Drawing.Point(12, 366);
             this.llVersion.Name = "llVersion";
-            this.llVersion.Size = new System.Drawing.Size(66, 24);
+            this.llVersion.Size = new System.Drawing.Size(69, 22);
             this.llVersion.TabIndex = 5;
             this.llVersion.TabStop = true;
             this.llVersion.Text = "0.0.0.0";
@@ -108,16 +109,16 @@
             // 
             // llCaption
             // 
-            this.llCaption.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llCaption.ActiveLinkColor = System.Drawing.Color.White;
             this.llCaption.AutoSize = true;
             this.llCaption.BackColor = System.Drawing.Color.Transparent;
-            this.llCaption.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llCaption.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llCaption.DisabledLinkColor = System.Drawing.Color.White;
+            this.llCaption.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llCaption.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llCaption.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llCaption.LinkColor = System.Drawing.Color.White;
             this.llCaption.Location = new System.Drawing.Point(12, 16);
             this.llCaption.Name = "llCaption";
-            this.llCaption.Size = new System.Drawing.Size(151, 24);
+            this.llCaption.Size = new System.Drawing.Size(169, 22);
             this.llCaption.TabIndex = 0;
             this.llCaption.TabStop = true;
             this.llCaption.Text = "Загрузка данных...";
@@ -128,6 +129,7 @@
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.llContent);
+            this.panel1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.panel1.Location = new System.Drawing.Point(12, 64);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(676, 243);
@@ -139,13 +141,13 @@
             this.llContent.AutoSize = true;
             this.llContent.BackColor = System.Drawing.Color.Transparent;
             this.llContent.DisabledLinkColor = System.Drawing.Color.Gray;
-            this.llContent.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llContent.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llContent.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llContent.LinkColor = System.Drawing.Color.WhiteSmoke;
             this.llContent.Location = new System.Drawing.Point(0, 0);
             this.llContent.MaximumSize = new System.Drawing.Size(659, 1024);
             this.llContent.Name = "llContent";
-            this.llContent.Size = new System.Drawing.Size(120, 19);
+            this.llContent.Size = new System.Drawing.Size(134, 17);
             this.llContent.TabIndex = 0;
             this.llContent.TabStop = true;
             this.llContent.Text = "Загрузка данных...";

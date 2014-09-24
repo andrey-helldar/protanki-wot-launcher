@@ -61,15 +61,15 @@
             // 
             // bSave
             // 
-            this.bSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.bSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bSave.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bSave.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bSave.ForeColor = System.Drawing.Color.White;
             this.bSave.Location = new System.Drawing.Point(129, 509);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(150, 50);
@@ -80,15 +80,15 @@
             // 
             // bCancel
             // 
-            this.bCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bCancel.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bCancel.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bCancel.ForeColor = System.Drawing.Color.White;
             this.bCancel.Location = new System.Drawing.Point(300, 509);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(150, 50);
@@ -212,20 +212,20 @@
             // 
             // llTitle
             // 
-            this.llTitle.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llTitle.ActiveLinkColor = System.Drawing.Color.White;
             this.llTitle.AutoSize = true;
             this.llTitle.BackColor = System.Drawing.Color.Transparent;
             this.llTitle.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.llTitle.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llTitle.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llTitle.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llTitle.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llTitle.LinkColor = System.Drawing.Color.White;
             this.llTitle.Location = new System.Drawing.Point(12, 7);
             this.llTitle.Name = "llTitle";
-            this.llTitle.Size = new System.Drawing.Size(80, 19);
+            this.llTitle.Size = new System.Drawing.Size(92, 17);
             this.llTitle.TabIndex = 0;
             this.llTitle.TabStop = true;
             this.llTitle.Text = "Настройки...";
-            this.llTitle.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llTitle.VisitedLinkColor = System.Drawing.Color.White;
             // 
             // gbProcesses
             // 
@@ -247,7 +247,7 @@
             // lDescProcesses
             // 
             this.lDescProcesses.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lDescProcesses.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.lDescProcesses.ForeColor = System.Drawing.Color.Silver;
             this.lDescProcesses.Location = new System.Drawing.Point(7, 260);
             this.lDescProcesses.Name = "lDescProcesses";
             this.lDescProcesses.Size = new System.Drawing.Size(561, 41);
@@ -371,19 +371,19 @@
             // 
             // llRecoverySettings
             // 
-            this.llRecoverySettings.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llRecoverySettings.ActiveLinkColor = System.Drawing.Color.White;
             this.llRecoverySettings.AutoSize = true;
             this.llRecoverySettings.BackColor = System.Drawing.Color.Transparent;
             this.llRecoverySettings.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.llRecoverySettings.DisabledLinkColor = System.Drawing.Color.Gray;
             this.llRecoverySettings.Enabled = false;
-            this.llRecoverySettings.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.llRecoverySettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llRecoverySettings.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llRecoverySettings.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llRecoverySettings.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llRecoverySettings.ForeColor = System.Drawing.Color.White;
+            this.llRecoverySettings.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.llRecoverySettings.LinkColor = System.Drawing.Color.White;
             this.llRecoverySettings.Location = new System.Drawing.Point(400, 7);
             this.llRecoverySettings.Name = "llRecoverySettings";
-            this.llRecoverySettings.Size = new System.Drawing.Size(153, 19);
+            this.llRecoverySettings.Size = new System.Drawing.Size(178, 17);
             this.llRecoverySettings.TabIndex = 6;
             this.llRecoverySettings.TabStop = true;
             this.llRecoverySettings.Text = "Восстановить настройки";

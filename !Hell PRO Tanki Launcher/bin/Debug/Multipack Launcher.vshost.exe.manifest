@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.1.19.554" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher" version="1.1.21.578" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2072064">
-      <assemblyIdentity name="Multipack Launcher" version="1.1.19.554" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2728448">
+      <assemblyIdentity name="Multipack Launcher" version="1.1.21.578" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9wPOGZrV8QXSU+k5XIAZkpFnhBDSwMeasToPyFioFoo=</dsig:DigestValue>
+        <dsig:DigestValue>BPVMGx7q5StbcDsJwnGRy70EnMUDa/zoF5VSS/p4NZs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -86,7 +86,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3zXwfwsyWuyYSF1oMUJA1gPMtcFrbMSR4X0/nR+g8iI=</dsig:DigestValue>
+        <dsig:DigestValue>OAVMf28xrizThwuHHnDV7TZ7B8VUcs+gLnJjz9LXDQ8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,7 +98,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Njs6/iAYhVgmodmd8BlINACkI28v75BysYwEIsPXFKo=</dsig:DigestValue>
+        <dsig:DigestValue>t4oOUbgasJAX5QgyqAN4TIOEt7gln75sA2xFwgucgQw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -127,6 +127,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>MSr1mB5WN6smvcyEiJ2QkW4MvuILvsY1hqff3eZlN1E=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\warning.png" size="4410">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>pEsSP+IKRRKtoySM24EdXvtRx+W7jg/5xHRoHmHOSU0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\WOT.ico" size="22486">

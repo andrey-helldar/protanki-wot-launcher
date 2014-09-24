@@ -185,29 +185,29 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\res_mods.zip" />
-    <None Include="Resources\sochi.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Close-2-icon.png" />
+    <None Include="Resources\Minimize-icon.png" />
+    <Content Include="Resources\warning.png" />
+    <None Include="Resources\warning.jpg" />
+    <None Include="Resources\splash2.jpg" />
+    <None Include="Resources\newBackOld.jpg" />
     <None Include="Resources\Newtonsoft.Json.dll" />
     <None Include="Resources\Ionic.Zip.dll" />
     <None Include="Resources\restart.exe" />
     <None Include="Resources\ProcessesLibrary.dll" />
-    <None Include="Resources\splash1.jpg" />
     <None Include="Resources\settings.xml" />
-    <None Include="Resources\warning.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\lamp_on.png" />
     <None Include="Resources\lamp_off.png" />
     <None Include="Resources\LanguagePack.dll" />
-    <None Include="Resources\fWarning.jpg" />
     <None Include="Resources\start.bat" />
     <None Include="Resources\WOT.ico" />
     <None Include="Resources\FonSetting.jpg" />
     <None Include="bin\Debug\settings.xml" />
-    <None Include="Resources\engine_config.xml" />
     <Content Include="changelog.xml" />
     <Content Include="Resources\FonUPD.jpg" />
-    <None Include="Resources\back_6.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client,KB2468871">

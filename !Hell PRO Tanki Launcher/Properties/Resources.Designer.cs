@@ -90,32 +90,21 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Close_2_icon {
+            get {
+                object obj = ResourceManager.GetObject("Close_2_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TIjgwJYQyUyC2E3BRBzKKdy54C37dqfYjyInFbfMeYed0CacylTK3RtGaedTHRC6.
         /// </summary>
         internal static string Code {
             get {
                 return ResourceManager.GetString("Code", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;engine_config.xml&gt;
-        ///  &lt;personality&gt;	game	&lt;/personality&gt;
-        ///  &lt;preferences&gt;preferences_ct.xml&lt;/preferences&gt;
-        ///  &lt;enableBalanceCPU&gt;	false	&lt;/enableBalanceCPU&gt;
-        ///  &lt;renderer&gt;
-        ///    &lt;disableSLI&gt;	false	&lt;/disableSLI&gt;
-        ///    &lt;cacheEffects&gt;	true	&lt;/cacheEffects&gt;
-        ///    &lt;gammaCorrectionOutside&gt;1.0&lt;/gammaCorrectionOutside&gt;
-        ///    &lt;gammaCorrectionInside&gt;1.0&lt;/gammaCorrectionInside&gt;
-        ///    &lt;gammaCorrectionSpeed&gt;0.2&lt;/gammaCorrectionSpeed&gt;
-        ///    &lt;maxFrameRate&gt;	120	&lt;/maxFrameRate&gt;
-        ///    &lt;reducedFrameRate&gt;	60	&lt;/reducedFrameRate&gt;
-        ///    &lt;sett [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string engine_config {
-            get {
-                return ResourceManager.GetString("engine_config", resourceCulture);
             }
         }
         
@@ -239,6 +228,16 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         internal static string LinkVideoAll {
             get {
                 return ResourceManager.GetString("LinkVideoAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Minimize_icon {
+            get {
+                object obj = ResourceManager.GetObject("Minimize_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -401,16 +400,6 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("SettingsIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] sochi {
-            get {
-                object obj = ResourceManager.GetObject("sochi", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         

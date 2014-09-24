@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fIndex));
             this.bPlay = new System.Windows.Forms.Button();
             this.bLauncher = new System.Windows.Forms.Button();
             this.bUpdate = new System.Windows.Forms.Button();
@@ -61,21 +62,25 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.pbWarning = new System.Windows.Forms.PictureBox();
             this.llVideoAll = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.contextMenu.SuspendLayout();
             this.pVideo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbWarning)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // bPlay
             // 
-            this.bPlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bPlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bPlay.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bPlay.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bPlay.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bPlay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bPlay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bPlay.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bPlay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bPlay.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bPlay.ForeColor = System.Drawing.Color.Silver;
             this.bPlay.Location = new System.Drawing.Point(644, 39);
             this.bPlay.Margin = new System.Windows.Forms.Padding(0);
             this.bPlay.Name = "bPlay";
@@ -87,14 +92,14 @@
             // 
             // bLauncher
             // 
-            this.bLauncher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bLauncher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bLauncher.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bLauncher.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bLauncher.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bLauncher.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bLauncher.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bLauncher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bLauncher.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bLauncher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bLauncher.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bLauncher.ForeColor = System.Drawing.Color.Silver;
             this.bLauncher.Location = new System.Drawing.Point(644, 107);
             this.bLauncher.Margin = new System.Windows.Forms.Padding(0);
             this.bLauncher.Name = "bLauncher";
@@ -106,15 +111,15 @@
             // 
             // bUpdate
             // 
-            this.bUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bUpdate.Enabled = false;
-            this.bUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bUpdate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bUpdate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bUpdate.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bUpdate.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bUpdate.ForeColor = System.Drawing.Color.Silver;
             this.bUpdate.Location = new System.Drawing.Point(644, 175);
             this.bUpdate.Margin = new System.Windows.Forms.Padding(0);
             this.bUpdate.Name = "bUpdate";
@@ -126,14 +131,14 @@
             // 
             // bVideo
             // 
-            this.bVideo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bVideo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bVideo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bVideo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bVideo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bVideo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bVideo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bVideo.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bVideo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bVideo.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bVideo.ForeColor = System.Drawing.Color.Silver;
             this.bVideo.Location = new System.Drawing.Point(644, 243);
             this.bVideo.Margin = new System.Windows.Forms.Padding(0);
             this.bVideo.Name = "bVideo";
@@ -145,14 +150,14 @@
             // 
             // bExit
             // 
-            this.bExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bExit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bExit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bExit.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bExit.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bExit.ForeColor = System.Drawing.Color.Silver;
             this.bExit.Location = new System.Drawing.Point(644, 379);
             this.bExit.Margin = new System.Windows.Forms.Padding(0);
             this.bExit.Name = "bExit";
@@ -167,12 +172,12 @@
             this.linkLabel1.ActiveLinkColor = System.Drawing.Color.Red;
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLabel1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.linkLabel1.LinkColor = System.Drawing.Color.Gray;
             this.linkLabel1.Location = new System.Drawing.Point(660, 436);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(164, 15);
+            this.linkLabel1.Size = new System.Drawing.Size(163, 15);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Developed by Andrey Helldar";
@@ -180,15 +185,15 @@
             // 
             // llVersion
             // 
-            this.llVersion.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVersion.ActiveLinkColor = System.Drawing.Color.White;
             this.llVersion.AutoSize = true;
             this.llVersion.BackColor = System.Drawing.Color.Transparent;
-            this.llVersion.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llVersion.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llVersion.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llVersion.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
-            this.llVersion.Location = new System.Drawing.Point(9, 4);
+            this.llVersion.LinkColor = System.Drawing.Color.Silver;
+            this.llVersion.Location = new System.Drawing.Point(9, 6);
             this.llVersion.Name = "llVersion";
-            this.llVersion.Size = new System.Drawing.Size(54, 19);
+            this.llVersion.Size = new System.Drawing.Size(52, 17);
             this.llVersion.TabIndex = 0;
             this.llVersion.TabStop = true;
             this.llVersion.Text = "0.0.0.0";
@@ -261,14 +266,14 @@
             // 
             // bOptimizePC
             // 
-            this.bOptimizePC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bOptimizePC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bOptimizePC.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bOptimizePC.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bOptimizePC.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bOptimizePC.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bOptimizePC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bOptimizePC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bOptimizePC.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bOptimizePC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bOptimizePC.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bOptimizePC.ForeColor = System.Drawing.Color.Silver;
             this.bOptimizePC.Location = new System.Drawing.Point(644, 311);
             this.bOptimizePC.Margin = new System.Windows.Forms.Padding(0);
             this.bOptimizePC.Name = "bOptimizePC";
@@ -280,13 +285,13 @@
             // 
             // llTitle
             // 
-            this.llTitle.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llTitle.ActiveLinkColor = System.Drawing.Color.White;
             this.llTitle.AutoSize = true;
             this.llTitle.BackColor = System.Drawing.Color.Transparent;
             this.llTitle.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.llTitle.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llTitle.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llTitle.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llTitle.LinkColor = System.Drawing.Color.Silver;
             this.llTitle.Location = new System.Drawing.Point(189, 6);
             this.llTitle.Name = "llTitle";
             this.llTitle.Size = new System.Drawing.Size(79, 17);
@@ -298,20 +303,20 @@
             // 
             // bSettings
             // 
-            this.bSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bSettings.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bSettings.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bSettings.ForeColor = System.Drawing.Color.Silver;
             this.bSettings.Location = new System.Drawing.Point(12, 421);
             this.bSettings.Name = "bSettings";
             this.bSettings.Size = new System.Drawing.Size(131, 30);
             this.bSettings.TabIndex = 7;
             this.bSettings.Text = "Настройки";
-            this.bSettings.UseVisualStyleBackColor = true;
+            this.bSettings.UseVisualStyleBackColor = false;
             this.bSettings.Click += new System.EventHandler(this.bSettings_Click);
             // 
             // bwVideo
@@ -326,7 +331,7 @@
             // 
             this.llActually.ActiveLinkColor = System.Drawing.Color.Lime;
             this.llActually.BackColor = System.Drawing.Color.Transparent;
-            this.llActually.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llActually.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llActually.ForeColor = System.Drawing.Color.Lime;
             this.llActually.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llActually.LinkColor = System.Drawing.Color.Lime;
@@ -350,15 +355,15 @@
             // 
             // bShowVideo
             // 
-            this.bShowVideo.BackColor = System.Drawing.Color.Black;
+            this.bShowVideo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bShowVideo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bShowVideo.Enabled = false;
-            this.bShowVideo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(55)))), ((int)(((byte)(0)))));
+            this.bShowVideo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bShowVideo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bShowVideo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bShowVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bShowVideo.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bShowVideo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bShowVideo.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bShowVideo.ForeColor = System.Drawing.Color.Silver;
             this.bShowVideo.Location = new System.Drawing.Point(13, 33);
             this.bShowVideo.Name = "bShowVideo";
             this.bShowVideo.Size = new System.Drawing.Size(100, 30);
@@ -369,21 +374,21 @@
             // 
             // bShowNews
             // 
-            this.bShowNews.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.bShowNews.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.bShowNews.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bShowNews.Enabled = false;
-            this.bShowNews.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
+            this.bShowNews.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.bShowNews.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.bShowNews.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.bShowNews.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bShowNews.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bShowNews.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.bShowNews.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.bShowNews.ForeColor = System.Drawing.Color.Silver;
             this.bShowNews.Location = new System.Drawing.Point(119, 33);
             this.bShowNews.Name = "bShowNews";
             this.bShowNews.Size = new System.Drawing.Size(100, 30);
             this.bShowNews.TabIndex = 10;
             this.bShowNews.Text = "Новости";
-            this.bShowNews.UseVisualStyleBackColor = true;
+            this.bShowNews.UseVisualStyleBackColor = false;
             this.bShowNews.Click += new System.EventHandler(this.bShowNews_Click);
             // 
             // llBlockCaption
@@ -393,12 +398,12 @@
             this.llBlockCaption.BackColor = System.Drawing.Color.Transparent;
             this.llBlockCaption.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.llBlockCaption.DisabledLinkColor = System.Drawing.Color.DarkGray;
-            this.llBlockCaption.Font = new System.Drawing.Font("Sochi2014", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llBlockCaption.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llBlockCaption.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.llBlockCaption.LinkColor = System.Drawing.Color.WhiteSmoke;
             this.llBlockCaption.Location = new System.Drawing.Point(28, 74);
             this.llBlockCaption.Name = "llBlockCaption";
-            this.llBlockCaption.Size = new System.Drawing.Size(63, 24);
+            this.llBlockCaption.Size = new System.Drawing.Size(71, 22);
             this.llBlockCaption.TabIndex = 29;
             this.llBlockCaption.TabStop = true;
             this.llBlockCaption.Text = "Видео:";
@@ -423,16 +428,16 @@
             // 
             // llLoadingVideoData
             // 
-            this.llLoadingVideoData.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llLoadingVideoData.ActiveLinkColor = System.Drawing.Color.White;
             this.llLoadingVideoData.AutoSize = true;
             this.llLoadingVideoData.BackColor = System.Drawing.Color.Transparent;
             this.llLoadingVideoData.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.llLoadingVideoData.Font = new System.Drawing.Font("Sochi2014", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llLoadingVideoData.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llLoadingVideoData.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llLoadingVideoData.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llLoadingVideoData.LinkColor = System.Drawing.Color.White;
             this.llLoadingVideoData.Location = new System.Drawing.Point(222, 140);
             this.llLoadingVideoData.Name = "llLoadingVideoData";
-            this.llLoadingVideoData.Size = new System.Drawing.Size(182, 19);
+            this.llLoadingVideoData.Size = new System.Drawing.Size(197, 17);
             this.llLoadingVideoData.TabIndex = 0;
             this.llLoadingVideoData.TabStop = true;
             this.llLoadingVideoData.Text = "Подождите, идет загрузка...";
@@ -469,30 +474,56 @@
             // 
             // llVideoAll
             // 
-            this.llVideoAll.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVideoAll.ActiveLinkColor = System.Drawing.Color.Silver;
             this.llVideoAll.AutoSize = true;
             this.llVideoAll.BackColor = System.Drawing.Color.Transparent;
             this.llVideoAll.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.llVideoAll.Font = new System.Drawing.Font("Sochi2014", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.llVideoAll.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.llVideoAll.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.llVideoAll.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVideoAll.LinkColor = System.Drawing.Color.Silver;
             this.llVideoAll.Location = new System.Drawing.Point(187, 426);
             this.llVideoAll.Name = "llVideoAll";
-            this.llVideoAll.Size = new System.Drawing.Size(67, 20);
+            this.llVideoAll.Size = new System.Drawing.Size(77, 18);
             this.llVideoAll.TabIndex = 8;
             this.llVideoAll.TabStop = true;
             this.llVideoAll.Text = "Loading...";
-            this.llVideoAll.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(123)))), ((int)(((byte)(16)))));
+            this.llVideoAll.VisitedLinkColor = System.Drawing.Color.Silver;
             this.llVideoAll.Click += new System.EventHandler(this.label_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.Close_2_icon;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Location = new System.Drawing.Point(834, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox1.TabIndex = 33;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.Minimize_icon;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Location = new System.Drawing.Point(804, 1);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(24, 24);
+            this.pictureBox2.TabIndex = 34;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // fIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::_Hell_PRO_Tanki_Launcher.Properties.Resources.back_6;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(860, 460);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.llVideoAll);
             this.Controls.Add(this.pbWarning);
             this.Controls.Add(this.pNews);
@@ -524,6 +555,8 @@
             this.pVideo.ResumeLayout(false);
             this.pVideo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbWarning)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -563,6 +596,8 @@
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.PictureBox pbWarning;
         private System.Windows.Forms.LinkLabel llVideoAll;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

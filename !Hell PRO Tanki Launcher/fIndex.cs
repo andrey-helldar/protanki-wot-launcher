@@ -794,18 +794,18 @@ namespace _Hell_PRO_Tanki_Launcher
                     labelDate.AutoSize = true;
                     labelDate.BackColor = Color.Transparent;
                     labelDate.ForeColor = Color.Silver;
-                    labelDate.Font = new Font("Sochi2014", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+                    labelDate.Font = new Font("Arial", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
                     labelDate.Text = formatDate(YoutubeVideo.List[id].Date);
                     labelDate.Name = "llDateVideo" + id.ToString();
                     this.pVideo.Controls.Add(labelDate);
 
                     LinkLabel label = new LinkLabel();
-                    label.Font = new Font("Sochi2014", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-                    label.ActiveLinkColor = Color.FromArgb(243, 123, 16);
+                    label.Font = new Font("Arial", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+                    label.ActiveLinkColor = Color.FromArgb(255,255,255);
                     label.BackColor = Color.Transparent;
-                    label.ForeColor = Color.FromArgb(243, 123, 16);
-                    label.VisitedLinkColor = Color.FromArgb(243, 123, 16);
-                    label.LinkColor = Color.FromArgb(243, 123, 16);
+                    label.ForeColor = Color.FromArgb(255, 255, 255);
+                    label.VisitedLinkColor = Color.FromArgb(255, 255, 255);
+                    label.LinkColor = Color.FromArgb(255, 255, 255);
                     label.LinkBehavior = LinkBehavior.HoverUnderline;
                     label.Name = "llVideo" + id.ToString();
                     label.Text = YoutubeVideo.List[id].Title;
@@ -819,23 +819,7 @@ namespace _Hell_PRO_Tanki_Launcher
                     label.Click += new EventHandler(label_Click);
                     this.pVideo.Controls.Add(label);
 
-                    //showVideoTop = 0;
 
-                    /*if (label.Width > 250)
-                    {
-                        label.AutoSize = false;
-                        label.Size = new Size(250, 40);
-
-                        //label.SetBounds(labelDate.Width + 10, (e.ProgressPercentage + showVideoTop) * topPosition + topOffset, 250, 40);
-                        label.SetBounds(labelDate.Width + 10, showVideoTop, 250, 40);
-                        labelDate.Location = new Point(10, label.Location.Y);
-
-                        showVideoTop += 50;
-                    }
-                    else
-                    {
-                        showVideoTop += 30;
-                    }*/
                     showVideoTop += 30;
                 }
                 catch (Exception ex)
@@ -878,10 +862,10 @@ namespace _Hell_PRO_Tanki_Launcher
                     if (llBlockCaption.Text != Language.DynamicLanguage("video", lang)) // Исключаем повторное нажатие
                     {
                         bShowVideo.BackColor = Color.Black;
-                        bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
+                        bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(46, 46, 46);
 
-                        bShowNews.BackColor = Color.FromArgb(28, 28, 28);
-                        bShowNews.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
+                        bShowNews.BackColor = Color.FromArgb(24, 24, 24);
+                        bShowNews.FlatAppearance.BorderColor = Color.FromArgb(46, 46, 46);
 
                         llBlockCaption.Text = Language.DynamicLanguage("video", lang);
 
@@ -897,11 +881,11 @@ namespace _Hell_PRO_Tanki_Launcher
                     //if (llBlockCaption.Text != "Новости:" && llBlockCaption.Text != "News:") // Исключаем повторное нажатие
                     if (llBlockCaption.Text != Language.DynamicLanguage("news", lang)) // Исключаем повторное нажатие
                     {
-                        bShowVideo.BackColor = Color.FromArgb(28, 28, 28);
-                        bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 63);
+                        bShowVideo.BackColor = Color.FromArgb(24, 24, 24);
+                        bShowVideo.FlatAppearance.BorderColor = Color.FromArgb(46, 46, 46);
 
                         bShowNews.BackColor = Color.Black;
-                        bShowNews.FlatAppearance.BorderColor = Color.FromArgb(155, 55, 0);
+                        bShowNews.FlatAppearance.BorderColor = Color.FromArgb(46, 46, 46);
 
                         llBlockCaption.Text = Language.DynamicLanguage("news", lang);
 
@@ -967,18 +951,18 @@ namespace _Hell_PRO_Tanki_Launcher
                 labelNewsDate.AutoSize = true;
                 labelNewsDate.BackColor = Color.Transparent;
                 labelNewsDate.ForeColor = Color.Silver;
-                labelNewsDate.Font = new Font("Sochi2014", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+                labelNewsDate.Font = new Font("Arial", 11f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
                 labelNewsDate.Text = formatDate(newsDate[e.ProgressPercentage]);
                 labelNewsDate.Name = "llDateNews" + e.ProgressPercentage.ToString();
                 this.pNews.Controls.Add(labelNewsDate);
 
                 LinkLabel labelNews = new LinkLabel();
-                labelNews.Font = new Font("Sochi2014", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-                labelNews.ActiveLinkColor = Color.FromArgb(243, 123, 16);
+                labelNews.Font = new Font("Arial", 12f, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+                labelNews.ActiveLinkColor = Color.FromArgb(255, 255, 255);
                 labelNews.BackColor = Color.Transparent;
-                labelNews.ForeColor = Color.FromArgb(243, 123, 16);
-                labelNews.VisitedLinkColor = Color.FromArgb(243, 123, 16);
-                labelNews.LinkColor = Color.FromArgb(243, 123, 16);
+                labelNews.ForeColor = Color.FromArgb(255, 255, 255);
+                labelNews.VisitedLinkColor = Color.FromArgb(255, 255, 255);
+                labelNews.LinkColor = Color.FromArgb(255, 255, 255);
                 labelNews.LinkBehavior = LinkBehavior.HoverUnderline;
                 labelNews.Name = "llNews" + e.ProgressPercentage.ToString();
                 labelNews.Text = newsTitle[e.ProgressPercentage];
@@ -1506,6 +1490,22 @@ namespace _Hell_PRO_Tanki_Launcher
         private void llLauncherVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             CheckUpdatesManual();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms"));
+                this.Close();
+            }
+            finally { }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            try { WindowState = FormWindowState.Minimized; }
+            finally { }
         }
     }
 }
