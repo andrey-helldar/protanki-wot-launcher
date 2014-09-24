@@ -3,7 +3,7 @@
   NodeType="AppfuscatorMap">
   <ProjectInfo
     Version="2.6.0.38751"
-    Created="2014-09-22 01:21:04Z" />
+    Created="2014-09-24 00:24:39Z" />
   <Childs>
     <Node
       NodeType="Assembly"
@@ -11,13 +11,13 @@
       NewName="Multipack Launcher">
       <AssemblyInfo
         Name="Multipack Launcher"
-        Version="1.1.20.554"
+        Version="1.1.22.579"
         AssemblyId="7b4de905-37af-430b-8e0b-c4e96e1e9e9c"
         FileName="Multipack Launcher.exe">
         <Sources>
           <AssemblyInfo
             Name="Multipack Launcher"
-            Version="1.1.20.554"
+            Version="1.1.22.579"
             AssemblyId="7b4de905-37af-430b-8e0b-c4e96e1e9e9c"
             FileName="Multipack Launcher.exe" />
         </Sources>
@@ -30,24 +30,24 @@
           ExcludedByReasons="ModuleType" />
         <Node
           NodeType="Type"
-          OldName="&lt;PrivateImplementationDetails&gt;{78A54B2A-8A6C-4544-BD87-289EAADA7516}"
+          OldName="&lt;PrivateImplementationDetails&gt;{25D93EC5-D9B6-4076-AA6E-A977649C9B82}"
           NewName="a">
           <Childs>
             <Node
               NodeType="Field"
-              OldName="$$method0x600007d-1"
+              OldName="$$method0x600007f-1"
               NewName="a" />
             <Node
               NodeType="Field"
-              OldName="$$method0x600007d-2"
+              OldName="$$method0x600007f-2"
               NewName="b" />
             <Node
               NodeType="Field"
-              OldName="$$method0x600007e-1"
+              OldName="$$method0x6000080-1"
               NewName="c" />
             <Node
               NodeType="Field"
-              OldName="$$method0x6000080-1"
+              OldName="$$method0x6000082-1"
               NewName="d" />
           </Childs>
         </Node>
@@ -393,6 +393,14 @@
               OldName="llVideoAll"
               NewName="ld" />
             <Node
+              NodeType="Field"
+              OldName="pictureBox1"
+              NewName="md" />
+            <Node
+              NodeType="Field"
+              OldName="pictureBox2"
+              NewName="nd" />
+            <Node
               NodeType="Method"
               OldName="System.Boolean ShowWindow(System.Int32, System.Int32)"
               NewName="System.Boolean a(System.Int32, System.Int32)" />
@@ -635,29 +643,37 @@
               NewName="System.Void hc(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)" />
             <Node
               NodeType="Method"
+              OldName="System.Void pictureBox1_Click(System.Object, System.EventArgs)"
+              NewName="System.Void ic(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void pictureBox2_Click(System.Object, System.EventArgs)"
+              NewName="System.Void jc(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
               OldName="System.Void Dispose(System.Boolean)"
               NewName="System.Void Dispose(System.Boolean)"
               ExcludedByReasons="GroupMemberWithExternal" />
             <Node
               NodeType="Method"
               OldName="System.Void InitializeComponent()"
-              NewName="System.Void ic()" />
+              NewName="System.Void kc()" />
             <Node
               NodeType="Method"
               OldName="System.Void &lt;moveForm&gt;b__4(System.Object, System.Windows.Forms.MouseEventArgs)"
-              NewName="System.Void jc(System.Object, System.Windows.Forms.MouseEventArgs)" />
+              NewName="System.Void lc(System.Object, System.Windows.Forms.MouseEventArgs)" />
             <Node
               NodeType="Method"
               OldName="System.Threading.Tasks.Task &lt;bwVideo_RunWorkerCompleted&gt;b__6()"
-              NewName="System.Threading.Tasks.Task kc()" />
+              NewName="System.Threading.Tasks.Task mc()" />
             <Node
               NodeType="Method"
               OldName="System.Threading.Tasks.Task &lt;LoadForm&gt;b__7()"
-              NewName="System.Threading.Tasks.Task lc()" />
+              NewName="System.Threading.Tasks.Task dd()" />
             <Node
               NodeType="Method"
               OldName="System.Threading.Tasks.Task &lt;OptimizePC&gt;b__1a()"
-              NewName="System.Threading.Tasks.Task mc()" />
+              NewName="System.Threading.Tasks.Task ed()" />
             <Node
               NodeType="Type"
               OldName="_Hell_PRO_Tanki_Launcher.&lt;loadSettings&gt;d__0"
@@ -2401,11 +2417,11 @@
               NewName="e" />
             <Node
               NodeType="Property"
-              OldName="Code"
+              OldName="Close_2_icon"
               NewName="f" />
             <Node
               NodeType="Property"
-              OldName="engine_config"
+              OldName="Code"
               NewName="g" />
             <Node
               NodeType="Property"
@@ -2461,75 +2477,75 @@
               NewName="t" />
             <Node
               NodeType="Property"
-              OldName="ModPackType"
+              OldName="Minimize_icon"
               NewName="u" />
             <Node
               NodeType="Property"
-              OldName="ModPackVersion"
+              OldName="ModPackType"
               NewName="v" />
             <Node
               NodeType="Property"
-              OldName="Newtonsoft_Json"
+              OldName="ModPackVersion"
               NewName="w" />
             <Node
               NodeType="Property"
-              OldName="PingBad"
+              OldName="Newtonsoft_Json"
               NewName="x" />
             <Node
               NodeType="Property"
-              OldName="PingGood"
+              OldName="PingBad"
               NewName="y" />
             <Node
               NodeType="Property"
-              OldName="PingText"
+              OldName="PingGood"
               NewName="z" />
             <Node
               NodeType="Property"
-              OldName="PostLink"
+              OldName="PingText"
               NewName="aa" />
             <Node
               NodeType="Property"
-              OldName="PostTicket"
+              OldName="PostLink"
               NewName="bb" />
             <Node
               NodeType="Property"
-              OldName="PostVersion"
+              OldName="PostTicket"
               NewName="cb" />
             <Node
               NodeType="Property"
-              OldName="ProcessesLibrary"
+              OldName="PostVersion"
               NewName="db" />
             <Node
               NodeType="Property"
-              OldName="ProJson"
+              OldName="ProcessesLibrary"
               NewName="eb" />
             <Node
               NodeType="Property"
-              OldName="restart"
+              OldName="ProJson"
               NewName="fb" />
             <Node
               NodeType="Property"
-              OldName="RssWotEn"
+              OldName="restart"
               NewName="gb" />
             <Node
               NodeType="Property"
-              OldName="RssWotRU"
+              OldName="RssWotEn"
               NewName="hb" />
             <Node
               NodeType="Property"
-              OldName="RssYoutube"
+              OldName="RssWotRU"
               NewName="ib" />
             <Node
               NodeType="Property"
-              OldName="Settings"
+              OldName="RssYoutube"
               NewName="jb" />
             <Node
               NodeType="Property"
-              OldName="SettingsIcon"
+              OldName="Settings"
               NewName="kb" />
             <Node
               NodeType="Property"
-              OldName="sochi"
+              OldName="SettingsIcon"
               NewName="lb" />
             <Node
               NodeType="Property"
@@ -2578,11 +2594,11 @@
               NewName="System.Drawing.Bitmap f()" />
             <Node
               NodeType="Method"
-              OldName="System.String get_Code()"
-              NewName="System.String g()" />
+              OldName="System.Drawing.Bitmap get_Close_2_icon()"
+              NewName="System.Drawing.Bitmap g()" />
             <Node
               NodeType="Method"
-              OldName="System.String get_engine_config()"
+              OldName="System.String get_Code()"
               NewName="System.String h()" />
             <Node
               NodeType="Method"
@@ -2638,76 +2654,76 @@
               NewName="System.String u()" />
             <Node
               NodeType="Method"
-              OldName="System.String get_ModPackType()"
-              NewName="System.String v()" />
+              OldName="System.Drawing.Bitmap get_Minimize_icon()"
+              NewName="System.Drawing.Bitmap v()" />
             <Node
               NodeType="Method"
-              OldName="System.String get_ModPackVersion()"
+              OldName="System.String get_ModPackType()"
               NewName="System.String w()" />
             <Node
               NodeType="Method"
+              OldName="System.String get_ModPackVersion()"
+              NewName="System.String x()" />
+            <Node
+              NodeType="Method"
               OldName="System.Byte[] get_Newtonsoft_Json()"
-              NewName="System.Byte[] x()" />
+              NewName="System.Byte[] y()" />
             <Node
               NodeType="Method"
               OldName="System.String get_PingBad()"
-              NewName="System.String y()" />
-            <Node
-              NodeType="Method"
-              OldName="System.String get_PingGood()"
               NewName="System.String z()" />
             <Node
               NodeType="Method"
-              OldName="System.String get_PingText()"
+              OldName="System.String get_PingGood()"
               NewName="System.String aa()" />
             <Node
               NodeType="Method"
-              OldName="System.String get_PostLink()"
+              OldName="System.String get_PingText()"
               NewName="System.String bb()" />
             <Node
               NodeType="Method"
-              OldName="System.String get_PostTicket()"
+              OldName="System.String get_PostLink()"
               NewName="System.String cb()" />
             <Node
               NodeType="Method"
-              OldName="System.String get_PostVersion()"
+              OldName="System.String get_PostTicket()"
               NewName="System.String db()" />
             <Node
               NodeType="Method"
+              OldName="System.String get_PostVersion()"
+              NewName="System.String eb()" />
+            <Node
+              NodeType="Method"
               OldName="System.Byte[] get_ProcessesLibrary()"
-              NewName="System.Byte[] eb()" />
+              NewName="System.Byte[] fb()" />
             <Node
               NodeType="Method"
               OldName="System.String get_ProJson()"
-              NewName="System.String fb()" />
+              NewName="System.String gb()" />
             <Node
               NodeType="Method"
               OldName="System.Byte[] get_restart()"
-              NewName="System.Byte[] gb()" />
+              NewName="System.Byte[] hb()" />
             <Node
               NodeType="Method"
               OldName="System.String get_RssWotEn()"
-              NewName="System.String hb()" />
-            <Node
-              NodeType="Method"
-              OldName="System.String get_RssWotRU()"
               NewName="System.String ib()" />
             <Node
               NodeType="Method"
-              OldName="System.String get_RssYoutube()"
+              OldName="System.String get_RssWotRU()"
               NewName="System.String jb()" />
             <Node
               NodeType="Method"
-              OldName="System.String get_Settings()"
+              OldName="System.String get_RssYoutube()"
               NewName="System.String kb()" />
             <Node
               NodeType="Method"
-              OldName="System.Drawing.Bitmap get_SettingsIcon()"
-              NewName="System.Drawing.Bitmap lb()" />
+              OldName="System.String get_Settings()"
+              NewName="System.String lb()" />
             <Node
               NodeType="Method"
-              OldName="System.Byte[] get_sochi()"
-              NewName="System.Byte[] mb()" />
+              OldName="System.Drawing.Bitmap get_SettingsIcon()"
+              NewName="System.Drawing.Bitmap mb()" />
             <Node
               NodeType="Method"
               OldName="System.Drawing.Bitmap get_Splash()"
