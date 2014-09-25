@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.1.22.579" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher" version="1.1.23.582" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -56,13 +56,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2720768">
-      <assemblyIdentity name="Multipack Launcher" version="1.1.22.579" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Multipack Launcher" version="1.1.23.582" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YVfgSaH+mxXnYeS7ljJu5yOhlg8wtgRaG9vDfuM8r8c=</dsig:DigestValue>
+        <dsig:DigestValue>6iS3H9vOfTDTmD0xjcG6+Fl8c9CBNUDbc/MZoo713XE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -86,19 +86,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>v7Mjlicgn6rIhQMhhPcHipW57HH02fG0OVEPXK64OEE=</dsig:DigestValue>
+        <dsig:DigestValue>Wq+wKpzW5vdZl58TXb0Yb1fNos4MIhsNtOfggVWUMiI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="restart.exe" size="6144">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="restart.exe" size="5632">
       <assemblyIdentity name="restart" version="1.1.4.14" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UuiotZ2na+5ntNuR70j/GG02OYWbPRB3Eyhu1v3MIeE=</dsig:DigestValue>
+        <dsig:DigestValue>NkzJ5snHnPGQzVSgwCVaPraijs8p9A/ITyBz1vhD/tQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
