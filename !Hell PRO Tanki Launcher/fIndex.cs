@@ -366,7 +366,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 var remoteJson = SendPOST.JsonResponse(Properties.Resources.ProJson);
                 remoteModVersion = new Version(tanksPrefixVersion + remoteJson[modpackType]["version"].ToString());
-
+                
                 tanksUpdates = tanksVersion < remoteTanksVersion; // Сравниваем версии танков
                 modpackUpdates = modpackVersion < remoteModVersion; // Сравниваем версии мультипака
 

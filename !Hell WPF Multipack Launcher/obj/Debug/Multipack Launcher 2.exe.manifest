@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher 2" version="2.3.23.578" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher 2" version="2.3.23.580" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher 2.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -56,13 +56,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher 2.exe" size="2593280">
-      <assemblyIdentity name="Multipack Launcher 2" version="2.3.23.578" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Multipack Launcher 2" version="2.3.23.580" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>JaoSu601g1dnmL/sy0vcYyB1uOY=</dsig:DigestValue>
+        <dsig:DigestValue>RbktzFQ3oA2cIkTD99EbLZbzTTE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,7 +98,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>L7lGhSCwrGPYEscR92eKhn2ADfc=</dsig:DigestValue>
+        <dsig:DigestValue>Q6EjOWG2CJNfWLZVxVxHsoX7tPA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -110,7 +110,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>nVWi+qhy/LxVrSyjECDwFF+UcyU=</dsig:DigestValue>
+        <dsig:DigestValue>O7JWG7sF/P4sfirsTFWpGuhOESE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

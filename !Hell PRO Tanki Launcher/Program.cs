@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Xml.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Net;
@@ -30,11 +31,21 @@ namespace _Hell_PRO_Tanki_Launcher
                 {
                     fLoader.Show();
 
+                    /* -----------------------------
+                     *  Проверяем целостность файла настроек
+                     */
+                    string patoToSettings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
+                    try { XDocument doc = XDocument.Load(patoToSettings); }
+                    catch (Exception)
+                    {
+                        if (File.Exists(patoToSettings)) File.Delete(patoToSettings);
+                        File.WriteAllText(patoToSettings, Properties.Resources.Settings);
+                    }
+                    /*
+                     * -----------------------------*/
+
                     Task.Factory.StartNew(() => new UpdateLauncher().Check()).Wait(); // Инициализируем обновление библиотек
                     Task.Factory.StartNew(() => new Debug().Delete()).Wait(); // Удаляем старые дебаги
-
-                    // Так как нам больше не нужен файл настроек в папке с прогой - удаляем его
-                    if (File.Exists("settings.xml")) File.Delete("settings.xml");
 
                     Thread.Sleep(5000);
 
