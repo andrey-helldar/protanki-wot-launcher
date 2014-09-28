@@ -205,12 +205,6 @@ namespace _Hell_WPF_Multipack_Launcher
             });
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            try { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Button_Click()", ex.Message)); }
-        }
-
         /// <summary>
         /// Запуск приложения или ссылки
         /// </summary>

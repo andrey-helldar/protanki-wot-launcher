@@ -25,13 +25,12 @@
             <RowDefinition Height="465"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="tbUpHello" HorizontalAlignment="Left" Margin="10,10,0,58" TextWrapping="Wrap">
-                    <Run>Привет, </Run>
-                    <Run FontSize="14" FontWeight="Bold" x:Name="PlayerName">Гость</Run>
-                    <Run>!</Run>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,58" TextWrapping="Wrap">
+                    <Run x:Name="tbUpHello">Привет, </Run>
+                    <Run FontSize="14" FontWeight="Bold" x:Name="PlayerName">Гость</Run><Run>!</Run>
         </TextBlock>
-        <TextBlock x:Name="tbUpClan" Margin="10,39,0,8" TextWrapping="Wrap" HorizontalAlignment="Left">
-                    <Run>Ты состоишь в клане </Run>
+        <TextBlock Margin="10,39,0,8" TextWrapping="Wrap" HorizontalAlignment="Left">
+                    <Run x:Name="tbUpClan">Ты состоишь в клане</Run>
                     <Run FontSize="14" FontWeight="Bold" x:Name="PlayerClan">___</Run>
             <Run>вот уже </Run>
             <Run FontWeight="Bold" x:Name="PlayerClanDays">__</Run>

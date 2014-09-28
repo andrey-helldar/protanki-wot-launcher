@@ -354,7 +354,7 @@ namespace _Hell_PRO_Tanki_Launcher
                 json.Add("test", commonTest ? "1" : "0");
                 json.Add("version", tanksVersion.ToString());
                 json.Add("lang", lang);
-                json.Add("resolution", Screen.PrimaryScreen.WorkingArea.Width.ToString()+"x"+Screen.PrimaryScreen.WorkingArea.Height.ToString());
+                json.Add("resolution", Screen.PrimaryScreen.WorkingArea.Width.ToString() + "x" + Screen.PrimaryScreen.WorkingArea.Height.ToString());
 
                 try
                 {
@@ -366,7 +366,7 @@ namespace _Hell_PRO_Tanki_Launcher
 
                 var remoteJson = SendPOST.JsonResponse(Properties.Resources.ProJson);
                 remoteModVersion = new Version(tanksPrefixVersion + remoteJson[modpackType]["version"].ToString());
-                
+
                 tanksUpdates = tanksVersion < remoteTanksVersion; // Сравниваем версии танков
                 modpackUpdates = modpackVersion < remoteModVersion; // Сравниваем версии мультипака
 

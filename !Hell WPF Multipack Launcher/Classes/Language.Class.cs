@@ -56,9 +56,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
 
 
-                    /* =====================================
-                     *      Settings General page
-                     * =====================================*/
+                /* =====================================
+                 *      Settings General page
+                 * =====================================*/
                 case "PageSettingsGeneral":
                     switch (control)
                     {
@@ -305,13 +305,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                         default: return toReturn;
                     }
-                    
 
 
 
-                        /* =====================================
-                         *      Settings General page
-                         * =====================================*/
+
+                /* =====================================
+                 *      Settings General page
+                 * =====================================*/
                 case "PageSettings":
                     switch (control)
                     {
@@ -575,6 +575,148 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Не надо";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        default: return toReturn;
+                    }
+
+
+
+                /* =====================================
+                 *      User page
+                 * =====================================*/
+                case "PageUser":
+                    switch (control)
+                    {
+                            /*
+                             *  First subpage
+                             */
+                        case "tbUserRank":
+                            switch (lang)
+                            {
+                                case "ru": return "Офицер";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "tbPercentWins":
+                            switch (lang)
+                            {
+                                case "ru": return "Процент побед";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "tbMyRating":
+                            switch (lang)
+                            {
+                                case "ru": return "Личный рейтинг";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "tbAvgXP":
+                            switch (lang)
+                            {
+                                case "ru": return "Средний опыт за бой";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "tbCountWars":
+                            switch (lang)
+                            {
+                                case "ru": return "Количество боев";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "tbAvgDamage":
+                            switch (lang)
+                            {
+                                case "ru": return "Средний нанесенный урон за бой";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                            /*
+                             *  Clan subpage
+                             */
+                        case "tbPersonnel":
+                            switch (lang)
+                            {
+                                case "ru": return "Личный состав";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "tbDataOn":
+                            switch (lang)
+                            {
+                                    //  Например,
+                                    //      Данные на 29.09.2014 1:03
+                                case "ru": return "Данные на";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        default: return toReturn;
+                    }
+
+
+
+                /* =====================================
+                 *      Ranks
+                 * =====================================*/
+                case "Rank":
+                    switch (control)
+                    {
+                        case "leader":
+                            switch (lang)
+                            {
+                                case "ru": return "Командир";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "vice_leader":
+                            switch (lang)
+                            {
+                                case "ru": return "Зам. командира";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "commander":
+                            switch (lang)
+                            {
+                                case "ru": return "Ротный командир";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "private":
+                            switch (lang)
+                            {
+                                case "ru": return "Солдат";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "recruit":
+                            switch (lang)
+                            {
+                                case "ru": return "Новобранец";
+                                case "en": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "recruiter":
+                            switch (lang)
+                            {
+                                case "ru": return "Вербовщик";
                                 case "en": return "000";
                                 default: return toReturn;
                             }
