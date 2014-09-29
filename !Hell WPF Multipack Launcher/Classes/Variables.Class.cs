@@ -64,6 +64,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public string notifyLink = Properties.Resources.LinkVideoAll;
 
         Debug Debug = new Debug();
+        Language Language = new Language();
 
 
         /********************
@@ -81,103 +82,110 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Task.Factory.StartNew(() => new Update().SaveFromResources()).Wait();
                 Task.Factory.StartNew(() => LoadSettings()).Wait();
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", ex.Message)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", ex.Message, ex.StackTrace)); }
         }
 
         private void LoadSettings()
         {
-            string tmpLang = Properties.Resources.Default_Lang;
-
-            if (File.Exists(SettingsPath)) Doc = XDocument.Load(SettingsPath);
-
-            // Загружаем версию клиента игры
-            try
+            if (File.Exists(SettingsPath))
             {
-                if (Doc.Root.Element("game") != null)
-                    if (Doc.Root.Element("game").Element("path") != null)
-                        if (Doc.Root.Element("game").Element("path").Value != "")
-                            PathTanks = Doc.Root.Element("game").Element("path").Value;
-                        else
-                        {
-                            PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry();
-                            Doc.Root.Element("game").Element("path").SetValue(PathTanks);
-                            Doc.Save(SettingsPath);
-                        }
-            }
-            catch (Exception ex)
-            {
-                Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: PathTanks", ex.Message));
-                PathTanks = String.Empty;
-            }
+                Doc = XDocument.Load(SettingsPath);
 
-            try
-            {
-                if (File.Exists(@"..\version.xml"))
+                // Загружаем версию клиента игры
+                try
                 {
-                    XDocument doc = XDocument.Load(@"..\version.xml");
+                    if (Doc.Root.Element("game") != null)
+                        if (Doc.Root.Element("game").Element("path") != null)
+                            if (Doc.Root.Element("game").Element("path").Value != "")
+                                PathTanks = Doc.Root.Element("game").Element("path").Value;
+                            else
+                            {
+                                PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry();
+                                Doc.Root.Element("game").Element("path").SetValue(PathTanks);
+                                Doc.Save(SettingsPath);
+                            }
+                }
+                catch (Exception ex)
+                {
+                    Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: PathTanks", ex.Message, ex.StackTrace));
+                    PathTanks = String.Empty;
+                }
 
-                    if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
+                try
+                {
+                    if (File.Exists(@"..\version.xml"))
                     {
-                        CommonTest = true;
-                        TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
+                        XDocument doc = XDocument.Load(@"..\version.xml");
+
+                        if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
+                        {
+                            CommonTest = true;
+                            TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
+                        }
+                        else
+                            TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
+
+
+                        if (MainWindow.XmlDocument.Root.Element("game") != null)
+                            if (MainWindow.XmlDocument.Root.Element("game").Element("version") != null)
+                                MainWindow.XmlDocument.Root.Element("game").Element("version").SetValue(TanksVersion.ToString());
+
+
+                        // Принудительно устанавливаем язык, читая файл настроек игры
+                        Lang = doc.Root.Element("meta").Element("localization").Value;
+                        Lang = Lang.Remove(0, Lang.IndexOf(" ")).ToLower();
+                        MainWindow.XmlDocument.Root.Element("info").Attribute("language").SetValue(Lang);
                     }
-                    else
-                        TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
-
-
-                    if (MainWindow.XmlDocument.Root.Element("game") != null)
-                        if (MainWindow.XmlDocument.Root.Element("game").Element("version") != null)
-                            MainWindow.XmlDocument.Root.Element("game").Element("version").SetValue(TanksVersion.ToString());
-
-                    tmpLang = doc.Root.Element("meta").Element("localization").Value.Trim();
-                    tmpLang = tmpLang.Remove(0, tmpLang.IndexOf(" ") + 1).ToLower();
                 }
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: TanksVersion", ex.Message)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: TanksVersion", ex.Message, ex.StackTrace)); }
 
 
-            // Загружаем config.ini
-            try
-            {
-                if (File.Exists(Properties.Resources.SettingsMultipack))
+                // Загружаем config.ini
+                try
                 {
-                    // Загружаем данные
-                    string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsMultipack;
+                    if (File.Exists(Properties.Resources.SettingsMultipack))
+                    {
+                        // Загружаем данные
+                        string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsMultipack;
 
-                    MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
-                    MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
-                    MultipackVersion = new Version(VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
+                        MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
+                        MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
+                        MultipackVersion = new Version(VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
 
-                    Lang = Properties.Resources.Default_Settings_Priority == "multipack" ? new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language") : tmpLang;
+                        Lang = Properties.Resources.Default_Settings_Priority == "multipack" ? new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language") : Lang;
+                    }
                 }
-            }
-            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message); }
+                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message, ex.StackTrace); }
 
 
-            try { UpdateNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("notification") != null ? Doc.Root.Element("info").Attribute("notification").Value : null) : null; }
-            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: UpdateNotify", ex.Message); }
+                try { UpdateNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("notification") != null ? Doc.Root.Element("info").Attribute("notification").Value : null) : null; }
+                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: UpdateNotify", ex.Message, ex.StackTrace); }
 
 
-            try { ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true; }
-            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: ShowVideoNotify", ex.Message); }
+                try { ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true; }
+                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: ShowVideoNotify", ex.Message, ex.StackTrace); }
 
-            try
-            {
-                if (Doc.Root.Element("settings") != null)
+                try
                 {
-                    AutoKill = Doc.Root.Element("settings").Attribute("kill") != null ? Doc.Root.Element("settings").Attribute("kill").Value == "True" : false;
-                    AutoForceKill = Doc.Root.Element("settings").Attribute("force") != null ? Doc.Root.Element("settings").Attribute("force").Value == "True" : false;
+                    if (Doc.Root.Element("settings") != null)
+                    {
+                        AutoKill = Doc.Root.Element("settings").Attribute("kill") != null ? Doc.Root.Element("settings").Attribute("kill").Value == "True" : false;
+                        AutoForceKill = Doc.Root.Element("settings").Attribute("force") != null ? Doc.Root.Element("settings").Attribute("force").Value == "True" : false;
 
-                    AutoAero = Doc.Root.Element("settings").Attribute("aero") != null ? Doc.Root.Element("settings").Attribute("aero").Value == "True" : false;
-                    AutoVideo = ReadCheckStateBool(Doc, "video");
-                    AutoWeak = Doc.Root.Element("settings").Attribute("weak") != null ? Doc.Root.Element("settings").Attribute("weak").Value == "True" : false;
-                    AutoCPU = Doc.Root.Element("settings").Attribute("balance") != null ? Doc.Root.Element("settings").Attribute("balance").Value == "True" : false;
+                        AutoAero = Doc.Root.Element("settings").Attribute("aero") != null ? Doc.Root.Element("settings").Attribute("aero").Value == "True" : false;
+                        AutoVideo = ReadCheckStateBool(Doc, "video");
+                        AutoWeak = Doc.Root.Element("settings").Attribute("weak") != null ? Doc.Root.Element("settings").Attribute("weak").Value == "True" : false;
+                        AutoCPU = Doc.Root.Element("settings").Attribute("balance") != null ? Doc.Root.Element("settings").Attribute("balance").Value == "True" : false;
+                    }
                 }
-            }
-            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `settings`", ex.Message); }
+                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `settings`", ex.Message, ex.StackTrace); }
 
-            try { if (Doc.Root.Element("common.test") != null) CommonTest = true; }
-            catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `common.test`", ex.Message); }
+                try { if (Doc.Root.Element("common.test") != null) CommonTest = true; }
+                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `common.test`", ex.Message, ex.StackTrace); }
+            }
+            else
+                // "Файл настроек не обнаружен"
+                MessageBox.Show(Language.Set("variables_class", "do_not_settings", Lang));
         }
 
         private bool ReadCheckStateBool(XDocument doc, string attr)
@@ -196,7 +204,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     }
                 return false;
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "ReadCheckStateBool()", ex.Message, "Attribute: " + attr, doc.ToString()); return false; }
+            catch (Exception ex) { Debug.Save("Variables.Class", "ReadCheckStateBool()", "Attribute: " + attr, doc.ToString(), ex.Message, ex.StackTrace); return false; }
         }
 
         private string GetTanksRegistry()
@@ -206,7 +214,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
                 return key != null ? (string)key.GetValue("InstallLocation") : null;
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "GetTanksRegistry()", ex.Message); return null; }
+            catch (Exception ex) { Debug.Save("Variables.Class", "GetTanksRegistry()", ex.Message, ex.StackTrace); return null; }
         }
 
         private string CorrectPath(string sourcePath, int remove = 0)
@@ -224,7 +232,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                Debug.Save("Variables.Class", "CorrectPath()", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message);
+                Debug.Save("Variables.Class", "CorrectPath()", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message, ex.StackTrace);
                 return sourcePath;
             }
         }
@@ -247,13 +255,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     return sBuilder.ToString();
                 }
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "GetUserID()", ex.Message); return null; }
+            catch (Exception ex) { Debug.Save("Variables.Class", "GetUserID()", ex.Message, ex.StackTrace); return null; }
         }
 
         public Version Version(string version)
         {
             try { return new Version(String.Format("{0}.{1}.{2}.{3}", TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version)); }
-            catch (Exception ex) { Debug.Save("Variables.Class", "Version()", version, ex.Message); return new Version("0.0.0.0"); }
+            catch (Exception ex) { Debug.Save("Variables.Class", "Version()", version, ex.Message, ex.StackTrace); return new Version("0.0.0.0"); }
         }
 
         /// <summary>
@@ -264,7 +272,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public string VersionToSharp(Version ver)
         {
             try { return String.Format("{0}.{1}.{2} #{3}", ver.Major, ver.Minor, ver.Build, ver.Revision); }
-            catch (Exception ex) { Debug.Save("Variables.Class", "VersionToSharp()", "Version: " + ver.ToString(), ex.Message); return "0.0.0 #0"; }
+            catch (Exception ex) { Debug.Save("Variables.Class", "VersionToSharp()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0 #0"; }
         }
 
         /// <summary>
@@ -286,13 +294,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public string VersionPrefix(Version ver)
         {
             try { return String.Format("{0}.{1}.{2}.", ver.Major, ver.Minor, ver.Build); }
-            catch (Exception ex) { Debug.Save("Variables.Class", "VersionPrefix()", "Version: " + ver.ToString(), ex.Message); return "0.0.0."; }
+            catch (Exception ex) { Debug.Save("Variables.Class", "VersionPrefix()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0."; }
         }
 
         public void ItXP()
         {
             try { WinXP = Environment.OSVersion.Version.Major == 5; }
-            catch (Exception ex) { Debug.Save("Variables.Class", "ItXP()", ex.Message); }
+            catch (Exception ex) { Debug.Save("Variables.Class", "ItXP()", ex.Message, ex.StackTrace); }
         }
 
         /// <summary>
@@ -305,11 +313,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </returns>
         public bool ElementBan(string item, string block = "video")
         {
-            if (MainWindow.XmlDocument.Root.Element("do_not_display") != null)
-                if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block) != null)
-                    if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item").Count() > 0)
-                        foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item"))
-                            if (str == item) return true;
+            try
+            {
+                if (MainWindow.XmlDocument.Root.Element("do_not_display") != null)
+                    if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block) != null)
+                        if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item").Count() > 0)
+                            foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item"))
+                                if (str == item) return true;
+            }
+            catch (Exception ex) { Debug.Save("Variables.Class", "ElementBan()", item, block, ex.Message, ex.StackTrace); }
 
             return false;
         }
@@ -323,9 +335,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <returns>Булевое значение существования элемента</returns>
         public bool GetElement(string block, string attr)
         {
-            if (MainWindow.XmlDocument.Root.Element(block) != null)
-                if (MainWindow.XmlDocument.Root.Element(block).Attribute(attr) != null)
-                    return MainWindow.XmlDocument.Root.Element(block).Attribute(attr).Value == "True";
+            try
+            {
+                if (MainWindow.XmlDocument.Root.Element(block) != null)
+                    if (MainWindow.XmlDocument.Root.Element(block).Attribute(attr) != null)
+                        return MainWindow.XmlDocument.Root.Element(block).Attribute(attr).Value == "True";
+            }
+            catch (Exception ex) { Debug.Save("Variables.Class", "GetElement()", block, attr, ex.Message, ex.StackTrace); }
 
             return true;
         }

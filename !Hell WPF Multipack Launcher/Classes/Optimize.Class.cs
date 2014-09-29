@@ -41,7 +41,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         ++progress;
                     }
             }
-            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Disable Windows Aero", ex.Message); }
+            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Disable Windows Aero", ex.Message, ex.StackTrace); }
 
 
             /***************************
@@ -53,7 +53,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 {
                     Global ProcessesGlobal = new Processes.Global();
                     Listing ProcessesList = new Listing();
-                    
+
 
                     int session = Process.GetCurrentProcess().SessionId;
                     bool kill = false;
@@ -86,7 +86,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     }
                 }
             }
-            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Kill & Force Kill", ex.Message); }
+            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Kill & Force Kill", ex.Message, ex.StackTrace); }
 
 
             /***************************
@@ -101,20 +101,20 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     ++progress;
                 }
             }
-            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Graphic optimize", ex.Message); }
+            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Graphic optimize", ex.Message, ex.StackTrace); }
         }
 
-        private void Sleep(int sec = 5)
+        /*private void Sleep(int sec = 5)
         {
             try { for (int i = 0; i < sec; i++) Thread.Sleep(5000); }
-            catch (Exception ex) { Debug.Save("Optimize.Class", "Sleep()", "Timeout is " + sec.ToString() + " seconds", ex.Message); }
-        }
+            catch (Exception ex) { Debug.Save("Optimize.Class", "Sleep()", "Timeout is " + sec.ToString() + " seconds", ex.Message, ex.StackTrace); }
+        }*/
 
-        private void Graphic(bool commonTest=false, bool weak = false)
+        private void Graphic(bool commonTest = false, bool weak = false)
         {
             try
             {
-                string pathPreferences = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+
+                string pathPreferences = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
                     @"\Wargaming.net\WorldOfTanks\preferences" + (commonTest ? "_ct" : "") + ".xml";
 
                 if (File.Exists(pathPreferences))
@@ -152,12 +152,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                     if (docPref.Root.Element("devicePreferences").Element("waitVSync") != null)
                         if (docPref.Root.Element("devicePreferences").Element("waitVSync").Value == "	false	")
-                        {
                             if (docPref.Root.Element("devicePreferences").Element("tripleBuffering") != null)
                                 docPref.Root.Element("devicePreferences").Element("tripleBuffering").SetValue("	false	");
                             else
                                 docPref.Root.Element("devicePreferences").Add(new XElement("tripleBuffering", "	false	"));
-                        }
 
                     if (docPref.Root.Element("devicePreferences").Element("customAAMode") != null)
                         docPref.Root.Element("devicePreferences").Element("customAAMode").SetValue("	0	");
@@ -228,7 +226,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     sw.Close();
                 }
             }
-            catch (Exception ex) { Debug.Save("Optimize.Class", "Graphic()", ex.Message); }
+            catch (Exception ex) { Debug.Save("Optimize.Class", "Graphic()", ex.Message, ex.StackTrace); }
         }
     }
 }

@@ -111,8 +111,11 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
 
 
-            try { Task.Factory.StartNew(() => MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative))); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(4)", ex.Message, ex.StackTrace)); }
+            Task.Factory.StartNew(() =>
+            {
+                try { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); }
+                catch (Exception ex) { Debug.Save("MainWindow", "Window_Loaded(4)", ex.Message, ex.StackTrace); }
+            });
 
 
             try { Task.Factory.StartNew(() => Debug.ClearLogs()); }

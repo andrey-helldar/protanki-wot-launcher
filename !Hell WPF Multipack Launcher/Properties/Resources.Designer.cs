@@ -199,7 +199,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to multipack.
+        ///   Looks up a localized string similar to game.
         /// </summary>
         public static string Default_Settings_Priority {
             get {

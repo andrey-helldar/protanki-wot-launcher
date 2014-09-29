@@ -32,7 +32,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => new Debug().Save("Update.Class", "SaveFromResources()", ex.Message));
+                Task.Factory.StartNew(() => new Debug().Save("Update.Class", "SaveFromResources()", ex.Message, ex.StackTrace));
                 return false;
             }
         }

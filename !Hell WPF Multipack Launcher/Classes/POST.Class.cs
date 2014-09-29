@@ -17,25 +17,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         Debug Debug = new Debug();
 
 
-        //public static string Send(string Url, string Data)
         public string Send(string Url, string Data)
         {
             try
             {
                 Data = "data=" + Data;
 
-                System.Net.WebRequest req = System.Net.WebRequest.Create(Url);
+                WebRequest req = WebRequest.Create(Url);
                 req.Method = "POST";
                 req.Timeout = 100000;
                 req.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
                 byte[] sentData = Encoding.GetEncoding("Utf-8").GetBytes(Data);
                 req.ContentLength = sentData.Length;
-                System.IO.Stream sendStream = req.GetRequestStream();
+                Stream sendStream = req.GetRequestStream();
                 sendStream.Write(sentData, 0, sentData.Length);
                 sendStream.Close();
-                System.Net.WebResponse res = req.GetResponse();
-                System.IO.Stream ReceiveStream = res.GetResponseStream();
-                System.IO.StreamReader sr = new System.IO.StreamReader(ReceiveStream, Encoding.UTF8);
+                WebResponse res = req.GetResponse();
+                Stream ReceiveStream = res.GetResponseStream();
+                StreamReader sr = new StreamReader(ReceiveStream, Encoding.UTF8);
                 Char[] read = new Char[256];
                 int count = sr.Read(read, 0, 256);
                 string Out = String.Empty;
@@ -47,8 +46,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
                 return Out;
             }
-            catch (WebException we) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, we.Message); return "FAIL"; }
-            catch (Exception ex) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, ex.Message); return "FAIL"; }
+            catch (WebException we) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, we.Message, we.StackTrace); return "FAIL"; }
+            catch (Exception ex) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, ex.Message, ex.StackTrace); return "FAIL"; }
         }
 
         public void HttpUploadFile(string url, string file, string paramName, string contentType, NameValueCollection nvc)
@@ -56,17 +55,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
-                byte[] boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
+                byte[] boundarybytes = Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
 
                 HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
                 wr.ContentType = "multipart/form-data; boundary=" + boundary;
                 wr.Method = "POST";
                 wr.KeepAlive = true;
-                wr.Credentials = System.Net.CredentialCache.DefaultCredentials;
+                wr.Credentials = CredentialCache.DefaultCredentials;
 
                 Stream rs;
                 try { rs = wr.GetRequestStream(); }
-                catch (WebException we) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, we.Message); rs = wr.GetRequestStream(); }
+                catch (WebException we) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, we.Message, we.StackTrace); rs = wr.GetRequestStream(); }
 
                 string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}";
                 foreach (string key in nvc.Keys)
@@ -80,19 +79,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: {2}\r\n\r\n";
                 string header = string.Format(headerTemplate, paramName, file, contentType);
-                byte[] headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+                byte[] headerbytes = Encoding.UTF8.GetBytes(header);
                 rs.Write(headerbytes, 0, headerbytes.Length);
 
                 FileStream fileStream = new FileStream(file, FileMode.Open, FileAccess.Read);
                 byte[] buffer = new byte[4096];
                 int bytesRead = 0;
                 while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
-                {
                     rs.Write(buffer, 0, bytesRead);
-                }
                 fileStream.Close();
 
-                byte[] trailer = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
+                byte[] trailer = Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
                 rs.Write(trailer, 0, trailer.Length);
                 rs.Close();
 
@@ -113,19 +110,20 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
                 finally { wr = null; }
             }
-            catch (WebException we) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, we.Message); }
-            catch (Exception ex) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, ex.Message); }
+            catch (WebException we) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, we.Message, we.StackTrace); }
+            catch (Exception ex) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, ex.Message, ex.StackTrace); }
         }
 
         /// <summary>
         /// http://stackoverflow.com/questions/7003740/how-to-convert-namevaluecollection-to-json-string
         /// </summary>
         /// <param name="json"></param>
-        /// <returns></returns>
+        /// <returns>Строка</returns>
         public string Json(Dictionary<string, string> dic)
         {
             try { return JsonConvert.SerializeObject(dic); }
-            catch (Exception ex) { Debug.Save("POST.Class", "Json()", ex.Message); return null; }
+            catch (Exception ex) { Debug.Save("POST.Class", "Json()", ex.Message, ex.StackTrace); }
+            return null;
         }
 
         /// <summary>
@@ -138,7 +136,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public Dictionary<string, string> FromJson(string json)
         {
             try { return JsonConvert.DeserializeObject<Dictionary<string, string>>(json); }
-            catch (Exception ex) { Debug.Save("POST.Class", "FromJson()", json, ex.Message); return null; }
+            catch (Exception ex) { Debug.Save("POST.Class", "FromJson()", json, ex.Message, ex.StackTrace); return null; }
         }
 
         public JObject JsonResponse(string uri)
@@ -160,8 +158,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return JsonConvert.DeserializeObject<JObject>(sb.ToString());
             }
-            catch (WebException we) { Debug.Save("POST.Class", "JsonResponse()", "URL: " + uri, we.Message); return null; }
-            catch (Exception ex) { Debug.Save("POST.Class", "JsonResponse()", "URL: " + uri, ex.Message); return null; }
+            catch (WebException we) { Debug.Save("POST.Class", "JsonResponse()", "URL: " + uri, we.Message, we.StackTrace); return null; }
+            catch (Exception ex) { Debug.Save("POST.Class", "JsonResponse()", "URL: " + uri, ex.Message, ex.StackTrace); return null; }
         }
 
         public string DataRegex(string str)
@@ -196,7 +194,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return str;
             }
-            catch (Exception ex) { Debug.Save("POST.Class", "DataRegex()", "Input string: " + str, ex.Message); return str; }
+            catch (Exception ex) { Debug.Save("POST.Class", "DataRegex()", "Input string: " + str, ex.Message, ex.StackTrace); return str; }
         }
 
         public string RequestInfo(string request)
@@ -216,14 +214,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                new Debug().Save("POST Class", "RequestInfo()", ex.Message, "Request: " + request, result);
+                new Debug().Save("POST Class", "RequestInfo()", "Request: " + request, result, ex.Message, ex.StackTrace);
                 return "FAIL";
             }
         }
 
         public string Shield(string text)
         {
-            return text.Replace("\"", "\\\"").Trim();
+            try { return text.Replace("\"", "\\\"").Trim(); }
+            catch (Exception ex) { new Debug().Save("POST Class", "Shield()", text, ex.Message, ex.StackTrace); }
+
+            return text;
         }
     }
 }

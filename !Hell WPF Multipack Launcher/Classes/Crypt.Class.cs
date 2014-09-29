@@ -18,12 +18,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <returns>Шифрованная строка</returns>
         public string Encode(string text)
         {
-            try
-            {
-                return text;
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Crypt.Class", "Encode()", ex.Message, ex.StackTrace)); }
-
+            try { return System.Convert.ToBase64String(Encoding.UTF8.GetBytes(text)); }
+            catch (Exception) { }
             return Properties.Resources.Class_Fail;
         }
 
@@ -34,11 +30,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <returns>Расшифрованный результат</returns>
         public string Decode(string text)
         {
-            try
-            {
-                return text;
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Crypt.Class", "Decode()", ex.Message, ex.StackTrace)); }
+            try { return Encoding.UTF8.GetString(System.Convert.FromBase64String(text)); }
+            catch (Exception) { }
 
             return Properties.Resources.Class_Fail;
         }
