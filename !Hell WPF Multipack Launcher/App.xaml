@@ -7,9 +7,19 @@
         <!-- *******************************
                      LOADING PAGE
             *********************************-->
+        <Style TargetType="StackPanel" x:Key="LoadingPage">
+            <Style.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Green" />
+                    <Setter Property="Opacity" Value="0.8" />
+                    <Setter Property="Width" Value="300" />
+                    <Setter Property="Height" Value="300" />
+                </Style>
+            </Style.Resources>
+        </Style>
 
 
-            <!-- *******************************
+        <!-- *******************************
                      LOGOTYPE
             *********************************-->
         <Style x:Key="ButtonStyleLogotype" TargetType="{x:Type Button}">

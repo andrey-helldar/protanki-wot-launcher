@@ -30,6 +30,5 @@
         <Button x:Name="bAirus" Grid.Column="1" Style="{DynamicResource ButtonStyleAIRUS}" Margin="0,30,0,0" Grid.Row="3" VerticalAlignment="Top" Width="212" Height="68" Click="bAirus_Click"/>
         <Frame x:Name="FramePreview" Grid.Column="1" Height="180" Margin="0" Grid.Row="2" Background="Red" Opacity="0.5" Width="250"/>
         <Rectangle x:Name="rectLang" Grid.Column="1" Fill="#7FF91313" HorizontalAlignment="Left" Height="49" Margin="13,20,0,0" Grid.Row="4" Stroke="Black" VerticalAlignment="Top" Width="40"/>
-        <StackPanel HorizontalAlignment="Left" Height="361" Margin="361,30,0,0" Grid.Row="2" VerticalAlignment="Top" Width="429" Background="#CCB6B6B6" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
     </Grid>
 </Window>

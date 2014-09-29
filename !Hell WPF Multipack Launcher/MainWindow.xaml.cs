@@ -58,6 +58,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 Grid.SetRow(sp, 0);
                 Grid.SetColumn(sp, 0);
                 Grid.SetRowSpan(sp, 5);
+                2
             }
             catch (Exception) { }
 
