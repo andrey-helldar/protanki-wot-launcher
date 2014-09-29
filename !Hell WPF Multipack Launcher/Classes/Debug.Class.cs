@@ -173,6 +173,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         case "bLauncher_Click()": num = FormatNum(14); break;
                         case "Button_Click()": num = FormatNum(15); break;
                         case "ProcessStart()": num = FormatNum(16); break;
+                        case "Window_Loaded(5)": num = FormatNum(17); break;
 
                         default: num = FormatNum(0); break;
                     }

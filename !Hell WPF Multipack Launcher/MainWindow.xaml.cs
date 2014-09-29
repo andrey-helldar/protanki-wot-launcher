@@ -52,7 +52,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         public static bool Navigator(string page = "General", string from = null)
         {
-            try {
+            try
+            {
                 StackPanel sp = new StackPanel();
                 sp.SetResourceReference(TextBlock.StyleProperty, "LoadingPage");
                 Grid.SetRow(sp, 0);
@@ -62,9 +63,19 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception) { }
 
-            try { MainFrame0.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
+            try { MainWindow.mainFrame.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
             catch (Exception) { }
             return true;
+        }
+
+        private void Loading()
+        {
+            StackPanel sp = new StackPanel();
+            sp.SetResourceReference(TextBlock.StyleProperty, "LoadingPage");
+            Grid.SetRow(sp, 0);
+            Grid.SetColumn(sp, 0);
+            Grid.SetRowSpan(sp, 5);
+            GridGlobal.Children.Add(sp);
         }
 
         public MainWindow()
@@ -99,7 +110,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     Stream cursorStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/cursor_chrome.cur")).Stream;
                     MainProject.Cursor = new Cursor(cursorStream);
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(3)", "cursorStream", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(5)", "cursorStream", ex.Message, ex.StackTrace)); }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
         }
@@ -241,6 +252,11 @@ namespace _Hell_WPF_Multipack_Launcher
                 process.Start();
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: \"" + filename + "\"", ex.Message, ex.StackTrace)); }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Loading();
         }
     }
 }

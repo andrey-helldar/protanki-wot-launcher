@@ -8,7 +8,7 @@
     <Window.Background>
         <ImageBrush ImageSource="Resources/background.png"/>
     </Window.Background>
-    <Grid>
+    <Grid x:Name="GridGlobal">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="262"/>
@@ -30,5 +30,6 @@
         <Button x:Name="bAirus" Grid.Column="1" Style="{DynamicResource ButtonStyleAIRUS}" Margin="0,30,0,0" Grid.Row="3" VerticalAlignment="Top" Width="212" Height="68" Click="bAirus_Click"/>
         <Frame x:Name="FramePreview" Grid.Column="1" Height="180" Margin="0" Grid.Row="2" Background="Red" Opacity="0.5" Width="250"/>
         <Rectangle x:Name="rectLang" Grid.Column="1" Fill="#7FF91313" HorizontalAlignment="Left" Height="49" Margin="13,20,0,0" Grid.Row="4" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="13,33,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>

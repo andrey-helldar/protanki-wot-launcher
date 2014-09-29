@@ -9,11 +9,14 @@
             *********************************-->
         <Style TargetType="StackPanel" x:Key="LoadingPage">
             <Style.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="Green" />
-                    <Setter Property="Opacity" Value="0.8" />
-                    <Setter Property="Width" Value="300" />
-                    <Setter Property="Height" Value="300" />
+                <Style TargetType="Control">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <StackPanel Background="#FFF300FF" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="300" Height="300" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </Style.Resources>
         </Style>
