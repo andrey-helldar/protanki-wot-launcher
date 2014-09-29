@@ -131,10 +131,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                         // Добавляем решетку для размещения элементов
                                         Grid gridPanel = new Grid();
                                         gridPanel.Width = double.NaN;
-                                        /*gridPanel.Height = 70;*/
                                         gridPanel.Margin = new Thickness(0);
                                         gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                                        /*gridPanel.VerticalAlignment = System.Windows.VerticalAlignment.Top;*/
 
                                         RowDefinition gridRow1 = new RowDefinition();
                                         gridRow1.Height = new GridLength(30);
@@ -253,7 +251,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     foreach (var el in MainWindow.XmlDocument.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
                 else MainWindow.XmlDocument.Root.Add(new XElement("youtube", null));
 
-                Task.Factory.StartNew(() => DeleteOldVideo()); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
+                Task.Factory.StartNew(() => DeleteOldVideo()).Wait(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
 
                 foreach (var el in YoutubeClass.List)
                 {
@@ -264,8 +262,8 @@ namespace _Hell_WPF_Multipack_Launcher
                         try
                         {
                             // Если запущен клиент игры - ждем 5 секунд до следующей проверки
-                            while (System.Diagnostics.Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
-                                System.Diagnostics.Process.GetProcessesByName("WoTLauncher").Length > 0)
+                            while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
+                                Process.GetProcessesByName("WoTLauncher").Length > 0)
                                 Thread.Sleep(5000);
 
                             Thread.Sleep(5000);
@@ -502,7 +500,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() => OpenPage("UserProfile"));
+            bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+            {
+                //MainWindow.Navigator("UserProfile", "General.xaml");
+                OpenPage("UserProfile");
+            }));
         }
 
         /// <summary>

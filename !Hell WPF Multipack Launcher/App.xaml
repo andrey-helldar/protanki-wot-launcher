@@ -5,6 +5,11 @@
     <Application.Resources>
 
         <!-- *******************************
+                     LOADING PAGE
+            *********************************-->
+
+
+            <!-- *******************************
                      LOGOTYPE
             *********************************-->
         <Style x:Key="ButtonStyleLogotype" TargetType="{x:Type Button}">

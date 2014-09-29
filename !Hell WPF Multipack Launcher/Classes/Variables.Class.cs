@@ -107,8 +107,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
                 catch (Exception ex)
                 {
-                    Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: PathTanks", ex.Message, ex.StackTrace));
                     PathTanks = String.Empty;
+                    Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: PathTanks", ex.Message, ex.StackTrace));
                 }
 
                 try
@@ -126,18 +126,21 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
 
 
-                        if (MainWindow.XmlDocument.Root.Element("game") != null)
-                            if (MainWindow.XmlDocument.Root.Element("game").Element("version") != null)
-                                MainWindow.XmlDocument.Root.Element("game").Element("version").SetValue(TanksVersion.ToString());
+                        try
+                        {
+                            if (Doc.Root.Element("game") != null)
+                                if (Doc.Root.Element("game").Element("version") != null)
+                                    Doc.Root.Element("game").Element("version").SetValue(TanksVersion.ToString());
+                        }
+                        catch (Exception we) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: TanksVersion", we.Message, we.StackTrace)); }
 
 
                         // Принудительно устанавливаем язык, читая файл настроек игры
                         Lang = doc.Root.Element("meta").Element("localization").Value;
                         Lang = Lang.Remove(0, Lang.IndexOf(" ")).ToLower();
-                        MainWindow.XmlDocument.Root.Element("info").Attribute("language").SetValue(Lang);
                     }
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: TanksVersion", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: Tanks Settings", ex.Message, ex.StackTrace)); }
 
 
                 // Загружаем config.ini

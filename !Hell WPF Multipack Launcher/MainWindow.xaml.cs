@@ -52,6 +52,15 @@ namespace _Hell_WPF_Multipack_Launcher
 
         public static bool Navigator(string page = "General", string from = null)
         {
+            try {
+                StackPanel sp = new StackPanel();
+                sp.SetResourceReference(TextBlock.StyleProperty, "LoadingPage");
+                Grid.SetRow(sp, 0);
+                Grid.SetColumn(sp, 0);
+                Grid.SetRowSpan(sp, 5);
+            }
+            catch (Exception) { }
+
             try { MainFrame0.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
             catch (Exception) { }
             return true;
@@ -113,8 +122,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
             Task.Factory.StartNew(() =>
             {
-                try { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); }
-                catch (Exception ex) { Debug.Save("MainWindow", "Window_Loaded(4)", ex.Message, ex.StackTrace); }
+                try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
+                catch (Exception ex) { Debug.Save("MainWindow", "Window_Loaded(4)", ex.InnerException.ToString(), ex.Message, ex.StackTrace); }
             });
 
 
