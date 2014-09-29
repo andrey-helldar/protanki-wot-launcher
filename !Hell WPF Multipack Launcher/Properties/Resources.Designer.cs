@@ -181,6 +181,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Cursor_Chrome {
+            get {
+                object obj = ResourceManager.GetObject("Cursor_Chrome", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ru.
         /// </summary>
         public static string Default_Lang {

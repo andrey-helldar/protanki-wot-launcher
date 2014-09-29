@@ -58,7 +58,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 Grid.SetRow(sp, 0);
                 Grid.SetColumn(sp, 0);
                 Grid.SetRowSpan(sp, 5);
-                2
+                //2
             }
             catch (Exception) { }
 
@@ -73,6 +73,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 InitializeComponent();
                 MouseDown += delegate { DragMove(); };
+                
+                Task.Factory.StartNew(() => Navigator("Loading")); // Изменение страницы
 
                 // Делаем общей иконку в трее
                 notifier = this.notifyIcon;
@@ -81,9 +83,23 @@ namespace _Hell_WPF_Multipack_Launcher
                 // Делаем общим фрейм
                 mainFrame = this.MainFrame;
                 this.Closing += delegate { mainFrame = null; };
+                
+                try
+                {
+                    Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
+                    if (iconStream != null) notifyIcon.Icon = new System.Drawing.Icon(iconStream);
+                    notifyIcon.Visible = true;
+                    notifyIcon.Text = Variables.ProductName;
+                    notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
 
-
-                Task.Factory.StartNew(() => Navigator("Loading")); // Изменение страницы
+                try
+                {
+                    Stream cursorStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/cursor_chrome.cur")).Stream;
+                    MainProject.Cursor = new Cursor(cursorStream);
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(3)", "cursorStream", ex.Message, ex.StackTrace)); }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
         }
@@ -109,16 +125,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)).Wait();
                 Task.Factory.StartNew(() => Debug.Restart());
             }
-
-            try
-            {
-                Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
-                if (iconStream != null) notifyIcon.Icon = new System.Drawing.Icon(iconStream);
-                notifyIcon.Visible = true;
-                notifyIcon.Text = Variables.ProductName;
-                notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
 
 
             Task.Factory.StartNew(() =>

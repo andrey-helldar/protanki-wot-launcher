@@ -284,4 +284,7 @@
     <value>FAIL</value>
     <comment>Строка, выводимая при ошибках работы функции</comment>
   </data>
+  <data name="Cursor_Chrome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cursor_chrome.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

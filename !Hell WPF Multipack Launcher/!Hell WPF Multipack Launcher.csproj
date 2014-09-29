@@ -290,6 +290,9 @@
   <ItemGroup>
     <Resource Include="Resources\background.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\cursor_chrome.cur" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>
