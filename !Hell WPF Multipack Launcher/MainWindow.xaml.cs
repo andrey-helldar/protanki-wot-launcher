@@ -24,6 +24,16 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
+        /*********************
+         * Variables
+         * *******************/
+        Classes.Variables Variables = new Classes.Variables();
+        Classes.Debug Debug = new Classes.Debug();
+        Classes.Optimize Optimize = new Classes.Optimize();
+        Classes.Language Lang = new Classes.Language();
+
+
+
         public System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
         public static System.Windows.Forms.NotifyIcon Notifier { get { return notifier; } }
         private static System.Windows.Forms.NotifyIcon notifier;
@@ -36,18 +46,10 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         private static Frame framePreview;
         private static TextBlock tbPreview;
-
-
+        
         public static XDocument XmlDocument { get { return xmlDocument; } }
         private static XDocument xmlDocument;
 
-
-        /*********************
-         * Variables
-         * *******************/
-        Classes.Variables Variables = new Classes.Variables();
-        Classes.Debug Debug = new Classes.Debug();
-        Classes.Optimize Optimize = new Classes.Optimize();
 
         public static string MultipackDate = "1970-1-1";
         public static string ProductName = String.Empty;
@@ -66,7 +68,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 Grid.SetRow(sp, 0);
                 Grid.SetColumn(sp, 0);
                 Grid.SetRowSpan(sp, 5);
-                //2
             }
             catch (Exception) { }
 
@@ -75,19 +76,39 @@ namespace _Hell_WPF_Multipack_Launcher
             return true;
         }
 
-        public static void PreviewVideo(string id, string title="")
+        /// <summary>
+        /// Превью видео
+        /// </summary>
+        /// <param name="id">Идентификатор записи</param>
+        /// <param name="title">Заголовок</param>
+        /// <param name="show">Отображать ли запись</param>
+        public static void PreviewVideo(string id, string title = "", bool show = true)
         {
-            try {
-                if (title.Trim().Length > 0)
+            try
+            {
+                if (show)
                 {
-                    tbPreview.Text = title;
-                    tbPreview.Visibility = Visibility.Visible;
+                    if (title.Trim().Length > 0)
+                    {
+                        tbPreview.Text = title;
+                        tbPreview.Visibility = Visibility.Visible;
+                    }
+                    else { tbPreview.Visibility = Visibility.Hidden; }
+
+                    framePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute));
                 }
-                else { tbPreview.Visibility = Visibility.Hidden; }
-                    
-                MainWindow.framePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute)); 
+                else
+                    MessageBox.Show(new Classes.Language().Set("MainProject", "Preview", XmlDocument.Root.Element("info").Attribute("language").Value));
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    tbPreview.Visibility = Visibility.Hidden;
+                    framePreview.Visibility = Visibility.Hidden;
+                    new Classes.Debug().Save("MainWindow", "PreviewVideo(3)", "ID: " + id, "Title: " + title, "Show: " + show.ToString(), ex.Message, ex.StackTrace);
+                });
+            }
         }
 
         private void Loading()
@@ -121,6 +142,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 framePreview = this.FramePreview;
                 tbPreview = this.TbPreview;
                 this.Closing += delegate { framePreview = null; tbPreview = null; };
+
+                // Подгружаем перевод
                 
                 try
                 {

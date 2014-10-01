@@ -65,6 +65,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        case "Preview":
+                            switch (lang)
+                            {
+                                case "ru": return "Играть";
+                                case "en": return "";
+                                case "de": return "";
+                                default: return toReturn;
+                            }
+
                         default: return toReturn;
                     }
 

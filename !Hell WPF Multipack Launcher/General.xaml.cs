@@ -157,18 +157,21 @@ namespace _Hell_WPF_Multipack_Launcher
                                         gridPanel.Children.Add(labelDate);
 
                                         // Кнопка "Воспроизвести"
-                                        Button buttonPlay = new Button();
-                                        buttonPlay.Content = ">";
-                                        buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
-                                        buttonPlay.Width = 20;
-                                        buttonPlay.Height = double.NaN;
-                                        buttonPlay.Margin = new Thickness(20, 0, 0, 0);
-                                        buttonPlay.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                                        buttonPlay.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-                                        buttonPlay.Click += PlayPreview;
-                                        Grid.SetRow(buttonPlay, 0);
-                                        Grid.SetColumn(buttonPlay, 1);
-                                        gridPanel.Children.Add(buttonPlay);
+                                        if (youtube)
+                                        {
+                                            Button buttonPlay = new Button();
+                                            buttonPlay.Content = ">";
+                                            buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
+                                            buttonPlay.Width = 20;
+                                            buttonPlay.Height = double.NaN;
+                                            buttonPlay.Margin = new Thickness(20, 0, 0, 0);
+                                            buttonPlay.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                                            buttonPlay.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                            buttonPlay.Click += PlayPreview;
+                                            Grid.SetRow(buttonPlay, 0);
+                                            Grid.SetColumn(buttonPlay, 1);
+                                            gridPanel.Children.Add(buttonPlay);
+                                        }
 
                                         // Кнопка "Закрыть"
                                         Button buttonClose = new Button();
@@ -201,7 +204,16 @@ namespace _Hell_WPF_Multipack_Launcher
                                         this.RegisterName(hyperID.Name, hyperID);
 
                                         // Гиперссылка для заголовка
-                                        Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
+                                        Run run = new Run();
+                                        run.Text = youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title;
+                                        if (youtube)
+                                        {
+                                            run.Name = "run_" + i.ToString();
+                                            this.RegisterName(run.Name, run);
+                                        }
+
+                                        //Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
+                                        Hyperlink hyperlink = new Hyperlink(run);
                                         hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
                                         hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
                                         hyperlink.Name = (youtube ? "lu_" : "lw_") + i.ToString();
@@ -213,9 +225,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                         Grid.SetColumn(blockTitle, 0);
                                         Grid.SetColumnSpan(blockTitle, 2);
                                         gridPanel.Children.Add(blockTitle);
-
-                                        /*try { this.Dispatcher.BeginInvoke(new ThreadStart(delegate { svVideo.Content = panel; })); }
-                                        catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", "Apply video to form", ex0.Message, ex0.StackTrace)); }*/
 
                                         ListBoxItem lbi = new ListBoxItem();
                                         lbi.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemGeneral");
@@ -404,12 +413,16 @@ namespace _Hell_WPF_Multipack_Launcher
                     Hyperlink elemY = Find(el, "lu_" + arr[1]);
                     if (elemY != null)
                     {
+                        // Достаем линк
                         string y = elemY.NavigateUri.AbsoluteUri;
                         string link = y.Remove(0, y.IndexOf("v=") + 2);
                         link = link.Remove(link.IndexOf("&"));
-                        MainWindow.PreviewVideo(link, elemY.Inlines.FirstInline.DataContext.ToString());
-                        //MainWindow.WbPreview.Navigate("http://www.youtube.com/embed/" + link + "?rel=0&amp;controls=0&amp;showinfo=0");
+
+                        // Выводим юзеру
+                        MainWindow.PreviewVideo(link, FindRun(el, "run_" + arr[1]).Text);
                     }
+                    else
+                        MainWindow.PreviewVideo("", "", false);
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "PlayPreview()", ex.Message, ex.StackTrace)); }
             }));
@@ -467,6 +480,29 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debug.Save("General.xaml", "Find()", "Find name: " + name, ex.Message, ex.StackTrace));
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Ищем элемент по имени
+        /// </summary>
+        /// <param name="sender">Передаем строку ListBox</param>
+        /// <param name="name">Передаем имя искомого элемента</param>
+        /// <returns>Возвращаем элемент</returns>
+        private Run FindRun(ListBoxItem sender, string name)
+        {
+            try
+            {
+                object wantedNode = sender.FindName(name);
+                if (wantedNode is Run)
+                    return wantedNode as Run;
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debug.Save("General.xaml", "FindRun()", "Find name: " + name, ex.Message, ex.StackTrace));
                 return null;
             }
         }
