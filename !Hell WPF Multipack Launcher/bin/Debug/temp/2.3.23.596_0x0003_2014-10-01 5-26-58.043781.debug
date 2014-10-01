@@ -1,0 +1,9 @@
+﻿{
+  "uid": "64935334dc97650ae4e896ceebd4cae7",
+  "version": "2.3.23.596",
+  "date": "2014-10-01 5-26-58",
+  "module": "General.xaml",
+  "function": "PlayPreview()",
+  "param0": "Ссылка на объект не указывает на экземпляр объекта.",
+  "param1": "   в _Hell_WPF_Multipack_Launcher.General.<>c__DisplayClass4b.<PlayPreview>b__49() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\General.xaml.cs:строка 410"
+}

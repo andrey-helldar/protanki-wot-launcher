@@ -407,7 +407,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         string y = elemY.NavigateUri.AbsoluteUri;
                         string link = y.Remove(0, y.IndexOf("v=") + 2);
                         link = link.Remove(link.IndexOf("&"));
-                        MainWindow.PreviewVideo(link);
+                        MainWindow.PreviewVideo(link, elemY.Inlines.FirstInline.DataContext.ToString());
                         //MainWindow.WbPreview.Navigate("http://www.youtube.com/embed/" + link + "?rel=0&amp;controls=0&amp;showinfo=0");
                     }
                 }

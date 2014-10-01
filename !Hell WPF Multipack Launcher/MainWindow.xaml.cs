@@ -77,9 +77,14 @@ namespace _Hell_WPF_Multipack_Launcher
 
         public static void PreviewVideo(string id, string title="")
         {
-            try { 
-                if(title.Trim().Length > 0)
-                    tbPre
+            try {
+                if (title.Trim().Length > 0)
+                {
+                    tbPreview.Text = title;
+                    tbPreview.Visibility = Visibility.Visible;
+                }
+                else { tbPreview.Visibility = Visibility.Hidden; }
+                    
                 MainWindow.framePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute)); 
             }
             catch (Exception ex) { }
