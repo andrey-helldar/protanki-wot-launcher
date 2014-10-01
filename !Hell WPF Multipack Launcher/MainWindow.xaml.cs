@@ -34,8 +34,9 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <summary>
         /// Готовим контрол для отображения превью видео
         /// </summary>
-        public static Frame Preview { get { return previewVideo; } }
-        private static Frame previewVideo;
+        //public static WebBrowser WbPreview { get { return wbPreview1; } }
+        private static WebBrowser wbPreview1;
+
 
         public static XDocument XmlDocument { get { return xmlDocument; } }
         private static XDocument xmlDocument;
@@ -74,13 +75,15 @@ namespace _Hell_WPF_Multipack_Launcher
             return true;
         }
 
-        public static void PreviewYoutube(string id)
+        public static void PreviewVideo(string id)
         {
-            //   <iframe width="560" height="315" src="//www.youtube.com/embed/e3frdhW2ve8" frameborder="0" allowfullscreen></iframe>
-
-
-            try { MainWindow.previewVideo.NavigationService.Navigate(new Uri(Properties.Resources.Youtube_Preview + id)); }
-            catch (Exception) { }
+            try
+            {
+                MainWindow.wbPreview1.Visibility = Visibility.Hidden;
+                MainWindow.wbPreview1.Navigate("http://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0");
+                MainWindow.wbPreview1.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex) { }
         }
 
         private void Loading()
@@ -111,8 +114,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 this.Closing += delegate { mainFrame = null; };
 
                 // Готовим превью
-                previewVideo = this.FramePreview;
-                this.Closing += delegate { previewVideo = null; };
+                wbPreview1 = this.wbPreview;
+                this.Closing += delegate { wbPreview1 = null; };
                 
                 try
                 {
@@ -271,35 +274,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 process.Start();
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: \"" + filename + "\"", ex.Message, ex.StackTrace)); }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Loading();
-        }
-
-        public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached(
-    "Html",
-    typeof(string),
-    typeof(PinnedInstrumentsViewModel),
-    new FrameworkPropertyMetadata(OnHtmlChanged));
-
-        [AttachedPropertyBrowsableForType(typeof(WebBrowser))]
-        public static string GetHtml(WebBrowser d)
-        {
-            return (string)d.GetValue(HtmlProperty);
-        }
-
-        public static void SetHtml(WebBrowser d, string value)
-        {
-            d.SetValue(HtmlProperty, value);
-        }
-
-        static void OnHtmlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            WebBrowser wb = d as WebBrowser;
-            if (wb != null)
-                wb.NavigateToString(e.NewValue as string);
         }
     }
 }
