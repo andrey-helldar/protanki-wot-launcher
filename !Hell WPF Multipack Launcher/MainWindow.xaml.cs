@@ -98,7 +98,11 @@ namespace _Hell_WPF_Multipack_Launcher
                     framePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute));
                 }
                 else
-                    MessageBox.Show(new Classes.Language().Set("MainProject", "Preview", XmlDocument.Root.Element("info").Attribute("language").Value));
+                {
+                    tbPreview.Visibility = Visibility.Hidden;
+                    framePreview.Visibility = Visibility.Hidden;
+                    MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", XmlDocument.Root.Element("info").Attribute("language").Value));
+                }
             }
             catch (Exception ex)
             {

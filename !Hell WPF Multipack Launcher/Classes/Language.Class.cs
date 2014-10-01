@@ -2,11 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Language
     {
+        /// <summary>
+        /// Список поддерживаемых языков.
+        /// Данный массив JObject упрощает определение допустимых переводов
+        /// </summary>
+        /// <returns>JObject массив языков перевода в формате "ru":"Русский", где
+        /// ru - key
+        /// Русский - value</returns>
+        public JObject Translated()
+        {
+            try
+            {
+                JObject obj = new JObject();
+
+                obj.Add(new JProperty("ru", "Русский"));
+                //obj.Add(new JProperty("en", "English"));
+                //obj.Add(new JProperty("de", "Deutsch"));
+                //obj.Add(new JProperty("ua", "Украинский"));
+
+                return obj;
+            }
+            catch (Exception ex) {
+                System.Threading.Tasks.Task.Factory.StartNew(() => new Debug().Save("Language Class", "Translated", ex.Message, ex.StackTrace));
+                return null;
+            }
+        }
+
         /// <summary>
         /// Функция определения языка интерфейса
         /// </summary>
@@ -65,10 +92,19 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
-                        case "Preview":
+                        case "Preview_NoData":
                             switch (lang)
                             {
-                                case "ru": return "Играть";
+                                case "ru": return "Получены не все данные. Воспроизведение видео невозможно.";
+                                case "en": return "";
+                                case "de": return "";
+                                default: return toReturn;
+                            }
+
+                        case "Preview_Error":
+                            switch (lang)
+                            {
+                                case "ru": return "Возникла ошибка при загрузке видео. Попробуйте еще раз";
                                 case "en": return "";
                                 case "de": return "";
                                 default: return toReturn;
