@@ -1,40 +1,40 @@
 ﻿{
-	"token":{
-		"access_token":"6ad398683640110e0d42c5a95ac7eda6c92c9962",
-		"expires_at":"1412214576",
-		"nickname":"First_Helldar",
-		"account_id":"2732865"
-	},
-	"info":{
-		"video":"True",
-		"news":"True",
-		"multipack":"True",
-		"notification":"0.0.0.0",
-		"language":"ru",
-		"notify_link":""
-	},
-	"settings":{
-		"kill":"False",
-		"force":"False",
-		"aero":"False",
-		"video":"False",
-		"weak":"False",
-		"winxp":"False",
-		"launcher":"0"
-	},
-	"multipack":{
-		"type":"base",
-		"version":"0.0.0.0",
-		"link":""
-	},
-	"game":{
-		"version":"0.0.0.0",
-		"path":""
-	},
-	"youtube":"",
-	"do_not_display":{
-		"video":"",
-		"news":""
-	},
-	"processes":""
+    "token": {
+        "access_token": "6ad398683640110e0d42c5a95ac7eda6c92c9962",
+        "expires_at": "1412214576",
+        "nickname": "First_Helldar",
+        "account_id": "2732865"
+    },
+    "info": {
+        "video": "True",
+        "news": "True",
+        "multipack": "True",
+        "notification": "0.0.0.0",
+        "language": "ru",
+        "notify_link": ""
+    },
+    "settings": {
+        "kill": "False",
+        "force": "False",
+        "aero": "False",
+        "video": "False",
+        "weak": "False",
+        "winxp": "False",
+        "launcher": "0"
+    },
+    "multipack": {
+        "type": "base",
+        "version": "0.0.0.0",
+        "link": ""
+    },
+    "game": {
+        "version": "0.0.0.0",
+        "path": ""
+    },
+    "youtube": "",
+    "do_not_display": {
+        "video": "",
+        "news": ""
+    },
+    "processes": ""
 }
