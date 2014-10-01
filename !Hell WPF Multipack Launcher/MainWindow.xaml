@@ -15,8 +15,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="34"/>
-            <RowDefinition Height="165*"/>
-            <RowDefinition Height="199*"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="123"/>
             <RowDefinition Height="79"/>
         </Grid.RowDefinitions>
@@ -24,11 +24,10 @@
         <Button x:Name="bPlay" Grid.Column="1" Grid.Row="4" Width="188" Style="{DynamicResource ButtonStylePlay}" FontSize="20" Click="bPlay_Click" FontFamily="Xolonium" HorizontalAlignment="Right" />
         <Button x:Name="bClose" Content="Close" Grid.Column="1" Style="{DynamicResource ButtonStyleClose}" HorizontalAlignment="Right" Margin="0,0,3,3" VerticalAlignment="Bottom" Width="30" Click="bClose_Click" Height="30"/>
         <Button x:Name="bMinimize" Content="Minimize" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleMin}" Margin="0,1,41,0" VerticalAlignment="Top" Width="30" Click="bMinimize_Click" Grid.Column="1" Height="30"/>
-        <Button x:Name="bPreviewNext" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleVideoRight}" Margin="0,0,10,0" Grid.Row="2" VerticalAlignment="Top" Width="40"/>
-        <Button x:Name="bPreviewPrev" Grid.Column="1" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleVideoLeft}" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="40"/>
-        <Button x:Name="bLauncherWOT" Grid.Column="1" Style="{DynamicResource ButtonStyleLogotype}" Margin="71,10,71,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Height="120" Click="bLauncherWOT_Click"/>
-        <Button x:Name="bAirus" Grid.Column="1" Style="{DynamicResource ButtonStyleAIRUS}" Margin="0,30,0,0" Grid.Row="3" VerticalAlignment="Top" Width="212" Height="68" Click="bAirus_Click"/>
+        <Button x:Name="bLauncherWOT" Grid.Column="1" Style="{DynamicResource ButtonStyleLogotype}" Margin="71,10,71,0" Grid.Row="1" VerticalAlignment="Top" Height="120" Click="bLauncherWOT_Click"/>
+        <Button x:Name="bAirus" Grid.Column="1" Style="{DynamicResource ButtonStyleAIRUS}" Margin="25,30,25,0" Grid.Row="3" VerticalAlignment="Top" Height="68" Click="bAirus_Click"/>
         <Rectangle x:Name="rectLang" Grid.Column="1" Fill="#7FF91313" HorizontalAlignment="Left" Height="40" Margin="16,23,0,0" Grid.Row="4" VerticalAlignment="Top" Width="40"/>
-        <Frame Content="Frame" Grid.Column="1" HorizontalAlignment="Center" Height="141" Margin="0,0,0,15" Grid.Row="2" VerticalAlignment="Bottom" Width="250"/>
+        <Frame x:Name="FramePreview" Grid.Column="1" HorizontalAlignment="Center" Height="141" Margin="0,15" Grid.Row="2" VerticalAlignment="Bottom" Width="250" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" NavigationUIVisibility="Hidden" Background="#7FFF0F0F"/>
+        <TextBlock x:Name="TbPreview" Grid.Column="1" Margin="10,0" Grid.Row="1" TextWrapping="Wrap" Text="tbPreview" VerticalAlignment="Bottom" Foreground="White" FontSize="14"/>
     </Grid>
 </Window>

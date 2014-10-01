@@ -34,8 +34,8 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <summary>
         /// Готовим контрол для отображения превью видео
         /// </summary>
-        //public static WebBrowser WbPreview { get { return wbPreview1; } }
-        private static WebBrowser wbPreview1;
+        private static Frame framePreview;
+        private static TextBlock tbPreview;
 
 
         public static XDocument XmlDocument { get { return xmlDocument; } }
@@ -75,13 +75,12 @@ namespace _Hell_WPF_Multipack_Launcher
             return true;
         }
 
-        public static void PreviewVideo(string id)
+        public static void PreviewVideo(string id, string title="")
         {
-            try
-            {
-                MainWindow.wbPreview1.Visibility = Visibility.Hidden;
-                MainWindow.wbPreview1.Navigate("http://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0");
-                MainWindow.wbPreview1.Visibility = Visibility.Visible;
+            try { 
+                if(title.Trim().Length > 0)
+                    tbPre
+                MainWindow.framePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute)); 
             }
             catch (Exception ex) { }
         }
@@ -114,8 +113,9 @@ namespace _Hell_WPF_Multipack_Launcher
                 this.Closing += delegate { mainFrame = null; };
 
                 // Готовим превью
-                wbPreview1 = this.wbPreview;
-                this.Closing += delegate { wbPreview1 = null; };
+                framePreview = this.FramePreview;
+                tbPreview = this.TbPreview;
+                this.Closing += delegate { framePreview = null; tbPreview = null; };
                 
                 try
                 {
