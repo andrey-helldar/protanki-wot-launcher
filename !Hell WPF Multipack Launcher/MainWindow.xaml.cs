@@ -76,6 +76,9 @@ namespace _Hell_WPF_Multipack_Launcher
 
         public static void PreviewYoutube(string id)
         {
+            //   <iframe width="560" height="315" src="//www.youtube.com/embed/e3frdhW2ve8" frameborder="0" allowfullscreen></iframe>
+
+
             try { MainWindow.previewVideo.NavigationService.Navigate(new Uri(Properties.Resources.Youtube_Preview + id)); }
             catch (Exception) { }
         }
@@ -273,6 +276,30 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Loading();
+        }
+
+        public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached(
+    "Html",
+    typeof(string),
+    typeof(PinnedInstrumentsViewModel),
+    new FrameworkPropertyMetadata(OnHtmlChanged));
+
+        [AttachedPropertyBrowsableForType(typeof(WebBrowser))]
+        public static string GetHtml(WebBrowser d)
+        {
+            return (string)d.GetValue(HtmlProperty);
+        }
+
+        public static void SetHtml(WebBrowser d, string value)
+        {
+            d.SetValue(HtmlProperty, value);
+        }
+
+        static void OnHtmlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            WebBrowser wb = d as WebBrowser;
+            if (wb != null)
+                wb.NavigateToString(e.NewValue as string);
         }
     }
 }

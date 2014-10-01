@@ -204,6 +204,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                         Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
                                         hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
                                         hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
+                                        hyperlink.Name = (youtube ? "lu_" : "lw_") + i.ToString();
+                                        this.RegisterName(hyperlink.Name, hyperlink);
                                         blockTitle.Inlines.Add(hyperlink);
                                         blockTitle.Inlines.Add(hyperID);
 
@@ -398,12 +400,13 @@ namespace _Hell_WPF_Multipack_Launcher
                 try {
                     ListBoxItem el = (((sender as Button).Parent as Grid).Parent as ListBoxItem);
                     string[] arr = (sender as Button).Name.Split('_');
-                    Hyperlink elemY = Find(el, "LinkYoutube_" + arr[1]);
+                    Hyperlink elemY = Find(el, "lu_" + arr[1]);
                     if (elemY != null)
                     {
-                        string[] item = elemY.NavigateUri.AbsoluteUri.Split('/');
-                        MessageBox.Show(elemY.NavigateUri.AbsoluteUri);
-                        MainWindow.PreviewYoutube(item[2]);
+                        string y = elemY.NavigateUri.AbsoluteUri;
+                        string link = y.Remove(0, y.IndexOf("v=") + 2);
+                        link = link.Remove(link.IndexOf("&"));
+                        MainWindow.PreviewYoutube(link);
                     }
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "PlayPreview()", ex.Message, ex.StackTrace)); }
