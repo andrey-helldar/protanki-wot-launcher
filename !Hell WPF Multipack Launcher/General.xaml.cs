@@ -393,11 +393,21 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="e"></param>
         private void PlayPreview(object sender, RoutedEventArgs e)
         {
-            try
+            (sender as Button).Dispatcher.BeginInvoke(new Action(delegate()
             {
-                MessageBox.Show("OK");
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "PlayPreview()", ex.Message, ex.StackTrace)); }
+                try {
+                    ListBoxItem el = (((sender as Button).Parent as Grid).Parent as ListBoxItem);
+                    string[] arr = (sender as Button).Name.Split('_');
+                    Hyperlink elemY = Find(el, "LinkYoutube_" + arr[1]);
+                    if (elemY != null)
+                    {
+                        string[] item = elemY.NavigateUri.AbsoluteUri.Split('/');
+                        MessageBox.Show(elemY.NavigateUri.AbsoluteUri);
+                        MainWindow.PreviewYoutube(item[2]);
+                    }
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "PlayPreview()", ex.Message, ex.StackTrace)); }
+            }));
         }
 
         public bool ElementToBan(string block, string item)
@@ -480,29 +490,40 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bSettings_Click(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() => OpenPage("Settings"));
+            bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+            {
+                OpenPage("Settings");
+            }));
         }
 
         private void bFeedback_Click(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() => OpenPage("Feedback"));
+            bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+            {
+                OpenPage("Feedback");
+            }));
         }
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() => OpenPage("Update"));
+            bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+            {
+                OpenPage("Update");
+            }));
         }
 
         private void bNotification_Click(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() => OpenPage("Notification"));
+            bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+            {
+                OpenPage("Notification");
+            }));
         }
 
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
             bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
             {
-                //MainWindow.Navigator("UserProfile", "General.xaml");
                 OpenPage("UserProfile");
             }));
         }

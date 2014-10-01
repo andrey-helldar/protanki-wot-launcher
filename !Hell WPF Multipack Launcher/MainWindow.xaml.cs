@@ -31,6 +31,12 @@ namespace _Hell_WPF_Multipack_Launcher
         public static Frame MainFrame0 { get { return mainFrame; } }
         private static Frame mainFrame;
 
+        /// <summary>
+        /// Готовим контрол для отображения превью видео
+        /// </summary>
+        public static Frame Preview { get { return previewVideo; } }
+        private static Frame previewVideo;
+
         public static XDocument XmlDocument { get { return xmlDocument; } }
         private static XDocument xmlDocument;
 
@@ -68,6 +74,12 @@ namespace _Hell_WPF_Multipack_Launcher
             return true;
         }
 
+        public static void PreviewYoutube(string id)
+        {
+            try { MainWindow.previewVideo.NavigationService.Navigate(new Uri(Properties.Resources.Youtube_Preview + id)); }
+            catch (Exception) { }
+        }
+
         private void Loading()
         {
             StackPanel sp = new StackPanel();
@@ -94,6 +106,10 @@ namespace _Hell_WPF_Multipack_Launcher
                 // Делаем общим фрейм
                 mainFrame = this.MainFrame;
                 this.Closing += delegate { mainFrame = null; };
+
+                // Готовим превью
+                previewVideo = this.FramePreview;
+                this.Closing += delegate { previewVideo = null; };
                 
                 try
                 {
