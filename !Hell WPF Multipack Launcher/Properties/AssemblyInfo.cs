@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("!Hell Multi-Pack Launcher")]
+[assembly: AssemblyTitle("Multipack Launcher")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AI RUS - Professional IT support")]
-[assembly: AssemblyProduct("!Hell Multi-Pack Launcher")]
+[assembly: AssemblyProduct("!Hell Multipack Launcher")]
 [assembly: AssemblyCopyright("Copyright © 2014 AI RUS - Professional IT support")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -50,6 +50,6 @@ using System.Windows;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.3.23.590")]
-[assembly: AssemblyFileVersion("2.3.23.590")]
+[assembly: AssemblyVersion("2.3.23.591")]
+[assembly: AssemblyFileVersion("2.3.23.591")]
 [assembly: GuidAttribute("B3F13C67-4CBB-4AA3-B942-F8A285ED1CBF")]
