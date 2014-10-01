@@ -264,7 +264,7 @@ namespace _Hell_WPF_Multipack_Launcher
         private void bAirus_Click(object sender, RoutedEventArgs e)
         {
             try { ProcessStart(Properties.Resources.Developer); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bAirus_Click()", ex.Message, "Link: " + Properties.Resources.Developer)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bAirus_Click()", "Link: " + Properties.Resources.Developer,ex.Message, ex.StackTrace)); }
         }
 
         private void bLauncherWOT_Click(object sender, RoutedEventArgs e)
@@ -281,7 +281,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     else
                         MessageBox.Show("Клиент игры не обнаружен!");
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bLauncher_Click()", ex.Message)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bLauncher_Click()", ex.Message, ex.StackTrace)); }
             });
         }
 
