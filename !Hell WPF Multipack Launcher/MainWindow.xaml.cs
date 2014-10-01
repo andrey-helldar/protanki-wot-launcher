@@ -191,7 +191,7 @@ namespace _Hell_WPF_Multipack_Launcher
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
-                catch (Exception ex) { Debug.Save("MainWindow", "Window_Loaded(4)", ex.InnerException.ToString(), ex.Message, ex.StackTrace); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(4)", ex.InnerException.ToString(), ex.Message, ex.StackTrace)); }
             });
 
 
@@ -257,7 +257,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     else
                         MessageBox.Show("Клиент игры не обнаружен!");
                 }
-                catch (Exception ex) { Debug.Save("MainWindow", "bPlay_Click()", ex.Message, ex.StackTrace); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bPlay_Click()", ex.Message, ex.StackTrace)); }
             });
         }
 
@@ -281,7 +281,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     else
                         MessageBox.Show("Клиент игры не обнаружен!");
                 }
-                catch (Exception ex) { Debug.Save("MainWindow", "bLauncher_Click()", ex.Message); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bLauncher_Click()", ex.Message)); }
             });
         }
 

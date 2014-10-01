@@ -124,6 +124,9 @@ namespace _Hell_WPF_Multipack_Launcher
 
                             }
                             else
+                                pbStatus.Value = 0;
+                                pbStatus.Maximum = count;
+
                                 for (int i = 0; i < count; i++)
                                 {
                                     try
@@ -240,6 +243,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                             Thread.Sleep(50);
                                         }
                                         catch (Exception ex2) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex2.Message, ex2.StackTrace)); }
+
+                                        pbStatus.Value++;
                                     }
                                     catch (Exception ex3) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "FOR: " + i.ToString(), ex3.Message, ex3.StackTrace)); }
                                 }
@@ -513,7 +518,11 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 if (MessageBox.Show("Вы точно хотите оптимизировать ПК вручную?", "Launcher", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
+                    pbStatus.Value = 0;
+                    pbStatus.Maximum = 5;
+
                     Classes.Variables Vars = new Classes.Variables();
+                    pbStatus.Value = 1;
 
                     new Classes.Optimize().Start(
                             Vars.GetElement("settings", "winxp"),
@@ -524,6 +533,8 @@ namespace _Hell_WPF_Multipack_Launcher
                             Vars.GetElement("settings", "weak"),
                             true
                         );
+
+                    pbStatus.Value = 5;
                 }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bOptimize_Click()", ex.Message, ex.StackTrace)); }
