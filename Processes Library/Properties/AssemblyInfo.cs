@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Processes Library")]
-[assembly: AssemblyDescription("Processes Library for MultiPack Launcher AI RUS - Professional IT-support")]
+[assembly: AssemblyDescription("Processes Library for Multipack Launcher")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AI RUS - Professional IT-support")]
+[assembly: AssemblyCompany("AI RUS - Professional IT support")]
 [assembly: AssemblyProduct("Processes Library")]
 [assembly: AssemblyCopyright("Copyright ©  2014 AI RUS - Professional IT-support")]
 [assembly: AssemblyTrademark("")]

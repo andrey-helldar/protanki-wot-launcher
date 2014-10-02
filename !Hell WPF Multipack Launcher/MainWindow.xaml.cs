@@ -278,14 +278,11 @@ namespace _Hell_WPF_Multipack_Launcher
                 try
                 {
                     if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
-                    {
-                        Optimize.Start(Variables.WinXP);
                         ProcessStart(Variables.PathTanks, "WoTLauncher.exe");
-                    }
                     else
-                        MessageBox.Show("Клиент игры не обнаружен!");
+                        MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", xmlDocument.Root.Element("info").Attribute("language").Value));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bLauncher_Click()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bLauncherWOT_Click()", ex.Message, ex.StackTrace)); }
             });
         }
 
@@ -305,7 +302,14 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 process.Start();
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: \"" + filename + "\"", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); }
+        }
+
+
+        public void OokiiMessage(string text, string caption = "", MessageBoxButton Mbb = MessageBoxButton.OK, MessageBoxImage Mbi = MessageBoxImage.Information)
+        {
+            //  MessageBox.Show("text", "caption", MessageBoxButton.OK, MessageBoxImage.Information)
+            Ookii.Dialogs.Wpf Ookii = new Ookii.Dialogs.Wpf();
         }
     }
 }

@@ -110,6 +110,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        case "Game_Not_Found":
+                            switch (lang)
+                            {
+                                case "ru": return "Клиент игры не обнаружен!";
+                                case "en": return "\"World of Tanks\" is not found!";
+                                case "de": return "";
+                                default: return toReturn;
+                            }
+
                         default: return toReturn;
                     }
 

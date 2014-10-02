@@ -36,7 +36,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
             try { return Encoding.UTF8.GetString(System.Convert.FromBase64String(text)); }
             catch (Exception) { }
-
             return Properties.Resources.Class_Fail;
         }
     }
