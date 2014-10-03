@@ -21,9 +21,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 JObject obj = new JObject();
 
-                obj.Add(new JProperty("ru", "Русский"));	// Andrey Helldar
+                obj.Add(new JProperty("ru", "Русский")); // Andrey Helldar
                 //obj.Add(new JProperty("en", "English"));	// D Voronoff
-                obj.Add(new JProperty("de", "Deutsch"));	// Alexander Storz
+                obj.Add(new JProperty("de", "Deutsch"));
                 //obj.Add(new JProperty("ua", "Украинский"));
 
                 return obj;
