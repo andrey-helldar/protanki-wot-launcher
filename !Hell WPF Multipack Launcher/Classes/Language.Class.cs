@@ -22,7 +22,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 JObject obj = new JObject();
 
                 obj.Add(new JProperty("ru", "Русский"));	// Andrey Helldar
-                //obj.Add(new JProperty("en", "English"));	// D Voronoff
+                obj.Add(new JProperty("en", "English"));	// D Voronoff
                 obj.Add(new JProperty("de", "Deutsch"));	// Alexander Storz
                 //obj.Add(new JProperty("ua", "Украинский"));
 
@@ -232,7 +232,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Оптимизация ПК и игры:";
-                                case "en": return "000";
+                                case "en": return "Game and PC optimization:";
                                 case "de": return "PC und Spiel Optimierung:";
                                 default: return toReturn;
                             }
@@ -241,7 +241,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Закрывать процессы при запуске игры";
-                                case "en": return "000";
+                                case "en": return "Close processes when the game starts";
                                 case "de": return "Prozesse schließen wenn das Spiel beginnt";
                                 default: return toReturn;
                             }
@@ -250,7 +250,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Принудительно закрывать процессы";
-                                case "en": return "000";
+                                case "en": return "Kill processes when the game starts";
                                 case "de": return "Prozesse Schließung erzwingen";
                                 default: return toReturn;
                             }
@@ -259,7 +259,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Уменьшить качество графики в игре";
-                                case "en": return "000";
+                                case "en": return "Reduce graphic details in the game";
                                 case "de": return "Grafikeinstellungen runterstellen";
                                 default: return toReturn;
                             }
@@ -268,7 +268,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Очень слабый компьютер";
-                                case "en": return "000";
+                                case "en": return "Weak PC";
                                 case "de": return "Leistungsschwache Rechner";
                                 default: return toReturn;
                             }
@@ -277,7 +277,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Отключать Windows Aero";
-                                case "en": return "000";
+                                case "en": return "Disable Windows Aero";
                                 case "de": return "Windows Aero-Oberfläche deaktivieren";
                                 default: return toReturn;
                             }
@@ -291,8 +291,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Другое:";
-                                case "en": return "000";
-                                case "de": return "Verschiedenes";
+                                case "en": return "Other:";
+                                case "de": return "Verschiedenes:";
                                 default: return toReturn;
                             }
 
@@ -300,7 +300,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Уведомлять о новых видео";
-                                case "en": return "000";
+                                case "en": return "Notify about new videos";
                                 case "de": return "Benachrichtigungen für neue Videos";
                                 default: return toReturn;
                             }
@@ -309,7 +309,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Уведомлять о новых новостях";
-                                case "en": return "000";
+                                case "en": return "Notify about news";
                                 case "de": return "Neuste Nachrichten bekommen";
                                 default: return toReturn;
                             }
@@ -330,7 +330,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Процессы";
-                                case "en": return "000";
+                                case "en": return "Processes";
                                 case "de": return "Prozesse";
                                 default: return toReturn;
                             }
@@ -339,7 +339,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Описание";
-                                case "en": return "000";
+                                case "en": return "Description";
                                 case "de": return "Beschreibung";
                                 default: return toReturn;
                             }
@@ -348,7 +348,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Глобальный список процессов";
-                                case "en": return "000";
+                                case "en": return "Global list of processes";
                                 case "de": return "Wichtige Prozesse";
                                 default: return toReturn;
                             }
@@ -357,7 +357,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Отключение процессов из данного списка невозможно";
-                                case "en": return "000";
+                                case "en": return "Processes from this list cannot be disabled";
                                 case "de": return "Prozess Beendigung nicht möglich";
                                 default: return toReturn;
                             }
@@ -366,7 +366,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Процессы, которые НЕЛЬЗЯ закрывать";
-                                case "en": return "000";
+                                case "en": return "DO NOT close this processes ";
                                 case "de": return "Prozesse die NICHT geschlossen werden dürfen";
                                 default: return toReturn;
                             }
@@ -375,7 +375,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Процессы, которые будут игнорироваться лаунчером при оптимизации ПК";
-                                case "en": return "000";
+                                case "en": return "Processes that would be ignored by Launcher";
                                 case "de": return "Prozesse die während der Optimierung ignoriert werden";
                                 default: return toReturn;
                             }
@@ -384,7 +384,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Процессы, не имеющие приоритета";
-                                case "en": return "000";
+                                case "en": return "Processes without priority";
                                 case "de": return "Prozesse ohne Priorität";
                                 default: return toReturn;
                             }
@@ -432,7 +432,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Общие";
-                                case "en": return "000";
+                                case "en": return "General";
                                 case "de": return "Allgemeine";
                                 default: return toReturn;
                             }
@@ -441,11 +441,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Закрыть";
-                                case "en": return "000";
+                                case "en": return "Close";
                                 case "de": return "Schließen";
                                 default: return toReturn;
                             }
-
+                            
 
                         /* -----------------------------
                          *      Optimize
@@ -464,7 +464,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         default: return toReturn;
                     }
 
-
+                    
 
 
 
@@ -487,7 +487,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Произошла ошибка";
-                                case "en": return "000";
+                                case "en": return "An error has occurred";
                                 case "de": return "Fehler";
                                 default: return toReturn;
                             }
@@ -736,7 +736,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Офицер";
-                                case "en": return "000";
+                                case "en": return "Officer";
                                 case "de": return "Offizier";
                                 default: return toReturn;
                             }
@@ -745,7 +745,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Процент побед";
-                                case "en": return "000";
+                                case "en": return "Winrate";
                                 case "de": return "Gewinnrate in Prozent";
                                 default: return toReturn;
                             }
@@ -754,7 +754,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Личный рейтинг";
-                                case "en": return "000";
+                                case "en": return "Personal rating";
                                 case "de": return "Mein Ranking";
                                 default: return toReturn;
                             }
@@ -763,7 +763,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Средний опыт за бой";
-                                case "en": return "000";
+                                case "en": return "Average experience per battle";
                                 case "de": return "Durchschnittliche Erfahrung pro Gefecht";
                                 default: return toReturn;
                             }
@@ -772,7 +772,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Количество боев";
-                                case "en": return "000";
+                                case "en": return "Qty of battles";
                                 case "de": return "Gespielte Gefechte";
                                 default: return toReturn;
                             }
@@ -781,7 +781,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Средний нанесенный урон за бой";
-                                case "en": return "000";
+                                case "en": return "Average damage per battle";
                                 case "de": return "Im durchschnitt erteilter Schaden pro Gefecht";
                                 default: return toReturn;
                             }
@@ -793,7 +793,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Личный состав";
-                                case "en": return "000";
+                                case "en": return "Personnel";
                                 case "de": return "Personal";
                                 default: return toReturn;
                             }
@@ -804,7 +804,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 //  Например,
                                 //      Данные на 29.09.2014 1:03
                                 case "ru": return "Данные на";
-                                case "en": return "000";
+                                case "en": return "The data on";
                                 case "de": return "Daten für";
                                 default: return toReturn;
                             }
@@ -824,7 +824,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Командир";
-                                case "en": return "000";
+                                case "en": return "Commander";
                                 case "de": return "Kommandant";
                                 default: return toReturn;
                             }
@@ -833,7 +833,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Зам. командира";
-                                case "en": return "000";
+                                case "en": return "Deputy commander";
                                 case "de": return "Stellvertreter des Kommandanten";
                                 default: return toReturn;
                             }
@@ -842,7 +842,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Ротный командир";
-                                case "en": return "000";
+                                case "en": return "Company commander";
                                 case "de": return "Kompaniechef";
                                 default: return toReturn;
                             }
@@ -851,7 +851,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Солдат";
-                                case "en": return "000";
+                                case "en": return "Soldier";
                                 case "de": return "Soldat";
                                 default: return toReturn;
                             }
@@ -860,7 +860,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Новобранец";
-                                case "en": return "000";
+                                case "en": return "Recruit";
                                 case "de": return "Rekrut";
                                 default: return toReturn;
                             }
@@ -869,7 +869,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Вербовщик";
-                                case "en": return "000";
+                                case "en": return "Recruiter";
                                 case "de": return "Anwerber";
                                 default: return toReturn;
                             }
@@ -895,24 +895,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
-                        default: return toReturn;
-                    }
-
-
-
-
-                /* =====================================
-                 *      Variable Class
-                 * =====================================*/
-                case "variables_class":
-                    switch (control)
-                    {
-                        case "do_not_settings":
+                        case "GlobalProcesses":
                             switch (lang)
                             {
-                                case "ru": return "Файл настроек не обнаружен!";
-                                case "en": return "Configuration file is unavailable!";
-                                case "de": return "Konfigurationsdatei ist nicht verfügbar!";
+                                case "ru": return "Процессы из глобального списка приоритетов не могут быть отключены.";
+                                case "en": return "Processes from global list cannot be deactivated.";
+                                case "de": "000";
                                 default: return toReturn;
                             }
 
