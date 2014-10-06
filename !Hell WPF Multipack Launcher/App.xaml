@@ -113,9 +113,7 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid Margin="0">
                             <Path Stretch="Fill" x:Name="PlayBackground"
-                                    Data="M0,20 L10,10 43,10 L43,20 Z"
                                     Fill="Transparent"
-                                    Stroke="Black"
                                     StrokeThickness="0"
                                     SnapsToDevicePixels="True"
                                    Cursor="Hand"/>
@@ -128,9 +126,9 @@
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFddd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ContentPresenter.Resources>
+                                            
+                                        </ContentPresenter.Resources>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -138,7 +136,7 @@
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
                                         <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
+                                            <GradientStop Color="#FFccf900" Offset="0"/>
                                         </RadialGradientBrush>
                                     </Setter.Value>
                                 </Setter>

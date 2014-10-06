@@ -273,19 +273,19 @@
     <None Include="Resources\Ionic.Zip.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\backGeneral.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\backGeneralLine.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\background.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\cursor_chrome.cur" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Processes.Library.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Global_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play_press.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
