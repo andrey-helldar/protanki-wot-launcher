@@ -62,10 +62,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\!!other_dll\4.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="ProcessesLibrary, Version=1.2.10.33, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Processes Library\bin\Release\ProcessesLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="restart, Version=1.1.4.14, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\!Hell Restarter\bin\Release\restart.exe</HintPath>
@@ -279,13 +275,19 @@
     <None Include="Resources\Processes.Library.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Global_Background.jpg" />
+    <Resource Include="Resources\Global_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\play_hover.png" />
+    <Resource Include="Resources\play_hover.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\play_press.png" />
+    <Resource Include="Resources\play_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Processes Library\Processes Library.csproj">
+      <Project>{c89f98dd-cf7b-4b7b-ae2c-fbf49177b8a6}</Project>
+      <Name>Processes Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

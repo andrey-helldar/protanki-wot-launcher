@@ -126,9 +126,9 @@
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <ContentPresenter.Resources>
-                                            
-                                        </ContentPresenter.Resources>
+                                        <RadialGradientBrush>
+                                            <GradientStop Color="#FFccf9ff" Offset="0"/>
+                                        </RadialGradientBrush>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
