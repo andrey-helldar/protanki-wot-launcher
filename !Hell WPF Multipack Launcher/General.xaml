@@ -5,10 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="300"
-	Title="General" Width="538" Height="600" Loaded="Page_Loaded">
-    <Page.Background>
-        <ImageBrush ImageSource="Resources/backGeneral.png" Stretch="Fill" TileMode="None"/>
-    </Page.Background>
+	Title="General" Width="538" Height="600" Loaded="Page_Loaded" Background="{x:Null}">
 
     <Grid x:Name="gGrid">
         <Grid.ColumnDefinitions>
@@ -32,9 +29,9 @@
         <Button x:Name="bUpdate" Grid.Column="3" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleUpdate}" Margin="0,5,57,5" Width="24" Click="bUpdate_Click"/>
         <!--<Label x:Name="lType" Content="Базовая версия" Style="{StaticResource LabelStyleHeaderBlack}" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,2" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>//-->
         <Rectangle Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,5,0" Opacity="0.5">
-            <Rectangle.Fill>
+            <!--<Rectangle.Fill>
                 <ImageBrush ImageSource="Resources/backGeneralLine.png" TileMode="FlipY"/>
-            </Rectangle.Fill>
+            </Rectangle.Fill>-->
         </Rectangle>
         <Label x:Name="lVideo" Content="ВИДЕО" Grid.Column="2" Style="{StaticResource LabelStyleHeaderWhite}" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="61"/>
         <Label x:Name="lNews" Content="НОВОСТИ" HorizontalAlignment="Left" Style="{StaticResource LabelStyleHeaderWhite}" Margin="10,0,0,0" Grid.Row="2" VerticalContentAlignment="Center" Width="87"/>

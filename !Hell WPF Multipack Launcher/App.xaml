@@ -122,22 +122,18 @@
                                         VerticalAlignment="Center"
                                         Margin="15"/>
                         </Grid>
-                        <ControlTemplate.Triggers>
+                        <ControlTemplate.Triggers>                            
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccf9ff" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/play_hover.png" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccf900" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/play_press.png" />
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
