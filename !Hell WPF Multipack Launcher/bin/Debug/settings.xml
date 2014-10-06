@@ -12,12 +12,7 @@
     <version>0.0.0.0</version>
     <path>F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\bin\</path>
   </game>
-  <youtube>
-    <video>C6MYVoWSWNI</video>
-    <video>PQY4Af931U8</video>
-    <video>VhjZTNT-UPs</video>
-    <video>BO2cJ1Ofiy4</video>
-  </youtube>
+  <youtube />
   <do_not_display>
     <video />
     <news />
