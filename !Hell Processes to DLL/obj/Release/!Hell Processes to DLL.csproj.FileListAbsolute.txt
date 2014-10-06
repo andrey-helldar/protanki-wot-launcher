@@ -8,3 +8,13 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Release
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Release\!Hell Processes to DLL.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Release\!Hell Processes to DLL.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Processes to DLL\obj\Release\!Hell Processes to DLL.csprojResolveAssemblyReference.cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Processes to DLL\bin\Release\settings.xml
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Processes to DLL\bin\Release\!Hell Processes to DLL.exe.config
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Processes to DLL\bin\Release\!Hell Processes to DLL.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Processes to DLL\bin\Release\!Hell Processes to DLL.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Processes to DLL\obj\Release\!Hell Processes to DLL.csprojResolveAssemblyReference.cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Processes to DLL\obj\Release\_Hell_Processes_to_DLL.fIndex.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Processes to DLL\obj\Release\_Hell_Processes_to_DLL.Properties.Resources.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Processes to DLL\obj\Release\!Hell Processes to DLL.csproj.GenerateResource.Cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Processes to DLL\obj\Release\!Hell Processes to DLL.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Processes to DLL\obj\Release\!Hell Processes to DLL.pdb

@@ -7,3 +7,11 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell MD5files\obj\Release\_Hell_M
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell MD5files\obj\Release\!Hell MD5files.csproj.GenerateResource.Cache
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell MD5files\obj\Release\MD5files.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell MD5files\obj\Release\MD5files.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell MD5files\bin\Release\MD5files.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell MD5files\bin\Release\MD5files.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell MD5files\obj\Release\!Hell MD5files.csprojResolveAssemblyReference.cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell MD5files\obj\Release\_Hell_MD5files.Form1.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell MD5files\obj\Release\_Hell_MD5files.Properties.Resources.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell MD5files\obj\Release\!Hell MD5files.csproj.GenerateResource.Cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell MD5files\obj\Release\MD5files.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell MD5files\obj\Release\MD5files.pdb

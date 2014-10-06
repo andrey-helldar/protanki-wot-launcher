@@ -1,6 +1,12 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows Forms", "Windows Forms", "{68ED7CF2-8E33-460B-AF18-15143BF954F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows Presentation Foundation", "Windows Presentation Foundation", "{E248E2C9-CE4A-41D2-91A0-8F61AAB69247}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ookii.Dialogs", "Ookii.Dialogs\Ookii.Dialogs.csproj", "{779E62B3-C5A6-494D-9D87-96C0DEC7FFB0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ookii.Dialogs.Sample", "Ookii.Dialogs.Sample\Ookii.Dialogs.Sample.csproj", "{D52F3B1C-03B3-41B1-A15E-E23FF6877939}"
@@ -8,10 +14,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ookii.Dialogs.Wpf", "Ookii.Dialogs.Wpf\Ookii.Dialogs.Wpf.csproj", "{D01B1D20-8F5B-4834-8E5C-C7EC6DD587D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ookii.Dialogs.Wpf.Sample", "Ookii.Dialogs.Wpf.Sample\Ookii.Dialogs.Wpf.Sample.csproj", "{E38181B2-E8E5-466D-9099-33FE75B4CFA1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows Forms", "Windows Forms", "{68ED7CF2-8E33-460B-AF18-15143BF954F6}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows Presentation Foundation", "Windows Presentation Foundation", "{E248E2C9-CE4A-41D2-91A0-8F61AAB69247}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -900,7 +900,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             {
                                 case "ru": return "Процессы из глобального списка приоритетов не могут быть отключены.";
                                 case "en": return "Processes from global list cannot be deactivated.";
-                                case "de": "000";
+                                case "de": return "000";
                                 default: return toReturn;
                             }
 

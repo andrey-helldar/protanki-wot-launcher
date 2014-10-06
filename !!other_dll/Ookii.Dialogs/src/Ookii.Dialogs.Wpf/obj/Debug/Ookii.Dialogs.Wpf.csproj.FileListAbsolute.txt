@@ -1,0 +1,9 @@
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!!other_dll\Ookii.Dialogs\src\Ookii.Dialogs.Wpf\bin\Debug\Ookii.Dialogs.Wpf.XML
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!!other_dll\Ookii.Dialogs\src\Ookii.Dialogs.Wpf\bin\Debug\Ookii.Dialogs.Wpf.dll
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!!other_dll\Ookii.Dialogs\src\Ookii.Dialogs.Wpf\bin\Debug\Ookii.Dialogs.Wpf.pdb
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!!other_dll\Ookii.Dialogs\src\Ookii.Dialogs.Wpf\obj\Debug\Ookii.Dialogs.Wpf.csprojResolveAssemblyReference.cache
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!!other_dll\Ookii.Dialogs\src\Ookii.Dialogs.Wpf\obj\Debug\Ookii.Dialogs.Wpf.ProgressDialog.resources
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!!other_dll\Ookii.Dialogs\src\Ookii.Dialogs.Wpf\obj\Debug\Ookii.Dialogs.Wpf.Properties.Resources.resources
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!!other_dll\Ookii.Dialogs\src\Ookii.Dialogs.Wpf\obj\Debug\Ookii.Dialogs.Wpf.csproj.GenerateResource.Cache
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!!other_dll\Ookii.Dialogs\src\Ookii.Dialogs.Wpf\obj\Debug\Ookii.Dialogs.Wpf.dll
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!!other_dll\Ookii.Dialogs\src\Ookii.Dialogs.Wpf\obj\Debug\Ookii.Dialogs.Wpf.pdb

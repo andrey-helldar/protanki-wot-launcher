@@ -258,9 +258,6 @@
     <Resource Include="Resources\WOT.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ProcessesLibrary.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\restart.exe" />
   </ItemGroup>
   <ItemGroup>
@@ -276,9 +273,6 @@
     <None Include="Resources\Newtonsoft.Json.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Ookii.Dialogs.Wpf.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Ionic.Zip.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +286,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\cursor_chrome.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Processes.Library.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ookii.Dialogs.Wpf.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

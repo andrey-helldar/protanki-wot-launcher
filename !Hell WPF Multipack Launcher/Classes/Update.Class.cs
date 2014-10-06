@@ -19,7 +19,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 if (!File.Exists("restart.exe")) { File.WriteAllBytes("restart.exe", Properties.Resources.restart); }
-                if (!File.Exists("ProcessesLibrary.dll")) { File.WriteAllBytes("ProcessesLibrary.dll", Properties.Resources.ProcessesLibrary); }
+                if (!File.Exists("ProcessesLibrary.dll")) { File.WriteAllBytes("Processes.Library.dll", Properties.Resources.Processes_Library); }
 
                 if (!File.Exists("Ionic.Zip.dll")) { File.WriteAllBytes("Ionic.Zip.dll", Properties.Resources.Ionic_Zip); }
                 if (!File.Exists("Newtonsoft.Json.dll")) { File.WriteAllBytes("Newtonsoft.Json.dll", Properties.Resources.Newtonsoft_Json); }
