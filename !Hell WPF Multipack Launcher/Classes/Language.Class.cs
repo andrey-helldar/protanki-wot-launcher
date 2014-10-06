@@ -119,6 +119,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        case "Ticket_2_Developer":
+                            switch (lang)
+                            {
+                                case "ru": return "Для получения инструкций по устранению данной ошибки, Вы можете связаться с разработчиком";
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
                         default: return toReturn;
                     }
 

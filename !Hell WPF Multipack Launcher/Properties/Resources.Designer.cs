@@ -394,16 +394,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] Ookii_Dialogs_Wpf {
-            get {
-                object obj = ResourceManager.GetObject("Ookii_Dialogs_Wpf", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         public static byte[] Processes_Library {
             get {
                 object obj = ResourceManager.GetObject("Processes_Library", resourceCulture);

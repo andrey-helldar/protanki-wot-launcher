@@ -62,9 +62,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\!!other_dll\4.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Ookii.Dialogs.Wpf">
-      <HintPath>..\!!other_dll\Ookii.Dialogs.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="ProcessesLibrary, Version=1.2.10.33, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Processes Library\bin\Release\ProcessesLibrary.dll</HintPath>
@@ -289,9 +286,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Processes.Library.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Ookii.Dialogs.Wpf.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

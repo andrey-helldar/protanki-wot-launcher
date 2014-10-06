@@ -304,40 +304,5 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); }
         }
-
-
-        public void OokiiMessage(string text, string caption = "", MessageBoxButton Mbb = MessageBoxButton.OK, MessageBoxImage Mbi = MessageBoxImage.Information)
-        {
-            //  MessageBox.Show("text", "caption", MessageBoxButton.OK, MessageBoxImage.Information)
-            if (Ookii.Dialogs.Wpf.TaskDialog.OSSupportsTaskDialogs)
-            {
-                using (Ookii.Dialogs.Wpf.TaskDialog dialog = new Ookii.Dialogs.Wpf.TaskDialog())
-                {
-                    dialog.WindowTitle = "Task dialog sample";
-                    dialog.MainInstruction = "This is an example task dialog.";
-                    dialog.Content = "Task dialogs are a more flexible type of message box. Among other things, task dialogs support custom buttons, command links, scroll bars, expandable sections, radio buttons, a check box (useful for e.g. \"don't show this again\"), custom icons, and a footer. Some of those things are demonstrated here.";
-                    dialog.ExpandedInformation = "Ookii.org's Task Dialog doesn't just provide a wrapper for the native Task Dialog API; it is designed to provide a programming interface that is natural to .Net developers.";
-                    dialog.Footer = "Task Dialogs support footers and can even include <a href=\"http://www.ookii.org\">hyperlinks</a>.";
-                    dialog.FooterIcon = Ookii.Dialogs.Wpf.TaskDialogIcon.Information;
-                    dialog.EnableHyperlinks = true;
-                    Ookii.Dialogs.Wpf.TaskDialogButton customButton = new Ookii.Dialogs.Wpf.TaskDialogButton("A custom button");
-                    Ookii.Dialogs.Wpf.TaskDialogButton okButton = new Ookii.Dialogs.Wpf.TaskDialogButton(ButtonType.Ok);
-                    Ookii.Dialogs.Wpf.TaskDialogButton cancelButton = new Ookii.Dialogs.Wpf.TaskDialogButton(ButtonType.Cancel);
-                    dialog.Buttons.Add(customButton);
-                    dialog.Buttons.Add(okButton);
-                    dialog.Buttons.Add(cancelButton);
-                    dialog.HyperlinkClicked += new EventHandler<HyperlinkClickedEventArgs>(TaskDialog_HyperLinkClicked);
-                    TaskDialogButton button = dialog.ShowDialog(this);
-                    if (button == customButton)
-                        MessageBox.Show(this, "You clicked the custom button", "Task Dialog Sample");
-                    else if (button == okButton)
-                        MessageBox.Show(this, "You clicked the OK button.", "Task Dialog Sample");
-                }
-            }
-            else
-            {
-                MessageBox.Show(this, "This operating system does not support task dialogs.", "Task Dialog Sample");
-            }
-        }
     }
 }
