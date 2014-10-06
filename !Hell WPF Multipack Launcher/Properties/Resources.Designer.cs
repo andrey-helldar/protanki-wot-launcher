@@ -142,36 +142,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap BackGeneral {
-            get {
-                object obj = ResourceManager.GetObject("BackGeneral", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap BackGeneralLine {
-            get {
-                object obj = ResourceManager.GetObject("BackGeneralLine", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap Background {
-            get {
-                object obj = ResourceManager.GetObject("Background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to FAIL.
         /// </summary>
         public static string Class_Fail {
@@ -304,6 +274,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         public static string Developer_User {
             get {
                 return ResourceManager.GetString("Developer_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Global_Background {
+            get {
+                object obj = ResourceManager.GetObject("Global_Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

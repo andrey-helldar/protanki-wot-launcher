@@ -6,7 +6,7 @@
         <DropShadowEffect BlurRadius="20" ShadowDepth="0"/>
     </Window.Effect>
     <Window.Background>
-        <ImageBrush ImageSource="Resources/background.png"/>
+        <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Global_Background.jpg"/>
     </Window.Background>
     <Grid x:Name="GridGlobal">
         <Grid.ColumnDefinitions>
