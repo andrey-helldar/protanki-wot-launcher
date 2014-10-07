@@ -284,6 +284,15 @@
   <data name="play_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="close_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="flag_de" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\flag_de.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -292,6 +301,15 @@
   </data>
   <data name="flag_ru" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\flag_ru.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minimize_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minimize_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minimize_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minimize_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minimize_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minimize_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="play_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
