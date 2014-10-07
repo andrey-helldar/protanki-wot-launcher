@@ -46,7 +46,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         private static Frame framePreview;
         private static TextBlock tbPreview;
-        
+
         public static XDocument XmlDocument { get { return xmlDocument; } }
         private static XDocument xmlDocument;
 
@@ -131,7 +131,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 InitializeComponent();
                 MouseDown += delegate { DragMove(); };
-                
+
                 Task.Factory.StartNew(() => Navigator("Loading")); // Изменение страницы
 
                 // Делаем общей иконку в трее
@@ -148,7 +148,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 this.Closing += delegate { framePreview = null; tbPreview = null; };
 
                 // Подгружаем перевод
-                
+
                 try
                 {
                     Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
@@ -180,7 +180,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             xmlDocument = XDocument.Load(Variables.SettingsPath);
                         this.Closing += delegate { xmlDocument = null; };
                     }).Wait();
-                    
+
                     Task.Factory.StartNew(() => SetInterface()); // Загрузка языка
                 }
                 catch (Exception ex)
@@ -270,7 +270,7 @@ namespace _Hell_WPF_Multipack_Launcher
         private void bAirus_Click(object sender, RoutedEventArgs e)
         {
             try { ProcessStart(Properties.Resources.Developer); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bAirus_Click()", "Link: " + Properties.Resources.Developer,ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bAirus_Click()", "Link: " + Properties.Resources.Developer, ex.Message, ex.StackTrace)); }
         }
 
         private void bLauncherWOT_Click(object sender, RoutedEventArgs e)
@@ -308,17 +308,20 @@ namespace _Hell_WPF_Multipack_Launcher
         }
 
 
+        /// <summary>
+        /// Костыль в виде установки значений интерфейса
+        /// </summary>
         private void SetInterface()
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
-                        {
-                            try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, xmlDocument.Root.Element("info").Attribute("language").Value))); }
-                            catch (Exception ex)
-                            {
-                                Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
-                                MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
-                            }
-                        }));
+            {
+                try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, Variables.Lang.Trim()))); }
+                catch (Exception ex)
+                {
+                    Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
+                    MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
+                }
+            }));
         }
     }
 }

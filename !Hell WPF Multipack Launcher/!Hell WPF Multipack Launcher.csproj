@@ -301,6 +301,12 @@
   <ItemGroup>
     <Resource Include="Resources\flag_de.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_emblem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_emblem_pressed.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>
