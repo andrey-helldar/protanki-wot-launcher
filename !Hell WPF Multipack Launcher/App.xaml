@@ -71,7 +71,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid Margin="0">
-                            <Rectangle x:Name="AIRUSBackground" Fill="Red" Opacity="0.5" Cursor="Hand"/>
+                            <Rectangle x:Name="AIRUSBackground" Fill="Transparent" Opacity="0.5" Cursor="Hand"/>
                             <ContentPresenter Name="content" 
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center"
@@ -82,7 +82,7 @@
                                 <Setter Property="Fill" TargetName="AIRUSBackground">
                                     <Setter.Value>
                                         <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
+                                            <GradientStop Color="Transparent" Offset="0"/>
                                         </RadialGradientBrush>
                                     </Setter.Value>
                                 </Setter>
@@ -91,7 +91,7 @@
                                 <Setter Property="Fill" TargetName="AIRUSBackground">
                                     <Setter.Value>
                                         <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
+                                            <GradientStop Color="Transparent" Offset="0"/>
                                         </RadialGradientBrush>
                                     </Setter.Value>
                                 </Setter>
@@ -107,54 +107,49 @@
         <!-- *******************************
                         PLAY
         http://social.msdn.microsoft.com/Forums/vstudio/en-US/6fd5a857-d6cd-4f25-9008-ff368516088a/change-button-background-image-using-triggers-wpf?forum=wpf
+        
+        http://social.msdn.microsoft.com/Forums/vstudio/en-US/ea8fa494-9535-48fb-8f7f-3c4baacbe86e/change-the-image-inside-a-button-when-the-button-is-clicked-using-xaml-trigger?forum=wpf
             *********************************-->
         <Style x:Key="ButtonStylePlay" TargetType="{x:Type Button}">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
+            <Setter Property="Foreground" Value="#E52B2B2B"/>
+            <Setter Property="FontSize" Value="20px"/>
+            <Setter Property="FontFamily" Value="Micra"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            
+            <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid Margin="0">
                             <Path Stretch="Fill" x:Name="PlayBackground"
                                     Data="M0,20 L10,10 43,10 L43,20 Z"
-                                    Fill="Transparent"
                                     Stroke="Black"
                                     StrokeThickness="0"
                                     SnapsToDevicePixels="True"
-                                   Cursor="Hand"/>
+                                    Cursor="Hand">
+                            </Path>
                             <ContentPresenter Name="content" 
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center"
-                                        Margin="15"/>
+                                        Margin="15"
+                                        Cursor="Hand"/>
                         </Grid>
-                        <!--<Border Name="border" 
-                            BorderThickness="1"
-                            BorderBrush="Transparent" 
-                            Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                        -->
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="PlayBackground">
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/play_hover.png"/>
+                                        <ImageBrush ImageSource="Resources/play_normal.png"/>
                                     </Setter.Value>
                                 </Setter>
-                                
-                                <Setter Property="Foreground" Value="AliceBlue"/>
-                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
-                                <Setter TargetName="border" Property="Background">
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="Resources/play_hover.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
-
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
-                                <Setter TargetName="border" Property="Background">
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="Resources/play_press.png"/>
                                     </Setter.Value>
@@ -165,97 +160,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
-        <!--  MY STYLE       
-        <Style x:Key="ButtonStylePlay" TargetType="{x:Type Button}">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid Margin="0">
-                            <Path Stretch="Fill" x:Name="PlayBackground"
-                                    Data="M0,20 L10,10 43,10 L43,20 Z"
-                                    Fill="Transparent"
-                                    Stroke="Black"
-                                    StrokeThickness="0"
-                                    SnapsToDevicePixels="True"
-                                   Cursor="Hand"/>
-                            <ContentPresenter Name="content" 
-                                        HorizontalAlignment="Center" 
-                                        VerticalAlignment="Center"
-                                        Margin="15"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Fill" TargetName="PlayBackground">
-                                    <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFddd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Fill" TargetName="PlayBackground">
-                                    <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
--->
         
         
-        <!--<Style x:Key="ButtonStylePlay" TargetType="{x:Type Button}">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid Margin="0">
-                            <Path Stretch="Fill" x:Name="PlayBackground"
-                                    Fill="Transparent"
-                                    StrokeThickness="0"
-                                    SnapsToDevicePixels="True"
-                                   Cursor="Hand"/>
-                            <ContentPresenter Name="content" 
-                                        HorizontalAlignment="Center" 
-                                        VerticalAlignment="Center"
-                                        Margin="15"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>                            
-                            <Trigger Property="IsMouseOver" Value="true">
-
-                                <Setter TargetName="border" Property="BorderBrush" Value="Maroon" />
-                                <Setter TargetName="border" Property="Background">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="C:/ISL/Screens/Buttons/2_b.jpg"/>
-                                    </Setter.Value>
-                                </Setter>
-
-
-                                <Setter Property="Fill" TargetName="PlayBackground">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/play_hover.png" />
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Fill" TargetName="PlayBackground">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/play_press.png" />
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>-->
 
         <!-- *******************************
                         CLOSE

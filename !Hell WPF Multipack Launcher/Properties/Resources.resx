@@ -284,4 +284,16 @@
   <data name="play_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="flag_de" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flag_de.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flag_en" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flag_en.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="flag_ru" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flag_ru.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="play_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

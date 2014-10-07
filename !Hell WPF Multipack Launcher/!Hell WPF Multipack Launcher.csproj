@@ -278,9 +278,6 @@
     <Resource Include="Resources\Global_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\play_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\play_press.png" />
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +285,21 @@
       <Project>{c89f98dd-cf7b-4b7b-ae2c-fbf49177b8a6}</Project>
       <Name>Processes Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\play_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\play_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flag_en.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flag_ru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flag_de.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -165,33 +165,35 @@ namespace _Hell_WPF_Multipack_Launcher
                     MainProject.Cursor = new Cursor(cursorStream);
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(5)", "cursorStream", ex.Message, ex.StackTrace)); }
+
+
+                try
+                {
+                    Task.Factory.StartNew(() =>
+                    {
+                        Variables.Start();
+                        MultipackDate = Variables.MultipackDate;
+                        ProductName = Variables.ProductName;
+
+                        // Загружаем настройки из XML-файла
+                        if (File.Exists(Variables.SettingsPath))
+                            xmlDocument = XDocument.Load(Variables.SettingsPath);
+                        this.Closing += delegate { xmlDocument = null; };
+                    }).Wait();
+                    
+                    Task.Factory.StartNew(() => SetInterface()); // Загрузка языка
+                }
+                catch (Exception ex)
+                {
+                    Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)).Wait();
+                    Task.Factory.StartNew(() => Debug.Restart());
+                }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    Variables.Start();
-                    MultipackDate = Variables.MultipackDate;
-                    ProductName = Variables.ProductName;
-
-                    // Загружаем настройки из XML-файла
-                    if (File.Exists(Variables.SettingsPath))
-                        xmlDocument = XDocument.Load(Variables.SettingsPath);
-                    this.Closing += delegate { xmlDocument = null; };
-                }).Wait();
-            }
-            catch (Exception ex)
-            {
-                Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)).Wait();
-                Task.Factory.StartNew(() => Debug.Restart());
-            }
-
-
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
@@ -303,6 +305,20 @@ namespace _Hell_WPF_Multipack_Launcher
                 process.Start();
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); }
+        }
+
+
+        private void SetInterface()
+        {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, xmlDocument.Root.Element("info").Attribute("language").Value))); }
+                            catch (Exception ex)
+                            {
+                                Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
+                                MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
+                            }
+                        }));
         }
     }
 }

@@ -25,10 +25,8 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\Multipack Launcher.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\Multipack Launcher.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\Newtonsoft.Json.dll
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\ProcessesLibrary.dll
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\restart.exe
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\restart.pdb
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\ProcessesLibrary.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\!Hell PRO Tanki Launcher.csprojResolveAssemblyReference.cache
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\_Hell_PRO_Tanki_Launcher.fIndex.resources
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\obj\x86\Debug\_Hell_PRO_Tanki_Launcher.fLoader.resources
@@ -46,3 +44,5 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Ionic.Zip.dll
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Processes.Library.dll
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher\bin\Debug\Processes.Library.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\Processes.Library.dll
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell PRO Tanki Launcher\bin\Debug\Processes.Library.pdb
