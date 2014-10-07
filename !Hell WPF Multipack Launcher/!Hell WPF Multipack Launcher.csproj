@@ -307,6 +307,24 @@
   <ItemGroup>
     <Resource Include="Resources\wot_emblem_pressed.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minimize_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minimize_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minimize_press.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>
