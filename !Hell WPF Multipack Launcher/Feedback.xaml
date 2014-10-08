@@ -31,12 +31,12 @@
                         </Grid.RowDefinitions>
                         <TextBlock x:Name="tbComment" Margin="10,10,9,5" TextWrapping="Wrap" Text="Если у Вас возникли проблемы в работе лаунчера и/или модов, или же есть какие-либо пожелания, Вы можете заполнить форму ниже и отправить сообщение разработчикам:" Grid.ColumnSpan="2" Foreground="#FF006699"/>
                         <Label x:Name="lSelectCategory" Content="Выберите категорию:" Margin="10,5" Padding="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="#FF292929"/>
-                        <RadioButton x:Name="rbWishMultipack" Content="Пожелания к мультипаку" Margin="10,5,10,0" Grid.Row="2" VerticalAlignment="Top" Height="16" IsChecked="True" Foreground="#FF006699"/>
+                        <RadioButton x:Name="rbWishMultipack" Content="Пожелания к мультипаку" Margin="10,5,10,0" Grid.Row="2" VerticalAlignment="Top" Height="16" IsChecked="True"/>
                         <RadioButton x:Name="rbWishLauncher" Content="Пожелания к лаунчеру" Margin="10,5,10,0" Grid.Row="3" VerticalAlignment="Top" Height="16"/>
-                        <RadioButton x:Name="rbErrorMultipack" Content="Найдена ошибка в мультипаке" Margin="3,5,7,0" Grid.Row="2" VerticalAlignment="Top" Grid.Column="1" Height="16" Foreground="#FF006699"/>
-                        <RadioButton x:Name="rbErrorLauncher" Content="Найдена ошибка в лаунчере" Margin="3,5,7,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="1" Height="16" Foreground="#FF006699"/>
-                        <RadioButton x:Name="rbWishInstaller" Content="Пожелания к установщику" Margin="10,5,10,0" Grid.Row="4" VerticalAlignment="Top" Height="16" Foreground="#FF006699"/>
-                        <RadioButton x:Name="rbErrorInstaller" Content="Найдена ошибка в установщике" Grid.Column="1" Margin="3,5,7,0" Grid.Row="4" VerticalAlignment="Top" Height="16" Foreground="#FF006699"/>
+                        <RadioButton x:Name="rbErrorMultipack" Content="Найдена ошибка в мультипаке" Margin="3,5,7,0" Grid.Row="2" VerticalAlignment="Top" Grid.Column="1" Height="16"/>
+                        <RadioButton x:Name="rbErrorLauncher" Content="Найдена ошибка в лаунчере" Margin="3,5,7,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="1" Height="16"/>
+                        <RadioButton x:Name="rbWishInstaller" Content="Пожелания к установщику" Margin="10,5,10,0" Grid.Row="4" VerticalAlignment="Top" Height="16"/>
+                        <RadioButton x:Name="rbErrorInstaller" Content="Найдена ошибка в установщике" Grid.Column="1" Margin="3,5,7,0" Grid.Row="4" VerticalAlignment="Top" Height="16"/>
                         <StackPanel Margin="10,0,10,10" Grid.Row="5" Grid.ColumnSpan="2" Background="#FFf4f4f4" VerticalAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>

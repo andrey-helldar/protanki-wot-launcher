@@ -1202,42 +1202,22 @@
                     RadioButton
             *********************************-->
         <Style TargetType="{x:Type RadioButton}">
-            <Setter Property="Foreground" Value="#FF006699"/>
-            <Setter Property="FontSize" Value="12"/>
-
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type RadioButton}">
-                        <Grid Margin="0">
-                            <Path Stretch="Fill" x:Name="RbImage"
-                                    Data="M10,20 L10,10 43,10 L43,20 Z"
-                                    Stroke="Black"
-                                    StrokeThickness="0"
-                                    SnapsToDevicePixels="True"
-                                    Cursor="Hand"
-                                  Width="14"
-                                  Height="14"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Center"/>
-                            
-                            <ContentPresenter Name="content" 
-                                        HorizontalAlignment="Left" 
-                                        VerticalAlignment="Center"
-                                        Margin="25,0,0,0"
-                                        Cursor="Hand"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" Value="true">
-                                <Setter Property="Fill" TargetName="RbImage">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/checkbox_active_checked.png"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <Style.Setters>
+                <Setter Property="Control.FontFamily" Value="Calibri"></Setter>
+                <Setter Property="Control.FontSize" Value="15"></Setter>
+                <Setter Property="TextBox.VerticalContentAlignment" Value="Center"></Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Control.IsEnabled" Value="True" />
+                        <Condition Property="RadioButton.IsChecked" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Control.Foreground" Value="DarkRed" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
         </Style>
 
     </Application.Resources>
