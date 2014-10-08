@@ -4,6 +4,29 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
+
+        <!-- *******************************
+                    BUTTON backgrounds
+            *********************************-->
+        <LinearGradientBrush x:Key="BackNormal" 
+    StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF3A6696" Offset="0" />
+            <GradientStop Color="#FF3A6696" Offset="1" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="BackHover" 
+    StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF007AFF" Offset="0" />
+            <GradientStop Color="#FF007AFF" Offset="1" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="BackPressed" 
+    StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF004C9E" Offset="0" />
+            <GradientStop Color="#FF004C9E" Offset="1" />
+        </LinearGradientBrush>
+        
+
         <!-- *******************************
                      LOADING PAGE
             *********************************-->
@@ -892,13 +915,53 @@
             *********************************-->
         <Style x:Key="ButtonOK" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="11pt"/>
+            <Setter Property="FontSize" Value="11"/>
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="Margin" Value="10"/>
-            <Setter Property="Padding" Value="15,5,15,5"/>
-            <Setter Property="Background" Value="#FF3A6696"/>
+            <Setter Property="Padding" Value="15,5,0,5"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="{StaticResource BackNormal}" />
 
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Width="{TemplateBinding Width}" 
+                             Height="{TemplateBinding Height}" ClipToBounds="True">
+
+                            <!-- Inner Rectangle with rounded corners. -->
+                            <Rectangle x:Name="innerRectangle" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" Stroke="Transparent" 
+                                StrokeThickness="0" 
+                                Fill="{TemplateBinding Background}"
+                                       Cursor="{TemplateBinding Cursor}"/>
+
+                            <!-- Present Content (text) of the button. -->
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter"
+                                                  Width="100"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  Content="{TemplateBinding Content}" 
+                                                  TextBlock.Foreground="{TemplateBinding Foreground}" />
+                            </DockPanel>
+                        </Grid>
+
+                        <!-- Set action triggers for the buttons and define
+                             what the button does in response to those triggers. -->
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource BackHover}" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{StaticResource BackPressed}" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
 
@@ -907,53 +970,55 @@
             *********************************-->
         <Style x:Key="ButtonCLOSE" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="11pt"/>
+            <Setter Property="FontSize" Value="11"/>
             <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="15,5,0,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="{StaticResource BackNormal}" />
 
-            <Setter Property="Control.Template">
+            <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid Margin="0">
-                            <Path Stretch="Fill" x:Name="PlayBackground"
-                                    Data="M10,20 L10,10 43,10 L43,20 Z"
-                                    Stroke="Black"
-                                    StrokeThickness="0"
-                                    SnapsToDevicePixels="True"
-                                    Cursor="Hand">
-                            </Path>
-                            <ContentPresenter Name="content" 
-                                        HorizontalAlignment="Center" 
-                                        VerticalAlignment="Center"
-                                        Margin="15"
-                                        Cursor="Hand"/>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Width="{TemplateBinding Width}" 
+                             Height="{TemplateBinding Height}" ClipToBounds="True">
+
+                            <!-- Inner Rectangle with rounded corners. -->
+                            <Rectangle x:Name="innerRectangle" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" Stroke="Transparent" 
+                                StrokeThickness="0" 
+                                Fill="{TemplateBinding Background}"
+                                       Cursor="{TemplateBinding Cursor}"/>
+
+                            <!-- Present Content (text) of the button. -->
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter"
+                                                  Width="100"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  Content="{TemplateBinding Content}" 
+                                                  TextBlock.Foreground="{TemplateBinding Foreground}" />
+                            </DockPanel>
                         </Grid>
+
+                        <!-- Set action triggers for the buttons and define
+                             what the button does in response to those triggers. -->
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="true">
-                                <Setter Property="Fill" TargetName="PlayBackground">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/play_normal.png"/>
-                                    </Setter.Value>
-                                </Setter>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource BackHover}" />
                             </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Fill" TargetName="PlayBackground">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/play_hover.png"/>
-                                    </Setter.Value>
-                                </Setter>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{StaticResource BackPressed}" />
                             </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Fill" TargetName="PlayBackground">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/play_press.png"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
+
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+
     </Application.Resources>
 </Application>
