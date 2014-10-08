@@ -1099,7 +1099,7 @@
                     FEEDBACK TEXT
             *********************************-->
         <Style x:Key="TextFeedback" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="#FF006699"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="11pt"/>
             <Setter Property="FontFamily" Value="Verdana"/>

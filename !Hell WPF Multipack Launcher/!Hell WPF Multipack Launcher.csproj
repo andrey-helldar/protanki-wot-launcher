@@ -387,6 +387,9 @@
   <ItemGroup>
     <Resource Include="Resources\checkbox_unactive_unchecked.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Page_Background.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

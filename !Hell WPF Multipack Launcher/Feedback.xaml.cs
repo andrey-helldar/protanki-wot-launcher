@@ -94,8 +94,8 @@ namespace _Hell_WPF_Multipack_Launcher
                     switch (answer["status"])
                     {
                         case "OK": status = "Тикет успешно зарегистрирован под номером " + answer["id"]; break;
-                        case "ANSWER": status = "Сервер ответил: " + answer["content"]; break;
-                        case "Hacking attempt!": status = "Ошибка доступа к сервису"; break;
+                        case "ANSWER": status = "Сообщение не отправлено." + Environment.NewLine + "Сервер ответил: " + Environment.NewLine + answer["content"]; break;
+                        case "Hacking attempt!": status = "Ошибка доступа к сервису. Повторите попытку позже."; break;
                         case "BANNED": status = "Ваше сообщение принято к обработке"; break;
                         default: status = "Ошибка отправки сообщения. Попробуйте еще раз."; break;
                     }
@@ -105,6 +105,16 @@ namespace _Hell_WPF_Multipack_Launcher
                     MessageBox.Show("Сообщение должно быть не менее " + Properties.Resources.Developer_Feedback_Symbols + " символов");
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Feedback.xaml", "bSend_Click()", ex.Message, ex.StackTrace)); }
+        }
+
+        private void tbMessage_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SymbolsCount.Text = tbMessage.Text.Trim().Length.ToString();
+
+            if (tbMessage.Text.Trim().Length < Convert.ToInt16(Properties.Resources.Developer_Feedback_Symbols))
+                SymbolsCount.Foreground = new SolidColorBrush(Color.FromRgb(255, 98, 98));
+            else
+                SymbolsCount.Foreground = new SolidColorBrush(Color.FromRgb(0, 102, 153));
         }
     }
 }

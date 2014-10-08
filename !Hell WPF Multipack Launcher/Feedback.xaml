@@ -4,8 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="759.068" d:DesignWidth="606.322"
+      d:DesignHeight="580.068" d:DesignWidth="561.322"
 	Title="Feedback" Width="Auto" Height="Auto">
+    <Page.Background>
+        <ImageBrush ImageSource="Resources/Page_Background.jpg"/>
+    </Page.Background>
 
     <Grid>
         <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -39,7 +42,7 @@
                         <RadioButton x:Name="rbWishInstaller" Content="Пожелания к установщику" Grid.Row="4" FontWeight="Normal"/>
                         <RadioButton x:Name="rbErrorInstaller" Content="Найдена ошибка в установщике" Grid.Column="1" Grid.Row="4" FontWeight="Normal"/>
                         <StackPanel Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.RowSpan="2" Margin="0">
-                            <Grid Margin="10">
+                            <Grid Margin="10" Background="#FFF4F4F4">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="Auto"/>
@@ -48,14 +51,21 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Border Style="{DynamicResource BorderShadow}">
+                                <Border Style="{DynamicResource BorderShadow}" Grid.RowSpan="4">
                                     <Border Style="{DynamicResource BorderShadowSub}" />
                                 </Border>
-                                <TextBox x:Name="tbMessage" Style="{DynamicResource TextFeedback}" TextWrapping="Wrap" MinHeight="140" Grid.ColumnSpan="2" AcceptsReturn="True" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" MaxHeight="200" SpellCheck.IsEnabled="True" Margin="10,10,10,5" FontWeight="Normal"/>
-                                <Label x:Name="lSetEmail" Style="{DynamicResource lSetEmail}" Content="Введите Ваш email:" Grid.Row="1" Grid.ColumnSpan="2"/>
-                                <Button x:Name="bAttach" Content="Прикрепить файл" Style="{DynamicResource ButtonATTACH}" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="1" Grid.Row="2" Grid.Column="1" Margin="0,5,10,10" FontWeight="Normal"/>
-                                <TextBox x:Name="tbEmail" Style="{DynamicResource TextEmail}" Margin="10,5,10,10" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="2" FontWeight="Normal"/>
+                                <TextBox x:Name="tbMessage" Style="{DynamicResource TextFeedback}" TextWrapping="Wrap" MinHeight="140" Grid.ColumnSpan="2" AcceptsReturn="True" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" MaxHeight="200" SpellCheck.IsEnabled="True" Margin="10,10,10,0" FontWeight="Normal" TextChanged="tbMessage_TextChanged" Foreground="#FF006699" CaretBrush="#FF1B89BF"/>
+                                <Label x:Name="lSetEmail" Style="{DynamicResource lSetEmail}" Content="Введите Ваш email:" Grid.Row="2" Grid.ColumnSpan="2"/>
+                                <Button x:Name="bAttach" Content="Прикрепить файл" Style="{DynamicResource ButtonATTACH}" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="1" Grid.Row="3" Grid.Column="1" Margin="0,8,10,13" FontWeight="Normal"/>
+                                <TextBox x:Name="tbEmail" Style="{DynamicResource TextEmail}" Margin="10,5,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="3" FontWeight="Normal"/>
+                                <StackPanel Margin="10,0" Grid.Row="1" Background="Transparent" Grid.ColumnSpan="2">
+                                    <TextBlock TextWrapping="NoWrap" Foreground="#FF1B89BF" FontWeight="Normal" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center">
+                                        <Run x:Name="SymbolsTitle">Набрано символов:</Run>
+                                        <Run x:Name="SymbolsCount" Foreground="#FF006699">0</Run>
+                                    </TextBlock>
+                                </StackPanel>
                             </Grid>
                         </StackPanel>
                     </Grid>
@@ -69,7 +79,7 @@
                         <Button x:Name="bClose" Content="Выход" Grid.Column="1" Style="{DynamicResource ButtonCLOSE}" Click="bClose_Click" HorizontalAlignment="Center"/>
                         <Button x:Name="bSend" Content="Отправить" Style="{DynamicResource ButtonOK}" Click="bSend_Click" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
-                </StackPanel>                
+                </StackPanel>
             </Grid>
         </StackPanel>
 
