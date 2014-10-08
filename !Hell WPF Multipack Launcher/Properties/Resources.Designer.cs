@@ -153,6 +153,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap close {
+            get {
+                object obj = ResourceManager.GetObject("close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap close_hover {
             get {
                 object obj = ResourceManager.GetObject("close_hover", resourceCulture);
@@ -304,6 +314,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         public static string Developer_User {
             get {
                 return ResourceManager.GetString("Developer_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap download {
+            get {
+                object obj = ResourceManager.GetObject("download", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -588,6 +608,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("Newtonsoft_Json", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ok {
+            get {
+                object obj = ResourceManager.GetObject("ok", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

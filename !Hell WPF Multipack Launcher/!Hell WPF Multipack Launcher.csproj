@@ -357,6 +357,15 @@
   <ItemGroup>
     <Resource Include="Resources\General_Settings_press.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ok.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>
