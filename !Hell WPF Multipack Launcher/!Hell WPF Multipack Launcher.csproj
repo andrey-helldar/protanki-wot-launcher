@@ -375,6 +375,18 @@
   <ItemGroup>
     <Resource Include="Resources\skrepka_pressed.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\checkbox_active_checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\checkbox_active_unchecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\checkbox_unactive_checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\checkbox_unactive_unchecked.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

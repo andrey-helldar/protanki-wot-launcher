@@ -1105,7 +1105,7 @@
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="3"/>
+            <Setter Property="Padding" Value="5"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
 
@@ -1123,6 +1123,121 @@
             <Setter Property="Padding" Value="5"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Margin" Value="5"/>
+        </Style>
+
+
+        <!-- *******************************
+                    FEEDBACK gbFeedback
+            *********************************-->
+        <Style x:Key="FeedbackgbFeedback" TargetType="{x:Type GroupBox}">
+            <!--<Setter Property="Foreground" Value="#FF303030"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FF8B8A88"/>
+            <Setter Property="Margin" Value="5"/>-->
+
+            <Setter Property="Foreground" Value="#FF303030"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FF8B8A88"/>
+            <Setter Property="Margin" Value="5"/>
+
+            
+            <!--<Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupBox}">
+                        <Grid>
+                            <Border
+                                    BorderThickness="1,1,1,1"
+                                    CornerRadius="0,0,0,0">
+                                <Border.BorderBrush>
+                                    <SolidColorBrush Color="#FF8B8A88"/>
+                                </Border.BorderBrush>
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1"
+                                   MappingMode="RelativeToBoundingBox"
+                                   StartPoint="0.5,0">
+                                        <GradientStop Color="{DynamicResource ContentAreaColorLight}"
+                              Offset="0" />
+                                        <GradientStop Color="{DynamicResource ContentAreaColorDark}"
+                              Offset="1" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter Margin="0" />
+                            </Border>
+
+                            <Border 
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                    Margin="10,-10,0,0">
+                                <Border.BorderBrush>
+                                    <SolidColorBrush Color="#FF8B8A88"/>
+                                </Border.BorderBrush>
+
+                                <Border.Background>
+                                    <SolidColorBrush Color="Tomato"/>
+                                </Border.Background>
+
+                                <ContentPresenter Margin="5,0"
+                                    ContentSource="Header"
+                                    RecognizesAccessKey="True"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>-->
+        </Style>
+
+
+        <!-- *******************************
+                    Checkbox
+            *********************************-->
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="Red"/>
+        </Style>
+
+
+        <!-- *******************************
+                    RadioButton
+            *********************************-->
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Foreground" Value="#FF006699"/>
+            <Setter Property="FontSize" Value="12"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Grid Margin="0">
+                            <Path Stretch="Fill" x:Name="RbImage"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand"
+                                  Width="14"
+                                  Height="14"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"/>
+                            
+                            <ContentPresenter Name="content" 
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="Center"
+                                        Margin="25,0,0,0"
+                                        Cursor="Hand"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Fill" TargetName="RbImage">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/checkbox_active_checked.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Application.Resources>
