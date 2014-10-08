@@ -346,6 +346,24 @@
   <ItemGroup>
     <Resource Include="Resources\General_Optimize_pressed.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Feedback_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Feedback_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Feedback_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Settings_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Settings_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Settings_press.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

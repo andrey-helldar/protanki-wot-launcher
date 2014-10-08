@@ -364,28 +364,38 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid Margin="0">
-                            <Rectangle x:Name="OptimizeBackground" Fill="Red" Opacity="0.5" Cursor="Hand"/>
+                            <Path Stretch="Fill" x:Name="PlayBackground"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand">
+                            </Path>
                             <ContentPresenter Name="content" 
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center"
-                                        Margin="15"/>
+                                        Margin="15"
+                                        Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Fill" TargetName="OptimizeBackground">
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/General_Optimize_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/General_Optimize_hover.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Fill" TargetName="OptimizeBackground">
+                                <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/General_Optimize_pressed.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -404,28 +414,38 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid Margin="0">
-                            <Rectangle x:Name="FeedbackBackground" Fill="Red" Opacity="0.5" Cursor="Hand"/>
+                            <Path Stretch="Fill" x:Name="PlayBackground"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand">
+                            </Path>
                             <ContentPresenter Name="content" 
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center"
-                                        Margin="15"/>
+                                        Margin="15"
+                                        Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Fill" TargetName="FeedbackBackground">
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/General_Feedback_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/General_Feedback_hover.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Fill" TargetName="FeedbackBackground">
+                                <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/General_Feedback_press.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -444,28 +464,38 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid Margin="0">
-                            <Rectangle x:Name="SettingsBackground" Fill="Red" Opacity="0.5" Cursor="Hand"/>
+                            <Path Stretch="Fill" x:Name="PlayBackground"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand">
+                            </Path>
                             <ContentPresenter Name="content" 
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center"
-                                        Margin="15"/>
+                                        Margin="15"
+                                        Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Fill" TargetName="SettingsBackground">
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/General_Settings_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/General_Settings_hover.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Fill" TargetName="SettingsBackground">
+                                <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/General_Settings_press.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>

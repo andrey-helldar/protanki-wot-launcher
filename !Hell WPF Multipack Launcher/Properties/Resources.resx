@@ -320,6 +320,15 @@
   <data name="wot_emblem_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wot_emblem_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="General_Feedback_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\General_Feedback_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="General_Feedback_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\General_Feedback_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="General_Feedback_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\General_Feedback_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="General_Line" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\General_Line.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -340,5 +349,14 @@
   </data>
   <data name="General_Profile_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\General_Profile_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="General_Settings_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\General_Settings_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="General_Settings_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\General_Settings_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="General_Settings_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\General_Settings_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
