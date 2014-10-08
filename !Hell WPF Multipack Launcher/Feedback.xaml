@@ -48,7 +48,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBox x:Name="tbMessage" Style="{DynamicResource TextFeedback}" TextWrapping="Wrap" MinHeight="140" Grid.ColumnSpan="2" AcceptsReturn="True" CaretBrush="White" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" MaxHeight="200" SpellCheck.IsEnabled="True"/>
+                                <TextBox x:Name="tbMessage" Style="{DynamicResource TextFeedback}" TextWrapping="Wrap" MinHeight="140" Grid.ColumnSpan="2" AcceptsReturn="True" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" MaxHeight="200" SpellCheck.IsEnabled="True"/>
                                 <Label x:Name="lSetEmail" Content="Введите Ваш email:" Margin="5" Padding="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="#FF292929"/>
                                 <Button x:Name="bAttach" Content="Прикрепить файл" Style="{DynamicResource ButtonATTACH}" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="1" Grid.Row="2" Grid.Column="1" Margin="0,5,5,5"/>
                                 <TextBox x:Name="tbEmail" Style="{DynamicResource TextEmail}" Margin="5,5,10,5" TextWrapping="Wrap" VerticalAlignment="Top" Text="helldar@ai-rus.com" Grid.Row="2"/>
