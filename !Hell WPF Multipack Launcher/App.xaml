@@ -1217,7 +1217,8 @@
                                 </Rectangle.Fill>
                             </Rectangle>
                             
-                            <ContentPresenter Margin="20,0,0,0" />
+                            <ContentPresenter Margin="20,0,0,0"
+                                              Cursor="Hand"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -1226,7 +1227,7 @@
             <Style.Triggers>
                 <MultiTrigger>
                     <MultiTrigger.Conditions>
-                        <Condition Property="RadioButton.IsEnabled" Value="True" />
+                        <Condition Property="Control.IsEnabled" Value="True" />
                         <Condition Property="RadioButton.IsChecked" Value="True"/>
                     </MultiTrigger.Conditions>
                     <MultiTrigger.Setters>
@@ -1241,13 +1242,74 @@
 
                 <MultiTrigger>
                     <MultiTrigger.Conditions>
-                        <Condition Property="RadioButton.IsEnabled" Value="True" />
+                        <Condition Property="Control.IsEnabled" Value="True" />
                         <Condition Property="RadioButton.IsChecked" Value="False"/>
                     </MultiTrigger.Conditions>
                     <MultiTrigger.Setters>
                         <Setter Property="Rectangle.Fill">
                             <Setter.Value>
                                 <ImageBrush ImageSource="Resources/checkbox_unactive_unchecked.png"/>
+                            </Setter.Value>
+                        </Setter>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+
+
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Control.IsEnabled" Value="False" />
+                        <Condition Property="RadioButton.IsChecked" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Rectangle.Fill">
+                            <Setter.Value>
+                                <ImageBrush ImageSource="Resources/checkbox_unactive_checked.png"/>
+                            </Setter.Value>
+                        </Setter>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+
+
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Control.IsEnabled" Value="False" />
+                        <Condition Property="RadioButton.IsChecked" Value="False"/>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Rectangle.Fill">
+                            <Setter.Value>
+                                <ImageBrush ImageSource="Resources/checkbox_unactive_unchecked.png"/>
+                            </Setter.Value>
+                        </Setter>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+
+
+                    <!--        MOUSE OVER          -->
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Control.IsMouseOver" Value="True" />
+                        <Condition Property="RadioButton.IsChecked" Value="False"/>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Rectangle.Fill">
+                            <Setter.Value>
+                                <ImageBrush ImageSource="Resources/checkbox_active_unchecked.png"/>
+                            </Setter.Value>
+                        </Setter>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+
+                
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Control.IsMouseOver" Value="True" />
+                        <Condition Property="RadioButton.IsChecked" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Rectangle.Fill">
+                            <Setter.Value>
+                                <ImageBrush ImageSource="Resources/checkbox_active_checked.png"/>
                             </Setter.Value>
                         </Setter>
                     </MultiTrigger.Setters>

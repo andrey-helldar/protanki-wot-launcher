@@ -379,10 +379,10 @@
     <Resource Include="Resources\checkbox_active_checked.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\checkbox_active_unchecked.png" />
+    <Resource Include="Resources\checkbox_unactive_checked.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\checkbox_unactive_checked.png" />
+    <Resource Include="Resources\checkbox_active_unchecked.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\checkbox_unactive_unchecked.png" />
