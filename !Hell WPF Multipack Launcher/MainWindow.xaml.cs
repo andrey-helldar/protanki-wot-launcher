@@ -132,8 +132,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 InitializeComponent();
                 MouseDown += delegate { DragMove(); };
 
-                Task.Factory.StartNew(() => Navigator("Loading")); // Изменение страницы
-
                 // Делаем общей иконку в трее
                 notifier = this.notifyIcon;
                 this.Closing += delegate { notifier = null; };

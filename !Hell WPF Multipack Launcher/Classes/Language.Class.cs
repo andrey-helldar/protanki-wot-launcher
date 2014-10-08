@@ -557,6 +557,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        case "SymbolsTitle":
+                            switch (lang)
+                            {
+                                case "ru": return "Минимальная длина сообщения: " + text + " символов";
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "MinimumSymbols":
+                            switch (lang)
+                            {
+                                case "ru": return "Выход";
+                                case "en": return "Exit";
+                                case "de": return "Beenden";
+                                default: return toReturn;
+                            }                          
+
                         case "bSend":
                             switch (lang)
                             {
@@ -632,6 +650,56 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "de": return "Fehler bei der Installation";
                                 default: return toReturn;
                             }
+
+
+                        /* -----------------------------
+                         *      Statuses
+                         * -----------------------------*/
+                        case "statusOK":
+                            switch (lang)
+                            {
+                                case "ru": return "Тикет успешно зарегистрирован под номером " + text;
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "statusANSWER":
+                            switch (lang)
+                            {
+                                case "ru": return "Сообщение не отправлено. Сервер ответил: " + text;
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "statusHacking":
+                            switch (lang)
+                            {
+                                case "ru": return "Ошибка доступа к сервису. Повторите попытку позже.";
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "statusBANNED":
+                            switch (lang)
+                            {
+                                case "ru": return "Ваше сообщение принято к обработке";
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "statusDEFAULT":
+                            switch (lang)
+                            {
+                                case "ru": return "Ошибка отправки сообщения. Попробуйте еще раз.";
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
 
                         default: return toReturn;
                     }
