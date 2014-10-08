@@ -50,7 +50,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public string Set(string page, string control, string lang = "", string text = "")
         {
             try { if (lang == "") lang = Properties.Resources.Default_Lang; }
-            catch (Exception) { }
+            catch (Exception) { lang = "ru"; }
 
             string toReturn = "null";
 

@@ -325,6 +325,18 @@
   <ItemGroup>
     <Resource Include="Resources\minimize_press.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Line.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Profile_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Profile_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Profile_pressed.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

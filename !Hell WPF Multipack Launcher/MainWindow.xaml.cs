@@ -315,8 +315,19 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
+                // Images & other
                 try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, Variables.Lang.Trim()))); }
                 catch (Exception ex)
+                {
+                    Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
+                    MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
+                }
+
+                // Text
+                try
+                {
+                    bPlayTb.Text = Lang.Set("MainProject", "bPlay", Variables.Lang.Trim());
+                }catch (Exception ex)
                 {
                     Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
                     MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);

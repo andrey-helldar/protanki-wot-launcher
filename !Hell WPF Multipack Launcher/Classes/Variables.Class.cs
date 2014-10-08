@@ -137,7 +137,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                         // Принудительно устанавливаем язык, читая файл настроек игры
                         Lang = doc.Root.Element("meta").Element("localization").Value;
-                        Lang = Lang.Remove(0, Lang.IndexOf(" ")).ToLower();
+                        Lang = Lang.Remove(0, Lang.IndexOf(" ")).ToLower().Trim();
                     }
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: Tanks Settings", ex.Message, ex.StackTrace)); }
