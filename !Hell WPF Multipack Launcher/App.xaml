@@ -1315,11 +1315,57 @@
                     StackPanel Border Shadow
             *********************************-->
         <Style x:Key="BorderShadow" TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="#FF8B8A88"/>
-            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FFCCCCCB"/>
+            <Setter Property="BorderThickness" Value="1,1,0,0"/>
             <Setter Property="Margin" Value="0"/>
             <Setter Property="Grid.ColumnSpan" Value="2"/>
             <Setter Property="Grid.RowSpan" Value="3"/>
+        </Style>
+
+        <Style x:Key="BorderShadowSub" TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="#FFE1E1E1"/>
+            <Setter Property="BorderThickness" Value="1,1,0,0"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="Grid.RowSpan" Value="3"/>
+        </Style>
+
+
+        <!-- *******************************
+                    lSelectCategory
+            *********************************-->
+        <Style x:Key="lSelectCategory" TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="0"/>
+            
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <GroupBox Header="{TemplateBinding Content}"
+                                  Margin="-5,0"
+                                  BorderBrush="#FF8B8A88"
+                                  BorderThickness="0,1,0,0"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!-- *******************************
+                    lSetEmail
+            *********************************-->
+        <Style x:Key="lSetEmail" TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="0"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <GroupBox Header="{TemplateBinding Content}"
+                                  Margin="0"
+                                  BorderBrush="#FFCCCCCB"
+                                  BorderThickness="0,1,0,0"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Application.Resources>

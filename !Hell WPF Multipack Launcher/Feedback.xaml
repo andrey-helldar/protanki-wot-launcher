@@ -14,7 +14,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <GroupBox x:Name="gbFeedback" Style="{DynamicResource FeedbackgbFeedback}" Header="Обратная связь" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <GroupBox x:Name="gbFeedback" Style="{DynamicResource FeedbackgbFeedback}" Header="Обратная связь" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -31,7 +31,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock x:Name="tbComment" Margin="10,10,9,5" TextWrapping="Wrap" Text="Если у Вас возникли проблемы в работе лаунчера и/или модов, или же есть какие-либо пожелания, Вы можете заполнить форму ниже и отправить сообщение разработчикам:" Grid.ColumnSpan="2" Foreground="#FF006699" FontWeight="Normal"/>
-                        <Label x:Name="lSelectCategory" Content="Выберите категорию:" Margin="10,5" Padding="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="#FF292929"/>
+                        <Label x:Name="lSelectCategory" Style="{DynamicResource lSelectCategory}" Content="Выберите категорию:" Grid.Row="1" Grid.ColumnSpan="2"/>
                         <RadioButton x:Name="rbWishMultipack" Content="Пожелания к мультипаку" Grid.Row="2" IsChecked="True" FontWeight="Normal"/>
                         <RadioButton x:Name="rbWishLauncher" Content="Пожелания к лаунчеру" Grid.Row="3" FontWeight="Normal"/>
                         <RadioButton x:Name="rbErrorMultipack" Content="Найдена ошибка в мультипаке" Grid.Row="2" Grid.Column="1" FontWeight="Normal"/>
@@ -49,9 +49,11 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Border Style="{DynamicResource BorderShadow}" />
+                                <Border Style="{DynamicResource BorderShadow}">
+                                    <Border Style="{DynamicResource BorderShadowSub}" />
+                                </Border>
                                 <TextBox x:Name="tbMessage" Style="{DynamicResource TextFeedback}" TextWrapping="Wrap" MinHeight="140" Grid.ColumnSpan="2" AcceptsReturn="True" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" MaxHeight="200" SpellCheck.IsEnabled="True" Margin="10,10,10,5" FontWeight="Normal"/>
-                                <Label x:Name="lSetEmail" Content="Введите Ваш email:" Margin="10,5" Padding="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="#FF292929"/>
+                                <Label x:Name="lSetEmail" Style="{DynamicResource lSetEmail}" Content="Введите Ваш email:" Grid.Row="1" Grid.ColumnSpan="2"/>
                                 <Button x:Name="bAttach" Content="Прикрепить файл" Style="{DynamicResource ButtonATTACH}" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="1" Grid.Row="2" Grid.Column="1" Margin="0,5,10,10" FontWeight="Normal"/>
                                 <TextBox x:Name="tbEmail" Style="{DynamicResource TextEmail}" Margin="10,5,10,10" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="2" FontWeight="Normal"/>
                             </Grid>

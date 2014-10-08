@@ -93,7 +93,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     switch (answer["status"])
                     {
-                        case "OK": status = "Ваше сообщение принято под номером " + answer["id"]; break;
+                        case "OK": status = "Тикет успешно зарегистрирован под номером " + answer["id"]; break;
                         case "ANSWER": status = "Сервер ответил: " + answer["content"]; break;
                         case "Hacking attempt!": status = "Ошибка доступа к сервису"; break;
                         case "BANNED": status = "Ваше сообщение принято к обработке"; break;
