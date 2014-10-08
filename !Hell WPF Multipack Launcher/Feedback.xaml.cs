@@ -36,11 +36,6 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex3) { Task.Factory.StartNew(() => Debug.Save("Feedback.xaml", "bClose_Click()", ex3.Message, ex3.StackTrace)); }
         }
 
-        private void bAttach_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Формирование и отправка сообщения на сайт разработчика
         /// 

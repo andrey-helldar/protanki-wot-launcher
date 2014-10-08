@@ -1039,65 +1039,60 @@
         <!-- *******************************
                     BUTTON ATTACH
             *********************************-->
-        <Style x:Key="ButtonCLOSE" TargetType="{x:Type Button}">
-            <Setter Property="Foreground" Value="White"/>
+        <Style x:Key="ButtonATTACH" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="#E52B2B2B"/>
             <Setter Property="FontSize" Value="11"/>
             <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Padding" Value="15,5,0,5"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Background" Value="{StaticResource BackNormal}" />
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
 
-            <Setter Property="Template">
+            <Setter Property="Control.Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid Width="{TemplateBinding Width}" 
-                             Height="{TemplateBinding Height}" ClipToBounds="True">
-
-                            <!-- Inner Rectangle with rounded corners. -->
-                            <Rectangle x:Name="innerRectangle" 
-                                HorizontalAlignment="Stretch" 
-                                VerticalAlignment="Stretch" Stroke="Transparent" 
-                                StrokeThickness="0" 
-                                Fill="{TemplateBinding Background}"
-                                       Cursor="{TemplateBinding Cursor}"/>
-
-                            <!-- Present Content (text) of the button. -->
-                            <DockPanel Name="myContentPresenterDockPanel">
-                                <ContentPresenter x:Name="myContentPresenter"
-                                                  Margin="{TemplateBinding Padding}"
-                                                  Content="{TemplateBinding Content}" 
-                                                  TextBlock.Foreground="{TemplateBinding Foreground}"
-                                                  TextBlock.FontFamily="{TemplateBinding FontFamily}"
-                                                  TextBlock.FontSize="{TemplateBinding FontSize}"/>
-
-                                <Image Source="Resources/close.png"
-                                   Width="13"
-                                   Height="10"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Right"
-                                   Margin="15,0,15,0"/>
-                            </DockPanel>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="0">
+                            <Path Stretch="Fill" x:Name="PlayBackground"
+                                    Data="M0,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand"
+                                  Width="21"
+                                  Height="21"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"/>
+                            
+                            <ContentPresenter Name="content" 
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="Center"
+                                        Margin="25,0,0,0"
+                                        Cursor="Hand"/>
                         </Grid>
-
-                        <!-- Set action triggers for the buttons and define
-                             what the button does in response to those triggers. -->
                         <ControlTemplate.Triggers>
-
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource BackHover}" />
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/skrepka_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
                             </Trigger>
-
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="{StaticResource BackPressed}" />
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/skrepka_hover.png"/>
+                                    </Setter.Value>
+                                </Setter>
                             </Trigger>
-
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/skrepka_pressed.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
 
     </Application.Resources>
 </Application>
