@@ -8,17 +8,11 @@
 	Title="Error" Width="538" Height="600">
 
     <Grid Opacity="0.7">
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF191919" Offset="1"/>
-                <GradientStop Color="#E5A40707"/>
-            </LinearGradientBrush>
-        </Grid.Background>
         <TextBlock Margin="10" TextWrapping="Wrap" Foreground="White" FontFamily="Verdana" HorizontalAlignment="Center" VerticalAlignment="Center" TextOptions.TextHintingMode="Animated">
             <Run x:Name="Error1" FontSize="14pt">Error:</Run>
             <Run x:Name="ErrorId" FontSize="14pt">0x0</Run>
             <LineBreak/>
-            <Run x:Name="ErrorStatus" FontSize="11pt">Произошла ошибка</Run>
+            <Run x:Name="ErrorStatus" FontSize="11pt">---</Run>
         </TextBlock>
     </Grid>
 </Page>
