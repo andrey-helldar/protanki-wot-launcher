@@ -6,13 +6,17 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="Error" Width="538" Height="600">
+    <Page.Background>
+        <ImageBrush ImageSource="Resources/Page_Background.jpg"/>
+    </Page.Background>
 
-    <Grid Opacity="0.7">
-        <TextBlock Margin="10" TextWrapping="Wrap" Foreground="White" FontFamily="Verdana" HorizontalAlignment="Center" VerticalAlignment="Center" TextOptions.TextHintingMode="Animated">
+    <Grid>
+        <TextBlock Margin="0" TextWrapping="Wrap" FontFamily="Verdana" HorizontalAlignment="Center" VerticalAlignment="Center" TextOptions.TextHintingMode="Animated" Foreground="#FF006699">
             <Run x:Name="Error1" FontSize="14pt">Error:</Run>
             <Run x:Name="ErrorId" FontSize="14pt">0x0</Run>
             <LineBreak/>
             <Run x:Name="ErrorStatus" FontSize="11pt">---</Run>
         </TextBlock>
+        <Button x:Name="bClose" Content="Закрыть" Style="{DynamicResource ButtonCLOSE}" HorizontalAlignment="Center" Margin="0,0,0,30" VerticalAlignment="Bottom" Click="bClose_Click"/>
     </Grid>
 </Page>
