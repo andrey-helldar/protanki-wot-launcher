@@ -63,7 +63,7 @@
                                 <StackPanel Margin="10,0" Grid.Row="1" Background="Transparent" Grid.ColumnSpan="2">
                                     <TextBlock TextWrapping="NoWrap" Foreground="#FF1B89BF" FontWeight="Normal" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center">
                                         <Run x:Name="SymbolsTitle">Набрано символов:</Run>
-                                        <Run x:Name="SymbolsCount" Foreground="#FF006699">0</Run>
+                                        <Run x:Name="SymbolsCount" Foreground="#FFFF6262">0</Run>
                                     </TextBlock>
                                 </StackPanel>
                             </Grid>

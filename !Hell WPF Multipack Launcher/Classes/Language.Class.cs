@@ -548,6 +548,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        case "UncorrectEmail":
+                            switch (lang)
+                            {
+                                case "ru": return "Вы указали некорректный email-адрес!";
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "SendNow":
+                            switch (lang)
+                            {
+                                case "ru": return "Отправить сейчас?";
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
                         case "bAttach":
                             switch (lang)
                             {
@@ -560,7 +578,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         case "SymbolsTitle":
                             switch (lang)
                             {
-                                case "ru": return "Минимальная длина сообщения: " + text + " символов";
+                                case "ru": return "Набрано символов:";
                                 case "en": return "000";
                                 case "de": return "000";
                                 default: return toReturn;
@@ -569,9 +587,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         case "MinimumSymbols":
                             switch (lang)
                             {
-                                case "ru": return "Выход";
-                                case "en": return "Exit";
-                                case "de": return "Beenden";
+                                case "ru": return "Минимальная длина сообщения: " + text + " символов";
+                                case "en": return "000";
+                                case "de": return "000";
                                 default: return toReturn;
                             }                          
 

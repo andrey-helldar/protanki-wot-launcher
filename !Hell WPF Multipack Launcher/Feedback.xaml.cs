@@ -67,59 +67,75 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (tbMessage.Text.Length >= Convert.ToInt16(Properties.Resources.Developer_Feedback_Symbols))
+                if (tbEmail.Text.Trim().Length > 0 && tbEmail.Text.Trim().IndexOf("@") == -1)
                 {
-                    Dictionary<string, string> json = new Dictionary<string, string>();
-                    Classes.POST POST = new Classes.POST();
-
-                    json.Add("api", Properties.Resources.API);
-                    json.Add("youtube", Properties.Resources.YoutubeChannel);
-                    json.Add("project", new Classes.Variables().ProductName);
-                    json.Add("project_version", new Classes.Variables().MultipackVersion.ToString());
-                    json.Add("language", lang);
-
-                    string cat = String.Empty;
-                    string status = string.Empty;
-
-                    if (rbWishMultipack.IsChecked == true)
-                        cat = "WM";
-                    else if (rbWishLauncher.IsChecked == true)
-                        cat = "WL";
-                    else if (rbWishInstaller.IsChecked == true)
-                        cat = "WI";
-                    else if (rbErrorMultipack.IsChecked == true)
-                        cat = "EM";
-                    else if (rbErrorLauncher.IsChecked == true)
-                        cat = "EL";
-                    else if (rbErrorInstaller.IsChecked == true)
-                        cat = "EI";
-
-
-                    json.Add("category", cat);
-                    json.Add("message", POST.Shield(tbMessage.Text.Trim()));
-                    json.Add("email", POST.Shield(tbEmail.Text.Trim()));
-
-                    //  http://ai-rus.com/api/2.0/feedback
-                    //  {0}/api/{1}/{2}
-
-                    Dictionary<string, string> answer = POST.FromJson(POST.Send(String.Format(Properties.Resources.Developer_API_Format,
-                        Properties.Resources.Developer,
-                        Properties.Resources.Developer_API,
-                        "feedback"
-                        ), POST.Json(json)));
-
-                    switch (answer["status"])
-                    {
-                        case "OK": status = Lang.Set("PageFeedback", "statusOK", lang, answer["id"]); break;
-                        case "ANSWER": status = Lang.Set("PageFeedback", "statusANSWER", lang, answer["content"]); break;
-                        case "Hacking attempt!": status = Lang.Set("PageFeedback", "statusHacking", lang); break;
-                        case "BANNED": status = Lang.Set("PageFeedback", "statusBANNED", lang); break;
-                        default: status = Lang.Set("PageFeedback", "statusDEFAULT", lang); break;
-                    }
-                    MessageBox.Show(status);
+                    MessageBox.Show(Lang.Set("PageFeedback", "UncorrectEmail", lang));
                 }
                 else
-                    MessageBox.Show(Lang.Set("PageFeedback", "SymbolsTitle", lang, Properties.Resources.Developer_Feedback_Symbols));
+                    if (tbMessage.Text.Length >= Convert.ToInt16(Properties.Resources.Developer_Feedback_Symbols))
+                    {
+                        if (MessageBox.Show(Lang.Set("PageFeedback", "SendNow", lang), Application.Current.GetType().Assembly.GetName().Name, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                        {
+                            Dictionary<string, string> json = new Dictionary<string, string>();
+                            Classes.POST POST = new Classes.POST();
+
+                            json.Add("api", Properties.Resources.API);
+                            json.Add("youtube", Properties.Resources.YoutubeChannel);
+                            json.Add("project", Application.Current.GetType().Assembly.GetName().Name);
+                            json.Add("project_version", new Classes.Variables().MultipackVersion.ToString());
+                            json.Add("language", lang);
+
+                            string cat = String.Empty;
+                            string status = string.Empty;
+
+                            if (rbWishMultipack.IsChecked == true)
+                                cat = "WM";
+                            else if (rbWishLauncher.IsChecked == true)
+                                cat = "WL";
+                            else if (rbWishInstaller.IsChecked == true)
+                                cat = "WI";
+                            else if (rbErrorMultipack.IsChecked == true)
+                                cat = "EM";
+                            else if (rbErrorLauncher.IsChecked == true)
+                                cat = "EL";
+                            else if (rbErrorInstaller.IsChecked == true)
+                                cat = "EI";
+
+
+                            json.Add("category", cat);
+                            json.Add("message", POST.Shield(tbMessage.Text.Trim()));
+                            json.Add("email", POST.Shield(tbEmail.Text.Trim()));
+
+                            //  http://ai-rus.com/api/2.0/feedback
+                            //  {0}/api/{1}/{2}
+
+                            Dictionary<string, string> answer = POST.FromJson(POST.Send(String.Format(Properties.Resources.Developer_API_Format,
+                                Properties.Resources.Developer,
+                                Properties.Resources.Developer_API,
+                                "feedback"
+                                ), POST.Json(json)));
+
+                            switch (answer["status"])
+                            {
+                                case "OK":
+                                    status = Lang.Set("PageFeedback", "statusOK", lang, answer["id"]);
+                                    tbMessage.Text = String.Empty;
+                                    tbEmail.Text = String.Empty;
+                                    break;
+                                case "ANSWER": status = Lang.Set("PageFeedback", "statusANSWER", lang, answer["content"]); break;
+                                case "Hacking attempt!": status = Lang.Set("PageFeedback", "statusHacking", lang); break;
+                                case "BANNED":
+                                    status = Lang.Set("PageFeedback", "statusBANNED", lang);
+                                    tbMessage.Text = String.Empty;
+                                    tbEmail.Text = String.Empty;
+                                    break;
+                                default: status = Lang.Set("PageFeedback", "statusDEFAULT", lang); break;
+                            }
+                            MessageBox.Show(status);
+                        }
+                    }
+                    else
+                        MessageBox.Show(Lang.Set("PageFeedback", "MinimumSymbols", lang, Properties.Resources.Developer_Feedback_Symbols));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Feedback.xaml", "bSend_Click()", ex.Message, ex.StackTrace)); }
         }
