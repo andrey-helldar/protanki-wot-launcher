@@ -390,6 +390,15 @@
   <ItemGroup>
     <Resource Include="Resources\Page_Background.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_News_Close_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_News_Close_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_News_Close_pressed.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

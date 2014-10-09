@@ -392,4 +392,13 @@
   <data name="Page_Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Page_Background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="General_News_Close_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\General_News_Close_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="General_News_Close_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\General_News_Close_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="General_News_Close_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\General_News_Close_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
