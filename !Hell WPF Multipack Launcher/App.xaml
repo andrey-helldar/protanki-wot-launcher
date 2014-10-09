@@ -831,6 +831,8 @@
             <Setter Property="Margin" Value="0"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Grid.Column" Value="0"/>
         </Style>
 
         <!--Button play-->
@@ -840,6 +842,10 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="Margin" Value="50,0"/>
+
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Grid.Column" Value="2"/>
+            
             <!--<Setter Property="Margin" Value="0"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
@@ -914,6 +920,11 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
 
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            
+            <!--<Button Content="Button" Style="{DynamicResource ListBoxCloseGeneral}" HorizontalAlignment="Left" Margin="0,0,5,0" VerticalAlignment="Center" Grid.Column="1"/>-->
+
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -985,6 +996,9 @@
             <Setter Property="Padding" Value="5"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Grid.ColumnSpan" Value="3"/>
         </Style>
 
         <!--TextBlock Hyperlink title-->

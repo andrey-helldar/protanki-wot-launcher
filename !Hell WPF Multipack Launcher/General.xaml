@@ -44,24 +44,7 @@
             <Run Text="D Voronov, A Storz" FontWeight="Bold" Cursor="Hand"/>
         </TextBlock>
         <ListBox x:Name="lbNews" Style="{DynamicResource ListBoxGeneral}" Margin="5,5,3,0" Grid.Row="3" Background="{x:Null}"/>
-        <ListBox x:Name="lbVideo" Style="{DynamicResource ListBoxGeneral}" Grid.Column="1" Margin="3,5,5,0" Grid.Row="3" Background="{x:Null}">
-            <StackPanel Height="135" Width="251" Background="#FFC5C5C5">
-                <Grid Height="120">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="3*"/>
-                    </Grid.RowDefinitions>
-                    <Label Style="{DynamicResource ListBoxLabelGeneral}" Content="09.10" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <Button Content="Button" Style="{DynamicResource ListBoxCloseGeneral}" HorizontalAlignment="Left" Margin="69,10,0,0" VerticalAlignment="Top" Width="75"/>
-                    <Button Content="Button" Style="{DynamicResource ListBoxPlayGeneral}" HorizontalAlignment="Left" Margin="169,10,0,0" VerticalAlignment="Top" Width="75"/>
-                    <TextBlock Style="{DynamicResource ListBoxTitleGeneral}" Margin="10" Grid.Row="1" TextWrapping="Wrap">
-                        <Hyperlink Style="{DynamicResource ListBoxTitleHyperlinkGeneral}">
-                            <Run>This is text</Run>
-                        </Hyperlink>
-                    </TextBlock>
-                </Grid>
-            </StackPanel>
-        </ListBox>
+        <ListBox x:Name="lbVideo" Style="{DynamicResource ListBoxGeneral}" Grid.Column="1" Margin="3,5,5,0" Grid.Row="3" Background="{x:Null}"/>
         <ProgressBar x:Name="pbStatus" Style="{DynamicResource pbStatus}" Height="6" Margin="0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2">
             <Run x:Name="lStatus"></Run>

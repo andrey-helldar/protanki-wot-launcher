@@ -12,10 +12,24 @@
     <version>0.0.0.0</version>
     <path>D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\</path>
   </game>
-  <youtube />
+  <youtube>
+    <video>j5sAGKU4Xps</video>
+    <video>YzTnNmvOlU0</video>
+    <video>C6MYVoWSWNI</video>
+    <video>PQY4Af931U8</video>
+    <video>VhjZTNT-UPs</video>
+    <video>BO2cJ1Ofiy4</video>
+    <video>-wrzQ1od9gA</video>
+    <video>o6uoyumu82I</video>
+    <video>T75yUt9ccwc</video>
+  </youtube>
   <do_not_display>
-    <video />
-    <news />
+    <video>
+      <item>XWFXFGTZ50M</item>
+    </video>
+    <news>
+      <item>http://worldoftanks.ru/ru/news/pc-browser/tournaments/wgl-gs-2s-2014-finals-gallery/</item>
+    </news>
   </do_not_display>
   <processes />
 </pro>

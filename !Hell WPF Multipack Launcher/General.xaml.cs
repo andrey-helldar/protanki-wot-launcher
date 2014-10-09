@@ -145,8 +145,11 @@ namespace _Hell_WPF_Multipack_Launcher
                                     gridPanel.RowDefinitions.Add(new RowDefinition());
 
                                     ColumnDefinition gridColumn1 = new ColumnDefinition();
+                                    ColumnDefinition gridColumn2 = new ColumnDefinition();
                                     gridColumn1.Width = GridLength.Auto;
+                                    gridColumn2.Width = GridLength.Auto;
                                     gridPanel.ColumnDefinitions.Add(gridColumn1);
+                                    gridPanel.ColumnDefinitions.Add(gridColumn2);
                                     gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
 
                                     // Добавляем дату
@@ -155,8 +158,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                     labelDate.SetResourceReference(Label.StyleProperty, "ListBoxLabelGeneral");
                                     try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
                                     catch (Exception) { labelDate.Content = "1970-1-1"; }
-                                    Grid.SetRow(labelDate, 0);
-                                    Grid.SetColumn(labelDate, 0);
+                                    //Grid.SetRow(labelDate, 0);
+                                    //Grid.SetColumn(labelDate, 0);
                                     gridPanel.Children.Add(labelDate);
 
                                     // Кнопка "Воспроизвести"
@@ -167,8 +170,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                         buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
                                         buttonPlay.SetResourceReference(Button.StyleProperty, "ListBoxPlayGeneral");
                                         buttonPlay.Click += PlayPreview;
-                                        Grid.SetRow(buttonPlay, 0);
-                                        Grid.SetColumn(buttonPlay, 1);
+                                        //Grid.SetRow(buttonPlay, 0);
+                                        //Grid.SetColumn(buttonPlay, 1);
                                         gridPanel.Children.Add(buttonPlay);
                                     }
 
@@ -178,8 +181,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                     buttonClose.Name = (youtube ? "CloseYoutube_" : "CloseWargaming_") + i.ToString();
                                     buttonClose.SetResourceReference(Button.StyleProperty, "ListBoxCloseGeneral");
                                     buttonClose.Click += CloseBlock;
-                                    Grid.SetRow(buttonClose, 0);
-                                    Grid.SetColumn(buttonClose, 1);
+                                    //Grid.SetRow(buttonClose, 0);
+                                    //Grid.SetColumn(buttonClose, 2);
                                     gridPanel.Children.Add(buttonClose);
 
                                     // Добавляем заголовок в гиперссылку
@@ -211,9 +214,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                     blockTitle.Inlines.Add(hyperlink);
                                     blockTitle.Inlines.Add(hyperID);
 
-                                    Grid.SetRow(blockTitle, 1);
-                                    Grid.SetColumn(blockTitle, 0);
-                                    Grid.SetColumnSpan(blockTitle, 2);
                                     gridPanel.Children.Add(blockTitle);
 
                                     ListBoxItem lbi = new ListBoxItem();
