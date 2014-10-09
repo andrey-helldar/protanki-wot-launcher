@@ -1682,24 +1682,14 @@
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="ScrollBarsGradientQwe"
-                     StartPoint="1,1"
-                     EndPoint="1,0">
-            <LinearGradientBrush.GradientStops>
-                <GradientStopCollection>
-                    <GradientStop Color="#FF91B8FD" Offset="0" />
-                    <GradientStop Color="#FFF7FBFF" Offset="1" />
-                </GradientStopCollection>
-            </LinearGradientBrush.GradientStops>
-        </LinearGradientBrush>
-
         <LinearGradientBrush x:Key="ScrollBarsGradientHoriz"
                      StartPoint="0,1"
                      EndPoint="1,1">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Color="#FFD8E4FE" Offset="0" />
-                    <GradientStop Color="#FF8CB5FD" Offset="0.5" />
+                    <GradientStop Color="#FFd8e4fe" Offset="0" />
+                    <GradientStop Color="#FF8CB5FD" Offset="0.3" />
+                    <GradientStop Color="#FF8CB5FD" Offset="0.7" />
                     <GradientStop Color="#FFD8E4FE" Offset="1" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
@@ -1711,7 +1701,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RepeatButton}">
-                        <Border BorderBrush="Transparent" CornerRadius="8,8,0,0" BorderThickness="1,1,1,0" Background="{DynamicResource ScrollBarsGradient}"></Border>
+                        <Border BorderBrush="Transparent" CornerRadius="4,4,0,0" BorderThickness="1,1,1,0" Background="{DynamicResource ScrollBarsGradient}" Width="8"/>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -1722,7 +1712,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RepeatButton}">
-                        <Border CornerRadius="0,0,8,8" BorderBrush="Transparent" BorderThickness="1,0,1,1" Background="{DynamicResource ScrollBarsGradient}"/>
+                        <Border CornerRadius="0,0,4,4" BorderBrush="Transparent" BorderThickness="1,0,1,1" Background="{DynamicResource ScrollBarsGradient}" Width="8"/>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -1732,13 +1722,19 @@
             <Setter Property="IsTabStop" Value="False"/>
             <Setter Property="Focusable" Value="False"/>
             <Setter Property="Margin" Value="1,0" />
+            <Setter Property="Width" Value="8"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
                         <Grid Background="{DynamicResource ScrollBarsGradient}">
-                            <Border BorderBrush="#FF65B4fC" BorderThickness="2" CornerRadius="8" Padding="0" Margin="0">
-                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="8" Background="{DynamicResource ScrollBarsGradientQwe}" Margin="0">
-                                    <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="8" Background="{DynamicResource ScrollBarsGradientHoriz}" Margin="0"/>
+                            <Border BorderBrush="#FF65B4fC" BorderThickness="1" CornerRadius="4" Background="White" Padding="0" Margin="0">
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="4" Background="{DynamicResource ScrollBarsGradientHoriz}" Margin="0">                                    
+                                        <Border.OpacityMask>
+                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                <GradientStop Color="Black" Offset="1"/>
+                                                <GradientStop Color="Transparent"/>
+                                            </LinearGradientBrush>
+                                        </Border.OpacityMask>
                                 </Border>
                             </Border>
                         </Grid>
