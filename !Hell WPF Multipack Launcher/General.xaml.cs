@@ -152,9 +152,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     // Добавляем дату
                                     Label labelDate = new Label();
                                     labelDate.Height = double.NaN;
-                                    labelDate.Margin = new Thickness(0, 0, 0, 0);
-                                    labelDate.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                                    labelDate.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                    labelDate.SetResourceReference(Label.StyleProperty, "ListBoxLabelGeneral");
                                     try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
                                     catch (Exception) { labelDate.Content = "1970-1-1"; }
                                     Grid.SetRow(labelDate, 0);
@@ -167,11 +165,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                         Button buttonPlay = new Button();
                                         buttonPlay.Content = ">";
                                         buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
-                                        buttonPlay.Width = 20;
-                                        buttonPlay.Height = double.NaN;
-                                        buttonPlay.Margin = new Thickness(20, 0, 0, 0);
-                                        buttonPlay.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                                        buttonPlay.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                        buttonPlay.SetResourceReference(Button.StyleProperty, "ListBoxPlayGeneral");
                                         buttonPlay.Click += PlayPreview;
                                         Grid.SetRow(buttonPlay, 0);
                                         Grid.SetColumn(buttonPlay, 1);
@@ -182,11 +176,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     Button buttonClose = new Button();
                                     buttonClose.Content = "X";
                                     buttonClose.Name = (youtube ? "CloseYoutube_" : "CloseWargaming_") + i.ToString();
-                                    buttonClose.Width = 20;
-                                    buttonClose.Height = double.NaN;
-                                    buttonClose.Margin = new Thickness(50, 0, 0, 0);
-                                    buttonClose.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                                    buttonClose.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                    buttonClose.SetResourceReference(Button.StyleProperty, "ListBoxCloseGeneral");
                                     buttonClose.Click += CloseBlock;
                                     Grid.SetRow(buttonClose, 0);
                                     Grid.SetColumn(buttonClose, 1);
@@ -194,13 +184,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                     // Добавляем заголовок в гиперссылку
                                     TextBlock blockTitle = new TextBlock();
-                                    blockTitle.TextWrapping = TextWrapping.Wrap;
-                                    blockTitle.Width = double.NaN;
-                                    blockTitle.Height = double.NaN;
-                                    blockTitle.Padding = new Thickness(5);
-                                    blockTitle.Margin = new Thickness(0);
-                                    blockTitle.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                                    blockTitle.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                    blockTitle.SetResourceReference(TextBlock.StyleProperty, "ListBoxTitleGeneral");
 
                                     // Добавляем идентификатор записи
                                     Hyperlink hyperID = new Hyperlink(new Run(""));
@@ -222,6 +206,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
                                     hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
                                     hyperlink.Name = (youtube ? "lu_" : "lw_") + i.ToString();
+                                    hyperlink.SetResourceReference(Hyperlink.StyleProperty, "ListBoxTitleHyperlinkGeneral");
                                     this.RegisterName(hyperlink.Name, hyperlink);
                                     blockTitle.Inlines.Add(hyperlink);
                                     blockTitle.Inlines.Add(hyperID);

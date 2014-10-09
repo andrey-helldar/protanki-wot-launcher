@@ -7,6 +7,9 @@
         <!-- *******************************
                     BUTTON backgrounds
             *********************************-->
+        <Color x:Key="GlobalTextColor">#FF006699</Color>
+        
+        
         <SolidColorBrush x:Key="BackNormal" Color="#FF006699" />
         <SolidColorBrush x:Key="BackHover" Color="#FF007AFF" />
         <SolidColorBrush x:Key="BackPressed" Color="#FF004C9E" />
@@ -692,7 +695,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Foreground" Value="White" />
-                                <Setter Property="FontSize" Value="14pt" />
+                                <Setter Property="FontSize" Value="18" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -788,31 +791,31 @@
         <!-- *******************************
                         LISTBOX 
             *********************************-->
+        <Style x:Key="ListBoxGeneral" TargetType="{x:Type ListBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
         <Style x:Key="ListBoxItemGeneral" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="0,1,0,0"/>
+            <Setter Property="BorderBrush" Value="#FF363534"/>
+            <Setter Property="Margin" Value="0,0,0,5" />
+            <Setter Property="Width" Value="240" />
+
+
             <Setter Property="Template">
                 <Setter.Value>
                     <!-- Применяем стили для элементов внутри ListBox -->
                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                        <Border x:Name="brd" Background="{TemplateBinding Background}" 
+                        <Border Background="{TemplateBinding Background}" 
                                           BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border BorderBrush="#FF5c5a58" BorderThickness="0,1,0,0" Margin="0">
                             <ContentPresenter/>
+                            </Border>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="True">
-                                <Setter Property="Background" Value="Aquamarine"/>
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="Margin" Value="0,0,0,5" />
-                                <Setter Property="Width" Value="240" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="Gray"/>
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="Margin" Value="0" />
-                                <Setter Property="Width" Value="240" />
-                            </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Background" Value="LimeGreen"/>
-                                <Setter Property="BorderBrush" Value="Black"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -820,7 +823,53 @@
             </Setter>
         </Style>
 
+        <!--Label date-->
+        <Style x:Key="ListBoxLabelGeneral" TargetType="{x:Type Label}">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#FFc5401e"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
 
+        <!--Button play-->
+        <Style x:Key="ListBoxPlayGeneral" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+
+        <!--Button close-->
+        <Style x:Key="ListBoxCloseGeneral" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Margin" Value="50,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+
+        <!--TextBlock title-->
+        <Style x:Key="ListBoxTitleGeneral" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#FF006699"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+
+        <!--TextBlock Hyperlink title-->
+        <Style x:Key="ListBoxTitleHyperlinkGeneral" TargetType="{x:Type Hyperlink}">
+            <Setter Property="Foreground" Value="#FF006699"/>
+            <Setter Property="TextDecorations" Value="{x:Null}"/>
+        </Style>
+
+        <!--TextBlock Run title-->
+        <Style x:Key="ListBoxTitleRunGeneral" TargetType="{x:Type Run}">
+            <Setter Property="Foreground" Value="#FF000000"/>
+        </Style>
 
 
 
