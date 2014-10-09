@@ -45,7 +45,17 @@
         </TextBlock>
         <ListBox x:Name="lbNews" Style="{DynamicResource ListBoxGeneral}" Margin="5,5,3,0" Grid.Row="3" Background="{x:Null}"/>
         <ListBox x:Name="lbVideo" Style="{DynamicResource ListBoxGeneral}" Grid.Column="1" Margin="3,5,5,0" Grid.Row="3" Background="{x:Null}">
-            <ScrollBar Height="382"/>
+            <ListBoxItem Background="#FFCD3939" Height="50"/>
+            <ListBoxItem Background="#FF9C2F2F" Height="50"/>
+            <ListBoxItem Background="#FF37C737" Height="50"/>
+            <ListBoxItem Background="#FF2E9582" Height="50"/>
+            <ListBoxItem Background="#FF2C6ECD" Height="50"/>
+            <ListBoxItem Background="#FF3B0BB9" Height="50"/>
+            <ListBoxItem Background="#FF913DAA" Height="50"/>
+            <ListBoxItem Background="#FF00FF46" Height="50"/>
+            <ListBoxItem Background="#FF0A074F" Height="50"/>
+            <ListBoxItem Background="#FFAE1414" Height="50"/>
+            <ListBoxItem Background="#FFD3B914" Height="50"/>
         </ListBox>
         <ProgressBar x:Name="pbStatus" Style="{DynamicResource pbStatus}" Height="6" Margin="0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2">

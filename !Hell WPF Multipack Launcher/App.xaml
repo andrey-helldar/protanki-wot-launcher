@@ -8,8 +8,8 @@
                     BUTTON backgrounds
             *********************************-->
         <Color x:Key="GlobalTextColor">#FF006699</Color>
-        
-        
+
+
         <SolidColorBrush x:Key="BackNormal" Color="#FF006699" />
         <SolidColorBrush x:Key="BackHover" Color="#FF007AFF" />
         <SolidColorBrush x:Key="BackPressed" Color="#FF004C9E" />
@@ -46,7 +46,7 @@
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
-        
+
 
         <!-- *******************************
                      LOADING PAGE
@@ -71,7 +71,7 @@
             *********************************-->
         <Style x:Key="ButtonStyleLogotype" TargetType="{x:Type Button}">
             <Setter Property="Cursor" Value="Hand"/>
-            
+
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -810,7 +810,7 @@
                         <Border Background="{TemplateBinding Background}" 
                                           BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                             <Border BorderBrush="#FF5c5a58" BorderThickness="0,1,0,0" Margin="0">
-                            <ContentPresenter/>
+                                <ContentPresenter/>
                             </Border>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -912,7 +912,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Grid.Column" Value="1"/>
-            
+
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -1099,10 +1099,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-        
-        
-        
+
+
+
+
         <!-- *******************************
                     BUTTON OK
             *********************************-->
@@ -1137,7 +1137,7 @@
                                                   TextBlock.Foreground="{TemplateBinding Foreground}"
                                                   TextBlock.FontFamily="{TemplateBinding FontFamily}"
                                                   TextBlock.FontSize="{TemplateBinding FontSize}"/>
-                                
+
                                 <Image Source="Resources/ok.png"
                                    Width="13"
                                    Height="10"
@@ -1252,7 +1252,7 @@
                                   Height="21"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Center"/>
-                            
+
                             <ContentPresenter Name="content" 
                                         HorizontalAlignment="Left" 
                                         VerticalAlignment="Center"
@@ -1336,7 +1336,7 @@
             <Setter Property="BorderBrush" Value="#FF8B8A88"/>
             <Setter Property="Margin" Value="5"/>
 
-            
+
             <!--<Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type GroupBox}">
@@ -1400,10 +1400,10 @@
             <Setter Property="Margin" Value="10,5,5,5"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            
+
             <Setter Property="Template">
                 <Setter.Value>
-                    
+
                     <ControlTemplate TargetType="{x:Type RadioButton}">
                         <Grid>
                             <Rectangle x:Name="RbImage"
@@ -1416,7 +1416,7 @@
                                     <ImageBrush ImageSource="Resources/checkbox_unactive_unchecked.png"/>
                                 </Rectangle.Fill>
                             </Rectangle>
-                            
+
                             <ContentPresenter Margin="20,0,0,0"
                                               Cursor="Hand"/>
                         </Grid>
@@ -1544,7 +1544,7 @@
             *********************************-->
         <Style x:Key="lSelectCategory" TargetType="{x:Type Label}">
             <Setter Property="Margin" Value="0"/>
-            
+
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Label}">
@@ -1683,12 +1683,24 @@
         </LinearGradientBrush>
 
         <LinearGradientBrush x:Key="ScrollBarsGradientQwe"
-                     StartPoint="0,0"
+                     StartPoint="1,1"
                      EndPoint="1,0">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
-                    <GradientStop Color="#FFF7FBFF" Offset="0" />
-                    <GradientStop Color="#FF91B8FD" Offset="1" />
+                    <GradientStop Color="#FF91B8FD" Offset="0" />
+                    <GradientStop Color="#FFF7FBFF" Offset="1" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="ScrollBarsGradientHoriz"
+                     StartPoint="0,1"
+                     EndPoint="1,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#FFD8E4FE" Offset="0" />
+                    <GradientStop Color="#FF8CB5FD" Offset="0.5" />
+                    <GradientStop Color="#FFD8E4FE" Offset="1" />
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
@@ -1710,7 +1722,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RepeatButton}">
-                            <Border CornerRadius="0,0,8,8" BorderBrush="Transparent" BorderThickness="1,0,1,1" Background="{DynamicResource ScrollBarsGradient}"/>
+                        <Border CornerRadius="0,0,8,8" BorderBrush="Transparent" BorderThickness="1,0,1,1" Background="{DynamicResource ScrollBarsGradient}"/>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -1724,8 +1736,10 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
                         <Grid Background="{DynamicResource ScrollBarsGradient}">
-                            <Border BorderBrush="#FF65B4fC" BorderThickness="1">
-                                <Border Background="{DynamicResource ScrollBarsGradientQwe}" CornerRadius="8"/>
+                            <Border BorderBrush="#FF65B4fC" BorderThickness="2" CornerRadius="8" Padding="0" Margin="0">
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="8" Background="{DynamicResource ScrollBarsGradientQwe}" Margin="0">
+                                    <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="8" Background="{DynamicResource ScrollBarsGradientHoriz}" Margin="0"/>
+                                </Border>
                             </Border>
                         </Grid>
                     </ControlTemplate>
