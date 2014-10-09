@@ -799,7 +799,7 @@
             <Setter Property="Background" Value="{x:Null}"/>
             <Setter Property="BorderThickness" Value="0,1,0,0"/>
             <Setter Property="BorderBrush" Value="#FF363534"/>
-            <Setter Property="Margin" Value="0,0,0,5" />
+            <Setter Property="Margin" Value="0" />
             <Setter Property="Width" Value="240" />
 
 
@@ -814,8 +814,8 @@
                             </Border>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="LimeGreen"/>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#66FFFFFF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -837,93 +837,12 @@
 
         <!--Button play-->
         <Style x:Key="ListBoxPlayGeneral" TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="20"/>
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-            <Setter Property="Margin" Value="50,0"/>
-
-            <Setter Property="Grid.Row" Value="0"/>
-            <Setter Property="Grid.Column" Value="2"/>
-            
-            <!--<Setter Property="Margin" Value="0"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid Margin="0">
-                            <Path Stretch="Fill" x:Name="PlayBackground"
-                                    Data="M10,20 L10,10 43,10 L43,20 Z"
-                                    Stroke="Black"
-                                    StrokeThickness="0"
-                                    SnapsToDevicePixels="True"
-                                    Cursor="Hand"
-                                  Width="14"
-                                  Height="14"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Center"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <MultiTrigger>                                
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="Control.IsEnabled" Value="True" />
-                                    <Condition Property="Control.IsMouseOver" Value="True"/>
-                                </MultiTrigger.Conditions>
-                                <MultiTrigger.Setters>
-                                    <Setter Property="Rectangle.Fill" TargetName="PlayBackground">
-                                        <Setter.Value>
-                                            <ImageBrush ImageSource="Resources/General_News_Close_hover.png"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </MultiTrigger.Setters>
-                            </MultiTrigger>
-
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="Control.IsEnabled" Value="True" />
-                                </MultiTrigger.Conditions>
-                                <MultiTrigger.Setters>
-                                    <Setter Property="Rectangle.Fill" TargetName="PlayBackground">
-                                        <Setter.Value>
-                                            <ImageBrush ImageSource="Resources/General_News_Close_normal.png"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </MultiTrigger.Setters>
-                            </MultiTrigger>
-
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="Control.IsEnabled" Value="True" />
-                                    <Condition Property="Button.IsPressed" Value="True" />
-                                </MultiTrigger.Conditions>
-                                <MultiTrigger.Setters>
-                                    <Setter Property="Rectangle.Fill" TargetName="PlayBackground">
-                                        <Setter.Value>
-                                            <ImageBrush ImageSource="Resources/General_News_Close_pressed.png"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </MultiTrigger.Setters>
-                            </MultiTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>-->
-        </Style>
-
-        <!--Button close-->
-        <Style x:Key="ListBoxCloseGeneral" TargetType="{x:Type Button}">
             <Setter Property="Width" Value="14"/>
             <Setter Property="Height" Value="14"/>
-            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
-
-            <Setter Property="Grid.Row" Value="0"/>
-            <Setter Property="Grid.Column" Value="1"/>
-            
-            <!--<Button Content="Button" Style="{DynamicResource ListBoxCloseGeneral}" HorizontalAlignment="Left" Margin="0,0,5,0" VerticalAlignment="Center" Grid.Column="1"/>-->
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Grid.Column" Value="2"/>
 
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -936,9 +855,7 @@
                                     SnapsToDevicePixels="True"
                                     Cursor="Hand"
                                   Width="14"
-                                  Height="14"
-                                  HorizontalAlignment="Left"
-                                  VerticalAlignment="Center"/>
+                                  Height="14"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <MultiTrigger>
@@ -987,15 +904,83 @@
             </Setter>
         </Style>
 
+        <!--Button close-->
+        <Style x:Key="ListBoxCloseGeneral" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="14"/>
+            <Setter Property="Height" Value="14"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="0">
+                            <Path Stretch="Fill" x:Name="CloseBackground"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand"
+                                  Width="14"
+                                  Height="14"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Control.IsEnabled" Value="True" />
+                                    <Condition Property="Control.IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter Property="Rectangle.Fill" TargetName="CloseBackground">
+                                        <Setter.Value>
+                                            <ImageBrush ImageSource="Resources/General_News_Close_hover.png"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Control.IsEnabled" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter Property="Rectangle.Fill" TargetName="CloseBackground">
+                                        <Setter.Value>
+                                            <ImageBrush ImageSource="Resources/General_News_Close_normal.png"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Control.IsEnabled" Value="True" />
+                                    <Condition Property="Button.IsPressed" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter Property="Rectangle.Fill" TargetName="CloseBackground">
+                                        <Setter.Value>
+                                            <ImageBrush ImageSource="Resources/General_News_Close_pressed.png"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!--TextBlock title-->
         <Style x:Key="ListBoxTitleGeneral" TargetType="{x:Type TextBlock}">
             <Setter Property="Foreground" Value="#FF006699"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5,0,5,5"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="Grid.Row" Value="1"/>
             <Setter Property="Grid.Column" Value="0"/>
             <Setter Property="Grid.ColumnSpan" Value="3"/>

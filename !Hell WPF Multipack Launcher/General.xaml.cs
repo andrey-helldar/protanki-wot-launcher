@@ -158,8 +158,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                     labelDate.SetResourceReference(Label.StyleProperty, "ListBoxLabelGeneral");
                                     try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
                                     catch (Exception) { labelDate.Content = "1970-1-1"; }
-                                    //Grid.SetRow(labelDate, 0);
-                                    //Grid.SetColumn(labelDate, 0);
                                     gridPanel.Children.Add(labelDate);
 
                                     // Кнопка "Воспроизвести"
@@ -170,8 +168,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                         buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
                                         buttonPlay.SetResourceReference(Button.StyleProperty, "ListBoxPlayGeneral");
                                         buttonPlay.Click += PlayPreview;
-                                        //Grid.SetRow(buttonPlay, 0);
-                                        //Grid.SetColumn(buttonPlay, 1);
                                         gridPanel.Children.Add(buttonPlay);
                                     }
 
@@ -181,8 +177,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                     buttonClose.Name = (youtube ? "CloseYoutube_" : "CloseWargaming_") + i.ToString();
                                     buttonClose.SetResourceReference(Button.StyleProperty, "ListBoxCloseGeneral");
                                     buttonClose.Click += CloseBlock;
-                                    //Grid.SetRow(buttonClose, 0);
-                                    //Grid.SetColumn(buttonClose, 2);
                                     gridPanel.Children.Add(buttonClose);
 
                                     // Добавляем заголовок в гиперссылку
@@ -204,7 +198,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                         this.RegisterName(run.Name, run);
                                     }
 
-                                    //Hyperlink hyperlink = new Hyperlink(new Run(youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title));
                                     Hyperlink hyperlink = new Hyperlink(run);
                                     hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
                                     hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
