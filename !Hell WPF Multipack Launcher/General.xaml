@@ -45,7 +45,7 @@
         </TextBlock>
         <ListBox x:Name="lbNews" Margin="5,5,3,0" Grid.Row="3" Background="{x:Null}"/>
         <ListBox x:Name="lbVideo" Grid.Column="1" Margin="3,5,5,0" Grid.Row="3" Background="{x:Null}"/>
-        <ProgressBar x:Name="pbStatus" Height="6" Margin="0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <ProgressBar x:Name="pbStatus" Style="{DynamicResource pbStatus}" Height="6" Margin="0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2">
             <Run x:Name="lStatus"></Run>
         </TextBlock>
