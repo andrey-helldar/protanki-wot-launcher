@@ -10,39 +10,6 @@
         <SolidColorBrush x:Key="BackNormal" Color="#FF006699" />
         <SolidColorBrush x:Key="BackHover" Color="#FF007AFF" />
         <SolidColorBrush x:Key="BackPressed" Color="#FF004C9E" />
-
-        <!--Control colors.-->
-        <Color x:Key="ControlLightColor">#60d04c42</Color>
-        <Color x:Key="ControlMediumColor">#FF9D9A97</Color>
-
-        <!--Border colors-->
-        <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
-        <Color x:Key="BorderMediumColor">#FF888888</Color>
-        <Color x:Key="BorderDarkColor">#FF444444</Color>
-
-        <Color x:Key="PressedBorderLightColor">#FF888888</Color>
-        <Color x:Key="PressedBorderDarkColor">#FF444444</Color>
-
-        <Color x:Key="DisabledBorderLightColor">#FFAAAAAA</Color>
-        <Color x:Key="DisabledBorderDarkColor">#FF888888</Color>
-
-        <!--Control-specific resources.-->
-        <LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill"
-                     StartPoint="0,0"
-                     EndPoint="1,0">
-            <LinearGradientBrush.GradientStops>
-                <GradientStopCollection>
-                    <GradientStop Color="#00d04c42"
-                    Offset="0" />
-                    <GradientStop Color="#80EC4437"
-                    Offset="0.4" />
-                    <GradientStop Color="#80EC4437"
-                    Offset="0.6" />
-                    <GradientStop Color="#00d04c42"
-                    Offset="1" />
-                </GradientStopCollection>
-            </LinearGradientBrush.GradientStops>
-        </LinearGradientBrush>
         
 
         <!-- *******************************
@@ -1397,95 +1364,6 @@
                                   BorderBrush="#FFCCCCCB"
                                   BorderThickness="0,1,0,0"/>
                     </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-
-        <!-- *******************************
-                    pbStatus
-            *********************************-->
-        <Style x:Key="pbStatus" TargetType="{x:Type ProgressBar}">            
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ProgressBar}">
-                        <Grid Height="6"
-              Background="{TemplateBinding Background}">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Determinate" />
-                                    <VisualState x:Name="Indeterminate">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Duration="00:00:00"
-                                                 Storyboard.TargetName="PART_Indicator"
-                                                 Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                                    <DiscreteObjectKeyFrame.Value>
-                                                        <SolidColorBrush>Transparent</SolidColorBrush>
-                                                    </DiscreteObjectKeyFrame.Value>
-                                                </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Border x:Name="PART_Track"
-                  BorderThickness="0">
-                                <Border.BorderBrush>
-                                    <SolidColorBrush Color="Transparent" />
-                                </Border.BorderBrush>
-                            </Border>
-                            <Border x:Name="PART_Indicator"
-                  BorderThickness="0"
-                  HorizontalAlignment="Left"
-                  Background="{TemplateBinding Foreground}"
-                  Margin="0">
-                                <Border.BorderBrush>
-                                    <LinearGradientBrush StartPoint="0,0"
-                                   EndPoint="0,1">
-                                        <GradientBrush.GradientStops>
-                                            <GradientStopCollection>
-                                                <GradientStop Color="{DynamicResource BorderLightColor}"
-                                  Offset="0.0" />
-                                                <GradientStop Color="{DynamicResource BorderMediumColor}"
-                                  Offset="1.0" />
-                                            </GradientStopCollection>
-                                        </GradientBrush.GradientStops>
-                                    </LinearGradientBrush>
-
-                                </Border.BorderBrush>
-                                <Grid ClipToBounds="True"
-                  x:Name="Animation">
-                                    <Rectangle x:Name="PART_GlowRect"
-                         Width="100"
-                         HorizontalAlignment="Left"
-                         Fill="{StaticResource ProgressBarIndicatorAnimatedFill}"
-                         Margin="-100,0,0,0" />
-                                </Grid>
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0,1"
-                           StartPoint="0,0">
-                        <GradientStop Color="#FF3a3938" Offset="0" />
-                        <GradientStop Color="#FFb0afaa" Offset="0.75" />
-                        <GradientStop Color="#FF9c9a96" Offset="1" />
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Foreground">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0,1"
-                           StartPoint="0,0">
-                        <GradientStop Color="#FFBB3C2C" Offset="0" />
-                        <GradientStop Color="#FFB22116" Offset="0.3" />
-                        <GradientStop Color="#FFA61F15" Offset="0.7" />
-                        <GradientStop Color="#FF7F3329" Offset="1" />
-                    </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
         </Style>

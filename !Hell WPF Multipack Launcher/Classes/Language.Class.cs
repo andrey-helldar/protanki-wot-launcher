@@ -22,14 +22,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 JObject obj = new JObject();
 
                 obj.Add(new JProperty("ru", "Русский"));	// Andrey Helldar
-                obj.Add(new JProperty("en", "English"));	// Dmitry Voronoff
+                obj.Add(new JProperty("en", "English"));	// D Voronoff
                 obj.Add(new JProperty("de", "Deutsch"));	// Alexander Storz
                 //obj.Add(new JProperty("ua", "Украинский"));
 
                 return obj;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 System.Threading.Tasks.Task.Factory.StartNew(() => new Debug().Save("Language Class", "Translated", ex.Message, ex.StackTrace));
                 return null;
             }
@@ -455,7 +454,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "de": return "Schließen";
                                 default: return toReturn;
                             }
-
+                            
 
                         /* -----------------------------
                          *      Optimize
@@ -474,7 +473,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         default: return toReturn;
                     }
 
-
+                    
 
 
 
@@ -592,7 +591,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "en": return "000";
                                 case "de": return "000";
                                 default: return toReturn;
-                            }
+                            }                          
 
                         case "bSend":
                             switch (lang)
