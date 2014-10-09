@@ -6,3 +6,4 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\Processes Library\bin\Debug\Proces
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\Processes Library\bin\Debug\Processes.Library.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\Processes Library\obj\Debug\Processes.Library.dll
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\Processes Library\obj\Debug\Processes.Library.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\Processes Library\obj\Debug\Processes Library.csprojResolveAssemblyReference.cache
