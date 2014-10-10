@@ -274,9 +274,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\General_Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\General_Line.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +398,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\General_News_Close_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
