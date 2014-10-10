@@ -268,34 +268,37 @@
     <None Include="Resources\Processes.Library.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\play_press.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Processes Library\Processes Library.csproj">
       <Project>{c89f98dd-cf7b-4b7b-ae2c-fbf49177b8a6}</Project>
       <Name>Processes Library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\play_hover.png" />
+    <Resource Include="Resources\General_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\play_normal.png" />
+    <Resource Include="Resources\General_Line.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\flag_en.png" />
+    <Resource Include="Resources\Global_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\flag_ru.png" />
+    <Resource Include="Resources\Page_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\flag_de.png" />
+    <Resource Include="Resources\checkbox_active_checked.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\wot_emblem.png" />
+    <Resource Include="Resources\checkbox_active_unchecked.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\wot_emblem_pressed.png" />
+    <Resource Include="Resources\checkbox_unactive_checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\checkbox_unactive_unchecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\close_hover.png" />
@@ -307,25 +310,16 @@
     <Resource Include="Resources\close_press.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\minimize_hover.png" />
+    <Resource Include="Resources\download.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\minimize_normal.png" />
+    <Resource Include="Resources\flag_de.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\minimize_press.png" />
+    <Resource Include="Resources\flag_en.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\General_Line.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Profile_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Profile_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Profile_pressed.png" />
+    <Resource Include="Resources\flag_ru.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\General_Feedback_hover.png" />
@@ -337,6 +331,24 @@
     <Resource Include="Resources\General_Feedback_press.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\General_Optimize_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Optimize_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Optimize_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Profile_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Profile_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Profile_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\General_Settings_hover.png" />
   </ItemGroup>
   <ItemGroup>
@@ -346,13 +358,25 @@
     <Resource Include="Resources\General_Settings_press.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\close.png" />
+    <Resource Include="Resources\minimize_hover.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\download.png" />
+    <Resource Include="Resources\minimize_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minimize_press.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\play_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\play_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\play_press.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\skrepka_hover.png" />
@@ -364,19 +388,10 @@
     <Resource Include="Resources\skrepka_pressed.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\checkbox_active_checked.png" />
+    <Resource Include="Resources\wot_emblem.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\checkbox_unactive_checked.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\checkbox_active_unchecked.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\checkbox_unactive_unchecked.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Page_Background.jpg" />
+    <Resource Include="Resources\wot_emblem_pressed.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\General_News_Close_hover.png" />
@@ -386,21 +401,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\General_News_Close_pressed.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Global_Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Optimize_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Optimize_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Optimize_pressed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -404,6 +404,9 @@
                         MINIMIZE
             *********************************-->
         <Style x:Key="ButtonStyleOptimize" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -454,6 +457,9 @@
                         FEEDBACK
             *********************************-->
         <Style x:Key="ButtonStyleFeedback" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="41"/>
+            <Setter Property="Height" Value="30"/>
+            
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -504,6 +510,9 @@
                         SETTINGS
             *********************************-->
         <Style x:Key="ButtonStyleSettings" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -554,6 +563,11 @@
                         ABOUT
             *********************************-->
         <Style x:Key="ButtonStyleAbout" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="0,9,8,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -572,10 +586,11 @@
                                         Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="true">
+                           <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/General_Profile_normal.png"/>
+                                        <!--<ImageBrush ImageSource="Resources/General_Profile_normal.png"/>-->
+                                        <ImageBrush ImageSource="{x:Null}"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -949,7 +964,8 @@
                                 <MultiTrigger.Setters>
                                     <Setter Property="Rectangle.Fill" TargetName="CloseBackground">
                                         <Setter.Value>
-                                            <ImageBrush ImageSource="Resources/General_News_Close_normal.png"/>
+                                            <!--<ImageBrush ImageSource="Resources/General_News_Close_normal.png"/>-->
+                                            <ImageBrush ImageSource="{x:Null}"/>
                                         </Setter.Value>
                                     </Setter>
                                 </MultiTrigger.Setters>
