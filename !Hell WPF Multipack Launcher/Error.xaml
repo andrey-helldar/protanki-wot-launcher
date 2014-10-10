@@ -6,9 +6,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="Error" Width="538" Height="600">
-    <Page.Background>
-        <ImageBrush ImageSource="Resources/Page_Background.jpg"/>
-    </Page.Background>
 
     <Grid>
         <TextBlock Margin="0" TextWrapping="Wrap" FontFamily="Verdana" HorizontalAlignment="Center" VerticalAlignment="Center" TextOptions.TextHintingMode="Animated" Foreground="#FF006699">

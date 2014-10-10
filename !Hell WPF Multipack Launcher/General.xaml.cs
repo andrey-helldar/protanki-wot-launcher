@@ -532,7 +532,7 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
             {
-                OpenPage("Feedback");
+                OpenPage("FeedbackWOT");
             }));
         }
 
