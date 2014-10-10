@@ -234,13 +234,13 @@
                                         Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="true">
+                            <!--<Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="Resources/close_normal.png"/>
                                     </Setter.Value>
                                 </Setter>
-                            </Trigger>
+                            </Trigger>-->
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
@@ -284,13 +284,13 @@
                                         Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="true">
+                            <!--<Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="Resources/minimize_normal.png"/>
                                     </Setter.Value>
                                 </Setter>
-                            </Trigger>
+                            </Trigger>-->
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
@@ -793,26 +793,32 @@
             *********************************-->
         <Style x:Key="ListBoxGeneral" TargetType="{x:Type ListBox}">
             <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0,9,-4,9"/>
         </Style>
 
         <Style x:Key="ListBoxItemGeneral" TargetType="{x:Type ListBoxItem}">
-            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="Background" Value="Green"/>
             <Setter Property="BorderThickness" Value="0,1,0,0"/>
             <Setter Property="BorderBrush" Value="#FF363534"/>
-            <Setter Property="Margin" Value="0" />
-            <Setter Property="Width" Value="240" />
+            <Setter Property="Margin" Value="0,2,0,0" />
+            <Setter Property="Padding" Value="0"/>
+            <!--<Setter Property="Width" Value="244" />-->
+            <Setter Property="Height" Value="74"/>
+            <Setter Property="Opacity" Value="0.9"/>
 
 
             <Setter Property="Template">
                 <Setter.Value>
                     <!-- Применяем стили для элементов внутри ListBox -->
                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                        <Border Background="{TemplateBinding Background}" 
+                        <!--<Border Background="{TemplateBinding Background}" 
                                           BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <Border BorderBrush="#FF5c5a58" BorderThickness="0,1,0,0" Margin="0">
+                            <Border BorderBrush="#FF5c5a58" BorderThickness="0,1,0,0" Margin="0">-->
+                        <Border Background="{TemplateBinding Background}" Margin="0,0,-10,0" BorderThickness="0" HorizontalAlignment="Stretch">
                                 <ContentPresenter/>
-                            </Border>
                         </Border>
+                        <!--</Border>
+                        </Border>-->
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="#66FFFFFF"/>
@@ -872,7 +878,7 @@
                                 </MultiTrigger.Setters>
                             </MultiTrigger>
 
-                            <MultiTrigger>
+                            <!--<MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="Control.IsEnabled" Value="True" />
                                 </MultiTrigger.Conditions>
@@ -883,7 +889,7 @@
                                         </Setter.Value>
                                     </Setter>
                                 </MultiTrigger.Setters>
-                            </MultiTrigger>
+                            </MultiTrigger>-->
 
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
@@ -941,7 +947,7 @@
                                 </MultiTrigger.Setters>
                             </MultiTrigger>
 
-                            <MultiTrigger>
+                            <!--<MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="Control.IsEnabled" Value="True" />
                                 </MultiTrigger.Conditions>
@@ -952,7 +958,7 @@
                                         </Setter.Value>
                                     </Setter>
                                 </MultiTrigger.Setters>
-                            </MultiTrigger>
+                            </MultiTrigger>-->
 
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
