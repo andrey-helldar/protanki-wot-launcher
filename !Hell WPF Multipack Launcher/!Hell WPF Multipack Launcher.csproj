@@ -277,9 +277,6 @@
     <Resource Include="Resources\General_Line.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Global_Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Page_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -296,15 +293,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\close_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\close_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\close_press.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\download.png" />
@@ -355,15 +343,6 @@
     <Resource Include="Resources\General_Settings_press.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\minimize_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\minimize_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\minimize_press.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\ok.png" />
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +380,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\General_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Global_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minimize_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minimize_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minimize_press.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -90,14 +90,14 @@
                                         Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
+                            <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="Resources/wot_emblem.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
+                            <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="Resources/wot_emblem_pressed.png"/>
@@ -216,6 +216,9 @@
                         CLOSE
             *********************************-->
         <Style x:Key="ButtonStyleClose" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="18"/>
+            <Setter Property="Height" Value="19"/>
+            
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -234,13 +237,14 @@
                                         Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <!--<Trigger Property="IsEnabled" Value="true">
+                            <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/close_normal.png"/>
+                                        <!--<ImageBrush ImageSource="Resources/close_normal.png"/>-->
+                                        <ImageBrush ImageSource="{x:Null}"/>
                                     </Setter.Value>
                                 </Setter>
-                            </Trigger>-->
+                            </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
@@ -266,6 +270,9 @@
                         MINIMIZE
             *********************************-->
         <Style x:Key="ButtonStyleMin" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Height" Value="19"/>
+            
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -284,13 +291,14 @@
                                         Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <!--<Trigger Property="IsEnabled" Value="true">
+                            <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/minimize_normal.png"/>
+                                        <!--<ImageBrush ImageSource="Resources/minimize_normal.png"/>-->
+                                        <ImageBrush ImageSource="{x:Null}"/>
                                     </Setter.Value>
                                 </Setter>
-                            </Trigger>-->
+                            </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
