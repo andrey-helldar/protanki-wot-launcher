@@ -305,9 +305,6 @@
     <Resource Include="Resources\flag_en.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\flag_ru.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\General_Feedback_hover.png" />
   </ItemGroup>
   <ItemGroup>
@@ -403,7 +400,9 @@
   <ItemGroup>
     <Resource Include="Resources\minimize_press.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\flag_ru.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

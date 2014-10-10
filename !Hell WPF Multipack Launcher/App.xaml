@@ -160,7 +160,7 @@
         http://social.msdn.microsoft.com/Forums/vstudio/en-US/ea8fa494-9535-48fb-8f7f-3c4baacbe86e/change-the-image-inside-a-button-when-the-button-is-clicked-using-xaml-trigger?forum=wpf
             *********************************-->
         <Style x:Key="ButtonStylePlay" TargetType="{x:Type Button}">
-            <Setter Property="Foreground" Value="#E52B2B2B"/>
+            <Setter Property="Foreground" Value="#4C000000"/>
             <Setter Property="FontSize" Value="20px"/>
             <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#Micra"/>
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
@@ -198,6 +198,7 @@
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Foreground" Value="White"/>
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="Resources/play_press.png"/>
