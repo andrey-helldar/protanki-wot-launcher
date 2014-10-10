@@ -162,7 +162,7 @@
         <Style x:Key="ButtonStylePlay" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="#E52B2B2B"/>
             <Setter Property="FontSize" Value="20px"/>
-            <Setter Property="FontFamily" Value="Micra"/>
+            <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#Micra"/>
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
 
             <Setter Property="Control.Template">
