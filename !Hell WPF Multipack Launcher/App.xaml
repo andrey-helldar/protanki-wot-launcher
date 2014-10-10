@@ -5,6 +5,17 @@
     <Application.Resources>
 
         <!-- *******************************
+                    FONTS
+            *********************************-->
+        <FontFamily x:Key="FontMicra">pack://application:,,,/Fonts/#Micra</FontFamily>
+        <FontFamily x:Key="FontSochi2014">pack://application:,,,/Fonts/#Sochi2014</FontFamily>
+
+        <Style x:Key="FontSochi" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="{StaticResource FontSochi2014}"/>
+        </Style>
+
+
+        <!-- *******************************
                     BUTTON backgrounds
             *********************************-->
         <Color x:Key="GlobalTextColor">#FF006699</Color>
@@ -162,7 +173,7 @@
         <Style x:Key="ButtonStylePlay" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="#4C000000"/>
             <Setter Property="FontSize" Value="20px"/>
-            <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#Micra"/>
+            <Setter Property="FontFamily" Value="{StaticResource FontMicra}"/>
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
 
             <Setter Property="Control.Template">
@@ -1795,6 +1806,46 @@
         <Style TargetType="{x:Type ScrollBar}">
             <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
         </Style>
+
+
+
+
+
+
+        <!-- *******************************
+                    SETTINGS PAGE
+            *********************************-->
+        <Style x:Key="bChangeSettingsPage" TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="0">
+                            <Rectangle x:Name="RbImage"
+                                       Width="6"
+                                       Height="9"
+                                       Stretch="Fill"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="Resources/arrow.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            
+                            <ContentPresenter Name="content" 
+                                        HorizontalAlignment="Stretch" 
+                                        VerticalAlignment="Stretch"
+                                        Margin="10,0,0,0"
+                                        Cursor="Hand"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        
 
     </Application.Resources>
 </Application>

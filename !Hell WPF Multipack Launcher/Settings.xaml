@@ -4,10 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="390.576" d:DesignWidth="548.119"
-	Title="Settings" Width="Auto" Height="Auto" Background="#FFA4A4A4">
+      d:DesignHeight="409.576" d:DesignWidth="552.119"
+	Title="Settings" Width="Auto" Height="Auto">
 
-    <Grid Background="#FFFFD1D1" Margin="10">
+    <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="156"/>
@@ -17,12 +17,12 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Frame x:Name="SettingsFrame" Margin="10,0" Background="#FFA6A6A6" Grid.Row="1" Grid.ColumnSpan="2"/>
-        <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" TextWrapping="Wrap" VerticalAlignment="Center">
+        <Frame x:Name="SettingsFrame" Margin="10,0" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" TextWrapping="Wrap" VerticalAlignment="Center" Style="{DynamicResource FontSochi}">
                     <Run FontSize="20" x:Name="tbSettingsTitle">Настройки ></Run>
                     <Run FontSize="16" x:Name="tbSettingsSubTitle">Общие</Run>
         </TextBlock>
-        <Button x:Name="bClose" Content="Закрыть" Margin="0,5,10,5" HorizontalAlignment="Right" Padding="20,5" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" Click="bClose_Click" Grid.Column="1"/>
-        <Button x:Name="bChangeSettingsPage" Content="Процессы" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Click="bChangeSettingsPage_Click" Grid.Column="1" Padding="20,5"/>
+        <Button x:Name="bClose" Content="Закрыть" Style="{DynamicResource ButtonCLOSE}" HorizontalAlignment="Right" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" Click="bClose_Click" Grid.Column="1"/>
+        <Button x:Name="bChangeSettingsPage" Style="{DynamicResource bChangeSettingsPage}" Content="Процессы" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Click="bChangeSettingsPage_Click" Grid.Column="1" Padding="20,5" Foreground="#FF006699" FontFamily="Verdana"/>
     </Grid>
 </Page>
