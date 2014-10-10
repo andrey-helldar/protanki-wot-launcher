@@ -1,0 +1,10 @@
+﻿{
+  "uid": "64935334dc97650ae4e896ceebd4cae7",
+  "version": "2.3.24.661",
+  "date": "2014-10-10 7-18-48",
+  "module": "SettingsGeneral.xaml",
+  "function": "SettingsOptimize()",
+  "param0": "cbLauncher.Items",
+  "param1": "Входная строка имела неверный формат.",
+  "param2": "   в System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)\r\n   в System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)\r\n   в System.Int16.Parse(String s, NumberStyles style, NumberFormatInfo info)\r\n   в _Hell_WPF_Multipack_Launcher.SettingsOptimize..ctor() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\SettingsGeneral.xaml.cs:строка 47"
+}

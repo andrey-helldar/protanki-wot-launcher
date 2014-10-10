@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
   <token access_token="6ad398683640110e0d42c5a95ac7eda6c92c9962" expires_at="1412214576" nickname="First_Helldar" account_id="2732865" />
   <info video="False" news="False" multipack="True" notification="0.0.0.0" language="ru">
@@ -10,12 +10,12 @@
   </multipack>
   <game>
     <version>0.0.0.0</version>
-    <path></path>
+    <path>D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\</path>
   </game>
-  <youtube/>
+  <youtube />
   <do_not_display>
     <video />
     <news />
   </do_not_display>
-  <processes/>
+  <processes />
 </pro>
