@@ -139,7 +139,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     gridPanel.Margin = new Thickness(0);
                                     gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
 
-                                    RowDefinition gridRow1 = new RowDefinition();
+                                    /*RowDefinition gridRow1 = new RowDefinition();
                                     gridRow1.Height = new GridLength(30);
                                     gridPanel.RowDefinitions.Add(gridRow1);
                                     gridPanel.RowDefinitions.Add(new RowDefinition());
@@ -150,11 +150,10 @@ namespace _Hell_WPF_Multipack_Launcher
                                     gridColumn2.Width = GridLength.Auto;
                                     gridPanel.ColumnDefinitions.Add(gridColumn1);
                                     gridPanel.ColumnDefinitions.Add(gridColumn2);
-                                    gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
+                                    gridPanel.ColumnDefinitions.Add(new ColumnDefinition());*/
 
                                     // Добавляем дату
                                     Label labelDate = new Label();
-                                    labelDate.Height = double.NaN;
                                     labelDate.SetResourceReference(Label.StyleProperty, "ListBoxLabelGeneral");
                                     try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
                                     catch (Exception) { labelDate.Content = "1970-1-1"; }

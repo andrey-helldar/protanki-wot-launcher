@@ -48,7 +48,7 @@
             <Run Text="D Voronov, A Storz" FontWeight="Bold" Cursor="Hand"/>
         </TextBlock>-->
         <ListBox x:Name="lbNews" Style="{DynamicResource ListBoxGeneral}" Margin="0,15,10,0" Grid.Row="3" Background="{x:Null}">
-
+            <!--<ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
@@ -61,10 +61,21 @@
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
-            <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
-            <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
+            <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>-->
         </ListBox>
         <ListBox x:Name="lbVideo" Style="{DynamicResource ListBoxGeneral}" Grid.Column="1" Margin="0,15,3,0" Padding="6,9,-4,9" Grid.Row="3" Background="{x:Null}">
+            <!--<ListBoxItem Style="{DynamicResource ListBoxItemGeneral}">
+                <Grid>
+                    <Label Content="09.10" Style="{DynamicResource ListBoxLabelGeneral}"/>
+                    <Button Content="Button" Style="{DynamicResource ListBoxCloseGeneral}" />
+                    <Button Content="Button" Style="{DynamicResource ListBoxPlayGeneral}"/>
+                    <TextBlock Style="{DynamicResource ListBoxTitleGeneral}">
+                        <Hyperlink Style="{DynamicResource ListBoxTitleHyperlinkGeneral}">
+                            <Run>This is a text of news or video, and view on double strings</Run>
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </ListBoxItem>
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
@@ -77,8 +88,7 @@
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
-            <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
-            <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>
+            <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>-->
         </ListBox>
         <ProgressBar x:Name="pbStatus" Style="{DynamicResource pbStatus}" Height="6" Margin="0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,8,0,8" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Height="16" Width="0">
