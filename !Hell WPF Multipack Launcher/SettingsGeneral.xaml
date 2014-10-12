@@ -29,7 +29,7 @@
                         <CheckBox x:Name="cbVideo" Foreground="#FF006699" Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="2" Click="cbVideo_Click" FontWeight="Normal"/>
                         <CheckBox x:Name="cbAero" Foreground="#FF006699" Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="4" Click="cbAero_Click" FontWeight="Normal"/>
                         <CheckBox x:Name="cbWeak" Foreground="#FF006699" Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="3" Click="cbWeak_Click" FontWeight="Normal"/>
-                        <ComboBox x:Name="cbPriority" Foreground="#FF006699" VerticalAlignment="Top" Margin="10,10,10,5" SelectedIndex="0" Grid.Row="5" FontWeight="Normal" Height="22">
+                        <ComboBox x:Name="cbPriority" VerticalAlignment="Top" Margin="10,10,10,5" SelectedIndex="0" Grid.Row="5" FontWeight="Normal" Height="22">
                             <ComboBoxItem Content="---"/>
                         </ComboBox>
                         <Border BorderBrush="#FF8E8E8C" BorderThickness="1,0,0,1" HorizontalAlignment="Left" Height="12" Margin="16,2,0,0" VerticalAlignment="Top" Width="11" Grid.Row="1"/>
