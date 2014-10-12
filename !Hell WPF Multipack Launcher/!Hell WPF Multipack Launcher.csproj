@@ -457,6 +457,12 @@
   <ItemGroup>
     <Resource Include="Resources\Ookii.Dialogs.Wpf.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ava.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\line.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

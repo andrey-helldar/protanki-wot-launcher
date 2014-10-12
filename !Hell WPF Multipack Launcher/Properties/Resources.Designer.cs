@@ -154,6 +154,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap ava {
+            get {
+                object obj = ResourceManager.GetObject("ava", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap checkbox_active_checked {
             get {
                 object obj = ResourceManager.GetObject("checkbox_active_checked", resourceCulture);
@@ -631,6 +641,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         public static string JsonUpdates {
             get {
                 return ResourceManager.GetString("JsonUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap line {
+            get {
+                object obj = ResourceManager.GetObject("line", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
