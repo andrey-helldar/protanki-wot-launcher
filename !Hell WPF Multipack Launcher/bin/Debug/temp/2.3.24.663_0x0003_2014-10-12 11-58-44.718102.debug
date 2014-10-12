@@ -1,0 +1,9 @@
+﻿{
+  "uid": "f39d3705d0925c26120f42599dc7d336",
+  "version": "2.3.24.663",
+  "date": "2014-10-12 11-58-44",
+  "module": "SettingsProcesses.xaml",
+  "function": "ProcessChanged()",
+  "param0": "Знак \"2\", шестнадцатеричное значение 0x32, не может стоять в начале имени.",
+  "param1": "   в System.Xml.XmlConvert.VerifyNCName(String name, ExceptionType exceptionType)\r\n   в System.Xml.Linq.XNamespace.GetName(String localName, Int32 index, Int32 count)\r\n   в System.Xml.Linq.XName.Get(String expandedName)\r\n   в _Hell_WPF_Multipack_Launcher.SettingsProcesses.ProcessChanged(Object sender, RoutedEventArgs e) в f:\\ВАЖНЫЕ ДАННЫЕ\\!!Важные документы\\!Сохранения программ\\Visual Studio C#\\!Hell PRO Tanki Launcher\\!Hell WPF Multipack Launcher\\SettingsProcesses.xaml.cs:строка 184"
+}

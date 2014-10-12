@@ -1,9 +1,0 @@
-﻿{
-  "uid": "f39d3705d0925c26120f42599dc7d336",
-  "version": "2.3.24.662",
-  "date": "2014-10-12 2-9-28",
-  "module": "Wargaming.News.Class",
-  "function": "Count()",
-  "param0": "Ссылка на объект не указывает на экземпляр объекта.",
-  "param1": "   в _Hell_WPF_Multipack_Launcher.Classes.Wargaming.Count() в f:\\ВАЖНЫЕ ДАННЫЕ\\!!Важные документы\\!Сохранения программ\\Visual Studio C#\\!Hell PRO Tanki Launcher\\!Hell WPF Multipack Launcher\\Classes\\Wargaming.Class.cs:строка 94"
-}

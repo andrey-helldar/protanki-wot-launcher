@@ -67,60 +67,55 @@ namespace _Hell_WPF_Multipack_Launcher
                                     {
                                         DoubleProcess.Add(myProcesses[i].ProcessName);
 
+                                        
                                         //  Заполняем данные
                                         Grid gridPanel = new Grid();
-                                        gridPanel.Width = double.NaN;
-                                        gridPanel.Margin = new Thickness(0);
-                                        gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                                        gridPanel.Width = 459;
 
-                                        ColumnDefinition gridColumn1 = new ColumnDefinition();
-                                        gridColumn1.Width = new GridLength(30, GridUnitType.Pixel);
-                                        gridPanel.ColumnDefinitions.Add(gridColumn1);
+                                        ColumnDefinition cd1 = new ColumnDefinition();
+                                        ColumnDefinition cd2 = new ColumnDefinition();
+                                        ColumnDefinition cd3 = new ColumnDefinition();
+                                        cd1.Width = new GridLength(10, GridUnitType.Auto);
+                                        cd2.Width = new GridLength(140, GridUnitType.Pixel);
+                                        cd3.Width = new GridLength(1, GridUnitType.Star);
+                                        gridPanel.ColumnDefinitions.Add(cd1);
+                                        gridPanel.ColumnDefinitions.Add(cd2);
+                                        gridPanel.ColumnDefinitions.Add(cd3);
 
-                                        ColumnDefinition gridColumn2 = new ColumnDefinition();
-                                        gridColumn2.Width = new GridLength(150, GridUnitType.Pixel);
-                                        gridPanel.ColumnDefinitions.Add(gridColumn2);
-                                        gridPanel.ColumnDefinitions.Add(new ColumnDefinition());
-
-                                        CheckBox checkBox = new CheckBox();
-                                        checkBox.Margin = new Thickness(5, 0, 0, 0);
-                                        checkBox.Name = "Cb" + myProcesses[i].ProcessName;
-                                        checkBox.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-
+                                        CheckBox cb = new CheckBox();
+                                        cb.Margin = new Thickness(5,0,5,0);
+                                        cb.Name = "Cb" + myProcesses[i].ProcessName;
+                                        this.RegisterName(cb.Name, cb);
+                                        cb.Click += ProcessChanged;
                                         if (ProccessLibrary.Search(myProcesses[i].ProcessName))
                                         {
-                                            checkBox.IsChecked = true;
-                                            checkBox.IsEnabled = false;
+                                            cb.IsChecked = true;
+                                            cb.IsEnabled = false;
                                         }
                                         else
                                         {
-                                            checkBox.IsChecked = CheckUserProcess(myProcesses[i].ProcessName);
-                                            checkBox.IsEnabled = true;
+                                            cb.IsChecked = CheckUserProcess(myProcesses[i].ProcessName);
+                                            cb.IsEnabled = true;
                                         }
-                                        checkBox.Click += ProcessChanged;
-                                        Grid.SetRow(checkBox, 0);
-                                        Grid.SetColumn(checkBox, 0);
-                                        gridPanel.Children.Add(checkBox);
+                                        Grid.SetColumn(cb, 0);
+                                        gridPanel.Children.Add(cb);
 
+                                        TextBlock tb1 = new TextBlock();
+                                        tb1.SetResourceReference(TextBlock.StyleProperty, "lbiProcessB");
+                                        tb1.Text = myProcesses[i].ProcessName;
+                                        Grid.SetColumn(tb1, 1);
+                                        gridPanel.Children.Add(tb1);
 
-                                        Label label = new Label();
-                                        label.Content = myProcesses[i].ProcessName;
-                                        label.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                                        Grid.SetRow(label, 0);
-                                        Grid.SetColumn(label, 1);
-                                        gridPanel.Children.Add(label);
+                                        TextBlock tb2 = new TextBlock();
+                                        tb2.Text = myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim();
+                                        Grid.SetColumn(tb2, 2);
+                                        gridPanel.Children.Add(tb2);
 
-                                        Label label12 = new Label();
-                                        label12.Content = myProcesses[i].MainModule.FileVersionInfo.FileDescription.Trim();
-                                        label12.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                                        Grid.SetRow(label12, 0);
-                                        Grid.SetColumn(label12, 2);
-                                        gridPanel.Children.Add(label12);
 
                                         ListBoxItem lbi = new ListBoxItem();
-                                        lbi.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                                        lbi.SetResourceReference(TextBlock.StyleProperty, Style(myProcesses[i].ProcessName));
+                                        lbi.SetResourceReference(ListBoxItem.StyleProperty, i % 2 == 0 ? "lbiProcess2" : "lbiProcess");
                                         lbi.Content = gridPanel;
+
 
                                         lbProcesses.Items.Add(lbi);
                                     }
@@ -159,7 +154,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="process">Имя процесса</param>
         /// <returns>Применяемый визуальный стиль</returns>
-        private string Style(string process)
+        /*private string Style(string process)
         {
             try
             {
@@ -170,7 +165,7 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsProcesses.xaml", "Style()", "Process: " + process, ex.Message, ex.StackTrace)); }
 
             return "ProcessesUnChecked";
-        }
+        }*/
 
         private void ProcessChanged(object sender, RoutedEventArgs e)
         {
