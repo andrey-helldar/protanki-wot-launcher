@@ -6,8 +6,8 @@
     xmlns:c="clr-namespace:ScottLogic.Controls.PieChart"
     xmlns:b="clr-namespace:ScottLogic.Shapes"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-	Title="UserProfile" Width="538" Height="600" Loaded="Page_Loaded">
+      d:DesignHeight="480" d:DesignWidth="480"
+	Title="UserProfile" Width="Auto" Height="Auto" Loaded="Page_Loaded">
     <Page.Resources>
         <x:ArrayExtension Type="{x:Type Brush}" x:Key="brushes">
             <SolidColorBrush Color="#FF159927"/>
@@ -18,43 +18,91 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="390"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
 
 
 
-        <Button Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Row="2" VerticalAlignment="Bottom" Click="Button_Click" Style="{DynamicResource ButtonCLOSE}" Height="23" Width="105" Grid.Column="1"/>
-        <TabControl Margin="10,0,10,10" Grid.Row="1" Grid.ColumnSpan="2">
+        <Button Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="Button_Click" Style="{DynamicResource ButtonCLOSE}" Grid.Row="1"/>
+        <TabControl Margin="10,0,10,10">
             <TabItem Header="Персональная информация">
-                <Grid Background="#FFE5E5E5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image HorizontalAlignment="Left" Height="131" Margin="40,0,0,0" VerticalAlignment="Top" Width="132" Source="Resources/ava.jpg" Grid.Column="0"/>
+
+                    <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Bottom" Grid.Row="0">
+                        <Grid VerticalAlignment="Bottom">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="0" TextWrapping="Wrap" Width="86" VerticalAlignment="Bottom" Foreground="#FF3a6696" FontWeight="Bold" FontFamily="Arial" FontSize="18">
+                    <Run x:Name="PlayerName">Guest</Run>
+                    <Run x:Name="PlayerClan">[---]</Run>
+                            </TextBlock>
+                            <StackPanel Grid.Row="2">
+                                <Grid Margin="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="{x:Null}"/>
+                                    <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,0,0,0" TextWrapping="Wrap" Width="86" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
+                            <Run x:Name="PlayerClan2">---</Run>
+                            <LineBreak/>
+                            <Run x:Name="PlayerZvanie">---</Run>
+                                    </TextBlock>
+                                </Grid>
+                            </StackPanel>
+
+                            <Image Grid.Row="1" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="Resources/line.png"/>
+                            <Image Grid.Row="3" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="Resources/line.png"/>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Grid.ColumnSpan="2" Margin="0" Grid.Row="1">
+                        <Grid Height="263">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="150*"/>
+                                <RowDefinition Height="113*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Margin="0">
+                                <Grid Height="143">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="26*"/>
+                                        <ColumnDefinition Width="37*"/>
+                                        <ColumnDefinition Width="27*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" TextAlignment="Center">
+                                        <Image Source="Resources/stat_perc_vins.png" Width="33" Height="29"/>
+                                        <LineBreak/><LineBreak/>
+                                        <Run x:Name="PercWins">Процент побед</Run>
+                                        <LineBreak/><LineBreak/>
+                                        <Run x:Name="PercWinsPerc">0%</Run>
+                                    </TextBlock>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
                     <!--<TextBlock HorizontalAlignment="Left" Margin="10,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center">
                         <Run Text="Всего боев:"/><LineBreak/><Run x:Name="Batles" Text="0"/><LineBreak/><LineBreak/>
                         <Run Text="Всего побед:"/><LineBreak/><Run x:Name="Wins" Text="0"/><LineBreak/><LineBreak/>
                         <Run Text="Всего Поражений:"/><LineBreak/><Run x:Name="Loss" Text="0"/><LineBreak/><LineBreak/>
                         <Run Text="Средний опыт за бой:"/><LineBreak/><Run x:Name="AvgXP" Text="0"/>
                     </TextBlock>//-->
-
-                    <Button x:Name="rating" Content="Личный рейтинг 0" Margin="337,61,10,0" VerticalAlignment="Top" Height="41" FontWeight="Bold" />
-                    <Button x:Name="credit" Content="Кредитов: 0" Margin="224,7,108,0" VerticalAlignment="Top" Height="22"/>
-                    <Button x:Name="opit" Content="Свободного опыта: 0" HorizontalAlignment="Right" Margin="0,34,76,0" VerticalAlignment="Top" Width="208" Height="22"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="72">
-                        <Run Text="Золота:"/>
-                        <Run x:Name="PlayerGold" FontWeight="Bold" Text="0"/>
-                    </TextBlock>
-
-                    <c:PieChartLayout Grid.Row="0" Grid.Column="0"
-                              x:Name="piePlotter" PlottedProperty="Statistic" Margin="0,0,0,10" VerticalAlignment="Bottom">
-                        <c:PieChartLayout.ColorSelector>
-                            <c:IndexedColourSelector Brushes="{StaticResource brushes}"/>
-                        </c:PieChartLayout.ColorSelector>
-                    </c:PieChartLayout>
                 </Grid>
             </TabItem>
             <TabItem Header="Клан">
@@ -88,38 +136,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Image HorizontalAlignment="Left" Height="131" Margin="40,0,0,0" VerticalAlignment="Top" Width="132" Source="Resources/ava.jpg"/>
-
-        <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Bottom">
-            <Grid VerticalAlignment="Bottom">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="0" TextWrapping="Wrap" Width="86" VerticalAlignment="Bottom" Foreground="#FF3a6696" FontWeight="Bold" FontFamily="Arial" FontSize="18">
-                    <Run x:Name="PlayerName">Привет!</Run>
-            <Run x:Name="PlayerClan"></Run>
-                </TextBlock>
-                <StackPanel Grid.Row="2">
-                    <Grid Margin="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="{x:Null}"/>
-                        <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,0,0,0" TextWrapping="Wrap" Width="86" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
-                            <Run x:Name="PlayerClan2">---</Run>
-                            <LineBreak/>
-                            <Run x:Name="PlayerZvanie">---</Run>
-                        </TextBlock>
-                    </Grid>
-                </StackPanel>
-                
-                <Image Grid.Row="1" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="Resources/line.png"/>
-                <Image Grid.Row="3" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="Resources/line.png"/>
-            </Grid>
-        </StackPanel>
     </Grid>
 </Page>

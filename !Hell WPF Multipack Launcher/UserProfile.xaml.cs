@@ -28,6 +28,9 @@ namespace _Hell_WPF_Multipack_Launcher
     public partial class UserProfile : Page
     {
         Classes.Debug Debug = new Classes.Debug();
+        Classes.Language Lang = new Classes.Language();
+
+        string lang = Properties.Resources.Default_Lang;
         private ObservableCollection<AssetClass> classes;
 
         /// <summary>
@@ -37,15 +40,16 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="e"></param>
         private void OnColumnHeaderClick(object sender, RoutedEventArgs e)
         {
-            try { piePlotter.PlottedProperty = ((GridViewColumnHeader)e.OriginalSource).Column.Header.ToString(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "OnColumnHeaderClick()", ex.Message, ex.StackTrace)); }
+            /*try { piePlotter.PlottedProperty = ((GridViewColumnHeader)e.OriginalSource).Column.Header.ToString(); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "OnColumnHeaderClick()", ex.Message, ex.StackTrace)); }*/
         }
 
         public UserProfile()
         {
             InitializeComponent();
 
-            Task.Factory.StartNew(() => { AccountInfo(); });
+            lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim();
+            Task.Factory.StartNew(() => { AccountInfo(); }).Wait();
         }
         
 
@@ -139,11 +143,18 @@ namespace _Hell_WPF_Multipack_Launcher
                                        DateTime dtNow = new DateTime();
                                        TimeSpan dtDays = dtNow - dtDateTime;*/
 
-                                       PlayerClan.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
+                                       PlayerClan.Text = "[" + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation") + "]";
                                        PlayerClanDays.Text = ts.Days.ToString();
-                                   }
-                                   catch (Exception) { tbUpClan.Text = "Произошла ошибка или ты не состоишь в клане " + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name"); }
 
+                                       PlayerClan2.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name") +
+                                           " [" + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation") + "]";
+
+                                       PlayerZvanie.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
+                                   }
+                                   catch (Exception) { PlayerClan.Text = "[---]"; PlayerClan2.Text = "---"; /*tbUpClan.Text = "Произошла ошибка или ты не состоишь в клане " + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name"); */}
+
+                                   PercWins.Text = Lang.Set("PageUser", "tbPercentWins", lang);
+                                   PercWinsPerc.Text = String.Format("{0}%", );
 
                                    PlayerGold.Text = SelectToken(obj, "private.gold");
                                    rating.Content = "Личный рейтинг: " + SelectToken(obj, "global_rating");
@@ -198,9 +209,9 @@ namespace _Hell_WPF_Multipack_Launcher
                                     */
                                    try
                                    {
-                                       ClanFullname.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
-                                       ClanAbbr.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
-                                       ClanCount.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members_count");
+                                       //ClanFullname.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
+                                       //ClanAbbr.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
+                                       //ClanCount.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members_count");
                                    }
                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan", ex.Message, ex.StackTrace)); }
 
