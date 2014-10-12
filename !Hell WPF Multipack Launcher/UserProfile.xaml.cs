@@ -154,7 +154,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                    catch (Exception) { PlayerClan.Text = "[---]"; PlayerClan2.Text = "---"; /*tbUpClan.Text = "Произошла ошибка или ты не состоишь в клане " + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name"); */}
 
                                    PercWins.Text = Lang.Set("PageUser", "tbPercentWins", lang);
-                                   PercWinsPerc.Text = String.Format("{0}%", );
+                                   PercWinsPerc.Text = String.Format("{0}%", (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.wins")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString());
 
                                    PlayerGold.Text = SelectToken(obj, "private.gold");
                                    rating.Content = "Личный рейтинг: " + SelectToken(obj, "global_rating");

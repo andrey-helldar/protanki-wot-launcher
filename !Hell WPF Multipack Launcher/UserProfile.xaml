@@ -76,22 +76,30 @@
                     <StackPanel Grid.ColumnSpan="2" Margin="0" Grid.Row="1">
                         <Grid Height="263">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="150*"/>
-                                <RowDefinition Height="113*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <StackPanel Margin="0">
-                                <Grid Height="143">
+                                <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="26*"/>
                                         <ColumnDefinition Width="37*"/>
                                         <ColumnDefinition Width="27*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" TextAlignment="Center">
+                                    <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
                                         <Image Source="Resources/stat_perc_vins.png" Width="33" Height="29"/>
-                                        <LineBreak/><LineBreak/>
+                                        <LineBreak/>
                                         <Run x:Name="PercWins">Процент побед</Run>
                                         <LineBreak/><LineBreak/>
                                         <Run x:Name="PercWinsPerc">0%</Run>
+                                    </TextBlock>
+
+                                    <TextBlock HorizontalAlignment="Center" Grid.Column="1" Margin="0" TextWrapping="Wrap"  VerticalAlignment="Center" TextAlignment="Center">
+                                        <Image Source="Resources/stat_rating.png" Width="166" Height="165"/>
+                                        <LineBreak/>
+                                        <Run x:Name="MyRating">Процент побед</Run>
+                                        <LineBreak/><LineBreak/>
+                                        <Run x:Name="MyRatingPerc">0%</Run>
                                     </TextBlock>
                                 </Grid>
                             </StackPanel>
