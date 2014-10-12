@@ -10,7 +10,7 @@
     <Grid>
         <GroupBox x:Name="gbProcesses" Style="{DynamicResource FeedbackgbFeedback}" Header="Исполняемые процессы" Margin="0,0,0,1">
             <ListBox x:Name="lbProcesses" Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <ListBoxItem Style="{DynamicResource lbiProcess}">
+                <!--<ListBoxItem Style="{DynamicResource lbiProcess}">
                     <Grid Width="459">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -33,7 +33,7 @@
                         <TextBlock Style="{DynamicResource lbiProcessB}" Text="Skype" Grid.Column="1"/>
                         <TextBlock Text="This is a Skype programm" TextWrapping="Wrap" Grid.Column="2"/>
                     </Grid>
-                </ListBoxItem>                
+                </ListBoxItem>-->              
             </ListBox>
         </GroupBox>
     </Grid>

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="394" d:DesignWidth="449"
-	Title="SettingsOptimize" Width="Auto" Height="Auto">
+	Title="SettingsOptimize" Width="Auto" Height="Auto" Loaded="PageSettingsGeneral_Loaded">
 
     <Grid>
         <ScrollViewer Margin="10">

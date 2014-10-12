@@ -40,6 +40,9 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
+                    try { MainWindow.LoadingPanelShow(1); }
+                    catch (Exception) { }
+
                     SettingsFrame.NavigationService.Navigate(new Uri("SettingsProcesses.xaml", UriKind.Relative));
                     bChangeSettingsPage.Content = "Общие";
                     tbSettingsSubTitle.Text = "Процессы";

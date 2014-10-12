@@ -291,5 +291,11 @@ namespace _Hell_WPF_Multipack_Launcher
             try { MainWindow.LoadingPanelShow(); }
             catch (Exception) { }
         }
+
+        private void PageSettingsGeneral_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadingPanelShow(); }
+            catch (Exception) { }
+        }
     }
 }
