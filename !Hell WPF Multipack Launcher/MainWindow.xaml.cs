@@ -58,18 +58,18 @@ namespace _Hell_WPF_Multipack_Launcher
         /*********************
          * Functions
          * *******************/
+        private static int loadingPanel { get { return loadingpanel; } }
+        private static int loadingpanel = 0;
 
-        public static bool Navigator(string page = "General", string from = null)
+        public static bool LoadingPanelShow(int id = 2)
         {
-            try
-            {
-                StackPanel sp = new StackPanel();
-                sp.SetResourceReference(TextBlock.StyleProperty, "LoadingPage");
-                Grid.SetRow(sp, 0);
-                Grid.SetColumn(sp, 0);
-                Grid.SetRowSpan(sp, 5);
-            }
-            catch (Exception) { }
+            loadingpanel = id;
+            return true;
+        }
+
+        public static bool Navigator(string page = "General")
+        {
+            loadingpanel = 1;
 
             try { MainWindow.mainFrame.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
             catch (Exception) { }
@@ -115,92 +115,142 @@ namespace _Hell_WPF_Multipack_Launcher
             }
         }
 
-        private void Loading()
+        private void LoadingPanel()
         {
-            StackPanel sp = new StackPanel();
-            sp.SetResourceReference(TextBlock.StyleProperty, "LoadingPage");
-            Grid.SetRow(sp, 0);
-            Grid.SetColumn(sp, 0);
-            Grid.SetRowSpan(sp, 5);
-            GridGlobal.Children.Add(sp);
+            while (true)
+            {
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    /*
+                     *  loadingPanel
+                     *      0   -   обычное состояние
+                     *      1   -   показывать
+                     *      2   -   скрыть
+                     */
+                    try
+                    {
+                        switch (loadingPanel)
+                        {
+                            case 1:
+                                Button sp1 = FindLoadingPanel(GridGlobal);
+                                if (sp1 == null)
+                                {
+                                    Button sp = new Button();
+                                    sp.SetResourceReference(Button.StyleProperty, "LoadingPanel");
+                                    sp.Name = "LoadingPanel";
+                                    GridGlobal.Children.Add(sp);
+                                    this.RegisterName(sp.Name, sp); // Register name of panel
+                                }
+                                else
+                                    sp1.Visibility = System.Windows.Visibility.Visible;
+
+                                loadingpanel = 0;
+                                break;
+
+                            case 2:
+                                Button sp2 = FindLoadingPanel(GridGlobal);
+                                if (sp2 != null)
+                                    sp2.Visibility = System.Windows.Visibility.Hidden;
+                                loadingpanel = 0;
+                                break;
+
+                            default: break;
+                        }
+                    }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "LoadingPanel()", ex.Message, ex.StackTrace)); }
+                }));
+
+                Thread.Sleep(100);
+            }
         }
 
         public MainWindow()
         {
-            try
+            InitializeComponent();
+
+            loadingpanel = 1;
+            Task.Factory.StartNew(() => LoadingPanel());    // LoadingPanel
+
+            Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
+        }
+
+        private void Loading()
+        {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
-                InitializeComponent();
-                MouseDown += delegate { DragMove(); };
-
-                // Делаем общей иконку в трее
-                notifier = this.notifyIcon;
-                this.Closing += delegate { notifier = null; };
-
-                // Делаем общим фрейм
-                mainFrame = this.MainFrame;
-                this.Closing += delegate { mainFrame = null; };
-
-                // Готовим превью
-                framePreview = this.FramePreview;
-                tbPreview = this.TbPreview;
-                this.Closing += delegate { framePreview = null; tbPreview = null; };
-
-                // Подгружаем перевод
-
                 try
                 {
-                    Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
-                    if (iconStream != null) notifyIcon.Icon = new System.Drawing.Icon(iconStream);
-                    notifyIcon.Visible = true;
-                    notifyIcon.Text = Variables.ProductName;
-                    notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
-                }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
+                    MouseDown += delegate { DragMove(); };
 
-                try
-                {
-                    Stream cursorStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/cursor_chrome.cur")).Stream;
-                    MainProject.Cursor = new Cursor(cursorStream);
-                }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(5)", "cursorStream", ex.Message, ex.StackTrace)); }
+                    // Делаем общей иконку в трее
+                    notifier = this.notifyIcon;
+                    this.Closing += delegate { notifier = null; };
 
+                    // Делаем общим фрейм
+                    mainFrame = this.MainFrame;
+                    this.Closing += delegate { mainFrame = null; };
 
-                try
-                {
-                    Task.Factory.StartNew(() =>
+                    // Готовим превью
+                    framePreview = this.FramePreview;
+                    tbPreview = this.TbPreview;
+                    this.Closing += delegate { framePreview = null; tbPreview = null; };
+
+                    // Подгружаем перевод
+
+                    try
                     {
-                        Variables.Start();
-                        MultipackDate = Variables.MultipackDate;
-                        ProductName = Variables.ProductName;
+                        Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
+                        if (iconStream != null) notifyIcon.Icon = new System.Drawing.Icon(iconStream);
+                        notifyIcon.Visible = true;
+                        notifyIcon.Text = Variables.ProductName;
+                        notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
+                    }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
 
-                        // Загружаем настройки из XML-файла
-                        if (File.Exists(Variables.SettingsPath))
-                            xmlDocument = XDocument.Load(Variables.SettingsPath);
-                        this.Closing += delegate { xmlDocument = null; };
-                    }).Wait();
+                    try
+                    {
+                        Stream cursorStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/cursor_chrome.cur")).Stream;
+                        MainProject.Cursor = new Cursor(cursorStream);
+                    }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(5)", "cursorStream", ex.Message, ex.StackTrace)); }
 
-                    Task.Factory.StartNew(() => SetInterface()); // Загрузка языка
+
+                    try
+                    {
+                        Task.Factory.StartNew(() =>
+                        {
+                            Variables.Start();
+                            MultipackDate = Variables.MultipackDate;
+                            ProductName = Variables.ProductName;
+
+                            // Загружаем настройки из XML-файла
+                            if (File.Exists(Variables.SettingsPath))
+                                xmlDocument = XDocument.Load(Variables.SettingsPath);
+                            this.Closing += delegate { xmlDocument = null; };
+                        }).Wait();
+
+                        Task.Factory.StartNew(() => SetInterface()); // Загрузка языка
+                    }
+                    catch (Exception ex)
+                    {
+                        Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)).Wait();
+                        Task.Factory.StartNew(() => Debug.Restart());
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)).Wait();
-                    Task.Factory.StartNew(() => Debug.Restart());
-                }
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
+            }));
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            try { Task.Factory.StartNew(() => Debug.ClearLogs()); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Debug.ClearLogs()", ex.Message, ex.StackTrace)); }
+
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(4)", ex.InnerException.ToString(), ex.Message, ex.StackTrace)); }
-            });
-
-
-            try { Task.Factory.StartNew(() => Debug.ClearLogs()); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Debug.ClearLogs()", ex.Message, ex.StackTrace)); }
+            }).Wait();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -325,12 +375,30 @@ namespace _Hell_WPF_Multipack_Launcher
                 try
                 {
                     bPlayTb.Text = Lang.Set("MainProject", "bPlay", Variables.Lang.Trim());
-                }catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
                     MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
                 }
             }));
+        }
+
+        private Button FindLoadingPanel(Grid sender)
+        {
+            try
+            {
+                object wantedNode = sender.FindName("LoadingPanel");
+                if (wantedNode is Button)
+                    return wantedNode as Button;
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debug.Save("MainWindow.xaml", "FindLoadingPanel()", "Find LoadingPanel", ex.Message, ex.StackTrace));
+                return null;
+            }
         }
     }
 }

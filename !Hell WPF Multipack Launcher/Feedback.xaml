@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="580.068" d:DesignWidth="561.322"
-	Title="Feedback" Width="Auto" Height="Auto">
+	Title="Feedback" Width="Auto" Height="Auto" Loaded="PageFeedback_Loaded">
     <Page.Background>
         <ImageBrush/>
     </Page.Background>

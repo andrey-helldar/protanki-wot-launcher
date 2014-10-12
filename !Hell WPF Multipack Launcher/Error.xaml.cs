@@ -25,9 +25,23 @@ namespace _Hell_WPF_Multipack_Launcher
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
+        {       
+            MainWindow.LoadingPanelShow(1);
+
+            System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    Dispatcher.BeginInvoke(new System.Threading.ThreadStart(delegate { MainWindow.Navigator(); }));
+                }
+                catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => new Classes.Debug().Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+            });
+        }
+
+        private void PageError_Loaded(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.Navigator("General", "Error.xaml"); }
-            catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => new Classes.Debug().Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+            try { MainWindow.LoadingPanelShow(); }
+            catch (Exception) { }
         }
     }
 }

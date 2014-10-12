@@ -4,47 +4,37 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="482" d:DesignWidth="463"
-	Title="SettingsProcesses" Width="Auto" Height="Auto" Background="#FFAC9595" Loaded="Page_Loaded">
+      d:DesignHeight="530" d:DesignWidth="510"
+	Title="SettingsProcesses" Width="Auto" Height="Auto" Loaded="Page_Loaded">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="119*"/>
-            <ColumnDefinition Width="344*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <ListBox x:Name="lbProcesses" Margin="10,10,10,12" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="1" Grid.ColumnSpan="2">
-        </ListBox>
-        <StackPanel Margin="5,0" Background="#FFBF5757" Grid.ColumnSpan="2">
-            <Grid Background="#FF339E42">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="31*"/>
-                    <ColumnDefinition Width="156*"/>
-                    <ColumnDefinition Width="93*"/>
-                </Grid.ColumnDefinitions>
-                <Label Content="#" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
-                <Label x:Name="lProcesses" Content="Процессы" Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
-                <Label x:Name="lDescription" Content="Описание" Grid.Column="2" HorizontalAlignment="Center" Margin="0,5" VerticalAlignment="Center"/>
-            </Grid>
-        </StackPanel>
-        <Canvas Height="40" Margin="10,10,10,0" Grid.Row="2" VerticalAlignment="Top" Background="#FFE398FF"/>
-        <Canvas Height="40" Margin="10,55,10,0" Grid.Row="2" VerticalAlignment="Top" Background="Honeydew"/>
-        <Canvas Height="40" Margin="10,100,10,0" Grid.Row="2" VerticalAlignment="Top" Background="#FFFFEFEF"/>
-        <TextBlock Margin="0,10,10,0" Grid.Row="2" VerticalAlignment="Top" TextTrimming="WordEllipsis" TextWrapping="Wrap" Grid.Column="1">
-            <Run x:Name="statusGlobal">Глобальный список процессов</Run><LineBreak/>
-            <Run x:Name="statusGlobalDesc">Отключение процессов из данного списка невозможно</Run>
-        </TextBlock>
-        <TextBlock Margin="0,55,10,0" Grid.Row="2" VerticalAlignment="Top" TextTrimming="WordEllipsis" TextWrapping="Wrap" Grid.Column="1">
-            <Run x:Name="statusUser">Процессы, которые НЕЛЬЗЯ закрывать</Run><LineBreak/>
-            <Run x:Name="statusUserDesc">Процессы, которые будут игнорироваться лаунчером при оптимизации ПК</Run>
-        </TextBlock>
-        <TextBlock Margin="0,100,10,0" Grid.Row="2" VerticalAlignment="Top" TextTrimming="WordEllipsis" TextWrapping="Wrap" Grid.Column="1">
-            <Run x:Name="statusNormal">Процессы, не имеющие приоритета</Run><LineBreak/>
-            <Run x:Name="statusNormalDesc">Процессы, которые будут завершаться при оптимизации ПК</Run>
-        </TextBlock>
+        <GroupBox x:Name="gbProcesses" Style="{DynamicResource FeedbackgbFeedback}" Header="Исполняемые процессы" Margin="0,0,0,1">
+            <ListBox x:Name="lbProcesses" Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListBoxItem Style="{DynamicResource lbiProcess}">
+                    <Grid Width="459">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Column="0" Margin="5,0"/>
+                        <TextBlock Style="{DynamicResource lbiProcessB}" Text="Skype" Grid.Column="1"/>
+                        <TextBlock Text="This is a Skype programm" TextWrapping="Wrap" Grid.Column="2"/>
+                    </Grid>
+                </ListBoxItem>
+                <ListBoxItem Style="{DynamicResource lbiProcess2}">
+                    <Grid Width="459">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Column="0" Margin="5,0"/>
+                        <TextBlock Style="{DynamicResource lbiProcessB}" Text="Skype" Grid.Column="1"/>
+                        <TextBlock Text="This is a Skype programm" TextWrapping="Wrap" Grid.Column="2"/>
+                    </Grid>
+                </ListBoxItem>                
+            </ListBox>
+        </GroupBox>
     </Grid>
 </Page>

@@ -45,15 +45,32 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (downloadLink!=String.Empty)
                     Process.Start(downloadLink);
 
-                MainWindow.Navigator("General", "Update.xaml");
+                MainWindow.LoadingPanelShow(1);
+
+                Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
+                    }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+                });
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
         }
 
         private void bCancel_Click(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.Navigator("General", "Update.xaml"); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "bCancel_Click()", ex.Message, ex.StackTrace)); }
+            MainWindow.LoadingPanelShow(1);
+
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "bCancel_Click()", ex.Message, ex.StackTrace)); }
+            });
         }
 
         public void MultipackUpdate()
@@ -90,6 +107,12 @@ namespace _Hell_WPF_Multipack_Launcher
                 tbContent.Text = json[mType]["changelog"][lang].ToString();
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "MultipackUpdate()", ex.Message, ex.StackTrace)); }
+        }
+
+        private void PageUpdate_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadingPanelShow(); }
+            catch (Exception) { }
         }
     }
 }

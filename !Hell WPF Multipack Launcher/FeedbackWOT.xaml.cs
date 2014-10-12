@@ -48,8 +48,16 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.Navigator("General", "FeedbackWOT.xaml"); }
-            catch (Exception ex3) { Task.Factory.StartNew(() => Debug.Save("FeedbackWOT.xaml", "bClose_Click()", ex3.Message, ex3.StackTrace)); }
+            MainWindow.LoadingPanelShow(1);
+
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("FeedbackWOT.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+            });
         }
 
         /// <summary>
@@ -156,6 +164,12 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("FeedbackWOT.xaml", "SetInterface()", ex.Message, ex.StackTrace)); }
             }));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadingPanelShow(); }
+            catch (Exception) { }
         }
     }
 }

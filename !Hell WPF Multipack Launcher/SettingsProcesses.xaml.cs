@@ -35,8 +35,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            try { Task.Factory.StartNew(() => Processes()); }
+            try { Task.Factory.StartNew(() => Processes()).Wait(); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsProcesses.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
+
+            try { MainWindow.LoadingPanelShow(); }
+            catch (Exception) { }
         }
 
         private void Processes()

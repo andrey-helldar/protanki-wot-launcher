@@ -4,6 +4,5 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\Processes Library\obj\Release\Proc
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\Processes Library\obj\Release\ProcessesLibrary.pdb
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\Processes Library\bin\Release\Processes.Library.dll
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\Processes Library\bin\Release\Processes.Library.pdb
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\Processes Library\obj\Release\Processes Library.csprojResolveAssemblyReference.cache
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\Processes Library\obj\Release\Processes.Library.dll
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\Processes Library\obj\Release\Processes.Library.pdb

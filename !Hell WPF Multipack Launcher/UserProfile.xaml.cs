@@ -51,8 +51,16 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.Navigator("General", "Settings.xaml"); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "Button_Click()", ex.Message, ex.StackTrace)); }
+            MainWindow.LoadingPanelShow(1);
+
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+            });
         }
 
         /// <summary>
@@ -401,6 +409,12 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "GetElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
 
             return "fail";
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadingPanelShow(); }
+            catch (Exception) { }
         }
     }
 }

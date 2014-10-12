@@ -74,5 +74,11 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
         }
+
+        private void WarApiOpenID1_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadingPanelShow(); }
+            catch (Exception) { }
+        }
     }
 }

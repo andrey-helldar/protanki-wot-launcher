@@ -58,7 +58,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </summary>
         private void Message(string message)
         {
-            MainWindow.Navigator("Error", "Debug.Class");
+            /*MainWindow.LoadingPanelShow(1);
+
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                  Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator("Error"); }));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Debug Class.xaml", "Message()", ex.Message, ex.StackTrace)); }
+            }); ;*/
         }
 
         /// <summary>

@@ -16,6 +16,37 @@
 
 
         <!-- *******************************
+                     LOADING PANEL      
+            *********************************-->
+        <Style x:Key="LoadingPanel" TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="Grid.RowSpan" Value="5"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="0"
+                              Background="Black"
+                              Opacity="0.7">
+                            <Rectangle
+                                       Width="80"
+                                       Height="80"
+                                       Stretch="Fill"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="Resources/loading.gif"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- *******************************
                     BUTTON backgrounds
             *********************************-->
         <Color x:Key="GlobalTextColor">#FF006699</Color>
@@ -57,24 +88,6 @@
                 </GradientStopCollection>
             </LinearGradientBrush.GradientStops>
         </LinearGradientBrush>
-
-
-        <!-- *******************************
-                     LOADING PAGE
-            *********************************-->
-        <Style TargetType="StackPanel" x:Key="LoadingPage">
-            <Style.Resources>
-                <Style TargetType="Control">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <StackPanel Background="#FFF300FF" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="300" Height="300" />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Style.Resources>
-        </Style>
 
 
         <!-- *******************************
@@ -1964,7 +1977,77 @@
         </Style>
 
 
-        
+
+
+        <!-- *******************************
+                    ComboBox
+            *********************************-->
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Background" Value="#FF3A6696"/>
+            <Setter Property="Foreground" Value="White"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid
+                            Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Name="content"
+                                              HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Stretch"
+                                              Margin="0"
+                                              Cursor="Hand"
+                                              
+                                              Grid.Column="0"/>
+                            <Rectangle
+                                Width="6"
+                                Height="9"
+                                Stretch="Fill"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Margin="10,0"
+                                Grid.Column="1">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="Resources/arrow.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ListBox}" x:Name="lbProcesses">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+
+        <Style x:Key="lbiProcess" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Foreground" Value="#FF3a6696"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="BorderBrush" Value="#FFA6D1FF"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        </Style>
+
+        <Style x:Key="lbiProcess2" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Foreground" Value="#FF3a6696"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="BorderBrush" Value="#FFA6D1FF"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+        </Style>
+
+        <Style x:Key="lbiProcessB" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
 
     </Application.Resources>
 </Application>

@@ -66,17 +66,23 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 Task.WaitAll(new Task[]{
-                Task.Factory.StartNew(() => YoutubeClass.Start()),
-                Task.Factory.StartNew(() => WargamingClass.Start())                
-            });
+                    Task.Factory.StartNew(() => YoutubeClass.Start()),
+                    Task.Factory.StartNew(() => WargamingClass.Start())                
+                });
 
                 Task.WaitAll(new Task[]{
-                Task.Factory.StartNew(() => ViewNews()),
-                Task.Factory.StartNew(() => ViewNews(false))
-            });
+                    Task.Factory.StartNew(() => ViewNews()),
+                    Task.Factory.StartNew(() => ViewNews(false))
+                });
+
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { pbStatus.Value = 0; }));
 
                 Task.Factory.StartNew(() => VideoNotify()); // Выводим уведомления
             }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
+
+
+            try { MainWindow.LoadingPanelShow(); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
         }
 
@@ -95,6 +101,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
+                            pbStatus.Value = 0;
 
                             if (count == 0)
                             { // Если список пуст, то добавляем одну строку с уведомлением
@@ -116,7 +123,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     gridPanel.Children.Add(labelNotify);
 
                                     ListBoxItem lbi = new ListBoxItem();
-                                    lbi.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemGeneral");
+                                    lbi.SetResourceReference(ListBoxItem.StyleProperty, "ListBoxItemGeneral");
                                     lbi.Content = gridPanel;
 
                                     try { if (youtube) lbVideo.Items.Add(lbi); else lbNews.Items.Add(lbi); }
@@ -126,8 +133,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                             }
                             else
-                                pbStatus.Value = 0;
-                            pbStatus.Maximum = count;
+                                pbStatus.Maximum = count;
 
                             for (int i = 0; i < count; i++)
                             {
@@ -138,19 +144,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                     gridPanel.Width = double.NaN;
                                     gridPanel.Margin = new Thickness(0);
                                     gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-
-                                    /*RowDefinition gridRow1 = new RowDefinition();
-                                    gridRow1.Height = new GridLength(30);
-                                    gridPanel.RowDefinitions.Add(gridRow1);
-                                    gridPanel.RowDefinitions.Add(new RowDefinition());
-
-                                    ColumnDefinition gridColumn1 = new ColumnDefinition();
-                                    ColumnDefinition gridColumn2 = new ColumnDefinition();
-                                    gridColumn1.Width = GridLength.Auto;
-                                    gridColumn2.Width = GridLength.Auto;
-                                    gridPanel.ColumnDefinitions.Add(gridColumn1);
-                                    gridPanel.ColumnDefinitions.Add(gridColumn2);
-                                    gridPanel.ColumnDefinitions.Add(new ColumnDefinition());*/
 
                                     // Добавляем дату
                                     Label labelDate = new Label();
@@ -209,7 +202,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     gridPanel.Children.Add(blockTitle);
 
                                     ListBoxItem lbi = new ListBoxItem();
-                                    lbi.SetResourceReference(TextBlock.StyleProperty, "ListBoxItemGeneral");
+                                    lbi.SetResourceReference(ListBoxItem.StyleProperty, "ListBoxItemGeneral");
                                     lbi.Content = gridPanel;
 
                                     try
@@ -242,43 +235,52 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (MainWindow.XmlDocument.Root.Element("youtube") != null)
-                    foreach (var el in MainWindow.XmlDocument.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
-                else MainWindow.XmlDocument.Root.Add(new XElement("youtube", null));
-
-                Task.Factory.StartNew(() => DeleteOldVideo()).Wait(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
-
-                foreach (var el in YoutubeClass.List)
-                {
-                    Thread.Sleep(5000);
-
-                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
-                    {
-                        try
+                if (MainWindow.XmlDocument.Root.Element("info") != null)
+                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("video") != null)
+                        if (MainWindow.XmlDocument.Root.Element("info").Attribute("video").Value == "True")
                         {
-                            // Если запущен клиент игры - ждем 5 секунд до следующей проверки
-                            while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
-                                Process.GetProcessesByName("WoTLauncher").Length > 0)
-                                Thread.Sleep(5000);
+                            if (YoutubeClass.Count() > 0)
+                            {
 
-                            Thread.Sleep(5000);
+                                if (MainWindow.XmlDocument.Root.Element("youtube") != null)
+                                    foreach (var el in MainWindow.XmlDocument.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
+                                else MainWindow.XmlDocument.Root.Add(new XElement("youtube", null));
+
+                                Task.Factory.StartNew(() => DeleteOldVideo()).Wait(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
+
+                                foreach (var el in YoutubeClass.List)
+                                {
+                                    Thread.Sleep(5000);
+
+                                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
+                                    {
+                                        try
+                                        {
+                                            // Если запущен клиент игры - ждем 5 секунд до следующей проверки
+                                            while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
+                                                Process.GetProcessesByName("WoTLauncher").Length > 0)
+                                                Thread.Sleep(5000);
+
+                                            Thread.Sleep(5000);
+                                        }
+                                        catch (Exception) { }
+                                    }
+
+                                    try
+                                    {
+                                        NotifyLink = el.Link;
+
+                                        Task.Factory.StartNew(() => ShowNotify("Смотреть видео", el.Title));
+
+                                        if (MainWindow.XmlDocument.Root.Element("youtube") != null)
+                                            MainWindow.XmlDocument.Root.Element("youtube").Add(new XElement("video", el.ID));
+                                        else
+                                            MainWindow.XmlDocument.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
+                                    }
+                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", el.ToString(), ex0.Message, ex0.StackTrace)); }
+                                }
+                            }
                         }
-                        catch (Exception) { }
-                    }
-
-                    try
-                    {
-                        NotifyLink = el.Link;
-
-                        Task.Factory.StartNew(() => ShowNotify("Смотреть видео", el.Title));
-
-                        if (MainWindow.XmlDocument.Root.Element("youtube") != null)
-                            MainWindow.XmlDocument.Root.Element("youtube").Add(new XElement("video", el.ID));
-                        else
-                            MainWindow.XmlDocument.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
-                    }
-                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", el.ToString(), ex0.Message, ex0.StackTrace)); }
-                }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", ex.Message, ex.StackTrace)); }
         }
@@ -566,8 +568,16 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="page">Имя открываемой формы</param>
         private void OpenPage(string page)
         {
-            try { MainWindow.Navigator(page, "General.xaml"); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "OpenPage()", "Page : " + page, ex.Message, ex.StackTrace)); }
+            MainWindow.LoadingPanelShow(1);
+
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(page); }));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "OpenPage()", "Page: " + page, ex.Message, ex.StackTrace)); }
+            });
         }
 
 

@@ -25,96 +25,119 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Language Lang = new Classes.Language();
         Classes.Debug Debug = new Classes.Debug();
 
+        string lang = Properties.Resources.Default_Lang;
+
 
         public SettingsOptimize()
         {
             InitializeComponent();
 
-            /*
-             * Загружаем заголовки
-             */
-            try
+            Task.Factory.StartNew(() => LoadingPage()).Wait();
+        }
+
+        /// <summary>
+        /// Асинхронная загрузка параметров формы
+        /// </summary>
+        private void LoadingPage()
+        {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
-                cbPriority.Items.Clear();
-                for (int i = 0; i < Convert.ToInt16(Lang.Set("Settings", "priority")); i++)
-                    cbPriority.Items.Add(Lang.Set("Settings", "priority" + i.ToString(), MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value));
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "cbPriority.Items", ex.Message, ex.StackTrace)); }
-
-            try
-            {
-                cbLauncher.Items.Clear();
-                for (int i = 0; i < Convert.ToInt16(Lang.Set("Settings", "minimize")); i++)
-                    cbLauncher.Items.Add(Lang.Set("Settings", "minimize" + i.ToString(), MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value));
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "cbLauncher.Items", ex.Message, ex.StackTrace)); }
-
-
-            /*
-             *  Блок ОПТИМИЗАЦИЯ
-             */
-
-            /*
-             * <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
-             */
-            try
-            {
-                cbKill.IsChecked = Check("settings", "kill");
-                cbForce.IsChecked = Check("settings", "force");
-                cbVideo.IsChecked = Check("settings", "video");
-                cbWeak.IsChecked = Check("settings", "weak");
-                cbAero.IsChecked = Check("settings", "aero");
-
-                if (Check("settings", "winxp"))
+                // Определяем язык интерфейса
+                try
                 {
-                    cbAero.IsChecked = false;
-                    cbAero.IsEnabled = false;
+                    if (MainWindow.XmlDocument.Root.Element("info") != null)
+                        if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
+                            if (MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim() != "")
+                                lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim();
                 }
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "cbKill, cbForce ...", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", ex.Message, ex.StackTrace)); }
 
-            // Определяем приоритет игры в системе
-            try
-            {
-                var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
-                cbPriority.SelectedIndex = getPriority((int)key.GetValue("CpuPriorityClass"), false);
-            }
-            catch (Exception ex)
-            {
-                cbPriority.SelectedIndex = 2;
-                Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "Reestr Reading", ex.Message, ex.StackTrace));
-            }
-            finally { cbPriority.SelectionChanged += cbPriority_SelectionChanged; }
+                /*
+                 * Загружаем заголовки
+                 */
+                try
+                {
+                    cbPriority.Items.Clear();
+                    for (int i = 0; i < Convert.ToInt16(Lang.Set("PageSettingsGeneral", "priority")); i++)
+                        cbPriority.Items.Add(Lang.Set("PageSettingsGeneral", "priority" + i.ToString(), lang));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbPriority.Items", ex.Message, ex.StackTrace)); }
 
-            // Устанавливаем значение чекбокса лаунчера
-            try
-            {
-                cbLauncher.SelectedIndex = 0;   // Устанавливаем базу
-
-                if (MainWindow.XmlDocument.Root.Element("settings") != null)
-                    if (MainWindow.XmlDocument.Root.Element("settings").Attribute("launcher") != null)
-                        cbLauncher.SelectedIndex = Convert.ToInt16(MainWindow.XmlDocument.Root.Element("settings").Attribute("launcher").Value);
-            }
-            catch (Exception ex)
-            {
-                cbLauncher.SelectedIndex = 0;
-                Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "cbLauncher.SelectedIndex = 0;", ex.Message, ex.StackTrace));
-            }
+                try
+                {
+                    cbLauncher.Items.Clear();
+                    for (int i = 0; i < Convert.ToInt16(Lang.Set("PageSettingsGeneral", "minimize")); i++)
+                        cbLauncher.Items.Add(Lang.Set("PageSettingsGeneral", "minimize" + i.ToString(), lang));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLauncher.Items", ex.Message, ex.StackTrace)); }
 
 
-            /*
-             *  Блок ДРУГОЕ
-             */
+                /*
+                 *  Блок ОПТИМИЗАЦИЯ
+                 */
 
-            /*
-             * <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru">
-             */
-            try
-            {
-                cbNotifyVideo.IsChecked = Check("info", "video");
-                cbNotifyNews.IsChecked = Check("info", "news");
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "SettingsOptimize()", "cbNotifyVideo.IsChecked, cbNotifyNews.IsChecked", ex.Message, ex.StackTrace)); }
+                /*
+                 * <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
+                 */
+                try
+                {
+                    cbKill.IsChecked = Check("settings", "kill");
+                    cbForce.IsChecked = Check("settings", "force");
+                    cbVideo.IsChecked = Check("settings", "video");
+                    cbWeak.IsChecked = Check("settings", "weak");
+                    cbAero.IsChecked = Check("settings", "aero");
+
+                    if (Check("settings", "winxp"))
+                    {
+                        cbAero.IsChecked = false;
+                        cbAero.IsEnabled = false;
+                    }
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbKill, cbForce ...", ex.Message, ex.StackTrace)); }
+
+                // Определяем приоритет игры в системе
+                try
+                {
+                    var key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
+                    cbPriority.SelectedIndex = getPriority((int)key.GetValue("CpuPriorityClass"), false);
+                }
+                catch (Exception ex)
+                {
+                    cbPriority.SelectedIndex = 2;
+                    Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "Reestr Reading", ex.Message, ex.StackTrace));
+                }
+                finally { cbPriority.SelectionChanged += cbPriority_SelectionChanged; }
+
+                // Устанавливаем значение чекбокса лаунчера
+                try
+                {
+                    cbLauncher.SelectedIndex = 0;   // Устанавливаем базу
+
+                    if (MainWindow.XmlDocument.Root.Element("settings") != null)
+                        if (MainWindow.XmlDocument.Root.Element("settings").Attribute("launcher") != null)
+                            cbLauncher.SelectedIndex = Convert.ToInt16(MainWindow.XmlDocument.Root.Element("settings").Attribute("launcher").Value);
+                }
+                catch (Exception ex)
+                {
+                    cbLauncher.SelectedIndex = 0;
+                    Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLauncher.SelectedIndex = 0;", ex.Message, ex.StackTrace));
+                }
+
+
+                /*
+                 *  Блок ДРУГОЕ
+                 */
+
+                /*
+                 * <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru">
+                 */
+                try
+                {
+                    cbNotifyVideo.IsChecked = Check("info", "video");
+                    cbNotifyNews.IsChecked = Check("info", "news");
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbNotifyVideo.IsChecked, cbNotifyNews.IsChecked", ex.Message, ex.StackTrace)); }
+            }));
         }
 
         /// <summary>
@@ -261,6 +284,12 @@ namespace _Hell_WPF_Multipack_Launcher
         private void cbLauncher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Set("settings", "launcher", cbLauncher.SelectedIndex.ToString());
+        }
+
+        private void cbLauncher_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadingPanelShow(); }
+            catch (Exception) { }
         }
     }
 }
