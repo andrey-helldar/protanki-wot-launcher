@@ -2060,7 +2060,7 @@
         <!-- Flat ComboBox -->
         <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="Transparent" />
         <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="#FF3a6696" />
-        <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="White" />
+        <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#FF007aff" />
         <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#FF3a6696" />
         <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="Transparent" />
 
@@ -2085,10 +2085,10 @@
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="UIElement.IsMouseOver" Value="True">
-                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="#FFe6f2ff"/>
+                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxNormalBackgroundBrush}"/>
                 </Trigger>
                 <Trigger Property="ToggleButton.IsChecked" Value="True">
-                    <!--<Setter Property="Panel.Background" TargetName="ButtonBorder" Value="WhiteSmoke"/>-->
+                    <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxNormalBackgroundBrush}"/>
                     <Setter Property="Shape.Fill" TargetName="Arrow" Value="#FF8D979E"/>
                 </Trigger>
                 <Trigger Property="UIElement.IsEnabled" Value="False">
@@ -2096,13 +2096,13 @@
                     <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
                     <Setter Property="Border.BorderBrush" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBorderBrush}"/>
                     <!--<Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>-->
-                    <Setter Property="TextElement.Foreground" Value="#FF007aff"/>
+                    <Setter Property="TextElement.Foreground" Value="#FF3a6696"/>
                     <Setter Property="Shape.Fill" TargetName="Arrow" Value="#999"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
 
-        <Style  TargetType="{x:Type ComboBox}">
+        <Style TargetType="{x:Type ComboBox}">
             <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
             <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
@@ -2146,7 +2146,7 @@
                                     <Border Name="DropDownBorder" Background="White" Margin="0, 1, 0, 0"
                         CornerRadius="0" BorderThickness="1,1,1,1" 
                         BorderBrush="{StaticResource ComboBoxNormalBorderBrush}"/>
-                                    <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                    <ScrollViewer Margin="4" SnapsToDevicePixels="True" Foreground="#FF007aff">
                                         <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
                                     </ScrollViewer>
                                 </Grid>

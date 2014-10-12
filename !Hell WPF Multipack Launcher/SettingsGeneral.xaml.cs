@@ -262,6 +262,31 @@ namespace _Hell_WPF_Multipack_Launcher
             Set("info", "news", cbNotifyNews.IsChecked.ToString());
         }
 
+        private void cbLauncher_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Set("settings", "launcher", cbLauncher.SelectedIndex.ToString());
+        }
+
+        private void PageSettingsGeneral_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadingPanelShow(); }
+            catch (Exception) { }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                switch (cbLang.SelectedIndex)
+                {
+                    case 1: Set("info", "language", "en"); break;
+                    case 2: Set("info", "language", "de"); break;
+                    default: Set("info", "language", "ru"); break;
+                }
+            }
+            catch (Exception) { }
+        }
+
         private void cbPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Сохраняем приоритет в реестр
@@ -279,23 +304,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "cbPriority_SelectionChanged()", ex.Message, ex.StackTrace)); }
             }
-        }
-
-        private void cbLauncher_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Set("settings", "launcher", cbLauncher.SelectedIndex.ToString());
-        }
-
-        private void cbLauncher_Loaded(object sender, RoutedEventArgs e)
-        {
-            try { MainWindow.LoadingPanelShow(); }
-            catch (Exception) { }
-        }
-
-        private void PageSettingsGeneral_Loaded(object sender, RoutedEventArgs e)
-        {
-            try { MainWindow.LoadingPanelShow(); }
-            catch (Exception) { }
         }
     }
 }
