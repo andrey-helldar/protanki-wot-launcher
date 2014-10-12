@@ -113,7 +113,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
 
                                         ListBoxItem lbi = new ListBoxItem();
-                                        lbi.SetResourceReference(ListBoxItem.StyleProperty, i % 2 == 0 ? "lbiProcess2" : "lbiProcess");
+                                        //lbi.SetResourceReference(ListBoxItem.StyleProperty, i % 2 == 0 ? "lbiProcess2" : "lbiProcess");
+                                        lbi.SetResourceReference(ListBoxItem.StyleProperty, "lbiProcess");
                                         lbi.Content = gridPanel;
 
 
@@ -176,27 +177,31 @@ namespace _Hell_WPF_Multipack_Launcher
 
             try
             {
-                XElement elem = MainWindow.XmlDocument.Root.Element("processes");
-
-                if (cb.IsChecked == true)
+                if (cb.IsEnabled)
                 {
-                    if (elem != null)
-                        if (elem.Element(processName) == null)
-                            elem.Add(new XElement(processName, null));
-                }
-                else
-                {
-                    if (elem != null)
-                        if (elem.Element(processName) != null)
-                            elem.Element(processName).Remove();
-                }
+                    XElement elem = MainWindow.XmlDocument.Root.Element("processes");
 
-                el.SetResourceReference(TextBlock.StyleProperty, Style(cb.Name.Remove(0, 2)));
+                    if (cb.IsChecked == true)
+                    {
+                        if (elem != null)
+                            if (elem.Element(processName) == null)
+                                elem.Add(new XElement(processName, null));
+
+                        el.SetResourceReference(ListBoxItem.StyleProperty, "lbiProcessCheck");
+                    }
+                    else
+                    {
+                        if (elem != null)
+                            if (elem.Element(processName) != null)
+                                elem.Element(processName).Remove();
+
+                        el.SetResourceReference(ListBoxItem.StyleProperty, "lbiProcessUnCheck");
+                    }
+                }
             }
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debug.Save("SettingsProcesses.xaml", "ProcessChanged()", ex.Message, ex.StackTrace));
-                el.SetResourceReference(TextBlock.StyleProperty, "ProcessesUnChecked");
             }
         }
     }

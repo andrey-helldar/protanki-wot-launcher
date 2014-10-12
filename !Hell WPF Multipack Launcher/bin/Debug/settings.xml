@@ -18,6 +18,10 @@
     <news />
   </do_not_display>
   <processes>
+    <thunderbird />
+    <TOTALCMD64 />
+    <klwtblfs />
     <MSBuild />
+    <punto />
   </processes>
 </pro>
