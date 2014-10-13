@@ -23,6 +23,9 @@
             <Setter Property="Grid.ColumnSpan" Value="2"/>
             <Setter Property="Grid.RowSpan" Value="5"/>
             <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="FontFamily" Value="{StaticResource FontMicra}"/>
+            <Setter Property="FontSize" Value="16pt"/>
+            <Setter Property="Foreground" Value="White"/>
 
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -30,7 +33,7 @@
                         <Grid Margin="0"
                               Background="Black"
                               Opacity="0.7">
-                            <Rectangle
+                            <!--<Rectangle
                                        Width="80"
                                        Height="80"
                                        Stretch="Fill"
@@ -39,7 +42,8 @@
                                 <Rectangle.Fill>
                                     <ImageBrush ImageSource="Resources/loading.gif"/>
                                 </Rectangle.Fill>
-                            </Rectangle>
+                            </Rectangle>-->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>

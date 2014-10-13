@@ -137,6 +137,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 {
                                     Button sp = new Button();
                                     sp.SetResourceReference(Button.StyleProperty, "LoadingPanel");
+                                    sp.Content = Lang.Set("PageLoading", "lLoading", XmlDocument.Root.Element("info").Attribute("language").Value);
                                     sp.Name = "LoadingPanel";
                                     GridGlobal.Children.Add(sp);
                                     this.RegisterName(sp.Name, sp); // Register name of panel
