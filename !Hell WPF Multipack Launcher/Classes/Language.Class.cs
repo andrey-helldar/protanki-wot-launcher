@@ -424,7 +424,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             {
                                 case "ru": return "Настройки >";
                                 case "en": return "Settings >";
-                                case "de": return "Einstellungen";
+                                case "de": return "Einstellungen >";
                                 default: return toReturn;
                             }
 
@@ -754,6 +754,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "ru": return "ВИДЕО";
                                 case "en": return "VIDEO";
                                 case "de": return "VIDEO";
+                                default: return toReturn;
+                            }
+
+                        case "RecordsNotFound":
+                            switch (lang)
+                            {
+                                case "ru": return "Записи не обнаружены";
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "ShowVideo":
+                            switch (lang)
+                            {
+                                case "ru": return "Смотреть видео";
+                                case "en": return "000";
+                                case "de": return "000";
                                 default: return toReturn;
                             }
 

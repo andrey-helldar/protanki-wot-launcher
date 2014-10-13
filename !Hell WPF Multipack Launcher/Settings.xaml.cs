@@ -22,13 +22,19 @@ namespace _Hell_WPF_Multipack_Launcher
     public partial class Settings : Page
     {
         Classes.Debug Debug = new Classes.Debug();
+        Classes.Language Lang = new Classes.Language();
 
         private bool openedPage = true;
+        string lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
 
 
         public Settings()
         {
             InitializeComponent();
+
+            bClose.Content = Lang.Set("PageSettings", "bClose", lang);
+            tbSettingsTitle.Text = Lang.Set("PageSettings", "tbSettingsTitle", lang);
+            tbSettingsSubTitle.Text = Lang.Set("PageSettings", "tbSettingsStShare", lang);
 
             try { SettingsFrame.NavigationService.Navigate(new Uri("SettingsGeneral.xaml", UriKind.Relative)); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "Settings()", ex.Message, ex.StackTrace)); }
@@ -44,8 +50,8 @@ namespace _Hell_WPF_Multipack_Launcher
                     catch (Exception) { }
 
                     SettingsFrame.NavigationService.Navigate(new Uri("SettingsProcesses.xaml", UriKind.Relative));
-                    bChangeSettingsPage.Content = "Общие";
-                    tbSettingsSubTitle.Text = "Процессы";
+                    bChangeSettingsPage.Content = Lang.Set("PageSettings", "tbSettingsStShare", lang);
+                    tbSettingsSubTitle.Text = Lang.Set("PageSettings", "tbSettingsStProcesses", lang);
                     openedPage = false;
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "bChangeSettingsPage_Click()", ex.Message, ex.StackTrace)); }
@@ -55,8 +61,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 try
                 {
                     SettingsFrame.NavigationService.Navigate(new Uri("SettingsGeneral.xaml", UriKind.Relative));
-                    bChangeSettingsPage.Content = "Процессы";
-                    tbSettingsSubTitle.Text = "Общие";
+                    bChangeSettingsPage.Content = Lang.Set("PageSettings", "tbSettingsStProcesses", lang);
+                    tbSettingsSubTitle.Text = Lang.Set("PageSettings", "tbSettingsStShare", lang);
                     openedPage = true;
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "bChangeSettingsPage_Click()", ex.Message, ex.StackTrace)); }

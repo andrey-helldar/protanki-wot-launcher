@@ -310,7 +310,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         ProcessStart(Variables.PathTanks, "WorldOfTanks.exe");
                     }
                     else
-                        MessageBox.Show("Клиент игры не обнаружен!");
+                        MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", XmlDocument.Root.Element("info").Attribute("language").Value));
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bPlay_Click()", ex.Message, ex.StackTrace)); }
             });

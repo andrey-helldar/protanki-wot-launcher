@@ -117,7 +117,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     labelNotify.Margin = new Thickness(0);
                                     labelNotify.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                                     labelNotify.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-                                    labelNotify.Content = "Записи не обнаружены";
+                                    labelNotify.Content = Lang.Set("PageGeneral", "RecordsNotFound", lang);
                                     Grid.SetRow(labelNotify, 0);
                                     Grid.SetColumn(labelNotify, 0);
                                     gridPanel.Children.Add(labelNotify);
@@ -270,7 +270,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     {
                                         NotifyLink = el.Link;
 
-                                        Task.Factory.StartNew(() => ShowNotify("Смотреть видео", el.Title));
+                                        Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
 
                                         if (MainWindow.XmlDocument.Root.Element("youtube") != null)
                                             MainWindow.XmlDocument.Root.Element("youtube").Add(new XElement("video", el.ID));
@@ -498,7 +498,7 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (MessageBox.Show("Вы точно хотите оптимизировать ПК вручную?", "Launcher", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show(Lang.Set("Optimize", "Optimize", lang)+"?", MainWindow.ProductName, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     pbStatus.Value = 0;
                     pbStatus.Maximum = 5;
