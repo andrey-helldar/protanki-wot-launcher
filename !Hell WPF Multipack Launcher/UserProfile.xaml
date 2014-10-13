@@ -218,7 +218,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Список владений">
-                <Grid HorizontalAlignment="Left" Height="372" VerticalAlignment="Top" Width="478">
+                <Grid>
                     <ListBox x:Name="ClanProvinces" Margin="0"/>
                 </Grid>
             </TabItem>

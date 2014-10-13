@@ -2236,5 +2236,29 @@
             <Setter Property="Foreground" Value="#FF3a6696"/>
         </Style>
 
+        
+        <Style x:Key="Icon_province" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="15"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Source" Value="Resources/icon__province.png"/>
+        </Style>
+        <Style x:Key="Icon_meeting" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="15"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Source" Value="Resources/icon__meeting.png"/>
+        </Style>
+        <Style x:Key="Icon_landing" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="15"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Source" Value="Resources/icon__landing.png"/>
+        </Style>
+
+
+
+        <Style x:Key="CmTIME"  TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#FF3a6696"/>
+        </Style>
+
     </Application.Resources>
 </Application>

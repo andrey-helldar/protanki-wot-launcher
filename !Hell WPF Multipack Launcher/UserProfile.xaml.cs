@@ -348,14 +348,49 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 *       landing — бой за высадку.
                                                 */
                                                JObject GlobalProvinces = JObject.Parse(WarAPI.GlobalProvinces((string)battle["provinces"][0]));
+                                               
 
-                                               ClanBattles.Items.Add(
-                                                   String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
-                                                        (string)battle["type"],
-                                                        (string)battle["time"],
-                                                        SelectTokenNoClan(GlobalProvinces, (string)battle["provinces"][0] + ".province_i18n"),
-                                                        (string)battle["arenas"][0]["name_i18n"]
-                                               ));
+                                               Grid gr = new Grid();
+
+                                               ColumnDefinition cd1 = new ColumnDefinition();
+                                               ColumnDefinition cd2 = new ColumnDefinition();
+                                               ColumnDefinition cd3 = new ColumnDefinition();
+                                               ColumnDefinition cd4 = new ColumnDefinition();
+
+                                               cd1.Width = new GridLength(30, GridUnitType.Pixel);
+                                               cd2.Width = new GridLength(155, GridUnitType.Pixel);
+                                               cd3.Width = new GridLength(130, GridUnitType.Pixel);
+                                               cd4.Width = new GridLength(80, GridUnitType.Pixel);
+
+                                               gr.ColumnDefinitions.Add(cd1);
+                                               gr.ColumnDefinitions.Add(cd2);
+                                               gr.ColumnDefinitions.Add(cd3);
+                                               gr.ColumnDefinitions.Add(cd4);
+
+                                               Image im = new Image();
+                                               im.SetResourceReference(Image.StyleProperty, "Icon_"+(string)battle["type"]);
+
+                                               TextBlock tbID = new TextBlock();
+                                               tbID.Text = (string)battle["time"];
+                                               tbID.SetResourceReference(TextBlock.StyleProperty, "CmTIME");
+                                               Grid.SetColumn(tbID, 0);
+
+                                               TextBlock CmName = new TextBlock();
+                                               CmName.Text = SelectTokenNoClan(GlobalProvinces, (string)battle["provinces"][0] + ".province_i18n");
+                                               CmName.SetResourceReference(TextBlock.StyleProperty, "CmName");
+                                               Grid.SetColumn(CmName, 1);
+
+                                               TextBlock CmTitle = new TextBlock();
+                                               CmTitle.Text = (string)battle["arenas"][0]["name_i18n"];
+                                               CmTitle.SetResourceReference(TextBlock.StyleProperty, "CmTitle");
+                                               Grid.SetColumn(CmTitle, 2);
+                                               
+                                               gr.Children.Add(im);
+                                               gr.Children.Add(tbID);
+                                               gr.Children.Add(CmName);
+                                               gr.Children.Add(CmTitle);
+
+                                               ClanBattles.Items.Add(gr);
                                            }
                                        }
                                    }
