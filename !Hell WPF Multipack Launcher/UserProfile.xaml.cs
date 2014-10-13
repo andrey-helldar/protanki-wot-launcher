@@ -50,6 +50,10 @@ namespace _Hell_WPF_Multipack_Launcher
 
             lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim();
             Task.Factory.StartNew(() => { AccountInfo(); }).Wait();
+
+            Style s = new Style();
+            s.Setters.Add(new Setter(UIElement.VisibilityProperty, Visibility.Collapsed));
+            tc.ItemContainerStyle = s;
         }
         
 
@@ -153,8 +157,26 @@ namespace _Hell_WPF_Multipack_Launcher
                                    }
                                    catch (Exception) { PlayerClan.Text = "[---]"; PlayerClan2.Text = "---"; /*tbUpClan.Text = "Произошла ошибка или ты не состоишь в клане " + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name"); */}
 
+                                   // Процент побед
                                    PercWins.Text = Lang.Set("PageUser", "tbPercentWins", lang);
                                    PercWinsPerc.Text = String.Format("{0}%", (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.wins")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString());
+
+                                   // Личный рейтинг
+                                   MyRating.Text = Lang.Set("PageUser", "tbMyRating", lang);
+                                   MyRatingPerc.Text = SelectToken(obj, "global_rating");
+
+                                   // Средний опыт за бой
+                                   AvgXP.Text = Lang.Set("PageUser", "tbAvgXP", lang);
+                                   AvgXPPerc.Text = SelectToken(obj, "statistics.all.battle_avg_xp");
+
+                                   // Количество боев
+                                   BattleCount.Text = Lang.Set("PageUser", "tbCountWars", lang);
+                                   BattleCountPerc.Text = SelectToken(obj, "statistics.all.battles");
+
+                                   // Средний нанесенный урон за бой
+                                   AvgDamage.Text = Lang.Set("PageUser", "tbAvgDamage", lang);
+                                   AvgDamagePerc.Text = SelectToken(obj, "statistics.all.avg_damage_assisted");
+
 
                                    PlayerGold.Text = SelectToken(obj, "private.gold");
                                    rating.Content = "Личный рейтинг: " + SelectToken(obj, "global_rating");

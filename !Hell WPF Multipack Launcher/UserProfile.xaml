@@ -6,7 +6,7 @@
     xmlns:c="clr-namespace:ScottLogic.Controls.PieChart"
     xmlns:b="clr-namespace:ScottLogic.Shapes"
       mc:Ignorable="d" 
-      d:DesignHeight="480" d:DesignWidth="480"
+      d:DesignHeight="600" d:DesignWidth="540"
 	Title="UserProfile" Width="Auto" Height="Auto" Loaded="Page_Loaded">
     <Page.Resources>
         <x:ArrayExtension Type="{x:Type Brush}" x:Key="brushes">
@@ -29,7 +29,7 @@
 
 
         <Button Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="Button_Click" Style="{DynamicResource ButtonCLOSE}" Grid.Row="1"/>
-        <TabControl Margin="10,0,10,10">
+        <TabControl x:Name="tc" Margin="10,0,10,10">
             <TabItem Header="Персональная информация">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -69,8 +69,8 @@
                                 </Grid>
                             </StackPanel>
 
-                            <Image Grid.Row="1" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="Resources/line.png"/>
-                            <Image Grid.Row="3" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="Resources/line.png"/>
+                            <Image Grid.Row="1" HorizontalAlignment="Left" Margin="0,10" VerticalAlignment="Top" Source="Resources/line.png"/>
+                            <Image Grid.Row="3" HorizontalAlignment="Left" Margin="0,10" VerticalAlignment="Top" Source="Resources/line.png"/>
                         </Grid>
                     </StackPanel>
                     <StackPanel Grid.ColumnSpan="2" Margin="0" Grid.Row="1">
@@ -97,9 +97,42 @@
                                     <TextBlock HorizontalAlignment="Center" Grid.Column="1" Margin="0" TextWrapping="Wrap"  VerticalAlignment="Center" TextAlignment="Center">
                                         <Image Source="Resources/stat_rating.png" Width="166" Height="165"/>
                                         <LineBreak/>
-                                        <Run x:Name="MyRating">Процент побед</Run>
+                                        <Run x:Name="MyRating">Личный рейтинг</Run>
                                         <LineBreak/><LineBreak/>
-                                        <Run x:Name="MyRatingPerc">0%</Run>
+                                        <Run x:Name="MyRatingPerc">0</Run>
+                                    </TextBlock>
+
+                                    <TextBlock HorizontalAlignment="Center" Grid.Column="2" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
+                                        <Image Source="Resources/stat_perc_vins.png" Width="33" Height="29"/>
+                                        <LineBreak/>
+                                        <Run x:Name="AvgXP">Средний опыт за бой</Run>
+                                        <LineBreak/><LineBreak/>
+                                        <Run x:Name="AvgXPPerc">0</Run>
+                                    </TextBlock>
+                                </Grid>
+                            </StackPanel>
+
+
+                            <StackPanel Margin="0" Grid.Row="1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
+                                        <Image Source="Resources/stat_perc_vins.png" Width="33" Height="29"/>
+                                        <LineBreak/>
+                                        <Run x:Name="BattleCount">Количество боев</Run>
+                                        <LineBreak/><LineBreak/>
+                                        <Run x:Name="BattleCountPerc">0</Run>
+                                    </TextBlock>
+
+                                    <TextBlock HorizontalAlignment="Center" Grid.Column="2" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
+                                        <Image Source="Resources/stat_perc_vins.png" Width="33" Height="29"/>
+                                        <LineBreak/>
+                                        <Run x:Name="AvgDamage">Средний нанесенный урон за бой</Run>
+                                        <LineBreak/><LineBreak/>
+                                        <Run x:Name="AvgDamagePerc">0</Run>
                                     </TextBlock>
                                 </Grid>
                             </StackPanel>
@@ -111,6 +144,7 @@
                         <Run Text="Всего Поражений:"/><LineBreak/><Run x:Name="Loss" Text="0"/><LineBreak/><LineBreak/>
                         <Run Text="Средний опыт за бой:"/><LineBreak/><Run x:Name="AvgXP" Text="0"/>
                     </TextBlock>//-->
+                    
                 </Grid>
             </TabItem>
             <TabItem Header="Клан">
