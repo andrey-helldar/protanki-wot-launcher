@@ -169,12 +169,28 @@ namespace _Hell_WPF_Multipack_Launcher
                                            " [" + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation") + "]";
                                        ClanFullname.Text = PlayerClan2.Text;
 
-                                       PlayerZvanie.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
+                                       string uid = MainWindow.XmlDocument.Root.Element("token").Attribute("account_id").Value.Trim();
+                                       PlayerZvanie.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name.members." + uid + ".role");
 
                                        //   emblems.medium
                                        //   SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium")
-                                       ClanEmblem.Source = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium");
-                                       ClanEmblem2.Source = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium");
+                                       //ClanEmblem.Source = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium");
+                                       //ClanEmblem2.Source = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium");
+
+                                       try
+                                       {
+                                           var image = new Image();
+                                           var fullFilePath = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium", true);
+
+                                           BitmapImage bitmap = new BitmapImage();
+                                           bitmap.BeginInit();
+                                           bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                                           bitmap.EndInit();
+
+                                           ClanEmblem.Source = bitmap;
+                                           ClanEmblem2.Source = bitmap;
+                                       }
+                                       catch (Exception) { }
 
                                            
                                    // Процент побед
