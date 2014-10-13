@@ -449,5 +449,26 @@ namespace _Hell_WPF_Multipack_Launcher
             try { MainWindow.LoadingPanelShow(); }
             catch (Exception) { }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            tc.SelectedIndex = 0;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            tc.SelectedIndex = 1;
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            tc.SelectedIndex = 2;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            tc.SelectedIndex = 3;
+
+        }
     }
 }

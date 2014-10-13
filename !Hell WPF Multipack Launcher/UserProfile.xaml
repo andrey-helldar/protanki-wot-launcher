@@ -144,39 +144,61 @@
                         <Run Text="Всего Поражений:"/><LineBreak/><Run x:Name="Loss" Text="0"/><LineBreak/><LineBreak/>
                         <Run Text="Средний опыт за бой:"/><LineBreak/><Run x:Name="AvgXP" Text="0"/>
                     </TextBlock>//-->
-                    
+
                 </Grid>
             </TabItem>
-            <TabItem Header="Клан">
+            <TabItem Header="Общая информация">
                 <Grid Background="#FFE5E5E5">
-                    <TabControl Margin="10">
-                        <TabItem Header="Общая информация">
-                            <Grid Background="#FFE5E5E5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="103*"/>
-                                    <RowDefinition Height="268*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock x:Name="ClanFullname" HorizontalAlignment="Left" Margin="16,15,0,0" TextWrapping="Wrap" Text="Полное название: " VerticalAlignment="Top"/>
-                                <TextBlock x:Name="ClanAbbr" HorizontalAlignment="Left" Margin="20,45,0,0" TextWrapping="Wrap" Text="Сокращенное название: " VerticalAlignment="Top"/>
-                                <GroupBox Header="Список бойцов клана:" Margin="5,0,5,5" Grid.Row="1">
-                                    <ListBox x:Name="ClanMembers" Margin="5"/>
-                                </GroupBox>
-                                <TextBlock x:Name="ClanCount" HorizontalAlignment="Left" Margin="24,76,0,0" TextWrapping="Wrap" Text="Всего бойцов: " VerticalAlignment="Top"/>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Список боев">
-                            <Grid Background="#FFE5E5E5">
-                                <ListBox x:Name="ClanBattles" Margin="0"/>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Список владений">
-                            <Grid HorizontalAlignment="Left" Height="372" VerticalAlignment="Top" Width="478">
-                                <ListBox x:Name="ClanProvinces" Margin="0"/>
-                            </Grid>
-                        </TabItem>
-                    </TabControl>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="103*"/>
+                        <RowDefinition Height="268*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <Grid Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="{x:Null}"/>
+                            <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,0,0,0" TextWrapping="Wrap" Width="86" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
+                            <Run x:Name="PlayerClan22">---</Run>
+                            <LineBreak/>
+                            <Run x:Name="PlayerZvani2e">---</Run>
+                            </TextBlock>
+                        </Grid>
+                    </StackPanel>
+                    <TextBlock x:Name="ClanFullname" HorizontalAlignment="Left" Margin="16,15,0,0" TextWrapping="Wrap" Text="Полное название: " VerticalAlignment="Top"/>
+                    <TextBlock x:Name="ClanAbbr" HorizontalAlignment="Left" Margin="20,45,0,0" TextWrapping="Wrap" Text="Сокращенное название: " VerticalAlignment="Top"/>
+                    <GroupBox Header="Личный состав:" Margin="5,0,5,5" Grid.Row="1">
+                        <ListBox x:Name="ClanMembers" Margin="5"/>
+                    </GroupBox>
+                    <TextBlock x:Name="ClanCount" HorizontalAlignment="Left" Margin="24,76,0,0" TextWrapping="Wrap" Text="Всего бойцов: " VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Список боев">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="ClanBattles" Margin="0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Список владений">
+                <Grid HorizontalAlignment="Left" Height="372" VerticalAlignment="Top" Width="478">
+                    <ListBox x:Name="ClanProvinces" Margin="0"/>
                 </Grid>
             </TabItem>
         </TabControl>
+        <StackPanel HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>                
+                <Button Style="{DynamicResource tcPage}" Grid.Column="0" Content=" " Margin="7,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+                <Button Style="{DynamicResource tcPage}" Grid.Column="1" Content=" " Margin="7,0" Click="Button_Click_2"/>
+                <Button Style="{DynamicResource tcPage}" Grid.Column="2" Content=" " Margin="7,0" Click="Button_Click_3"/>
+                <Button Style="{DynamicResource tcPage}" Grid.Column="3" Content=" " Margin="7,0" Click="Button_Click_4"/>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>

@@ -2173,5 +2173,48 @@
             </Setter>
         </Style>
         <!-- End of Flat ComboBox -->
+
+
+
+        <Style x:Key="tcPage" TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Height" Value="8"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="0">
+                            <Rectangle x:Name="cbImage12"
+                                       Width="8"
+                                       Height="8"
+                                       Stretch="Fill"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="Resources/page.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Control.IsMouseOver" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter Property="Rectangle.Fill" TargetName="cbImage12">
+                                        <Setter.Value>
+                                            <ImageBrush ImageSource="Resources/page_select.png"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        
     </Application.Resources>
 </Application>

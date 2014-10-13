@@ -469,6 +469,12 @@
   <ItemGroup>
     <Resource Include="Resources\stat_rating.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\page_select.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>
