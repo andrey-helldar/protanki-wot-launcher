@@ -148,7 +148,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                        TimeSpan dtDays = dtNow - dtDateTime;*/
 
                                        PlayerClan.Text = "[" + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation") + "]";
-                                       PlayerClanDays.Text = ts.Days.ToString();
+                                       //PlayerClanDays.Text = ts.Days.ToString();
 
                                        PlayerClan2.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name") +
                                            " [" + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation") + "]";
@@ -179,12 +179,12 @@ namespace _Hell_WPF_Multipack_Launcher
                                    AvgDamagePerc.Text = SelectToken(obj, "statistics.all.avg_damage_assisted");
 
 
-                                   PlayerGold.Text = SelectToken(obj, "private.gold");
+                                   /*PlayerGold.Text = SelectToken(obj, "private.gold");
                                    rating.Content = "Личный рейтинг: " + SelectToken(obj, "global_rating");
                                    credit.Content = "Кредитов: " + SelectToken(obj, "private.credits");
                                    opit.Content = "Свободный опыт: " + SelectToken(obj, "private.free_xp");
 
-                                   prem.Content = SelectToken(obj, "private.is_premium") == "True" ? "Премиум аккаунт" : "Базовый аккаунт";
+                                   prem.Content = SelectToken(obj, "private.is_premium") == "True" ? "Премиум аккаунт" : "Базовый аккаунт";*/
 
                                    /*Batles.Text = SelectToken(obj, "statistics.all.battles");                               
                                    Wins.Text = SelectToken(obj, "statistics.all.wins");
@@ -427,18 +427,67 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                            foreach (var province in (JObject)Provinces["data"])
                                            {
-                                               ClanProvinces.Items.Add(
-                                                   String.Format(
-                                                    "{0}\t::\t{1}\t::\t{2}\t::\t{3}\t::\t{4}\t::\t{5}\t::\t{6}",
-                                                    (string)province.Value["type"],
-                                                    (string)province.Value["name"],
-                                                    (string)province.Value["arena_i18n"],
-                                                    (string)province.Value["prime_time"],
-                                                    (string)province.Value["revenue"],
-                                                    (string)province.Value["occupancy_time"],
-                                                    (string)province.Value["attacked"]
-                                                   )
-                                               );
+                                               Grid gr = new Grid();
+                                               if ((string)province.Value["attacked"] == "true") gr.SetResourceReference(Grid.StyleProperty, "attacked");
+
+                                               ColumnDefinition cd1 = new ColumnDefinition();
+                                               ColumnDefinition cd2 = new ColumnDefinition();
+                                               ColumnDefinition cd3 = new ColumnDefinition();
+                                               ColumnDefinition cd4 = new ColumnDefinition();
+                                               ColumnDefinition cd5 = new ColumnDefinition();
+                                               ColumnDefinition cd6 = new ColumnDefinition();
+                                               ColumnDefinition cd7 = new ColumnDefinition();
+
+                                               cd1.Width = new GridLength(30, GridUnitType.Auto);
+                                               cd2.Width = new GridLength(30, GridUnitType.Auto);
+                                               cd3.Width = new GridLength(30, GridUnitType.Auto);
+                                               cd4.Width = new GridLength(30, GridUnitType.Auto);
+                                               cd5.Width = new GridLength(30, GridUnitType.Auto);
+                                               cd6.Width = new GridLength(30, GridUnitType.Auto);
+
+                                               gr.ColumnDefinitions.Add(cd1);
+                                               gr.ColumnDefinitions.Add(cd2);
+                                               gr.ColumnDefinitions.Add(cd3);
+                                               gr.ColumnDefinitions.Add(cd4);
+                                               gr.ColumnDefinitions.Add(cd5);
+                                               gr.ColumnDefinitions.Add(cd6);
+
+                                               Image im = new Image();
+                                               im.SetResourceReference(Image.StyleProperty, "province_types_" + (string)province.Value["type"]);
+
+                                               TextBlock t1 = new TextBlock();
+                                               t1.Text = (string)province.Value["name"];
+                                               t1.SetResourceReference(TextBlock.StyleProperty, "t1");
+                                               Grid.SetColumn(t1, 1);
+
+                                               TextBlock t2 = new TextBlock();
+                                               t2.Text = (string)province.Value["arena_i18n"];
+                                               t2.SetResourceReference(TextBlock.StyleProperty, "t2");
+                                               Grid.SetColumn(t2, 2);
+
+                                               TextBlock t3 = new TextBlock();
+                                               t3.Text = (string)province.Value["prime_time"];
+                                               t3.SetResourceReference(TextBlock.StyleProperty, "t3");
+                                               Grid.SetColumn(t3, 3);
+
+                                               TextBlock t4 = new TextBlock();
+                                               t4.Text = (string)province.Value["revenue"];
+                                               t4.SetResourceReference(TextBlock.StyleProperty, "t4");
+                                               Grid.SetColumn(t4, 4);
+
+                                               TextBlock t5 = new TextBlock();
+                                               t5.Text = (string)province.Value["occupancy_time"];
+                                               t5.SetResourceReference(TextBlock.StyleProperty, "t5");
+                                               Grid.SetColumn(t5, 5);
+
+                                               gr.Children.Add(im);
+                                               gr.Children.Add(t1);
+                                               gr.Children.Add(t2);
+                                               gr.Children.Add(t3);
+                                               gr.Children.Add(t4);
+                                               gr.Children.Add(t5);
+
+                                               ClanProvinces.Items.Add(gr);
                                            }
                                        }
                                    }

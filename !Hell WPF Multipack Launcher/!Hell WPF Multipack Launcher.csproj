@@ -496,6 +496,15 @@
   <ItemGroup>
     <Resource Include="Resources\icon__province.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\province_types_gold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\province_types_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\province_types_start.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>
