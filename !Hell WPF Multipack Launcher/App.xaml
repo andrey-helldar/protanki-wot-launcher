@@ -920,7 +920,7 @@
                                 <MultiTrigger.Setters>
                                     <Setter Property="Rectangle.Fill" TargetName="PlayBackground">
                                         <Setter.Value>
-                                            <ImageBrush ImageSource="Resources/General_News_Close_hover.png"/>
+                                            <ImageBrush ImageSource="Resources/_play_hover.png"/>
                                         </Setter.Value>
                                     </Setter>
                                 </MultiTrigger.Setters>
@@ -934,7 +934,7 @@
                                 <MultiTrigger.Setters>
                                     <Setter Property="Rectangle.Fill" TargetName="PlayBackground">
                                         <Setter.Value>
-                                            <ImageBrush ImageSource="Resources/General_News_Close_normal.png"/>
+                                            <ImageBrush ImageSource="Resources/_play_normal.png"/>
                                         </Setter.Value>
                                     </Setter>
                                 </MultiTrigger.Setters>
@@ -948,7 +948,7 @@
                                 <MultiTrigger.Setters>
                                     <Setter Property="Rectangle.Fill" TargetName="PlayBackground">
                                         <Setter.Value>
-                                            <ImageBrush ImageSource="Resources/General_News_Close_pressed.png"/>
+                                            <ImageBrush ImageSource="Resources/_play_pressed.png"/>
                                         </Setter.Value>
                                     </Setter>
                                 </MultiTrigger.Setters>

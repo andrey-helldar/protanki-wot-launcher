@@ -319,12 +319,6 @@
     <Resource Include="Resources\download.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\flag_de.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\flag_en.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\General_Feedback_hover.png" />
   </ItemGroup>
   <ItemGroup>
@@ -421,9 +415,6 @@
     <Resource Include="Resources\minimize_press.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\flag_ru.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\arrow.png" />
   </ItemGroup>
   <ItemGroup>
@@ -513,6 +504,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\stat_perc_vins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flag_de.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flag_en.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flag_ru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\_play_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\_play_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\_play_pressed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
