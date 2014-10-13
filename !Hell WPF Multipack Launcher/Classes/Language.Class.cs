@@ -323,6 +323,19 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+
+                        /* -----------------------------
+                         *      Interface
+                         * -----------------------------*/
+                        case "gbInterface":
+                            switch (lang)
+                            {
+                                case "ru": return "Интерфейс";
+                                case "en": return "Interface";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
                         default: return toReturn;
                     }
 
@@ -921,6 +934,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "de": return "Daten für";
                                 default: return toReturn;
                             }
+
+                        case "ErrorDataJson":
+                            switch (lang)
+                            {
+                                case "ru": return "Ошибка получения данных!";
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }
+
+                        case "ActivateWarID":
+                            switch (lang)
+                            {
+                                case "ru": return "Требуется авторизация для получения информации по Вашему аккаунту!";
+                                case "en": return "000";
+                                case "de": return "000";
+                                default: return toReturn;
+                            }                            
 
                         default: return toReturn;
                     }

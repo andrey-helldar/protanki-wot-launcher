@@ -28,7 +28,7 @@
 
 
 
-        <Button Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="Button_Click" Style="{DynamicResource ButtonCLOSE}" Grid.Row="1"/>
+        <Button x:Name="bClose" Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="Button_Click" Style="{DynamicResource ButtonCLOSE}" Grid.Row="1"/>
         <TabControl x:Name="tc" Margin="10,0,10,10" Background="{x:Null}" BorderBrush="{x:Null}">
             <TabItem Header="Персональная информация">
                 <Grid>
@@ -167,7 +167,7 @@
                             </TextBlock>
                         </Grid>
                     </StackPanel>
-                    <GroupBox Header="Личный состав:" Margin="5,0,54,5" Grid.Row="1">
+                    <GroupBox x:Name="gbSostav" Header="Личный состав:" Margin="5,0,54,5" Grid.Row="1">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>

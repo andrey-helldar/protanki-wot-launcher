@@ -31,6 +31,8 @@ namespace _Hell_WPF_Multipack_Launcher
         public SettingsProcesses()
         {
             InitializeComponent();
+
+            gbProcesses.Header = new Classes.Language().Set("PageSettingsProcesses", "lProcesses", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

@@ -56,7 +56,7 @@
                         </ComboBox>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Интерфейс" Margin="0" Grid.Row="2">
+                <GroupBox x:Name="gbInterface" Header="Интерфейс" Margin="0" Grid.Row="2">
                     <Grid Margin="5">
                         <ComboBox x:Name="cbLang" Margin="10" Height="22" SelectedIndex="0" FontWeight="Normal" SelectionChanged="ComboBox_SelectionChanged" VerticalAlignment="Top">
                             <ComboBoxItem Content="Русский" Foreground="#FF007aff"/>

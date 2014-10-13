@@ -31,7 +31,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Language Lang = new Classes.Language();
 
         string lang = Properties.Resources.Default_Lang;
-        private ObservableCollection<AssetClass> classes;
+        //private ObservableCollection<AssetClass> classes;
 
         /// <summary>
         /// Handle clicks on the listview column heading
@@ -78,6 +78,17 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         private void AccountInfo()
         {
+            // Apply language
+            try
+            {
+                bClose.Content = Lang.Set("PageSettings", "bClose", lang);
+
+                gbSostav.Header = Lang.Set("PageUser", "tbPersonnel", lang);
+                dataonTitle.Text = Lang.Set("PageUser", "tbDataOn", lang);
+            }
+            catch (Exception) { }
+
+
             try
             {
                 Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
@@ -98,6 +109,8 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         if (MainWindow.XmlDocument.Root.Element("token") != null)
                             MainWindow.XmlDocument.Root.Element("token").Remove();
+
+                        MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", lang));
                     }
                 }
                 catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (active)", e.Message, e.StackTrace)); }
@@ -238,7 +251,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                    /*
                                     *   ГРАФИК
                                     */
-                                   try
+                                   /*try
                                    {
                                        this.DataContext = new ObservableCollection<AssetClass>(AssetClass.ConstructTestData(new JObject(
                                            new JProperty("wins",
@@ -262,7 +275,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                        )));
                                    }
                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Graphic", ex.Message, ex.StackTrace)); }
-
+                                   */
 
                                    /*
                                     *   ВКЛАДКА КЛАН
@@ -336,7 +349,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                            Grid.SetColumn(CmName, 1);
 
                                            TextBlock CmTitle = new TextBlock();
-                                           CmTitle.Text = (string)member.Value["role"];
+                                           CmTitle.Text = Lang.Set("Rank", (string)member.Value["role"], lang);
                                            CmTitle.SetResourceReference(TextBlock.StyleProperty, "CmTitle");
                                            Grid.SetColumn(CmTitle, 2);
 
@@ -532,7 +545,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan provincies", ex.Message, ex.StackTrace)); }
                                }
                                else
-                                   MessageBox.Show("STATUS NOT OK _0");
+                                   MessageBox.Show(Lang.Set("PageUser", "ErrorDataJson", lang));
                            }
                            catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", e.Message, e.StackTrace)); }
                        }));

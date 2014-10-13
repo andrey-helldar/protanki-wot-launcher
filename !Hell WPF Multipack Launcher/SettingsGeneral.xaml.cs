@@ -55,6 +55,21 @@ namespace _Hell_WPF_Multipack_Launcher
                 /*
                  * Загружаем заголовки
                  */
+                gbOptimize.Header = Lang.Set("PageSettingsGeneral", "gbOptimize", lang);
+
+                cbKill.Content = Lang.Set("PageSettingsGeneral", "cbKill", lang);
+                cbForce.Content = Lang.Set("PageSettingsGeneral", "cbForce", lang);
+                cbVideo.Content = Lang.Set("PageSettingsGeneral", "cbVideo", lang);
+                cbWeak.Content = Lang.Set("PageSettingsGeneral", "cbWeak", lang);
+                cbAero.Content = Lang.Set("PageSettingsGeneral", "cbAero", lang);
+                cbKill.Content = Lang.Set("PageSettingsGeneral", "cbKill", lang);
+
+                gbOther.Header = Lang.Set("PageSettingsGeneral", "gbOther", lang);
+                cbNotifyVideo.Content = Lang.Set("PageSettingsGeneral", "cbNotifyVideo", lang);
+                cbNotifyNews.Content = Lang.Set("PageSettingsGeneral", "cbNotifyNews", lang);
+
+                gbInterface.Header = Lang.Set("PageSettingsGeneral", "gbInterface", lang);
+
                 try
                 {
                     cbPriority.Items.Clear();
