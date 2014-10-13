@@ -2214,7 +2214,27 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-        
+
+
+        <Style x:Key="CmID"  TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Foreground" Value="#FF3a6696"/>
+        </Style>
+
+        <Style x:Key="CmName" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FF3a6696"/>
+        </Style>
+        <Style x:Key="CmTitle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FF575757"/>
+        </Style>
+        <Style x:Key="CmDate" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Foreground" Value="#FF3a6696"/>
+        </Style>
+
     </Application.Resources>
 </Application>

@@ -150,8 +150,8 @@
             <TabItem Header="Общая информация">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="103*"/>
-                        <RowDefinition Height="268*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0">
                         <Grid Margin="0">
@@ -161,18 +161,55 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="{x:Null}"/>
                             <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,0,0,0" TextWrapping="Wrap" Width="86" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
-                            <Run x:Name="PlayerClan22">---</Run>
+                            <Run x:Name="ClanFullname">---</Run>
                             <LineBreak/>
-                            <Run x:Name="PlayerZvani2e">---</Run>
+                            <Run x:Name="ClanDesc">---</Run>
                             </TextBlock>
                         </Grid>
                     </StackPanel>
-                    <TextBlock x:Name="ClanFullname" HorizontalAlignment="Left" Margin="16,15,0,0" TextWrapping="Wrap" Text="Полное название: " VerticalAlignment="Top"/>
-                    <TextBlock x:Name="ClanAbbr" HorizontalAlignment="Left" Margin="20,45,0,0" TextWrapping="Wrap" Text="Сокращенное название: " VerticalAlignment="Top"/>
-                    <GroupBox Header="Личный состав:" Margin="5,0,5,5" Grid.Row="1">
-                        <ListBox x:Name="ClanMembers" Margin="5"/>
+                    <GroupBox Header="Личный состав:" Margin="5,0,54,5" Grid.Row="1">
+                        <Grid Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="237*"/>
+                                <ColumnDefinition Width="251*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" VerticalAlignment="Bottom">
+                                <Image Source="Resources/soldiers.png" Width="77" Height="39" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                <Image Source="Resources/(.png" Width="8" Height="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5"/>
+                                <Run x:Name="ClanCount" FontSize="20" FontFamily="Verdana" BaselineAlignment="Center" Foreground="#FF3A6696" FontWeight="Bold">0</Run>
+                                <Image Source="Resources/).png" Width="8" Height="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5"/>
+                            </TextBlock>
+                            <Image Source="Resources/line1.png" Width="403" Height="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                            
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,20,7" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF676767">
+                                <Run x:Name="dataonTitle">Данные на</Run>
+                                <Run x:Name="dataon">1.1.1970</Run>
+                            </TextBlock>
+
+
+                            <ListBox x:Name="ClanMembers" Margin="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center">
+                                <ListBoxItem Style="{DynamicResource lbiProcess}" Width="396">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="155"/>
+                                            <ColumnDefinition Width="130"/>
+                                            <ColumnDefinition Width="80"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Style="{DynamicResource CmID}" Text="100" />
+                                        <TextBlock Style="{DynamicResource CmName}" Text="d_voronoff" Grid.Column="1"/>
+                                        <TextBlock Style="{DynamicResource CmTitle}" Text="Командующий" Grid.Column="2"/>
+                                        <TextBlock Style="{DynamicResource CmDate}" Text="01.01.2014" Grid.Column="3"/>
+                                    </Grid>
+                                </ListBoxItem>
+                            </ListBox>
+                        </Grid>
                     </GroupBox>
-                    <TextBlock x:Name="ClanCount" HorizontalAlignment="Left" Margin="24,76,0,0" TextWrapping="Wrap" Text="Всего бойцов: " VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Список боев">
@@ -193,7 +230,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>                
+                </Grid.ColumnDefinitions>
                 <Button Style="{DynamicResource tcPage}" Grid.Column="0" Content=" " Margin="7,0" VerticalAlignment="Top" Click="Button_Click_1"/>
                 <Button Style="{DynamicResource tcPage}" Grid.Column="1" Content=" " Margin="7,0" Click="Button_Click_2"/>
                 <Button Style="{DynamicResource tcPage}" Grid.Column="2" Content=" " Margin="7,0" Click="Button_Click_3"/>

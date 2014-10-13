@@ -152,6 +152,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                        PlayerClan2.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name") +
                                            " [" + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation") + "]";
+                                       ClanFullname.Text = PlayerClan2.Text;
 
                                        PlayerZvanie.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
                                    }
@@ -231,9 +232,14 @@ namespace _Hell_WPF_Multipack_Launcher
                                     */
                                    try
                                    {
+                                       ClanDesc.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "motto");
                                        //ClanFullname.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
                                        //ClanAbbr.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
-                                       //ClanCount.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members_count");
+                                       ClanCount.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members_count");
+
+                                       dataonTitle.Text = Lang.Set("PageUser", "tbDataOn", lang);
+                                       dataon.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "updated_at");
+                                           
                                    }
                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan", ex.Message, ex.StackTrace)); }
 
@@ -248,6 +254,24 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                        foreach (var member in (JObject)Clan["data"][SelectToken(obj, "clan_id")]["members"])
                                        {
+                                           /*
+                                            * <ListBoxItem Style="{DynamicResource lbiProcess}" Width="396">
+                                            *   <Grid>
+                                            *       <Grid.ColumnDefinitions>
+                                            *           <ColumnDefinition Width="30"/>
+                                            *           <ColumnDefinition Width="155"/>
+                                            *           <ColumnDefinition Width="130"/>
+                                            *           <ColumnDefinition Width="80"/>
+                                            *       </Grid.ColumnDefinitions>
+                                            *       <TextBlock Style="{DynamicResource CmID}" Text="100" />
+                                            *       <TextBlock Style="{DynamicResource CmName}" Text="d_voronoff" Grid.Column="1"/>
+                                            *       <TextBlock Style="{DynamicResource CmTitle}" Text="Командующий" Grid.Column="2"/>
+                                            *       <TextBlock Style="{DynamicResource CmDate}" Text="01.01.2014" Grid.Column="3"/>
+                                            *   </Grid>
+                                            * </ListBoxItem>
+                                            */
+                                           Grid gr = new Grid();
+
                                            ClanMembers.Items.Add(String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
                                                (++i).ToString(),
                                                (string)member.Value["account_name"],

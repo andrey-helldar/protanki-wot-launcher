@@ -475,6 +475,18 @@
   <ItemGroup>
     <Resource Include="Resources\page_select.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\soldiers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\line1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\%28.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>
