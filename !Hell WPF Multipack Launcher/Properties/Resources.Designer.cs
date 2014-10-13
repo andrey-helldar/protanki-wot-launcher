@@ -1023,6 +1023,36 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap stat_perc_avgdamage {
+            get {
+                object obj = ResourceManager.GetObject("stat_perc_avgdamage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap stat_perc_avgxp {
+            get {
+                object obj = ResourceManager.GetObject("stat_perc_avgxp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap stat_perc_battles {
+            get {
+                object obj = ResourceManager.GetObject("stat_perc_battles", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap stat_perc_vins {
             get {
                 object obj = ResourceManager.GetObject("stat_perc_vins", resourceCulture);

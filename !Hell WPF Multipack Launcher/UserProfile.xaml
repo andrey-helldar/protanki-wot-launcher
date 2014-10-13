@@ -50,7 +50,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="0" TextWrapping="Wrap" Width="86" VerticalAlignment="Bottom" Foreground="#FF3a6696" FontWeight="Bold" FontFamily="Arial" FontSize="18">
+                            <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="0" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF3a6696" FontWeight="Bold" FontFamily="Arial" FontSize="18">
                     <Run x:Name="PlayerName">Guest</Run>
                     <Run x:Name="PlayerClan">[---]</Run>
                             </TextBlock>
@@ -60,8 +60,8 @@
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="{x:Null}"/>
-                                    <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,0,0,0" TextWrapping="Wrap" Width="86" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
+                                    <Image x:Name="ClanEmblem" Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="{x:Null}"/>
+                                    <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
                             <Run x:Name="PlayerClan2">---</Run>
                             <LineBreak/>
                             <Run x:Name="PlayerZvanie">---</Run>
@@ -74,10 +74,10 @@
                         </Grid>
                     </StackPanel>
                     <StackPanel Grid.ColumnSpan="2" Margin="0" Grid.Row="1">
-                        <Grid Height="263">
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <StackPanel Margin="0">
                                 <Grid>
@@ -91,7 +91,7 @@
                                         <LineBreak/>
                                         <Run x:Name="PercWins">Процент побед</Run>
                                         <LineBreak/><LineBreak/>
-                                        <Run x:Name="PercWinsPerc">0%</Run>
+                                        <Run x:Name="PercWinsPerc" Style="{DynamicResource stattext}">0%</Run>
                                     </TextBlock>
 
                                     <TextBlock HorizontalAlignment="Center" Grid.Column="1" Margin="0" TextWrapping="Wrap"  VerticalAlignment="Center" TextAlignment="Center">
@@ -99,15 +99,15 @@
                                         <LineBreak/>
                                         <Run x:Name="MyRating">Личный рейтинг</Run>
                                         <LineBreak/><LineBreak/>
-                                        <Run x:Name="MyRatingPerc">0</Run>
+                                        <Run x:Name="MyRatingPerc" Style="{DynamicResource stattext}">0</Run>
                                     </TextBlock>
 
                                     <TextBlock HorizontalAlignment="Center" Grid.Column="2" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
-                                        <Image Source="Resources/stat_perc_vins.png" Width="33" Height="29"/>
+                                        <Image Source="Resources/stat_perc_avgxp.png" Width="33" Height="29"/>
                                         <LineBreak/>
                                         <Run x:Name="AvgXP">Средний опыт за бой</Run>
                                         <LineBreak/><LineBreak/>
-                                        <Run x:Name="AvgXPPerc">0</Run>
+                                        <Run x:Name="AvgXPPerc" Style="{DynamicResource stattext}">0</Run>
                                     </TextBlock>
                                 </Grid>
                             </StackPanel>
@@ -120,19 +120,19 @@
                                         <ColumnDefinition Width="1*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
-                                        <Image Source="Resources/stat_perc_vins.png" Width="33" Height="29"/>
+                                        <Image Source="Resources/stat_perc_battles.png" Width="33" Height="29"/>
                                         <LineBreak/>
                                         <Run x:Name="BattleCount">Количество боев</Run>
                                         <LineBreak/><LineBreak/>
-                                        <Run x:Name="BattleCountPerc">0</Run>
+                                        <Run x:Name="BattleCountPerc" Style="{DynamicResource stattext}">0</Run>
                                     </TextBlock>
 
                                     <TextBlock HorizontalAlignment="Center" Grid.Column="2" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
-                                        <Image Source="Resources/stat_perc_vins.png" Width="33" Height="29"/>
+                                        <Image Source="Resources/stat_perc_avgdamage.png" Width="33" Height="29"/>
                                         <LineBreak/>
                                         <Run x:Name="AvgDamage">Средний нанесенный урон за бой</Run>
                                         <LineBreak/><LineBreak/>
-                                        <Run x:Name="AvgDamagePerc">0</Run>
+                                        <Run x:Name="AvgDamagePerc" Style="{DynamicResource stattext}">0</Run>
                                     </TextBlock>
                                 </Grid>
                             </StackPanel>
@@ -159,8 +159,8 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="{x:Null}"/>
-                            <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,0,0,0" TextWrapping="Wrap" Width="86" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
+                            <Image x:Name="ClanEmblem2" Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="{x:Null}"/>
+                            <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
                             <Run x:Name="ClanFullname">---</Run>
                             <LineBreak/>
                             <Run x:Name="ClanDesc">---</Run>

@@ -117,11 +117,8 @@ namespace _Hell_WPF_Multipack_Launcher
                             {
                                 MainWindow.LoadingPanelShow(1);
 
-                                Task.Factory.StartNew(() =>
-                                {
-                                    try { MainWindow.Navigator(); }
-                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
-                                });
+                                try { MainWindow.Navigator(); }
+                                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
                             }
                         }
                         catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", ex.Message, ex.StackTrace)); }
@@ -141,7 +138,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                JObject obj = JObject.Parse(WarAPI.AccountInfo(GetElement("account_id"), GetElement("access_token")));
 
-                               obj["data"][GetElement("account_id")]["clan_id"] = 103556; // Подставной клан
+                               //obj["data"][GetElement("account_id")]["clan_id"] = 103556; // Подставной клан
 
                                JObject Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id"), GetElement("access_token")));
                                JObject Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id"), GetElement("access_token")));
@@ -173,9 +170,13 @@ namespace _Hell_WPF_Multipack_Launcher
                                        ClanFullname.Text = PlayerClan2.Text;
 
                                        PlayerZvanie.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
-                                   }
-                                   catch (Exception) { PlayerClan.Text = "[---]"; PlayerClan2.Text = "---"; /*tbUpClan.Text = "Произошла ошибка или ты не состоишь в клане " + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name"); */}
 
+                                       //   emblems.medium
+                                       //   SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium")
+                                       ClanEmblem.Source = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium");
+                                       ClanEmblem2.Source = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium");
+
+                                           
                                    // Процент побед
                                    PercWins.Text = Lang.Set("PageUser", "tbPercentWins", lang);
                                    PercWinsPerc.Text = String.Format("{0}%", (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.wins")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString());
@@ -195,6 +196,9 @@ namespace _Hell_WPF_Multipack_Launcher
                                    // Средний нанесенный урон за бой
                                    AvgDamage.Text = Lang.Set("PageUser", "tbAvgDamage", lang);
                                    AvgDamagePerc.Text = SelectToken(obj, "statistics.all.avg_damage_assisted");
+                                   }
+                                   catch (Exception) { PlayerClan.Text = "[---]"; PlayerClan2.Text = "---"; /*tbUpClan.Text = "Произошла ошибка или ты не состоишь в клане " + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name"); */}
+
 
 
                                    /*PlayerGold.Text = SelectToken(obj, "private.gold");

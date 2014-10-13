@@ -461,4 +461,13 @@
   <data name="province_types_start" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\province_types_start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="stat_perc_avgdamage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stat_perc_avgdamage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stat_perc_avgxp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stat_perc_avgxp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stat_perc_battles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stat_perc_battles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

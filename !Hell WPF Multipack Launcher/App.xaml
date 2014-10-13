@@ -2313,6 +2313,14 @@
             <Setter Property="Foreground" Value="#FF575757"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
+        
+        
+        <Style x:Key="stattext" TargetType="{x:Type Run}">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="Foreground" Value="#FF3a6696"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16pt"/>
+        </Style>
 
     </Application.Resources>
 </Application>
