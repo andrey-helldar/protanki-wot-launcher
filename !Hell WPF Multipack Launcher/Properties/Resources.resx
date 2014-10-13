@@ -250,7 +250,7 @@
     <comment>Протокол передачи запросов Wargaming API</comment>
   </data>
   <data name="API_Clan_Battles" xml:space="preserve">
-    <value>api.worldoftanks.ru/wot/clan/battles/</value>
+    <value>api.worldoftanks.ru/wot/globalwar/battles</value>
     <comment>Список назначенных боев клана</comment>
   </data>
   <data name="API_Clan_Info" xml:space="preserve">

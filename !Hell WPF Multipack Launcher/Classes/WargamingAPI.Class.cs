@@ -128,7 +128,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <param name="access_token">Токен</param>
         /// <param name="fields">Запрос определенных полей</param>
         /// <returns>JSON ответ</returns>
-        public string ClanBattles(string clan_id, string access_token="", string fields = "")
+        public string ClanBattles(string clan_id, string access_token = "", string map_id = "globalwar", string fields = "")
         {
             /*
              * api.worldoftanks.ru/wot/clan/battles/
@@ -139,6 +139,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 Data = "application_id=" + Properties.Resources.API;
                 Data += "&clan_id=" + clan_id;
+                if (map_id != "") Data += "&map_id=" + map_id;
+
                 if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
                 if (fields.Trim().Length > 0) Data += "&fields=" + fields;
 

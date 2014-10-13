@@ -108,7 +108,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/clan/battles/.
+        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/globalwar/battles.
         /// </summary>
         public static string API_Clan_Battles {
             get {
