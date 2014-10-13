@@ -250,7 +250,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                    try
                                    {
                                        ClanMembers.Items.Clear();
-                                       int i = 0;
+                                       int i = 1;
 
                                        foreach (var member in (JObject)Clan["data"][SelectToken(obj, "clan_id")]["members"])
                                        {
@@ -272,12 +272,53 @@ namespace _Hell_WPF_Multipack_Launcher
                                             */
                                            Grid gr = new Grid();
 
-                                           ClanMembers.Items.Add(String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
+                                           ColumnDefinition cd1 = new ColumnDefinition();
+                                           ColumnDefinition cd2 = new ColumnDefinition();
+                                           ColumnDefinition cd3 = new ColumnDefinition();
+                                           ColumnDefinition cd4 = new ColumnDefinition();
+
+                                           cd1.Width = new GridLength(30, GridUnitType.Pixel);
+                                           cd2.Width = new GridLength(155, GridUnitType.Pixel);
+                                           cd3.Width = new GridLength(130, GridUnitType.Pixel);
+                                           cd4.Width = new GridLength(80, GridUnitType.Pixel);
+
+                                           gr.ColumnDefinitions.Add(cd1);
+                                           gr.ColumnDefinitions.Add(cd2);
+                                           gr.ColumnDefinitions.Add(cd3);
+                                           gr.ColumnDefinitions.Add(cd4);
+
+                                           TextBlock tbID = new TextBlock();
+                                           tbID.Text = (i++).ToString();
+                                           tbID.SetResourceReference(TextBlock.StyleProperty, "CmID");
+                                           Grid.SetColumn(tbID, 0);
+
+                                           TextBlock CmName = new TextBlock();
+                                           CmName.Text = (string)member.Value["account_name"];
+                                           CmName.SetResourceReference(TextBlock.StyleProperty, "CmName");
+                                           Grid.SetColumn(CmName, 1);
+
+                                           TextBlock CmTitle = new TextBlock();
+                                           CmTitle.Text = (string)member.Value["role"];
+                                           CmTitle.SetResourceReference(TextBlock.StyleProperty, "CmTitle");
+                                           Grid.SetColumn(CmTitle, 2);
+
+                                           TextBlock CmDate = new TextBlock();
+                                           CmDate.Text = (string)member.Value["created_at"];
+                                           CmDate.SetResourceReference(TextBlock.StyleProperty, "CmDate");
+                                           Grid.SetColumn(CmDate, 3);
+
+                                           gr.Children.Add(tbID);
+                                           gr.Children.Add(CmName);
+                                           gr.Children.Add(CmTitle);
+                                           gr.Children.Add(CmDate);
+
+                                           ClanMembers.Items.Add(gr);
+                                           /*ClanMembers.Items.Add(String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
                                                (++i).ToString(),
                                                (string)member.Value["account_name"],
                                                (string)member.Value["role_i18n"],
                                                (string)member.Value["created_at"]
-                                           ));
+                                           ));*/
                                        }
                                    }
                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan members", ex.Message, ex.StackTrace)); }
