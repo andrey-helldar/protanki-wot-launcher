@@ -93,6 +93,12 @@ namespace _Hell_WPF_Multipack_Launcher
 
                         active = dtDateTime > DateTime.UtcNow;
                     }
+
+                    if (!active)
+                    {
+                        if (MainWindow.XmlDocument.Root.Element("token") != null)
+                            MainWindow.XmlDocument.Root.Element("token").Remove();
+                    }
                 }
                 catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (active)", e.Message, e.StackTrace)); }
 
@@ -105,6 +111,18 @@ namespace _Hell_WPF_Multipack_Launcher
                             WarApiOpenID WarApiOpenID = new WarApiOpenID();
                             WarApiOpenID.WB.Source = new Uri(WarAPI.OpenID());
                             WarApiOpenID.ShowDialog();
+
+                            active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
+                            if (!active)
+                            {
+                                MainWindow.LoadingPanelShow(1);
+
+                                Task.Factory.StartNew(() =>
+                                {
+                                    try { MainWindow.Navigator(); }
+                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+                                });
+                            }
                         }
                         catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", ex.Message, ex.StackTrace)); }
                     }));
@@ -239,7 +257,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                        dataonTitle.Text = Lang.Set("PageUser", "tbDataOn", lang);
                                        dataon.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "updated_at");
-                                           
+
                                    }
                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan", ex.Message, ex.StackTrace)); }
 
@@ -348,7 +366,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 *       landing — бой за высадку.
                                                 */
                                                JObject GlobalProvinces = JObject.Parse(WarAPI.GlobalProvinces((string)battle["provinces"][0]));
-                                               
+
 
                                                Grid gr = new Grid();
 
@@ -368,7 +386,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                gr.ColumnDefinitions.Add(cd4);
 
                                                Image im = new Image();
-                                               im.SetResourceReference(Image.StyleProperty, "Icon_"+(string)battle["type"]);
+                                               im.SetResourceReference(Image.StyleProperty, "Icon_" + (string)battle["type"]);
 
                                                TextBlock tbID = new TextBlock();
                                                tbID.Text = (string)battle["time"];
@@ -384,7 +402,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                CmTitle.Text = (string)battle["arenas"][0]["name_i18n"];
                                                CmTitle.SetResourceReference(TextBlock.StyleProperty, "CmTitle");
                                                Grid.SetColumn(CmTitle, 2);
-                                               
+
                                                gr.Children.Add(im);
                                                gr.Children.Add(tbID);
                                                gr.Children.Add(CmName);

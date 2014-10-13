@@ -29,7 +29,7 @@
 
 
         <Button Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="Button_Click" Style="{DynamicResource ButtonCLOSE}" Grid.Row="1"/>
-        <TabControl x:Name="tc" Margin="10,0,10,10">
+        <TabControl x:Name="tc" Margin="10,0,10,10" Background="{x:Null}" BorderBrush="{x:Null}">
             <TabItem Header="Персональная информация">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -148,7 +148,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Общая информация">
-                <Grid Background="#FFE5E5E5">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
@@ -213,7 +213,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Список боев">
-                <Grid Background="#FFE5E5E5">
+                <Grid>
                     <ListBox x:Name="ClanBattles" Margin="0"/>
                 </Grid>
             </TabItem>
