@@ -48,6 +48,11 @@ namespace _Hell_WPF_Multipack_Launcher
                         this.Close();
                     }
                 }
+
+                if (WB.Document.ToString().IndexOf("Good!") > 0)
+                    this.Close();
+                
+                MessageBox.Show(WB.Source.ToString());
             }
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "WebBrowser_LoadCompleted()", ex.Message, ex.StackTrace)); }
         }

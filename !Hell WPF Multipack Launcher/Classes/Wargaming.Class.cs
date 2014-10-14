@@ -32,7 +32,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
                         lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
 
-                XDocument doc = XDocument.Load(lang == "ru" ? Properties.Resources.RssWotRU : Properties.Resources.RssWotEn);
+                XDocument doc;
+
+                switch (lang)
+                {
+                    case "en": doc = XDocument.Load(Properties.Resources.RssWotEn); break;
+                    case "de": doc = XDocument.Load(Properties.Resources.RssWotDe); break;
+                    default: doc = XDocument.Load(Properties.Resources.RssWotRU); break;
+                }
 
                 foreach (XElement el in doc.Root.Element("channel").Elements("item"))
                     if (!new Classes.Variables().ElementBan(el.Element("link").Value, "news"))

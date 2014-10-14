@@ -112,8 +112,6 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         if (MainWindow.XmlDocument.Root.Element("token") != null)
                             MainWindow.XmlDocument.Root.Element("token").Remove();
-
-                        MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", lang));
                     }
                 }
                 catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (active)", e.Message, e.StackTrace)); }
@@ -131,6 +129,8 @@ namespace _Hell_WPF_Multipack_Launcher
                             active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
                             if (!active)
                             {
+                                MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", lang));
+
                                 MainWindow.LoadingPanelShow(1);
 
                                 try { MainWindow.Navigator(); }

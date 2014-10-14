@@ -952,7 +952,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://worldoftanks.com/en/rss/news/.
+        ///   Looks up a localized string similar to http://worldoftanks.eu/de/rss/news/.
+        /// </summary>
+        public static string RssWotDe {
+            get {
+                return ResourceManager.GetString("RssWotDe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://worldoftanks.eu/en/rss/news/.
         /// </summary>
         public static string RssWotEn {
             get {
