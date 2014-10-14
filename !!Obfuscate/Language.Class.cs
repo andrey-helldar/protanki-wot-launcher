@@ -96,8 +96,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Получены не все данные. Воспроизведение видео невозможно.";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Erhalten alle Daten. Video-Wiedergabe ist nicht möglich.";
                                 default: return toReturn;
                             }
 
@@ -105,8 +105,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Возникла ошибка при загрузке видео. Попробуйте еще раз";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "Fehler beim Laden des Videos aufgetreten. Versuchen Sie es erneut";
                                 default: return toReturn;
                             }
 
@@ -115,7 +115,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             {
                                 case "ru": return "Клиент игры не обнаружен!";
                                 case "en": return "\"World of Tanks\" is not found!";
-                                case "de": return "000";0
+                                case "de": return "__\"World of Tanks\" nicht gefunden!";
                                 default: return toReturn;
                             }
 
@@ -123,8 +123,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Для получения инструкций по устранению данной ошибки, Вы можете связаться с разработчиком";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Eine Anleitung, wie man diesen Fehler zu beheben, können Sie die Entwickler kontaktieren";
                                 default: return toReturn;
                             }
 
@@ -332,7 +332,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             {
                                 case "ru": return "Интерфейс";
                                 case "en": return "Interface";
-                                case "de": return "000";0
+                                case "de": return "__Schnittstelle";
                                 default: return toReturn;
                             }
 
@@ -415,7 +415,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Процессы, которые будут завершаться при оптимизации ПК";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Prozesse die während der Optimierung geschlossen werden";
                                 default: return toReturn;
                             }
@@ -538,7 +538,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Если у Вас возникли проблемы в работе лаунчера и/или модов, или же есть какие-либо пожелания, Вы можете заполнить форму ниже и отправить сообщение разработчикам:";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Bei Problemen mit dem Launcher, der Installation oder Vorschlägen füllen Sie bitte das weiter unten stehender Formular aus und schicken Sie es an die Entwickler";
                                 default: return toReturn;
                             }
@@ -547,7 +547,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Выберите категорию:";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Bitte die Kategorie auswählen";
                                 default: return toReturn;
                             }
@@ -556,7 +556,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Введите Ваш email:";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Tragen Sie ihre email Adresse ein";
                                 default: return toReturn;
                             }
@@ -565,8 +565,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Вы указали некорректный email-адрес!";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Sie haben eine ungültige E-Mail-Adresse angegeben!";
                                 default: return toReturn;
                             }
 
@@ -574,8 +574,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Отправить сейчас?";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Jetzt senden?";
                                 default: return toReturn;
                             }
 
@@ -583,7 +583,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Прикрепить файл";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Anhang hinzufügen";
                                 default: return toReturn;
                             }
@@ -592,8 +592,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Набрано символов:";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Typisierte Charaktere:";
                                 default: return toReturn;
                             }
 
@@ -601,8 +601,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Минимальная длина сообщения: " + text + " символов";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Mindestnachrichtenlänge: " + text + "Zeichen";
                                 default: return toReturn;
                             }                          
 
@@ -632,7 +632,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Пожелания к мультипаку";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Wünsche zum MultiPack";
                                 default: return toReturn;
                             }
@@ -641,7 +641,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Пожелания к лаунчеру";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Wünsche zum Launcher";
                                 default: return toReturn;
                             }
@@ -650,7 +650,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Пожелания к установщику";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Wünsche zum Installer";
                                 default: return toReturn;
                             }
@@ -659,7 +659,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Найдена ошибка в мультипаке";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Fehler im MultiPack";
                                 default: return toReturn;
                             }
@@ -668,7 +668,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Найдена ошибка в лаунчере";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Fehler im Launcher";
                                 default: return toReturn;
                             }
@@ -677,7 +677,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Найдена ошибка в установщике";
-                                case "en": return "000";0
+                                case "en": return "000";
                                 case "de": return "Fehler bei der Installation";
                                 default: return toReturn;
                             }
@@ -690,8 +690,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Тикет успешно зарегистрирован под номером " + text;
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Ticket erfolgreich unter der Nummer";
                                 default: return toReturn;
                             }
 
@@ -699,8 +699,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Сообщение не отправлено. Сервер ответил: " + text;
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Die Nachricht wurde nicht gesendet. Der Server antwortete:";
                                 default: return toReturn;
                             }
 
@@ -708,8 +708,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Ошибка доступа к сервису. Повторите попытку позже.";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Konnte den Dienst zuzugreifen. Bitte versuchen Sie es später noch einmal.";
                                 default: return toReturn;
                             }
 
@@ -717,8 +717,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Ваше сообщение принято к обработке";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Ihre Nachricht wird zur Bearbeitung angenommen";
                                 default: return toReturn;
                             }
 
@@ -726,8 +726,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Ошибка отправки сообщения. Попробуйте еще раз.";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Fehler beim Versenden der Nachricht. Versuchen Sie es erneut.";
                                 default: return toReturn;
                             }
 
@@ -774,8 +774,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Записи не обнаружены";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Keine Datensätze gefunden";
                                 default: return toReturn;
                             }
 
@@ -783,8 +783,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Смотреть видео";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Sehen Sie das Video";
                                 default: return toReturn;
                             }
 
@@ -939,8 +939,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Ошибка получения данных!";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Daten konnten nicht erhalten!";
                                 default: return toReturn;
                             }
 
@@ -948,10 +948,21 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Требуется авторизация для получения информации по Вашему аккаунту!";
-                                case "en": return "000";0
-                                case "de": return "000";0
+                                case "en": return "000";
+                                case "de": return "__Anmeldung erforderlich, um Informationen auf Ihrem Konto zu erhalten!";
                                 default: return toReturn;
-                            }                            
+                            }  
+
+                        case "RepeatActivation":
+                            switch (lang)
+                            {
+                                case "ru": return "Повторить активацию?";
+                                case "en": return "Repeat the activation?";
+                                case "de": return "Wiederholen Sie den Aktivierungs?";
+                                default: return toReturn;
+                            }  
+                          
+                            
 
                         default: return toReturn;
                     }
@@ -1024,7 +1035,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                              {
                                  case "ru": return "Младший офицер";
                                  case "en": return "Junior officer";
-                                 case "de": return "000";0
+                                 case "de": return "__Unteroffizier";
                                  default: return toReturn;
                              }
 
@@ -1033,7 +1044,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                              {
                                  case "ru": return "Резервист";
                                  case "en": return "Reservist";
-                                 case "de": return "000";0
+                                 case "de": return "__Ersatzmann";
                                  default: return toReturn;
                              }
 
@@ -1064,7 +1075,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             {
                                 case "ru": return "Процессы из глобального списка приоритетов не могут быть отключены.";
                                 case "en": return "Processes from global list cannot be deactivated.";
-                                case "de": return "000";0
+                                case "de": return "__Prozesse aus der globalen Liste der Prioritäten kann nicht deaktiviert werden.";
                                 default: return toReturn;
                             }
 
