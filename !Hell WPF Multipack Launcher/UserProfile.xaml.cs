@@ -101,11 +101,12 @@ namespace _Hell_WPF_Multipack_Launcher
                         }
                         else
                         {
-                            Task.Factory.StartNew(() => { AccountInfo(); }).Wait();
+                            Task.Factory.StartNew(() => { AccountInfo(); });
                         }
                     }
                     catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", ex.Message, ex.StackTrace)); }
                 }
+                else { Task.Factory.StartNew(() => { AccountInfo(); }); }
             }
             catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (active)", e.Message, e.StackTrace)); }
         }
