@@ -79,9 +79,13 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     try
                     {
-                        WarApiOpenID WarApiOpenID = new WarApiOpenID();
-                        WarApiOpenID.WB.Source = new Uri(WarAPI.OpenID());
-                        WarApiOpenID.ShowDialog();
+                        Task.Factory.StartNew(() =>
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            WarApiOpenID WarApiOpenID = new WarApiOpenID();
+                            WarApiOpenID.WB.Source = new Uri(WarAPI.OpenID());
+                            WarApiOpenID.ShowDialog();
+                        }))).Wait();
 
                         active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
 

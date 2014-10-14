@@ -29,33 +29,28 @@ namespace _Hell_WPF_Multipack_Launcher
             InitializeComponent();
         }
 
-        private void WebBrowser_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void WB_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             try
             {
-                System.Threading.Thread.Sleep(100);
-
-                if (WB.Source.ToString().IndexOf(Properties.Resources.Developer) > -1 && WB.Source.ToString().IndexOf("access_token") > 0)
+                //if (WB.Source.ToString().IndexOf(Properties.Resources.Developer) > -1 && WB.Source.ToString().IndexOf("access_token") > 0)
+                if (WB.Source.ToString().IndexOf("status=ok") > -1)
                 {
                     JObject Token = WarAPI.Token(WB.Source.ToString());
 
-                    if (Token.SelectToken("status").ToString() == "ok")
-                    {
+                    SetValue("access_token", Token.SelectToken("access_token").ToString());
+                    SetValue("expires_at", Token.SelectToken("expires_at").ToString());
+                    SetValue("nickname", Token.SelectToken("nickname").ToString());
+                    SetValue("account_id", Token.SelectToken("account_id").ToString());
 
-                        SetValue("access_token", Token.SelectToken("access_token").ToString());
-                        SetValue("expires_at", Token.SelectToken("expires_at").ToString());
-                        SetValue("nickname", Token.SelectToken("nickname").ToString());
-                        SetValue("account_id", Token.SelectToken("account_id").ToString());
-
-                        this.Close();
-                    }
+                    this.Close();
                 }
 
                 if (WB.Source.ToString().IndexOf("AUTH_CANCEL") > -1)
                 {
                     Classes.Language Lang = new Classes.Language();
-                    MessageBoxResult mbr = MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value)+
-                        Environment.NewLine+
+                    MessageBoxResult mbr = MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value) +
+                        Environment.NewLine +
                         Lang.Set("PageUser", "RepeatActivation", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value),
                         MainWindow.ProductName, MessageBoxButton.YesNo, MessageBoxImage.Information);
 
@@ -91,11 +86,6 @@ namespace _Hell_WPF_Multipack_Launcher
                         new XAttribute(attr, val)));
             }
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(WB.Source.ToString());
         }
     }
 }
