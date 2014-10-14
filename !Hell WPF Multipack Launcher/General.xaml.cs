@@ -570,7 +570,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="page">Имя открываемой формы</param>
         private void OpenPage(string page)
         {
-            MainWindow.LoadingPanelShow(1);
+            Task.Factory.StartNew(() => MainWindow.LoadingPanelShow(1)).Wait();
 
             Task.Factory.StartNew(() =>
             {

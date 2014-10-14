@@ -1018,7 +1018,27 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
-                        default: return toReturn;
+                            /* НОВЫЕ */
+                         case "junior_officer":
+                             switch (lang)
+                             {
+                                 case "ru": return "Младший офицер";
+                                 case "en": return "Junior officer";
+                                 case "de": return "000";0
+                                 default: return toReturn;
+                             }
+
+                         case "reservist":
+                             switch (lang)
+                             {
+                                 case "ru": return "Резервист";
+                                 case "en": return "Reservist";
+                                 case "de": return "000";0
+                                 default: return toReturn;
+                             }
+
+                        //default: return toReturn;
+                        default: return control;
                     }
 
 

@@ -354,6 +354,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                            TextBlock CmTitle = new TextBlock();
                                            CmTitle.Text = Lang.Set("Rank", (string)member.Value["role"], lang);
+                                           //CmTitle.Text = (string)member.Value["role"];
                                            CmTitle.SetResourceReference(TextBlock.StyleProperty, "CmTitle");
                                            Grid.SetColumn(CmTitle, 2);
 
