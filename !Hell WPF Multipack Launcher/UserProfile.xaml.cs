@@ -81,10 +81,13 @@ namespace _Hell_WPF_Multipack_Launcher
             // Apply language
             try
             {
-                bClose.Content = Lang.Set("PageSettings", "bClose", lang);
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        bClose.Content = Lang.Set("PageSettings", "bClose", lang);
 
-                gbSostav.Header = Lang.Set("PageUser", "tbPersonnel", lang);
-                dataonTitle.Text = Lang.Set("PageUser", "tbDataOn", lang);
+                        gbSostav.Header = Lang.Set("PageUser", "tbPersonnel", lang);
+                        dataonTitle.Text = Lang.Set("PageUser", "tbDataOn", lang);
+                    }));
             }
             catch (Exception) { }
 
@@ -286,10 +289,10 @@ namespace _Hell_WPF_Multipack_Launcher
                                        ClanDesc.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "motto");
                                        //ClanFullname.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
                                        //ClanAbbr.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
-                                       ClanCount.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members_count");
+                                       ClanCount.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members_count");
 
                                        dataonTitle.Text = Lang.Set("PageUser", "tbDataOn", lang);
-                                       dataon.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "updated_at");
+                                       dataon.Text = DateFormat(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "updated_at"));
 
                                    }
                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan", ex.Message, ex.StackTrace)); }
@@ -354,7 +357,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                            Grid.SetColumn(CmTitle, 2);
 
                                            TextBlock CmDate = new TextBlock();
-                                           CmDate.Text = (string)member.Value["created_at"];
+                                           CmDate.Text = DateFormat((string)member.Value["created_at"]);
                                            CmDate.SetResourceReference(TextBlock.StyleProperty, "CmDate");
                                            Grid.SetColumn(CmDate, 3);
 
@@ -363,7 +366,14 @@ namespace _Hell_WPF_Multipack_Launcher
                                            gr.Children.Add(CmTitle);
                                            gr.Children.Add(CmDate);
 
-                                           ClanMembers.Items.Add(gr);
+
+
+
+                                           ListBoxItem lbi = new ListBoxItem();
+                                           lbi.SetResourceReference(ListBoxItem.StyleProperty, "lbiProcess");
+                                           lbi.Content = gr;
+
+                                           ClanMembers.Items.Add(lbi);
                                            /*ClanMembers.Items.Add(String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
                                                (++i).ToString(),
                                                (string)member.Value["account_name"],
@@ -422,7 +432,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                im.SetResourceReference(Image.StyleProperty, "Icon_" + (string)battle["type"]);
 
                                                TextBlock tbID = new TextBlock();
-                                               tbID.Text = (string)battle["time"];
+                                               tbID.Text = DateFormat((string)battle["time"], "m:s");
                                                tbID.SetResourceReference(TextBlock.StyleProperty, "CmTIME");
                                                Grid.SetColumn(tbID, 0);
 
@@ -442,6 +452,18 @@ namespace _Hell_WPF_Multipack_Launcher
                                                gr.Children.Add(CmTitle);
 
                                                ClanBattles.Items.Add(gr);
+                                           }
+
+                                           if (ClanBattles.Items.Count == 0)    // Боев нет
+                                           {
+                                               TextBlock tbID = new TextBlock();
+                                               tbID.Text = Lang.Set("PageGeneral", "RecordsNotFound", lang);
+
+                                               ListBoxItem lbi = new ListBoxItem();
+                                               lbi.SetResourceReference(ListBoxItem.StyleProperty, "rec_not_found");
+                                               lbi.Content = tbID;
+
+                                               ClanBattles.Items.Add(lbi);
                                            }
                                        }
                                    }
@@ -517,7 +539,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                Grid.SetColumn(t2, 2);
 
                                                TextBlock t3 = new TextBlock();
-                                               t3.Text = (string)province.Value["prime_time"];
+                                               t3.Text = DateFormat((string)province.Value["prime_time"], "m:s");
                                                t3.SetResourceReference(TextBlock.StyleProperty, "t3");
                                                Grid.SetColumn(t3, 3);
 
@@ -539,6 +561,20 @@ namespace _Hell_WPF_Multipack_Launcher
                                                gr.Children.Add(t5);
 
                                                ClanProvinces.Items.Add(gr);
+                                           }
+
+
+
+                                           if (ClanProvinces.Items.Count == 0)    // Боев нет
+                                           {
+                                               TextBlock tbID = new TextBlock();
+                                               tbID.Text = Lang.Set("PageGeneral", "RecordsNotFound", lang);
+
+                                               ListBoxItem lbi = new ListBoxItem();
+                                               lbi.SetResourceReference(ListBoxItem.StyleProperty, "rec_not_found");
+                                               lbi.Content = tbID;
+
+                                               ClanBattles.Items.Add(lbi);
                                            }
                                        }
                                    }
@@ -668,7 +704,20 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             tc.SelectedIndex = 3;
+        }
 
+        private string DateFormat(string date, string format = "dd.MM.yyyy")
+        {
+            try {
+                DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                dtDateTime = dtDateTime.AddSeconds(double.Parse(date)).ToLocalTime();
+                return dtDateTime.ToString(format);
+
+                //return DateTime.FromOADate(double.Parse(date)).ToString(format);
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+                return date; }
         }
     }
 }

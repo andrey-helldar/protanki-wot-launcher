@@ -154,7 +154,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0">
-                        <Grid Margin="0">
+                        <Grid Margin="0,0,0,10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition/>
@@ -167,7 +167,7 @@
                             </TextBlock>
                         </Grid>
                     </StackPanel>
-                    <GroupBox x:Name="gbSostav" Header="Личный состав:" Margin="5,0,54,5" Grid.Row="1">
+                    <GroupBox x:Name="gbSostav" Header="Личный состав:" Margin="5,0,5,5" Grid.Row="1">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -184,7 +184,7 @@
                                 <Run x:Name="ClanCount" FontSize="20" FontFamily="Verdana" BaselineAlignment="Center" Foreground="#FF3A6696" FontWeight="Bold">0</Run>
                                 <Image Source="Resources/).png" Width="8" Height="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5"/>
                             </TextBlock>
-                            <Image Source="Resources/line1.png" Width="403" Height="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                            <Image Source="Resources/line1.png" Grid.ColumnSpan="2" VerticalAlignment="Bottom" />
 
                             <TextBlock Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,20,7" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF676767">
                                 <Run x:Name="dataonTitle">Данные на</Run>
@@ -193,7 +193,7 @@
 
 
                             <ListBox x:Name="ClanMembers" Margin="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center">
-                                <!--<ListBoxItem Style="{DynamicResource lbiProcess}" Width="396">
+                                <ListBoxItem Style="{DynamicResource lbiProcess}" Width="396">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="30"/>
@@ -206,7 +206,7 @@
                                         <TextBlock Style="{DynamicResource CmTitle}" Text="Командующий" Grid.Column="2"/>
                                         <TextBlock Style="{DynamicResource CmDate}" Text="01.01.2014" Grid.Column="3"/>
                                     </Grid>
-                                </ListBoxItem>-->
+                                </ListBoxItem>
                             </ListBox>
                         </Grid>
                     </GroupBox>
@@ -214,7 +214,11 @@
             </TabItem>
             <TabItem Header="Список боев">
                 <Grid>
-                    <ListBox x:Name="ClanBattles" Margin="0"/>
+                    <ListBox x:Name="ClanBattles" Margin="0">
+                        <ListBoxItem Style="{DynamicResource rec_not_found}">
+                            <TextBlock Text="Записи не обнаружены"/>
+                        </ListBoxItem>
+                    </ListBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Список владений">

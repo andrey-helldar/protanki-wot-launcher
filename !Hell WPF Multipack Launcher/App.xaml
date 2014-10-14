@@ -2326,5 +2326,14 @@
             <Setter Property="FontSize" Value="16pt"/>
         </Style>
 
+
+        <Style x:Key="rec_not_found" TargetType="ListBoxItem">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="Foreground" Value="#FF575757"/>
+        </Style>
+        
+
     </Application.Resources>
 </Application>
