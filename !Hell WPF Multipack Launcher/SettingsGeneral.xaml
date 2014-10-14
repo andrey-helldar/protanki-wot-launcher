@@ -30,7 +30,7 @@
                         <CheckBox x:Name="cbVideo" Foreground="#FF006699" Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="2" Click="cbVideo_Click" FontWeight="Normal"/>
                         <CheckBox x:Name="cbAero" Foreground="#FF006699" Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="4" Click="cbAero_Click" FontWeight="Normal"/>
                         <CheckBox x:Name="cbWeak" Foreground="#FF006699" Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="3" Click="cbWeak_Click" FontWeight="Normal"/>
-                        <ComboBox x:Name="cbPriority" VerticalAlignment="Top" Margin="10,10,10,5" SelectedIndex="0" Grid.Row="5" FontWeight="Normal" SelectionChanged="cbPriority_SelectionChanged">
+                        <ComboBox x:Name="cbPriority" VerticalAlignment="Top" Margin="10,10,10,5" SelectedIndex="0" Grid.Row="5" FontWeight="Normal">
                             <ComboBoxItem Content="---"/>
                         </ComboBox>
                         <Border BorderBrush="#FF8E8E8C" BorderThickness="1,0,0,1" HorizontalAlignment="Left" Height="12" Margin="16,2,0,0" VerticalAlignment="Top" Width="11" Grid.Row="1"/>
@@ -51,14 +51,14 @@
                         </Grid.RowDefinitions>
                         <CheckBox x:Name="cbNotifyVideo" Foreground="#FF006699" Content="Уведомлять о новых видео" Margin="10,5,0,4" Click="cbNotifyVideo_Click" FontWeight="Normal"/>
                         <CheckBox x:Name="cbNotifyNews" Foreground="#FF006699" Content="Уведомлять о новых новостях" Margin="10,6,0,3" Grid.Row="1" Click="cbNotifyNews_Click" FontWeight="Normal"/>
-                        <ComboBox x:Name="cbLauncher" VerticalAlignment="Top" Margin="10" SelectedIndex="0" Grid.Row="2" SelectionChanged="cbLauncher_SelectionChanged" FontWeight="Normal">
+                        <ComboBox x:Name="cbLauncher" VerticalAlignment="Top" Margin="10" SelectedIndex="0" Grid.Row="2" FontWeight="Normal">
                             <ComboBoxItem Content="---"/>
                         </ComboBox>
                     </Grid>
                 </GroupBox>
                 <GroupBox x:Name="gbInterface" Header="Интерфейс" Margin="0" Grid.Row="2">
                     <Grid Margin="5">
-                        <ComboBox x:Name="cbLang" Margin="10" Height="22" SelectedIndex="0" FontWeight="Normal" SelectionChanged="ComboBox_SelectionChanged" VerticalAlignment="Top">
+                        <ComboBox x:Name="cbLang" Margin="10" Height="22" SelectedIndex="0" FontWeight="Normal" VerticalAlignment="Top">
                             <ComboBoxItem Content="Русский" Foreground="#FF007aff"/>
                             <ComboBoxItem Content="English" Foreground="#FF007aff"/>
                             <ComboBoxItem Content="Deutsch" Foreground="#FF007aff"/>

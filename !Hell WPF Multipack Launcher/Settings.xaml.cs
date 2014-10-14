@@ -35,6 +35,7 @@ namespace _Hell_WPF_Multipack_Launcher
             bClose.Content = Lang.Set("PageSettings", "bClose", lang);
             tbSettingsTitle.Text = Lang.Set("PageSettings", "tbSettingsTitle", lang);
             tbSettingsSubTitle.Text = Lang.Set("PageSettings", "tbSettingsStShare", lang);
+            bChangeSettingsPage.Content = Lang.Set("PageSettings", "tbSettingsStProcesses", lang);
 
             try { SettingsFrame.NavigationService.Navigate(new Uri("SettingsGeneral.xaml", UriKind.Relative)); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "Settings()", ex.Message, ex.StackTrace)); }

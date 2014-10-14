@@ -48,6 +48,8 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception) { }
 
+            Task.Factory.StartNew(() => SetInterface());
+
             Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "lStatus", lang) + nickname + "!", "", false));
         }
 

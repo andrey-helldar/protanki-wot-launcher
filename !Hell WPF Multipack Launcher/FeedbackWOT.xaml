@@ -17,7 +17,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <GroupBox x:Name="gbFeedback" Style="{DynamicResource FeedbackgbFeedback}" Header="Обратная связь" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <GroupBox x:Name="gbFeedback" Style="{DynamicResource FeedbackgbFeedback}" Header="Обратная связь" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="300">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>

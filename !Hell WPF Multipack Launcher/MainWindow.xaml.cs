@@ -158,7 +158,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             default: break;
                         }
                     }
-                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "LoadingPanel()", ex.Message, ex.StackTrace)); }
+                    catch (Exception ex) { Debug.Save("MainWindow", "LoadingPanel()", ex.Message, ex.StackTrace); }
                 }));
 
                 Thread.Sleep(100);
@@ -366,7 +366,7 @@ namespace _Hell_WPF_Multipack_Launcher
             //Dispatcher.BeginInvoke(new ThreadStart(delegate
             //{
                 // Images & other
-                try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, Variables.Lang.Trim()))); }
+                try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, XmlDocument.Root.Element("info").Attribute("language").Value))); }
                 catch (Exception ex)
                 {
                     Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));

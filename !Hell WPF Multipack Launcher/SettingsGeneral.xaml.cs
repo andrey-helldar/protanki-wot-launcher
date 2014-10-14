@@ -45,30 +45,34 @@ namespace _Hell_WPF_Multipack_Launcher
                 // Определяем язык интерфейса
                 try
                 {
+
                     if (MainWindow.XmlDocument.Root.Element("info") != null)
                         if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
-                            if (MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim() != "")
-                                lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim();
+                            lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim();
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", ex.Message, ex.StackTrace)); }
 
                 /*
                  * Загружаем заголовки
                  */
-                gbOptimize.Header = Lang.Set("PageSettingsGeneral", "gbOptimize", lang);
+                try
+                {
+                    gbOptimize.Header = Lang.Set("PageSettingsGeneral", "gbOptimize", lang);
 
-                cbKill.Content = Lang.Set("PageSettingsGeneral", "cbKill", lang);
-                cbForce.Content = Lang.Set("PageSettingsGeneral", "cbForce", lang);
-                cbVideo.Content = Lang.Set("PageSettingsGeneral", "cbVideo", lang);
-                cbWeak.Content = Lang.Set("PageSettingsGeneral", "cbWeak", lang);
-                cbAero.Content = Lang.Set("PageSettingsGeneral", "cbAero", lang);
-                cbKill.Content = Lang.Set("PageSettingsGeneral", "cbKill", lang);
+                    cbKill.Content = Lang.Set("PageSettingsGeneral", "cbKill", lang);
+                    cbForce.Content = Lang.Set("PageSettingsGeneral", "cbForce", lang);
+                    cbVideo.Content = Lang.Set("PageSettingsGeneral", "cbVideo", lang);
+                    cbWeak.Content = Lang.Set("PageSettingsGeneral", "cbWeak", lang);
+                    cbAero.Content = Lang.Set("PageSettingsGeneral", "cbAero", lang);
+                    cbKill.Content = Lang.Set("PageSettingsGeneral", "cbKill", lang);
 
-                gbOther.Header = Lang.Set("PageSettingsGeneral", "gbOther", lang);
-                cbNotifyVideo.Content = Lang.Set("PageSettingsGeneral", "cbNotifyVideo", lang);
-                cbNotifyNews.Content = Lang.Set("PageSettingsGeneral", "cbNotifyNews", lang);
+                    gbOther.Header = Lang.Set("PageSettingsGeneral", "gbOther", lang);
+                    cbNotifyVideo.Content = Lang.Set("PageSettingsGeneral", "cbNotifyVideo", lang);
+                    cbNotifyNews.Content = Lang.Set("PageSettingsGeneral", "cbNotifyNews", lang);
 
-                gbInterface.Header = Lang.Set("PageSettingsGeneral", "gbInterface", lang);
+                    gbInterface.Header = Lang.Set("PageSettingsGeneral", "gbInterface", lang);
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message+Environment.NewLine+Environment.NewLine+ex.StackTrace); }
 
                 try
                 {
@@ -86,6 +90,16 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLauncher.Items", ex.Message, ex.StackTrace)); }
 
+                try
+                {
+                    switch (lang)
+                    {
+                        case "en": cbLang.SelectedIndex = 1; break;
+                        case "de": cbLang.SelectedIndex = 2; break;
+                        default: cbLang.SelectedIndex = 0; break;
+                    }
+                }
+                catch (Exception) { }
 
                 /*
                  *  Блок ОПТИМИЗАЦИЯ
@@ -284,6 +298,15 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void PageSettingsGeneral_Loaded(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                cbPriority.SelectionChanged += cbPriority_SelectionChanged;
+                cbLauncher.SelectionChanged += cbLauncher_SelectionChanged;
+                cbLang.SelectionChanged += ComboBox_SelectionChanged;
+
+            }
+            catch (Exception) { }
+
             try { MainWindow.LoadingPanelShow(); }
             catch (Exception) { }
         }

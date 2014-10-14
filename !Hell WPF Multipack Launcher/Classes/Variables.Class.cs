@@ -92,8 +92,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Doc = XDocument.Load(SettingsPath);
 
                 if (Doc.Root.Element("info") != null)
-                    if (Doc.Root.Element("info").Attribute("interface") != null)
-                        Lang = Doc.Root.Element("info").Attribute("interface").Value.Trim();
+                    if (Doc.Root.Element("info").Attribute("language") != null)
+                        Lang = Doc.Root.Element("info").Attribute("language").Value.Trim();
 
 
                 // Загружаем версию клиента игры
