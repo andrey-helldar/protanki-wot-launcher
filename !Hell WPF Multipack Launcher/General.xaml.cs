@@ -67,17 +67,21 @@ namespace _Hell_WPF_Multipack_Launcher
             // Загружаем список видео и новостей
             try
             {
+                StatusBarSet(false, 1, true, true);
+
                 Task.WaitAll(new Task[]{
                     Task.Factory.StartNew(() => YoutubeClass.Start()),
                     Task.Factory.StartNew(() => WargamingClass.Start())                
                 });
+                //StatusBarSet(true, 1);
+
 
                 Task.WaitAll(new Task[]{
                     Task.Factory.StartNew(() => ViewNews()),
                     Task.Factory.StartNew(() => ViewNews(false))
                 });
 
-                Dispatcher.BeginInvoke(new ThreadStart(delegate { pbStatus.Value = 0; }));
+                StatusBarSet(false, 1, true, true, true);
 
                 Task.Factory.StartNew(() => VideoNotify()); // Выводим уведомления
             }
@@ -88,10 +92,51 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
         }
 
+        private void StatusBarSet(bool inc, int max_inc = 0, bool set_max = false, bool disp = false, bool value_set = false)
+        {
+            try
+            {
+                if (disp)
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        if (value_set)
+                        {
+                            pbStatus.Maximum = 1;
+                            pbStatus.Value = 0;
+                        }
+                        else
+                        {
+                            pbStatus.Maximum = set_max ? max_inc : pbStatus.Maximum + max_inc;
+                            if (inc) pbStatus.Value++;
+                            else
+                                pbStatus.Value = 0;
+                        }
+                    }));
+                }
+                else
+                {
+                    if (value_set)
+                    {
+                        pbStatus.Maximum = 1;
+                        pbStatus.Value = 0;
+                    }
+                    else
+                    {
+                        pbStatus.Maximum = set_max ? max_inc : pbStatus.Maximum + max_inc;
+                        if (inc) pbStatus.Value++;
+                        else
+                            pbStatus.Value = 0;
+                    }
+                }
+            }
+            catch (Exception) { }
+        }
+
         /// <summary>
         /// Размещаем блоки с информацией по видео на форме
         /// </summary>
-        private void ViewNews(bool youtube = true)
+        private bool ViewNews(bool youtube = true)
         {
             try
             {
@@ -101,10 +146,10 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         int count = youtube ? YoutubeClass.Count() : WargamingClass.Count();
 
+                        StatusBarSet(true, count);
+
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
-                            pbStatus.Value = 0;
-
                             if (count == 0)
                             { // Если список пуст, то добавляем одну строку с уведомлением
                                 try
@@ -130,12 +175,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                     try { if (youtube) lbVideo.Items.Add(lbi); else lbNews.Items.Add(lbi); }
                                     catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Count " + (youtube ? "VIDEO" : "NEWS") + " is " + count.ToString(), ex0.Message, ex0.StackTrace)); }
+
+                                    StatusBarSet(true);
                                 }
                                 catch (Exception ex1) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "if (count == 0)", "Записи не обнаружены", ex1.Message, ex1.StackTrace)); }
-
                             }
-                            else
-                                pbStatus.Maximum = count;
 
                             for (int i = 0; i < count; i++)
                             {
@@ -217,10 +261,11 @@ namespace _Hell_WPF_Multipack_Launcher
                                         Thread.Sleep(50);
                                     }
                                     catch (Exception ex2) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex2.Message, ex2.StackTrace)); }
-
-                                    pbStatus.Value++;
                                 }
                                 catch (Exception ex3) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "FOR: " + i.ToString(), ex3.Message, ex3.StackTrace)); }
+
+
+                                StatusBarSet(true);
                             }
 
                             Thread.Sleep(Convert.ToInt16(Properties.Resources.Sleeping_News));
@@ -231,6 +276,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 });
             }
             catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Youtube = " + youtube.ToString(), e.Message, e.StackTrace)); }
+
+            return true;
         }
 
         private void VideoNotify()
@@ -502,11 +549,11 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 if (MessageBox.Show(Lang.Set("Optimize", "Optimize", lang) + "?", MainWindow.ProductName, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    pbStatus.Value = 0;
-                    pbStatus.Maximum = 5;
+                    StatusBarSet(false);
 
                     Classes.Variables Vars = new Classes.Variables();
-                    pbStatus.Value = 1;
+
+                    StatusBarSet(true);
 
                     new Classes.Optimize().Start(
                             Vars.GetElement("settings", "winxp"),
@@ -518,7 +565,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             true
                         );
 
-                    pbStatus.Value = 5;
+                    StatusBarSet(true);
                 }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bOptimize_Click()", ex.Message, ex.StackTrace)); }

@@ -564,7 +564,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                            }
 
 
-
                                            if (ClanProvinces.Items.Count == 0)    // Боев нет
                                            {
                                                TextBlock tbID = new TextBlock();
@@ -574,7 +573,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                lbi.SetResourceReference(ListBoxItem.StyleProperty, "rec_not_found");
                                                lbi.Content = tbID;
 
-                                               ClanBattles.Items.Add(lbi);
+                                               ClanProvinces.Items.Add(lbi);
                                            }
                                        }
                                    }
