@@ -223,7 +223,11 @@
             </TabItem>
             <TabItem Header="Список владений">
                 <Grid>
-                    <ListBox x:Name="ClanProvinces" Margin="0"/>
+                    <ListBox x:Name="ClanProvinces" Margin="0">
+                        <ListBoxItem Style="{DynamicResource rec_not_found}">
+                            <TextBlock Text="Записи не обнаружены"/>
+                        </ListBoxItem>
+                    </ListBox>
                 </Grid>
             </TabItem>
         </TabControl>

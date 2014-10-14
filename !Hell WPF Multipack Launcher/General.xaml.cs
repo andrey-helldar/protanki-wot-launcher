@@ -88,7 +88,7 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
 
-            try { MainWindow.LoadingPanelShow(); }
+            try { StatusBarSet(false, 1, true, true, true); MainWindow.LoadingPanelShow(); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
         }
 

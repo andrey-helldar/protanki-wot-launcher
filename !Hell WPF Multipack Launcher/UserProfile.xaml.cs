@@ -186,7 +186,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                        ClanFullname.Text = PlayerClan2.Text;
 
                                        string uid = MainWindow.XmlDocument.Root.Element("token").Attribute("account_id").Value.Trim();
-                                       PlayerZvanie.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name.members." + uid + ".role");
+                                       PlayerZvanie.Text = Lang.Set("Rank", SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + uid + ".role"), lang);
 
                                        //   emblems.medium
                                        //   SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium")
@@ -208,26 +208,26 @@ namespace _Hell_WPF_Multipack_Launcher
                                        }
                                        catch (Exception) { }
 
-                                           
-                                   // Процент побед
-                                   PercWins.Text = Lang.Set("PageUser", "tbPercentWins", lang);
-                                   PercWinsPerc.Text = String.Format("{0}%", (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.wins")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString());
 
-                                   // Личный рейтинг
-                                   MyRating.Text = Lang.Set("PageUser", "tbMyRating", lang);
-                                   MyRatingPerc.Text = SelectToken(obj, "global_rating");
+                                       // Процент побед
+                                       PercWins.Text = Lang.Set("PageUser", "tbPercentWins", lang);
+                                       PercWinsPerc.Text = String.Format("{0}%", (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.wins")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString());
 
-                                   // Средний опыт за бой
-                                   AvgXP.Text = Lang.Set("PageUser", "tbAvgXP", lang);
-                                   AvgXPPerc.Text = SelectToken(obj, "statistics.all.battle_avg_xp");
+                                       // Личный рейтинг
+                                       MyRating.Text = Lang.Set("PageUser", "tbMyRating", lang);
+                                       MyRatingPerc.Text = SelectToken(obj, "global_rating");
 
-                                   // Количество боев
-                                   BattleCount.Text = Lang.Set("PageUser", "tbCountWars", lang);
-                                   BattleCountPerc.Text = SelectToken(obj, "statistics.all.battles");
+                                       // Средний опыт за бой
+                                       AvgXP.Text = Lang.Set("PageUser", "tbAvgXP", lang);
+                                       AvgXPPerc.Text = SelectToken(obj, "statistics.all.battle_avg_xp");
 
-                                   // Средний нанесенный урон за бой
-                                   AvgDamage.Text = Lang.Set("PageUser", "tbAvgDamage", lang);
-                                   AvgDamagePerc.Text = SelectToken(obj, "statistics.all.avg_damage_assisted");
+                                       // Количество боев
+                                       BattleCount.Text = Lang.Set("PageUser", "tbCountWars", lang);
+                                       BattleCountPerc.Text = SelectToken(obj, "statistics.all.battles");
+
+                                       // Средний нанесенный урон за бой
+                                       AvgDamage.Text = Lang.Set("PageUser", "tbAvgDamage", lang);
+                                       AvgDamagePerc.Text = SelectToken(obj, "statistics.all.avg_damage_assisted");
                                    }
                                    catch (Exception) { PlayerClan.Text = "[---]"; PlayerClan2.Text = "---"; /*tbUpClan.Text = "Произошла ошибка или ты не состоишь в клане " + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name"); */}
 
@@ -391,80 +391,83 @@ namespace _Hell_WPF_Multipack_Launcher
                                     */
                                    try
                                    {
-                                       ClanBattles.Items.Clear();
-
                                        if (SelectTokenClan(Battles, SelectToken(obj, "clan_id"), "status", false) == "ok")
                                        {
-                                           foreach (var battle in (JArray)Battles["data"][SelectToken(obj, "clan_id")])
+                                           JArray arr = (JArray)Battles["data"][SelectToken(obj, "clan_id")];
+                                           if (arr.Count > 0)
                                            {
-                                               /*
-                                                * Тип
-                                                * Время
-                                                * Провинция
-                                                * Игровая карта
-                                                * 
-                                                * Тип боя:
-                                                *       for_province — бой за провинцию;
-                                                *       meeting_engagement — встречный бой;
-                                                *       landing — бой за высадку.
-                                                */
-                                               JObject GlobalProvinces = JObject.Parse(WarAPI.GlobalProvinces((string)battle["provinces"][0]));
+                                               ClanBattles.Items.Clear();
+
+                                               foreach (var battle in arr)
+                                               {
+                                                   /*
+                                                    * Тип
+                                                    * Время
+                                                    * Провинция
+                                                    * Игровая карта
+                                                    * 
+                                                    * Тип боя:
+                                                    *       for_province — бой за провинцию;
+                                                    *       meeting_engagement — встречный бой;
+                                                    *       landing — бой за высадку.
+                                                    */
+                                                   JObject GlobalProvinces = JObject.Parse(WarAPI.GlobalProvinces((string)battle["provinces"][0]));
 
 
-                                               Grid gr = new Grid();
+                                                   Grid gr = new Grid();
 
-                                               ColumnDefinition cd1 = new ColumnDefinition();
-                                               ColumnDefinition cd2 = new ColumnDefinition();
-                                               ColumnDefinition cd3 = new ColumnDefinition();
-                                               ColumnDefinition cd4 = new ColumnDefinition();
+                                                   ColumnDefinition cd1 = new ColumnDefinition();
+                                                   ColumnDefinition cd2 = new ColumnDefinition();
+                                                   ColumnDefinition cd3 = new ColumnDefinition();
+                                                   ColumnDefinition cd4 = new ColumnDefinition();
 
-                                               cd1.Width = new GridLength(30, GridUnitType.Pixel);
-                                               cd2.Width = new GridLength(155, GridUnitType.Pixel);
-                                               cd3.Width = new GridLength(130, GridUnitType.Pixel);
-                                               cd4.Width = new GridLength(80, GridUnitType.Pixel);
+                                                   cd1.Width = new GridLength(30, GridUnitType.Pixel);
+                                                   cd2.Width = new GridLength(155, GridUnitType.Pixel);
+                                                   cd3.Width = new GridLength(130, GridUnitType.Pixel);
+                                                   cd4.Width = new GridLength(80, GridUnitType.Pixel);
 
-                                               gr.ColumnDefinitions.Add(cd1);
-                                               gr.ColumnDefinitions.Add(cd2);
-                                               gr.ColumnDefinitions.Add(cd3);
-                                               gr.ColumnDefinitions.Add(cd4);
+                                                   gr.ColumnDefinitions.Add(cd1);
+                                                   gr.ColumnDefinitions.Add(cd2);
+                                                   gr.ColumnDefinitions.Add(cd3);
+                                                   gr.ColumnDefinitions.Add(cd4);
 
-                                               Image im = new Image();
-                                               im.SetResourceReference(Image.StyleProperty, "Icon_" + (string)battle["type"]);
+                                                   Image im = new Image();
+                                                   im.SetResourceReference(Image.StyleProperty, "Icon_" + (string)battle["type"]);
 
-                                               TextBlock tbID = new TextBlock();
-                                               tbID.Text = DateFormat((string)battle["time"], "m:s");
-                                               tbID.SetResourceReference(TextBlock.StyleProperty, "CmTIME");
-                                               Grid.SetColumn(tbID, 0);
+                                                   TextBlock tbID = new TextBlock();
+                                                   tbID.Text = DateFormat((string)battle["time"], "m:s");
+                                                   tbID.SetResourceReference(TextBlock.StyleProperty, "CmTIME");
+                                                   Grid.SetColumn(tbID, 0);
 
-                                               TextBlock CmName = new TextBlock();
-                                               CmName.Text = SelectTokenNoClan(GlobalProvinces, (string)battle["provinces"][0] + ".province_i18n");
-                                               CmName.SetResourceReference(TextBlock.StyleProperty, "CmName");
-                                               Grid.SetColumn(CmName, 1);
+                                                   TextBlock CmName = new TextBlock();
+                                                   CmName.Text = SelectTokenNoClan(GlobalProvinces, (string)battle["provinces"][0] + ".province_i18n");
+                                                   CmName.SetResourceReference(TextBlock.StyleProperty, "CmName");
+                                                   Grid.SetColumn(CmName, 1);
 
-                                               TextBlock CmTitle = new TextBlock();
-                                               CmTitle.Text = (string)battle["arenas"][0]["name_i18n"];
-                                               CmTitle.SetResourceReference(TextBlock.StyleProperty, "CmTitle");
-                                               Grid.SetColumn(CmTitle, 2);
+                                                   TextBlock CmTitle = new TextBlock();
+                                                   CmTitle.Text = (string)battle["arenas"][0]["name_i18n"];
+                                                   CmTitle.SetResourceReference(TextBlock.StyleProperty, "CmTitle");
+                                                   Grid.SetColumn(CmTitle, 2);
 
-                                               gr.Children.Add(im);
-                                               gr.Children.Add(tbID);
-                                               gr.Children.Add(CmName);
-                                               gr.Children.Add(CmTitle);
+                                                   gr.Children.Add(im);
+                                                   gr.Children.Add(tbID);
+                                                   gr.Children.Add(CmName);
+                                                   gr.Children.Add(CmTitle);
 
-                                               ClanBattles.Items.Add(gr);
+                                                   ClanBattles.Items.Add(gr);
+                                               }
                                            }
+                                           /* else
+                                            {
+                                                TextBlock tbCB = new TextBlock();
+                                                tbCB.Text = Lang.Set("PageGeneral", "RecordsNotFound", lang);
 
-                                           if (ClanBattles.Items.Count == 0)    // Боев нет
-                                           {
-                                               TextBlock tbID = new TextBlock();
-                                               tbID.Text = Lang.Set("PageGeneral", "RecordsNotFound", lang);
+                                                ListBoxItem lbiCB = new ListBoxItem();
+                                                lbiCB.SetResourceReference(ListBoxItem.StyleProperty, "rec_not_found");
+                                                lbiCB.Content = tbCB;
 
-                                               ListBoxItem lbi = new ListBoxItem();
-                                               lbi.SetResourceReference(ListBoxItem.StyleProperty, "rec_not_found");
-                                               lbi.Content = tbID;
-
-                                               ClanBattles.Items.Add(lbi);
-                                           }
+                                                ClanBattles.Items.Add(lbiCB);
+                                            }*/
                                        }
                                    }
                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan battles", ex.Message, ex.StackTrace)); }
@@ -496,85 +499,88 @@ namespace _Hell_WPF_Multipack_Launcher
                                    {
                                        if (SelectTokenClan(Provinces, SelectToken(obj, "clan_id"), "status", false) == "ok")
                                        {
-                                           ClanProvinces.Items.Clear();
-
-                                           foreach (var province in (JObject)Provinces["data"])
+                                           JObject arr = (JObject)Provinces["data"];
+                                           if (arr.Count > 0)
                                            {
-                                               Grid gr = new Grid();
-                                               if ((string)province.Value["attacked"] == "true") gr.SetResourceReference(Grid.StyleProperty, "attacked");
+                                               ClanProvinces.Items.Clear();
 
-                                               ColumnDefinition cd1 = new ColumnDefinition();
-                                               ColumnDefinition cd2 = new ColumnDefinition();
-                                               ColumnDefinition cd3 = new ColumnDefinition();
-                                               ColumnDefinition cd4 = new ColumnDefinition();
-                                               ColumnDefinition cd5 = new ColumnDefinition();
-                                               ColumnDefinition cd6 = new ColumnDefinition();
-                                               ColumnDefinition cd7 = new ColumnDefinition();
+                                               foreach (var province in arr)
+                                               {
+                                                   Grid gr = new Grid();
+                                                   if ((string)province.Value["attacked"] == "true") gr.SetResourceReference(Grid.StyleProperty, "attacked");
 
-                                               cd1.Width = new GridLength(30, GridUnitType.Auto);
-                                               cd2.Width = new GridLength(30, GridUnitType.Auto);
-                                               cd3.Width = new GridLength(30, GridUnitType.Auto);
-                                               cd4.Width = new GridLength(30, GridUnitType.Auto);
-                                               cd5.Width = new GridLength(30, GridUnitType.Auto);
-                                               cd6.Width = new GridLength(30, GridUnitType.Auto);
+                                                   ColumnDefinition cd1 = new ColumnDefinition();
+                                                   ColumnDefinition cd2 = new ColumnDefinition();
+                                                   ColumnDefinition cd3 = new ColumnDefinition();
+                                                   ColumnDefinition cd4 = new ColumnDefinition();
+                                                   ColumnDefinition cd5 = new ColumnDefinition();
+                                                   ColumnDefinition cd6 = new ColumnDefinition();
+                                                   ColumnDefinition cd7 = new ColumnDefinition();
 
-                                               gr.ColumnDefinitions.Add(cd1);
-                                               gr.ColumnDefinitions.Add(cd2);
-                                               gr.ColumnDefinitions.Add(cd3);
-                                               gr.ColumnDefinitions.Add(cd4);
-                                               gr.ColumnDefinitions.Add(cd5);
-                                               gr.ColumnDefinitions.Add(cd6);
+                                                   cd1.Width = new GridLength(30, GridUnitType.Auto);
+                                                   cd2.Width = new GridLength(30, GridUnitType.Auto);
+                                                   cd3.Width = new GridLength(30, GridUnitType.Auto);
+                                                   cd4.Width = new GridLength(30, GridUnitType.Auto);
+                                                   cd5.Width = new GridLength(30, GridUnitType.Auto);
+                                                   cd6.Width = new GridLength(30, GridUnitType.Auto);
 
-                                               Image im = new Image();
-                                               im.SetResourceReference(Image.StyleProperty, "province_types_" + (string)province.Value["type"]);
+                                                   gr.ColumnDefinitions.Add(cd1);
+                                                   gr.ColumnDefinitions.Add(cd2);
+                                                   gr.ColumnDefinitions.Add(cd3);
+                                                   gr.ColumnDefinitions.Add(cd4);
+                                                   gr.ColumnDefinitions.Add(cd5);
+                                                   gr.ColumnDefinitions.Add(cd6);
 
-                                               TextBlock t1 = new TextBlock();
-                                               t1.Text = (string)province.Value["name"];
-                                               t1.SetResourceReference(TextBlock.StyleProperty, "t1");
-                                               Grid.SetColumn(t1, 1);
+                                                   Image im = new Image();
+                                                   im.SetResourceReference(Image.StyleProperty, "province_types_" + (string)province.Value["type"]);
 
-                                               TextBlock t2 = new TextBlock();
-                                               t2.Text = (string)province.Value["arena_i18n"];
-                                               t2.SetResourceReference(TextBlock.StyleProperty, "t2");
-                                               Grid.SetColumn(t2, 2);
+                                                   TextBlock t1 = new TextBlock();
+                                                   t1.Text = (string)province.Value["name"];
+                                                   t1.SetResourceReference(TextBlock.StyleProperty, "t1");
+                                                   Grid.SetColumn(t1, 1);
 
-                                               TextBlock t3 = new TextBlock();
-                                               t3.Text = DateFormat((string)province.Value["prime_time"], "m:s");
-                                               t3.SetResourceReference(TextBlock.StyleProperty, "t3");
-                                               Grid.SetColumn(t3, 3);
+                                                   TextBlock t2 = new TextBlock();
+                                                   t2.Text = (string)province.Value["arena_i18n"];
+                                                   t2.SetResourceReference(TextBlock.StyleProperty, "t2");
+                                                   Grid.SetColumn(t2, 2);
 
-                                               TextBlock t4 = new TextBlock();
-                                               t4.Text = (string)province.Value["revenue"];
-                                               t4.SetResourceReference(TextBlock.StyleProperty, "t4");
-                                               Grid.SetColumn(t4, 4);
+                                                   TextBlock t3 = new TextBlock();
+                                                   t3.Text = DateFormat((string)province.Value["prime_time"], "m:s");
+                                                   t3.SetResourceReference(TextBlock.StyleProperty, "t3");
+                                                   Grid.SetColumn(t3, 3);
 
-                                               TextBlock t5 = new TextBlock();
-                                               t5.Text = (string)province.Value["occupancy_time"];
-                                               t5.SetResourceReference(TextBlock.StyleProperty, "t5");
-                                               Grid.SetColumn(t5, 5);
+                                                   TextBlock t4 = new TextBlock();
+                                                   t4.Text = (string)province.Value["revenue"];
+                                                   t4.SetResourceReference(TextBlock.StyleProperty, "t4");
+                                                   Grid.SetColumn(t4, 4);
 
-                                               gr.Children.Add(im);
-                                               gr.Children.Add(t1);
-                                               gr.Children.Add(t2);
-                                               gr.Children.Add(t3);
-                                               gr.Children.Add(t4);
-                                               gr.Children.Add(t5);
+                                                   TextBlock t5 = new TextBlock();
+                                                   t5.Text = (string)province.Value["occupancy_time"];
+                                                   t5.SetResourceReference(TextBlock.StyleProperty, "t5");
+                                                   Grid.SetColumn(t5, 5);
 
-                                               ClanProvinces.Items.Add(gr);
+                                                   gr.Children.Add(im);
+                                                   gr.Children.Add(t1);
+                                                   gr.Children.Add(t2);
+                                                   gr.Children.Add(t3);
+                                                   gr.Children.Add(t4);
+                                                   gr.Children.Add(t5);
+
+                                                   ClanProvinces.Items.Add(gr);
+                                               }
+
                                            }
-
-
-                                           if (ClanProvinces.Items.Count == 0)    // Боев нет
+                                           /*else
                                            {
-                                               TextBlock tbID = new TextBlock();
-                                               tbID.Text = Lang.Set("PageGeneral", "RecordsNotFound", lang);
+                                               TextBlock tbCP = new TextBlock();
+                                               tbCP.Text = Lang.Set("PageGeneral", "RecordsNotFound", lang);
 
-                                               ListBoxItem lbi = new ListBoxItem();
-                                               lbi.SetResourceReference(ListBoxItem.StyleProperty, "rec_not_found");
-                                               lbi.Content = tbID;
+                                               ListBoxItem lbiCP = new ListBoxItem();
+                                               lbiCP.SetResourceReference(ListBoxItem.StyleProperty, "rec_not_found");
+                                               lbiCP.Content = tbCP;
 
-                                               ClanProvinces.Items.Add(lbi);
-                                           }
+                                               ClanProvinces.Items.Add(lbiCP);
+                                           }*/
                                        }
                                    }
                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan provincies", ex.Message, ex.StackTrace)); }

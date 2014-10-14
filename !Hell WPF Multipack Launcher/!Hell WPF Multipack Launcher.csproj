@@ -494,18 +494,6 @@
     <Resource Include="Resources\province_types_start.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\stat_perc_avgdamage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\stat_perc_avgxp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\stat_perc_battles.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\stat_perc_vins.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\flag_de.png" />
   </ItemGroup>
   <ItemGroup>
@@ -522,6 +510,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\_play_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stat_perc_avgdamage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stat_perc_avgxp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stat_perc_battles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stat_perc_vins.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
