@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\obj\Release\
 _Hell_WPF_Multipack_Launcher
 none
 false
-TRACE
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\App.xaml
-11151548125
+TRACE;PERSONAL
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\App.xaml
+15809988189
 
-13943224429
-19208031617
-MainWindow.xaml;
+40-565154266
+20-2025814223
+About.xaml;Error.xaml;Feedback.xaml;FeedbackWOT.xaml;General.xaml;MainWindow.xaml;ScottLogic\PieChart\Legend.xaml;ScottLogic\PieChart\PieChartLayout.xaml;ScottLogic\PieChart\PiePlotter.xaml;Settings.xaml;SettingsGeneral.xaml;SettingsProcesses.xaml;Update.xaml;UserProfile.xaml;WarApiOpenID.xaml;
 
-False
+True
 

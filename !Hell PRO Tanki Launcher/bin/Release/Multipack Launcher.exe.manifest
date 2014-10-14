@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.1.25.610" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher" version="1.1.26.701" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -56,13 +56,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2720768">
-      <assemblyIdentity name="Multipack Launcher" version="1.1.25.610" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Multipack Launcher" version="1.1.26.701" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>m1eot1o2H5PL6LrtB+pTaPxkRBXHJaulMmEEI3BuaQI=</dsig:DigestValue>
+        <dsig:DigestValue>RbWttUlIlXUHKKTvrVdbBJfktRTwimjnryujPvgCGFw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Processes.Library.dll" size="22016">
-      <assemblyIdentity name="Processes.Library" version="1.4.5392.42812" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Processes.Library.dll" size="20992">
+      <assemblyIdentity name="Processes.Library" version="1.5.5398.1568" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3rK4/W8mQ88uZP4m05RuBi8wuQzO4qhc3gQbgE0YElQ=</dsig:DigestValue>
+        <dsig:DigestValue>xuGer2Wvyc5MTrOo6vX+NgnntTMsXx2+mG6ZMJTGexI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

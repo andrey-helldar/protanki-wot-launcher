@@ -302,15 +302,16 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     if (File.Exists(Variables.PathTanks + "WorldOfTanks.exe"))
                     {
-                        Optimize.Start(Variables.WinXP);
+                        if (XmlDocument.Root.Element("settings").Attribute("winxp").Value != "True")
+                            Optimize.Start(Variables.WinXP);
 
                         Optimize.Start(
-                                Variables.GetElement("settings", "winxp"),
-                                Variables.GetElement("settings", "kill"),
-                                Variables.GetElement("settings", "force"),
-                                Variables.GetElement("settings", "aero"),
-                                Variables.GetElement("settings", "video"),
-                                Variables.GetElement("settings", "weak"),
+                                XmlDocument.Root.Element("settings").Attribute("winxp").Value == "True",
+                                XmlDocument.Root.Element("settings").Attribute("kill").Value == "True",
+                                XmlDocument.Root.Element("settings").Attribute("force").Value == "True",
+                                XmlDocument.Root.Element("settings").Attribute("aero").Value == "True",
+                                XmlDocument.Root.Element("settings").Attribute("video").Value == "True",
+                                XmlDocument.Root.Element("settings").Attribute("weak").Value == "True",
                                 true
                             );
 

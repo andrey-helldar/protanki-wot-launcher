@@ -62,7 +62,7 @@ namespace ScottLogic.Controls.PieChart {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Multipack Launcher 2;component/scottlogic/piechart/pieplotter.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Multipack Launcher;component/scottlogic/piechart/pieplotter.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\ScottLogic\PieChart\PiePlotter.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
