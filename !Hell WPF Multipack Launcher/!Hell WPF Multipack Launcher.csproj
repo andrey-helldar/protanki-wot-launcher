@@ -45,9 +45,10 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;PERSONAL</DefineConstants>
+    <DefineConstants>PERSONAL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>1</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\WOT.ico</ApplicationIcon>
@@ -71,16 +72,6 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\!!other_dll\Ionic.Zip.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\!!other_dll\4.0\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Ookii.Dialogs.Wpf, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\!!other_dll\Ookii.Dialogs.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="restart, Version=1.1.4.14, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\!Hell Restarter\bin\Release\restart.exe</HintPath>
@@ -281,21 +272,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Newtonsoft.Json.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Ionic.Zip.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\cursor_chrome.cur" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Processes Library\Processes Library.csproj">
-      <Project>{c89f98dd-cf7b-4b7b-ae2c-fbf49177b8a6}</Project>
-      <Name>Processes Library</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\General_Line.jpg" />
@@ -424,11 +401,6 @@
     <Resource Include="Resources\loading.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Processes.Library.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
@@ -449,11 +421,6 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Ookii.Dialogs.Wpf.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ava.jpg" />

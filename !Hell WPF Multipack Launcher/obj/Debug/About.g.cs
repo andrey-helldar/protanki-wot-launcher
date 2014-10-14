@@ -51,7 +51,7 @@ namespace _Hell_WPF_Multipack_Launcher {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Multipack Launcher;component/about.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Multipack_Launcher;component/about.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\About.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

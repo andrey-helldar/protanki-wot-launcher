@@ -8,7 +8,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Multipack Launcher")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("!Hell Multipack Launcher")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AI RUS - Professional IT support")]
 [assembly: AssemblyProduct("!Hell Multipack Launcher")]
@@ -50,6 +50,6 @@ using System.Windows;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.3.25.703")]
-[assembly: AssemblyFileVersion("2.3.25.703")]
+[assembly: AssemblyVersion("2.3.25.704")]
+[assembly: AssemblyFileVersion("2.3.25.704")]
 [assembly: GuidAttribute("B3F13C67-4CBB-4AA3-B942-F8A285ED1CBF")]
