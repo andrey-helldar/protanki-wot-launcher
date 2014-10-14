@@ -131,7 +131,7 @@ namespace _Hell_WPF_Multipack_Launcher {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Multipack Launcher 2;component/feedbackwot.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Multipack Launcher;component/feedbackwot.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\FeedbackWOT.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

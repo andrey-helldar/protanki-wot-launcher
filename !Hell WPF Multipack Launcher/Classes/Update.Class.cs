@@ -24,13 +24,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     
                     Task.Factory.StartNew(() => SavingFile("Ionic.Zip.dll", Properties.Resources.Ionic_Zip)),
                     Task.Factory.StartNew(() => SavingFile("Newtonsoft.Json.dll", Properties.Resources.Newtonsoft_Json)),
-                    Task.Factory.StartNew(() => SavingFile("Ookii.Dialogs.Wpf.dll", Properties.Resources.Ookii_Dialogs_Wpf)),
+                    Task.Factory.StartNew(() => SavingFile("Ookii.Dialogs.Wpf.dll", Properties.Resources.Ookii_Dialogs_Wpf))
 
-                    Task.Factory.StartNew(() => {
+                    /*Task.Factory.StartNew(() => {
                         string Settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.xml";
-                        if (!File.Exists(Settings)) { File.WriteAllText(Settings, Properties.Resources.SettingsXML); }
-                    })
+                        if (!File.Exists(Settings)) { File.WriteAllText(Settings, Properties.Resources.SettingsXML); })*/
                 });
+
+                if (!File.Exists("settings.xml")) File.WriteAllText("settings.xml", Properties.Resources.SettingsXML);
 
                 return true;
             }

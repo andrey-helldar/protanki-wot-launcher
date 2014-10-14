@@ -656,7 +656,13 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(3000);
+
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            pbStatus.Maximum = 1;
+                            pbStatus.Value = 0;
+                        }));
 
                 Classes.POST POST = new Classes.POST();
 
