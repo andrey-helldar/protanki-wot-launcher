@@ -498,7 +498,7 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (MessageBox.Show(Lang.Set("Optimize", "Optimize", lang)+"?", MainWindow.ProductName, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show(Lang.Set("Optimize", "Optimize", lang) + "?", MainWindow.ProductName, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     pbStatus.Value = 0;
                     pbStatus.Maximum = 5;
