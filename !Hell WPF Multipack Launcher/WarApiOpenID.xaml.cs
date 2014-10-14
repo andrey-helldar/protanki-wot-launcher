@@ -33,6 +33,8 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
+                System.Threading.Thread.Sleep(100);
+
                 if (WB.Source.ToString().IndexOf(Properties.Resources.Developer) > -1 && WB.Source.ToString().IndexOf("access_token") > 0)
                 {
                     JObject Token = WarAPI.Token(WB.Source.ToString());
@@ -89,6 +91,11 @@ namespace _Hell_WPF_Multipack_Launcher
                         new XAttribute(attr, val)));
             }
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(WB.Source.ToString());
         }
     }
 }

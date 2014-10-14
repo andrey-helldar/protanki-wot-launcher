@@ -4,8 +4,10 @@
         Title="Wargaming OpenID" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="Resources/WOT.ico" HorizontalAlignment="Center" VerticalAlignment="Center">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="416*"/>
+            <RowDefinition Height="89*"/>
         </Grid.RowDefinitions>
         <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WebBrowser_LoadCompleted"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="224,25,0,0" Grid.Row="1" VerticalAlignment="Top" Width="343" Height="54" Click="Button_Click_1"/>
     </Grid>
 </Window>
