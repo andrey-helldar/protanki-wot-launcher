@@ -44,8 +44,6 @@ namespace _Hell_WPF_Multipack_Launcher
                         SetValue("expires_at", Token.SelectToken("expires_at").ToString());
                         SetValue("nickname", Token.SelectToken("nickname").ToString());
                         SetValue("account_id", Token.SelectToken("account_id").ToString());
-
-                        MainWindow.LoadingPanelShow(1);
                         this.Close();
                     }
                 }
@@ -62,7 +60,6 @@ namespace _Hell_WPF_Multipack_Launcher
                         WB.Source = new Uri(WarAPI.OpenID());
                     else
                     {
-                        MainWindow.LoadingPanelShow(1);
                         this.Close();
                     }
                 }

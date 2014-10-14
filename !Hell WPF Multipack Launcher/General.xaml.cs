@@ -576,54 +576,27 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bSettings_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
-                {
-                    OpenPage("Settings");
-                }));
-            }
-            catch (System.IO.IOException ioEx) { ShowErr(ioEx); }
+            OpenPage("Settings");
         }
 
         private void bFeedback_Click(object sender, RoutedEventArgs e)
         {
-            try{bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
-            {
-                OpenPage("FeedbackWOT");
-            }));
-            }
-            catch (System.IO.IOException ioEx) { ShowErr(ioEx); }
+            OpenPage("FeedbackWOT");
         }
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)
         {
-            try{bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
-            {
-                OpenPage("Update");
-            }));
-            }
-            catch (System.IO.IOException ioEx) { ShowErr(ioEx); }
+            OpenPage("Update");
         }
 
         private void bNotification_Click(object sender, RoutedEventArgs e)
         {
-            try{bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
-            {
-                OpenPage("Notification");
-            }));
-            }
-            catch (System.IO.IOException ioEx) { ShowErr(ioEx); }
+            OpenPage("Notification");
         }
 
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
-            try{bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
-            {
-                OpenPage("UserProfile");
-            }));
-            }
-            catch (System.IO.IOException ioEx) { ShowErr(ioEx); }
+            OpenPage("UserProfile");
         }
 
         /// <summary>
@@ -696,8 +669,9 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception) { }
         }
 
-        private void ShowErr(System.IO.IOException ioEx){
-            MessageBox.Show(ioEx.Message+Environment.NewLine+Environment.NewLine+ioEx.StackTrace);
+        private void ShowErr(System.IO.IOException ioEx)
+        {
+            MessageBox.Show(ioEx.Message + Environment.NewLine + Environment.NewLine + ioEx.StackTrace);
         }
     }
 }
