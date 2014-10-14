@@ -302,7 +302,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     if (File.Exists(Variables.PathTanks + "WorldOfTanks.exe"))
                     {
-                        if (XmlDocument.Root.Element("settings").Attribute("winxp").Value != "True")
+                        /*if (XmlDocument.Root.Element("settings").Attribute("winxp").Value != "True")
                             Optimize.Start(Variables.WinXP);
 
                         Optimize.Start(
@@ -313,7 +313,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 XmlDocument.Root.Element("settings").Attribute("video").Value == "True",
                                 XmlDocument.Root.Element("settings").Attribute("weak").Value == "True",
                                 true
-                            );
+                            );*/
 
                         ProcessStart(Variables.PathTanks, "WorldOfTanks.exe");
                     }
@@ -358,8 +358,17 @@ namespace _Hell_WPF_Multipack_Launcher
                 process.StartInfo.WorkingDirectory = path;
                 process.StartInfo.FileName = filename == "" ? path : path + filename;
                 process.StartInfo.UseShellExecute = false;
-
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.RedirectStandardError = true;
                 process.Start();
+
+
+                /*Process process = new Process();
+                process.StartInfo.WorkingDirectory = path;
+                process.StartInfo.FileName = filename == "" ? path : path + filename;
+                process.StartInfo.UseShellExecute = false;
+
+                process.Start();*/
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); }
         }
