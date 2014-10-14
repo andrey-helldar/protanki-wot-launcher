@@ -44,6 +44,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         SetValue("expires_at", Token.SelectToken("expires_at").ToString());
                         SetValue("nickname", Token.SelectToken("nickname").ToString());
                         SetValue("account_id", Token.SelectToken("account_id").ToString());
+
                         this.Close();
                     }
                 }
@@ -88,12 +89,6 @@ namespace _Hell_WPF_Multipack_Launcher
                         new XAttribute(attr, val)));
             }
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
-        }
-
-        private void WarApiOpenID1_Loaded(object sender, RoutedEventArgs e)
-        {
-            try { MainWindow.LoadingPanelShow(); }
-            catch (Exception) { }
         }
     }
 }
