@@ -41,6 +41,9 @@ namespace _Hell_WPF_Multipack_Launcher
         public static Frame MainFrame0 { get { return mainFrame; } }
         private static Frame mainFrame;
 
+        public static Button PlayBtn { get { return playBtn; } }
+        private static Button playBtn;
+
         /// <summary>
         /// Готовим контрол для отображения превью видео
         /// </summary>
@@ -186,6 +189,9 @@ namespace _Hell_WPF_Multipack_Launcher
                     // Делаем общей иконку в трее
                     notifier = this.notifyIcon;
                     this.Closing += delegate { notifier = null; };
+
+                    playBtn = this.bPlay;
+                    this.Closing += delegate { playBtn = null; };
 
                     // Делаем общим фрейм
                     mainFrame = this.MainFrame;

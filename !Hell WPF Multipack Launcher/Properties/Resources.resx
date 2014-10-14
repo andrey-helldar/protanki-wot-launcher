@@ -168,9 +168,9 @@
   <data name="restart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\restart.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="RssWotEn" xml:space="preserve">
-    <value>http://worldoftanks.eu/en/rss/news/</value>
-    <comment>RSS проекта (англ)</comment>
+  <data name="RssWotEU" xml:space="preserve">
+    <value>http://worldoftanks.eu/{0}/rss/news/</value>
+    <comment>RSS проекта (зарубеж)</comment>
   </data>
   <data name="RssWotRU" xml:space="preserve">
     <value>http://worldoftanks.ru/ru/rss/news/</value>
@@ -478,9 +478,5 @@
   </data>
   <data name="_play_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\_play_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RssWotDe" xml:space="preserve">
-    <value>http://worldoftanks.eu/de/rss/news/</value>
-    <comment>RSS проекта (нем)</comment>
   </data>
 </root>

@@ -72,6 +72,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.PlayBtn.Content = Lang.Set("MainProject", "bPlay", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value);
+
             MainWindow.LoadingPanelShow(1);
 
             Task.Factory.StartNew(() =>
