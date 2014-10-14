@@ -129,8 +129,6 @@ namespace _Hell_WPF_Multipack_Launcher
                             active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
                             if (!active)
                             {
-                                MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", lang));
-
                                 MainWindow.LoadingPanelShow(1);
 
                                 try { MainWindow.Navigator(); }

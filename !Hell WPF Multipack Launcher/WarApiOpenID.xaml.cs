@@ -45,14 +45,27 @@ namespace _Hell_WPF_Multipack_Launcher
                         SetValue("nickname", Token.SelectToken("nickname").ToString());
                         SetValue("account_id", Token.SelectToken("account_id").ToString());
 
+                        MainWindow.LoadingPanelShow(1);
                         this.Close();
                     }
                 }
 
-                if (WB.Document.ToString().IndexOf("Good!") > 0)
-                    this.Close();
-                
-                MessageBox.Show(WB.Source.ToString());
+                if (WB.Source.ToString().IndexOf("AUTH_CANCEL") > -1)
+                {
+                    Classes.Language Lang = new Classes.Language();
+                    MessageBoxResult mbr = MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value)+
+                        Environment.NewLine+
+                        Lang.Set("PageUser", "RepeatActivation", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value),
+                        MainWindow.ProductName, MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+                    if (mbr == MessageBoxResult.Yes)
+                        WB.Source = new Uri(WarAPI.OpenID());
+                    else
+                    {
+                        MainWindow.LoadingPanelShow(1);
+                        this.Close();
+                    }
+                }
             }
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "WebBrowser_LoadCompleted()", ex.Message, ex.StackTrace)); }
         }

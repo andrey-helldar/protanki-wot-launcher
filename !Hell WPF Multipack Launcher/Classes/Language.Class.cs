@@ -951,7 +951,18 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "en": return "000";
                                 case "de": return "000";
                                 default: return toReturn;
-                            }                            
+                            }  
+
+                        case "RepeatActivation":
+                            switch (lang)
+                            {
+                                case "ru": return "Повторить активацию?";
+                                case "en": return "Repeat the activation?";
+                                case "de": return "Wiederholen Sie den Aktivierungs?";
+                                default: return toReturn;
+                            }  
+                          
+                            
 
                         default: return toReturn;
                     }
