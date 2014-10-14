@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -90,6 +91,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
             try { StatusBarSet(false, 1, true, true, true); MainWindow.LoadingPanelShow(); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
+
+            Task.Factory.StartNew(() => GetTanksVersion());
         }
 
         private void StatusBarSet(bool inc, int max_inc = 0, bool set_max = false, bool disp = false, bool value_set = false)
@@ -646,6 +649,33 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "SetInterface()", ex.Message, ex.StackTrace)); }
             }));
+        }
+
+
+        private void GetTanksVersion()
+        {
+            try
+            {
+                Thread.Sleep(5000);
+
+                Classes.POST POST = new Classes.POST();
+
+                JObject json = new JObject(
+                    new JProperty("api", Properties.Resources.API),
+                    new JProperty("client_version", new Classes.Variables().TanksVersion.ToString()),
+                    new JProperty("language", lang)
+                    );
+
+
+                Dictionary<string, string> answer = POST.FromJson(POST.Send(@"http://t.ai-rus.com/version.php", json.ToString()));
+
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            if (new Classes.Variables().TanksVersion < new Version(answer["content"]))
+                                lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang) + answer["content"];
+                        }));
+            }
+            catch (Exception) { }
         }
     }
 }
