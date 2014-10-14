@@ -576,42 +576,54 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bSettings_Click(object sender, RoutedEventArgs e)
         {
-            bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+            try
             {
-                OpenPage("Settings");
-            }));
+                bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+                {
+                    OpenPage("Settings");
+                }));
+            }
+            catch (System.IO.IOException ioEx) { ShowErr(ioEx); }
         }
 
         private void bFeedback_Click(object sender, RoutedEventArgs e)
         {
-            bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+            try{bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
             {
                 OpenPage("FeedbackWOT");
             }));
+            }
+            catch (System.IO.IOException ioEx) { ShowErr(ioEx); }
         }
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)
         {
-            bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+            try{bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
             {
                 OpenPage("Update");
             }));
+            }
+            catch (System.IO.IOException ioEx) { ShowErr(ioEx); }
         }
 
         private void bNotification_Click(object sender, RoutedEventArgs e)
         {
-            bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+            try{bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
             {
                 OpenPage("Notification");
             }));
+            }
+            catch (System.IO.IOException ioEx) { ShowErr(ioEx); }
         }
 
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
-            bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
+            try{bUserProfile.Dispatcher.BeginInvoke(new Action(delegate()
             {
                 OpenPage("UserProfile");
             }));
+            }
+            catch (System.IO.IOException ioEx) { ShowErr(ioEx); }
         }
 
         /// <summary>
@@ -682,6 +694,10 @@ namespace _Hell_WPF_Multipack_Launcher
                         }));
             }
             catch (Exception) { }
+        }
+
+        private void ShowErr(System.IO.IOException ioEx){
+            MessageBox.Show(ioEx.Message+Environment.NewLine+Environment.NewLine+ioEx.StackTrace);
         }
     }
 }
