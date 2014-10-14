@@ -1992,37 +1992,21 @@
 
         <Style x:Key="lbiProcess" TargetType="{x:Type ListBoxItem}">
             <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="Auto"/>
             <Setter Property="Foreground" Value="#FF3a6696"/>
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontSize" Value="11"/>
             <Setter Property="BorderBrush" Value="#FFA6D1FF"/>
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
-
-            <!--<Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                        <Grid Margin="0">
-                            <Rectangle
-                                Width="6"
-                                Height="9"
-                                Stretch="Fill"
-                                Margin="-10,0"
-                                Grid.Column="1">
-                                <Rectangle.Fill>
-                                    <ImageBrush ImageSource="Resources/arrow.png"/>
-                                </Rectangle.Fill>
-                            </Rectangle>
-                            <ContentPresenter/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>-->
         </Style>
 
         <Style x:Key="lbiProcess2" TargetType="{x:Type ListBoxItem}">
             <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="Auto"/>
             <Setter Property="Foreground" Value="#FF3a6696"/>
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="FontSize" Value="11"/>
@@ -2223,21 +2207,25 @@
         <Style x:Key="CmID"  TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Foreground" Value="#FF3a6696"/>
+            <Setter Property="Margin" Value="0,0,5,0"/>
         </Style>
 
         <Style x:Key="CmName" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="#FF3a6696"/>
+            <Setter Property="Margin" Value="5,0"/>
         </Style>
         <Style x:Key="CmTitle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="#FF575757"/>
+            <Setter Property="Margin" Value="5,0"/>
         </Style>
         <Style x:Key="CmDate" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="Foreground" Value="#FF3a6696"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
         </Style>
 
         
@@ -2333,7 +2321,10 @@
             <Setter Property="Margin" Value="20"/>
             <Setter Property="Foreground" Value="#FF575757"/>
         </Style>
-        
+
+        <Style x:Key="GridW470" TargetType="Grid">
+            <Setter Property="Width" Value="460"/>
+        </Style>
 
     </Application.Resources>
 </Application>

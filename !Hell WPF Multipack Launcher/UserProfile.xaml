@@ -193,19 +193,19 @@
 
 
                             <ListBox x:Name="ClanMembers" Margin="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center">
-                                <ListBoxItem Style="{DynamicResource lbiProcess}" Width="396">
-                                    <Grid>
+                                <ListBoxItem Style="{DynamicResource lbiProcess}" Width="Auto" Height="30">
+                                    <Grid Width="470">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="30"/>
-                                            <ColumnDefinition Width="155"/>
-                                            <ColumnDefinition Width="130"/>
-                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Style="{DynamicResource CmID}" Text="100" />
                                         <TextBlock Style="{DynamicResource CmName}" Text="d_voronoff" Grid.Column="1"/>
                                         <TextBlock Style="{DynamicResource CmTitle}" Text="Командующий" Grid.Column="2"/>
                                         <TextBlock Style="{DynamicResource CmDate}" Text="01.01.2014" Grid.Column="3"/>
-                                    </Grid>
+                                        </Grid>
                                 </ListBoxItem>
                             </ListBox>
                         </Grid>

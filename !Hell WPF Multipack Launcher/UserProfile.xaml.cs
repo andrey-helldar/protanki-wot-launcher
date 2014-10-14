@@ -325,16 +325,17 @@ namespace _Hell_WPF_Multipack_Launcher
                                             * </ListBoxItem>
                                             */
                                            Grid gr = new Grid();
+                                           gr.SetResourceReference(Grid.StyleProperty, "GridW470");
 
                                            ColumnDefinition cd1 = new ColumnDefinition();
                                            ColumnDefinition cd2 = new ColumnDefinition();
                                            ColumnDefinition cd3 = new ColumnDefinition();
                                            ColumnDefinition cd4 = new ColumnDefinition();
 
-                                           cd1.Width = new GridLength(30, GridUnitType.Pixel);
-                                           cd2.Width = new GridLength(155, GridUnitType.Pixel);
-                                           cd3.Width = new GridLength(130, GridUnitType.Pixel);
-                                           cd4.Width = new GridLength(80, GridUnitType.Pixel);
+                                           cd1.Width = new GridLength(30, GridUnitType.Auto);
+                                           cd2.Width = new GridLength(1, GridUnitType.Star);
+                                           cd3.Width = new GridLength(130, GridUnitType.Auto);
+                                           cd4.Width = new GridLength(80, GridUnitType.Auto);
 
                                            gr.ColumnDefinitions.Add(cd1);
                                            gr.ColumnDefinitions.Add(cd2);
@@ -365,8 +366,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                            gr.Children.Add(CmName);
                                            gr.Children.Add(CmTitle);
                                            gr.Children.Add(CmDate);
-
-
 
 
                                            ListBoxItem lbi = new ListBoxItem();
