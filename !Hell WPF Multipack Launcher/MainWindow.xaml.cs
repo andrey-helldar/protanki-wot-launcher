@@ -88,18 +88,18 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 if (show)
                 {
-                    if (title.Trim().Length > 0)
+                   /* if (title.Trim().Length > 0)
                     {
                         tbPreview.Text = title;
                         tbPreview.Visibility = Visibility.Visible;
                     }
-                    else { tbPreview.Visibility = Visibility.Hidden; }
+                    else { tbPreview.Visibility = Visibility.Hidden; }*/
 
                     framePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute));
                 }
                 else
                 {
-                    tbPreview.Visibility = Visibility.Hidden;
+                    //tbPreview.Visibility = Visibility.Hidden;
                     framePreview.Visibility = Visibility.Hidden;
                     MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", XmlDocument.Root.Element("info").Attribute("language").Value));
                 }
@@ -218,8 +218,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     try
                     {
-                        Task.Factory.StartNew(() =>
-                        {
+                        //Task.Factory.StartNew(() =>
+                        //{
                             Variables.Start();
                             MultipackDate = Variables.MultipackDate;
                             ProductName = Variables.ProductName;
@@ -228,9 +228,10 @@ namespace _Hell_WPF_Multipack_Launcher
                             if (File.Exists(Variables.SettingsPath))
                                 xmlDocument = XDocument.Load(Variables.SettingsPath);
                             this.Closing += delegate { xmlDocument = null; };
-                        }).Wait();
+                        //}).Wait();
 
-                        Task.Factory.StartNew(() => SetInterface()); // Загрузка языка
+                        //Task.Factory.StartNew(() => SetInterface()); // Загрузка языка
+                        SetInterface();
                     }
                     catch (Exception ex)
                     {
@@ -362,8 +363,8 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         private void SetInterface()
         {
-            Dispatcher.BeginInvoke(new ThreadStart(delegate
-            {
+            //Dispatcher.BeginInvoke(new ThreadStart(delegate
+            //{
                 // Images & other
                 try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, Variables.Lang.Trim()))); }
                 catch (Exception ex)
@@ -382,7 +383,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
                     MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
                 }
-            }));
+            //}));
         }
 
         private Button FindLoadingPanel(Grid sender)

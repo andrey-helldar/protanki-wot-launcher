@@ -91,6 +91,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 Doc = XDocument.Load(SettingsPath);
 
+                if (Doc.Root.Element("info") != null)
+                    if (Doc.Root.Element("info").Attribute("interface") != null)
+                        Lang = Doc.Root.Element("info").Attribute("interface").Value.Trim();
+
+
                 // Загружаем версию клиента игры
                 try
                 {
@@ -136,8 +141,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
 
                         // Принудительно устанавливаем язык, читая файл настроек игры
-                        Lang = doc.Root.Element("meta").Element("localization").Value;
-                        Lang = Lang.Remove(0, Lang.IndexOf(" ")).ToLower().Trim();
+                        //Lang = doc.Root.Element("meta").Element("localization").Value;
+                        //Lang = Lang.Remove(0, Lang.IndexOf(" ")).ToLower().Trim();
                     }
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: Tanks Settings", ex.Message, ex.StackTrace)); }
@@ -155,7 +160,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
                         MultipackVersion = new Version(VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
 
-                        Lang = Properties.Resources.Default_Settings_Priority == "multipack" ? new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language") : Lang;
+                        //Lang = Properties.Resources.Default_Settings_Priority == "multipack" ? new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language") : Lang;
                     }
                 }
                 catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message, ex.StackTrace); }

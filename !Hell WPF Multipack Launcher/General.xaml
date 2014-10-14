@@ -23,7 +23,7 @@
             <RowDefinition/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <Button x:Name="bOptimize" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleOptimize}" Margin="0,20,5,20" Grid.Row="4" Click="bOptimize_Click"/>
+        <Button x:Name="bOptimize" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleOptimize}" Margin="0,20,10,20" Grid.Row="4" Click="bOptimize_Click"/>
         <Button x:Name="bFeedback" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleFeedback}" Margin="60,20,0,20" Grid.Row="4" Click="bFeedback_Click" VerticalAlignment="Center"/>
         <Button x:Name="bSettings" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleSettings}" Margin="15,20,0,20" Grid.Row="4" Click="bSettings_Click" VerticalAlignment="Center"/>
         <Button x:Name="bUserProfile" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleAbout}" Click="bUserProfile_Click"/>
