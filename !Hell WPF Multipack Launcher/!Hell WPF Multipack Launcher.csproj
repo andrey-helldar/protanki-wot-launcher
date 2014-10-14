@@ -72,6 +72,18 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\!!other_dll\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\!!other_dll\4.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c15020868fd6249, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\!!other_dll\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="restart, Version=1.1.4.14, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\!Hell Restarter\bin\Release\restart.exe</HintPath>
@@ -496,6 +508,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\stat_perc_vins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Processes.Library.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ookii.Dialogs.Wpf.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Newtonsoft.Json.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ionic.Zip.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Processes Library\Processes Library.csproj">
+      <Project>{c89f98dd-cf7b-4b7b-ae2c-fbf49177b8a6}</Project>
+      <Name>Processes Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
