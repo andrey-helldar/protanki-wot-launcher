@@ -251,7 +251,7 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.9.3.
+        ///   Looks up a localized string similar to 0.9.4.
         /// </summary>
         internal static string ModPackVersion {
             get {
@@ -320,6 +320,16 @@ namespace _Hell_PRO_Tanki_Launcher.Properties {
         internal static string PostVersion {
             get {
                 return ResourceManager.GetString("PostVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Processes_Library {
+            get {
+                object obj = ResourceManager.GetObject("Processes_Library", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

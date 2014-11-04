@@ -189,6 +189,7 @@
   <ItemGroup>
     <None Include="Resources\Close-2-icon.png" />
     <None Include="Resources\Minimize-icon.png" />
+    <None Include="bin\Debug\Processes.Library.dll" />
     <Content Include="Resources\warning.png" />
     <None Include="Resources\warning.jpg" />
     <None Include="Resources\splash2.jpg" />
