@@ -1,0 +1,2845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Node xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  NodeType="AppfuscatorMap">
+  <ProjectInfo
+    Version="2.6.0.38751"
+    Created="2014-11-07 14:42:56Z" />
+  <Childs>
+    <Node
+      NodeType="Assembly"
+      OldName="Multipack Launcher"
+      NewName="Multipack Launcher">
+      <AssemblyInfo
+        Name="Multipack Launcher"
+        Version="1.1.32.712"
+        AssemblyId="7b4de905-37af-430b-8e0b-c4e96e1e9e9c"
+        FileName="Multipack Launcher.exe">
+        <Sources>
+          <AssemblyInfo
+            Name="Multipack Launcher"
+            Version="1.1.32.712"
+            AssemblyId="7b4de905-37af-430b-8e0b-c4e96e1e9e9c"
+            FileName="Multipack Launcher.exe" />
+        </Sources>
+      </AssemblyInfo>
+      <Childs>
+        <Node
+          NodeType="Type"
+          OldName="&lt;Module&gt;"
+          NewName="&lt;Module&gt;"
+          ExcludedByReasons="ModuleType" />
+        <Node
+          NodeType="Type"
+          OldName="&lt;PrivateImplementationDetails&gt;{DD9D9550-ED06-4B05-82C5-0481DB8D6211}"
+          NewName="a">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="$$method0x600007f-1"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="$$method0x600007f-2"
+              NewName="b" />
+            <Node
+              NodeType="Field"
+              OldName="$$method0x6000080-1"
+              NewName="c" />
+            <Node
+              NodeType="Field"
+              OldName="$$method0x6000082-1"
+              NewName="d" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.Debug"
+          NewName="b">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="Code"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="Youtube"
+              NewName="b" />
+            <Node
+              NodeType="Field"
+              OldName="Accept"
+              NewName="c" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Save(System.String, System.String[])"
+              NewName="System.Void a(System.String, System.String[])" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Archive(System.String)"
+              NewName="System.Void b(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Delete(System.String)"
+              NewName="System.Void c(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Send()"
+              NewName="System.Void d()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String UserID()"
+              NewName="System.String e()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.fIndex"
+          NewName="c">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="Language"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="YoutubeVideo"
+              NewName="b" />
+            <Node
+              NodeType="Field"
+              OldName="SendPOST"
+              NewName="c" />
+            <Node
+              NodeType="Field"
+              OldName="Debug"
+              NewName="d" />
+            <Node
+              NodeType="Field"
+              OldName="ProcessList"
+              NewName="e" />
+            <Node
+              NodeType="Field"
+              OldName="pathToTanks"
+              NewName="f" />
+            <Node
+              NodeType="Field"
+              OldName="modpackType"
+              NewName="g" />
+            <Node
+              NodeType="Field"
+              OldName="modpackDate"
+              NewName="h" />
+            <Node
+              NodeType="Field"
+              OldName="newVersionMessage"
+              NewName="i" />
+            <Node
+              NodeType="Field"
+              OldName="newVersionLink"
+              NewName="j" />
+            <Node
+              NodeType="Field"
+              OldName="videoLink"
+              NewName="k" />
+            <Node
+              NodeType="Field"
+              OldName="updateNotification"
+              NewName="l" />
+            <Node
+              NodeType="Field"
+              OldName="notifyLink"
+              NewName="m" />
+            <Node
+              NodeType="Field"
+              OldName="lang"
+              NewName="n" />
+            <Node
+              NodeType="Field"
+              OldName="tanksPrefixVersion"
+              NewName="o" />
+            <Node
+              NodeType="Field"
+              OldName="patoToSettings"
+              NewName="p" />
+            <Node
+              NodeType="Field"
+              OldName="remoteModVersion"
+              NewName="q" />
+            <Node
+              NodeType="Field"
+              OldName="remoteTanksVersion"
+              NewName="r" />
+            <Node
+              NodeType="Field"
+              OldName="modpackVersion"
+              NewName="s" />
+            <Node
+              NodeType="Field"
+              OldName="tanksVersion"
+              NewName="t" />
+            <Node
+              NodeType="Field"
+              OldName="maxPercentUpdateStatus"
+              NewName="u" />
+            <Node
+              NodeType="Field"
+              OldName="showVideoTop"
+              NewName="v" />
+            <Node
+              NodeType="Field"
+              OldName="showNewsTop"
+              NewName="w" />
+            <Node
+              NodeType="Field"
+              OldName="modpackUpdates"
+              NewName="x" />
+            <Node
+              NodeType="Field"
+              OldName="tanksUpdates"
+              NewName="y" />
+            <Node
+              NodeType="Field"
+              OldName="autoOptimizePC"
+              NewName="z" />
+            <Node
+              NodeType="Field"
+              OldName="showVideoNotify"
+              NewName="aa" />
+            <Node
+              NodeType="Field"
+              OldName="playGame"
+              NewName="bb" />
+            <Node
+              NodeType="Field"
+              OldName="commonTest"
+              NewName="cb" />
+            <Node
+              NodeType="Field"
+              OldName="manualClickUpdate"
+              NewName="db" />
+            <Node
+              NodeType="Field"
+              OldName="autoKill"
+              NewName="eb" />
+            <Node
+              NodeType="Field"
+              OldName="autoForceKill"
+              NewName="fb" />
+            <Node
+              NodeType="Field"
+              OldName="autoAero"
+              NewName="gb" />
+            <Node
+              NodeType="Field"
+              OldName="autoVideo"
+              NewName="hb" />
+            <Node
+              NodeType="Field"
+              OldName="autoWeak"
+              NewName="ib" />
+            <Node
+              NodeType="Field"
+              OldName="autoCPU"
+              NewName="jb" />
+            <Node
+              NodeType="Field"
+              OldName="newsTitle"
+              NewName="kb" />
+            <Node
+              NodeType="Field"
+              OldName="newsLink"
+              NewName="lb" />
+            <Node
+              NodeType="Field"
+              OldName="newsDate"
+              NewName="mb" />
+            <Node
+              NodeType="Field"
+              OldName="psi"
+              NewName="nb" />
+            <Node
+              NodeType="Field"
+              OldName="components"
+              NewName="ob" />
+            <Node
+              NodeType="Field"
+              OldName="bPlay"
+              NewName="pb" />
+            <Node
+              NodeType="Field"
+              OldName="bLauncher"
+              NewName="qb" />
+            <Node
+              NodeType="Field"
+              OldName="bUpdate"
+              NewName="rb" />
+            <Node
+              NodeType="Field"
+              OldName="bVideo"
+              NewName="sb" />
+            <Node
+              NodeType="Field"
+              OldName="bExit"
+              NewName="tb" />
+            <Node
+              NodeType="Field"
+              OldName="linkLabel1"
+              NewName="ub" />
+            <Node
+              NodeType="Field"
+              OldName="llVersion"
+              NewName="vb" />
+            <Node
+              NodeType="Field"
+              OldName="bwUpdater"
+              NewName="wb" />
+            <Node
+              NodeType="Field"
+              OldName="contextMenu"
+              NewName="xb" />
+            <Node
+              NodeType="Field"
+              OldName="tsExit"
+              NewName="yb" />
+            <Node
+              NodeType="Field"
+              OldName="tsCheckUpdates"
+              NewName="zb" />
+            <Node
+              NodeType="Field"
+              OldName="toolStripMenuItem2"
+              NewName="ab" />
+            <Node
+              NodeType="Field"
+              OldName="tsVideo"
+              NewName="cc" />
+            <Node
+              NodeType="Field"
+              OldName="toolStripMenuItem3"
+              NewName="dc" />
+            <Node
+              NodeType="Field"
+              OldName="tsShow"
+              NewName="ec" />
+            <Node
+              NodeType="Field"
+              OldName="bOptimizePC"
+              NewName="fc" />
+            <Node
+              NodeType="Field"
+              OldName="tsSettings"
+              NewName="gc" />
+            <Node
+              NodeType="Field"
+              OldName="llTitle"
+              NewName="hc" />
+            <Node
+              NodeType="Field"
+              OldName="bSettings"
+              NewName="ic" />
+            <Node
+              NodeType="Field"
+              OldName="bwVideo"
+              NewName="jc" />
+            <Node
+              NodeType="Field"
+              OldName="llActually"
+              NewName="kc" />
+            <Node
+              NodeType="Field"
+              OldName="bShowVideo"
+              NewName="lc" />
+            <Node
+              NodeType="Field"
+              OldName="bShowNews"
+              NewName="mc" />
+            <Node
+              NodeType="Field"
+              OldName="llBlockCaption"
+              NewName="dd" />
+            <Node
+              NodeType="Field"
+              OldName="bwNews"
+              NewName="ed" />
+            <Node
+              NodeType="Field"
+              OldName="pVideo"
+              NewName="fd" />
+            <Node
+              NodeType="Field"
+              OldName="pNews"
+              NewName="gd" />
+            <Node
+              NodeType="Field"
+              OldName="llLoadingVideoData"
+              NewName="hd" />
+            <Node
+              NodeType="Field"
+              OldName="pbDownload"
+              NewName="id" />
+            <Node
+              NodeType="Field"
+              OldName="notifyIcon"
+              NewName="jd" />
+            <Node
+              NodeType="Field"
+              OldName="pbWarning"
+              NewName="kd" />
+            <Node
+              NodeType="Field"
+              OldName="llVideoAll"
+              NewName="ld" />
+            <Node
+              NodeType="Field"
+              OldName="pictureBox1"
+              NewName="md" />
+            <Node
+              NodeType="Field"
+              OldName="pictureBox2"
+              NewName="nd" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean ShowWindow(System.Int32, System.Int32)"
+              NewName="System.Boolean a(System.Int32, System.Int32)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean isX64()"
+              NewName="System.Boolean b()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task loadSettings()"
+              NewName="System.Threading.Tasks.Task c()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean ReadCheckStateBool(System.Xml.Linq.XDocument, System.String)"
+              NewName="System.Boolean d(System.Xml.Linq.XDocument, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String GetTanksRegistry()"
+              NewName="System.String e()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task`1&lt;System.Version&gt; GetTanksVersion()"
+              NewName="System.Threading.Tasks.Task`1&lt;System.Version&gt; f()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String CorrectPath(System.String, System.Int32)"
+              NewName="System.String g(System.String, System.Int32)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bExit_Click(System.Object, System.EventArgs)"
+              NewName="System.Void h(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bVideo_Click(System.Object, System.EventArgs)"
+              NewName="System.Void i(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bwUpdater_DoWork(System.Object, System.ComponentModel.DoWorkEventArgs)"
+              NewName="System.Void j(System.Object, System.ComponentModel.DoWorkEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String getResponse(System.String)"
+              NewName="System.String k(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bwUpdater_RunWorkerCompleted(System.Object, System.ComponentModel.RunWorkerCompletedEventArgs)"
+              NewName="System.Void l(System.Object, System.ComponentModel.RunWorkerCompletedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bLauncher_Click(System.Object, System.EventArgs)"
+              NewName="System.Void m(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bPlay_Click(System.Object, System.EventArgs)"
+              NewName="System.Void n(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void moveForm()"
+              NewName="System.Void o()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bUpdate_Click(System.Object, System.EventArgs)"
+              NewName="System.Void p(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void linkLabel1_LinkClicked(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)"
+              NewName="System.Void q(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void tsCheckUpdates_Click(System.Object, System.EventArgs)"
+              NewName="System.Void r(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void tsVideo_Click(System.Object, System.EventArgs)"
+              NewName="System.Void s(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void tsShow_Click(System.Object, System.EventArgs)"
+              NewName="System.Void t(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bOptimizePC_Click(System.Object, System.EventArgs)"
+              NewName="System.Void u(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void llContent_LinkClicked(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)"
+              NewName="System.Void v(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void tsSettings_Click(System.Object, System.EventArgs)"
+              NewName="System.Void w(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void fIndex_FormClosing(System.Object, System.Windows.Forms.FormClosingEventArgs)"
+              NewName="System.Void x(System.Object, System.Windows.Forms.FormClosingEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void llTitle_LinkClicked(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)"
+              NewName="System.Void y(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bSettings_Click(System.Object, System.EventArgs)"
+              NewName="System.Void z(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void label_Click(System.Object, System.EventArgs)"
+              NewName="System.Void aa(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bwVideo_RunWorkerCompleted(System.Object, System.ComponentModel.RunWorkerCompletedEventArgs)"
+              NewName="System.Void bb(System.Object, System.ComponentModel.RunWorkerCompletedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Version getFileVersion(System.String)"
+              NewName="System.Version cb(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bwVideo_DoWork(System.Object, System.ComponentModel.DoWorkEventArgs)"
+              NewName="System.Void db(System.Object, System.ComponentModel.DoWorkEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bwVideo_ProgressChanged(System.Object, System.ComponentModel.ProgressChangedEventArgs)"
+              NewName="System.Void eb(System.Object, System.ComponentModel.ProgressChangedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String formatDate(System.String)"
+              NewName="System.String fb(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void changeContent(System.Boolean)"
+              NewName="System.Void gb(System.Boolean)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bShowVideo_Click(System.Object, System.EventArgs)"
+              NewName="System.Void hb(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bShowNews_Click(System.Object, System.EventArgs)"
+              NewName="System.Void ib(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bwNews_DoWork(System.Object, System.ComponentModel.DoWorkEventArgs)"
+              NewName="System.Void jb(System.Object, System.ComponentModel.DoWorkEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bwNews_ProgressChanged(System.Object, System.ComponentModel.ProgressChangedEventArgs)"
+              NewName="System.Void kb(System.Object, System.ComponentModel.ProgressChangedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bwNews_RunWorkerCompleted(System.Object, System.ComponentModel.RunWorkerCompletedEventArgs)"
+              NewName="System.Void lb(System.Object, System.ComponentModel.RunWorkerCompletedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void llActually_LinkClicked(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)"
+              NewName="System.Void mb(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void fIndex_Load(System.Object, System.EventArgs)"
+              NewName="System.Void nb(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task LoadForm()"
+              NewName="System.Threading.Tasks.Task ob()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String DropSuffixVersion(System.Version)"
+              NewName="System.String pb(System.Version)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task GetVipProcesses()"
+              NewName="System.Threading.Tasks.Task qb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task CheckClosingGame()"
+              NewName="System.Threading.Tasks.Task rb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task ShowVideoNotification()"
+              NewName="System.Threading.Tasks.Task sb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task DeleteVideo()"
+              NewName="System.Threading.Tasks.Task tb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task ShowVideoPause()"
+              NewName="System.Threading.Tasks.Task ub()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void notifyIcon_Click(System.Object, System.EventArgs)"
+              NewName="System.Void vb(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void notifyIcon_BalloonTipClicked(System.Object, System.EventArgs)"
+              NewName="System.Void wb(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean ParseDate(System.String, System.String)"
+              NewName="System.Boolean xb(System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void pbWarning_Click(System.Object, System.EventArgs)"
+              NewName="System.Void yb(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task OptimizePC(System.String)"
+              NewName="System.Threading.Tasks.Task zb(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task SetInterfaceLanguage()"
+              NewName="System.Threading.Tasks.Task ab()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void SetLanguageControl(System.Windows.Forms.Control)"
+              NewName="System.Void cc(System.Windows.Forms.Control)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task State()"
+              NewName="System.Threading.Tasks.Task dc()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task Ping()"
+              NewName="System.Threading.Tasks.Task ec()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void CheckUpdatesManual()"
+              NewName="System.Void fc()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void llVersion_LinkClicked(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)"
+              NewName="System.Void gc(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void llLauncherVersion_LinkClicked(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)"
+              NewName="System.Void hc(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void pictureBox1_Click(System.Object, System.EventArgs)"
+              NewName="System.Void ic(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void pictureBox2_Click(System.Object, System.EventArgs)"
+              NewName="System.Void jc(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Dispose(System.Boolean)"
+              NewName="System.Void Dispose(System.Boolean)"
+              ExcludedByReasons="GroupMemberWithExternal" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void InitializeComponent()"
+              NewName="System.Void kc()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void &lt;moveForm&gt;b__4(System.Object, System.Windows.Forms.MouseEventArgs)"
+              NewName="System.Void lc(System.Object, System.Windows.Forms.MouseEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task &lt;bwVideo_RunWorkerCompleted&gt;b__6()"
+              NewName="System.Threading.Tasks.Task mc()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task &lt;LoadForm&gt;b__7()"
+              NewName="System.Threading.Tasks.Task dd()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task &lt;OptimizePC&gt;b__1a()"
+              NewName="System.Threading.Tasks.Task ed()" />
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;loadSettings&gt;d__0"
+              NewName="d">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;GetTanksVersion&gt;d__2"
+              NewName="e">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;LoadForm&gt;d__8"
+              NewName="f">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;status&gt;5__9"
+                  NewName="d" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;u__$awaitera"
+                  NewName="e" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__stack"
+                  NewName="f" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;GetVipProcesses&gt;d__c"
+              NewName="g">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;CheckClosingGame&gt;d__e"
+              NewName="h">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;u__$awaiterf"
+                  NewName="d" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__stack"
+                  NewName="e" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;ShowVideoNotification&gt;d__11"
+              NewName="i">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;DeleteVideo&gt;d__13"
+              NewName="j">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;ShowVideoPause&gt;d__15"
+              NewName="k">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;i&gt;5__16"
+                  NewName="c" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="d" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;u__$awaiter17"
+                  NewName="e" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__stack"
+                  NewName="f" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;&gt;c__DisplayClass1c"
+              NewName="l">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="OptimizeGraphic"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="b" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void .ctor()"
+                  NewName="System.Void .ctor()"
+                  ExcludedByReasons="ConstructorMethod" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void &lt;OptimizePC&gt;b__19()"
+                  NewName="System.Void a()" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;OptimizePC&gt;d__1e"
+              NewName="m">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Field"
+                  OldName="launch"
+                  NewName="d" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;myProgressStatus&gt;5__1f"
+                  NewName="e" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;processCount&gt;5__20"
+                  NewName="f" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;sessionId&gt;5__21"
+                  NewName="g" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;proccessLibrary&gt;5__22"
+                  NewName="h" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;kill&gt;5__23"
+                  NewName="i" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;i&gt;5__24"
+                  NewName="j" />
+                <Node
+                  NodeType="Field"
+                  OldName="CS$&lt;&gt;9__CachedAnonymousMethodDelegate1b"
+                  NewName="k" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;u__$awaiter25"
+                  NewName="l" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__stack"
+                  NewName="m" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;SetInterfaceLanguage&gt;d__27"
+              NewName="n">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;State&gt;d__29"
+              NewName="o">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;Ping&gt;d__2b"
+              NewName="p">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;fPing&gt;5__2c"
+                  NewName="d" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;u__$awaiter2d"
+                  NewName="e" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__stack"
+                  NewName="f" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.fLoader"
+          NewName="q">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="components"
+              NewName="a" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Dispose(System.Boolean)"
+              NewName="System.Void Dispose(System.Boolean)"
+              ExcludedByReasons="GroupMemberWithExternal" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void InitializeComponent()"
+              NewName="System.Void a()" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.fNewVersion"
+          NewName="r">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="Debug"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="Language"
+              NewName="b" />
+            <Node
+              NodeType="Field"
+              OldName="lang"
+              NewName="c" />
+            <Node
+              NodeType="Field"
+              OldName="patoToSettings"
+              NewName="d" />
+            <Node
+              NodeType="Field"
+              OldName="components"
+              NewName="e" />
+            <Node
+              NodeType="Field"
+              OldName="bDownload"
+              NewName="f" />
+            <Node
+              NodeType="Field"
+              OldName="bCancel"
+              NewName="g" />
+            <Node
+              NodeType="Field"
+              OldName="llVersion"
+              NewName="h" />
+            <Node
+              NodeType="Field"
+              OldName="llCaption"
+              NewName="i" />
+            <Node
+              NodeType="Field"
+              OldName="cbNotification"
+              NewName="j" />
+            <Node
+              NodeType="Field"
+              OldName="panel1"
+              NewName="k" />
+            <Node
+              NodeType="Field"
+              OldName="llContent"
+              NewName="l" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bCancel_Click(System.Object, System.EventArgs)"
+              NewName="System.Void a(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bDownload_Click(System.Object, System.EventArgs)"
+              NewName="System.Void b(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void fNewVersion_Load(System.Object, System.EventArgs)"
+              NewName="System.Void c(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void SetLanguageControl(System.Windows.Forms.Control)"
+              NewName="System.Void d(System.Windows.Forms.Control)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Dispose(System.Boolean)"
+              NewName="System.Void Dispose(System.Boolean)"
+              ExcludedByReasons="GroupMemberWithExternal" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void InitializeComponent()"
+              NewName="System.Void e()" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.fPing"
+          NewName="s">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="doc"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="components"
+              NewName="b" />
+            <Node
+              NodeType="Field"
+              OldName="bClose"
+              NewName="c" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bClose_Click(System.Object, System.EventArgs)"
+              NewName="System.Void a(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void fPing_Load(System.Object, System.EventArgs)"
+              NewName="System.Void b(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Dispose(System.Boolean)"
+              NewName="System.Void Dispose(System.Boolean)"
+              ExcludedByReasons="GroupMemberWithExternal" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void InitializeComponent()"
+              NewName="System.Void c()" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.fSettings"
+          NewName="t">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="ProccessLibrary"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="ProcessList"
+              NewName="b" />
+            <Node
+              NodeType="Field"
+              OldName="Language"
+              NewName="c" />
+            <Node
+              NodeType="Field"
+              OldName="Debug"
+              NewName="d" />
+            <Node
+              NodeType="Field"
+              OldName="version"
+              NewName="e" />
+            <Node
+              NodeType="Field"
+              OldName="type"
+              NewName="f" />
+            <Node
+              NodeType="Field"
+              OldName="notification"
+              NewName="g" />
+            <Node
+              NodeType="Field"
+              OldName="lang"
+              NewName="h" />
+            <Node
+              NodeType="Field"
+              OldName="patoToSettings"
+              NewName="i" />
+            <Node
+              NodeType="Field"
+              OldName="commonTest"
+              NewName="j" />
+            <Node
+              NodeType="Field"
+              OldName="userProcesses"
+              NewName="k" />
+            <Node
+              NodeType="Field"
+              OldName="components"
+              NewName="l" />
+            <Node
+              NodeType="Field"
+              OldName="bSave"
+              NewName="m" />
+            <Node
+              NodeType="Field"
+              OldName="bCancel"
+              NewName="n" />
+            <Node
+              NodeType="Field"
+              OldName="gbOptimization"
+              NewName="o" />
+            <Node
+              NodeType="Field"
+              OldName="cbKillProcesses"
+              NewName="p" />
+            <Node
+              NodeType="Field"
+              OldName="gbOther"
+              NewName="q" />
+            <Node
+              NodeType="Field"
+              OldName="cbVideo"
+              NewName="r" />
+            <Node
+              NodeType="Field"
+              OldName="llTitle"
+              NewName="s" />
+            <Node
+              NodeType="Field"
+              OldName="cbAero"
+              NewName="t" />
+            <Node
+              NodeType="Field"
+              OldName="cbForceClose"
+              NewName="u" />
+            <Node
+              NodeType="Field"
+              OldName="gbProcesses"
+              NewName="v" />
+            <Node
+              NodeType="Field"
+              OldName="bwUserProcesses"
+              NewName="w" />
+            <Node
+              NodeType="Field"
+              OldName="lvProcessesUser"
+              NewName="x" />
+            <Node
+              NodeType="Field"
+              OldName="columnHeader1"
+              NewName="y" />
+            <Node
+              NodeType="Field"
+              OldName="columnHeader2"
+              NewName="z" />
+            <Node
+              NodeType="Field"
+              OldName="panel1"
+              NewName="aa" />
+            <Node
+              NodeType="Field"
+              OldName="panel2"
+              NewName="bb" />
+            <Node
+              NodeType="Field"
+              OldName="llGlobalProcesses"
+              NewName="cb" />
+            <Node
+              NodeType="Field"
+              OldName="llUserProcesses"
+              NewName="db" />
+            <Node
+              NodeType="Field"
+              OldName="gbPriority"
+              NewName="eb" />
+            <Node
+              NodeType="Field"
+              OldName="cbPriority"
+              NewName="fb" />
+            <Node
+              NodeType="Field"
+              OldName="lDescProcesses"
+              NewName="gb" />
+            <Node
+              NodeType="Field"
+              OldName="cbVideoQuality"
+              NewName="hb" />
+            <Node
+              NodeType="Field"
+              OldName="llRecoverySettings"
+              NewName="ib" />
+            <Node
+              NodeType="Field"
+              OldName="cbVideoQualityWeak"
+              NewName="jb" />
+            <Node
+              NodeType="Field"
+              OldName="cbMinimize"
+              NewName="kb" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void loadLang()"
+              NewName="System.Void a()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void SetLanguageControl(System.Windows.Forms.Control)"
+              NewName="System.Void b(System.Windows.Forms.Control)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Windows.Forms.CheckState ReadCheckState(System.Xml.Linq.XDocument, System.String)"
+              NewName="System.Windows.Forms.CheckState c(System.Xml.Linq.XDocument, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Int32 ReadIntStatus(System.Xml.Linq.XDocument, System.String, System.String)"
+              NewName="System.Int32 d(System.Xml.Linq.XDocument, System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean ReadSettingsStatus(System.Xml.Linq.XDocument, System.String, System.String, System.Boolean)"
+              NewName="System.Boolean e(System.Xml.Linq.XDocument, System.String, System.String, System.Boolean)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bSave_Click(System.Object, System.EventArgs)"
+              NewName="System.Void f(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bCancel_Click(System.Object, System.EventArgs)"
+              NewName="System.Void g(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void moveForm()"
+              NewName="System.Void h()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bwUserProcesses_DoWork(System.Object, System.ComponentModel.DoWorkEventArgs)"
+              NewName="System.Void i(System.Object, System.ComponentModel.DoWorkEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bwUserProcesses_RunWorkerCompleted(System.Object, System.ComponentModel.RunWorkerCompletedEventArgs)"
+              NewName="System.Void j(System.Object, System.ComponentModel.RunWorkerCompletedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String getResponse(System.String)"
+              NewName="System.String k(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Int32 getPriority(System.Int32, System.Boolean)"
+              NewName="System.Int32 l(System.Int32, System.Boolean)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Xml.Linq.XDocument AddAttributeSettings(System.Xml.Linq.XDocument, System.String, System.String, System.String)"
+              NewName="System.Xml.Linq.XDocument m(System.Xml.Linq.XDocument, System.String, System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task SaveSettings()"
+              NewName="System.Threading.Tasks.Task n()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void llRecoverySettings_LinkClicked(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)"
+              NewName="System.Void o(System.Object, System.Windows.Forms.LinkLabelLinkClickedEventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void fSettings_Load(System.Object, System.EventArgs)"
+              NewName="System.Void p(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean EnableAero()"
+              NewName="System.Boolean q()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void cbVideoQuality_Click(System.Object, System.EventArgs)"
+              NewName="System.Void r(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void cbVideoQualityVeryLow_Click(System.Object, System.EventArgs)"
+              NewName="System.Void s(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Dispose(System.Boolean)"
+              NewName="System.Void Dispose(System.Boolean)"
+              ExcludedByReasons="GroupMemberWithExternal" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void InitializeComponent()"
+              NewName="System.Void t()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void &lt;moveForm&gt;b__0(System.Object, System.Windows.Forms.MouseEventArgs)"
+              NewName="System.Void u(System.Object, System.Windows.Forms.MouseEventArgs)" />
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;&gt;c__DisplayClass3"
+              NewName="u">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="OptimizeGraphic"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="b" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void .ctor()"
+                  NewName="System.Void .ctor()"
+                  ExcludedByReasons="ConstructorMethod" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void &lt;SaveSettings&gt;b__2()"
+                  NewName="System.Void a()" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;SaveSettings&gt;d__5"
+              NewName="v">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.fWarning"
+          NewName="w">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="Language"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="sendText"
+              NewName="b" />
+            <Node
+              NodeType="Field"
+              OldName="sendStatus"
+              NewName="c" />
+            <Node
+              NodeType="Field"
+              OldName="lang"
+              NewName="d" />
+            <Node
+              NodeType="Field"
+              OldName="patoToSettings"
+              NewName="e" />
+            <Node
+              NodeType="Field"
+              OldName="components"
+              NewName="f" />
+            <Node
+              NodeType="Field"
+              OldName="lDesc"
+              NewName="g" />
+            <Node
+              NodeType="Field"
+              OldName="tbTicket"
+              NewName="h" />
+            <Node
+              NodeType="Field"
+              OldName="bSend"
+              NewName="i" />
+            <Node
+              NodeType="Field"
+              OldName="bCancel"
+              NewName="j" />
+            <Node
+              NodeType="Field"
+              OldName="lEmail"
+              NewName="k" />
+            <Node
+              NodeType="Field"
+              OldName="tbEmail"
+              NewName="l" />
+            <Node
+              NodeType="Field"
+              OldName="cbAttachDebug"
+              NewName="m" />
+            <Node
+              NodeType="Field"
+              OldName="cbCaption"
+              NewName="n" />
+            <Node
+              NodeType="Field"
+              OldName="lLinkWithSite"
+              NewName="o" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bCancel_Click(System.Object, System.EventArgs)"
+              NewName="System.Void a(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task SendTicket()"
+              NewName="System.Threading.Tasks.Task b()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String ReplaceSymbols(System.String, System.Boolean)"
+              NewName="System.String c(System.String, System.Boolean)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String Category()"
+              NewName="System.String d()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void bSend_Click(System.Object, System.EventArgs)"
+              NewName="System.Void e(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean CheckLengthWord(System.String, System.Int32)"
+              NewName="System.Boolean f(System.String, System.Int32)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void lMessAboutNewVersion_Click(System.Object, System.EventArgs)"
+              NewName="System.Void g(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task SetInterfaceLanguage()"
+              NewName="System.Threading.Tasks.Task h()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void fWarning_Load(System.Object, System.EventArgs)"
+              NewName="System.Void i(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void cbCaption_SelectedIndexChanged(System.Object, System.EventArgs)"
+              NewName="System.Void j(System.Object, System.EventArgs)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Dispose(System.Boolean)"
+              NewName="System.Void Dispose(System.Boolean)"
+              ExcludedByReasons="GroupMemberWithExternal" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void InitializeComponent()"
+              NewName="System.Void k()" />
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;SendTicket&gt;d__0"
+              NewName="x">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;SetInterfaceLanguage&gt;d__2"
+              NewName="y">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.IniFile"
+          NewName="z">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="path"
+              NewName="a" />
+            <Node
+              NodeType="Method"
+              OldName="System.Int64 WritePrivateProfileString(System.String, System.String, System.String, System.String)"
+              NewName="System.Int64 a(System.String, System.String, System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Int32 GetPrivateProfileString(System.String, System.String, System.String, System.Text.StringBuilder, System.Int32, System.String)"
+              NewName="System.Int32 b(System.String, System.String, System.String, System.Text.StringBuilder, System.Int32, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor(System.String)"
+              NewName="System.Void .ctor(System.String)"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void IniWriteValue(System.String, System.String, System.String)"
+              NewName="System.Void c(System.String, System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String IniReadValue(System.String, System.String)"
+              NewName="System.String d(System.String, System.String)" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.Language"
+          NewName="aa">
+          <Childs>
+            <Node
+              NodeType="Method"
+              OldName="System.Void toolTip(System.Windows.Forms.Control, System.String)"
+              NewName="System.Void a(System.Windows.Forms.Control, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String InterfaceLanguage(System.String, System.Windows.Forms.Control, System.String, System.String)"
+              NewName="System.String b(System.String, System.Windows.Forms.Control, System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String DynamicLanguage(System.String, System.String, System.String)"
+              NewName="System.String c(System.String, System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.OptimizeGraphic"
+          NewName="bb">
+          <Childs>
+            <Node
+              NodeType="Method"
+              OldName="System.Void Optimize(System.Boolean, System.Boolean, System.Boolean)"
+              NewName="System.Void a(System.Boolean, System.Boolean, System.Boolean)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task UnzipResMods()"
+              NewName="System.Threading.Tasks.Task b()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;UnzipResMods&gt;d__0"
+              NewName="cb">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.Program"
+          NewName="db">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="CS$&lt;&gt;9__CachedAnonymousMethodDelegate2"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="CS$&lt;&gt;9__CachedAnonymousMethodDelegate3"
+              NewName="b" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Main()"
+              NewName="System.Void a()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void &lt;Main&gt;b__0()"
+              NewName="System.Void b()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void &lt;Main&gt;b__1()"
+              NewName="System.Void c()" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.SendPOST"
+          NewName="eb">
+          <Childs>
+            <Node
+              NodeType="Method"
+              OldName="System.String Send(System.String, System.String)"
+              NewName="System.String a(System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task CountUsers(System.String, System.String, System.String, System.String, System.String, System.String)"
+              NewName="System.Threading.Tasks.Task b(System.String, System.String, System.String, System.String, System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void HttpUploadFile(System.String, System.String, System.String, System.String, System.Collections.Specialized.NameValueCollection)"
+              NewName="System.Void c(System.String, System.String, System.String, System.String, System.Collections.Specialized.NameValueCollection)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String Json(System.Collections.Generic.Dictionary`2&lt;System.String,System.String&gt;)"
+              NewName="System.String d(System.Collections.Generic.Dictionary`2&lt;System.String,System.String&gt;)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Collections.Generic.Dictionary`2&lt;System.String,System.String&gt; FromJson(System.String)"
+              NewName="System.Collections.Generic.Dictionary`2&lt;System.String,System.String&gt; e(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="Newtonsoft.Json.Linq.JObject JsonResponse(System.String)"
+              NewName="Newtonsoft.Json.Linq.JObject f(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String DataRegex(System.String)"
+              NewName="System.String g(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;CountUsers&gt;d__0"
+              NewName="fb">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="productName"
+                  NewName="c" />
+                <Node
+                  NodeType="Field"
+                  OldName="productVersion"
+                  NewName="d" />
+                <Node
+                  NodeType="Field"
+                  OldName="packVersion"
+                  NewName="e" />
+                <Node
+                  NodeType="Field"
+                  OldName="packType"
+                  NewName="f" />
+                <Node
+                  NodeType="Field"
+                  OldName="youtube"
+                  NewName="g" />
+                <Node
+                  NodeType="Field"
+                  OldName="lang"
+                  NewName="h" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;Debug&gt;5__1"
+                  NewName="i" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;myJsonData&gt;5__2"
+                  NewName="j" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;json&gt;5__3"
+                  NewName="k" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="l" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;u__$awaiter4"
+                  NewName="m" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__stack"
+                  NewName="n" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.UpdateLauncher"
+          NewName="gb">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="Debug"
+              NewName="a" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task CheckProcessFile()"
+              NewName="System.Threading.Tasks.Task a()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Check()"
+              NewName="System.Void b()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean Checksum(System.String, System.String)"
+              NewName="System.Boolean c(System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task DownloadFile(System.String, System.String, System.String, System.String)"
+              NewName="System.Threading.Tasks.Task d(System.String, System.String, System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task DownloadSettings()"
+              NewName="System.Threading.Tasks.Task e()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void CheckFile(System.Boolean, System.String[])"
+              NewName="System.Void f(System.Boolean, System.String[])" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void CheckOneFile(System.String, System.Boolean)"
+              NewName="System.Void g(System.String, System.Boolean)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void DeleteNullFile(System.String[])"
+              NewName="System.Void h(System.String[])" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void DeleteFile(System.String[])"
+              NewName="System.Void i(System.String[])" />
+            <Node
+              NodeType="Method"
+              OldName="System.Threading.Tasks.Task SaveFromResources()"
+              NewName="System.Threading.Tasks.Task j()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void &lt;Check&gt;b__2()"
+              NewName="System.Void k()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void &lt;Check&gt;b__3()"
+              NewName="System.Void l()" />
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;CheckProcessFile&gt;d__0"
+              NewName="hb">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;DownloadFile&gt;d__6"
+              NewName="ib">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Field"
+                  OldName="filename"
+                  NewName="d" />
+                <Node
+                  NodeType="Field"
+                  OldName="xmlVersion"
+                  NewName="e" />
+                <Node
+                  NodeType="Field"
+                  OldName="xmlChecksum"
+                  NewName="f" />
+                <Node
+                  NodeType="Field"
+                  OldName="localFile"
+                  NewName="g" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;client&gt;5__7"
+                  NewName="h" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;errorCount&gt;5__8"
+                  NewName="i" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;u__$awaiter9"
+                  NewName="j" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__stack"
+                  NewName="k" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;DownloadSettings&gt;d__b"
+              NewName="jb">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;settings&gt;5__c"
+                  NewName="d" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;client&gt;5__d"
+                  NewName="e" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;u__$awaitere"
+                  NewName="f" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__stack"
+                  NewName="g" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;&gt;c__DisplayClass11"
+              NewName="kb">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="wait"
+                  NewName="b" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void .ctor()"
+                  NewName="System.Void .ctor()"
+                  ExcludedByReasons="ConstructorMethod" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;&gt;c__DisplayClass14"
+              NewName="lb">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="CS$&lt;&gt;8__locals12"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="filename"
+                  NewName="b" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void .ctor()"
+                  NewName="System.Void .ctor()"
+                  ExcludedByReasons="ConstructorMethod" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void &lt;CheckFile&gt;b__10()"
+                  NewName="System.Void a()" />
+              </Childs>
+            </Node>
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.&lt;SaveFromResources&gt;d__16"
+              NewName="mb">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;1__state"
+                  NewName="a" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;t__builder"
+                  NewName="b" />
+                <Node
+                  NodeType="Field"
+                  OldName="&lt;&gt;4__this"
+                  NewName="c" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void MoveNext()"
+                  NewName="System.Void MoveNext()"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+                <Node
+                  NodeType="Method"
+                  OldName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  NewName="System.Void SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)"
+                  ExcludedByReasons="GroupMemberWithExternal" />
+              </Childs>
+            </Node>
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.VideoLoading"
+          NewName="nb">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="ID"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="Title"
+              NewName="b" />
+            <Node
+              NodeType="Field"
+              OldName="Content"
+              NewName="c" />
+            <Node
+              NodeType="Field"
+              OldName="Link"
+              NewName="d" />
+            <Node
+              NodeType="Field"
+              OldName="Date"
+              NewName="e" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor(System.String, System.String, System.String, System.String, System.String)"
+              NewName="System.Void .ctor(System.String, System.String, System.String, System.String, System.String)"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.YoutubeVideo"
+          NewName="ob">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="mID"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="mTitle"
+              NewName="b" />
+            <Node
+              NodeType="Field"
+              OldName="mContent"
+              NewName="c" />
+            <Node
+              NodeType="Field"
+              OldName="mLink"
+              NewName="d" />
+            <Node
+              NodeType="Field"
+              OldName="mDate"
+              NewName="e" />
+            <Node
+              NodeType="Field"
+              OldName="List"
+              NewName="f" />
+            <Node
+              NodeType="Field"
+              OldName="Range"
+              NewName="g" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Add(System.String, System.String, System.String, System.String, System.String)"
+              NewName="System.Void a(System.String, System.String, System.String, System.String, System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Clear()"
+              NewName="System.Void b()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Int32 IndexOf(System.String)"
+              NewName="System.Int32 c(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Int32 Count()"
+              NewName="System.Int32 d()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void Delete(System.String)"
+              NewName="System.Void e(System.String)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.Properties.Resources"
+          NewName="pb">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="resourceMan"
+              NewName="a" />
+            <Node
+              NodeType="Field"
+              OldName="resourceCulture"
+              NewName="b" />
+            <Node
+              NodeType="Property"
+              OldName="ResourceManager"
+              NewName="a" />
+            <Node
+              NodeType="Property"
+              OldName="Culture"
+              NewName="b" />
+            <Node
+              NodeType="Property"
+              OldName="AIRUS"
+              NewName="c" />
+            <Node
+              NodeType="Property"
+              OldName="back_6"
+              NewName="d" />
+            <Node
+              NodeType="Property"
+              OldName="back_updates"
+              NewName="e" />
+            <Node
+              NodeType="Property"
+              OldName="Close_2_icon"
+              NewName="f" />
+            <Node
+              NodeType="Property"
+              OldName="Code"
+              NewName="g" />
+            <Node
+              NodeType="Property"
+              OldName="FonSetting"
+              NewName="h" />
+            <Node
+              NodeType="Property"
+              OldName="fWarning"
+              NewName="i" />
+            <Node
+              NodeType="Property"
+              OldName="Icon"
+              NewName="j" />
+            <Node
+              NodeType="Property"
+              OldName="Ionic_Zip"
+              NewName="k" />
+            <Node
+              NodeType="Property"
+              OldName="lamp_off"
+              NewName="l" />
+            <Node
+              NodeType="Property"
+              OldName="lamp_on"
+              NewName="m" />
+            <Node
+              NodeType="Property"
+              OldName="LibraryVersions"
+              NewName="n" />
+            <Node
+              NodeType="Property"
+              OldName="LinkLauncherVK"
+              NewName="o" />
+            <Node
+              NodeType="Property"
+              OldName="LinkNewsAll"
+              NewName="p" />
+            <Node
+              NodeType="Property"
+              OldName="LinkNewVersion"
+              NewName="q" />
+            <Node
+              NodeType="Property"
+              OldName="LinkTicket"
+              NewName="r" />
+            <Node
+              NodeType="Property"
+              OldName="LinkVideo"
+              NewName="s" />
+            <Node
+              NodeType="Property"
+              OldName="LinkVideoAll"
+              NewName="t" />
+            <Node
+              NodeType="Property"
+              OldName="Minimize_icon"
+              NewName="u" />
+            <Node
+              NodeType="Property"
+              OldName="ModPackType"
+              NewName="v" />
+            <Node
+              NodeType="Property"
+              OldName="ModPackVersion"
+              NewName="w" />
+            <Node
+              NodeType="Property"
+              OldName="Newtonsoft_Json"
+              NewName="x" />
+            <Node
+              NodeType="Property"
+              OldName="PingBad"
+              NewName="y" />
+            <Node
+              NodeType="Property"
+              OldName="PingGood"
+              NewName="z" />
+            <Node
+              NodeType="Property"
+              OldName="PingText"
+              NewName="aa" />
+            <Node
+              NodeType="Property"
+              OldName="PostLink"
+              NewName="bb" />
+            <Node
+              NodeType="Property"
+              OldName="PostTicket"
+              NewName="cb" />
+            <Node
+              NodeType="Property"
+              OldName="PostVersion"
+              NewName="db" />
+            <Node
+              NodeType="Property"
+              OldName="Processes_Library"
+              NewName="eb" />
+            <Node
+              NodeType="Property"
+              OldName="ProcessesLibrary"
+              NewName="fb" />
+            <Node
+              NodeType="Property"
+              OldName="ProJson"
+              NewName="gb" />
+            <Node
+              NodeType="Property"
+              OldName="restart"
+              NewName="hb" />
+            <Node
+              NodeType="Property"
+              OldName="RssWotEn"
+              NewName="ib" />
+            <Node
+              NodeType="Property"
+              OldName="RssWotRU"
+              NewName="jb" />
+            <Node
+              NodeType="Property"
+              OldName="RssYoutube"
+              NewName="kb" />
+            <Node
+              NodeType="Property"
+              OldName="Settings"
+              NewName="lb" />
+            <Node
+              NodeType="Property"
+              OldName="SettingsIcon"
+              NewName="mb" />
+            <Node
+              NodeType="Property"
+              OldName="Splash"
+              NewName="nb" />
+            <Node
+              NodeType="Property"
+              OldName="start"
+              NewName="ob" />
+            <Node
+              NodeType="Property"
+              OldName="Warning"
+              NewName="pb" />
+            <Node
+              NodeType="Property"
+              OldName="Youtube"
+              NewName="qb" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Resources.ResourceManager get_ResourceManager()"
+              NewName="System.Resources.ResourceManager a()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Globalization.CultureInfo get_Culture()"
+              NewName="System.Globalization.CultureInfo b()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void set_Culture(System.Globalization.CultureInfo)"
+              NewName="System.Void c(System.Globalization.CultureInfo)" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_AIRUS()"
+              NewName="System.String d()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_back_6()"
+              NewName="System.Drawing.Bitmap e()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_back_updates()"
+              NewName="System.Drawing.Bitmap f()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_Close_2_icon()"
+              NewName="System.Drawing.Bitmap g()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_Code()"
+              NewName="System.String h()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_FonSetting()"
+              NewName="System.Drawing.Bitmap i()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_fWarning()"
+              NewName="System.Drawing.Bitmap j()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Icon get_Icon()"
+              NewName="System.Drawing.Icon k()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Byte[] get_Ionic_Zip()"
+              NewName="System.Byte[] l()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_lamp_off()"
+              NewName="System.Drawing.Bitmap m()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_lamp_on()"
+              NewName="System.Drawing.Bitmap n()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_LibraryVersions()"
+              NewName="System.String o()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_LinkLauncherVK()"
+              NewName="System.String p()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_LinkNewsAll()"
+              NewName="System.String q()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_LinkNewVersion()"
+              NewName="System.String r()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_LinkTicket()"
+              NewName="System.String s()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_LinkVideo()"
+              NewName="System.String t()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_LinkVideoAll()"
+              NewName="System.String u()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_Minimize_icon()"
+              NewName="System.Drawing.Bitmap v()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_ModPackType()"
+              NewName="System.String w()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_ModPackVersion()"
+              NewName="System.String x()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Byte[] get_Newtonsoft_Json()"
+              NewName="System.Byte[] y()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_PingBad()"
+              NewName="System.String z()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_PingGood()"
+              NewName="System.String aa()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_PingText()"
+              NewName="System.String bb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_PostLink()"
+              NewName="System.String cb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_PostTicket()"
+              NewName="System.String db()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_PostVersion()"
+              NewName="System.String eb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Byte[] get_Processes_Library()"
+              NewName="System.Byte[] fb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Byte[] get_ProcessesLibrary()"
+              NewName="System.Byte[] gb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_ProJson()"
+              NewName="System.String hb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Byte[] get_restart()"
+              NewName="System.Byte[] ib()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_RssWotEn()"
+              NewName="System.String jb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_RssWotRU()"
+              NewName="System.String kb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_RssYoutube()"
+              NewName="System.String lb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_Settings()"
+              NewName="System.String mb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_SettingsIcon()"
+              NewName="System.Drawing.Bitmap nb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_Splash()"
+              NewName="System.Drawing.Bitmap ob()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Byte[] get_start()"
+              NewName="System.Byte[] pb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Drawing.Bitmap get_Warning()"
+              NewName="System.Drawing.Bitmap qb()" />
+            <Node
+              NodeType="Method"
+              OldName="System.String get_Youtube()"
+              NewName="System.String rb()" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.Properties.Settings"
+          NewName="qb">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="defaultInstance"
+              NewName="a" />
+            <Node
+              NodeType="Property"
+              OldName="Default"
+              NewName="a" />
+            <Node
+              NodeType="Method"
+              OldName="_Hell_PRO_Tanki_Launcher.Properties.Settings get_Default()"
+              NewName="qb a()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .cctor()"
+              NewName="System.Void .cctor()"
+              ExcludedByReasons="StaticConstructorMethod" />
+          </Childs>
+        </Node>
+        <Node
+          NodeType="Type"
+          OldName="_Hell_PRO_Tanki_Launcher.InnerInterface.SingleApplication"
+          NewName="rb">
+          <Childs>
+            <Node
+              NodeType="Field"
+              OldName="mutex"
+              NewName="a" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean Run(System.Windows.Forms.Form)"
+              NewName="System.Boolean a(System.Windows.Forms.Form)" />
+            <Node
+              NodeType="Method"
+              OldName="System.IntPtr GetCurrentInstanceWindowHandle()"
+              NewName="System.IntPtr b()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void SwitchToCurrentInstance()"
+              NewName="System.Void c()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean IsAlreadyRunning()"
+              NewName="System.Boolean d()" />
+            <Node
+              NodeType="Method"
+              OldName="System.Boolean IsIconicWindow(System.IntPtr)"
+              NewName="System.Boolean e(System.IntPtr)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Int32 ShowWindow(System.IntPtr, _Hell_PRO_Tanki_Launcher.InnerInterface.SingleApplication/ShowWindowCommand)"
+              NewName="System.Int32 f(System.IntPtr, rb/sb)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Int32 SetForegroundWindow(System.IntPtr)"
+              NewName="System.Int32 g(System.IntPtr)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Int32 IsIconic(System.IntPtr)"
+              NewName="System.Int32 h(System.IntPtr)" />
+            <Node
+              NodeType="Method"
+              OldName="System.Void .ctor()"
+              NewName="System.Void .ctor()"
+              ExcludedByReasons="ConstructorMethod" />
+            <Node
+              NodeType="Type"
+              OldName="_Hell_PRO_Tanki_Launcher.InnerInterface.ShowWindowCommand"
+              NewName="sb">
+              <Childs>
+                <Node
+                  NodeType="Field"
+                  OldName="value__"
+                  NewName="value__"
+                  ExcludedByReasons="SpecialName" />
+                <Node
+                  NodeType="Field"
+                  OldName="Restore"
+                  NewName="a" />
+              </Childs>
+            </Node>
+          </Childs>
+        </Node>
+      </Childs>
+    </Node>
+  </Childs>
+</Node>
