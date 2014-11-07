@@ -164,13 +164,13 @@
     <value>PROTankiWoT</value>
   </data>
   <data name="LinkLauncherVK" xml:space="preserve">
-    <value>http://vk.com/topic-58816477_29818765</value>
+    <value>https://vk.com/topic-58816477_29818765</value>
   </data>
   <data name="LinkNewsAll" xml:space="preserve">
     <value>http://goo.gl/Wlrh9F</value>
   </data>
   <data name="LinkTicket" xml:space="preserve">
-    <value>http://ai-rus.com/tickets.html</value>
+    <value>https://ai-rus.com/tickets.html</value>
   </data>
   <data name="LinkVideoAll" xml:space="preserve">
     <value>http://goo.gl/LXaU7T</value>
@@ -182,19 +182,19 @@
     <value>100</value>
   </data>
   <data name="PostLink" xml:space="preserve">
-    <value>http://ai-rus.com/wot/link/</value>
+    <value>https://ai-rus.com/wot/link/</value>
   </data>
   <data name="PostTicket" xml:space="preserve">
-    <value>http://ai-rus.com/wot/ticket/</value>
+    <value>https://ai-rus.com/wot/ticket/</value>
   </data>
   <data name="PostVersion" xml:space="preserve">
-    <value>http://ai-rus.com/wot/version/</value>
+    <value>https://ai-rus.com/wot/version/</value>
   </data>
   <data name="RssWotEn" xml:space="preserve">
-    <value>http://worldoftanks.com/en/rss/news/</value>
+    <value>https://worldoftanks.com/en/rss/news/</value>
   </data>
   <data name="RssWotRU" xml:space="preserve">
-    <value>http://worldoftanks.ru/ru/rss/news/</value>
+    <value>https://worldoftanks.ru/ru/rss/news/</value>
   </data>
   <data name="RssYoutube" xml:space="preserve">
     <value>https://gdata.youtube.com/feeds/api/users/{0}/uploads</value>
@@ -215,7 +215,7 @@
     <value>..\Resources\settings.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="LibraryVersions" xml:space="preserve">
-    <value>http://ai-rus.com/pro/</value>
+    <value>https://ai-rus.com/pro/</value>
   </data>
   <data name="Ionic_Zip" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ionic.Zip.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack_Launcher" version="2.3.27.711" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack_Launcher" version="2.3.28.711" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack_Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -56,13 +56,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack_Launcher.exe" size="4339200">
-      <assemblyIdentity name="Multipack_Launcher" version="2.3.27.711" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Multipack_Launcher" version="2.3.28.711" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>T9Myc9jnyQfA2R6wwZ1uCZx4a+8=</dsig:DigestValue>
+        <dsig:DigestValue>BbcDiznLtHJJOuWqH1bNhkYIDfk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
