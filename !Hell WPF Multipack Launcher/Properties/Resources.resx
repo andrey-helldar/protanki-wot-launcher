@@ -126,23 +126,17 @@
     <comment>Дефолтный тип мультипака</comment>
   </data>
   <data name="Developer" xml:space="preserve">
-    <value>http://t.ai-rus.com</value>
+    <value>http://n.helldar.ru</value>
     <comment>БЕЗ СЛЕША В КОНЦЕ!!!</comment>
-  </data>
-  <data name="Developer_Info" xml:space="preserve">
-    <value>info</value>
   </data>
   <data name="Developer_Link_Site" xml:space="preserve">
     <value>http://goo.gl/5PR4ma</value>
-    <comment>Developer's site (http://ai-rus.com)</comment>
+    <comment>Сайт разработчика со счетчиком (http://ai-rus.com)</comment>
   </data>
-  <data name="Developer_Processes" xml:space="preserve">
+  <data name="API_Developer_Processes" xml:space="preserve">
     <value>processes</value>
   </data>
-  <data name="Developer_User" xml:space="preserve">
-    <value>user</value>
-  </data>
-  <data name="Developer_Game_Version" xml:space="preserve">
+  <data name="API_Developer_Version" xml:space="preserve">
     <value>version</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -189,28 +183,16 @@
     <comment>Имя канала на ютубе</comment>
   </data>
   <data name="Default_Settings_Priority" xml:space="preserve">
-    <value>manual</value>
+    <value>multipack</value>
     <comment>Дефолтный путь для загрузки настроек: "multipack", "game" или "manual"</comment>
   </data>
   <data name="API" xml:space="preserve">
     <value>05b877de3962048c5d1bd7cc18d4b286</value>
     <comment>WargamingAPI code</comment>
   </data>
-  <data name="Developer_API" xml:space="preserve">
-    <value>2.0</value>
+  <data name="API_Developer" xml:space="preserve">
+    <value>2.1</value>
     <comment>Версия API на сайте разработчика</comment>
-  </data>
-  <data name="Developer_API_Format" xml:space="preserve">
-    <value>{0}/api/{1}/{2}</value>
-    <comment>http://ai-rus.com/api/2.0/version</comment>
-  </data>
-  <data name="Developer_Clan" xml:space="preserve">
-    <value>clan</value>
-    <comment>Информация о клане</comment>
-  </data>
-  <data name="Google_API" xml:space="preserve">
-    <value>hell-protanki-launcher</value>
-    <comment>Google API Code</comment>
   </data>
   <data name="Developer_Feedback_Symbols" xml:space="preserve">
     <value>50</value>
@@ -478,5 +460,12 @@
   </data>
   <data name="SettingsXML" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\settings.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="API_Developer_Ticket" xml:space="preserve">
+    <value>ticket</value>
+  </data>
+  <data name="API_Developer_Format" xml:space="preserve">
+    <value>{0}/api/{1}/{2}</value>
+    <comment>https://ai-rus.com/api/2.1/version</comment>
   </data>
 </root>

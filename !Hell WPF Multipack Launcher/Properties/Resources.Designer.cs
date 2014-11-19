@@ -165,6 +165,51 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2.1.
+        /// </summary>
+        public static string API_Developer {
+            get {
+                return ResourceManager.GetString("API_Developer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}/api/{1}/{2}.
+        /// </summary>
+        public static string API_Developer_Format {
+            get {
+                return ResourceManager.GetString("API_Developer_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to processes.
+        /// </summary>
+        public static string API_Developer_Processes {
+            get {
+                return ResourceManager.GetString("API_Developer_Processes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ticket.
+        /// </summary>
+        public static string API_Developer_Ticket {
+            get {
+                return ResourceManager.GetString("API_Developer_Ticket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to version.
+        /// </summary>
+        public static string API_Developer_Version {
+            get {
+                return ResourceManager.GetString("API_Developer_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to api.worldoftanks.ru/wot/globalwar/provinces/.
         /// </summary>
         public static string API_Global_Provinces {
@@ -329,7 +374,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to manual.
+        ///   Looks up a localized string similar to multipack.
         /// </summary>
         public static string Default_Settings_Priority {
             get {
@@ -338,38 +383,11 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://t.ai-rus.com.
+        ///   Looks up a localized string similar to http://n.helldar.ru.
         /// </summary>
         public static string Developer {
             get {
                 return ResourceManager.GetString("Developer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2.0.
-        /// </summary>
-        public static string Developer_API {
-            get {
-                return ResourceManager.GetString("Developer_API", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}/api/{1}/{2}.
-        /// </summary>
-        public static string Developer_API_Format {
-            get {
-                return ResourceManager.GetString("Developer_API_Format", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to clan.
-        /// </summary>
-        public static string Developer_Clan {
-            get {
-                return ResourceManager.GetString("Developer_Clan", resourceCulture);
             }
         }
         
@@ -383,47 +401,11 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to version.
-        /// </summary>
-        public static string Developer_Game_Version {
-            get {
-                return ResourceManager.GetString("Developer_Game_Version", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to info.
-        /// </summary>
-        public static string Developer_Info {
-            get {
-                return ResourceManager.GetString("Developer_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to http://goo.gl/5PR4ma.
         /// </summary>
         public static string Developer_Link_Site {
             get {
                 return ResourceManager.GetString("Developer_Link_Site", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to processes.
-        /// </summary>
-        public static string Developer_Processes {
-            get {
-                return ResourceManager.GetString("Developer_Processes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to user.
-        /// </summary>
-        public static string Developer_User {
-            get {
-                return ResourceManager.GetString("Developer_User", resourceCulture);
             }
         }
         
@@ -644,15 +626,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("Global_Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to hell-protanki-launcher.
-        /// </summary>
-        public static string Google_API {
-            get {
-                return ResourceManager.GetString("Google_API", resourceCulture);
             }
         }
         
