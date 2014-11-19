@@ -101,10 +101,10 @@ namespace _Hell_WPF_Multipack_Launcher
                             //  http://ai-rus.com/api/2.0/feedback
                             //  {0}/api/{1}/{2}
 
-                            Dictionary<string, string> answer = POST.FromJson(POST.Send(String.Format(Properties.Resources.API_Dev_Format,
+                            Dictionary<string, string> answer = POST.FromJson(POST.Send(String.Format(Properties.Resources.API_Developer_Format,
                                 Properties.Resources.Developer,
-                                Properties.Resources.API_Dev,
-                                Properties.Resources.API_Dev_Ticket
+                                Properties.Resources.API_Developer,
+                                Properties.Resources.API_Developer_Ticket
                                 ), POST.Json(json)));
 
                             switch (answer["status"])

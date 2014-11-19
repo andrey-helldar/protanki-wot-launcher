@@ -468,4 +468,8 @@
     <value>{0}/api/{1}/{2}</value>
     <comment>https://ai-rus.com/api/2.1/version</comment>
   </data>
+  <data name="Youtube_Preview" xml:space="preserve">
+    <value>http://www.youtube.com/embed/{0}?rel=0&amp;controls=0&amp;showinfo=0</value>
+    <comment>Ссылка для превью Ютуба</comment>
+  </data>
 </root>

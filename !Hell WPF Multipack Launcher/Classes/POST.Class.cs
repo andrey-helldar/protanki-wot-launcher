@@ -197,7 +197,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("POST.Class", "DataRegex()", "Input string: " + str, ex.Message, ex.StackTrace); return str; }
         }
 
-        public string RequestInfo(string request)
+        /*public string RequestInfo(string request)
         {
             string result = String.Empty;
 
@@ -217,7 +217,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 new Debug().Save("POST Class", "RequestInfo()", "Request: " + request, result, ex.Message, ex.StackTrace);
                 return "FAIL";
             }
-        }
+        }*/
 
         public string Shield(string text)
         {

@@ -1109,6 +1109,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://www.youtube.com/embed/{0}?rel=0&amp;controls=0&amp;showinfo=0.
+        /// </summary>
+        public static string Youtube_Preview {
+            get {
+                return ResourceManager.GetString("Youtube_Preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PROTankiWoT.
         /// </summary>
         public static string YoutubeChannel {

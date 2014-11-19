@@ -90,19 +90,9 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 if (show)
-                {
-                   /* if (title.Trim().Length > 0)
-                    {
-                        tbPreview.Text = title;
-                        tbPreview.Visibility = Visibility.Visible;
-                    }
-                    else { tbPreview.Visibility = Visibility.Hidden; }*/
-
-                    framePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/" + id + "?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute));
-                }
+                    framePreview.NavigationService.Navigate(new Uri(String.Format(Properties.Resources.Youtube_Preview, id), UriKind.RelativeOrAbsolute));
                 else
                 {
-                    //tbPreview.Visibility = Visibility.Hidden;
                     framePreview.Visibility = Visibility.Hidden;
                     MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", XmlDocument.Root.Element("info").Attribute("language").Value));
                 }
@@ -302,9 +292,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     if (File.Exists(Variables.PathTanks + "WorldOfTanks.exe"))
                     {
-                        /*if (XmlDocument.Root.Element("settings").Attribute("winxp").Value != "True")
-                            Optimize.Start(Variables.WinXP);
-
                         Optimize.Start(
                                 XmlDocument.Root.Element("settings").Attribute("winxp").Value == "True",
                                 XmlDocument.Root.Element("settings").Attribute("kill").Value == "True",
@@ -313,7 +300,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 XmlDocument.Root.Element("settings").Attribute("video").Value == "True",
                                 XmlDocument.Root.Element("settings").Attribute("weak").Value == "True",
                                 true
-                            );*/
+                            );
 
                         ProcessStart(Variables.PathTanks, "WorldOfTanks.exe");
                     }
@@ -361,14 +348,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 process.StartInfo.RedirectStandardOutput = true;
                 process.StartInfo.RedirectStandardError = true;
                 process.Start();
-
-
-                /*Process process = new Process();
-                process.StartInfo.WorkingDirectory = path;
-                process.StartInfo.FileName = filename == "" ? path : path + filename;
-                process.StartInfo.UseShellExecute = false;
-
-                process.Start();*/
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); }
         }
