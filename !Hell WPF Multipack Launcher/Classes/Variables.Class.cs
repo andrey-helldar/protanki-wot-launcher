@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
 using Microsoft.Win32;
-using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Ini;
 
 namespace _Hell_WPF_Multipack_Launcher.Classes
@@ -193,6 +193,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
 
                 // Передаем на сайт разработчика запрос на проверку версии
+                JObject json = new JObject(
+                    new JProperty("code", Properties.Resources.API),
+                    new JProperty("client_version", new Classes.Variables().TanksVersion.ToString()),
+                    new JProperty("language", lang)
+                    );
             }
             else
                 // "Файл настроек не обнаружен"
