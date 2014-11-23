@@ -57,13 +57,14 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             // Устанавливаем заголовок в зависимости от типа версии
-            lType.Content = "Базовая версия";
-
-            if (MainWindow.XmlDocument.Root != null)
-                if (MainWindow.XmlDocument.Root.Element("multipack") != null)
-                    if (MainWindow.XmlDocument.Root.Element("multipack").Element("type") != null)
-                        lType.Content = MainWindow.XmlDocument.Root.Element("multipack").Element("type").Value == "base" ? "Базовая версия" : "Расширенная версия";
-
+            try
+            {
+                if (MainWindow.XmlDocument.Root != null)
+                    if (MainWindow.XmlDocument.Root.Element("multipack") != null)
+                        if (MainWindow.XmlDocument.Root.Element("multipack").Element("type") != null)
+                            lType.Content = Lang.Set("PageGeneral", MainWindow.XmlDocument.Root.Element("multipack").Element("type").Value, lang)+"1";
+            }
+            catch (Exception) { lType.Content = "Base version1"; }
 
             // Загружаем список видео и новостей
             try
@@ -92,7 +93,9 @@ namespace _Hell_WPF_Multipack_Launcher
             try { StatusBarSet(false, 1, true, true, true); MainWindow.LoadingPanelShow(); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
-            Task.Factory.StartNew(() => GetTanksVersion());
+            //Task.Factory.StartNew(() => GetTanksVersion());
+            //  Получаем инфу с сайта
+            Task.Factory.StartNew(() => GetInfo());
         }
 
         private void StatusBarSet(bool inc, int max_inc = 0, bool set_max = false, bool disp = false, bool value_set = false)
@@ -637,11 +640,14 @@ namespace _Hell_WPF_Multipack_Launcher
         }
 
 
-        private void GetTanksVersion()
+        private void GetInfo()
         {
             try
             {
                 Thread.Sleep(3000);
+
+                Classes.POST POST = new Classes.POST();
+                Classes.Variables Variables = new Classes.Variables();
 
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
@@ -649,24 +655,62 @@ namespace _Hell_WPF_Multipack_Launcher
                             pbStatus.Value = 0;
                         }));
 
-                Classes.POST POST = new Classes.POST();
-
                 JObject json = new JObject(
-                    new JProperty("api", Properties.Resources.API),
-                    new JProperty("client_version", new Classes.Variables().TanksVersion.ToString()),
-                    new JProperty("language", lang)
-                    );
+                                new JProperty("api", Properties.Resources.API),
+                                new JProperty("user_id", Variables.GetUserID()),
+                                new JProperty("user_name", GetTokenRec("nickname")),
+                                new JProperty("user_email", GetTokenRec("email")),
+                                new JProperty("modpack_type", Variables.MultipackType),
+                                new JProperty("modpack_ver", Variables.MultipackVersion.ToString()),
+                                new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
+                                new JProperty("game", Variables.TanksVersion.ToString()),
+                                new JProperty("game_test", Variables.CommonTest.ToString()),
+                                new JProperty("youtube", Properties.Resources.YoutubeChannel),
+                                new JProperty("lang", lang),
+                                new JProperty("os", "disabled")
+                            );
 
+                Debug.Save("111111111111111111111", "GetInfo()",json.ToString());
 
-                Dictionary<string, string> answer = POST.FromJson(POST.Send(@"http://t.ai-rus.com/version.php", json.ToString()));
+                JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json));
+                
+                Debug.Save("111111111111111111111", "GetInfo()",answer.ToString());
+                /*
+                 * code
+                 * status
+                 * version
+                 */
 
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
-                        {
-                            if (new Classes.Variables().TanksVersion < new Version(answer["content"]))
-                                lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang) + answer["content"];
-                        }));
+                {
+                    if (Variables.TanksVersion < new Version(answer["version"].ToString()))
+                        lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, answer["version"].ToString());
+                }));
             }
-            catch (Exception) { }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "GetInfo()", ex.Message, ex.StackTrace)); }
+        }
+
+        /// <summary>
+        ////Получаем ключ токена, если существует
+        /// </summary>
+        /// <param name="rec">Передаем имя аттрибута</param>
+        /// <returns>Получаем значение, если ключ существует</returns>
+        private string GetTokenRec(string rec)
+        {
+            try
+            {
+                if (rec.Length > 0)
+                {
+                    if (MainWindow.XmlDocument.Root.Element("token") != null)
+                        if (MainWindow.XmlDocument.Root.Element("token").Attribute(rec) != null)
+                            return MainWindow.XmlDocument.Root.Element("token").Attribute(rec).Value;
+                        else return "";
+                    else return "";
+                }
+                else
+                    return "";
+            }
+            catch (Exception) { return ""; }
         }
 
         private void ShowErr(System.IO.IOException ioEx)

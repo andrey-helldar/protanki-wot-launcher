@@ -788,6 +788,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        case "base":
+                            switch (lang)
+                            {
+                                case "ru": return "Базовая версия";
+                                case "en": return "Base version";
+                                case "de": return "Basisversion";
+                                default: return toReturn;
+                            }
+
+                        case "extended":
+                            switch (lang)
+                            {
+                                case "ru": return "Расширенная версия";
+                                case "en": return "Extended version";
+                                case "de": return "Erweiterte Version";
+                                default: return toReturn;
+                            }
+
                         default: return toReturn;
                     }
 
@@ -802,9 +820,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         case "gbCaption":
                             switch (lang)
                             {
-                                case "ru": return "Обнаружена новая версия: ";
-                                case "en": return "A new version is available: ";
-                                case "de": return "Es gibt eine neue Version: ";
+                                case "ru": return "Обнаружена новая версия: " + text;
+                                case "en": return "A new version is available: " + text;
+                                case "de": return "Es gibt eine neue Version: " + text;
                                 default: return toReturn;
                             }
 

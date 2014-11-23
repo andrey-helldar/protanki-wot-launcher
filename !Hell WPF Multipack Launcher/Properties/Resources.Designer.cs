@@ -129,7 +129,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.
+        ///   Looks up a localized string similar to 1.
         /// </summary>
         public static string API_DEV_CRYPT {
             get {

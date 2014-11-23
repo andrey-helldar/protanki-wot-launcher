@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pro>
+  <info video="False" news="False" multipack="True" notification="0.0.0.0" language="ru">
+    <notify_link />
+  </info>
+  <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
+  <multipack type="base" version="0.0.0.0">
+    <link></link>
+  </multipack>
+  <game>
+    <version>0.0.0.0</version>
+    <path>F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\bin\</path>
+  </game>
+  <youtube />
+  <do_not_display>
+    <video />
+    <news />
+  </do_not_display>
+  <processes />
+</pro>

@@ -1,11 +1,11 @@
 <version.xml>
 	<appname>	#menu:login/version	</appname>
-	<version> v.0.9.2 #755</version>	
-	<showLicense>   5   </showLicense>
+	<version> v.0.9.4 #805</version>	
+	<showLicense>   10   </showLicense>
 	<ingameHelpVersion>	1	</ingameHelpVersion>
    <meta>
-      <client>465495</client>
-      <overrides>458849</overrides>
-      <localization>444870 RU</localization>
+      <client>492480</client>
+      <overrides>492556</overrides>
+      <localization>490464 RU</localization>
    </meta>
 </version.xml>

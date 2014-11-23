@@ -169,6 +169,11 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Feedback.xaml", "bSend_Click()", ex.Message, ex.StackTrace)); }
         }
 
+        /// <summary>
+        ////Получаем ключ токена, если существует
+        /// </summary>
+        /// <param name="rec">Передаем имя аттрибута</param>
+        /// <returns>Получаем значение, если ключ существует</returns>
         private string GetTokenRec(string rec)
         {
             try

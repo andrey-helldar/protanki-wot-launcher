@@ -464,7 +464,7 @@
     <comment>Ссылка для превью Ютуба</comment>
   </data>
   <data name="API_DEV_CRYPT" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
     <comment>Шифровать ли данные при передаче?</comment>
   </data>
   <data name="API_DEV_OpenID" xml:space="preserve">
