@@ -18,9 +18,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
         public string Send(string Url, JObject json)
         {
+            string Data = String.Empty;
+
             try
             {
-                string Data = "data=" + json;
+                Data = "data=" + json;
 
                 WebRequest req = WebRequest.Create(Url);
                 req.Method = "POST";
@@ -132,10 +134,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>
-        public Dictionary<string, string> FromJson(string json)
+        public JObject FromJson(string json)
         {
-            try { return JsonConvert.DeserializeObject<Dictionary<string, string>>(json); }
-            catch (Exception ex) { Debug.Save("POST.Class", "FromJson()", json, ex.Message, ex.StackTrace); return null; }
+            if (json.Length > 0)
+            {
+                try { return JObject.Parse(json); }
+                catch (Exception ex) { Debug.Save("POST.Class", "FromJson()", json, ex.Message, ex.StackTrace); return null; }
+            }
+            else
+                return null;
         }
 
         public JObject JsonResponse(string uri)
@@ -155,7 +162,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
                 while (count > 0);
 
-                return JsonConvert.DeserializeObject<JObject>(sb.ToString());
+                return JObject.Parse(sb.ToString());
             }
             catch (WebException we) { Debug.Save("POST.Class", "JsonResponse()", "URL: " + uri, we.Message, we.StackTrace); return null; }
             catch (Exception ex) { Debug.Save("POST.Class", "JsonResponse()", "URL: " + uri, ex.Message, ex.StackTrace); return null; }

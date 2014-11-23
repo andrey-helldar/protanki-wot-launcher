@@ -190,14 +190,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 try { if (Doc.Root.Element("common.test") != null) CommonTest = true; }
                 catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `common.test`", ex.Message, ex.StackTrace); }
-
-
-                // Передаем на сайт разработчика запрос на проверку версии
-                JObject json = new JObject(
-                    new JProperty("code", Properties.Resources.API),
-                    new JProperty("client_version", new Classes.Variables().TanksVersion.ToString()),
-                    new JProperty("language", lang)
-                    );
             }
             else
                 // "Файл настроек не обнаружен"

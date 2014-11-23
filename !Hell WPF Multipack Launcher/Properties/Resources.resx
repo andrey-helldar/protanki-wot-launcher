@@ -131,7 +131,7 @@
   </data>
   <data name="Developer_Link_Site" xml:space="preserve">
     <value>http://goo.gl/5PR4ma</value>
-    <comment>Сайт разработчика со счетчиком (http://ai-rus.com)</comment>
+    <comment>Сайт разработчика со счетчиком (https://ai-rus.com)</comment>
   </data>
   <data name="API_DEV_Processes" xml:space="preserve">
     <value>/api/wot/processes</value>
@@ -462,6 +462,10 @@
   <data name="Youtube_Preview" xml:space="preserve">
     <value>http://www.youtube.com/embed/{0}?rel=0&amp;controls=0&amp;showinfo=0</value>
     <comment>Ссылка для превью Ютуба</comment>
+  </data>
+  <data name="API_DEV_CRYPT" xml:space="preserve">
+    <value>0</value>
+    <comment>Шифровать ли данные при передаче?</comment>
   </data>
   <data name="API_DEV_OpenID" xml:space="preserve">
     <value>/openid.html</value>

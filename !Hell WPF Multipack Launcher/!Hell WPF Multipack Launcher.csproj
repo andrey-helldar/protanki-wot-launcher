@@ -120,9 +120,6 @@
     <Compile Include="Classes\Crypt.Class.cs" />
     <Compile Include="Classes\Language.Class.cs" />
     <Compile Include="Classes\WargamingAPI.Class.cs" />
-    <Compile Include="FeedbackWOT.xaml.cs">
-      <DependentUpon>FeedbackWOT.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ScottLogic\BaseWPFHelpers.cs" />
     <Compile Include="ScottLogic\PieChart\ColourConverter.cs" />
     <Compile Include="ScottLogic\PieChart\IColorSelector.cs" />
@@ -167,10 +164,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Feedback.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FeedbackWOT.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -37,7 +37,8 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            string nickname = "";
+            string nickname = String.Empty;
+
             try
             {
                 if (MainWindow.XmlDocument.Root.Element("token") != null)
@@ -47,22 +48,21 @@ namespace _Hell_WPF_Multipack_Launcher
                         else
                             MainWindow.XmlDocument.Root.Element("token").Remove();
             }
-            catch (Exception) { }
+            catch (Exception) { nickname = String.Empty; }
 
             Task.Factory.StartNew(() => SetInterface());
-
             Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "lStatus", lang) + nickname + "!", "", false));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             // Устанавливаем заголовок в зависимости от типа версии
-            //lType.Content = "Базовая версия";
+            lType.Content = "Базовая версия";
 
-            /*if (MainWindow.XmlDocument.Root != null)
+            if (MainWindow.XmlDocument.Root != null)
                 if (MainWindow.XmlDocument.Root.Element("multipack") != null)
                     if (MainWindow.XmlDocument.Root.Element("multipack").Element("type") != null)
-                        lType.Content = MainWindow.XmlDocument.Root.Element("multipack").Element("type").Value == "base" ? "Базовая версия" : "Расширенная версия";*/
+                        lType.Content = MainWindow.XmlDocument.Root.Element("multipack").Element("type").Value == "base" ? "Базовая версия" : "Расширенная версия";
 
 
             // Загружаем список видео и новостей

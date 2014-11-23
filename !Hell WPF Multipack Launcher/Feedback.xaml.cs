@@ -85,7 +85,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             // Dictionary<string, string> json1 = new Dictionary<string, string>();
                             Classes.POST POST = new Classes.POST();
                             Classes.Variables Variables = new Classes.Variables();
-                            
+
                             string cat = String.Empty;
                             string status = string.Empty;
 
@@ -103,7 +103,7 @@ namespace _Hell_WPF_Multipack_Launcher
                              *  lang            язык запроса
                              *  os              версия ОС
                              */
-                            
+
                             if (rbWishMultipack.IsChecked == true)
                                 cat = "WM";
                             else if (rbWishLauncher.IsChecked == true)
@@ -135,24 +135,30 @@ namespace _Hell_WPF_Multipack_Launcher
 
                             //  http://ai-rus.com/api/wot/ticket
 
-                            JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address+Properties.Resources.API_DEV_Ticket, json));
+                            JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket, json));
 
-
-                            switch (answer["content"])
+                            if (answer["code"].ToString() != "null" && answer["code"] != null)
                             {
-                                case "OK":
-                                    status = Lang.Set("PageFeedback", "statusOK", lang, answer["id"]);
-                                    tbMessage.Text = String.Empty;
-                                    tbEmail.Text = String.Empty;
-                                    break;
-                                case "ANSWER": status = Lang.Set("PageFeedback", "statusANSWER", lang, answer["content"]); break;
-                                case "Hacking attempt!": status = Lang.Set("PageFeedback", "statusHacking", lang); break;
-                                case "BANNED":
-                                    status = Lang.Set("PageFeedback", "statusBANNED", lang);
-                                    tbMessage.Text = String.Empty;
-                                    tbEmail.Text = String.Empty;
-                                    break;
-                                default: status = Lang.Set("PageFeedback", "statusDEFAULT", lang); break;
+                                switch (answer["status"].ToString())
+                                {
+                                    case "OK":
+                                        status = Lang.Set("PageFeedback", "statusOK", lang, answer["id"].ToString());
+                                        tbMessage.Text = String.Empty;
+                                        tbEmail.Text = String.Empty;
+                                        break;
+                                    case "ANSWER": status = Lang.Set("PageFeedback", "statusANSWER", lang, answer["content"].ToString()); break;
+                                    case "ERROR": status = Lang.Set("PageFeedback", "statusHacking", lang, answer["content"].ToString()); break;
+                                    case "BANNED":
+                                        status = Lang.Set("PageFeedback", "statusBANNED", lang);
+                                        tbMessage.Text = String.Empty;
+                                        tbEmail.Text = String.Empty;
+                                        break;
+                                    default: status = Lang.Set("PageFeedback", "statusDEFAULT", lang); break;
+                                }
+                            }
+                            else
+                            {
+                                status = Lang.Set("PageFeedback", "statusDEFAULT", lang);
                             }
                             MessageBox.Show(status);
                         }

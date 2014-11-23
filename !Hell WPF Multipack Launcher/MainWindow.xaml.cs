@@ -108,6 +108,16 @@ namespace _Hell_WPF_Multipack_Launcher
             }
         }
 
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            loadingpanel = 1;
+            Task.Factory.StartNew(() => LoadingPanel());    // LoadingPanel
+
+            Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
+        }
+
         private void LoadingPanel()
         {
             while (true)
@@ -158,16 +168,6 @@ namespace _Hell_WPF_Multipack_Launcher
             }
         }
 
-        public MainWindow()
-        {
-            InitializeComponent();
-
-            loadingpanel = 1;
-            Task.Factory.StartNew(() => LoadingPanel());    // LoadingPanel
-
-            Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
-        }
-
         private void Loading()
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
@@ -216,18 +216,17 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         //Task.Factory.StartNew(() =>
                         //{
-                            Variables.Start();
-                            MultipackDate = Variables.MultipackDate;
-                            ProductName = Variables.ProductName;
+                        Variables.Start();
+                        MultipackDate = Variables.MultipackDate;
+                        ProductName = Variables.ProductName;
 
-                            // Загружаем настройки из XML-файла
-                            if (File.Exists(Variables.SettingsPath))
-                                xmlDocument = XDocument.Load(Variables.SettingsPath);
-                            this.Closing += delegate { xmlDocument = null; };
+                        // Загружаем настройки из XML-файла
+                        if (File.Exists(Variables.SettingsPath))
+                            xmlDocument = XDocument.Load(Variables.SettingsPath);
+                        this.Closing += delegate { xmlDocument = null; };
                         //}).Wait();
 
-                        //Task.Factory.StartNew(() => SetInterface()); // Загрузка языка
-                        SetInterface();
+                        SetInterface(); // Загрузка языка
                     }
                     catch (Exception ex)
                     {
@@ -313,8 +312,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bAirus_Click(object sender, RoutedEventArgs e)
         {
-            try { ProcessStart(Properties.Resources.Developer); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bAirus_Click()", "Link: " + Properties.Resources.Developer, ex.Message, ex.StackTrace)); }
+            try { ProcessStart(Properties.Resources.Developer_Link_Site); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bAirus_Click()", "Link: " + Properties.Resources.Developer_Link_Site, ex.Message, ex.StackTrace)); }
         }
 
         private void bLauncherWOT_Click(object sender, RoutedEventArgs e)

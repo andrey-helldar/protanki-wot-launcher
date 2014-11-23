@@ -129,6 +129,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        public static string API_DEV_CRYPT {
+            get {
+                return ResourceManager.GetString("API_DEV_CRYPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /api/wot/info.
         /// </summary>
         public static string API_DEV_Info {
