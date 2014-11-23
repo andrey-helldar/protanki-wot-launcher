@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -52,10 +53,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
             Task.Factory.StartNew(() =>
             {
-                try
-                {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
-                }
+                try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
             });
         }
@@ -84,18 +82,28 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         if (MessageBox.Show(Lang.Set("PageFeedback", "SendNow", lang), Application.Current.GetType().Assembly.GetName().Name, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
                         {
-                            Dictionary<string, string> json = new Dictionary<string, string>();
+                            // Dictionary<string, string> json1 = new Dictionary<string, string>();
                             Classes.POST POST = new Classes.POST();
-
-                            json.Add("api", Properties.Resources.API);
-                            json.Add("youtube", Properties.Resources.YoutubeChannel);
-                            json.Add("project", Application.Current.GetType().Assembly.GetName().Name);
-                            json.Add("project_version", new Classes.Variables().MultipackVersion.ToString());
-                            json.Add("language", lang);
-
+                            Classes.Variables Variables = new Classes.Variables();
+                            
                             string cat = String.Empty;
                             string status = string.Empty;
 
+                            /*
+                             *  Получаем тикет
+                             * 
+                             *  api             код API
+                             *  user_id         идентификатор пользователя
+                             *  user_name       имя юзера, если авторизован
+                             *  user_email      мыло юзера, если авторизован
+                             *  modpack_type    тип мультипака
+                             *  modpack_ver     версия мультипака
+                             *  launcher        версия лаунчера
+                             *  youtube         канал ютуба (идентификатор мододела)
+                             *  lang            язык запроса
+                             *  os              версия ОС
+                             */
+                            
                             if (rbWishMultipack.IsChecked == true)
                                 cat = "WM";
                             else if (rbWishLauncher.IsChecked == true)
@@ -109,21 +117,28 @@ namespace _Hell_WPF_Multipack_Launcher
                             else if (rbErrorInstaller.IsChecked == true)
                                 cat = "EI";
 
+                            JObject json = new JObject(
+                                new JProperty("api", Properties.Resources.API),
+                                new JProperty("user_id", Variables.GetUserID()),
+                                new JProperty("user_name", GetTokenRec("nickname")),
+                                //new JProperty("user_email", GetTokenRec("email")), 
+                                new JProperty("user_email", POST.Shield(tbEmail.Text.Trim())),
+                                new JProperty("modpack_type", Variables.MultipackType),
+                                new JProperty("modpack_ver", Variables.MultipackVersion.ToString()),
+                                new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
+                                new JProperty("youtube", Properties.Resources.YoutubeChannel),
+                                new JProperty("lang", lang),
+                                new JProperty("os", "disabled"),
+                                new JProperty("category", cat),
+                                new JProperty("message", POST.Shield(tbMessage.Text.Trim()))
+                            );
 
-                            json.Add("category", cat);
-                            json.Add("message", POST.Shield(tbMessage.Text.Trim()));
-                            json.Add("email", POST.Shield(tbEmail.Text.Trim()));
+                            //  http://ai-rus.com/api/wot/ticket
 
-                            //  http://ai-rus.com/api/2.0/feedback
-                            //  {0}/api/{1}/{2}
+                            JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address+Properties.Resources.API_DEV_Ticket, json));
 
-                            Dictionary<string, string> answer = POST.FromJson(POST.Send(String.Format(Properties.Resources.API_Developer_Format,
-                                Properties.Resources.Developer,
-                                Properties.Resources.API_Developer,
-                                Properties.Resources.API_Developer_Ticket
-                                ), POST.Json(json)));
 
-                            switch (answer["status"])
+                            switch (answer["content"])
                             {
                                 case "OK":
                                     status = Lang.Set("PageFeedback", "statusOK", lang, answer["id"]);
@@ -146,6 +161,24 @@ namespace _Hell_WPF_Multipack_Launcher
                         MessageBox.Show(Lang.Set("PageFeedback", "MinimumSymbols", lang, Properties.Resources.Developer_Feedback_Symbols));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Feedback.xaml", "bSend_Click()", ex.Message, ex.StackTrace)); }
+        }
+
+        private string GetTokenRec(string rec)
+        {
+            try
+            {
+                if (rec.Length > 0)
+                {
+                    if (MainWindow.XmlDocument.Root.Element("token") != null)
+                        if (MainWindow.XmlDocument.Root.Element("token").Attribute(rec) != null)
+                            return MainWindow.XmlDocument.Root.Element("token").Attribute(rec).Value;
+                        else return "";
+                    else return "";
+                }
+                else
+                    return "";
+            }
+            catch (Exception) { return ""; }
         }
 
         private void tbMessage_TextChanged(object sender, TextChangedEventArgs e)

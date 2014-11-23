@@ -122,10 +122,10 @@
     <comment>Дефолтный язык</comment>
   </data>
   <data name="Default_Multipack_Type" xml:space="preserve">
-    <value>Base</value>
+    <value>base</value>
     <comment>Дефолтный тип мультипака</comment>
   </data>
-  <data name="Developer" xml:space="preserve">
+  <data name="API_DEV_Address" xml:space="preserve">
     <value>http://n.helldar.ru</value>
     <comment>БЕЗ СЛЕША В КОНЦЕ!!!</comment>
   </data>
@@ -133,11 +133,13 @@
     <value>http://goo.gl/5PR4ma</value>
     <comment>Сайт разработчика со счетчиком (http://ai-rus.com)</comment>
   </data>
-  <data name="API_Developer_Processes" xml:space="preserve">
-    <value>processes</value>
+  <data name="API_DEV_Processes" xml:space="preserve">
+    <value>/api/wot/processes</value>
+    <comment>Глобальный список процессов</comment>
   </data>
-  <data name="API_Developer_Version" xml:space="preserve">
-    <value>version</value>
+  <data name="API_DEV_Info" xml:space="preserve">
+    <value>/api/wot/info</value>
+    <comment>Общая информация, получаемая клиентом в ответ сервера</comment>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -188,59 +190,51 @@
   </data>
   <data name="API" xml:space="preserve">
     <value>05b877de3962048c5d1bd7cc18d4b286</value>
-    <comment>WargamingAPI code</comment>
-  </data>
-  <data name="API_Developer" xml:space="preserve">
-    <value>2.1</value>
-    <comment>Версия API на сайте разработчика</comment>
+    <comment>Wargaming API code</comment>
   </data>
   <data name="Developer_Feedback_Symbols" xml:space="preserve">
-    <value>50</value>
+    <value>30</value>
     <comment>Минимальное количество символов в отправляемом сообщении</comment>
   </data>
   <data name="Sleeping_News" xml:space="preserve">
     <value>0</value>
     <comment>Таймаут перед созданием следующей записи на форме</comment>
   </data>
-  <data name="API_Account_List" xml:space="preserve">
-    <value>api.worldoftanks.ru/wot/account/list/</value>
+  <data name="API_WOT_Account_List" xml:space="preserve">
+    <value>/wot/account/list/</value>
     <comment>Получение списка пользователей для определения ID</comment>
   </data>
   <data name="LogDays" xml:space="preserve">
     <value>3</value>
     <comment>Время жизни логов дебага в сутках</comment>
   </data>
-  <data name="API_Account_Info" xml:space="preserve">
-    <value>api.worldoftanks.ru/wot/account/info/</value>
+  <data name="API_WOT_Account_Info" xml:space="preserve">
+    <value>/wot/account/info/</value>
     <comment>Получение информации о конкретном пользователе</comment>
   </data>
-  <data name="API_OpenID" xml:space="preserve">
-    <value>api.worldoftanks.ru/wot/auth/login/</value>
+  <data name="API_WOT_OpenID" xml:space="preserve">
+    <value>/wot/auth/login/</value>
     <comment>Аутентификация пользователя</comment>
   </data>
-  <data name="API_Protocol" xml:space="preserve">
-    <value>https://</value>
+  <data name="API_WOT_Address" xml:space="preserve">
+    <value>https://api.worldoftanks.ru</value>
     <comment>Протокол передачи запросов Wargaming API</comment>
   </data>
-  <data name="API_Clan_Battles" xml:space="preserve">
-    <value>api.worldoftanks.ru/wot/globalwar/battles</value>
+  <data name="API_WOT_Clan_Battles" xml:space="preserve">
+    <value>/wot/globalwar/battles</value>
     <comment>Список назначенных боев клана</comment>
   </data>
-  <data name="API_Clan_Info" xml:space="preserve">
-    <value>api.worldoftanks.ru/wot/clan/info/</value>
+  <data name="API_WOT_Clan_Info" xml:space="preserve">
+    <value>/wot/clan/info/</value>
     <comment>Данные о клане</comment>
   </data>
-  <data name="API_Clan_Provinces" xml:space="preserve">
-    <value>api.worldoftanks.ru/wot/clan/provinces/</value>
+  <data name="API_WOT_Clan_Provinces" xml:space="preserve">
+    <value>/wot/clan/provinces/</value>
     <comment>Провинции клана</comment>
   </data>
-  <data name="API_Global_Provinces" xml:space="preserve">
-    <value>api.worldoftanks.ru/wot/globalwar/provinces/</value>
+  <data name="API_WOT_Global_Provinces" xml:space="preserve">
+    <value>/wot/globalwar/provinces/</value>
     <comment>Провинции Глобальной карты</comment>
-  </data>
-  <data name="Class_Fail" xml:space="preserve">
-    <value>FAIL</value>
-    <comment>Строка, выводимая при ошибках работы функции</comment>
   </data>
   <data name="Cursor_Chrome" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cursor_chrome.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -461,15 +455,16 @@
   <data name="SettingsXML" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\settings.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="API_Developer_Ticket" xml:space="preserve">
-    <value>ticket</value>
-  </data>
-  <data name="API_Developer_Format" xml:space="preserve">
-    <value>{0}/api/{1}/{2}</value>
-    <comment>https://ai-rus.com/api/2.1/version</comment>
+  <data name="API_DEV_Ticket" xml:space="preserve">
+    <value>/api/wot/ticket</value>
+    <comment>Тикет-система обратной связи</comment>
   </data>
   <data name="Youtube_Preview" xml:space="preserve">
     <value>http://www.youtube.com/embed/{0}?rel=0&amp;controls=0&amp;showinfo=0</value>
     <comment>Ссылка для превью Ютуба</comment>
+  </data>
+  <data name="API_DEV_OpenID" xml:space="preserve">
+    <value>/openid.html</value>
+    <comment>Страница активации Open ID</comment>
   </data>
 </root>

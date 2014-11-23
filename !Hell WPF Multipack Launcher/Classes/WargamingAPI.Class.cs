@@ -25,10 +25,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 string Data = "?application_id=" + Properties.Resources.API;
-                Data += "&redirect_uri="+Properties.Resources.Developer+"/tk.html";
+                Data += "&redirect_uri=" + Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_OpenID;
                 Data += "&display=page";
 
-                return Properties.Resources.API_Protocol+ Properties.Resources.API_OpenID + Data;
+                return Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_OpenID + Data;
             }
             catch (Exception) { return "FAIL"; }
         }
@@ -49,7 +49,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Data += "&fields=" + "nickname,account_id";
                 Data += "&search=" + name;
 
-                JObject obj = JObject.Parse(POST(Properties.Resources.API_Protocol + Properties.Resources.API_Account_List, Data));
+                JObject obj = JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Account_List, Data));
                 Dictionary<string, string> users = new Dictionary<string, string>();
 
                 users.Add("status", obj.SelectToken("status").ToString());
@@ -87,7 +87,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Data += "&account_id=" + account_id;
                 if (access_token.Length > 0) Data += "&access_token=" + access_token;
 
-                return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Account_Info, Data);
+                return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Account_Info, Data);
             }
             catch (Exception ex) { Debug.Save("WargamingAPI.Class", "AccountInfo()", "Account ID: " + account_id, ex.Message, ex.StackTrace); return null; }
         }
@@ -114,7 +114,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
                 if (fields.Trim().Length > 0) Data += "&fields=" + fields;
 
-                return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Clan_Info, Data);
+                return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Info, Data);
             }
             catch (Exception ex) { Debug.Save("WargamingAPI.Class", "ClanInfo()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); }
 
@@ -144,7 +144,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
                 if (fields.Trim().Length > 0) Data += "&fields=" + fields;
 
-                return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Clan_Battles, Data);
+                return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Battles, Data);
             }
             catch (Exception ex) { Debug.Save("WargamingAPI.Class", "ClanBattles()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); return null; }
         }
@@ -170,7 +170,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
                 if (fields.Trim().Length > 0) Data += "&fields=" + fields;
 
-                return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Clan_Provinces, Data);
+                return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Provinces, Data);
             }
             catch (Exception ex) { Debug.Save("WargamingAPI.Class", "ClanProvinces()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); return null; }
         }
@@ -196,7 +196,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Data += "&map_id=" + map_id;
                 if (province_id.Trim().Length > 0) Data += "&province_id=" + province_id;
 
-                return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Global_Provinces, Data);
+                return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Global_Provinces, Data);
             }
             catch (Exception ex) { Debug.Save("WargamingAPI.Class", "ClanProvinces()", "Province ID: " + province_id, "Map ID: " + map_id, ex.Message, ex.StackTrace); return null; }
         }

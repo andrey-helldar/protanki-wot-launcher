@@ -98,14 +98,9 @@ namespace _Hell_WPF_Multipack_Launcher
                             json.Add("message", POST.Shield(tbMessage.Text.Trim()));
                             json.Add("email", POST.Shield(tbEmail.Text.Trim()));
 
-                            //  http://ai-rus.com/api/2.0/feedback
-                            //  {0}/api/{1}/{2}
+                            //  http://ai-rus.com/api/wot/ticket
 
-                            Dictionary<string, string> answer = POST.FromJson(POST.Send(String.Format(Properties.Resources.API_Developer_Format,
-                                Properties.Resources.Developer,
-                                Properties.Resources.API_Developer,
-                                Properties.Resources.API_Developer_Ticket
-                                ), POST.Json(json)));
+                            Dictionary<string, string> answer = POST.FromJson(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket, POST.Json(json)));
 
                             switch (answer["status"])
                             {

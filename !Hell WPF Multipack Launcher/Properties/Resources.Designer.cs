@@ -120,119 +120,119 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/account/info/.
+        ///   Looks up a localized string similar to http://n.helldar.ru.
         /// </summary>
-        public static string API_Account_Info {
+        public static string API_DEV_Address {
             get {
-                return ResourceManager.GetString("API_Account_Info", resourceCulture);
+                return ResourceManager.GetString("API_DEV_Address", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/account/list/.
+        ///   Looks up a localized string similar to /api/wot/info.
         /// </summary>
-        public static string API_Account_List {
+        public static string API_DEV_Info {
             get {
-                return ResourceManager.GetString("API_Account_List", resourceCulture);
+                return ResourceManager.GetString("API_DEV_Info", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/globalwar/battles.
+        ///   Looks up a localized string similar to /openid.html.
         /// </summary>
-        public static string API_Clan_Battles {
+        public static string API_DEV_OpenID {
             get {
-                return ResourceManager.GetString("API_Clan_Battles", resourceCulture);
+                return ResourceManager.GetString("API_DEV_OpenID", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/clan/info/.
+        ///   Looks up a localized string similar to /api/wot/processes.
         /// </summary>
-        public static string API_Clan_Info {
+        public static string API_DEV_Processes {
             get {
-                return ResourceManager.GetString("API_Clan_Info", resourceCulture);
+                return ResourceManager.GetString("API_DEV_Processes", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/clan/provinces/.
+        ///   Looks up a localized string similar to /api/wot/ticket.
         /// </summary>
-        public static string API_Clan_Provinces {
+        public static string API_DEV_Ticket {
             get {
-                return ResourceManager.GetString("API_Clan_Provinces", resourceCulture);
+                return ResourceManager.GetString("API_DEV_Ticket", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2.1.
+        ///   Looks up a localized string similar to /wot/account/info/.
         /// </summary>
-        public static string API_Developer {
+        public static string API_WOT_Account_Info {
             get {
-                return ResourceManager.GetString("API_Developer", resourceCulture);
+                return ResourceManager.GetString("API_WOT_Account_Info", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}/api/{1}/{2}.
+        ///   Looks up a localized string similar to /wot/account/list/.
         /// </summary>
-        public static string API_Developer_Format {
+        public static string API_WOT_Account_List {
             get {
-                return ResourceManager.GetString("API_Developer_Format", resourceCulture);
+                return ResourceManager.GetString("API_WOT_Account_List", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to processes.
+        ///   Looks up a localized string similar to https://api.worldoftanks.ru.
         /// </summary>
-        public static string API_Developer_Processes {
+        public static string API_WOT_Address {
             get {
-                return ResourceManager.GetString("API_Developer_Processes", resourceCulture);
+                return ResourceManager.GetString("API_WOT_Address", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ticket.
+        ///   Looks up a localized string similar to /wot/globalwar/battles.
         /// </summary>
-        public static string API_Developer_Ticket {
+        public static string API_WOT_Clan_Battles {
             get {
-                return ResourceManager.GetString("API_Developer_Ticket", resourceCulture);
+                return ResourceManager.GetString("API_WOT_Clan_Battles", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to version.
+        ///   Looks up a localized string similar to /wot/clan/info/.
         /// </summary>
-        public static string API_Developer_Version {
+        public static string API_WOT_Clan_Info {
             get {
-                return ResourceManager.GetString("API_Developer_Version", resourceCulture);
+                return ResourceManager.GetString("API_WOT_Clan_Info", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/globalwar/provinces/.
+        ///   Looks up a localized string similar to /wot/clan/provinces/.
         /// </summary>
-        public static string API_Global_Provinces {
+        public static string API_WOT_Clan_Provinces {
             get {
-                return ResourceManager.GetString("API_Global_Provinces", resourceCulture);
+                return ResourceManager.GetString("API_WOT_Clan_Provinces", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to api.worldoftanks.ru/wot/auth/login/.
+        ///   Looks up a localized string similar to /wot/globalwar/provinces/.
         /// </summary>
-        public static string API_OpenID {
+        public static string API_WOT_Global_Provinces {
             get {
-                return ResourceManager.GetString("API_OpenID", resourceCulture);
+                return ResourceManager.GetString("API_WOT_Global_Provinces", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://.
+        ///   Looks up a localized string similar to /wot/auth/login/.
         /// </summary>
-        public static string API_Protocol {
+        public static string API_WOT_OpenID {
             get {
-                return ResourceManager.GetString("API_Protocol", resourceCulture);
+                return ResourceManager.GetString("API_WOT_OpenID", resourceCulture);
             }
         }
         
@@ -297,15 +297,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FAIL.
-        /// </summary>
-        public static string Class_Fail {
-            get {
-                return ResourceManager.GetString("Class_Fail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap close {
@@ -365,7 +356,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base.
+        ///   Looks up a localized string similar to base.
         /// </summary>
         public static string Default_Multipack_Type {
             get {
@@ -383,16 +374,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://n.helldar.ru.
-        /// </summary>
-        public static string Developer {
-            get {
-                return ResourceManager.GetString("Developer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 50.
+        ///   Looks up a localized string similar to 30.
         /// </summary>
         public static string Developer_Feedback_Symbols {
             get {

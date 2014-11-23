@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher.Classes
@@ -17,11 +16,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         Debug Debug = new Debug();
 
 
-        public string Send(string Url, string Data)
+        public string Send(string Url, JObject json)
         {
             try
             {
-                Data = "data=" + Data;
+                string Data = "data=" + json;
 
                 WebRequest req = WebRequest.Create(Url);
                 req.Method = "POST";
@@ -115,13 +114,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         }
 
         /// <summary>
-        /// http://stackoverflow.com/questions/7003740/how-to-convert-namevaluecollection-to-json-string
+        /// Перекодируем массив JObject в JSON строку
         /// </summary>
         /// <param name="json"></param>
         /// <returns>Строка</returns>
-        public string Json(Dictionary<string, string> dic)
+        public string Json(JObject json)
         {
-            try { return JsonConvert.SerializeObject(dic); }
+            try { return json.ToString(); }
             catch (Exception ex) { Debug.Save("POST.Class", "Json()", ex.Message, ex.StackTrace); }
             return null;
         }
