@@ -674,18 +674,27 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json));
                 
-                Debug.Save("111111111111111111111", "GetInfo()",answer.ToString());
+                Debug.Save("222222222222222222222", "GetInfo()",answer.ToString());
                 /*
                  * code
                  * status
                  * version
                  */
 
-                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                if (answer["status"].ToString() != "DISABLED")
                 {
-                    if (Variables.TanksVersion < new Version(answer["version"].ToString()))
-                        lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, answer["version"].ToString());
-                }));
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        Debug.Save("444444444444444", "GetInfo()", json.ToString());
+
+                        if (Variables.TanksVersion < new Version(answer["version"].ToString()))
+                            lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, answer["version"].ToString());
+                    }));
+                }
+                else
+                {
+                    Debug.Save("333333333333333333", "GetInfo()", answer.ToString());
+                }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "GetInfo()", ex.Message, ex.StackTrace)); }
         }
