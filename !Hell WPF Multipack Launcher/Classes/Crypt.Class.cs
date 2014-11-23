@@ -18,7 +18,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <returns>Шифрованная строка</returns>
         public string Encode(string text)
         {
-            if (Properties.Resources.API_DEV_CRYPT == "0")
+            if (Properties.Resources.Default_Debug_Crypt == "0")
             {
                 return text;
             }
@@ -36,7 +36,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <returns>Расшифрованный результат</returns>
         public string Decode(string text)
         {
-            if (Properties.Resources.API_DEV_CRYPT == "0")
+            if (Properties.Resources.Default_Debug_Crypt == "0")
             {
                 return text;
             }

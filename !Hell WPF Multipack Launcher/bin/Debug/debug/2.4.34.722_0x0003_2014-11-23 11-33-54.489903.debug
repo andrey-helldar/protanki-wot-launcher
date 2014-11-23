@@ -1,0 +1,8 @@
+﻿{
+  "uid": "f39d3705d0925c26120f42599dc7d336",
+  "version": "2.4.34.722",
+  "date": "2014-11-23 11-33-54",
+  "module": "111111111111111111111",
+  "function": "GetInfo()",
+  "param0": "{\r\n  \"api\": \"05b877de3962048c5d1bd7cc18d4b286\",\r\n  \"user_id\": \"f39d3705d0925c26120f42599dc7d336\",\r\n  \"user_name\": \"\",\r\n  \"user_email\": \"\",\r\n  \"modpack_type\": \"base\",\r\n  \"modpack_ver\": \"0.0.0.0\",\r\n  \"launcher\": \"2.4.34.722\",\r\n  \"game\": \"0.0.0.0\",\r\n  \"game_test\": \"False\",\r\n  \"youtube\": \"PROTankiWoT\",\r\n  \"lang\": \"ru\",\r\n  \"os\": \"disabled\"\r\n}"
+}

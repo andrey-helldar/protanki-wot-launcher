@@ -1,0 +1,9 @@
+﻿{
+  "uid": "f39d3705d0925c26120f42599dc7d336",
+  "version": "2.4.34.722",
+  "date": "2014-11-23 11-33-55",
+  "module": "PageGeneral",
+  "function": "GetInfo()",
+  "param0": "Unexpected character encountered while parsing value: <. Path '', line 0, position 0.",
+  "param1": "   в Newtonsoft.Json.JsonTextReader.ParseValue()\r\n   в Newtonsoft.Json.JsonTextReader.ReadInternal()\r\n   в Newtonsoft.Json.JsonTextReader.Read()\r\n   в Newtonsoft.Json.Linq.JObject.Load(JsonReader reader)\r\n   в Newtonsoft.Json.Linq.JObject.Parse(String json)\r\n   в _Hell_WPF_Multipack_Launcher.General.GetInfo() в f:\\ВАЖНЫЕ ДАННЫЕ\\!!Важные документы\\!Сохранения программ\\Visual Studio C#\\!Hell PRO Tanki Launcher\\!Hell WPF Multipack Launcher\\General.xaml.cs:строка 675"
+}

@@ -471,4 +471,8 @@
     <value>/openid.html</value>
     <comment>Страница активации Open ID</comment>
   </data>
+  <data name="Default_Debug_Crypt" xml:space="preserve">
+    <value>0</value>
+    <comment>Шифрование логов дебага</comment>
+  </data>
 </root>
