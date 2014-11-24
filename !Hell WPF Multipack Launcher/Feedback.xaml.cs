@@ -104,7 +104,6 @@ namespace _Hell_WPF_Multipack_Launcher
 
                             string cat = String.Empty;
                             string status = string.Empty;
-                            bool ticket_sended = false;
 
                             /*
                              *  Получаем тикет
@@ -167,7 +166,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                         tbEmail.Text = String.Empty;
                                         break;
                                     default:
-                                        ticket_sended = SaveTicket(json); // Сохранение тикета для последующей отправки
+                                        SaveTicket(json); // Сохранение тикета для последующей отправки
                                         status = Lang.Set("PageFeedback", answer["status"].ToString(), lang) +
                                         Lang.Set("PageFeedback", answer["content"].ToString(), lang, answer["message"].ToString());
                                         break;
@@ -175,13 +174,10 @@ namespace _Hell_WPF_Multipack_Launcher
                             }
                             else
                             {
-                                ticket_sended = SaveTicket(json); // Сохранение тикета для последующей отправки
+                                SaveTicket(json); // Сохранение тикета для последующей отправки
                                 status = Lang.Set("PageFeedback", "FAIL", lang, Lang.Set("PageFeedback", answer["content"].ToString(), lang));
                             }
                             MessageBox.Show(status);
-
-                            // Выдаем сообщение о сохранении тикета
-                            if (ticket_sended) MessageBox.Show(Lang.Set("PageFeedback", "TicketSaved", lang));
                         }
                     }
                     else
@@ -259,7 +255,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// Сохранение неотправленных тикетов
         /// </summary>
         /// <param name="json"></param>
-        private bool SaveTicket(JObject json)
+        private void SaveTicket(JObject json)
         {
             try
             {
@@ -281,12 +277,16 @@ namespace _Hell_WPF_Multipack_Launcher
                 tbMessage.Text = String.Empty;
                 tbEmail.Text = String.Empty;
 
-                return true;
+
+                // Выдаем сообщение о сохранении тикета
+                MainWindow.Notifier.ShowBalloonTip(5000,
+                    Lang.Set("PostClass", "AutoTicketWait", lang),
+                    Lang.Set("PageFeedback", "TicketSaved", lang),
+                    System.Windows.Forms.ToolTipIcon.Info);
             }
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debug.Save("PageFeedback", "SaveTicket()", ex.Message, ex.StackTrace));
-                return false;
             }
         }
     }

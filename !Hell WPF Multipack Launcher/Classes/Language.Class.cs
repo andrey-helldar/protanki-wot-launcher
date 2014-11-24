@@ -1195,21 +1195,40 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "de": return "Тикеты успешно отправлены";
                                 default: return toReturn;
                             }
+
+                        case "AutoTicketWait":
+                            switch (lang)
+                            {
+                                case "ru": return "Ожидание отправки тикетов";
+                                case "en": return "Ожидание отправки тикетов";
+                                case "de": return "Ожидание отправки тикетов";
+                                default: return toReturn;
+                            }
+
                         case "AutoTicketCount":
                             switch (lang)
                             {
-                                case "ru": return "Успешно отправлено " + text + " тикетов";
-                                case "en": return "Успешно отправлено " + text + " тикетов";
-                                case "de": return "Успешно отправлено " + text + " тикетов";
+                                case "ru": return "Успешно отправлено: " + text;
+                                case "en": return "Успешно отправлено: " + text;
+                                case "de": return "Успешно отправлено: " + text;
                                 default: return toReturn;
                             }
 
                         case "AutoTicketStatus":
                             switch (lang)
                             {
-                                case "ru": return "Присвоенные номера: " + text;
-                                case "en": return "Присвоенные номера: " + text;
-                                case "de": return "Присвоенные номера: " + text;
+                                case "ru": return "Присвоенные номера: " + Environment.NewLine + text;
+                                case "en": return "Присвоенные номера: " + Environment.NewLine + text;
+                                case "de": return "Присвоенные номера: " + Environment.NewLine + text;
+                                default: return toReturn;
+                            }
+
+                        case "EmailAnswer":
+                            switch (lang)
+                            {
+                                case "ru": return "Ответ будет отправлен на email";
+                                case "en": return "Ответ будет отправлен на email";
+                                case "de": return "Ответ будет отправлен на email";
                                 default: return toReturn;
                             }
 

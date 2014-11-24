@@ -281,12 +281,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 switch (answer["status"].ToString())
                                 {
                                     case "OK":
-                                        status += answer["id"].ToString() + "; ";
+                                        status += answer["id"].ToString() + (answer["email"] != null ? Lang.Set("PostClass", "EmailAnswer", lang) + ";" : ";") + Environment.NewLine;
                                         count++;
                                         if (File.Exists(file.FullName)) File.Delete(file.FullName);
                                         break;
                                     case "BANNED":
-                                        status += answer["content"].ToString() + "; ";
+                                        status += answer["content"].ToString() + (answer["email"] != null ? Lang.Set("PostClass", "EmailAnswer", lang) + ";" : ";") + Environment.NewLine;
                                         count++;
                                         if (File.Exists(file.FullName)) File.Delete(file.FullName);
                                         break;
@@ -305,11 +305,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                     if (status.Length > 0)
                     {
-                        status = Lang.Set("PostClass", "AutoTicketCount", lang, count.ToString()) + Environment.NewLine + Environment.NewLine + status;
-
                         MainWindow.Notifier.ShowBalloonTip(5000,
                             Lang.Set("PostClass", "AutoTicket", lang),
-                            Lang.Set("PostClass", "AutoTicketStatus", lang, status),
+                            Lang.Set("PostClass", "AutoTicketCount", lang, count.ToString()) + Environment.NewLine + Environment.NewLine +
+                                Lang.Set("PostClass", "AutoTicketStatus", lang, status),
                             System.Windows.Forms.ToolTipIcon.Info);
                     }
                 }
