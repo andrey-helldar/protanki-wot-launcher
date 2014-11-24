@@ -716,34 +716,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         /* -----------------------------
                          *      Statuses
                          * -----------------------------*/
-                        case "statusOK":
+                        case "OK":
                             switch (lang)
                             {
                                 case "ru": return "Тикет успешно зарегистрирован под номером " + text;
                                 case "en": return "Ticket successfully registered. #" + text;
-                                case "de": return "Fehlermeldung erfolgreich übermittelt unter der Nummer" + text;
+                                case "de": return "Fehlermeldung erfolgreich übermittelt unter der Nummer " + text;
                                 default: return toReturn;
                             }
 
-                        case "statusANSWER":
-                            switch (lang)
-                            {
-                                case "ru": return "Сообщение не отправлено. Сервер ответил: " + text;
-                                case "en": return "Message successfully sended. Server answered:" +text;
-                                case "de": return "Die Fehlermeldung konnten nicht gesendet werden, der Server antwortet: " + text;
-                                default: return toReturn;
-                            }
-
-                        case "statusHacking":
-                            switch (lang)
-                            {
-                                case "ru": return "Ошибка доступа к сервису. Повторите попытку позже.";
-                                case "en": return "Error accessing the service. Please, try again later.";
-                                case "de": return "Der Server kann die Anfrage nicht bearbeiten, bitte versuchen Sie es später noch ein mal.";
-                                default: return toReturn;
-                            }
-
-                        case "statusBANNED":
+                        case "BANNED":
                             switch (lang)
                             {
                                 case "ru": return "Ваше сообщение принято к обработке";
@@ -752,12 +734,68 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
-                        case "statusDEFAULT":
+                        case "FAIL":
                             switch (lang)
                             {
-                                case "ru": return "Ошибка отправки сообщения. Попробуйте еще раз.";
-                                case "en": return "Error sending message. Please, try again later.";
-                                case "de": return "Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut";
+                                case "ru": return "Ошибка отправки сообщения. Попробуйте еще раз." + Environment.NewLine + Environment.NewLine + "Сервер ответил: " + text;
+                                case "en": return "Error sending message. Please, try again later." + Environment.NewLine + Environment.NewLine + "Сервер ответил: " + text;
+                                case "de": return "Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut" + Environment.NewLine + Environment.NewLine + "Сервер ответил: " + text;
+                                default: return toReturn;
+                            }
+
+                        case "OFFLINE":
+                            switch (lang)
+                            {
+                                case "ru": return "Сервер временно недоступен.";
+                                case "en": return "Сервер временно недоступен.";
+                                case "de": return "Сервер временно недоступен.";
+                                default: return toReturn;
+                            }
+
+
+                        //  Статусные сообщения
+                        case "DATA_UNVAILABLE":
+                            switch (lang)
+                            {
+                                case "ru": return "Сервер не получил данные. Попробуйте еще раз.";
+                                case "en": return "Сервер не получил данные. Попробуйте еще раз.";
+                                case "de": return "Сервер не получил данные. Попробуйте еще раз.";
+                                default: return toReturn;
+                            }
+
+                        case "ERROR_DATA":
+                            switch (lang)
+                            {
+                                case "ru": return "Ошибка получения данных. Попробуйте еще раз.";
+                                case "en": return "Ошибка получения данных. Попробуйте еще раз.";
+                                case "de": return "Ошибка получения данных. Попробуйте еще раз.";
+                                default: return toReturn;
+                            }
+
+                        case "TICKET_ADD_ERROR":
+                            switch (lang)
+                            {
+                                case "ru": return "Ошибка обработки тикета. Попробуйте позже";
+                                case "en": return "Ошибка обработки тикета. Попробуйте позже";
+                                case "de": return "Ошибка обработки тикета. Попробуйте позже";
+                                default: return toReturn;
+                            }
+
+                        case "SOFTWARE_NOT_AUTORIZED":
+                            switch (lang)
+                            {
+                                case "ru": return "Приложение не авторизовано на сервере. Попробуйте позже или обратитесь к разработчику.";
+                                case "en": return "Приложение не авторизовано на сервере. Попробуйте позже или обратитесь к разработчику.";
+                                case "de": return "Приложение не авторизовано на сервере. Попробуйте позже или обратитесь к разработчику.";
+                                default: return toReturn;
+                            }
+
+                        case "SERVER_IS_UNAVAILABLE":
+                            switch (lang)
+                            {
+                                case "ru": return "Сервер временно недоступен.";
+                                case "en": return "Сервер временно недоступен.";
+                                case "de": return "Сервер временно недоступен.";
                                 default: return toReturn;
                             }
 

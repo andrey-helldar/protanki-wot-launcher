@@ -136,7 +136,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                 new JProperty("api", Properties.Resources.API),
                                 new JProperty("user_id", Variables.GetUserID()),
                                 new JProperty("user_name", GetTokenRec("nickname")),
-                                //new JProperty("user_email", GetTokenRec("email")), 
                                 new JProperty("user_email", POST.Shield(tbEmail.Text.Trim())),
                                 new JProperty("modpack_type", Variables.MultipackType),
                                 new JProperty("modpack_ver", Variables.MultipackVersion.ToString()),
@@ -150,30 +149,31 @@ namespace _Hell_WPF_Multipack_Launcher
 
                             //  http://ai-rus.com/api/wot/ticket
 
-                            JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket, json));
+                            string s = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket, json);
+                            MessageBox.Show(s);
 
-                            if (answer["code"].ToString() != "null" && answer["code"] != null)
+                            JObject answer = JObject.Parse(s);
+
+                            if (answer["status"].ToString() != "FAIL" && answer["code"].ToString() == Properties.Resources.API)
                             {
                                 switch (answer["status"].ToString())
                                 {
                                     case "OK":
-                                        status = Lang.Set("PageFeedback", "statusOK", lang, answer["id"].ToString());
+                                        status = Lang.Set("PageFeedback", "OK", lang, answer["id"].ToString());
                                         tbMessage.Text = String.Empty;
                                         tbEmail.Text = String.Empty;
                                         break;
-                                    case "ANSWER": status = Lang.Set("PageFeedback", "statusANSWER", lang, answer["content"].ToString()); break;
-                                    case "ERROR": status = Lang.Set("PageFeedback", "statusHacking", lang, answer["content"].ToString()); break;
                                     case "BANNED":
-                                        status = Lang.Set("PageFeedback", "statusBANNED", lang);
+                                        status = Lang.Set("PageFeedback", "BANNED", lang);
                                         tbMessage.Text = String.Empty;
                                         tbEmail.Text = String.Empty;
                                         break;
-                                    default: status = Lang.Set("PageFeedback", "statusDEFAULT", lang); break;
+                                    default: status = Lang.Set("PageFeedback", answer["status"].ToString(), lang, answer["content"].ToString()); break;
                                 }
                             }
                             else
                             {
-                                status = Lang.Set("PageFeedback", "statusDEFAULT", lang);
+                                status = Lang.Set("PageFeedback", "FAIL", lang);
                             }
                             MessageBox.Show(status);
                         }

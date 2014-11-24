@@ -674,9 +674,9 @@ namespace _Hell_WPF_Multipack_Launcher
                  * version
                  */
 
-                if (answer["status"].ToString() != "FAIL")
+                if (answer["status"].ToString() != "FAIL" && answer["code"].ToString() == Properties.Resources.API)
                 {
-                    if (answer["status"].ToString() != "DISABLED")
+                    if (answer["status"].ToString() == "OK")
                     {
                         if (Variables.TanksVersion < new Version(answer["version"].ToString()))
                         {
