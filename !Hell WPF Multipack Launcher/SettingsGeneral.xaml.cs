@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -45,7 +46,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 // Определяем язык интерфейса
                 try
                 {
-
                     if (MainWindow.XmlDocument.Root.Element("info") != null)
                         if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
                             lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim();
@@ -90,6 +90,18 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLauncher.Items", ex.Message, ex.StackTrace)); }
 
+                /*
+                 *  Блок ИНТЕРФЕЙС
+                 */
+                try
+                {
+                    cbLang.Items.Clear();
+                    foreach (var jp in Lang.Translated())
+                        cbLang.Items.Add(jp.Value);
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLangPriority.Items", ex.Message, ex.StackTrace)); }
+
+                // Устанавливаем выбранный системой язык
                 try
                 {
                     switch (lang)
@@ -99,8 +111,36 @@ namespace _Hell_WPF_Multipack_Launcher
                         default: cbLang.SelectedIndex = 0; break;
                     }
                 }
-                catch (Exception) { }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLang.Items", ex.Message, ex.StackTrace)); }
 
+                // Заголовок локали
+                try { cbLangLocale.Content = Lang.Set("PageSettingsGeneral", "cbLangLocale", lang); }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLangLocale.Content", ex.Message, ex.StackTrace)); }
+
+                // Приоритет загрузки локализации
+                try
+                {
+                    cbLangPriority.Items.Clear();
+                    for (int i = 0; i < Convert.ToInt16(Lang.Set("PageSettingsGeneral", "LangPriority")); i++)
+                        cbLangPriority.Items.Add(Lang.Set("PageSettingsGeneral", "cbLangPriority" + i.ToString(), lang));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLangPriority.Items", ex.Message, ex.StackTrace)); }
+
+
+                // Устанавливаем выбранный параметр локализации
+                try
+                {
+                    if (MainWindow.XmlDocument.Root.Element("info") != null)
+                        if (MainWindow.XmlDocument.Root.Element("info").Attribute("locale") != null)
+                            cbLangPriority.SelectedIndex = Convert.ToInt16(MainWindow.XmlDocument.Root.Element("info").Attribute("locale").Value.Trim());
+                        else
+                            cbLangPriority.SelectedIndex = 0;
+                    else
+                        cbLangPriority.SelectedIndex = 0;
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLang.Items", ex.Message, ex.StackTrace)); }
+
+                
                 /*
                  *  Блок ОПТИМИЗАЦИЯ
                  */
@@ -296,13 +336,19 @@ namespace _Hell_WPF_Multipack_Launcher
             Set("settings", "launcher", cbLauncher.SelectedIndex.ToString());
         }
 
+        private void cbLangPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Set("info", "locale", cbLangPriority.SelectedIndex.ToString());
+        }
+
         private void PageSettingsGeneral_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
                 cbPriority.SelectionChanged += cbPriority_SelectionChanged;
                 cbLauncher.SelectionChanged += cbLauncher_SelectionChanged;
-                cbLang.SelectionChanged += ComboBox_SelectionChanged;
+                cbLang.SelectionChanged += cbLang_SelectionChanged;
+                cbLangPriority.SelectionChanged += cbLangPriority_SelectionChanged;
 
             }
             catch (Exception) { }
@@ -311,7 +357,7 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception) { }
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbLang_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {

@@ -162,8 +162,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message, ex.StackTrace); }
 
                 //  Устанавливаем язык приложения
-                //Lang = Properties.Resources.Default_Settings_Priority == "multipack" ? new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language") : Lang;
-                switch (Properties.Resources.Default_Settings_Priority)
+                switch (Properties.Resources.Default_Lang_Priority)
                 {
                     case "multipack": Lang = lang_pack; break;
                     case "game": Lang = lang_game; break;
@@ -171,9 +170,41 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         if (Doc.Root.Element("info").Attribute("language") != null)
                             Lang = Doc.Root.Element("info").Attribute("language").Value.Trim();
                         break;
-
                     default: Lang = Properties.Resources.Default_Lang; break;
                 }
+
+                try
+                {
+                    if (MainWindow.XmlDocument.Root.Element("info") != null)
+                    {
+                        // Язык
+                        if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
+                            MainWindow.XmlDocument.Root.Element("info").Attribute("language").SetValue(Lang);
+                        else
+                            MainWindow.XmlDocument.Root.Element("info").Add(new XAttribute("language", Lang));
+
+                        // Тип мультипака
+                        if (MainWindow.XmlDocument.Root.Element("multipack").Attribute("type") != null)
+                            MainWindow.XmlDocument.Root.Element("multipack").Attribute("type").SetValue(MultipackType);
+                        else
+                            MainWindow.XmlDocument.Root.Element("multipack").Add(new XAttribute("type", MultipackType));
+
+                        // Версия мультипака
+                        if (MainWindow.XmlDocument.Root.Element("multipack").Attribute("version") != null)
+                            MainWindow.XmlDocument.Root.Element("multipack").Attribute("version").SetValue(MultipackVersion.ToString());
+                        else
+                            MainWindow.XmlDocument.Root.Element("multipack").Add(new XAttribute("version", MultipackVersion.ToString()));
+
+                        // Версия клиента игры
+                        if (MainWindow.XmlDocument.Root.Element("game").Element("version") != null)
+                            MainWindow.XmlDocument.Root.Element("game").Element("version").SetValue(TanksVersion.ToString());
+                        else
+                            MainWindow.XmlDocument.Root.Element("game").Add(new XElement("version", TanksVersion.ToString()));
+                    }
+                    else
+                        MainWindow.XmlDocument.Root.Add(new XElement("info", new XAttribute("language", Lang)));
+                }
+                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: Apply language", ex.Message, ex.StackTrace); }
 
 
                 try { UpdateNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("notification") != null ? Doc.Root.Element("info").Attribute("notification").Value : null) : null; }

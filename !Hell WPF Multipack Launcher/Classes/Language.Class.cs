@@ -367,6 +367,45 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        // Приоритет чтения языка
+                        case "LangPriority": return "3";
+
+                        case "cbLangLocale":
+                            switch (lang)
+                            {
+                                case "ru": return "Приоритет определения локализации:";
+                                case "en": return "Приоритет определения локализации:";
+                                case "de": return "Приоритет определения локализации:";
+                                default: return toReturn;
+                            }
+
+                        case "cbLangPriority0":
+                            switch (lang)
+                            {
+                                case "ru": return "Мультипак";
+                                case "en": return "Multi-Pack";
+                                case "de": return "Multi-Pack";
+                                default: return toReturn;
+                            }
+
+                        case "cbLangPriority1":
+                            switch (lang)
+                            {
+                                case "ru": return "Клиент игры";
+                                case "en": return "Game client";
+                                case "de": return "Game client";
+                                default: return toReturn;
+                            }
+
+                        case "cbLangPriority2":
+                            switch (lang)
+                            {
+                                case "ru": return "Вручную";
+                                case "en": return "Manual";
+                                case "de": return "Manual";
+                                default: return toReturn;
+                            }
+
                         default: return toReturn;
                     }
 

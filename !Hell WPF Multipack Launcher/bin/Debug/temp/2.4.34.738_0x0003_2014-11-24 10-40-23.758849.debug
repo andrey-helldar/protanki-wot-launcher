@@ -1,0 +1,10 @@
+﻿{
+  "uid": "f39d3705d0925c26120f42599dc7d336",
+  "version": "2.4.34.738",
+  "date": "2014-11-24 10-40-23",
+  "module": "Variables.Class",
+  "function": "LoadSettings()",
+  "param0": "Row: Apply language",
+  "param1": "Ссылка на объект не указывает на экземпляр объекта.",
+  "param2": "   в _Hell_WPF_Multipack_Launcher.Classes.Variables.LoadSettings() в f:\\ВАЖНЫЕ ДАННЫЕ\\!!Важные документы\\!Сохранения программ\\Visual Studio C#\\!Hell PRO Tanki Launcher\\!Hell WPF Multipack Launcher\\Classes\\Variables.Class.cs:строка 178"
+}

@@ -374,20 +374,20 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to multipack.
+        /// </summary>
+        public static string Default_Lang_Priority {
+            get {
+                return ResourceManager.GetString("Default_Lang_Priority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to base.
         /// </summary>
         public static string Default_Multipack_Type {
             get {
                 return ResourceManager.GetString("Default_Multipack_Type", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to multipack.
-        /// </summary>
-        public static string Default_Settings_Priority {
-            get {
-                return ResourceManager.GetString("Default_Settings_Priority", resourceCulture);
             }
         }
         
