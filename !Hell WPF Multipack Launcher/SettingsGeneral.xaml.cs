@@ -97,7 +97,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     cbLang.Items.Clear();
                     foreach (var jp in Lang.Translated())
-                        cbLang.Items.Add(jp.Value);
+                        cbLang.Items.Add(jp.Value.ToString().Remove(0,3));
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLangPriority.Items", ex.Message, ex.StackTrace)); }
 
@@ -296,6 +296,21 @@ namespace _Hell_WPF_Multipack_Launcher
             }
         }
 
+        private void PageSettingsGeneral_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                cbPriority.SelectionChanged += cbPriority_SelectionChanged;
+                cbLauncher.SelectionChanged += cbLauncher_SelectionChanged;
+                cbLang.SelectionChanged += cbLang_SelectionChanged;
+                cbLangPriority.SelectionChanged += cbLangPriority_SelectionChanged;
+            }
+            catch (Exception) { }
+
+            try { MainWindow.LoadingPanelShow(); }
+            catch (Exception) { }
+        }
+
         private void cbKill_Click(object sender, RoutedEventArgs e)
         {
             Set("settings", "kill", cbKill.IsChecked.ToString());
@@ -339,22 +354,6 @@ namespace _Hell_WPF_Multipack_Launcher
         private void cbLangPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Set("info", "locale", cbLangPriority.SelectedIndex.ToString());
-        }
-
-        private void PageSettingsGeneral_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                cbPriority.SelectionChanged += cbPriority_SelectionChanged;
-                cbLauncher.SelectionChanged += cbLauncher_SelectionChanged;
-                cbLang.SelectionChanged += cbLang_SelectionChanged;
-                cbLangPriority.SelectionChanged += cbLangPriority_SelectionChanged;
-
-            }
-            catch (Exception) { }
-
-            try { MainWindow.LoadingPanelShow(); }
-            catch (Exception) { }
         }
 
         private void cbLang_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -40,6 +40,14 @@ namespace _Hell_WPF_Multipack_Launcher
 
             string nickname = String.Empty;
 
+            if (MainWindow.XmlDocument.Root.Element("info").Attribute("language")!=null)
+            MessageBox.Show(MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value);
+
+            Task.Factory.StartNew(() => Variables.Start()).Wait();
+
+            if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
+                MessageBox.Show(MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value);
+
             try
             {
                 if (MainWindow.XmlDocument.Root.Element("token") != null)
@@ -50,8 +58,6 @@ namespace _Hell_WPF_Multipack_Launcher
                             MainWindow.XmlDocument.Root.Element("token").Remove();
             }
             catch (Exception) { nickname = String.Empty; }
-
-            Task.Factory.StartNew(() => Variables.Start()).Wait();
 
             Task.Factory.StartNew(() => SetInterface());
             Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "lStatus", lang) + nickname + "!", "", false));

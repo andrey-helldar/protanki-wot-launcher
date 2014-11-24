@@ -162,6 +162,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message, ex.StackTrace); }
 
                 //  Устанавливаем язык приложения
+                if (MainWindow.XmlDocument.Root.Element("info").Attribute("locale")!=null)
                 switch (Properties.Resources.Default_Lang_Priority)
                 {
                     case "multipack": Lang = lang_pack; break;

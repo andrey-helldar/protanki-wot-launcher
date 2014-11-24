@@ -74,7 +74,14 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             MainWindow.PlayBtn.Content = Lang.Set("MainProject", "bPlay", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value);
 
+            Task.Factory.StartNew(() =>
+            {
+                try { MainWindow.XmlDocument.Save(new Classes.Variables().SettingsPath); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "bClose_Click()", "xmlDocument.Save();", ex.Message, ex.StackTrace)); }
+            }).Wait();
+
             MainWindow.LoadingPanelShow(1);
+      
 
             Task.Factory.StartNew(() =>
             {
