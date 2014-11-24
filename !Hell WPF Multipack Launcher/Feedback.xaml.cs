@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -103,6 +104,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                             string cat = String.Empty;
                             string status = string.Empty;
+                            bool ticket_sended = false;
 
                             /*
                              *  Получаем тикет
@@ -164,16 +166,22 @@ namespace _Hell_WPF_Multipack_Launcher
                                         tbMessage.Text = String.Empty;
                                         tbEmail.Text = String.Empty;
                                         break;
-                                    default: status = Lang.Set("PageFeedback", answer["status"].ToString(), lang) +
+                                    default:
+                                        ticket_sended = SaveTicket(json); // Сохранение тикета для последующей отправки
+                                        status = Lang.Set("PageFeedback", answer["status"].ToString(), lang) +
                                         Lang.Set("PageFeedback", answer["content"].ToString(), lang, answer["message"].ToString());
                                         break;
                                 }
                             }
                             else
                             {
+                                ticket_sended = SaveTicket(json); // Сохранение тикета для последующей отправки
                                 status = Lang.Set("PageFeedback", "FAIL", lang, Lang.Set("PageFeedback", answer["content"].ToString(), lang));
                             }
                             MessageBox.Show(status);
+
+                            // Выдаем сообщение о сохранении тикета
+                            if (ticket_sended) MessageBox.Show(Lang.Set("PageFeedback", "TicketSaved", lang));
                         }
                     }
                     else
@@ -247,9 +255,39 @@ namespace _Hell_WPF_Multipack_Launcher
             }));
         }
 
-        private void SaveTicket()
+        /// <summary>
+        /// Сохранение неотправленных тикетов
+        /// </summary>
+        /// <param name="json"></param>
+        private bool SaveTicket(JObject json)
         {
-            if()
+            try
+            {
+                string UserID = new Classes.Variables().GetUserID();
+
+                if (!Directory.Exists("tickets")) { Directory.CreateDirectory("tickets"); }
+
+                string filename = String.Format("{0}_{1}.ticket", UserID, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
+
+                if (Properties.Resources.API_DEV_CRYPT == "1")
+                {
+                    string encoded = new Classes.Crypt().Encrypt(json.ToString(), UserID, true);
+                    if (encoded != "FAIL") File.WriteAllText(@"tickets\" + filename, encoded, Encoding.UTF8);
+                }
+                else
+                    File.WriteAllText(@"tickets\" + filename, json.ToString(), Encoding.UTF8);
+
+                // Очищаем поля
+                tbMessage.Text = String.Empty;
+                tbEmail.Text = String.Empty;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debug.Save("PageFeedback", "SaveTicket()", ex.Message, ex.StackTrace));
+                return false;
+            }
         }
     }
 }

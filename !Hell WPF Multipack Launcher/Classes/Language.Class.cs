@@ -654,6 +654,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        case "TicketSaved":
+                            switch (lang)
+                            {
+                                case "ru": return "Тикет успешно сохранен и будет автоматически отправлен на сервер познее.";
+                                case "en": return "Тикет успешно сохранен и будет автоматически отправлен на сервер познее.";
+                                case "de": return "Тикет успешно сохранен и будет автоматически отправлен на сервер познее.";
+                                default: return toReturn;
+                            }
+
                         /* -----------------------------
                          *      Categories
                          * -----------------------------*/
