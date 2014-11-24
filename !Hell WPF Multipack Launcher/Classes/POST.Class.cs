@@ -17,7 +17,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         Crypt Crypt = new Crypt();
 
 
-        public string Send(string Url, JObject json)
+        public string Send(string Url, JObject json, string encoded_string = null)
         {
             string Data = String.Empty;
             string Out = String.Empty;
@@ -26,10 +26,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 string UserID = new Classes.Variables().GetUserID();
 
-                if (Properties.Resources.API_DEV_CRYPT == "1")
-                    Data = "data=" + Crypt.Encrypt(json.ToString(), UserID) + "&u=" + UserID + "&e=" + Properties.Resources.API_DEV_CRYPT;
+                if (encoded_string == null)
+                {
+                    if (Properties.Resources.API_DEV_CRYPT == "1")
+                        Data = "data=" + Crypt.Encrypt(json.ToString(), UserID) + "&u=" + UserID + "&e=" + Properties.Resources.API_DEV_CRYPT;
+                    else
+                        Data = "data=" + json.ToString();
+                }
                 else
-                    Data = "data=" + json.ToString();
+                {
+                    Data = "data=" + encoded_string + "&u=" + UserID + "&e=" + Properties.Resources.API_DEV_CRYPT;
+                }
 
                 WebRequest req = WebRequest.Create(Url);
                 req.Method = "POST";
@@ -249,6 +256,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 string path = Environment.CurrentDirectory;
                 string status = String.Empty;
+                int count = 0;
 
                 if (Directory.Exists(path + @"\tickets"))
                 {
@@ -263,8 +271,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     {
                         try
                         {
-                            JObject json = JObject.Parse(File.ReadAllText(file.FullName, Encoding.UTF8));
-                            JObject answer = JObject.Parse(Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket, json));
+                            JObject answer = JObject.Parse(Send(
+                                Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket,
+                                null,
+                                File.ReadAllText(file.FullName, Encoding.UTF8)));
 
                             if (answer["status"].ToString() != "FAIL" && answer["code"].ToString() == Properties.Resources.API)
                             {
@@ -272,46 +282,37 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 {
                                     case "OK":
                                         status += answer["id"].ToString() + "; ";
+                                        count++;
                                         if (File.Exists(file.FullName)) File.Delete(file.FullName);
                                         break;
                                     case "BANNED":
                                         status += answer["content"].ToString() + "; ";
+                                        count++;
                                         if (File.Exists(file.FullName)) File.Delete(file.FullName);
                                         break;
-                                    case "FAIL":
-                                        if (answer["content"].ToString() == "SOFTWARE_NOT_AUTORIZED")
-                                            if (File.Exists(file.FullName)) File.Delete(file.FullName);
-                                        break;
                                     default:
-                                        status += answer["content"].ToString() + ";  ";
                                         break;
                                 }
                             }
                             else
                             {
-                                status += "   fail:: "+answer["content"].ToString() + ";  ";
+                                if (answer["status"].ToString() == "FAIL" && answer["content"].ToString() == "SOFTWARE_NOT_AUTORIZED")
+                                    if (File.Exists(file.FullName)) File.Delete(file.FullName);
                             }
                         }
-                        catch (Exception) { }
+                        catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("POST.Class", "AutosendTicket()", file.FullName, e.Message, e.StackTrace)); }
                     }
 
                     if (status.Length > 0)
                     {
+                        status = Lang.Set("PostClass", "AutoTicketCount", lang, count.ToString()) + Environment.NewLine + Environment.NewLine + status;
+
                         MainWindow.Notifier.ShowBalloonTip(5000,
                             Lang.Set("PostClass", "AutoTicket", lang),
                             Lang.Set("PostClass", "AutoTicketStatus", lang, status),
                             System.Windows.Forms.ToolTipIcon.Info);
                     }
                 }
-                else
-                {
-                    MainWindow.Notifier.ShowBalloonTip(5000,
-                        "Камрад!",
-                        "Папка не найдена!",
-                        System.Windows.Forms.ToolTipIcon.Info);
-                }
-
-                Task.Factory.StartNew(() => Debug.Save("POST.Class", "AutosendTicket()", status));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("POST.Class", "AutosendTicket()", ex.Message, ex.StackTrace)); }
         }

@@ -1195,6 +1195,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "de": return "Тикеты успешно отправлены";
                                 default: return toReturn;
                             }
+                        case "AutoTicketCount":
+                            switch (lang)
+                            {
+                                case "ru": return "Успешно отправлено " + text + " тикетов";
+                                case "en": return "Успешно отправлено " + text + " тикетов";
+                                case "de": return "Успешно отправлено " + text + " тикетов";
+                                default: return toReturn;
+                            }
 
                         case "AutoTicketStatus":
                             switch (lang)
