@@ -1,9 +1,0 @@
-﻿{
-  "uid": "64935334dc97650ae4e896ceebd4cae7",
-  "version": "2.4.34.726",
-  "date": "2014-11-24 1-36-54",
-  "module": "PageGeneral",
-  "function": "GetInfo()",
-  "param0": "Unexpected character encountered while parsing value: �. Path '', line 0, position 0.",
-  "param1": "   в Newtonsoft.Json.JsonTextReader.ParseValue()\r\n   в Newtonsoft.Json.JsonTextReader.ReadInternal()\r\n   в Newtonsoft.Json.JsonTextReader.Read()\r\n   в Newtonsoft.Json.Linq.JObject.Load(JsonReader reader)\r\n   в Newtonsoft.Json.Linq.JObject.Parse(String json)\r\n   в _Hell_WPF_Multipack_Launcher.General.GetInfo() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\General.xaml.cs:строка 677"
-}

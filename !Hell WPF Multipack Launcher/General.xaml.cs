@@ -668,7 +668,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 new JProperty("os", "disabled")
                             );
 
-                Debug.Save("111111111111111111111", "GetInfo()",json.ToString());
+                Debug.Save("111111111111111111111", "GetInfo()", json.ToString());
 
                 string ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json);
 

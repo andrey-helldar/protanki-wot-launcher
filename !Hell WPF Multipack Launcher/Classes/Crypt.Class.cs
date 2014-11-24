@@ -50,9 +50,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             string cipherText;
             var rijndael = new RijndaelManaged()
             {
-                Padding = PaddingMode.PKCS7,
                 Mode = CipherMode.ECB,
-                KeySize = 256,
                 BlockSize = 256,
                 Key = Encoding.UTF8.GetBytes(key),
                 IV = Encoding.UTF8.GetBytes(Properties.Resources.API),
@@ -82,7 +80,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 try
                 {
-                    rj.Padding = PaddingMode.PKCS7;
                     rj.Mode = CipherMode.ECB;
                     rj.KeySize = 256;
                     rj.BlockSize = 256;
