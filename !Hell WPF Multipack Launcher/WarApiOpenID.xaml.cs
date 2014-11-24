@@ -35,7 +35,7 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 weff45gf.Text = WB.Source.ToString();
-                Debug.Save("WarAPI.xaml", "Source", WB.Source.ToString());
+                Debug.Save("WarAPI.xaml", "Source", WB.Source.ToString(), (WB.Document as HTMLDocument).ToString());
 
                 //if (WB.Source.ToString().IndexOf(Properties.Resources.Developer) > -1 && WB.Source.ToString().IndexOf("access_token") > 0)
                 if (WB.Source.ToString().IndexOf("status=ok") > -1)
@@ -120,5 +120,11 @@ namespace _Hell_WPF_Multipack_Launcher
         private const string DisableScriptError =
             @"function noError() {return true;}
             window.onerror = noError;";
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            Debug.Save("WarAPI.xaml", "Source", WB.Source.ToString(), (WB.Document as HTMLDocument).ToString());
+        }
     }
 }

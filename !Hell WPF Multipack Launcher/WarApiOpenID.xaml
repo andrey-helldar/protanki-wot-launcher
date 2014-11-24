@@ -3,11 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Wargaming OpenID" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="Resources/WOT.ico" HorizontalAlignment="Center" VerticalAlignment="Center">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="105"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="91"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WB_LoadCompleted" Grid.Row="1" Navigated="WB_Navigated"/>
-        <TextBox x:Name="weff45gf" Margin="0" TextWrapping="Wrap" Text="TextBox"/>
+        <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WB_LoadCompleted" Grid.Row="1" Navigated="WB_Navigated" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="weff45gf" Margin="0,0,10,0" TextWrapping="Wrap" Text="TextBox"/>
+        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="23,20,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>
