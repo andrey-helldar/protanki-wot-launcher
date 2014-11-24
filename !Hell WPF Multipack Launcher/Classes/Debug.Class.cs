@@ -35,8 +35,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 string filename = String.Format("{0}_{1}_{2}.debug", version, ErrorCode(module, func), DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
 
-                string encoded = new Crypt().Encode(json.ToString());
-                if (encoded != "FAIL") File.WriteAllText(@"temp\" + filename, new Crypt().Encode(json.ToString()), Encoding.UTF8);
+                if (Properties.Resources.Default_Debug_Crypt == "1")
+                {
+                    string encoded = new Crypt().Encode(json.ToString());
+                    if (encoded != "FAIL") File.WriteAllText(@"temp\" + filename, new Crypt().Encode(json.ToString()), Encoding.UTF8);
+                }
+                else
+                    File.WriteAllText(@"temp\" + filename, json.ToString(), Encoding.UTF8);
             }
             catch (IOException) { Thread.Sleep(3000); Save(module, func, args); }
             catch (Exception) { }
@@ -81,7 +86,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Thread.Sleep(10000); // При запуске выжидаем 10 секунд перед началом архивации
 
                 ClearLogs(true); // Очищаем папки от старых логов
-                ArchiveLogs(); // Запускаем архивацию логов
+                //ArchiveLogs(); // Запускаем архивацию логов
             }
 
             string path = Environment.CurrentDirectory;

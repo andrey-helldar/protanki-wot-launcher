@@ -27,9 +27,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 if (Properties.Resources.API_DEV_CRYPT == "1")
                     Data = Encrypt(json.ToString(), UserID);
+                else
+                    Data = json.ToString();
 
-                Data = "u=" + UserID;
-                Data = "&data=" + Data;
+                Data = "data=" + Data + "&u=" + UserID + "&e=" + Properties.Resources.API_DEV_CRYPT;
 
                 WebRequest req = WebRequest.Create(Url);
                 req.Method = "POST";
@@ -52,7 +53,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     Out += str;
                     count = sr.Read(read, 0, 256);
                 }
-                Debug.Save("POST.Class", "Send()", "json: " + Url, "Data: "+Data, "Answer: " + Out);
+                Debug.Save("POST.Class", "Send()", "json: " + Url, "Data: " + Data, "Answer: " + Out);
+
+                if (Properties.Resources.API_DEV_CRYPT == "1")
+                    Out = Decrypt(Out, UserID);
+
                 return Out;
             }
             catch (WebException we) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, we.Message, we.StackTrace); return "FAIL"; }
@@ -166,7 +171,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 do
                 {
                     count = resStream.Read(buf, 0, buf.Length);
-                    if (count != 0)  sb.Append(Encoding.UTF8.GetString(buf, 0, count));
+                    if (count != 0) sb.Append(Encoding.UTF8.GetString(buf, 0, count));
                 }
                 while (count > 0);
 
@@ -246,10 +251,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             string cipherText;
             var rijndael = new RijndaelManaged()
             {
-                Key = Encoding.UTF8.GetBytes(key),
+                Padding = PaddingMode.PKCS7,
                 Mode = CipherMode.ECB,
-                BlockSize = 128,
-                Padding = PaddingMode.Zeros,
+                KeySize = 256,
+                BlockSize = 256,
+                Key = Encoding.UTF8.GetBytes(key),
+                IV = Encoding.UTF8.GetBytes(key),
             };
             ICryptoTransform encryptor = rijndael.CreateEncryptor(rijndael.Key, null);
 
@@ -268,6 +275,42 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
             }
             return cipherText;
+        }
+
+        static private String Decrypt(string Text, string KeyString)
+        {
+            byte[] cypher = Convert.FromBase64String(Text);
+
+            var sRet = "";
+
+            var encoding = new UTF8Encoding();
+            var Key = encoding.GetBytes(KeyString);
+            var IV = encoding.GetBytes(KeyString);
+
+            using (var rj = new RijndaelManaged())
+            {
+                try
+                {
+                    rj.Padding = PaddingMode.PKCS7;
+                    rj.Mode = CipherMode.ECB;
+                    rj.KeySize = 256;
+                    rj.BlockSize = 256;
+                    rj.Key = Key;
+                    rj.IV = IV;
+                    var ms = new MemoryStream(cypher);
+
+                    using (var cs = new CryptoStream(ms, rj.CreateDecryptor(Key, IV), CryptoStreamMode.Read))
+                    {
+                        using (var sr = new StreamReader(cs))
+                        {
+                            sRet = sr.ReadLine();
+                        }
+                    }
+                }
+                finally { rj.Clear(); }
+            }
+
+            return sRet;
         }
     }
 }

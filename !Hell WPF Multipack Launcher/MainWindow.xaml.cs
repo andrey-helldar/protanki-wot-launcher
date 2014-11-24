@@ -112,6 +112,18 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
+            //Task.Factory.StartNew(() =>
+            //{
+            Variables.Start();
+            MultipackDate = Variables.MultipackDate;
+            ProductName = Variables.ProductName;
+
+            // Загружаем настройки из XML-файла
+            if (File.Exists(Variables.SettingsPath))
+                xmlDocument = XDocument.Load(Variables.SettingsPath);
+            this.Closing += delegate { xmlDocument = null; };
+            //}).Wait();
+
             loadingpanel = 1;
             Task.Factory.StartNew(() => LoadingPanel());    // LoadingPanel
 
@@ -214,19 +226,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     try
                     {
-                        //Task.Factory.StartNew(() =>
-                        //{
-                        Variables.Start();
-                        MultipackDate = Variables.MultipackDate;
-                        ProductName = Variables.ProductName;
-
-                        // Загружаем настройки из XML-файла
-                        if (File.Exists(Variables.SettingsPath))
-                            xmlDocument = XDocument.Load(Variables.SettingsPath);
-                        this.Closing += delegate { xmlDocument = null; };
-                        //}).Wait();
-
-                        SetInterface(); // Загрузка языка
+                        SetInterface(); // Загрузка языка 
                     }
                     catch (Exception ex)
                     {

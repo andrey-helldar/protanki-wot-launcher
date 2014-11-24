@@ -28,6 +28,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.YoutubeVideo YoutubeClass = new Classes.YoutubeVideo();
         Classes.Wargaming WargamingClass = new Classes.Wargaming();
         Classes.Language Lang = new Classes.Language();
+        Classes.Variables Variables = new Classes.Variables();
 
         private string NotifyLink = String.Empty;
         private string lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
@@ -49,6 +50,8 @@ namespace _Hell_WPF_Multipack_Launcher
                             MainWindow.XmlDocument.Root.Element("token").Remove();
             }
             catch (Exception) { nickname = String.Empty; }
+
+            Task.Factory.StartNew(() => Variables.Start()).Wait();
 
             Task.Factory.StartNew(() => SetInterface());
             Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "lStatus", lang) + nickname + "!", "", false));
@@ -555,19 +558,15 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 if (MessageBox.Show(Lang.Set("Optimize", "Optimize", lang) + "?", MainWindow.ProductName, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    StatusBarSet(false);
-
-                    Classes.Variables Vars = new Classes.Variables();
-
                     StatusBarSet(true);
 
                     new Classes.Optimize().Start(
-                            Vars.GetElement("settings", "winxp"),
-                            Vars.GetElement("settings", "kill"),
-                            Vars.GetElement("settings", "force"),
-                            Vars.GetElement("settings", "aero"),
-                            Vars.GetElement("settings", "video"),
-                            Vars.GetElement("settings", "weak"),
+                            Variables.GetElement("settings", "winxp"),
+                            Variables.GetElement("settings", "kill"),
+                            Variables.GetElement("settings", "force"),
+                            Variables.GetElement("settings", "aero"),
+                            Variables.GetElement("settings", "video"),
+                            Variables.GetElement("settings", "weak"),
                             true
                         );
 
@@ -647,7 +646,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 Thread.Sleep(3000);
 
                 Classes.POST POST = new Classes.POST();
-                Classes.Variables Variables = new Classes.Variables();
 
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
@@ -664,7 +662,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 new JProperty("modpack_ver", Variables.MultipackVersion.ToString()),
                                 new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
                                 new JProperty("game", Variables.TanksVersion.ToString()),
-                                new JProperty("game_test", Variables.CommonTest.ToString()),
+                                new JProperty("game_test", Variables.CommonTest),
                                 new JProperty("youtube", Properties.Resources.YoutubeChannel),
                                 new JProperty("lang", lang),
                                 new JProperty("os", "disabled")
@@ -683,13 +681,13 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 if (answer["status"].ToString() != "DISABLED")
                 {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    if (Variables.TanksVersion < new Version(answer["version"].ToString()))
                     {
-                        Debug.Save("444444444444444", "GetInfo()", json.ToString());
-
-                        if (Variables.TanksVersion < new Version(answer["version"].ToString()))
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
                             lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, answer["version"].ToString());
-                    }));
+                        }));
+                    }
                 }
                 else
                 {
