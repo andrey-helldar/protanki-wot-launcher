@@ -728,18 +728,18 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         case "BANNED":
                             switch (lang)
                             {
-                                case "ru": return "Ваше сообщение принято к обработке";
-                                case "en": return "Your message is accepted";
-                                case "de": return "Ihre Anfrage wird bearbeitet";
+                                case "ru": return "Ваше сообщение принято к обработке.";
+                                case "en": return "Your message is accepted.";
+                                case "de": return "Ihre Anfrage wird bearbeitet.";
                                 default: return toReturn;
                             }
 
                         case "FAIL":
                             switch (lang)
                             {
-                                case "ru": return "Ошибка отправки сообщения. Попробуйте еще раз." + Environment.NewLine + Environment.NewLine + "Сервер ответил: " + text;
-                                case "en": return "Error sending message. Please, try again later." + Environment.NewLine + Environment.NewLine + "Сервер ответил: " + text;
-                                case "de": return "Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut" + Environment.NewLine + Environment.NewLine + "Сервер ответил: " + text;
+                                case "ru": return "Ошибка отправки сообщения. Попробуйте еще раз.";
+                                case "en": return "Error sending message. Please, try again later.";
+                                case "de": return "Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.";
                                 default: return toReturn;
                             }
 
@@ -793,9 +793,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         case "SERVER_IS_UNAVAILABLE":
                             switch (lang)
                             {
-                                case "ru": return "Сервер временно недоступен.";
-                                case "en": return "Сервер временно недоступен.";
-                                case "de": return "Сервер временно недоступен.";
+                                case "ru": return text != "null" && text != "" ? Environment.NewLine + Environment.NewLine + "Сервер ответил: " + Environment.NewLine + text : "";
+                                case "en": return text != "null" && text != "" ? Environment.NewLine + Environment.NewLine + "Сервер ответил: " + Environment.NewLine + text : "";
+                                case "de": return text != "null" && text != "" ? Environment.NewLine + Environment.NewLine + "Сервер ответил: " + Environment.NewLine + text : "";
                                 default: return toReturn;
                             }
 

@@ -133,7 +133,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 cat = "EI";
 
                             JObject json = new JObject(
-                                new JProperty("api", Properties.Resources.API),
+                                new JProperty("code", Properties.Resources.API),
                                 new JProperty("user_id", Variables.GetUserID()),
                                 new JProperty("user_name", GetTokenRec("nickname")),
                                 new JProperty("user_email", POST.Shield(tbEmail.Text.Trim())),
@@ -147,12 +147,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                 new JProperty("message", POST.Shield(tbMessage.Text.Trim()))
                             );
 
-                            //  http://ai-rus.com/api/wot/ticket
-
-                            string s = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket, json);
-                            MessageBox.Show(s);
-
-                            JObject answer = JObject.Parse(s);
+                            //  http://ai-rus.com/api/wot/ticket                            
+                            JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket, json));
 
                             if (answer["status"].ToString() != "FAIL" && answer["code"].ToString() == Properties.Resources.API)
                             {
@@ -168,12 +164,14 @@ namespace _Hell_WPF_Multipack_Launcher
                                         tbMessage.Text = String.Empty;
                                         tbEmail.Text = String.Empty;
                                         break;
-                                    default: status = Lang.Set("PageFeedback", answer["status"].ToString(), lang, answer["content"].ToString()); break;
+                                    default: status = Lang.Set("PageFeedback", answer["status"].ToString(), lang) +
+                                        Lang.Set("PageFeedback", answer["content"].ToString(), lang, answer["message"].ToString());
+                                        break;
                                 }
                             }
                             else
                             {
-                                status = Lang.Set("PageFeedback", "FAIL", lang);
+                                status = Lang.Set("PageFeedback", "FAIL", lang, Lang.Set("PageFeedback", answer["content"].ToString(), lang));
                             }
                             MessageBox.Show(status);
                         }
@@ -247,6 +245,11 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageFeedback", "SetInterface()", ex.Message, ex.StackTrace)); }
             }));
+        }
+
+        private void SaveTicket()
+        {
+            if()
         }
     }
 }
