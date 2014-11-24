@@ -62,12 +62,10 @@ namespace _Hell_WPF_Multipack_Launcher
             // Устанавливаем заголовок в зависимости от типа версии
             try
             {
-                if (MainWindow.XmlDocument.Root != null)
-                    if (MainWindow.XmlDocument.Root.Element("multipack") != null)
-                        if (MainWindow.XmlDocument.Root.Element("multipack").Element("type") != null)
-                            lType.Content = Lang.Set("PageGeneral", MainWindow.XmlDocument.Root.Element("multipack").Element("type").Value, lang)+"1";
+                if (MainWindow.XmlDocument.Root.Element("multipack").Attribute("type") != null)
+                    lType.Content = Lang.Set("PageGeneral", MainWindow.XmlDocument.Root.Element("multipack").Attribute("type").Value, lang);
             }
-            catch (Exception) { lType.Content = "Base version1"; }
+            catch (Exception) { lType.Content = Lang.Set("PageGeneral", "base", lang); }
 
             // Загружаем список видео и новостей
             try
@@ -583,7 +581,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bFeedback_Click(object sender, RoutedEventArgs e)
         {
-            OpenPage("FeedbackWOT");
+            OpenPage("Feedback");
         }
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)

@@ -47,6 +47,21 @@ namespace _Hell_WPF_Multipack_Launcher
             Task.Factory.StartNew(() => SetInterface()); // Загрузка языка
         }
 
+        private void PageFeedback_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MainWindow.LoadingPanelShow();
+
+                if (MainWindow.XmlDocument.Root.Element("token").Attribute("email") != null)
+                {
+                    tbEmail.Text = MainWindow.XmlDocument.Root.Element("token").Attribute("email").Value;
+                    tbEmail.IsEnabled = false;
+                }
+            }
+            catch (Exception) { tbEmail.IsEnabled = true; }
+        }
+
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.LoadingPanelShow(1);
@@ -232,12 +247,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageFeedback", "SetInterface()", ex.Message, ex.StackTrace)); }
             }));
-        }
-
-        private void PageFeedback_Loaded(object sender, RoutedEventArgs e)
-        {
-            try { MainWindow.LoadingPanelShow(); }
-            catch (Exception) { }
         }
     }
 }

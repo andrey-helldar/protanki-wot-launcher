@@ -36,10 +36,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         string link = "";
                         foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
 
+                        string q1 = el.Element(ns + "id").Value.Remove(0, 42);
+                        string q2 = (el.Element(ns + "title").Value.IndexOf(" / PRO") > 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value);
+                        string q3 = el.Element(ns + "content").Value.Length > 256 ? el.Element(ns + "content").Value.Remove(256) + "..." : "";
+                        string q4 = link;
+                        string q5 = el.Element(ns + "published").Value.Remove(10);
+                        string q6 = DateTime.Parse(el.Element(ns + "published").Value.Remove(10)).ToString("dd.MM");
+
                         Add(
                             el.Element(ns + "id").Value.Remove(0, 42),
                             (el.Element(ns + "title").Value.IndexOf(" / PRO") > 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value),
-                            el.Element(ns + "content").Value.Remove(256) + (el.Element(ns + "content").Value.Length > 256 ? "..." : ""),
+                            el.Element(ns + "content").Value.Length > 256 ? el.Element(ns + "content").Value.Remove(256) + "..." : "",
                             link,
                             el.Element(ns + "published").Value.Remove(10),
                             DateTime.Parse(el.Element(ns + "published").Value.Remove(10)).ToString("dd.MM"));

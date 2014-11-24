@@ -29,7 +29,7 @@
         <Button x:Name="bUserProfile" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleAbout}" Click="bUserProfile_Click" Margin="0,9,8,0" VerticalAlignment="Top"/>
         <!--<Button x:Name="bNotification" Grid.Column="1" Style="{DynamicResource ButtonStyleFAQ}" Margin="0,5,31,5" Click="bNotification_Click" HorizontalAlignment="Right" Width="24"/>
         <Button x:Name="bUpdate" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleUpdate}" Margin="0,5,57,5" Width="24" Click="bUpdate_Click"/>-->
-        <Label x:Name="lType" Content="Base version" Style="{StaticResource LabelStyleHeaderBlack}" HorizontalAlignment="Left" Margin="200,0,0,1" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <Label x:Name="lType" Content="---" Style="{StaticResource LabelStyleHeaderBlack}" HorizontalAlignment="Left" Margin="200,0,0,1" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
         <!--<Rectangle Grid.Row="2" Grid.ColumnSpan="2" Margin="0" MinHeight="45" Height="49">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="Resources/General_Line.jpg"/>
