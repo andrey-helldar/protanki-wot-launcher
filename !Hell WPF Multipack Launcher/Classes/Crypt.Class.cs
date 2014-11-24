@@ -12,93 +12,46 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
     class Crypt
     {
         Classes.Debug Debug = new Debug();
+        Classes.Variables Variables = new Variables();
 
         /// <summary>
-        /// Шифрование информации
+        /// Шифрование строки
         /// </summary>
-        /// <param name="text">Исходный текс</param>
+        /// <param name="text">Текст для шифра</param>
+        /// <param name="key">Ключ шифрования</param>
+        /// <param name="debug">Определяем шифруем ли дебаг</param>
         /// <returns>Шифрованная строка</returns>
-        public string Encode(string text)
+        public string Encrypt(string text, string key, bool debug = false)
         {
-            if (Properties.Resources.Default_Debug_Crypt == "0")
-                return text;
-            else
+            try
             {
-                try { return System.Convert.ToBase64String(Encoding.UTF8.GetBytes(text)); }
-                catch (Exception) { return "FAIL"; }
+                if ((debug && Properties.Resources.Default_Debug_Crypt == "1") || Properties.Resources.API_DEV_CRYPT == "1")
+                    return Convert.ToBase64String(Encoding.UTF8.GetBytes(text));
+                else
+                    return text;
+            }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debug.Save("Crypt.Class", "Encrypt()", "Debug: " + debug.ToString(), text, ex.Message, ex.StackTrace));
+                return "FAIL";
             }
         }
 
-        /// <summary>
-        /// Дешифрование информации
-        /// </summary>
-        /// <param name="text">Шифрованная строка</param>
-        /// <returns>Расшифрованный результат</returns>
-        public string Decode(string text)
+
+        public string Decrypt(string encoded, string key, bool debug = false)
         {
-            if (Properties.Resources.Default_Debug_Crypt == "0")
-                return text;
-            else
+            try
             {
-                try { return Encoding.UTF8.GetString(System.Convert.FromBase64String(text)); }
-                catch (Exception) { return "FAIL"; }
+                if ((debug && Properties.Resources.Default_Debug_Crypt == "1") || Properties.Resources.API_DEV_CRYPT == "1")
+                    return Encoding.UTF8.GetString(Convert.FromBase64String(encoded));
+                else
+                    return encoded;
             }
-        }
-
-        static public string Encrypt(string plainText, string key)
-        {
-            string cipherText;
-            var rijndael = new RijndaelManaged()
+            catch (Exception ex)
             {
-                Mode = CipherMode.ECB,
-                BlockSize = 256,
-                Key = Encoding.UTF8.GetBytes(key),
-                IV = Encoding.UTF8.GetBytes(Properties.Resources.API),
-            };
-
-            using (var memoryStream = new MemoryStream())
-            {
-                using (var cryptoStream = new CryptoStream(memoryStream, rijndael.CreateEncryptor(rijndael.Key, rijndael.IV), CryptoStreamMode.Write))
-                {
-                    using (var streamWriter = new StreamWriter(cryptoStream))
-                    {
-                        streamWriter.Write(plainText);
-                        streamWriter.Flush();
-                    }
-                    cipherText = Convert.ToBase64String(memoryStream.ToArray());
-                }
+                Task.Factory.StartNew(() => Debug.Save("Crypt.Class", "Decrypt()", "Debug: " + debug.ToString(), encoded, ex.Message, ex.StackTrace));
+                return "FAIL";
             }
-            return cipherText;
-        }
-
-        static public string Decrypt(string Text, string KeyString)
-        {
-            byte[] cypher = Convert.FromBase64String(Text);
-            var sRet = String.Empty;
-
-            using (var rj = new RijndaelManaged())
-            {
-                try
-                {
-                    rj.Mode = CipherMode.ECB;
-                    rj.KeySize = 256;
-                    rj.BlockSize = 256;
-                    rj.Key = Encoding.UTF8.GetBytes(KeyString);
-                    rj.IV = Encoding.UTF8.GetBytes(Properties.Resources.API);
-                    var ms = new MemoryStream(cypher);
-
-                    using (var cs = new CryptoStream(ms, rj.CreateDecryptor(rj.Key, rj.IV), CryptoStreamMode.Read))
-                    {
-                        using (var sr = new StreamReader(cs))
-                        {
-                            sRet = sr.ReadLine();
-                        }
-                    }
-                }
-                finally { rj.Clear(); }
-            }
-
-            return sRet;
         }
     }
 }

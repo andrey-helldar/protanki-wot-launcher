@@ -86,9 +86,18 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         case "SOFTWARE_NOT_AUTORIZED":
                             switch (lang)
                             {
-                                case "ru": return "Приложение не акторизовано на сервере";
-                                case "en": return "Приложение не акторизовано на сервере";
-                                case "de": return "Приложение не акторизовано на сервере";
+                                case "ru": return "Приложение не авторизовано на сервере";
+                                case "en": return "Приложение не авторизовано на сервере";
+                                case "de": return "Приложение не авторизовано на сервере";
+                                default: return toReturn;
+                            }
+
+                        case "SERVER_IS_UNAVAILABLE":
+                            switch (lang)
+                            {
+                                case "ru": return "Сервер статистики временно недоступен";
+                                case "en": return "Сервер статистики временно недоступен";
+                                case "de": return "Сервер статистики временно недоступен";
                                 default: return toReturn;
                             }
 

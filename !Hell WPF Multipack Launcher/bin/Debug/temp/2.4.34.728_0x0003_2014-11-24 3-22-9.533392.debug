@@ -1,0 +1,9 @@
+﻿{
+  "uid": "64935334dc97650ae4e896ceebd4cae7",
+  "version": "2.4.34.728",
+  "date": "2014-11-24 3-22-9",
+  "module": "Youtube.Class",
+  "function": "Start()",
+  "param0": "startIndex должен быть меньше, чем длина строки.\r\nИмя параметра: startIndex",
+  "param1": "   в System.String.Remove(Int32 startIndex)\r\n   в _Hell_WPF_Multipack_Launcher.Classes.YoutubeVideo.Start() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\Classes\\Youtube.Class.cs:строка 39"
+}

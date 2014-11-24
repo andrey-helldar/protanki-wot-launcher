@@ -654,7 +654,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         }));
 
                 JObject json = new JObject(
-                                new JProperty("api", Properties.Resources.API),
+                                new JProperty("code", Properties.Resources.API),
                                 new JProperty("user_id", Variables.GetUserID()),
                                 new JProperty("user_name", GetTokenRec("nickname")),
                                 new JProperty("user_email", GetTokenRec("email")),
@@ -667,14 +667,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                 new JProperty("lang", lang),
                                 new JProperty("os", "disabled")
                             );
-
-                Debug.Save("111111111111111111111", "GetInfo()", json.ToString());
-
-                string ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json);
-
-                Debug.Save("222222222222222222222", "GetInfo()", ans);
-
-                JObject answer = JObject.Parse(ans);
+                
+                JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json));
 
                 /*
                  * code
@@ -693,6 +687,13 @@ namespace _Hell_WPF_Multipack_Launcher
                                 lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, answer["version"].ToString());
                             }));
                         }
+                    }
+                    else
+                    {
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            lStatus.Text = Lang.Set("API", answer["content"].ToString(), lang);
+                        }));
                     }
                 }
                 else

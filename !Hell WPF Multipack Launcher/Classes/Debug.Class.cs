@@ -18,6 +18,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
+                string UserID = new Classes.Variables().GetUserID();
                 string version = Application.Current.GetType().Assembly.GetName().Version.ToString();
 
                 JObject json = new JObject(
@@ -37,8 +38,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 if (Properties.Resources.Default_Debug_Crypt == "1")
                 {
-                    string encoded = new Crypt().Encode(json.ToString());
-                    if (encoded != "FAIL") File.WriteAllText(@"temp\" + filename, new Crypt().Encode(json.ToString()), Encoding.UTF8);
+                    string encoded = new Crypt().Encrypt(json.ToString(), UserID, true);
+                    if (encoded != "FAIL") File.WriteAllText(@"temp\" + filename, encoded, Encoding.UTF8);
                 }
                 else
                     File.WriteAllText(@"temp\" + filename, json.ToString(), Encoding.UTF8);

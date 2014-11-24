@@ -52,9 +52,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     count = sr.Read(read, 0, 256);
                 }
 
-                /*if (Properties.Resources.API_DEV_CRYPT == "1")
-                    Out = Crypt.Decrypt(Out, UserID);*/
-
                 return Out;
             }
             catch (WebException we) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, "Out: " + Out, we.Message, we.StackTrace); return "FAIL"; }
