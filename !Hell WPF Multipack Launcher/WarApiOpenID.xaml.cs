@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -35,7 +36,7 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 weff45gf.Text = WB.Source.ToString();
-                Debug.Save("WarAPI.xaml", "Source", WB.Source.ToString(), (WB.Document as HTMLDocument).ToString());
+                ParseMail("load completed");
 
                 //if (WB.Source.ToString().IndexOf(Properties.Resources.Developer) > -1 && WB.Source.ToString().IndexOf("access_token") > 0)
                 if (WB.Source.ToString().IndexOf("status=ok") > -1)
@@ -95,6 +96,7 @@ namespace _Hell_WPF_Multipack_Launcher
         private void WB_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             InjectDisableScript();
+            ParseMail("navigated");
         }
 
         private void InjectDisableScript()
@@ -123,8 +125,31 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ParseMail("button");
+        }
 
-            Debug.Save("WarAPI.xaml", "Source", WB.Source.ToString(), (WB.Document as HTMLDocument).ToString());
+        private void ParseMail(string sd)
+        {
+            var doc = WB.Document as HTMLDocument;
+
+            if (doc != null)
+            {
+                Regex regex = new Regex(@"\w+[a-zA-Z0-9-_.]+@+\w+[a-zA-Z0-9-]+.[a-zA-Z]{2,10}");
+
+                IHTMLElementCollection nodes = doc.getElementsByTagName("body");
+                foreach (IHTMLElement elem in nodes)
+                {
+                    var body = (HTMLHeadElement)elem;
+
+                    Match match = regex.Match(body.innerHTML);
+                    while (match.Success)
+                    {
+                        Debug.Save("WarApiOpenID.xaml", WB.Source.ToString(), sd, match.Value);
+                        qw.Items.Add(match.Value);
+                        match = match.NextMatch();
+                    }
+                }
+            }
         }
     }
 }

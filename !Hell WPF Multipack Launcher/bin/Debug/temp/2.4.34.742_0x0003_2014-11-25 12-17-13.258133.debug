@@ -1,9 +1,0 @@
-﻿{
-  "uid": "f39d3705d0925c26120f42599dc7d336",
-  "version": "2.4.34.742",
-  "date": "2014-11-25 12-17-13",
-  "module": "WarAPI.xaml",
-  "function": "Source",
-  "param0": "https://ru.wargaming.net/id/signin/?next=/id/openid/1556313976318841067/&trust_root=https://api.worldoftanks.ru/&sso_notifications=disable",
-  "param1": "mshtml.HTMLDocumentClass"
-}

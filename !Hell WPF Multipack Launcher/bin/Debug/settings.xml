@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <info video="False" news="False" multipack="True" notification="0.0.0.0" language="en" locale="2">
+  <info video="False" news="False" multipack="True" notification="0.0.0.0" language="ru" locale="2">
     <notify_link />
   </info>
   <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
-  <multipack type="base" version="0.0.0.0">
+  <multipack type="extended" version="0.9.4.10">
     <link></link>
   </multipack>
   <game>
-    <version>0.0.0.0</version>
+    <version>0.9.4.805</version>
     <path>F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\bin\</path>
   </game>
   <youtube />
@@ -17,4 +17,5 @@
     <news />
   </do_not_display>
   <processes />
+  <token access_token="6c0689c0d9336a5e179946b6a1f6614dbcd6cbd1" expires_at="1418058858" nickname="First_Helldar" account_id="2732865" />
 </pro>
