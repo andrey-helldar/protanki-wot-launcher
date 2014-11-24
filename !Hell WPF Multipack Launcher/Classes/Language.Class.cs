@@ -78,6 +78,27 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
 
                 /* =====================================
+                 *      STATUSES API
+                 * =====================================*/
+                case "API":
+                    switch (control)
+                    {
+                        case "SOFTWARE_NOT_AUTORIZED":
+                            switch (lang)
+                            {
+                                case "ru": return "Приложение не акторизовано на сервере";
+                                case "en": return "Приложение не акторизовано на сервере";
+                                case "de": return "Приложение не акторизовано на сервере";
+                                default: return toReturn;
+                            }
+
+                        default: return toReturn;
+                    }
+
+
+
+
+                /* =====================================
                  *      MainWindow
                  * =====================================*/
                 case "MainProject":

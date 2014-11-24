@@ -38,7 +38,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                         Add(
                             el.Element(ns + "id").Value.Remove(0, 42),
-                            (el.Element(ns + "title").Value.IndexOf(" / PRO") >= 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value),
+                            (el.Element(ns + "title").Value.IndexOf(" / PRO") > 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value),
                             el.Element(ns + "content").Value.Remove(256) + (el.Element(ns + "content").Value.Length > 256 ? "..." : ""),
                             link,
                             el.Element(ns + "published").Value.Remove(10),

@@ -670,7 +670,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 Debug.Save("111111111111111111111", "GetInfo()",json.ToString());
 
-                JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json));
+                string ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json);
+
+                Debug.Save("222222222222222222222", "GetInfo()", ans);
+
+                JObject answer = JObject.Parse(ans);
 
                 /*
                  * code
@@ -678,19 +682,25 @@ namespace _Hell_WPF_Multipack_Launcher
                  * version
                  */
 
-                if (answer["status"].ToString() != "DISABLED")
+                if (answer["status"].ToString() != "FAIL")
                 {
-                    if (Variables.TanksVersion < new Version(answer["version"].ToString()))
+                    if (answer["status"].ToString() != "DISABLED")
                     {
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        if (Variables.TanksVersion < new Version(answer["version"].ToString()))
                         {
-                            lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, answer["version"].ToString());
-                        }));
+                            Dispatcher.BeginInvoke(new ThreadStart(delegate
+                            {
+                                lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, answer["version"].ToString());
+                            }));
+                        }
                     }
                 }
                 else
                 {
-                    Debug.Save("333333333333333333", "GetInfo()", answer.ToString());
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        lStatus.Text = Lang.Set("API", "gbCaption", lang, answer["content"].ToString());
+                    }));
                 }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "GetInfo()", ex.Message, ex.StackTrace)); }
