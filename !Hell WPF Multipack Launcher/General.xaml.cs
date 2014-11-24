@@ -40,13 +40,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
             string nickname = String.Empty;
 
-            if (MainWindow.XmlDocument.Root.Element("info").Attribute("language")!=null)
-            MessageBox.Show(MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value);
-
             Task.Factory.StartNew(() => Variables.Start()).Wait();
-
-            if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
-                MessageBox.Show(MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value);
 
             try
             {

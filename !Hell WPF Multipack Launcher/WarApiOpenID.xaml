@@ -7,5 +7,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WB_LoadCompleted"/>
+        <TextBox HorizontalAlignment="Left" Height="191" Margin="370,64,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="356"/>
     </Grid>
 </Window>

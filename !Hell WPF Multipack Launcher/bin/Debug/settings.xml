@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <info video="False" news="False" multipack="True" notification="0.0.0.0" language="ru" locale="2">
+  <info video="False" news="False" multipack="True" notification="0.0.0.0" language="en" locale="2">
     <notify_link />
   </info>
   <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
@@ -9,7 +9,7 @@
   </multipack>
   <game>
     <version>0.9.4.805</version>
-    <path></path>
+    <path>F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\bin\</path>
   </game>
   <youtube />
   <do_not_display>

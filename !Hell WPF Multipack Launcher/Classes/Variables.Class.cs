@@ -162,17 +162,19 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message, ex.StackTrace); }
 
                 //  Устанавливаем язык приложения
-                if (MainWindow.XmlDocument.Root.Element("info").Attribute("locale")!=null)
-                switch (Properties.Resources.Default_Lang_Priority)
-                {
-                    case "multipack": Lang = lang_pack; break;
-                    case "game": Lang = lang_game; break;
-                    case "manual":
-                        if (Doc.Root.Element("info").Attribute("language") != null)
-                            Lang = Doc.Root.Element("info").Attribute("language").Value.Trim();
-                        break;
-                    default: Lang = Properties.Resources.Default_Lang; break;
-                }
+                if (MainWindow.XmlDocument.Root.Element("info").Attribute("locale") != null)
+                    switch (MainWindow.XmlDocument.Root.Element("info").Attribute("locale").Value.Trim())
+                    {
+                        case "0": Lang = lang_pack; break;  //  Мультипак 0
+                        case "1": Lang = lang_game; break;       //  Клиент игры 1
+                        case "2":                              //  Вручную 2
+                            if (Doc.Root.Element("info").Attribute("language") != null)
+                                Lang = Doc.Root.Element("info").Attribute("language").Value.Trim();
+                            break;
+                        default: Lang = Properties.Resources.Default_Lang; break;
+                    }
+                else
+                    Lang = Properties.Resources.Default_Lang;
 
                 try
                 {
@@ -201,6 +203,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             MainWindow.XmlDocument.Root.Element("game").Element("version").SetValue(TanksVersion.ToString());
                         else
                             MainWindow.XmlDocument.Root.Element("game").Add(new XElement("version", TanksVersion.ToString()));
+
+                        // Путь к игре
+                        if (MainWindow.XmlDocument.Root.Element("game").Element("path") != null)
+                            MainWindow.XmlDocument.Root.Element("game").Element("path").SetValue(PathTanks);
+                        else
+                            MainWindow.XmlDocument.Root.Element("game").Add(new XElement("path", PathTanks));
                     }
                     else
                         MainWindow.XmlDocument.Root.Add(new XElement("info", new XAttribute("language", Lang)));
