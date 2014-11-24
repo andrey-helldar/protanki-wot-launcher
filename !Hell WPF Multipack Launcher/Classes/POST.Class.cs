@@ -239,5 +239,61 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
             return text;
         }
+
+        /// <summary>
+        /// Функция автоматической отправке неотправленных тикетов
+        /// </summary>
+        public void AutosendTicket()
+        {
+            try
+            {
+                if (Directory.Exists("tickets"))
+                {
+                    Language Lang = new Language();
+
+                    string status = String.Empty;
+                    string lang = Properties.Resources.Default_Lang;
+
+                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
+                        lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
+
+                    foreach (FileInfo file in new DirectoryInfo(@"/tickets/").GetFiles("*.ticket"))
+                    {
+                        try
+                        {
+                            JObject json = JObject.Parse(File.ReadAllText(file.FullName, Encoding.UTF8));
+                            JObject answer = JObject.Parse(Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket, json));
+
+                            if (answer["status"].ToString() != "FAIL" && answer["code"].ToString() == Properties.Resources.API)
+                            {
+                                switch (answer["status"].ToString())
+                                {
+                                    case "OK":
+                                        status += answer["id"].ToString() + "; ";
+                                        if (File.Exists(file.FullName)) File.Delete(file.FullName);
+                                        break;
+                                    case "BANNED":
+                                        status += answer["content"].ToString() + "; ";
+                                        if (File.Exists(file.FullName)) File.Delete(file.FullName);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                        catch (Exception) { }
+                    }
+
+                    if (status.Length > 0)
+                    {
+                        MainWindow.Notifier.ShowBalloonTip(5000,
+                            Lang.Set("PostClass", "AutoTicket", lang),
+                            Lang.Set("PostClass", "AutoTicketStatus", lang, status),
+                            System.Windows.Forms.ToolTipIcon.Info);
+                    }
+                }
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("POST.Class", "AutosendTicket()", ex.Message, ex.StackTrace)); }
+        }
     }
 }

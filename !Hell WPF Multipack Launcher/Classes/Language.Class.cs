@@ -28,7 +28,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return obj;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 System.Threading.Tasks.Task.Factory.StartNew(() => new Debug().Save("Language Class", "Translated", ex.Message, ex.StackTrace));
                 return null;
             }
@@ -497,7 +498,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "de": return "Schließen";
                                 default: return toReturn;
                             }
-                            
+
 
                         /* -----------------------------
                          *      Optimize
@@ -516,7 +517,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         default: return toReturn;
                     }
 
-                    
+
 
 
 
@@ -634,7 +635,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "en": return "Maximum message lenght is" + text + "symbols";
                                 case "de": return "Minimale Zeichenanzahl eines Beitrags beträgt: " + text + " Zeichen";
                                 default: return toReturn;
-                            }                          
+                            }
 
                         case "bSend":
                             switch (lang)
@@ -1046,7 +1047,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "en": return "You need to login in order to recieve account information!";
                                 case "de": return "Sie müssen sich anmelden, um auf Ihre Daten zugreifen zu können!";
                                 default: return toReturn;
-                            }  
+                            }
 
                         case "RepeatActivation":
                             switch (lang)
@@ -1055,9 +1056,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "en": return "Repeat the activation?";
                                 case "de": return "Wiederholen Sie den Aktivierungs?";
                                 default: return toReturn;
-                            }  
-                          
-                            
+                            }
+
+
 
                         default: return toReturn;
                     }
@@ -1124,24 +1125,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
-                            /* НОВЫЕ */
-                         case "junior_officer":
-                             switch (lang)
-                             {
-                                 case "ru": return "Младший офицер";
-                                 case "en": return "Junior officer";
-                                 case "de": return "Unteroffizier";
-                                 default: return toReturn;
-                             }
+                        /* НОВЫЕ */
+                        case "junior_officer":
+                            switch (lang)
+                            {
+                                case "ru": return "Младший офицер";
+                                case "en": return "Junior officer";
+                                case "de": return "Unteroffizier";
+                                default: return toReturn;
+                            }
 
-                         case "reservist":
-                             switch (lang)
-                             {
-                                 case "ru": return "Резервист";
-                                 case "en": return "Reservist";
-                                 case "de": return "Reservist";
-                                 default: return toReturn;
-                             }
+                        case "reservist":
+                            switch (lang)
+                            {
+                                case "ru": return "Резервист";
+                                case "en": return "Reservist";
+                                case "de": return "Reservist";
+                                default: return toReturn;
+                            }
 
                         //default: return toReturn;
                         default: return control;
@@ -1176,6 +1177,35 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                         default: return toReturn;
                     }
+
+
+
+
+                /* =====================================
+                 *      POST.Class
+                 * =====================================*/
+                case "PostClass":
+                    switch (control)
+                    {
+                        case "AutoTicket":
+                            switch (lang)
+                            {
+                                case "ru": return "Тикеты успешно отправлены";
+                                case "en": return "Тикеты успешно отправлены";
+                                case "de": return "Тикеты успешно отправлены";
+                                default: return toReturn;
+                            }
+
+                        case "AutoTicketStatus":
+                            switch (lang)
+                            {
+                                case "ru": return "Присвоенные номера: " + text;
+                                case "en": return "Присвоенные номера: " + text;
+                                case "de": return "Присвоенные номера: " + text;
+                                default: return toReturn;
+                            }
+                    }
+                    break;
 
                 default: return toReturn;
             }
