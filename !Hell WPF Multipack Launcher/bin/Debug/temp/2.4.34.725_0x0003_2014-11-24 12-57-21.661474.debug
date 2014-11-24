@@ -1,0 +1,12 @@
+﻿{
+  "uid": "64935334dc97650ae4e896ceebd4cae7",
+  "version": "2.4.34.725",
+  "date": "2014-11-24 12-57-21",
+  "module": "POST.Class",
+  "function": "Send()",
+  "param0": "URL: http://n.helldar.ru/api/wot/info",
+  "param1": "Data: data=1UcExMGPu/xi3Btd3e0mEG6XEPzz4FFx1Sq+RwkhVW43h1TQLU239hEdSMS6q8pnomEkM4TYi/laODbGb0+gmbvfLRHC9I2phbWW36Pyn4CSXhwloBbF7dGKehwVXJntN3aV20ueI7HzaHRcPz7KkppIXLLnXKKmvRF4Iuf+f1F6YwsCfaSYj/MfBQ+K8Umk2idmj7zmg2beB2GU009OLxIJD3U8XztFOZGn7DhoHLQtC8BDXwl+xNlLI1J7YgkeOFg4kCqGuii4VPk8Zz2taT4C2sScfC70he4stP0VageawwPXtZZpwm5UpL3wOd11bjMeQl1MtGzYe9B1Q8VZaYWamUeD+AFgbT8ASjMv/k1WZDk1jHUfuM1kjX72mKVZsKCULtnuBRreT28Dbk1iAzydji5Sy6eUoVminJmOg3NS1mCR1DXx1lstFqX1N0sothxWTfmPUSDlW1nsXSVL6w==&u=64935334dc97650ae4e896ceebd4cae7&e=1",
+  "param2": "Out: JUU2JURGJTk1UCU5QmxGJTgxJTFBJUVCJUREJThCJTBBJTI1JTlGJTlGbCU4OSU5MiU5NmclRkUlRkUlRjklMjUlRDIlRjQlOTAlOEJ1JUIzJUMzcCVFOVAlN0IlRDIlQTU1JTkyJUY1ZyVDMSU5NSU3RCUwRSVGOUQlRUUlMDQlQ0YlRkJuJUZDbSVGMyVGRSVDRCUxOC0lMTMlQjQlNDBO",
+  "param3": "Недопустимая длина данных для дешифрования.",
+  "param4": "   в System.Security.Cryptography.RijndaelManagedTransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)\r\n   в System.Security.Cryptography.CryptoStream.FlushFinalBlock()\r\n   в System.Security.Cryptography.CryptoStream.Dispose(Boolean disposing)\r\n   в System.IO.Stream.Close()\r\n   в System.IO.StreamReader.Dispose(Boolean disposing)\r\n   в System.IO.TextReader.Dispose()\r\n   в _Hell_WPF_Multipack_Launcher.Classes.POST.Decrypt(String Text, String KeyString) в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\Classes\\POST.Class.cs:строка 305\r\n   в _Hell_WPF_Multipack_Launcher.Classes.POST.Send(String Url, JObject json) в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\Classes\\POST.Class.cs:строка 58"
+}

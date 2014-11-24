@@ -671,8 +671,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 Debug.Save("111111111111111111111", "GetInfo()",json.ToString());
 
                 JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json));
-                
-                Debug.Save("222222222222222222222", "GetInfo()",answer.ToString());
+
                 /*
                  * code
                  * status

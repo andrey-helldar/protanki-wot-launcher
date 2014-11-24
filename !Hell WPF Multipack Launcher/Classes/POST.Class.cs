@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 
@@ -15,22 +14,22 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
     class POST
     {
         Debug Debug = new Debug();
+        Crypt Crypt = new Crypt();
 
 
         public string Send(string Url, JObject json)
         {
             string Data = String.Empty;
+            string Out = String.Empty;
 
             try
             {
                 string UserID = new Classes.Variables().GetUserID();
 
                 if (Properties.Resources.API_DEV_CRYPT == "1")
-                    Data = Encrypt(json.ToString(), UserID);
+                    Data = "data=" + Crypt.Encrypt(json.ToString(), UserID) + "&u=" + UserID + "&e=" + Properties.Resources.API_DEV_CRYPT;
                 else
-                    Data = json.ToString();
-
-                Data = "data=" + Data + "&u=" + UserID + "&e=" + Properties.Resources.API_DEV_CRYPT;
+                    Data = "data=" + json.ToString();
 
                 WebRequest req = WebRequest.Create(Url);
                 req.Method = "POST";
@@ -46,22 +45,20 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 StreamReader sr = new StreamReader(ReceiveStream, Encoding.UTF8);
                 Char[] read = new Char[256];
                 int count = sr.Read(read, 0, 256);
-                string Out = String.Empty;
                 while (count > 0)
                 {
                     String str = new String(read, 0, count);
                     Out += str;
                     count = sr.Read(read, 0, 256);
                 }
-                Debug.Save("POST.Class", "Send()", "json: " + Url, "Data: " + Data, "Answer: " + Out);
 
                 if (Properties.Resources.API_DEV_CRYPT == "1")
-                    Out = Decrypt(Out, UserID);
+                    Out = Crypt.Decrypt(Out, UserID);
 
                 return Out;
             }
-            catch (WebException we) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, we.Message, we.StackTrace); return "FAIL"; }
-            catch (Exception ex) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, ex.Message, ex.StackTrace); return "FAIL"; }
+            catch (WebException we) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, "Out: " + Out, we.Message, we.StackTrace); return "FAIL"; }
+            catch (Exception ex) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, "Out: " + Out, ex.Message, ex.StackTrace); return "FAIL"; }
         }
 
         public void HttpUploadFile(string url, string file, string paramName, string contentType, NameValueCollection nvc)
@@ -244,73 +241,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { new Debug().Save("POST Class", "Shield()", text, ex.Message, ex.StackTrace); }
 
             return text;
-        }
-
-        static string Encrypt(string plainText, string key)
-        {
-            string cipherText;
-            var rijndael = new RijndaelManaged()
-            {
-                Padding = PaddingMode.PKCS7,
-                Mode = CipherMode.ECB,
-                KeySize = 256,
-                BlockSize = 256,
-                Key = Encoding.UTF8.GetBytes(key),
-                IV = Encoding.UTF8.GetBytes(key),
-            };
-            ICryptoTransform encryptor = rijndael.CreateEncryptor(rijndael.Key, null);
-
-            using (var memoryStream = new MemoryStream())
-            {
-                using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
-                {
-                    using (var streamWriter = new StreamWriter(cryptoStream))
-                    {
-                        streamWriter.Write(plainText);
-                        streamWriter.Flush();
-                    }
-                    //cipherText = Convert.ToBase64String(Encoding.UTF8.GetBytes(Encoding.UTF8.GetString(memoryStream.ToArray())));
-                    cipherText = Convert.ToBase64String(memoryStream.ToArray());
-                    //cryptoStream.FlushFinalBlock();
-                }
-            }
-            return cipherText;
-        }
-
-        static private String Decrypt(string Text, string KeyString)
-        {
-            byte[] cypher = Convert.FromBase64String(Text);
-
-            var sRet = "";
-
-            var encoding = new UTF8Encoding();
-            var Key = encoding.GetBytes(KeyString);
-            var IV = encoding.GetBytes(KeyString);
-
-            using (var rj = new RijndaelManaged())
-            {
-                try
-                {
-                    rj.Padding = PaddingMode.PKCS7;
-                    rj.Mode = CipherMode.ECB;
-                    rj.KeySize = 256;
-                    rj.BlockSize = 256;
-                    rj.Key = Key;
-                    rj.IV = IV;
-                    var ms = new MemoryStream(cypher);
-
-                    using (var cs = new CryptoStream(ms, rj.CreateDecryptor(Key, IV), CryptoStreamMode.Read))
-                    {
-                        using (var sr = new StreamReader(cs))
-                        {
-                            sRet = sr.ReadLine();
-                        }
-                    }
-                }
-                finally { rj.Clear(); }
-            }
-
-            return sRet;
         }
     }
 }
