@@ -90,11 +90,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             if (File.Exists(SettingsPath))
             {
                 Doc = XDocument.Load(SettingsPath);
-
-                if (Doc.Root.Element("info") != null)
-                    if (Doc.Root.Element("info").Attribute("language") != null)
-                        Lang = Doc.Root.Element("info").Attribute("language").Value.Trim();
-
+                string lang_pack = Properties.Resources.Default_Lang;
+                string lang_game = Properties.Resources.Default_Lang;
 
                 // Загружаем версию клиента игры
                 try
@@ -141,8 +138,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
 
                         // Принудительно устанавливаем язык, читая файл настроек игры
-                        //Lang = doc.Root.Element("meta").Element("localization").Value;
-                        //Lang = Lang.Remove(0, Lang.IndexOf(" ")).ToLower().Trim();
+                        lang_game = doc.Root.Element("meta").Element("localization").Value;
+                        lang_game = lang_game.Remove(0, lang_game.IndexOf(" ")).ToLower().Trim();
                     }
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: Tanks Settings", ex.Message, ex.StackTrace)); }
@@ -159,11 +156,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
                         MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
                         MultipackVersion = new Version(VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
-
-                        //Lang = Properties.Resources.Default_Settings_Priority == "multipack" ? new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language") : Lang;
+                        lang_pack = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language");
                     }
                 }
                 catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message, ex.StackTrace); }
+
+                //  Устанавливаем язык приложения
+                //Lang = Properties.Resources.Default_Settings_Priority == "multipack" ? new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language") : Lang;
+                switch (Properties.Resources.Default_Settings_Priority)
+                {
+                    case "multipack": Lang = lang_pack; break;
+                    case "game": Lang = lang_game; break;
+                    case "manual":
+                        if (Doc.Root.Element("info").Attribute("language") != null)
+                            Lang = Doc.Root.Element("info").Attribute("language").Value.Trim();
+                        break;
+
+                    default: Lang = Properties.Resources.Default_Lang; break;
+                }
 
 
                 try { UpdateNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("notification") != null ? Doc.Root.Element("info").Attribute("notification").Value : null) : null; }
