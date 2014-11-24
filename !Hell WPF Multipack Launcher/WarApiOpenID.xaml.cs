@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using mshtml;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -33,6 +34,9 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
+                weff45gf.Text = WB.Source.ToString();
+                Debug.Save("WarAPI.xaml", "Source", WB.Source.ToString());
+
                 //if (WB.Source.ToString().IndexOf(Properties.Resources.Developer) > -1 && WB.Source.ToString().IndexOf("access_token") > 0)
                 if (WB.Source.ToString().IndexOf("status=ok") > -1)
                 {
@@ -87,5 +91,34 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
         }
+
+        private void WB_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            InjectDisableScript();
+        }
+
+        private void InjectDisableScript()
+        {
+            var doc = WB.Document as HTMLDocument;
+
+            if (doc != null)
+            {
+                //Create the sctipt element 
+                var scriptErrorSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
+                scriptErrorSuppressed.type = "text/javascript";
+                scriptErrorSuppressed.text = DisableScriptError;
+                //Inject it to the head of the page 
+                IHTMLElementCollection nodes = doc.getElementsByTagName("head");
+                foreach (IHTMLElement elem in nodes)
+                {
+                    var head = (HTMLHeadElement)elem;
+                    head.appendChild((IHTMLDOMNode)scriptErrorSuppressed);
+                }
+            }
+        }
+
+        private const string DisableScriptError =
+            @"function noError() {return true;}
+            window.onerror = noError;";
     }
 }
