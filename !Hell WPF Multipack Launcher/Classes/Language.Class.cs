@@ -1204,8 +1204,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "de": return "Присвоенные номера: " + text;
                                 default: return toReturn;
                             }
+
+                        default: return toReturn;
                     }
-                    break;
 
                 default: return toReturn;
             }

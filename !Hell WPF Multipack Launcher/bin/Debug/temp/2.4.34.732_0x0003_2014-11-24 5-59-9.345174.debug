@@ -1,9 +1,0 @@
-﻿{
-  "uid": "64935334dc97650ae4e896ceebd4cae7",
-  "version": "2.4.34.732",
-  "date": "2014-11-24 5-59-9",
-  "module": "Feedback.xaml",
-  "function": "bSend_Click()",
-  "param0": "Вызывающий поток не может получить доступ к данному объекту, так как владельцем этого объекта является другой поток.",
-  "param1": "   в System.Windows.DependencyObject.GetValue(DependencyProperty dp)\r\n   в System.Windows.Controls.TextBox.get_Text()\r\n   в _Hell_WPF_Multipack_Launcher.Feedback.<bSend_Click>b__a() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\Feedback.xaml.cs:строка 94"
-}

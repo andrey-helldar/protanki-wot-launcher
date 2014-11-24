@@ -639,6 +639,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void GetInfo()
         {
+            string ans = String.Empty;
+
             try
             {
                 Thread.Sleep(3000);
@@ -665,8 +667,9 @@ namespace _Hell_WPF_Multipack_Launcher
                                 new JProperty("lang", lang),
                                 new JProperty("os", "disabled")
                             );
-                
-                JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json));
+
+                ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json);
+                JObject answer = JObject.Parse(ans);
 
                 /*
                  * code
@@ -702,7 +705,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     }));
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "GetInfo()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "GetInfo()", ans, ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>

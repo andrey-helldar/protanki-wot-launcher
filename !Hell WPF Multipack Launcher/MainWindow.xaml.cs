@@ -248,6 +248,9 @@ namespace _Hell_WPF_Multipack_Launcher
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(4)", ex.InnerException.ToString(), ex.Message, ex.StackTrace)); }
             }).Wait();
+
+            // Запускаем функцию автоматической отправки неотправленных тикетов
+            Task.Factory.StartNew(() => new Classes.POST().AutosendTicket());
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

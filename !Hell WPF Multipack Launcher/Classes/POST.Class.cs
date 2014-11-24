@@ -247,17 +247,19 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
-                if (Directory.Exists("tickets"))
+                string path = Environment.CurrentDirectory;
+                string status = String.Empty;
+
+                if (Directory.Exists(path + @"\tickets"))
                 {
                     Language Lang = new Language();
 
-                    string status = String.Empty;
                     string lang = Properties.Resources.Default_Lang;
 
                     if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
                         lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
 
-                    foreach (FileInfo file in new DirectoryInfo(@"/tickets/").GetFiles("*.ticket"))
+                    foreach (FileInfo file in new DirectoryInfo(path + @"\tickets").GetFiles("*.ticket"))
                     {
                         try
                         {
@@ -276,9 +278,18 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                         status += answer["content"].ToString() + "; ";
                                         if (File.Exists(file.FullName)) File.Delete(file.FullName);
                                         break;
+                                    case "FAIL":
+                                        if (answer["content"].ToString() == "SOFTWARE_NOT_AUTORIZED")
+                                            if (File.Exists(file.FullName)) File.Delete(file.FullName);
+                                        break;
                                     default:
+                                        status += answer["content"].ToString() + ";  ";
                                         break;
                                 }
+                            }
+                            else
+                            {
+                                status += "   fail:: "+answer["content"].ToString() + ";  ";
                             }
                         }
                         catch (Exception) { }
@@ -292,6 +303,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             System.Windows.Forms.ToolTipIcon.Info);
                     }
                 }
+                else
+                {
+                    MainWindow.Notifier.ShowBalloonTip(5000,
+                        "Камрад!",
+                        "Папка не найдена!",
+                        System.Windows.Forms.ToolTipIcon.Info);
+                }
+
+                Task.Factory.StartNew(() => Debug.Save("POST.Class", "AutosendTicket()", status));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("POST.Class", "AutosendTicket()", ex.Message, ex.StackTrace)); }
         }
