@@ -201,8 +201,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 Clan = null,
                                                 Battles = null,
                                                 Provinces = null;
-
-
+                                            
 
                                             if (SelectToken(obj, "status", false) == "ok")
                                             {
@@ -657,7 +656,15 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 }
                                             }
                                             else
+                                            {
+                                                if (MainWindow.XmlDocument.Root.Element("token") != null)
+                                                    MainWindow.XmlDocument.Root.Element("token").Remove();
+
                                                 MessageBox.Show(Lang.Set("PageUser", "ErrorDataJson", lang));
+
+                                                try { MainWindow.Navigator(); }
+                                                catch (Exception) { }
+                                            }
                                         }
                                         catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", e.Message, e.StackTrace)); }
                                     }));
@@ -731,10 +738,9 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (MainWindow.XmlDocument.Root.Element("token") != null)
-                    if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr) != null)
-                        if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value != "")
-                            return true;
+                if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr) != null)
+                    if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value != "")
+                        return true;
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "CheckElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
             return false;
@@ -749,10 +755,8 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (MainWindow.XmlDocument.Root.Element("token") != null)
-                    if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr) != null)
-                        if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value != "")
-                            return MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value;
+                if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value != "")
+                    return MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value;
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "GetElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
 
