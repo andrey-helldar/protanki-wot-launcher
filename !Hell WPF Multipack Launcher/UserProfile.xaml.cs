@@ -29,7 +29,6 @@ namespace _Hell_WPF_Multipack_Launcher
     {
         Classes.Debug Debug = new Classes.Debug();
         Classes.Language Lang = new Classes.Language();
-
         Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
 
         string lang = Properties.Resources.Default_Lang;
@@ -50,11 +49,14 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim();
+            if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
+                lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim();
+            else
+                lang = Properties.Resources.Default_Lang;
 
-            Style s = new Style();
+            /*Style s = new Style();
             s.Setters.Add(new Setter(UIElement.VisibilityProperty, Visibility.Collapsed));
-            tc.ItemContainerStyle = s;
+            tc.ItemContainerStyle = s;*/
 
             bool active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
 
@@ -755,26 +757,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try { MainWindow.LoadingPanelShow(); }
             catch (Exception) { }
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            tc.SelectedIndex = 0;
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            tc.SelectedIndex = 1;
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            tc.SelectedIndex = 2;
-        }
-
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            tc.SelectedIndex = 3;
         }
 
         private string DateFormat(string date, string format = "dd.MM.yyyy")
