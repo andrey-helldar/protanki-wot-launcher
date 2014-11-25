@@ -25,11 +25,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-
-
-
         <Button x:Name="bClose" Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="Button_Click" Style="{DynamicResource ButtonCLOSE}" Grid.Row="1"/>
-        <TabControl x:Name="tc" Margin="10,0,10,10" Background="{x:Null}" BorderBrush="{x:Null}">
+        <TabControl x:Name="tc" Margin="5,0,5,5" Background="{x:Null}" BorderBrush="{x:Null}">
 
             <TabControl.Resources>
                 <Style TargetType="{x:Type TabControl}">
@@ -60,22 +57,24 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type TabItem}">
-                                <Grid>
-                                    <Border Name="Border" Margin="7,0" Cursor="Hand" BorderThickness="1,1,1,1">
-                                        <Grid Margin="0">
-                                            <Rectangle x:Name="cbImage12"
+                                <StackPanel Background="Black" HorizontalAlignment="Center" Margin="0">
+                                    <Grid Background="Red" HorizontalAlignment="Center" Margin="5">
+                                        <Border Name="Border" Margin="7,0" Cursor="Hand" BorderThickness="1,1,1,1">
+                                            <Grid Margin="0">
+                                                <Rectangle x:Name="cbImage12"
                                                 Width="8"
                                                 Height="8"
                                                 Stretch="Fill"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Center">
-                                                <Rectangle.Fill>
-                                                    <ImageBrush ImageSource="Resources/page_select.png"/>
-                                                </Rectangle.Fill>
-                                            </Rectangle>
-                                        </Grid>
-                                    </Border>
-                                </Grid>
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="Resources/page_select.png"/>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </StackPanel>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Rectangle.Fill" TargetName="cbImage12">
@@ -272,7 +271,7 @@
                                         <TextBlock Style="{DynamicResource CmName}" Text="d_voronoff" Grid.Column="1"/>
                                         <TextBlock Style="{DynamicResource CmTitle}" Text="Командующий" Grid.Column="2"/>
                                         <TextBlock Style="{DynamicResource CmDate}" Text="01.01.2014" Grid.Column="3"/>
-                                        </Grid>
+                                    </Grid>
                                 </ListBoxItem>
                             </ListBox>
                         </Grid>
@@ -298,7 +297,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <StackPanel HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center">
+        <!--<StackPanel HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -306,11 +305,11 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Button Style="{DynamicResource tcPage}" Grid.Column="0" Content=" " Margin="7,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+                <Button Style="{DynamicResource tcPage}" Grid.Column="0" Content=" " Margin="7,0" Click="Button_Click_1" Height="Auto"/>
                 <Button Style="{DynamicResource tcPage}" Grid.Column="1" Content=" " Margin="7,0" Click="Button_Click_2"/>
                 <Button Style="{DynamicResource tcPage}" Grid.Column="2" Content=" " Margin="7,0" Click="Button_Click_3"/>
                 <Button Style="{DynamicResource tcPage}" Grid.Column="3" Content=" " Margin="7,0" Click="Button_Click_4"/>
             </Grid>
-        </StackPanel>
+        </StackPanel>//-->
     </Grid>
 </Page>
