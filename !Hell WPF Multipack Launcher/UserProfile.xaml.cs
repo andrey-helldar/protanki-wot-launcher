@@ -54,22 +54,21 @@ namespace _Hell_WPF_Multipack_Launcher
             else
                 lang = Properties.Resources.Default_Lang;
 
-            /*Style s = new Style();
-            s.Setters.Add(new Setter(UIElement.VisibilityProperty, Visibility.Collapsed));
-            tc.ItemContainerStyle = s;*/
-
-            bool active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
+            bool active = false;
+            try { active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id"); }
+            catch (Exception) { active = false; }
 
             try
             {
+                // Проверяем актуальность даты
                 if (active)
                 {
                     DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
                     dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at").Value)).ToLocalTime();
-
                     active = dtDateTime > DateTime.UtcNow;
                 }
 
+                // Если токен неверный, либо устарел - выводим авторизацию
                 if (!active)
                 {
                     try
@@ -89,8 +88,10 @@ namespace _Hell_WPF_Multipack_Launcher
                             WarApiOpenID.ShowDialog();
                         }))).Wait();
 
+                        // Проверяем токен
                         active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
 
+                        // Если неактивен, загружаем главную страницу
                         if (!active)
                         {
                             MainWindow.LoadingPanelShow(1);
@@ -103,7 +104,25 @@ namespace _Hell_WPF_Multipack_Launcher
                         }
                         else
                         {
+                            // Если все нормально - грузим информацию о пользователе
                             Task.Factory.StartNew(() => { AccountInfo(); });
+
+                            // Копируем ник юзера в блок Info XML
+                            Task.Factory.StartNew(() =>
+                            {
+                                try
+                                {
+                                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("user_name") != null &&
+                                        MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
+                                    {
+                                        if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value != "")
+                                            MainWindow.XmlDocument.Root.Element("info").Attribute("user_name").SetValue(
+                                                MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value
+                                                );
+                                    }
+                                }
+                                catch (Exception) { }
+                            });
                         }
                     }
                     catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", ex.Message, ex.StackTrace)); }
@@ -120,10 +139,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
             Task.Factory.StartNew(() =>
             {
-                try
-                {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
-                }
+                try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
             });
         }
@@ -151,48 +167,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
             try
             {     
+                // Проверяем актуальность токена
                 bool active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
-
-                /*try
-                {
-                    if (active)
-                    {
-                        DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                        dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at").Value)).ToLocalTime();
-
-                        active = dtDateTime > DateTime.UtcNow;
-                    }
-
-                    if (!active)
-                    {
-                        if (MainWindow.XmlDocument.Root.Element("token") != null)
-                            MainWindow.XmlDocument.Root.Element("token").Remove();
-
-                        try
-                        {
-                            WarApiOpenID WarApiOpenID = new WarApiOpenID();
-                            WarApiOpenID.WB.Source = new Uri(WarAPI.OpenID());
-                            WarApiOpenID.ShowDialog();
-
-                            active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
-                        }
-                        catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", ex.Message, ex.StackTrace)); }
-                    }
-                    else
-                    {
-                        Task.Factory.StartNew(() =>
-                        {
-                            try
-                            {
-                                Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator("UserProfile"); }));
-                            }
-                            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
-                        });
-                    }
-                }
-                catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (active)", e.Message, e.StackTrace)); }
-                */
-
 
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {

@@ -145,6 +145,13 @@ namespace _Hell_WPF_Multipack_Launcher
                         while (match.Success)
                         {
                             Debug.Save("WarApiOpenID.xaml", "SetValue()", WB.Source.ToString(), match.Value);
+
+                            try
+                            {
+                                if (MainWindow.XmlDocument.Root.Element("info").Attribute("user_email") != null)
+                                    MainWindow.XmlDocument.Root.Element("info").Attribute("user_email").SetValue(match.Value.Trim());
+                            }
+                            catch (Exception) { }
                             match = match.NextMatch();
                         }
                     }

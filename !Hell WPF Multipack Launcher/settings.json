@@ -14,7 +14,8 @@
         "language": "ru",
         "locale": 2,
         "notify_link": "",
-        "user_email": ""
+        "user_email": "",
+        "user_name": ""
     },
     "settings": {
         "kill": false,

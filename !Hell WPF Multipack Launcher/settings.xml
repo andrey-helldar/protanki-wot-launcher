@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pro>
   <token access_token="9794b5b3ad931588a3ed5a21f87d6511337d83d1" expires_at="1418113094" nickname="First_Helldar" account_id="2732865" />
-  <info video="False" news="False" multipack="True" notification="0.0.0.0" language="ru" locale="2">
+  <info video="False" news="False" multipack="True" notification="0.0.0.0" language="ru" locale="2" user_email="" user_name="">
     <notify_link />
   </info>
   <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
