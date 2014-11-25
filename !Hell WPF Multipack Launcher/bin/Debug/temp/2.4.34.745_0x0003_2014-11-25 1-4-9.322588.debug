@@ -1,9 +1,0 @@
-﻿{
-  "uid": "64935334dc97650ae4e896ceebd4cae7",
-  "version": "2.4.34.745",
-  "date": "2014-11-25 1-4-9",
-  "module": "Youtube.Class",
-  "function": "Start()",
-  "param0": "Невозможно разрешить удаленное имя: 'gdata.youtube.com'",
-  "param1": "   в System.Net.HttpWebRequest.GetResponse()\r\n   в System.Xml.XmlDownloadManager.GetNonFileStream(Uri uri, ICredentials credentials, IWebProxy proxy, RequestCachePolicy cachePolicy)\r\n   в System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)\r\n   в System.Xml.XmlTextReaderImpl.FinishInitUriString()\r\n   в System.Xml.XmlReaderSettings.CreateReader(String inputUri, XmlParserContext inputContext)\r\n   в System.Xml.Linq.XDocument.Load(String uri, LoadOptions options)\r\n   в _Hell_WPF_Multipack_Launcher.Classes.YoutubeVideo.Start() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\Classes\\Youtube.Class.cs:строка 29"
-}

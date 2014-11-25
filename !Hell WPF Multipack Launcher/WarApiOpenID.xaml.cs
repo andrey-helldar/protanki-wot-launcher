@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using mshtml;
@@ -35,9 +36,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                weff45gf.Text = WB.Source.ToString();
-                ParseMail("load completed");
-
                 //if (WB.Source.ToString().IndexOf(Properties.Resources.Developer) > -1 && WB.Source.ToString().IndexOf("access_token") > 0)
                 if (WB.Source.ToString().IndexOf("status=ok") > -1)
                 {
@@ -96,7 +94,6 @@ namespace _Hell_WPF_Multipack_Launcher
         private void WB_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             InjectDisableScript();
-            ParseMail("navigated");
         }
 
         private void InjectDisableScript()
@@ -116,54 +113,65 @@ namespace _Hell_WPF_Multipack_Launcher
                     var head = (HTMLHeadElement)elem;
                     head.appendChild((IHTMLDOMNode)scriptErrorSuppressed);
                 }
-            }
-        }
 
-        /*private const string DisableScriptError =
-            @"//function noError() {return true;}
-            //window.onerror = noError;";*/
-
-        private const string DisableScriptError =
-            @"function noError() {return true;}
-              function setOnClick(){document.getElementsByTagName('h1')[0].innerHTML = 'Hello, world!';}
-              window.onerror = noError;
-              window.onload = setOnClick;";
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ParseMail("button");
-        }
-
-        private void ParseMail(string sd)
-        {
-            var doc = WB.Document as HTMLDocument;
-
-            if (doc != null)
-            {
-                Regex regex = new Regex(@"\w+[a-zA-Z0-9-_.]+@+\w+[a-zA-Z0-9-]+.[a-zA-Z]{2,10}");
-
-                IHTMLElementCollection nodes = doc.getElementsByTagName("body");
-                foreach (IHTMLElement elem in nodes)
+                //Create the sctipt element 
+                var scriptEmailSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
+                scriptEmailSuppressed.type = "text/javascript";
+                scriptEmailSuppressed.text = GetFuckingEmail;
+                //Inject it to the head of the page 
+                IHTMLElementCollection nodesEmail = doc.getElementsByTagName("body");
+                foreach (IHTMLElement elem in nodesEmail)
                 {
                     var body = (HTMLHeadElement)elem;
-
-                    Match match = regex.Match(body.innerHTML);
-                    while (match.Success)
-                    {
-                        Debug.Save("WarApiOpenID.xaml", WB.Source.ToString(), sd, match.Value);
-                        qw.Items.Add(match.Value);
-                        match = match.NextMatch();
-                    }
-
-                    // Теперь ищем кнопку
-                    
+                    body.appendChild((IHTMLDOMNode)scriptEmailSuppressed);
                 }
             }
         }
 
+        private const string DisableScriptError =
+            @"function noError() {return true;}
+              window.onerror = noError;";
+
+        private const string GetFuckingEmail =
+            @"function setOnClick2(){alert($('#id_login').val()); $('h1').text($('#id_login').val());}
+			  $(function(){
+				$('input[type=submit]').click(function(){setOnClick2()});
+			});";
+
+        private void ParseEmail()
+        {
+            try
+            {
+                var doc = WB.Document as HTMLDocument;
+
+                if (
+                    doc != null &&
+                    WB.Source.ToString() != Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_OpenID &&
+                    WB.Source.ToString().IndexOf("AUTH_CANCEL") == -1
+                    )
+                {
+                    Regex regex = new Regex(@"\w+[a-zA-Z0-9-_.]+@+\w+[a-zA-Z0-9-]+.[a-zA-Z]{2,10}");
+
+                    IHTMLElementCollection nodes = doc.getElementsByTagName("html");
+                    foreach (IHTMLElement elem in nodes)
+                    {
+                        var body = (HTMLHeadElement)elem;
+
+                        Match match = regex.Match(body.innerHTML);
+                        while (match.Success)
+                        {
+                            Debug.Save("WarApiOpenID.xaml", "SetValue()", WB.Source.ToString(), match.Value);
+                            match = match.NextMatch();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { Debug.Save("WarApiOpenID.xaml", "ParseEmail()", WB.Source.ToString(), ex.Message, ex.StackTrace); }
+        }
+
         private void WB_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
-            ParseMail("navigating");
+            ParseEmail();
         }
     }
 }
