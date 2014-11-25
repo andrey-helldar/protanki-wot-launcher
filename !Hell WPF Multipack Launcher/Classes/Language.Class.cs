@@ -1097,6 +1097,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        case "NotClan":
+                            switch (lang)
+                            {
+                                case "ru": return "Вы не состоите в клане";
+                                case "en": return "Вы не состоите в клане";
+                                case "de": return "Вы не состоите в клане";
+                                default: return toReturn;
+                            }
+
 
 
                         default: return toReturn;
@@ -1164,7 +1173,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
-                        /* НОВЫЕ */
                         case "junior_officer":
                             switch (lang)
                             {

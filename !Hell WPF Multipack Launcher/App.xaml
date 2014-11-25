@@ -2381,10 +2381,18 @@
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="cbImage12">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/page.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsMouseOver" Value="True" />
                                     <Condition Property="IsSelected" Value="False" />
+                                    <Condition Property="IsEnabled" Value="True" />
                                 </MultiTrigger.Conditions>
                                 <MultiTrigger.Setters>
                                     <Setter Property="Rectangle.Fill" TargetName="cbImage12">

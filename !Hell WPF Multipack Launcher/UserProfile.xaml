@@ -26,7 +26,7 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="bClose" Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="Button_Click" Style="{DynamicResource ButtonCLOSE}" Grid.Row="1"/>
-        <TabControl x:Name="tc" Margin="5,0,5,5" Background="{x:Null}" BorderBrush="{x:Null}">
+        <TabControl x:Name="tcInfo" Margin="5,0,5,5" Background="{x:Null}" BorderBrush="{x:Null}">
             <TabItem Header="Персональная информация">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -49,7 +49,7 @@
                             </Grid.RowDefinitions>
                             <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="0" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF3a6696" FontWeight="Bold" FontFamily="Arial" FontSize="18">
                     <Run x:Name="PlayerName">Guest</Run>
-                    <Run x:Name="PlayerClan">[---]</Run>
+                    <Run x:Name="PlayerClan"></Run>
                             </TextBlock>
                             <StackPanel Grid.Row="2">
                                 <Grid Margin="0">
@@ -144,7 +144,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Общая информация">
+            <TabItem x:Name="tiClanInfo" Header="Общая информация">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -209,7 +209,7 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Список боев">
+            <TabItem x:Name="tiClanBattles" Header="Список боев">
                 <Grid>
                     <ListBox x:Name="ClanBattles" Margin="0">
                         <ListBoxItem Style="{DynamicResource rec_not_found}">
@@ -218,7 +218,7 @@
                     </ListBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Список владений">
+            <TabItem x:Name="tiClanProvinces" Header="Список владений">
                 <Grid>
                     <ListBox x:Name="ClanProvinces" Margin="0">
                         <ListBoxItem Style="{DynamicResource rec_not_found}">
