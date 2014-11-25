@@ -184,10 +184,6 @@
     <value>PROTankiWoT</value>
     <comment>Имя канала на ютубе</comment>
   </data>
-  <data name="Default_Lang_Priority" xml:space="preserve">
-    <value>multipack</value>
-    <comment>Дефолтный путь для загрузки настроек: "multipack", "game" или "manual"</comment>
-  </data>
   <data name="API" xml:space="preserve">
     <value>05b877de3962048c5d1bd7cc18d4b286</value>
     <comment>Wargaming API code</comment>
