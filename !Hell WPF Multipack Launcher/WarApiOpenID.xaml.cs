@@ -109,22 +109,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 //Inject it to the head of the page 
                 IHTMLElementCollection nodes = doc.getElementsByTagName("head");
                 foreach (IHTMLElement elem in nodes)
-                {
-                    var head = (HTMLHeadElement)elem;
-                    head.appendChild((IHTMLDOMNode)scriptErrorSuppressed);
-                }
-
-                //Create the sctipt element 
-                var scriptEmailSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
-                scriptEmailSuppressed.type = "text/javascript";
-                scriptEmailSuppressed.text = GetFuckingEmail;
-                //Inject it to the head of the page 
-                IHTMLElementCollection nodesEmail = doc.getElementsByTagName("body");
-                foreach (IHTMLElement elem in nodesEmail)
-                {
-                    var body = (HTMLHeadElement)elem;
-                    body.appendChild((IHTMLDOMNode)scriptEmailSuppressed);
-                }
+                    (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
             }
         }
 
@@ -132,13 +117,12 @@ namespace _Hell_WPF_Multipack_Launcher
             @"function noError() {return true;}
               window.onerror = noError;";
 
-        private const string GetFuckingEmail =
-            @"function setOnClick2(){alert($('#id_login').val()); $('h1').text($('#id_login').val());}
-			  $(function(){
-				$('input[type=submit]').click(function(){setOnClick2()});
-			});";
-
-        private void ParseEmail()
+        /// <summary>
+        /// Считываем email при подтверждении отправки формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WB_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
             try
             {
@@ -166,12 +150,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                 }
             }
-            catch (Exception ex) { Debug.Save("WarApiOpenID.xaml", "ParseEmail()", WB.Source.ToString(), ex.Message, ex.StackTrace); }
-        }
-
-        private void WB_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
-        {
-            ParseEmail();
+            catch (Exception ex) { Debug.Save("WarApiOpenID.xaml", "WB_Navigating()", WB.Source.ToString(), ex.Message, ex.StackTrace); }
         }
     }
 }
