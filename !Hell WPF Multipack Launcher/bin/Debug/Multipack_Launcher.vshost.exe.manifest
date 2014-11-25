@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack_Launcher" version="2.4.34.743" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack_Launcher" version="2.4.34.745" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack_Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -56,13 +56,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack_Launcher.exe" size="4382720">
-      <assemblyIdentity name="Multipack_Launcher" version="2.4.34.743" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Multipack_Launcher" version="2.4.34.745" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>W3aDrYpuJvZi8drkyHtAbnheWrk=</dsig:DigestValue>
+        <dsig:DigestValue>uwkIbUQP49E1ueSaYTjt0qADrNE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -114,6 +114,15 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="InjectJS.js" size="579">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>DaWeqh/bJq7uAJ2Rix0Kqn97/3M=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Multipack_Launcher.exe.config" size="167">
     <hash>
       <dsig:Transforms>

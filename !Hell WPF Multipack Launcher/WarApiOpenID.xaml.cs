@@ -119,9 +119,15 @@ namespace _Hell_WPF_Multipack_Launcher
             }
         }
 
+        /*private const string DisableScriptError =
+            @"//function noError() {return true;}
+            //window.onerror = noError;";*/
+
         private const string DisableScriptError =
             @"function noError() {return true;}
-            window.onerror = noError;";
+              function setOnClick(){document.getElementsByTagName('h1')[0].innerHTML = 'Hello, world!';}
+              window.onerror = noError;
+              window.onload = setOnClick;";
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -148,8 +154,16 @@ namespace _Hell_WPF_Multipack_Launcher
                         qw.Items.Add(match.Value);
                         match = match.NextMatch();
                     }
+
+                    // Теперь ищем кнопку
+                    
                 }
             }
+        }
+
+        private void WB_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            ParseMail("navigating");
         }
     }
 }

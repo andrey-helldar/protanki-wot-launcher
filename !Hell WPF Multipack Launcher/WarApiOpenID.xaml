@@ -12,7 +12,7 @@
             <RowDefinition Height="91"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WB_LoadCompleted" Grid.Row="1" Navigated="WB_Navigated" Grid.ColumnSpan="3"/>
+        <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WB_LoadCompleted" Grid.Row="1" Navigated="WB_Navigated" Grid.ColumnSpan="3" Navigating="WB_Navigating"/>
         <TextBox x:Name="weff45gf" Margin="0,0,10,0" TextWrapping="Wrap" Text="TextBox"/>
         <Button Content="Button" Grid.Column="2" HorizontalAlignment="Left" Margin="23,20,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <ListBox x:Name="qw" Grid.Column="1" Margin="0" Background="#FFE8E3E3"/>
