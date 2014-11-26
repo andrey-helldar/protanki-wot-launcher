@@ -22,7 +22,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
         //public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.json";
         private string SettingsPath = "settings.json";
-        
+
         string lang = Properties.Resources.Default_Lang;
 
         // Product
@@ -79,7 +79,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 MainWindow.JsonSettingsSet("info.ProductName", Application.Current.GetType().Assembly.GetName().Name);
                 MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major == 5, "bool");
-                
+
                 string lang_pack = Properties.Resources.Default_Lang;
                 string lang_game = Properties.Resources.Default_Lang;
 
@@ -87,7 +87,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                  *      Дополнительные переменные
                  */
                 MainWindow.JsonSettingsSet("info.user_id", GetUserID());
-                
+
 
                 /*
                  *      Путь к игре
@@ -229,7 +229,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
         }
 
-        private string GetUserID()
+        public string GetUserID()
         {
             try
             {
@@ -370,6 +370,38 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try { if (!File.Exists(filename)) File.WriteAllBytes(filename, resource); }
             catch (Exception) { }
+        }
+
+        public bool ElementToBan(string block, string item)
+        {
+            try
+            {
+                JArray ja = (JArray)MainWindow.JsonSettingsGet("do_not_display." + block);
+                if (ja.IndexOf(item) == -1) ja.Add(new JProperty("item", item.Replace(@"\", @"\\")));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace));
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Находится ли элемент в бане?
+        /// </summary>
+        /// <param name="block"></param>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool ElementIsBan(string block, string item)
+        {
+            try
+            {
+                JArray ja = (JArray)MainWindow.JsonSettingsGet("do_not_display." + block);
+                if (ja.IndexOf(item) == -1) return false;
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace)); }
+            return true;
         }
     }
 }

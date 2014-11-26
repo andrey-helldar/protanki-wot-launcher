@@ -26,9 +26,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
+                Variables Variables = new Variables();
+
                 string lang = (string)MainWindow.JsonSettingsGet("info.language");
-
-
                 XDocument doc;
 
                 if(lang == "ru")
@@ -37,7 +37,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     doc = XDocument.Load(String.Format(Properties.Resources.RssWotEU, lang));
 
                 foreach (XElement el in doc.Root.Element("channel").Elements("item"))
-                    if (!new Classes.Variables().ElementBan(el.Element("link").Value, "news"))
+                        if (!Variables.ElementIsBan("news", el.Element("link").Value))
                     {
                         Add(
                             el.Element("title").Value,

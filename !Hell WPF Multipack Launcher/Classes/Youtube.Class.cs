@@ -29,9 +29,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 XDocument doc = XDocument.Load(String.Format(Properties.Resources.RssYoutube, Properties.Resources.YoutubeChannel));
                 XNamespace ns = "http://www.w3.org/2005/Atom";
 
+                Variables Variables = new Variables();
+
                 foreach (XElement el in doc.Root.Elements(ns + "entry"))
                 {
-                    if (!new Classes.Variables().ElementBan(el.Element(ns + "id").Value.Remove(0, 42).ToUpper()))
+                    if (!Variables.ElementIsBan("video", el.Element(ns + "id").Value.Remove(0, 42)))
                     {
                         string link = "";
                         foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }

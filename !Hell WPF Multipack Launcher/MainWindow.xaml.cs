@@ -26,10 +26,7 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        /*********************
-         * Variables
-         * *******************/
-        //Classes.Variables Variables = new Classes.Variables();
+        Classes.Variables Variables = new Classes.Variables();
         Classes.Debug Debug = new Classes.Debug();
         Classes.Optimize Optimize = new Classes.Optimize();
         Classes.Language Lang = new Classes.Language();
@@ -38,7 +35,7 @@ namespace _Hell_WPF_Multipack_Launcher
         public System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
         public static System.Windows.Forms.NotifyIcon Notifier { get { return notifier; } }
         private static System.Windows.Forms.NotifyIcon notifier;
-        public static string NotifyLink = String.Empty;
+        //public static string NotifyLink = String.Empty;
 
         public static Frame MainFrame0 { get { return mainFrame; } }
         private static Frame mainFrame;
@@ -59,8 +56,8 @@ namespace _Hell_WPF_Multipack_Launcher
         private static JObject jSettings;
 
 
-        public static string MultipackDate = "1970-1-1";
-        public static string ProductName = String.Empty;
+        //public static string MultipackDate = "1970-1-1";
+        //public static string ProductName = String.Empty;
 
 
         /*********************
@@ -119,21 +116,13 @@ namespace _Hell_WPF_Multipack_Launcher
 
             loadingpanel = 1;
             Task.Factory.StartNew(() => LoadingPanel());    // LoadingPanel
-
-            // Загружаем настройки из XML-файла
-            /*if (File.Exists(Variables.SettingsPath))
-                xmlDocument = XDocument.Load(Variables.SettingsPath);
-            this.Closing += delegate { xmlDocument = null; };*/
-
+            
             // Загружаем настройки из JSON
             JsonSettingsLoad();
             this.Closing += delegate { jSettings = null; };
 
 
             Task.Factory.StartNew(() => new Classes.Variables().Start()).Wait();
-            //MultipackDate = Variables.MultipackDate;
-            //ProductName = Variables.ProductName;
-
             Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
         }
 
@@ -164,7 +153,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 else
                 {// "Файл настроек не обнаружен"
-                    MessageBox.Show(Lang.Set("MainWindow", "do_not_settings", Lang));
+                    MessageShow(Lang.Set("MainWindow", "Settings_Not_Found", (string)JsonSettingsGet("info.language")));
                     jSettings = null;
                 }
             }
@@ -346,17 +335,17 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     try
                     {
-                        Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/WOT.ico")).Stream;
+                        Stream iconStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + (string)JsonSettingsGet("info.ProductName") + ";component/Resources/WOT.ico")).Stream;
                         if (iconStream != null) notifyIcon.Icon = new System.Drawing.Icon(iconStream);
                         notifyIcon.Visible = true;
-                        notifyIcon.Text = Variables.ProductName;
+                        notifyIcon.Text = (string)JsonSettingsGet("info.ProductName");
                         notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
                     }
                     catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
 
                     try
                     {
-                        Stream cursorStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + Variables.ProductName + ";component/Resources/cursor_chrome.cur")).Stream;
+                        Stream cursorStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + (string)JsonSettingsGet("info.ProductName") + ";component/Resources/cursor_chrome.cur")).Stream;
                         MainProject.Cursor = new Cursor(cursorStream);
                     }
                     catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(5)", "cursorStream", ex.Message, ex.StackTrace)); }
@@ -417,8 +406,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void NotifyClick(object sender, EventArgs e)
         {
-            try { OpenLink(NotifyLink); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + NotifyLink, ex.Message, ex.StackTrace)); }
+            try { OpenLink((string)JsonSettingsGet("info.notify_link")); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + (string)JsonSettingsGet("info.notify_link"), ex.Message, ex.StackTrace)); }
         }
 
         private void OpenLink(string url)
@@ -433,7 +422,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    if (File.Exists(Variables.PathTanks + "WorldOfTanks.exe"))
+                    if (File.Exists((string)JsonSettingsGet("game.path") + "WorldOfTanks.exe"))
                     {
                         Optimize.Start(
                                 (bool)JsonSettingsGet("settings.winxp"),
@@ -445,7 +434,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 true
                             );
 
-                        ProcessStart(Variables.PathTanks, "WorldOfTanks.exe");
+                        ProcessStart((string)JsonSettingsGet("game.path"), "WorldOfTanks.exe");
                     }
                     else
                         MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
@@ -466,8 +455,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
-                        ProcessStart(Variables.PathTanks, "WoTLauncher.exe");
+                    if (File.Exists((string)JsonSettingsGet("game.path") + "WoTLauncher.exe"))
+                        ProcessStart((string)JsonSettingsGet("game.path"), "WoTLauncher.exe");
                     else
                         MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
                 }
@@ -511,7 +500,7 @@ namespace _Hell_WPF_Multipack_Launcher
             //Dispatcher.BeginInvoke(new ThreadStart(delegate
             //{
             // Images & other
-            try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, (string)JsonSettingsGet("info.language")))); }
+            try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)JsonSettingsGet("info.ProductName"), (string)JsonSettingsGet("info.language")))); }
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
@@ -521,7 +510,7 @@ namespace _Hell_WPF_Multipack_Launcher
             // Text
             try
             {
-                bPlayTb.Text = Lang.Set("MainProject", "bPlay", Variables.Lang.Trim());
+                bPlayTb.Text = Lang.Set("MainProject", "bPlay", (string)JsonSettingsGet("info.language"));
             }
             catch (Exception ex)
             {

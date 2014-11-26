@@ -50,11 +50,16 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 MainWindow.LoadingPanelShow();
 
-
-                if ((string)MainWindow.JsonSettingsGet("token.email") != null)
+                if ((string)MainWindow.JsonSettingsGet("info.user_email") != null &&
+                    (string)MainWindow.JsonSettingsGet("info.user_email") != "")
                 {
-                    tbEmail.Text = (string)MainWindow.JsonSettingsGet("token.email");
+                    tbEmail.Text = (string)MainWindow.JsonSettingsGet("info.user_email");
                     tbEmail.IsEnabled = false;
+                }
+                else
+                {
+                    tbEmail.Text = "";
+                    tbEmail.IsEnabled = true;
                 }
             }
             catch (Exception) { tbEmail.IsEnabled = true; }
@@ -97,7 +102,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             // Dictionary<string, string> json1 = new Dictionary<string, string>();
                             Classes.POST POST = new Classes.POST();
-                            Classes.Variables Variables = new Classes.Variables();
+                            //Classes.Variables Variables = new Classes.Variables();
 
                             string cat = String.Empty;
                             string status = string.Empty;
@@ -132,12 +137,12 @@ namespace _Hell_WPF_Multipack_Launcher
 
                             JObject json = new JObject(
                                 new JProperty("code", Properties.Resources.API),
-                                new JProperty("user_id", Variables.GetUserID()),
-                                new JProperty("user_name", GetTokenRec("nickname")),
+                                new JProperty("user_id", (string)MainWindow.JsonSettingsGet("info.user_id")),
+                                new JProperty("user_name", (string)MainWindow.JsonSettingsGet("info.user_name")),
                                 new JProperty("user_email", POST.Shield(tbEmail.Text.Trim())),
-                                new JProperty("modpack_type", Variables.MultipackType),
-                                new JProperty("modpack_ver", Variables.MultipackVersion.ToString()),
-                                new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
+                                new JProperty("modpack_type", (string)MainWindow.JsonSettingsGet("multipack.type")),
+                                new JProperty("modpack_ver", (string)MainWindow.JsonSettingsGet("multipack.version")),
+                                new JProperty("launcher", (string)MainWindow.JsonSettingsGet("info.ProductName")),
                                 new JProperty("youtube", Properties.Resources.YoutubeChannel),
                                 new JProperty("lang", lang),
                                 new JProperty("os", "disabled"),
@@ -188,7 +193,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="rec">Передаем имя аттрибута</param>
         /// <returns>Получаем значение, если ключ существует</returns>
-        private string GetTokenRec(string rec)
+        /*private string GetTokenRec(string rec)
         {
             try
             {
@@ -201,7 +206,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     return "";
             }
             catch (Exception) { return ""; }
-        }
+        }*/
 
         private void tbMessage_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -253,15 +258,13 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                string UserID = new Classes.Variables().GetUserID();
-
                 if (!Directory.Exists("tickets")) { Directory.CreateDirectory("tickets"); }
 
-                string filename = String.Format("{0}_{1}.ticket", UserID, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
+                string filename = String.Format("{0}_{1}.ticket", (string)MainWindow.JsonSettingsGet("info.user_id"), DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
 
                 if (Properties.Resources.API_DEV_CRYPT == "1")
                 {
-                    string encoded = new Classes.Crypt().Encrypt(json.ToString(), UserID, true);
+                    string encoded = new Classes.Crypt().Encrypt(json.ToString(), (string)MainWindow.JsonSettingsGet("info.user_id"), true);
                     if (encoded != "FAIL") File.WriteAllText(@"tickets\" + filename, encoded, Encoding.UTF8);
                 }
                 else
@@ -271,17 +274,13 @@ namespace _Hell_WPF_Multipack_Launcher
                 tbMessage.Text = String.Empty;
                 tbEmail.Text = String.Empty;
 
-
                 // Выдаем сообщение о сохранении тикета
                 MainWindow.Notifier.ShowBalloonTip(5000,
                     Lang.Set("PostClass", "AutoTicketWait", lang),
                     Lang.Set("PageFeedback", "TicketSaved", lang),
                     System.Windows.Forms.ToolTipIcon.Info);
             }
-            catch (Exception ex)
-            {
-                Task.Factory.StartNew(() => Debug.Save("PageFeedback", "SaveTicket()", ex.Message, ex.StackTrace));
-            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageFeedback", "SaveTicket()", ex.Message, ex.StackTrace)); }
         }
     }
 }

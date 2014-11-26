@@ -22,7 +22,7 @@
         "launcher": 0
     },
     "multipack": {
-        "type": null,
+        "type": "base",
         "version": "0.0.0.0",
         "date": null,
         "link": null

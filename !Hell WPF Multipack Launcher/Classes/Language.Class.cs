@@ -159,6 +159,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        case "Settings_Not_Found":
+                            switch (lang)
+                            {
+                                case "ru": return "Настройки лаунчера не обнаружены!";
+                                case "en": return "Настройки лаунчера не обнаружены!";
+                                case "de": return "Настройки лаунчера не обнаружены!";
+                                default: return toReturn;
+                            }
+
                         case "Ticket_2_Developer":
                             switch (lang)
                             {

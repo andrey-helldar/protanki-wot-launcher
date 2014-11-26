@@ -40,7 +40,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
             string nickname = String.Empty;
 
-            Task.Factory.StartNew(() => Variables.Start()).Wait();
+            //Task.Factory.StartNew(() => Variables.Start()).Wait();
 
             try
             {
@@ -324,7 +324,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                     try
                                     {
-                                        MainWindow.NotifyLink = el.Link;
+                                        //MainWindow.NotifyLink = el.Link;
+                                        MainWindow.JsonSettingsSet("info.notify_link", el.Link);
 
                                         Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
 
@@ -382,7 +383,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                     try
                                     {
-                                        MainWindow.NotifyLink = el.Link;
+                                        //MainWindow.NotifyLink = el.Link;
+                                        MainWindow.JsonSettingsSet("info.notify_link", el.Link);
 
                                         Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowNews", lang), el.Title));
 
@@ -409,7 +411,7 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 foreach (var el in YoutubeClass.List)
-                    try { if (!YoutubeClass.CheckDate(MainWindow.MultipackDate, el.Date)) YoutubeClass.Delete(el.ID); }
+                    try { if (!YoutubeClass.CheckDate((string)MainWindow.JsonSettingsGet("multipack.date"), el.Date)) YoutubeClass.Delete(el.ID); }
                     catch (Exception) { DeleteOldVideo(); }
             }
             catch (Exception) { }
@@ -431,7 +433,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         try
                         {
-                            caption = caption != null ? caption : MainWindow.ProductName;
+                            caption = caption != null ? caption : (string)MainWindow.JsonSettingsGet("info.ProductName");
                             MainWindow.Notifier.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
                         }
                         catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", "Caption: " + caption, text, "IsPopup = " + isPopup.ToString(), ex0.Message, ex0.StackTrace)); }
@@ -488,7 +490,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     case "CloseWargaming":
                         Hyperlink elem = Find(el, "LinkWargaming_" + arr[1]);
-                        if (elem != null) ElementToBan("news", elem.NavigateUri.AbsoluteUri);
+                        if (elem != null) Variables.ElementToBan("news", elem.NavigateUri.AbsoluteUri);
                         break;
 
                     default:
@@ -497,7 +499,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         if (elemY != null)
                         {
                             string[] item = elemY.NavigateUri.AbsoluteUri.Split('/');
-                            ElementToBan("video", item[2].ToUpper());
+                            Variables.ElementToBan("video", item[2].ToUpper());
                         }
                         break;
                 }
@@ -537,21 +539,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "PlayPreview()", ex.Message, ex.StackTrace)); }
             }));
-        }
-
-        public bool ElementToBan(string block, string item)
-        {
-            try
-            {
-                JArray ja = (JArray)MainWindow.JsonSettingsGet("do_not_display." + block);
-                if (ja.IndexOf(item) == -1) ja.Add(new JProperty("item", item.Replace(@"\", @"\\")));
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace));
-                return true;
-            }
         }
 
         /// <summary>
@@ -604,17 +591,17 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (MessageBox.Show(Lang.Set("Optimize", "Optimize", lang) + "?", MainWindow.ProductName, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show(Lang.Set("Optimize", "Optimize", lang) + "?", (string)MainWindow.JsonSettingsGet("info.ProductName"), MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     StatusBarSet(true);
 
                     new Classes.Optimize().Start(
-                            Variables.GetElement("settings", "winxp"),
-                            Variables.GetElement("settings", "kill"),
-                            Variables.GetElement("settings", "force"),
-                            Variables.GetElement("settings", "aero"),
-                            Variables.GetElement("settings", "video"),
-                            Variables.GetElement("settings", "weak"),
+                            (bool)MainWindow.JsonSettingsGet("settings.winxp"),
+                            (bool)MainWindow.JsonSettingsGet("settings.kill"),
+                            (bool)MainWindow.JsonSettingsGet("settings.force"),
+                            (bool)MainWindow.JsonSettingsGet("settings.aero"),
+                            (bool)MainWindow.JsonSettingsGet("settings.video"),
+                            (bool)MainWindow.JsonSettingsGet("settings.weak"),
                             true
                         );
 
@@ -659,10 +646,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
             Task.Factory.StartNew(() =>
             {
-                try
-                {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(page); }));
-                }
+                try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(page); })); }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "OpenPage()", "Page: " + page, ex.Message, ex.StackTrace)); }
             });
         }
@@ -676,7 +660,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
-                // Text
                 try
                 {
                     lNews.Content = Lang.Set("PageGeneral", "lNews", lang);
@@ -705,14 +688,14 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 JObject json = new JObject(
                                 new JProperty("code", Properties.Resources.API),
-                                new JProperty("user_id", Variables.GetUserID()),
-                                new JProperty("user_name", GetTokenRec("nickname")),
-                                new JProperty("user_email", GetTokenRec("email")),
-                                new JProperty("modpack_type", Variables.MultipackType),
-                                new JProperty("modpack_ver", Variables.MultipackVersion.ToString()),
+                                new JProperty("user_id", (string)MainWindow.JsonSettingsGet("info.user_id")),
+                                new JProperty("user_name", (string)MainWindow.JsonSettingsGet("info.user_name")),
+                                new JProperty("user_email", (string)MainWindow.JsonSettingsGet("info.user_email")),
+                                new JProperty("modpack_type", (string)MainWindow.JsonSettingsGet("multipack.type")),
+                                new JProperty("modpack_ver", (string)MainWindow.JsonSettingsGet("multipack.version")),
                                 new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
-                                new JProperty("game", Variables.TanksVersion.ToString()),
-                                new JProperty("game_test", Variables.CommonTest),
+                                new JProperty("game", (string)MainWindow.JsonSettingsGet("game.version")),
+                                new JProperty("game_test", (string)MainWindow.JsonSettingsGet("game.test")),
                                 new JProperty("youtube", Properties.Resources.YoutubeChannel),
                                 new JProperty("lang", lang),
                                 new JProperty("os", "disabled")
@@ -731,7 +714,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     if (answer["status"].ToString() == "OK")
                     {
-                        if (Variables.TanksVersion < new Version(answer["version"].ToString()))
+                        if (new Version((string)MainWindow.JsonSettingsGet("game.version")) < new Version(answer["version"].ToString()))
                         {
                             Dispatcher.BeginInvoke(new ThreadStart(delegate
                             {
@@ -763,7 +746,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="rec">Передаем имя аттрибута</param>
         /// <returns>Получаем значение, если ключ существует</returns>
-        private string GetTokenRec(string rec)
+        /*private string GetTokenRec(string rec)
         {
             try
             {
@@ -776,11 +759,6 @@ namespace _Hell_WPF_Multipack_Launcher
                     return "";
             }
             catch (Exception) { return ""; }
-        }
-
-        private void ShowErr(System.IO.IOException ioEx)
-        {
-            MessageBox.Show(ioEx.Message + Environment.NewLine + Environment.NewLine + ioEx.StackTrace);
-        }
+        }*/
     }
 }
