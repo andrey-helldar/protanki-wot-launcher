@@ -161,7 +161,7 @@
     <value>http://goo.gl/LXaU7T</value>
     <comment>Ссылка на видео проекта</comment>
   </data>
-  <data name="restart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Restart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\restart.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="RssWotEU" xml:space="preserve">
@@ -448,9 +448,6 @@
   <data name="Processes_Library" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Processes.Library.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="SettingsXML" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\settings.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="API_DEV_Ticket" xml:space="preserve">
     <value>/api/wot/ticket</value>
     <comment>Тикет-система обратной связи</comment>
@@ -478,5 +475,8 @@
   <data name="Default_Sleeping_Notify" xml:space="preserve">
     <value>3000</value>
     <comment>Таймаут между показом уведомлений новостей и видео</comment>
+  </data>
+  <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\settings.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

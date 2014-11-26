@@ -29,11 +29,11 @@ namespace _Hell_WPF_Multipack_Launcher
         /*********************
          * Variables
          * *******************/
-        Classes.Variables Variables = new Classes.Variables();
+        //Classes.Variables Variables = new Classes.Variables();
         Classes.Debug Debug = new Classes.Debug();
         Classes.Optimize Optimize = new Classes.Optimize();
         Classes.Language Lang = new Classes.Language();
-        
+
 
         public System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
         public static System.Windows.Forms.NotifyIcon Notifier { get { return notifier; } }
@@ -55,7 +55,7 @@ namespace _Hell_WPF_Multipack_Launcher
         //public static XDocument XmlDocument { get { return xmlDocument; } }
         //private static XDocument xmlDocument;
 
-        // Глобальная переменная настроек
+        // Глобальная переменная настроек ПО
         private static JObject jSettings;
 
 
@@ -130,9 +130,9 @@ namespace _Hell_WPF_Multipack_Launcher
             this.Closing += delegate { jSettings = null; };
 
 
-            Variables.Start();
-            MultipackDate = Variables.MultipackDate;
-            ProductName = Variables.ProductName;
+            Task.Factory.StartNew(() => new Classes.Variables().Start()).Wait();
+            //MultipackDate = Variables.MultipackDate;
+            //ProductName = Variables.ProductName;
 
             Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
         }
@@ -158,7 +158,10 @@ namespace _Hell_WPF_Multipack_Launcher
                         jSettings = JObject.Parse(decrypt);
                 }
                 else
+                {// "Файл настроек не обнаружен"
+                    MessageBox.Show(Language.Set("variables_class", "do_not_settings", Lang));
                     jSettings = null;
+                }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "JsonLoadSettings()", ex.Message, ex.StackTrace)); }
         }
@@ -502,24 +505,24 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             //Dispatcher.BeginInvoke(new ThreadStart(delegate
             //{
-                // Images & other
-                try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, (string)JsonSettingsGet("info.language")))); }
-                catch (Exception ex)
-                {
-                    Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
-                    MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
-                }
+            // Images & other
+            try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, (string)JsonSettingsGet("info.language")))); }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
+                MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
+            }
 
-                // Text
-                try
-                {
-                    bPlayTb.Text = Lang.Set("MainProject", "bPlay", Variables.Lang.Trim());
-                }
-                catch (Exception ex)
-                {
-                    Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
-                    MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
-                }
+            // Text
+            try
+            {
+                bPlayTb.Text = Lang.Set("MainProject", "bPlay", Variables.Lang.Trim());
+            }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
+                MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
+            }
             //}));
         }
 
@@ -538,6 +541,16 @@ namespace _Hell_WPF_Multipack_Launcher
                 Task.Factory.StartNew(() => Debug.Save("MainWindow.xaml", "FindLoadingPanel()", "Find LoadingPanel", ex.Message, ex.StackTrace));
                 return null;
             }
+        }
+
+        public static void MessageShow(string text, string caption = "", MessageBoxButton mbb = MessageBoxButton.OK)
+        {
+            try
+            {
+                caption = caption != "" ? caption : (string)JsonSettingsGet("info.ProductName");
+                MessageBox.Show(text, caption, mbb, MessageBoxImage.Information);
+            }
+            catch (Exception) { }
         }
     }
 }

@@ -16,11 +16,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Variables
     {
-        //public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings2.xml";
-        public string SettingsPath = "settings.xml";
+        //public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.json";
+        public string SettingsPath = "settings.json";
 
         // Product
-        public string ProductName = String.Empty;
+        /*public string ProductName = String.Empty;
         public string Lang = Properties.Resources.Default_Lang;
 
         // Multipack
@@ -45,7 +45,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                        UpdateTanksVersion = new Version("0.0.0.0");
 
         // Launcher settings
-        public XDocument Doc = null;
+        //public XDocument Doc = null;
 
         public bool AutoKill = false,
                     AutoForceKill = false,
@@ -59,7 +59,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
         // Other
         public bool ShowVideoNotify = true,
-                    CommonTest = false;
+                    CommonTest = false;*/
+
+        JObject obj;
+        string lang = Properties.Resources.Default_Lang;
 
         Debug Debug = new Debug();
         Language Language = new Language();
@@ -68,180 +71,139 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /********************
          * Functions
          * ******************/
-
         public void Start()
         {
             try
             {
-                ProductName = Application.Current.GetType().Assembly.GetName().Name;
+                SaveFromResources();
 
-                ItXP();
+                MainWindow.JsonSettingsSet("info.ProductName", Application.Current.GetType().Assembly.GetName().Name);
+                MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major == 5, "bool");
 
-                Task.Factory.StartNew(() => new Update().SaveFromResources()).Wait();
-                Task.Factory.StartNew(() => LoadSettings()).Wait();
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", ex.Message, ex.StackTrace)); }
-        }
-
-        private void LoadSettings()
-        {
-            if (File.Exists(SettingsPath))
-            {
-                Doc = XDocument.Load(SettingsPath);
                 string lang_pack = Properties.Resources.Default_Lang;
                 string lang_game = Properties.Resources.Default_Lang;
-
-                // Загружаем версию клиента игры
+                                
+                /*
+                 *      Путь к игре
+                 */
                 try
                 {
-                    if (Doc.Root.Element("game") != null)
-                        if (Doc.Root.Element("game").Element("path") != null)
-                            if (Doc.Root.Element("game").Element("path").Value != "")
-                                PathTanks = Doc.Root.Element("game").Element("path").Value;
-                            else
-                            {
-                                PathTanks = File.Exists(@"..\version.xml") ? CorrectPath(Directory.GetCurrentDirectory(), -1) : GetTanksRegistry();
-                                Doc.Root.Element("game").Element("path").SetValue(PathTanks);
-                                Doc.Save(SettingsPath);
-                            }
-                }
-                catch (Exception ex)
-                {
-                    PathTanks = String.Empty;
-                    Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: PathTanks", ex.Message, ex.StackTrace));
-                }
-
-                try
-                {
+                    string path_tanks;
                     if (File.Exists(@"..\version.xml"))
+                        path_tanks = CorrectPath(Directory.GetCurrentDirectory(), -1);
+                    else
                     {
+                        var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
+                        path_tanks = key != null ? (string)key.GetValue("InstallLocation") : null;
+                    }
+                    if (path_tanks != null)
+                        MainWindow.JsonSettingsSet("game.path", path_tanks);
+                    else
+                        MainWindow.MessageShow(Language.Set("MainProject", "Game_Not_Found", lang));
+
+
+                    if (path_tanks != null)
+                    {
+                        /*
+                         *  Версия клиента игры
+                         */
                         XDocument doc = XDocument.Load(@"..\version.xml");
 
                         if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
                         {
-                            CommonTest = true;
-                            TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
+                            MainWindow.JsonSettingsSet("game.test", true, "bool");
+                            MainWindow.JsonSettingsSet("game.version", doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
                         }
                         else
-                            TanksVersion = new Version(doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
-
-
-                        try
                         {
-                            if (Doc.Root.Element("game") != null)
-                                if (Doc.Root.Element("game").Element("version") != null)
-                                    Doc.Root.Element("game").Element("version").SetValue(TanksVersion.ToString());
+                            MainWindow.JsonSettingsSet("game.test", false, "bool");
+                            MainWindow.JsonSettingsSet("game.version", doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" #", "."));
                         }
-                        catch (Exception we) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: TanksVersion", we.Message, we.StackTrace)); }
 
-
-                        // Принудительно устанавливаем язык, читая файл настроек игры
+                        /*
+                         *  Язык локализации игры
+                         */
                         lang_game = doc.Root.Element("meta").Element("localization").Value;
                         lang_game = lang_game.Remove(0, lang_game.IndexOf(" ")).ToLower().Trim();
                     }
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "LoadSettings()", "Row: Tanks Settings", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", "Row: PathTanks", ex.Message, ex.StackTrace)); }
 
 
-                // Загружаем config.ini
-                try
-                {
-                    if (File.Exists(Properties.Resources.SettingsMultipack))
+                /*
+                 *  Грузим конфиг лаунчера
+                 */
+
+                    // Загружаем config.ini
+                    try
                     {
-                        // Загружаем данные
-                        string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsMultipack;
+                        if (File.Exists(Properties.Resources.SettingsMultipack))
+                        {
+                            // Загружаем данные
+                            string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsMultipack;
 
-                        MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
-                        MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
-                        MultipackVersion = new Version(VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
-                        lang_pack = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language");
+                            MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
+                            MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
+                            MultipackVersion = new Version(VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
+                            lang_pack = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language");
+                        }
                     }
-                }
-                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message, ex.StackTrace); }
+                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message, ex.StackTrace); }
 
-                //  Устанавливаем язык приложения
-                if (MainWindow.XmlDocument.Root.Element("info").Attribute("locale") != null)
-                    switch (MainWindow.XmlDocument.Root.Element("info").Attribute("locale").Value.Trim())
+                    //  Устанавливаем язык приложения
+                    switch ((int)MainWindow.JsonSettingsGet("info.locale"))
                     {
-                        case "0": Lang = lang_pack; break;  //  Мультипак 0
-                        case "1": Lang = lang_game; break;       //  Клиент игры 1
-                        case "2":                              //  Вручную 2
-                            if (Doc.Root.Element("info").Attribute("language") != null)
-                                Lang = Doc.Root.Element("info").Attribute("language").Value.Trim();
+                        case 0: Lang = lang_pack; break;  //  Мультипак 0
+                        case 1: Lang = lang_game; break;       //  Клиент игры 1
+                        case 2:                              //  Вручную 2
+                            Lang = (string)MainWindow.JsonSettingsGet("info.language");
                             break;
                         default: Lang = Properties.Resources.Default_Lang; break;
                     }
-                else
-                    Lang = Properties.Resources.Default_Lang;
 
-                try
-                {
-                    if (MainWindow.XmlDocument.Root.Element("info") != null)
+                    try
                     {
                         // Язык
-                        if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
-                            MainWindow.XmlDocument.Root.Element("info").Attribute("language").SetValue(Lang);
-                        else
-                            MainWindow.XmlDocument.Root.Element("info").Add(new XAttribute("language", Lang));
-
+                        MainWindow.JsonSettingsSet("info.language", Lang);
                         // Тип мультипака
-                        if (MainWindow.XmlDocument.Root.Element("multipack").Attribute("type") != null)
-                            MainWindow.XmlDocument.Root.Element("multipack").Attribute("type").SetValue(MultipackType);
-                        else
-                            MainWindow.XmlDocument.Root.Element("multipack").Add(new XAttribute("type", MultipackType));
-
+                        MainWindow.JsonSettingsSet("multipack.type", MultipackType);
                         // Версия мультипака
-                        if (MainWindow.XmlDocument.Root.Element("multipack").Attribute("version") != null)
-                            MainWindow.XmlDocument.Root.Element("multipack").Attribute("version").SetValue(MultipackVersion.ToString());
-                        else
-                            MainWindow.XmlDocument.Root.Element("multipack").Add(new XAttribute("version", MultipackVersion.ToString()));
-
+                        MainWindow.JsonSettingsSet("multipack.version", MultipackVersion.ToString());
                         // Версия клиента игры
-                        if (MainWindow.XmlDocument.Root.Element("game").Element("version") != null)
-                            MainWindow.XmlDocument.Root.Element("game").Element("version").SetValue(TanksVersion.ToString());
-                        else
-                            MainWindow.XmlDocument.Root.Element("game").Add(new XElement("version", TanksVersion.ToString()));
-
+                        MainWindow.JsonSettingsSet("game.version", TanksVersion.ToString());
                         // Путь к игре
-                        if (MainWindow.XmlDocument.Root.Element("game").Element("path") != null)
-                            MainWindow.XmlDocument.Root.Element("game").Element("path").SetValue(PathTanks);
-                        else
-                            MainWindow.XmlDocument.Root.Element("game").Add(new XElement("path", PathTanks));
+                        MainWindow.JsonSettingsSet("game.path", PathTanks);
                     }
-                    else
-                        MainWindow.XmlDocument.Root.Add(new XElement("info", new XAttribute("language", Lang)));
-                }
-                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: Apply language", ex.Message, ex.StackTrace); }
+                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: Apply language", ex.Message, ex.StackTrace); }
 
 
-                try { UpdateNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("notification") != null ? Doc.Root.Element("info").Attribute("notification").Value : null) : null; }
-                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: UpdateNotify", ex.Message, ex.StackTrace); }
+                    try { UpdateNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("notification") != null ? Doc.Root.Element("info").Attribute("notification").Value : null) : null; }
+                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: UpdateNotify", ex.Message, ex.StackTrace); }
 
 
-                try { ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true; }
-                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: ShowVideoNotify", ex.Message, ex.StackTrace); }
+                    try { ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true; }
+                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: ShowVideoNotify", ex.Message, ex.StackTrace); }
 
-                try
-                {
-                    if (Doc.Root.Element("settings") != null)
+                    try
                     {
-                        AutoKill = Doc.Root.Element("settings").Attribute("kill") != null ? Doc.Root.Element("settings").Attribute("kill").Value == "True" : false;
-                        AutoForceKill = Doc.Root.Element("settings").Attribute("force") != null ? Doc.Root.Element("settings").Attribute("force").Value == "True" : false;
+                        if (Doc.Root.Element("settings") != null)
+                        {
+                            AutoKill = Doc.Root.Element("settings").Attribute("kill") != null ? Doc.Root.Element("settings").Attribute("kill").Value == "True" : false;
+                            AutoForceKill = Doc.Root.Element("settings").Attribute("force") != null ? Doc.Root.Element("settings").Attribute("force").Value == "True" : false;
 
-                        AutoAero = Doc.Root.Element("settings").Attribute("aero") != null ? Doc.Root.Element("settings").Attribute("aero").Value == "True" : false;
-                        AutoVideo = ReadCheckStateBool(Doc, "video");
-                        AutoWeak = Doc.Root.Element("settings").Attribute("weak") != null ? Doc.Root.Element("settings").Attribute("weak").Value == "True" : false;
-                        AutoCPU = Doc.Root.Element("settings").Attribute("balance") != null ? Doc.Root.Element("settings").Attribute("balance").Value == "True" : false;
+                            AutoAero = Doc.Root.Element("settings").Attribute("aero") != null ? Doc.Root.Element("settings").Attribute("aero").Value == "True" : false;
+                            AutoVideo = ReadCheckStateBool(Doc, "video");
+                            AutoWeak = Doc.Root.Element("settings").Attribute("weak") != null ? Doc.Root.Element("settings").Attribute("weak").Value == "True" : false;
+                            AutoCPU = Doc.Root.Element("settings").Attribute("balance") != null ? Doc.Root.Element("settings").Attribute("balance").Value == "True" : false;
+                        }
                     }
-                }
-                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `settings`", ex.Message, ex.StackTrace); }
+                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `settings`", ex.Message, ex.StackTrace); }
 
-                try { if (Doc.Root.Element("common.test") != null) CommonTest = true; }
-                catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `common.test`", ex.Message, ex.StackTrace); }
+                    try { if (Doc.Root.Element("common.test") != null) CommonTest = true; }
+                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `common.test`", ex.Message, ex.StackTrace); }
+                
             }
-            else
-                // "Файл настроек не обнаружен"
-                MessageBox.Show(Language.Set("variables_class", "do_not_settings", Lang));
+            catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", e.Message, e.StackTrace)); }
         }
 
         private bool ReadCheckStateBool(XDocument doc, string attr)
@@ -263,7 +225,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("Variables.Class", "ReadCheckStateBool()", "Attribute: " + attr, doc.ToString(), ex.Message, ex.StackTrace); return false; }
         }
 
-        private string GetTanksRegistry()
+        /*private string GetTanksRegistry()
         {
             try
             {
@@ -271,7 +233,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 return key != null ? (string)key.GetValue("InstallLocation") : null;
             }
             catch (Exception ex) { Debug.Save("Variables.Class", "GetTanksRegistry()", ex.Message, ex.StackTrace); return null; }
-        }
+        }*/
 
         private string CorrectPath(string sourcePath, int remove = 0)
         {
@@ -400,6 +362,39 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("Variables.Class", "GetElement()", block, attr, ex.Message, ex.StackTrace); }
 
             return true;
+        }
+        /// <summary>
+        /// ИЗвлечение ресурсов, если оригинальные файлы не найдены
+        /// </summary>
+        /// <returns>TRUE при успешном извлечении, иначе - FALSE</returns>
+        public bool SaveFromResources()
+        {
+            try
+            {
+                Task.WaitAll(new Task[]{
+                    Task.Factory.StartNew(() => SavingFile("restart.exe", Properties.Resources.Restart)),
+                    Task.Factory.StartNew(() => SavingFile("Processes.Library.dll", Properties.Resources.Processes_Library)),
+                    
+                    Task.Factory.StartNew(() => SavingFile(SettingsPath, Properties.Resources.Settings)),
+                    
+                    Task.Factory.StartNew(() => SavingFile("Ionic.Zip.dll", Properties.Resources.Ionic_Zip)),
+                    Task.Factory.StartNew(() => SavingFile("Newtonsoft.Json.dll", Properties.Resources.Newtonsoft_Json)),
+                    Task.Factory.StartNew(() => SavingFile("Ookii.Dialogs.Wpf.dll", Properties.Resources.Ookii_Dialogs_Wpf))
+                });
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => new Debug().Save("Update.Class", "SaveFromResources()", ex.Message, ex.StackTrace));
+                return false;
+            }
+        }
+
+        private void SavingFile(string filename, byte[] resource)
+        {
+            try { if (!File.Exists(filename)) File.WriteAllBytes(filename, resource); }
+            catch (Exception) { }
         }
     }
 }

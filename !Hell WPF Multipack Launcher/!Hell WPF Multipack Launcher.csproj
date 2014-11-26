@@ -186,7 +186,6 @@
     <Compile Include="Classes\INI.Class.cs" />
     <Compile Include="Classes\Optimize.Class.cs" />
     <Compile Include="Classes\POST.Class.cs" />
-    <Compile Include="Classes\Update.Class.cs" />
     <Compile Include="Classes\Variables.Class.cs" />
     <Compile Include="Classes\Wargaming.Class.cs" />
     <Compile Include="Classes\Youtube.Class.cs" />
@@ -260,6 +259,9 @@
     </EmbeddedResource>
     <Resource Include="Fonts\Micra.ttf" />
     <Resource Include="Fonts\sochi.ttf" />
+    <None Include="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -436,9 +438,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ava.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\line.png" />
   </ItemGroup>
   <ItemGroup>
@@ -530,6 +529,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Newtonsoft.Json.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ava.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
