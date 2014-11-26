@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Ini;
 
 namespace _Hell_WPF_Multipack_Launcher.Classes
 {
@@ -82,7 +82,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 string lang_pack = Properties.Resources.Default_Lang;
                 string lang_game = Properties.Resources.Default_Lang;
-                                
+
                 /*
                  *      Путь к игре
                  */
@@ -131,77 +131,45 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
 
                 /*
-                 *  Грузим конфиг лаунчера
+                 *  Грузим конфиг мультипака
                  */
-
-                    // Загружаем config.ini
-                    try
+                try
+                {
+                    if (File.Exists(Properties.Resources.Settings_Multipack))
                     {
-                        if (File.Exists(Properties.Resources.SettingsMultipack))
+                        using (StreamReader reader = File.OpenText(Properties.Resources.Settings_Multipack))
                         {
-                            // Загружаем данные
-                            string pathINI = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.SettingsMultipack;
+                            JObject o = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
 
-                            MultipackDate = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "date");
-                            MultipackType = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "type").ToLower();
-                            MultipackVersion = new Version(VersionPrefix(TanksVersion) + new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "version"));
-                            lang_pack = new IniFile(pathINI).IniReadValue(Properties.Resources.INI, "language");
+                            MainWindow.JsonSettingsSet("multipack.type", (string)o.SelectToken("type"));
+                            MainWindow.JsonSettingsSet("multipack.version", (string)o.SelectToken("path") + "." + (string)o.SelectToken("version"));
+                            MainWindow.JsonSettingsSet("multipack.date", (string)o.SelectToken("date"));
+                            MainWindow.JsonSettingsSet("multipack.language", (string)o.SelectToken("language"));
                         }
                     }
-                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading config.ini", ex.Message, ex.StackTrace); }
+                    else
+                        MainWindow.MessageShow(Language.Set("MainProject", "Pack_Not_Found", lang));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", "Row: Multipack config", ex.Message, ex.StackTrace)); }
 
+
+                /*
+                 *  Определяем дефолтный язык лаунчера
+                 */
+                try
+                {
                     //  Устанавливаем язык приложения
                     switch ((int)MainWindow.JsonSettingsGet("info.locale"))
                     {
-                        case 0: Lang = lang_pack; break;  //  Мультипак 0
-                        case 1: Lang = lang_game; break;       //  Клиент игры 1
-                        case 2:                              //  Вручную 2
-                            Lang = (string)MainWindow.JsonSettingsGet("info.language");
-                            break;
-                        default: Lang = Properties.Resources.Default_Lang; break;
+                        case 0: lang = lang_pack; break;  //  Мультипак 0
+                        case 1: lang = lang_game; break;       //  Клиент игры 1
+                        case 2: lang = (string)MainWindow.JsonSettingsGet("info.language"); break;//  Вручную 2
+                        default: lang = Properties.Resources.Default_Lang; break;
                     }
 
-                    try
-                    {
-                        // Язык
-                        MainWindow.JsonSettingsSet("info.language", Lang);
-                        // Тип мультипака
-                        MainWindow.JsonSettingsSet("multipack.type", MultipackType);
-                        // Версия мультипака
-                        MainWindow.JsonSettingsSet("multipack.version", MultipackVersion.ToString());
-                        // Версия клиента игры
-                        MainWindow.JsonSettingsSet("game.version", TanksVersion.ToString());
-                        // Путь к игре
-                        MainWindow.JsonSettingsSet("game.path", PathTanks);
-                    }
-                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: Apply language", ex.Message, ex.StackTrace); }
-
-
-                    try { UpdateNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("notification") != null ? Doc.Root.Element("info").Attribute("notification").Value : null) : null; }
-                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: UpdateNotify", ex.Message, ex.StackTrace); }
-
-
-                    try { ShowVideoNotify = Doc.Root.Element("info") != null ? (Doc.Root.Element("info").Attribute("video") != null ? (Doc.Root.Element("info").Attribute("video").Value == "True") : true) : true; }
-                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: ShowVideoNotify", ex.Message, ex.StackTrace); }
-
-                    try
-                    {
-                        if (Doc.Root.Element("settings") != null)
-                        {
-                            AutoKill = Doc.Root.Element("settings").Attribute("kill") != null ? Doc.Root.Element("settings").Attribute("kill").Value == "True" : false;
-                            AutoForceKill = Doc.Root.Element("settings").Attribute("force") != null ? Doc.Root.Element("settings").Attribute("force").Value == "True" : false;
-
-                            AutoAero = Doc.Root.Element("settings").Attribute("aero") != null ? Doc.Root.Element("settings").Attribute("aero").Value == "True" : false;
-                            AutoVideo = ReadCheckStateBool(Doc, "video");
-                            AutoWeak = Doc.Root.Element("settings").Attribute("weak") != null ? Doc.Root.Element("settings").Attribute("weak").Value == "True" : false;
-                            AutoCPU = Doc.Root.Element("settings").Attribute("balance") != null ? Doc.Root.Element("settings").Attribute("balance").Value == "True" : false;
-                        }
-                    }
-                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `settings`", ex.Message, ex.StackTrace); }
-
-                    try { if (Doc.Root.Element("common.test") != null) CommonTest = true; }
-                    catch (Exception ex) { Debug.Save("Variables.Class", "LoadSettings()", "Row: reading XML Element `common.test`", ex.Message, ex.StackTrace); }
-                
+                    MainWindow.JsonSettingsSet("info.language", lang);
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", "Row: Apply language", ex.Message, ex.StackTrace)); }
             }
             catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", e.Message, e.StackTrace)); }
         }

@@ -145,21 +145,26 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 string settings = "settings.json";
-                string decrypt = File.ReadAllText(settings);
+                string decrypt = "";
 
                 if (File.Exists(settings))
                 {
-                    if (Properties.Resources.Default_Crypt_Settings == "1")
+                    using (StreamReader reader = File.OpenText(settings))
                     {
-                        Classes.Crypt Crypt = new Classes.Crypt();
-                        decrypt = Crypt.Decrypt(decrypt, Variables.GetUserID());
+                        decrypt = reader.ReadToEnd();
+
+                        if (Properties.Resources.Default_Crypt_Settings == "1")
+                        {
+                            Classes.Crypt Crypt = new Classes.Crypt();
+                            decrypt = Crypt.Decrypt(decrypt, Variables.GetUserID());
+                        }
+                        else
+                            jSettings = JObject.Parse(decrypt);
                     }
-                    else
-                        jSettings = JObject.Parse(decrypt);
                 }
                 else
                 {// "Файл настроек не обнаружен"
-                    MessageBox.Show(Language.Set("variables_class", "do_not_settings", Lang));
+                    MessageBox.Show(Lang.Set("MainWindow", "do_not_settings", Lang));
                     jSettings = null;
                 }
             }

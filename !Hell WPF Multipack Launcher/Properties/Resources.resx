@@ -176,9 +176,9 @@
     <value>https://gdata.youtube.com/feeds/api/users/{0}/uploads</value>
     <comment>RSS Ютуба</comment>
   </data>
-  <data name="SettingsMultipack" xml:space="preserve">
-    <value>config.ini</value>
-    <comment>INI-файл конфигурации</comment>
+  <data name="Settings_Multipack" xml:space="preserve">
+    <value>config.json</value>
+    <comment>Файл настроек мультипака</comment>
   </data>
   <data name="YoutubeChannel" xml:space="preserve">
     <value>PROTankiWoT</value>

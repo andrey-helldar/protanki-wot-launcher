@@ -150,6 +150,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 default: return toReturn;
                             }
 
+                        case "Pack_Not_Found":
+                            switch (lang)
+                            {
+                                case "ru": return "Мультипак не обнаружен!";
+                                case "en": return "Multi-Pack is not found!";
+                                case "de": return "Multi-Pack wurde nicht gefunden!";
+                                default: return toReturn;
+                            }
+
                         case "Ticket_2_Developer":
                             switch (lang)
                             {

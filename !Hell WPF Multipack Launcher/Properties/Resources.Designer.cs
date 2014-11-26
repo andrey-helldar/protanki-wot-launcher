@@ -980,11 +980,11 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to config.ini.
+        ///   Looks up a localized string similar to config.json.
         /// </summary>
-        public static string SettingsMultipack {
+        public static string Settings_Multipack {
             get {
-                return ResourceManager.GetString("SettingsMultipack", resourceCulture);
+                return ResourceManager.GetString("Settings_Multipack", resourceCulture);
             }
         }
         
