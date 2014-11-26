@@ -707,15 +707,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://file.theaces.ru/mods/proupdate/update.json.
-        /// </summary>
-        public static string JsonUpdates {
-            get {
-                return ResourceManager.GetString("JsonUpdates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap line {
@@ -799,6 +790,24 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("minimize_press", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to config.json.
+        /// </summary>
+        public static string Multipack_Config {
+            get {
+                return ResourceManager.GetString("Multipack_Config", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://file.theaces.ru/mods/proupdate/update.json.
+        /// </summary>
+        public static string Multipack_Updates {
+            get {
+                return ResourceManager.GetString("Multipack_Updates", resourceCulture);
             }
         }
         
@@ -976,15 +985,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("Settings", resourceCulture);
                 return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to config.json.
-        /// </summary>
-        public static string Settings_Multipack {
-            get {
-                return ResourceManager.GetString("Settings_Multipack", resourceCulture);
             }
         }
         

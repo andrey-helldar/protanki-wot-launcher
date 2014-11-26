@@ -739,6 +739,41 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "GetInfo()", ans, ex.Message, ex.StackTrace)); }
+
+
+            /*
+             *      Проверяем обновления мультипака
+             */
+            try
+            {
+                JObject json = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Updates);
+
+                if (json != null)
+                {
+                    if (
+                        (
+                            new Version((string)MainWindow.JsonSettingsGet("multipack.version")) <
+                            new Version((string)json.SelectToken("version"))
+                        ) &&
+                        (
+                            (string)MainWindow.JsonSettingsGet("info.notification") !=
+                            (string)json.SelectToken("version")
+                        )
+                      )
+                    {
+                        string path = (string)MainWindow.JsonSettingsGet("multipack.type") + ".";
+
+                        MainWindow.JsonSettingsSet("multipack.link", path + "download");
+                        MainWindow.JsonSettingsSet("multipack.changelog", path + "changelog");
+
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", lang, (string)json.SelectToken("version"));
+                        }));
+                    }
+                }
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "GetInfo()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>

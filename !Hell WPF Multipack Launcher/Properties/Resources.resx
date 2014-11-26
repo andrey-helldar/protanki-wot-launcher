@@ -149,7 +149,7 @@
     <value>protanki</value>
     <comment>Раздел INI-файла </comment>
   </data>
-  <data name="JsonUpdates" xml:space="preserve">
+  <data name="Multipack_Updates" xml:space="preserve">
     <value>http://file.theaces.ru/mods/proupdate/update.json</value>
     <comment>JSON-информация о наличии обновлений</comment>
   </data>
@@ -176,7 +176,7 @@
     <value>https://gdata.youtube.com/feeds/api/users/{0}/uploads</value>
     <comment>RSS Ютуба</comment>
   </data>
-  <data name="Settings_Multipack" xml:space="preserve">
+  <data name="Multipack_Config" xml:space="preserve">
     <value>config.json</value>
     <comment>Файл настроек мультипака</comment>
   </data>

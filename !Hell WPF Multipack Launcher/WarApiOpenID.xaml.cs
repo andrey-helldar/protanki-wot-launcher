@@ -36,15 +36,21 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                //if (WB.Source.ToString().IndexOf(Properties.Resources.Developer) > -1 && WB.Source.ToString().IndexOf("access_token") > 0)
                 if (WB.Source.ToString().IndexOf("status=ok") > -1)
                 {
                     JObject Token = WarAPI.Token(WB.Source.ToString());
 
-                    SetValue("access_token", Token.SelectToken("access_token").ToString());
+                    /*SetValue("access_token", Token.SelectToken("access_token").ToString());
                     SetValue("expires_at", Token.SelectToken("expires_at").ToString());
                     SetValue("nickname", Token.SelectToken("nickname").ToString());
-                    SetValue("account_id", Token.SelectToken("account_id").ToString());
+                    SetValue("account_id", Token.SelectToken("account_id").ToString());*/
+
+                    MainWindow.JsonSettingsSet("token.access_token", (string)Token.SelectToken("access_token"));
+                    MainWindow.JsonSettingsSet("token.expires_at", (string)Token.SelectToken("expires_at"));
+                    MainWindow.JsonSettingsSet("token.nickname", (string)Token.SelectToken("nickname"));
+                    MainWindow.JsonSettingsSet("token.account_id", (string)Token.SelectToken("account_id"));
+
+                    MainWindow.JsonSettingsSet("info.user_name", (string)Token.SelectToken("nickname"));
 
                     this.Close();
                 }
@@ -55,7 +61,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     MessageBoxResult mbr = MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", (string)MainWindow.JsonSettingsGet("info.language")) +
                         Environment.NewLine +
                         Lang.Set("PageUser", "RepeatActivation", (string)MainWindow.JsonSettingsGet("info.language")),
-                        MainWindow.ProductName, MessageBoxButton.YesNo, MessageBoxImage.Information);
+                        (string)MainWindow.JsonSettingsGet("info.ProductName"), MessageBoxButton.YesNo, MessageBoxImage.Information);
 
                     if (mbr == MessageBoxResult.Yes)
                         WB.Source = new Uri(WarAPI.OpenID());
@@ -73,11 +79,11 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="attr">Ключ токена</param>
         /// <param name="val">Значение</param>
-        private void SetValue(string attr, string val)
+        /*private void SetValue(string attr, string val)
         {
             try { MainWindow.JsonSettingsSet("token." + attr, val); }
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
-        }
+        }*/
 
         private void WB_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {

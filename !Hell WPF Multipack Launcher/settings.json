@@ -25,7 +25,8 @@
         "type": "base",
         "version": "0.0.0.0",
         "date": null,
-        "link": null
+        "link": null,
+        "changelog": null
     },
     "game": {
         "version": "0.0.0.0",

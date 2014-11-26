@@ -154,8 +154,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Мультипак не обнаружен!";
-                                case "en": return "Multi-Pack is not found!";
-                                case "de": return "Multi-Pack wurde nicht gefunden!";
+                                case "en": return "Multipack is not found!";
+                                case "de": return "Multipack wurde nicht gefunden!";
                                 default: return toReturn;
                             }
 
@@ -401,8 +401,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Мультипак";
-                                case "en": return "Multi-Pack";
-                                case "de": return "Multi-Pack";
+                                case "en": return "Multipack";
+                                case "de": return "Multipack";
                                 default: return toReturn;
                             }
 
@@ -729,8 +729,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Пожелания к мультипаку";
-                                case "en": return "Wishes to MultiPack";
-                                case "de": return "Wünsche zum MultiPack";
+                                case "en": return "Wishes to Multipack";
+                                case "de": return "Wünsche zum Multipack";
                                 default: return toReturn;
                             }
 
@@ -756,8 +756,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             switch (lang)
                             {
                                 case "ru": return "Найдена ошибка в мультипаке";
-                                case "en": return "Error in MultiPack is found";
-                                case "de": return "Fehler im MultiPack";
+                                case "en": return "Error in Multipack is found";
+                                case "de": return "Fehler im Multipack";
                                 default: return toReturn;
                             }
 
@@ -947,6 +947,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 case "ru": return "Расширенная версия";
                                 case "en": return "Extended version";
                                 case "de": return "Erweiterte Version";
+                                default: return toReturn;
+                            }
+
+                        case "NeedUpdates":
+                            switch (lang)
+                            {
+                                case "ru": return "Обнаружена новая версия мультипака: " + text;
+                                case "en": return "A new version of Multipack is available: " + text;
+                                case "de": return "Es gibt eine neue Version von Multipack: " + text;
                                 default: return toReturn;
                             }
 

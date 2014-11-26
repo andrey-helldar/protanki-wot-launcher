@@ -134,12 +134,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </summary>
         /// <param name="json"></param>
         /// <returns>Строка</returns>
-        public string Json(JObject json)
+        /*public string Json(JObject json)
         {
             try { return json.ToString(); }
             catch (Exception ex) { Debug.Save("POST.Class", "Json()", ex.Message, ex.StackTrace); }
             return null;
-        }
+        }*/
 
         /// <summary>
         /// http://stackoverflow.com/questions/4749639/deserializing-json-to-net-object-using-newtonsoft-or-linq-to-json-maybe
@@ -148,7 +148,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>
-        public JObject FromJson(string json)
+        /*public JObject FromJson(string json)
         {
             if (json.Length > 0)
             {
@@ -157,7 +157,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             else
                 return null;
-        }
+        }*/
 
         public JObject JsonResponse(string uri)
         {
@@ -262,10 +262,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 {
                     Language Lang = new Language();
 
-                    string lang = Properties.Resources.Default_Lang;
+                    string lang = (string)MainWindow.JsonSettingsGet("info.language");
 
-                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
-                        lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
+                    /*if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
+                        lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;*/
 
                     foreach (FileInfo file in new DirectoryInfo(path + @"\tickets").GetFiles("*.ticket"))
                     {

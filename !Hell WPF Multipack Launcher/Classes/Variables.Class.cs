@@ -141,9 +141,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                  */
                 try
                 {
-                    if (File.Exists(Properties.Resources.Settings_Multipack))
+                    if (File.Exists(Properties.Resources.Multipack_Config))
                     {
-                        using (StreamReader reader = File.OpenText(Properties.Resources.Settings_Multipack))
+                        using (StreamReader reader = File.OpenText(Properties.Resources.Multipack_Config))
                         {
                             JObject o = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
 
@@ -176,6 +176,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     MainWindow.JsonSettingsSet("info.language", lang);
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", "Row: Apply language", ex.Message, ex.StackTrace)); }
+
+
+
+                /*
+                 *      Загружаем инфу об обновлении мультипака
+                 */
+
             }
             catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", e.Message, e.StackTrace)); }
         }

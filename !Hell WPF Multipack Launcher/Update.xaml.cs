@@ -40,7 +40,8 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 if (cbNotify.IsChecked == true)
-                    MainWindow.JsonSettingsSet("info.notification", new Classes.Variables().VersionFromSharp(newVersion.Content.ToString()).ToString());
+                    //MainWindow.JsonSettingsSet("info.notification", new Classes.Variables().VersionFromSharp(newVersion.Content.ToString()).ToString());
+                    MainWindow.JsonSettingsSet("info.notification", new Classes.Variables().Version("").ToString());
 
                 if (downloadLink!=String.Empty)
                     Process.Start(downloadLink);
@@ -82,7 +83,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 string thisVersion = (string)MainWindow.JsonSettingsGet("multipack.version");
                 downloadLink = (string)MainWindow.JsonSettingsGet("multipack.link");
 
-                var json = POST.JsonResponse(Properties.Resources.JsonUpdates);
+                var json = POST.JsonResponse(Properties.Resources.Multipack_Updates);
                 tbContent.Text = (string)json.SelectToken(mType + ".changelog." + lang);
                 newVersion.Content = new Version((string)json.SelectToken("version"));
             }
