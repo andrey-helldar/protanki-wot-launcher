@@ -147,144 +147,141 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                Task.Factory.StartNew(() =>
+                try
                 {
-                    try
+                    int count = youtube ? YoutubeClass.Count() : WargamingClass.Count();
+
+                    StatusBarSet(true, count);
+
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
-                        int count = youtube ? YoutubeClass.Count() : WargamingClass.Count();
+                        if (count == 0)
+                        { // Если список пуст, то добавляем одну строку с уведомлением
+                            try
+                            {
+                                Grid gridPanel = new Grid();
+                                gridPanel.Width = double.NaN;
+                                gridPanel.Margin = new Thickness(0);
+                                gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
 
-                        StatusBarSet(true, count);
+                                Label labelNotify = new Label();
+                                labelNotify.Height = double.NaN;
+                                labelNotify.Margin = new Thickness(0);
+                                labelNotify.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                                labelNotify.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+                                labelNotify.Content = Lang.Set("PageGeneral", "RecordsNotFound", lang);
+                                Grid.SetRow(labelNotify, 0);
+                                Grid.SetColumn(labelNotify, 0);
+                                gridPanel.Children.Add(labelNotify);
 
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                ListBoxItem lbi = new ListBoxItem();
+                                lbi.SetResourceReference(ListBoxItem.StyleProperty, "ListBoxItemGeneral");
+                                lbi.Content = gridPanel;
+
+                                try { if (youtube) lbVideo.Items.Add(lbi); else lbNews.Items.Add(lbi); }
+                                catch (Exception ex0) { Debug.Save("General.xaml", "ViewNews()", "Count " + (youtube ? "VIDEO" : "NEWS") + " is " + count.ToString(), ex0.Message, ex0.StackTrace); }
+
+                                StatusBarSet(true);
+                            }
+                            catch (Exception ex1) { Debug.Save("General.xaml", "ViewNews()", "if (count == 0)", "Записи не обнаружены", ex1.Message, ex1.StackTrace); }
+                        }
+                        else
                         {
-                            if (count == 0)
-                            { // Если список пуст, то добавляем одну строку с уведомлением
+                            for (int i = 0; i < (count - 1); i++)
+                            {
                                 try
                                 {
+                                    // Добавляем решетку для размещения элементов
                                     Grid gridPanel = new Grid();
                                     gridPanel.Width = double.NaN;
                                     gridPanel.Margin = new Thickness(0);
                                     gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
 
-                                    Label labelNotify = new Label();
-                                    labelNotify.Height = double.NaN;
-                                    labelNotify.Margin = new Thickness(0);
-                                    labelNotify.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-                                    labelNotify.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-                                    labelNotify.Content = Lang.Set("PageGeneral", "RecordsNotFound", lang);
-                                    Grid.SetRow(labelNotify, 0);
-                                    Grid.SetColumn(labelNotify, 0);
-                                    gridPanel.Children.Add(labelNotify);
+                                    // Добавляем дату
+                                    Label labelDate = new Label();
+                                    labelDate.SetResourceReference(Label.StyleProperty, "ListBoxLabelGeneral");
+                                    try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
+                                    catch (Exception) { labelDate.Content = "1970-1-1"; }
+                                    gridPanel.Children.Add(labelDate);
+
+                                    // Кнопка "Воспроизвести"
+                                    if (youtube)
+                                    {
+                                        Button buttonPlay = new Button();
+                                        buttonPlay.Content = ">";
+                                        buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
+                                        buttonPlay.SetResourceReference(Button.StyleProperty, "ListBoxPlayGeneral");
+                                        buttonPlay.Click += PlayPreview;
+                                        gridPanel.Children.Add(buttonPlay);
+                                    }
+
+                                    // Кнопка "Закрыть"
+                                    Button buttonClose = new Button();
+                                    buttonClose.Content = "X";
+                                    buttonClose.Name = (youtube ? "CloseYoutube_" : "CloseWargaming_") + i.ToString();
+                                    buttonClose.SetResourceReference(Button.StyleProperty, "ListBoxCloseGeneral");
+                                    buttonClose.Click += CloseBlock;
+                                    gridPanel.Children.Add(buttonClose);
+
+                                    // Добавляем заголовок в гиперссылку
+                                    TextBlock blockTitle = new TextBlock();
+                                    blockTitle.SetResourceReference(TextBlock.StyleProperty, "ListBoxTitleGeneral");
+
+                                    // Добавляем идентификатор записи
+                                    Hyperlink hyperID = new Hyperlink(new Run(""));
+                                    hyperID.NavigateUri = new Uri(youtube ? "http://" + YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
+                                    hyperID.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
+                                    this.RegisterName(hyperID.Name, hyperID);
+
+                                    // Гиперссылка для заголовка
+                                    Run run = new Run();
+                                    run.Text = youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title;
+                                    if (youtube)
+                                    {
+                                        run.Name = "run_" + i.ToString();
+                                        this.RegisterName(run.Name, run);
+                                    }
+
+                                    Hyperlink hyperlink = new Hyperlink(run);
+                                    hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
+                                    hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
+                                    hyperlink.Name = (youtube ? "lu_" : "lw_") + i.ToString();
+                                    hyperlink.SetResourceReference(Hyperlink.StyleProperty, "ListBoxTitleHyperlinkGeneral");
+                                    this.RegisterName(hyperlink.Name, hyperlink);
+                                    blockTitle.Inlines.Add(hyperlink);
+                                    blockTitle.Inlines.Add(hyperID);
+
+                                    gridPanel.Children.Add(blockTitle);
 
                                     ListBoxItem lbi = new ListBoxItem();
                                     lbi.SetResourceReference(ListBoxItem.StyleProperty, "ListBoxItemGeneral");
                                     lbi.Content = gridPanel;
 
-                                    try { if (youtube) lbVideo.Items.Add(lbi); else lbNews.Items.Add(lbi); }
-                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Count " + (youtube ? "VIDEO" : "NEWS") + " is " + count.ToString(), ex0.Message, ex0.StackTrace)); }
-
-                                    StatusBarSet(true);
-                                }
-                                catch (Exception ex1) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "if (count == 0)", "Записи не обнаружены", ex1.Message, ex1.StackTrace)); }
-                            }
-                            else
-                            {
-                                for (int i = 0; i < count; i++)
-                                {
                                     try
                                     {
-                                        // Добавляем решетку для размещения элементов
-                                        Grid gridPanel = new Grid();
-                                        gridPanel.Width = double.NaN;
-                                        gridPanel.Margin = new Thickness(0);
-                                        gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-
-                                        // Добавляем дату
-                                        Label labelDate = new Label();
-                                        labelDate.SetResourceReference(Label.StyleProperty, "ListBoxLabelGeneral");
-                                        try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
-                                        catch (Exception) { labelDate.Content = "1970-1-1"; }
-                                        gridPanel.Children.Add(labelDate);
-
-                                        // Кнопка "Воспроизвести"
                                         if (youtube)
-                                        {
-                                            Button buttonPlay = new Button();
-                                            buttonPlay.Content = ">";
-                                            buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
-                                            buttonPlay.SetResourceReference(Button.StyleProperty, "ListBoxPlayGeneral");
-                                            buttonPlay.Click += PlayPreview;
-                                            gridPanel.Children.Add(buttonPlay);
-                                        }
+                                            lbVideo.Items.Add(lbi);
+                                        else
+                                            lbNews.Items.Add(lbi);
 
-                                        // Кнопка "Закрыть"
-                                        Button buttonClose = new Button();
-                                        buttonClose.Content = "X";
-                                        buttonClose.Name = (youtube ? "CloseYoutube_" : "CloseWargaming_") + i.ToString();
-                                        buttonClose.SetResourceReference(Button.StyleProperty, "ListBoxCloseGeneral");
-                                        buttonClose.Click += CloseBlock;
-                                        gridPanel.Children.Add(buttonClose);
-
-                                        // Добавляем заголовок в гиперссылку
-                                        TextBlock blockTitle = new TextBlock();
-                                        blockTitle.SetResourceReference(TextBlock.StyleProperty, "ListBoxTitleGeneral");
-
-                                        // Добавляем идентификатор записи
-                                        Hyperlink hyperID = new Hyperlink(new Run(""));
-                                        hyperID.NavigateUri = new Uri(youtube ? "http://" + YoutubeClass.List[i].ID : WargamingClass.List[i].Link);
-                                        hyperID.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
-                                        this.RegisterName(hyperID.Name, hyperID);
-
-                                        // Гиперссылка для заголовка
-                                        Run run = new Run();
-                                        run.Text = youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title;
-                                        if (youtube)
-                                        {
-                                            run.Name = "run_" + i.ToString();
-                                            this.RegisterName(run.Name, run);
-                                        }
-
-                                        Hyperlink hyperlink = new Hyperlink(run);
-                                        hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
-                                        hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
-                                        hyperlink.Name = (youtube ? "lu_" : "lw_") + i.ToString();
-                                        hyperlink.SetResourceReference(Hyperlink.StyleProperty, "ListBoxTitleHyperlinkGeneral");
-                                        this.RegisterName(hyperlink.Name, hyperlink);
-                                        blockTitle.Inlines.Add(hyperlink);
-                                        blockTitle.Inlines.Add(hyperID);
-
-                                        gridPanel.Children.Add(blockTitle);
-
-                                        ListBoxItem lbi = new ListBoxItem();
-                                        lbi.SetResourceReference(ListBoxItem.StyleProperty, "ListBoxItemGeneral");
-                                        lbi.Content = gridPanel;
-
-                                        try
-                                        {
-                                            if (youtube)
-                                                lbVideo.Items.Add(lbi);
-                                            else
-                                                lbNews.Items.Add(lbi);
-
-                                            Thread.Sleep(50);
-                                        }
-                                        catch (Exception ex2) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex2.Message, ex2.StackTrace)); }
+                                        Thread.Sleep(50);
                                     }
-                                    catch (Exception ex3) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "FOR: " + i.ToString(), ex3.Message, ex3.StackTrace)); }
-
-
-                                    StatusBarSet(true);
+                                    catch (Exception ex2) { Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex2.Message, ex2.StackTrace); }
                                 }
+                                catch (Exception ex3) { Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "FOR: " + i.ToString(), ex3.Message, ex3.StackTrace); }
 
-                                Thread.Sleep(Convert.ToInt16(Properties.Resources.Sleeping_News));
+
+                                StatusBarSet(true);
                             }
-                        }));
 
-                    }
-                    catch (Exception ex4) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex4.Message, ex4.StackTrace)); }
-                });
+                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Sleeping_News));
+                        }
+                    }));
+
+                }
+                catch (Exception ex4) { Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex4.Message, ex4.StackTrace); }
             }
-            catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Youtube = " + youtube.ToString(), e.Message, e.StackTrace)); }
+            catch (Exception e) { Debug.Save("General.xaml", "ViewNews()", "Youtube = " + youtube.ToString(), e.Message, e.StackTrace); }
 
             return true;
         }
@@ -293,52 +290,50 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (MainWindow.XmlDocument.Root.Element("info") != null)
-                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("video") != null)
-                        if (MainWindow.XmlDocument.Root.Element("info").Attribute("video").Value == "True")
+                if (MainWindow.XmlDocument.Root.Element("info").Attribute("video") != null)
+                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("video").Value == "True")
+                    {
+                        if (YoutubeClass.Count() > 0)
                         {
-                            if (YoutubeClass.Count() > 0)
+                            if (MainWindow.XmlDocument.Root.Element("youtube") != null)
+                                foreach (var el in MainWindow.XmlDocument.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
+                            else MainWindow.XmlDocument.Root.Add(new XElement("youtube", null));
+
+                            Task.Factory.StartNew(() => DeleteOldVideo()).Wait(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
+
+                            foreach (var el in YoutubeClass.List)
                             {
+                                Thread.Sleep(5000);
 
-                                if (MainWindow.XmlDocument.Root.Element("youtube") != null)
-                                    foreach (var el in MainWindow.XmlDocument.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
-                                else MainWindow.XmlDocument.Root.Add(new XElement("youtube", null));
-
-                                Task.Factory.StartNew(() => DeleteOldVideo()).Wait(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
-
-                                foreach (var el in YoutubeClass.List)
+                                for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
                                 {
-                                    Thread.Sleep(5000);
-
-                                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
-                                    {
-                                        try
-                                        {
-                                            // Если запущен клиент игры - ждем 5 секунд до следующей проверки
-                                            while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
-                                                Process.GetProcessesByName("WoTLauncher").Length > 0)
-                                                Thread.Sleep(5000);
-
-                                            Thread.Sleep(5000);
-                                        }
-                                        catch (Exception) { }
-                                    }
-
                                     try
                                     {
-                                        NotifyLink = el.Link;
+                                        // Если запущен клиент игры - ждем 5 секунд до следующей проверки
+                                        while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
+                                            Process.GetProcessesByName("WoTLauncher").Length > 0)
+                                            Thread.Sleep(5000);
 
-                                        Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
-
-                                        if (MainWindow.XmlDocument.Root.Element("youtube") != null)
-                                            MainWindow.XmlDocument.Root.Element("youtube").Add(new XElement("video", el.ID));
-                                        else
-                                            MainWindow.XmlDocument.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
+                                        Thread.Sleep(5000);
                                     }
-                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", el.ToString(), ex0.Message, ex0.StackTrace)); }
+                                    catch (Exception) { }
                                 }
+
+                                try
+                                {
+                                    MainWindow.NotifyLink = el.Link;
+
+                                    Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
+
+                                    if (MainWindow.XmlDocument.Root.Element("youtube") != null)
+                                        MainWindow.XmlDocument.Root.Element("youtube").Add(new XElement("video", el.ID));
+                                    else
+                                        MainWindow.XmlDocument.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
+                                }
+                                catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", el.ToString(), ex0.Message, ex0.StackTrace)); }
                             }
                         }
+                    }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", ex.Message, ex.StackTrace)); }
         }
@@ -378,6 +373,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             caption = caption != null ? caption : MainWindow.ProductName;
                             MainWindow.Notifier.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
+                            //MainWindow.Notifier.BalloonTipClicked += new EventHandler(NotifyClick);
                         }
                         catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", "Caption: " + caption, text, "IsPopup = " + isPopup.ToString(), ex0.Message, ex0.StackTrace)); }
                     }
@@ -386,6 +382,17 @@ namespace _Hell_WPF_Multipack_Launcher
                 }));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", "Caption: " + caption, text, "IsPopup = " + isPopup.ToString(), ex.Message, ex.StackTrace)); }
+        }
+
+        /// <summary>
+        /// Открытие ссылок из нотификатора
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NotifyClick(object sender, EventArgs e)
+        {
+            try { Process.Start(NotifyLink); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + NotifyLink, ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>

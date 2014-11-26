@@ -37,6 +37,7 @@ namespace _Hell_WPF_Multipack_Launcher
         public System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
         public static System.Windows.Forms.NotifyIcon Notifier { get { return notifier; } }
         private static System.Windows.Forms.NotifyIcon notifier;
+        public static string NotifyLink = String.Empty;
 
         public static Frame MainFrame0 { get { return mainFrame; } }
         private static Frame mainFrame;
@@ -274,8 +275,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void NotifyClick(object sender, EventArgs e)
         {
-            try { OpenLink(Variables.notifyLink); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + Variables.notifyLink, ex.Message, ex.StackTrace)); }
+            try { OpenLink(NotifyLink); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + NotifyLink, ex.Message, ex.StackTrace)); }
         }
 
         private void OpenLink(string url)

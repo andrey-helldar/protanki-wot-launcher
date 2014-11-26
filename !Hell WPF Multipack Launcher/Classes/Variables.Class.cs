@@ -61,8 +61,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public bool ShowVideoNotify = true,
                     CommonTest = false;
 
-        public string notifyLink = Properties.Resources.LinkVideoAll;
-
         Debug Debug = new Debug();
         Language Language = new Language();
 
