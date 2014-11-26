@@ -205,16 +205,41 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="path">Ключ массива. Максимум 2-х уровневый</param>
         /// <param name="value">Значение для записи</param>
-        public static void JsonSettingsSet(string path, string value)
+        public static void JsonSettingsSet(string path, JToken key, string type = "string")
         {
             try
             {
-                if (path.IndexOf('.') == -1)
-                    jSettings[path] = value;
-                else
+                switch (type)
                 {
-                    string[] str = path.Split('.');
-                    jSettings[str[0]][str[1]] = value;
+                    case "int":
+                        if (path.IndexOf('.') == -1)
+                            jSettings[path] = (int)key;
+                        else
+                        {
+                            string[] str = path.Split('.');
+                            jSettings[str[0]][str[1]] = (int)key;
+                        }
+                        break;
+
+                    case "bool":
+                        if (path.IndexOf('.') == -1)
+                            jSettings[path] = (bool)key;
+                        else
+                        {
+                            string[] str = path.Split('.');
+                            jSettings[str[0]][str[1]] = (bool)key;
+                        }
+                        break;
+
+                    default:
+                        key = ((string)key).Replace(@"\", @"\\");
+                        if (path.IndexOf('.') == -1)
+                            jSettings[path] = (string)key;
+                        else
+                        {
+                            string[] str = path.Split('.');
+                            jSettings[str[0]][str[1]] = (string)key;
+                        } break;
                 }
             }
             catch (Exception) { }

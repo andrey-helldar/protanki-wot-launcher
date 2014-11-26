@@ -44,12 +44,7 @@ namespace _Hell_WPF_Multipack_Launcher
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
                 // Определяем язык интерфейса
-                try
-                {
-                    if (MainWindow.XmlDocument.Root.Element("info") != null)
-                        if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
-                            lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim();
-                }
+                try { lang = (string)MainWindow.JsonSettingsGet("info.language"); }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", ex.Message, ex.StackTrace)); }
 
                 /*
@@ -129,34 +124,22 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 // Устанавливаем выбранный параметр локализации
                 try
-                {
-                    if (MainWindow.XmlDocument.Root.Element("info") != null)
-                        if (MainWindow.XmlDocument.Root.Element("info").Attribute("locale") != null)
-                            cbLangPriority.SelectedIndex = Convert.ToInt16(MainWindow.XmlDocument.Root.Element("info").Attribute("locale").Value.Trim());
-                        else
-                            cbLangPriority.SelectedIndex = 0;
-                    else
-                        cbLangPriority.SelectedIndex = 0;
-                }
+                { cbLangPriority.SelectedIndex = (int)MainWindow.JsonSettingsGet("info.locale"); }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLang.Items", ex.Message, ex.StackTrace)); }
 
                 
                 /*
                  *  Блок ОПТИМИЗАЦИЯ
                  */
-
-                /*
-                 * <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
-                 */
                 try
                 {
-                    cbKill.IsChecked = Check("settings", "kill");
-                    cbForce.IsChecked = Check("settings", "force");
-                    cbVideo.IsChecked = Check("settings", "video");
-                    cbWeak.IsChecked = Check("settings", "weak");
-                    cbAero.IsChecked = Check("settings", "aero");
-
-                    if (Check("settings", "winxp"))
+                    cbKill.IsChecked = (bool)MainWindow.JsonSettingsGet("settings.kill");
+                    cbForce.IsChecked = (bool)MainWindow.JsonSettingsGet("settings.force");
+                    cbVideo.IsChecked = (bool)MainWindow.JsonSettingsGet("settings.video");
+                    cbWeak.IsChecked = (bool)MainWindow.JsonSettingsGet("settings.weak");
+                    cbAero.IsChecked = (bool)MainWindow.JsonSettingsGet("settings.aero");
+                    
+                    if ((bool)MainWindow.JsonSettingsGet("settings.winxp"))
                     {
                         cbAero.IsChecked = false;
                         cbAero.IsEnabled = false;
@@ -179,13 +162,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 // Устанавливаем значение чекбокса лаунчера
                 try
-                {
-                    cbLauncher.SelectedIndex = 0;   // Устанавливаем базу
-
-                    if (MainWindow.XmlDocument.Root.Element("settings") != null)
-                        if (MainWindow.XmlDocument.Root.Element("settings").Attribute("launcher") != null)
-                            cbLauncher.SelectedIndex = Convert.ToInt16(MainWindow.XmlDocument.Root.Element("settings").Attribute("launcher").Value);
-                }
+                { cbLauncher.SelectedIndex = (int)MainWindow.JsonSettingsGet("settings.launcher"); }
                 catch (Exception ex)
                 {
                     cbLauncher.SelectedIndex = 0;
@@ -202,8 +179,8 @@ namespace _Hell_WPF_Multipack_Launcher
                  */
                 try
                 {
-                    cbNotifyVideo.IsChecked = Check("info", "video");
-                    cbNotifyNews.IsChecked = Check("info", "news");
+                    cbNotifyVideo.IsChecked = (bool)MainWindow.JsonSettingsGet("info.video");
+                    cbNotifyNews.IsChecked = (bool)MainWindow.JsonSettingsGet("info.news");
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbNotifyVideo.IsChecked, cbNotifyNews.IsChecked", ex.Message, ex.StackTrace)); }
             }));
@@ -218,7 +195,7 @@ namespace _Hell_WPF_Multipack_Launcher
         ///     Если аттрибут задан, выдаем значение TRUE или FALSE,
         ///     во всех прочих случаях возвращаем FALSE
         /// </returns>
-        private bool Check(string el, string attr)
+        /*private bool Check(string el, string attr)
         {
             try
             {
@@ -230,7 +207,7 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "Check()", "Element: " + el, "Attribute: " + attr, ex.Message, ex.StackTrace)); }
 
             return false;
-        }
+        }*/
 
         /// <summary>
         /// Изменяем значения параметров
@@ -238,7 +215,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="el">Блок элемента</param>
         /// <param name="attr">Проверяемый аттрибут</param>
         /// <param name="val">Значение</param>
-        private void Set(string el, string attr, string val)
+        /*private void Set(string el, string attr, string val)
         {
             try
             {
@@ -247,7 +224,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         MainWindow.XmlDocument.Root.Element(el).Attribute(attr).SetValue(val);
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "Set()", "Element: " + el, "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
-        }
+        }*/
 
         /// <summary>
         ///  Загрузка и сохранение приоритета в системе
@@ -313,47 +290,47 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void cbKill_Click(object sender, RoutedEventArgs e)
         {
-            Set("settings", "kill", cbKill.IsChecked.ToString());
+            MainWindow.JsonSettingsSet("settings.kill", cbKill.IsChecked, "bool");
         }
 
         private void cbForce_Click(object sender, RoutedEventArgs e)
         {
-            Set("settings", "force", cbForce.IsChecked.ToString());
+            MainWindow.JsonSettingsSet("settings.force", cbForce.IsChecked, "bool");
         }
 
         private void cbVideo_Click(object sender, RoutedEventArgs e)
         {
-            Set("settings", "video", cbVideo.IsChecked.ToString());
+            MainWindow.JsonSettingsSet("settings.video", cbVideo.IsChecked, "bool");
         }
 
         private void cbWeak_Click(object sender, RoutedEventArgs e)
         {
-            Set("settings", "weak", cbWeak.IsChecked.ToString());
+            MainWindow.JsonSettingsSet("settings.weak", cbWeak.IsChecked, "bool");
         }
 
         private void cbAero_Click(object sender, RoutedEventArgs e)
         {
-            Set("settings", "aero", cbAero.IsChecked.ToString());
+            MainWindow.JsonSettingsSet("settings.aero", cbAero.IsChecked, "bool");
         }
 
         private void cbNotifyVideo_Click(object sender, RoutedEventArgs e)
         {
-            Set("info", "video", cbNotifyVideo.IsChecked.ToString());
+            MainWindow.JsonSettingsSet("info.video", cbNotifyVideo.IsChecked, "bool");
         }
 
         private void cbNotifyNews_Click(object sender, RoutedEventArgs e)
         {
-            Set("info", "news", cbNotifyNews.IsChecked.ToString());
+            MainWindow.JsonSettingsSet("info.news", cbNotifyNews.IsChecked, "bool");
         }
 
         private void cbLauncher_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Set("settings", "launcher", cbLauncher.SelectedIndex.ToString());
+            MainWindow.JsonSettingsSet("settings.launcher", cbLauncher.SelectedIndex, "int");
         }
 
         private void cbLangPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Set("info", "locale", cbLangPriority.SelectedIndex.ToString());
+            MainWindow.JsonSettingsSet("info.locale", cbLangPriority.SelectedIndex, "int");
         }
 
         private void cbLang_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -362,9 +339,9 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 switch (cbLang.SelectedIndex)
                 {
-                    case 1: Set("info", "language", "en"); break;
-                    case 2: Set("info", "language", "de"); break;
-                    default: Set("info", "language", "ru"); break;
+                    case 1: MainWindow.JsonSettingsSet("info.language", "en"); break;
+                    case 2: MainWindow.JsonSettingsSet("info.language", "de"); break;
+                    default: MainWindow.JsonSettingsSet("info.language", "ru"); break;
                 }
             }
             catch (Exception) { }

@@ -284,8 +284,7 @@ namespace _Hell_WPF_Multipack_Launcher
              */
             try
             {
-                if (MainWindow.XmlDocument.Root.Element("info").Attribute("video") != null)
-                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("video").Value == "True")
+                if ((bool)MainWindow.JsonSettingsGet("info.video"))
                     {
                         if (YoutubeClass.Count() > 0)
                         {
@@ -293,10 +292,10 @@ namespace _Hell_WPF_Multipack_Launcher
                             {
                                 bool show_this = true;
 
-                                if (MainWindow.XmlDocument.Root.Element("youtube") != null)
-                                    foreach (var elem in MainWindow.XmlDocument.Root.Element("youtube").Elements("video"))
+
+                                foreach (var elem in (JArray)MainWindow.JsonSettingsGet("youtube"))
                                     {
-                                        if (elem.Value == el.ID)
+                                        if ((string)elem["video"] == el.ID)
                                         {
                                             show_this = false;
                                             break;
@@ -329,10 +328,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                         Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
 
-                                        if (MainWindow.XmlDocument.Root.Element("youtube") != null)
-                                            MainWindow.XmlDocument.Root.Element("youtube").Add(new XElement("video", el.ID));
-                                        else
-                                            MainWindow.XmlDocument.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
+                                        JArray ja = (JArray)MainWindow.JsonSettingsGet("youtube");
+                                        if (ja.IndexOf(el.ID) == -1) ja.Add(new JProperty("video", el.ID.Replace(@"\", @"\\")));
                                     }
                                     catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE", el.ToString(), ex0.Message, ex0.StackTrace)); }
                                 }
@@ -348,8 +345,7 @@ namespace _Hell_WPF_Multipack_Launcher
              */
             try
             {
-                if (MainWindow.XmlDocument.Root.Element("info").Attribute("news") != null)
-                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("news").Value == "True")
+                    if ((bool)MainWindow.JsonSettingsGet("info.news"))
                     {
                         if (WargamingClass.Count() > 0)
                         {
@@ -357,15 +353,14 @@ namespace _Hell_WPF_Multipack_Launcher
                             {
                                 bool show_this = true;
 
-                                if (MainWindow.XmlDocument.Root.Element("wargaming") != null)
-                                    foreach (var elem in MainWindow.XmlDocument.Root.Element("wargaming").Elements("news"))
+                                foreach (var elem in (JArray)MainWindow.JsonSettingsGet("wargaming"))
+                                {
+                                    if ((string)elem["news"] == el.Link)
                                     {
-                                        if (elem.Value == el.Link)
-                                        {
-                                            show_this = false;
-                                            break;
-                                        }
+                                        show_this = false;
+                                        break;
                                     }
+                                }
 
                                 if (show_this)
                                 {
@@ -391,10 +386,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                         Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowNews", lang), el.Title));
 
-                                        if (MainWindow.XmlDocument.Root.Element("wargaming") != null)
-                                            MainWindow.XmlDocument.Root.Element("wargaming").Add(new XElement("news", el.Link));
-                                        else
-                                            MainWindow.XmlDocument.Root.Add(new XElement("wargaming", new XElement("news", el.Link)));
+                                        JArray ja = (JArray)MainWindow.JsonSettingsGet("wargaming");
+                                        if (ja.IndexOf(el.Link) == -1) ja.Add(new JProperty("news", el.Link.Replace(@"\", @"\\")));
                                     }
                                     catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "WARGAMING", el.ToString(), ex0.Message, ex0.StackTrace)); }
                                 }
@@ -550,31 +543,13 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                XElement el = MainWindow.XmlDocument.Root.Element("do_not_display");
-                if (el != null)
-                    if (el.Element(block) != null)
-                        if (el.Element(block).Element("item") != null)
-                            if (el.Element(block).Elements("item").Count() > 0)
-                            {
-                                foreach (string str in el.Element(block).Elements("item"))
-                                    if (str == item) return true;
-
-                                el.Element(block).Add(new XElement("item", item));
-                            }
-                            else
-                                el.Element(block).Element("item").SetValue(item);
-                        else
-                            el.Element(block).Add(new XElement("item", item));
-                    else
-                        el.Add(new XElement(block, new XElement("item", item)));
-                else
-                    MainWindow.XmlDocument.Root.Add(new XElement("do_not_display", new XElement(block, new XElement("item", item))));
-
+                JArray ja = (JArray)MainWindow.JsonSettingsGet("do_not_display." + block);
+                if (ja.IndexOf(item) == -1) ja.Add(new JProperty("item", item.Replace(@"\", @"\\")));
                 return true;
             }
-            catch (Exception ex0)
+            catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex0.Message, ex0.StackTrace));
+                Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace));
                 return true;
             }
         }
@@ -794,11 +769,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 if (rec.Length > 0)
                 {
-                    if (MainWindow.XmlDocument.Root.Element("token") != null)
-                        if (MainWindow.XmlDocument.Root.Element("token").Attribute(rec) != null)
-                            return MainWindow.XmlDocument.Root.Element("token").Attribute(rec).Value;
-                        else return "";
-                    else return "";
+                    string token = (string)MainWindow.JsonSettingsGet("token." + rec);
+                    return token == null ? "" : token;
                 }
                 else
                     return "";
