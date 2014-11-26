@@ -358,6 +358,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 0.
         /// </summary>
+        public static string Default_Crypt_Settings {
+            get {
+                return ResourceManager.GetString("Default_Crypt_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
         public static string Default_Debug_Crypt {
             get {
                 return ResourceManager.GetString("Default_Debug_Crypt", resourceCulture);

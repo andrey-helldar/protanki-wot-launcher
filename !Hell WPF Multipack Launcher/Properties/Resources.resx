@@ -471,6 +471,10 @@
     <value>0</value>
     <comment>Шифрование логов дебага</comment>
   </data>
+  <data name="Default_Crypt_Settings" xml:space="preserve">
+    <value>0</value>
+    <comment>Шифрование файла настроек</comment>
+  </data>
   <data name="Default_Sleeping_Notify" xml:space="preserve">
     <value>2000</value>
     <comment>Таймаут между показом уведомлений новостей и видео</comment>

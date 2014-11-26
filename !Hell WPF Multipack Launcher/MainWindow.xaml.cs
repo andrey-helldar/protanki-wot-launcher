@@ -14,8 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -52,6 +53,9 @@ namespace _Hell_WPF_Multipack_Launcher
 
         public static XDocument XmlDocument { get { return xmlDocument; } }
         private static XDocument xmlDocument;
+
+        public static JObject JSettings { get { return jSettings; } }
+        private static JObject jSettings;
 
 
         public static string MultipackDate = "1970-1-1";
@@ -111,13 +115,17 @@ namespace _Hell_WPF_Multipack_Launcher
         public MainWindow()
         {
             InitializeComponent();
-
-
+            
             // Загружаем настройки из XML-файла
             if (File.Exists(Variables.SettingsPath))
                 xmlDocument = XDocument.Load(Variables.SettingsPath);
             this.Closing += delegate { xmlDocument = null; };
-            //}).Wait();
+
+            // Загружаем настройки из JSON
+            if (File.Exists(Variables.SettingsPath))
+                jSettings = JObject.Parse(JObject.Load(Variables.SettingsPath));
+                this.Closing += delegate { jSettings = null; };
+            
 
             Variables.Start();
             MultipackDate = Variables.MultipackDate;
@@ -127,6 +135,41 @@ namespace _Hell_WPF_Multipack_Launcher
             Task.Factory.StartNew(() => LoadingPanel());    // LoadingPanel
 
             Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
+        }
+
+        /// <summary>
+        /// Загружаем настройки из файла JSON
+        /// </summary>
+        /// <returns>Возврат массива JObject</returns>
+        private JObject JsonLoadSettings()
+        {
+            try
+            {
+                if (File.Exists("settings.json"))
+                {
+                    if (Properties.Resources.Default_Crypt_Settings == "1")
+                    {
+                        Classes.Crypt Crypt = new Classes.Crypt();
+
+                        string encoded = File.ReadAllText("settings.json");
+                        return JObject.Parse(Crypt.Encrypt(encoded, Variables.GetUserID()));
+                    }else
+                        return JObject.Parse(File.ReadAllText("settings.json"));
+                }
+                else return null;
+            }
+            catch (Exception ex) {
+                return null;
+            }
+        }
+
+        private void JsonSaveSettings()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex) { }
         }
 
         private void LoadingPanel()
