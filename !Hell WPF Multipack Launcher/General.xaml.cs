@@ -293,14 +293,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                 bool show_this = true;
 
 
-                                foreach (var elem in (JArray)MainWindow.JsonSettingsGet("youtube"))
-                                    {
-                                        if ((string)elem["video"] == el.ID)
-                                        {
-                                            show_this = false;
-                                            break;
-                                        }
-                                    }
+                                string elem = MainWindow.JsonSettingsGet("youtube").ToString();
+                                if (elem.IndexOf(el.ID) > -1) show_this = false;
 
                                 if (show_this)
                                 {
@@ -354,14 +348,8 @@ namespace _Hell_WPF_Multipack_Launcher
                             {
                                 bool show_this = true;
 
-                                foreach (var elem in (JArray)MainWindow.JsonSettingsGet("wargaming"))
-                                {
-                                    if ((string)elem["news"] == el.Link)
-                                    {
-                                        show_this = false;
-                                        break;
-                                    }
-                                }
+                                string elem = MainWindow.JsonSettingsGet("wargaming").ToString();
+                                if (elem.IndexOf(el.Link) > -1) show_this = false;
 
                                 if (show_this)
                                 {
@@ -744,36 +732,37 @@ namespace _Hell_WPF_Multipack_Launcher
             /*
              *      Проверяем обновления мультипака
              */
+            JObject json_upd = null;
             try
             {
-                JObject json = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Updates);
+                json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Updates);
 
-                if (json != null)
+                if (json_upd != null)
                 {
                     if (new Version((string)MainWindow.JsonSettingsGet("multipack.version")) <
-                        new Version((string)json.SelectToken("version")))
+                        new Version((string)json_upd.SelectToken("version")))
                     {
                         string path = (string)MainWindow.JsonSettingsGet("multipack.type") + ".";
 
-                        MainWindow.JsonSettingsSet("multipack.link", (string)json.SelectToken(path + "download"));
-                        MainWindow.JsonSettingsSet("multipack.changelog", (string)json.SelectToken(path + "changelog."+lang));
-                        MainWindow.JsonSettingsSet("multipack.new_version", (string)json.SelectToken("version"));
+                        MainWindow.JsonSettingsSet("multipack.link", (string)json_upd.SelectToken(path + "download"));
+                        MainWindow.JsonSettingsSet("multipack.changelog", (string)json_upd.SelectToken(path + "changelog." + lang));
+                        MainWindow.JsonSettingsSet("multipack.new_version", (string)json_upd.SelectToken("version"));
 
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
-                            lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", lang, (string)json.SelectToken("version"));
+                            lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", lang, (string)json_upd.SelectToken("version"));
                         }));
 
                         if (
                             (string)MainWindow.JsonSettingsGet("info.notification") !=
-                            (string)json.SelectToken("version"))
+                            (string)json_upd.SelectToken("version"))
                         {
                             OpenPage("Update");
                         }
                     }
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "GetInfo()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "GetInfo()", ex.Message, ex.StackTrace, json_upd.ToString())); }
         }
 
         /// <summary>

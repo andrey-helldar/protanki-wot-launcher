@@ -374,6 +374,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ::;.
+        /// </summary>
+        public static string Default_JSON_Splitter {
+            get {
+                return ResourceManager.GetString("Default_JSON_Splitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ru.
         /// </summary>
         public static string Default_Lang {

@@ -229,7 +229,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         break;
 
                     default:
-                        key = ((string)key).Replace(@"\", @"\\");
+                        key = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
                         if (path.IndexOf('.') == -1)
                             jSettings[path] = (string)key;
                         else

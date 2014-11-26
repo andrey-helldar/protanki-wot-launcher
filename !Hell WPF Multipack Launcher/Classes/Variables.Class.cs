@@ -394,7 +394,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 JArray ja = (JArray)MainWindow.JsonSettingsGet("do_not_display." + block);
-                if (ja.IndexOf(item) == -1) ja.Add(new JProperty("item", item.Replace(@"\", @"\\")));
+                if (ja.IndexOf(item) == -1) ja.Add(new JProperty("item", item.Replace(@"\", Properties.Resources.Default_JSON_Splitter)));
                 return true;
             }
             catch (Exception ex)
@@ -414,7 +414,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
-                JArray ja = (JArray)MainWindow.JsonSettingsGet("do_not_display." + block);
+                string ja = MainWindow.JsonSettingsGet("do_not_display." + block).ToString();
                 if (ja.IndexOf(item) == -1) return false;
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace)); }
