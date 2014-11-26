@@ -1,9 +1,0 @@
-﻿{
-  "uid": "f39d3705d0925c26120f42599dc7d336",
-  "version": "2.4.34.753",
-  "date": "2014-11-25 11-6-59",
-  "module": "WarApiOpenID.xaml",
-  "function": "SetValue()",
-  "param0": "https://ru.wargaming.net/id/signin/?next=/id/openid/3572292139350089970/&trust_root=https://api.worldoftanks.ru/&sso_notifications=disable",
-  "param1": "helldar@ai-rus.com"
-}

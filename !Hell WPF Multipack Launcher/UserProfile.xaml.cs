@@ -106,23 +106,6 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             // Если все нормально - грузим информацию о пользователе
                             Task.Factory.StartNew(() => { AccountInfo(); });
-
-                            // Копируем ник юзера в блок Info XML
-                            Task.Factory.StartNew(() =>
-                            {
-                                try
-                                {
-                                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("user_name") != null &&
-                                        MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
-                                    {
-                                        if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value != "")
-                                            MainWindow.XmlDocument.Root.Element("info").Attribute("user_name").SetValue(
-                                                MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value
-                                                );
-                                    }
-                                }
-                                catch (Exception) { }
-                            });
                         }
                     }
                     catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", ex.Message, ex.StackTrace)); }
@@ -151,6 +134,20 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         private void AccountInfo()
         {
+            // Копируем ник юзера в блок Info XML
+            try
+            {
+                if (MainWindow.XmlDocument.Root.Element("info").Attribute("user_name") != null &&
+                    MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
+                {
+                    if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value != "")
+                        MainWindow.XmlDocument.Root.Element("info").Attribute("user_name").SetValue(
+                            MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value
+                            );
+                }
+            }
+            catch (Exception) { }
+
             // Apply language
             try
             {
@@ -166,7 +163,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
 
             try
-            {     
+            {
                 // Проверяем актуальность токена
                 bool active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
 
@@ -201,7 +198,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 Clan = null,
                                                 Battles = null,
                                                 Provinces = null;
-                                            
+
 
                                             if (SelectToken(obj, "status", false) == "ok")
                                             {
@@ -660,7 +657,11 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 if (MainWindow.XmlDocument.Root.Element("token") != null)
                                                     MainWindow.XmlDocument.Root.Element("token").Remove();
 
-                                                MessageBox.Show(Lang.Set("PageUser", "ErrorDataJson", lang));
+                                                switch (SelectToken(obj, "error.message", false))
+                                                {
+                                                    case "INVALID_ACCESS_TOKEN": MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", lang)); break;
+                                                    default: MessageBox.Show(Lang.Set("PageUser", "ErrorDataJson", lang)); break;
+                                                }
 
                                                 try { MainWindow.Navigator(); }
                                                 catch (Exception) { }

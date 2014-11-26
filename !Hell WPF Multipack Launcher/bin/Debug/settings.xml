@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <pro>
-  <info video="False" news="False" multipack="True" notification="0.0.0.0" language="ru" locale="2" user_email="helldar@ai-rus.com" user_name="">
+  <token access_token="42c9c723c6759f8321a257c74be3a7e5bb4faddb" expires_at="1418173121" nickname="First_Helldar" account_id="2732865" />
+  <info video="True" news="True" multipack="True" notification="0.0.0.0" language="ru" locale="2" user_email="" user_name="">
     <notify_link />
   </info>
   <settings kill="False" force="False" aero="False" video="False" weak="False" winxp="False" launcher="0" />
@@ -9,13 +10,16 @@
   </multipack>
   <game>
     <version>0.9.4.805</version>
-    <path>F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\bin\</path>
+    <path>D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\</path>
   </game>
-  <youtube />
+  <youtube>
+    <video>eyxVR5XlADg</video>
+  </youtube>
   <do_not_display>
     <video />
-    <news />
+    <news>
+      <item>http://worldoftanks.ru/ru/news/pc-browser/remember-everything/history_is_been_kept/</item>
+    </news>
   </do_not_display>
   <processes />
-  <token access_token="ad57db3ce6dd01eb1171eb32b7fbb47e53f70fef" expires_at="1418137597" nickname="First_Helldar" account_id="2732865" />
 </pro>

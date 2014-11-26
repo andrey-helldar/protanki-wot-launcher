@@ -203,7 +203,6 @@ namespace _Hell_WPF_Multipack_Launcher
                     tbPreview = this.TbPreview;
                     this.Closing += delegate { framePreview = null; tbPreview = null; };
 
-                    // Подгружаем перевод
 
                     try
                     {
@@ -338,17 +337,24 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="path">Пусть к файлу или ссылка</param>
         /// <param name="filename">Если используется запуск приложения, то обязательно указать имя файла</param>
-        private void ProcessStart(string path, string filename = "")
+        private void ProcessStart(string path, string filename = null)
         {
             try
             {
-                Process process = new Process();
-                process.StartInfo.WorkingDirectory = path;
-                process.StartInfo.FileName = filename == "" ? path : path + filename;
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.RedirectStandardError = true;
-                process.Start();
+                if (filename != null)
+                {
+                    Process process = new Process();
+                    process.StartInfo.WorkingDirectory = path;
+                    process.StartInfo.FileName = path + filename;
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.RedirectStandardError = true;
+                    process.Start();
+                }
+                else
+                {
+                    Process.Start(path);
+                }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); }
         }

@@ -187,95 +187,97 @@ namespace _Hell_WPF_Multipack_Launcher
                                 }
                                 catch (Exception ex1) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "if (count == 0)", "Записи не обнаружены", ex1.Message, ex1.StackTrace)); }
                             }
-
-                            for (int i = 0; i < count; i++)
+                            else
                             {
-                                try
+                                for (int i = 0; i < count; i++)
                                 {
-                                    // Добавляем решетку для размещения элементов
-                                    Grid gridPanel = new Grid();
-                                    gridPanel.Width = double.NaN;
-                                    gridPanel.Margin = new Thickness(0);
-                                    gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-
-                                    // Добавляем дату
-                                    Label labelDate = new Label();
-                                    labelDate.SetResourceReference(Label.StyleProperty, "ListBoxLabelGeneral");
-                                    try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
-                                    catch (Exception) { labelDate.Content = "1970-1-1"; }
-                                    gridPanel.Children.Add(labelDate);
-
-                                    // Кнопка "Воспроизвести"
-                                    if (youtube)
-                                    {
-                                        Button buttonPlay = new Button();
-                                        buttonPlay.Content = ">";
-                                        buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
-                                        buttonPlay.SetResourceReference(Button.StyleProperty, "ListBoxPlayGeneral");
-                                        buttonPlay.Click += PlayPreview;
-                                        gridPanel.Children.Add(buttonPlay);
-                                    }
-
-                                    // Кнопка "Закрыть"
-                                    Button buttonClose = new Button();
-                                    buttonClose.Content = "X";
-                                    buttonClose.Name = (youtube ? "CloseYoutube_" : "CloseWargaming_") + i.ToString();
-                                    buttonClose.SetResourceReference(Button.StyleProperty, "ListBoxCloseGeneral");
-                                    buttonClose.Click += CloseBlock;
-                                    gridPanel.Children.Add(buttonClose);
-
-                                    // Добавляем заголовок в гиперссылку
-                                    TextBlock blockTitle = new TextBlock();
-                                    blockTitle.SetResourceReference(TextBlock.StyleProperty, "ListBoxTitleGeneral");
-
-                                    // Добавляем идентификатор записи
-                                    Hyperlink hyperID = new Hyperlink(new Run(""));
-                                    hyperID.NavigateUri = new Uri(youtube ? "http://" + YoutubeClass.List[i].ID : WargamingClass.List[i].Link);
-                                    hyperID.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
-                                    this.RegisterName(hyperID.Name, hyperID);
-
-                                    // Гиперссылка для заголовка
-                                    Run run = new Run();
-                                    run.Text = youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title;
-                                    if (youtube)
-                                    {
-                                        run.Name = "run_" + i.ToString();
-                                        this.RegisterName(run.Name, run);
-                                    }
-
-                                    Hyperlink hyperlink = new Hyperlink(run);
-                                    hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
-                                    hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
-                                    hyperlink.Name = (youtube ? "lu_" : "lw_") + i.ToString();
-                                    hyperlink.SetResourceReference(Hyperlink.StyleProperty, "ListBoxTitleHyperlinkGeneral");
-                                    this.RegisterName(hyperlink.Name, hyperlink);
-                                    blockTitle.Inlines.Add(hyperlink);
-                                    blockTitle.Inlines.Add(hyperID);
-
-                                    gridPanel.Children.Add(blockTitle);
-
-                                    ListBoxItem lbi = new ListBoxItem();
-                                    lbi.SetResourceReference(ListBoxItem.StyleProperty, "ListBoxItemGeneral");
-                                    lbi.Content = gridPanel;
-
                                     try
                                     {
+                                        // Добавляем решетку для размещения элементов
+                                        Grid gridPanel = new Grid();
+                                        gridPanel.Width = double.NaN;
+                                        gridPanel.Margin = new Thickness(0);
+                                        gridPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+
+                                        // Добавляем дату
+                                        Label labelDate = new Label();
+                                        labelDate.SetResourceReference(Label.StyleProperty, "ListBoxLabelGeneral");
+                                        try { labelDate.Content = youtube ? YoutubeClass.List[i].DateShort : WargamingClass.List[i].DateShort; }
+                                        catch (Exception) { labelDate.Content = "1970-1-1"; }
+                                        gridPanel.Children.Add(labelDate);
+
+                                        // Кнопка "Воспроизвести"
                                         if (youtube)
-                                            lbVideo.Items.Add(lbi);
-                                        else
-                                            lbNews.Items.Add(lbi);
+                                        {
+                                            Button buttonPlay = new Button();
+                                            buttonPlay.Content = ">";
+                                            buttonPlay.Name = (youtube ? "PlayYoutube_" : "PlayWargaming_") + i.ToString();
+                                            buttonPlay.SetResourceReference(Button.StyleProperty, "ListBoxPlayGeneral");
+                                            buttonPlay.Click += PlayPreview;
+                                            gridPanel.Children.Add(buttonPlay);
+                                        }
 
-                                        Thread.Sleep(50);
+                                        // Кнопка "Закрыть"
+                                        Button buttonClose = new Button();
+                                        buttonClose.Content = "X";
+                                        buttonClose.Name = (youtube ? "CloseYoutube_" : "CloseWargaming_") + i.ToString();
+                                        buttonClose.SetResourceReference(Button.StyleProperty, "ListBoxCloseGeneral");
+                                        buttonClose.Click += CloseBlock;
+                                        gridPanel.Children.Add(buttonClose);
+
+                                        // Добавляем заголовок в гиперссылку
+                                        TextBlock blockTitle = new TextBlock();
+                                        blockTitle.SetResourceReference(TextBlock.StyleProperty, "ListBoxTitleGeneral");
+
+                                        // Добавляем идентификатор записи
+                                        Hyperlink hyperID = new Hyperlink(new Run(""));
+                                        hyperID.NavigateUri = new Uri(youtube ? "http://" + YoutubeClass.List[i].ID : WargamingClass.List[i].Link);
+                                        hyperID.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
+                                        this.RegisterName(hyperID.Name, hyperID);
+
+                                        // Гиперссылка для заголовка
+                                        Run run = new Run();
+                                        run.Text = youtube ? YoutubeClass.List[i].Title : WargamingClass.List[i].Title;
+                                        if (youtube)
+                                        {
+                                            run.Name = "run_" + i.ToString();
+                                            this.RegisterName(run.Name, run);
+                                        }
+
+                                        Hyperlink hyperlink = new Hyperlink(run);
+                                        hyperlink.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
+                                        hyperlink.RequestNavigate += new RequestNavigateEventHandler(Hyperlink_RequestNavigate);
+                                        hyperlink.Name = (youtube ? "lu_" : "lw_") + i.ToString();
+                                        hyperlink.SetResourceReference(Hyperlink.StyleProperty, "ListBoxTitleHyperlinkGeneral");
+                                        this.RegisterName(hyperlink.Name, hyperlink);
+                                        blockTitle.Inlines.Add(hyperlink);
+                                        blockTitle.Inlines.Add(hyperID);
+
+                                        gridPanel.Children.Add(blockTitle);
+
+                                        ListBoxItem lbi = new ListBoxItem();
+                                        lbi.SetResourceReference(ListBoxItem.StyleProperty, "ListBoxItemGeneral");
+                                        lbi.Content = gridPanel;
+
+                                        try
+                                        {
+                                            if (youtube)
+                                                lbVideo.Items.Add(lbi);
+                                            else
+                                                lbNews.Items.Add(lbi);
+
+                                            Thread.Sleep(50);
+                                        }
+                                        catch (Exception ex2) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex2.Message, ex2.StackTrace)); }
                                     }
-                                    catch (Exception ex2) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex2.Message, ex2.StackTrace)); }
+                                    catch (Exception ex3) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "FOR: " + i.ToString(), ex3.Message, ex3.StackTrace)); }
+
+
+                                    StatusBarSet(true);
                                 }
-                                catch (Exception ex3) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "FOR: " + i.ToString(), ex3.Message, ex3.StackTrace)); }
 
-
-                                StatusBarSet(true);
+                                Thread.Sleep(Convert.ToInt16(Properties.Resources.Sleeping_News));
                             }
-
-                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Sleeping_News));
                         }));
 
                     }
