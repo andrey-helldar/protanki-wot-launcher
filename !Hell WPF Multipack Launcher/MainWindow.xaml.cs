@@ -55,9 +55,8 @@ namespace _Hell_WPF_Multipack_Launcher
         public static XDocument XmlDocument { get { return xmlDocument; } }
         private static XDocument xmlDocument;
 
-        //public static JObject JSettings { get { return jSettings; } }
-        //private static JObject jSettings;
-        private JObject jSettings;
+        // Глобальная переменная настроек
+        private static JObject jSettings;
 
 
         public static string MultipackDate = "1970-1-1";
@@ -124,7 +123,7 @@ namespace _Hell_WPF_Multipack_Launcher
             this.Closing += delegate { xmlDocument = null; };
 
             // Загружаем настройки из JSON
-            JsonLoadSettings();
+            JsonSettingsLoad();
             this.Closing += delegate { jSettings = null; };
 
 
@@ -141,7 +140,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <summary>
         /// Загружаем настройки из файла JSON
         /// </summary>
-        private void JsonLoadSettings()
+        private void JsonSettingsLoad()
         {
             try
             {
@@ -167,7 +166,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <summary>
         /// Сохранение настроек в файл
         /// </summary>
-        private void JsonSaveSettings()
+        private void JsonSettingsSave()
         {
             try
             {
@@ -194,49 +193,31 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="path">Передаем ссылку на параметр</param>
         /// <returns>Значение параметра</returns>
-        public string JsonGetSettings(string path)
+        public static string JsonSettingsGet(string path)
         {
             try { return (string)jSettings.SelectToken(path); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "JsonGetSettings()", ex.Message, ex.StackTrace, path, jSettings.ToString())); }
+            catch (Exception) { }
             return null;
         }
 
-        public void JsonSetSettings(string path, string value)
+        /// <summary>
+        /// Записываем значение в массив
+        /// </summary>
+        /// <param name="path">Ключ массива. Максимум 2-х уровневый</param>
+        /// <param name="value">Значение для записи</param>
+        public static void JsonSettingsSet(string path, string value)
         {
             try
             {
-                if (path.IndexOf(".") < 0)
+                if (path.IndexOf('.') == -1)
                     jSettings[path] = value;
                 else
                 {
                     string[] str = path.Split('.');
-
-                    if (jSettings.SelectToken(str[0]) == null)
-                    {
-                        jSettings[str[0]] = "";
-                    }
+                    jSettings[str[0]][str[1]] = value;
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "JsonSetSettings()", "Path: " + path, "Value: " + value, ex.Message, ex.StackTrace)); }
-        }
-
-        //  data
-        private JObject JsonToken(JObject obj, string path, string value)
-        {
-            if (path.IndexOf('.') == -1)
-                obj[path] = value;
-            else
-            {
-                /*
-                 * data.status.message
-                 */
-                string[] str = path.Split('.');
-
-                if (obj.SelectToken(str[0]) != null)
-                    obj = JsonToken((JObject)obj[str[0]], str[1], value);
-            }
-
-            return obj;
+            catch (Exception) { }
         }
 
         private void LoadingPanel()
@@ -513,18 +494,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 Task.Factory.StartNew(() => Debug.Save("MainWindow.xaml", "FindLoadingPanel()", "Find LoadingPanel", ex.Message, ex.StackTrace));
                 return null;
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string path = "game.version.my";
-
-            JsonSetSettings(path, "my value");
-
-            string res = jSettings.SelectToken(path) != null ? jSettings.SelectToken(path).ToString() : "NULL";
-
-            MessageBox.Show(res);
-            MessageBox.Show(jSettings.ToString());
         }
     }
 }

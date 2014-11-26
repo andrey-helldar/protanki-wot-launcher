@@ -1,21 +1,14 @@
 ﻿{
-    "token": {
-        "access_token": "6ad398683640110e0d42c5a95ac7eda6c92c9962",
-        "expires_at": 1412214576,
-        "nickname": "First_Helldar",
-        "account_id": 2732865,
-        "email": ""
-    },
     "info": {
-        "video": false,
-        "news": false,
+        "video": true,
+        "news": true,
         "multipack": true,
         "notification": "0.0.0.0",
         "language": "ru",
         "locale": 2,
-        "notify_link": "",
-        "user_email": "",
-        "user_name": ""
+        "user_email": null,
+        "user_name": null,
+        "notify_link": null
     },
     "settings": {
         "kill": false,
@@ -27,18 +20,19 @@
         "launcher": 0
     },
     "multipack": {
-        "type": "base",
+        "type": null,
         "version": "0.0.0.0",
-        "link": ""
+        "link": null
     },
     "game": {
         "version": "0.0.0.0",
-        "path": "D:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\bin\\"
+        "path": null
     },
+    "processes": null,
     "youtube": null,
+    "wargaming": null,
     "do_not_display": {
         "video": null,
         "news": null
-    },
-    "processes": null
+    }
 }
