@@ -31,7 +31,12 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Language Lang = new Classes.Language();
         Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
 
-        string lang = Properties.Resources.Default_Lang;
+        string lang = (string)MainWindow.JsonSettingsGet("info.language");
+
+        string nickname = String.Empty;
+        string account_id = String.Empty;
+        string access_token = String.Empty;
+
         //private ObservableCollection<AssetClass> classes;
 
         /// <summary>
@@ -49,11 +54,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
-                lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim();
-            else
-                lang = Properties.Resources.Default_Lang;
-
             bool active = false;
             try { active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id"); }
             catch (Exception) { active = false; }
@@ -64,18 +64,14 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (active)
                 {
                     DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                    dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(MainWindow.XmlDocument.Root.Element("token").Attribute("expires_at").Value)).ToLocalTime();
+                    dtDateTime = dtDateTime.AddSeconds((double)MainWindow.JsonSettingsGet("token.expires_at")).ToLocalTime();
                     active = dtDateTime > DateTime.UtcNow;
                 }
 
                 // Если токен неверный, либо устарел - выводим авторизацию
                 if (!active)
                 {
-                    try
-                    {
-                        if (MainWindow.XmlDocument.Root.Element("token") != null)
-                            MainWindow.XmlDocument.Root.Element("token").Remove();
-                    }
+                    try { MainWindow.JsonSettingsRemove("token"); }
                     catch (Exception) { }
 
                     try
@@ -137,14 +133,8 @@ namespace _Hell_WPF_Multipack_Launcher
             // Копируем ник юзера в блок Info XML
             try
             {
-                if (MainWindow.XmlDocument.Root.Element("info").Attribute("user_name") != null &&
-                    MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
-                {
-                    if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value != "")
-                        MainWindow.XmlDocument.Root.Element("info").Attribute("user_name").SetValue(
-                            MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value
-                            );
-                }
+                string user_name = (string)MainWindow.JsonSettingsGet("token.nickname");
+                if (user_name != null && user_name != "") MainWindow.JsonSettingsSet("info.user_name", user_name);
             }
             catch (Exception) { }
 
@@ -187,9 +177,9 @@ namespace _Hell_WPF_Multipack_Launcher
                                             /*
                                              *      Читаем информацию о пользователе
                                              */
-                                            string nickname = GetElement("nickname"); // Переменная, чтобы по 100 раз не читать конфиг
-                                            string account_id = GetElement("account_id");
-                                            string access_token = GetElement("access_token");
+                                            nickname = (string)MainWindow.JsonSettingsGet("token.nickname"); // Переменная, чтобы по 100 раз не читать конфиг
+                                            account_id = (string)MainWindow.JsonSettingsGet("token.account_id");
+                                            access_token = (string)MainWindow.JsonSettingsGet("token.access_token");
 
                                             PlayerName.Text = nickname;
 
@@ -654,8 +644,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                             }
                                             else
                                             {
-                                                if (MainWindow.XmlDocument.Root.Element("token") != null)
-                                                    MainWindow.XmlDocument.Root.Element("token").Remove();
+                                                MainWindow.JsonSettingsRemove("token");
 
                                                 switch (SelectToken(obj, "error.message", false))
                                                 {
@@ -686,7 +675,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <returns>Возвращаем значение элемента в текстовом формате</returns>
         private string SelectToken(JObject obj, string key, bool data = true)
         {
-            try { return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", GetElement("account_id"), key)).ToString(); }
+            try { return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", account_id, key)).ToString(); }
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "SelectToken()", "Key: " + key, "Data: " + data, obj.ToString(), ex.Message, ex.StackTrace));
@@ -739,9 +728,8 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr) != null)
-                    if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value != "")
-                        return true;
+                string elem = (string)MainWindow.JsonSettingsGet("token." + attr);
+                if (elem != null && elem != "") return true;
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "CheckElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
             return false;
@@ -752,7 +740,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="attr">Аттрибут</param>
         /// <returns>Значение</returns>
-        private string GetElement(string attr)
+        /*private string GetElement(string attr)
         {
             try
             {
@@ -762,7 +750,7 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "GetElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
 
             return "fail";
-        }
+        }*/
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {

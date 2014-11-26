@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
+//using System.Xml.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -52,9 +52,9 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (WB.Source.ToString().IndexOf("AUTH_CANCEL") > -1)
                 {
                     Classes.Language Lang = new Classes.Language();
-                    MessageBoxResult mbr = MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value) +
+                    MessageBoxResult mbr = MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", (string)MainWindow.JsonSettingsGet("info.language")) +
                         Environment.NewLine +
-                        Lang.Set("PageUser", "RepeatActivation", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value),
+                        Lang.Set("PageUser", "RepeatActivation", (string)MainWindow.JsonSettingsGet("info.language")),
                         MainWindow.ProductName, MessageBoxButton.YesNo, MessageBoxImage.Information);
 
                     if (mbr == MessageBoxResult.Yes)
@@ -75,19 +75,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="val">Значение</param>
         private void SetValue(string attr, string val)
         {
-            try
-            {
-                XElement el = MainWindow.XmlDocument.Root.Element("token");
-
-                if (el != null)
-                    if (el.Attribute(attr) != null)
-                        el.Attribute(attr).SetValue(val);
-                    else
-                        el.Add(new XAttribute(attr, val));
-                else
-                    MainWindow.XmlDocument.Root.Add(new XElement("token",
-                        new XAttribute(attr, val)));
-            }
+            try { MainWindow.JsonSettingsSet("token." + attr, val); }
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
         }
 
@@ -144,13 +132,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         Match match = regex.Match(body.innerHTML);
                         while (match.Success)
                         {
-                            Debug.Save("WarApiOpenID.xaml", "SetValue()", WB.Source.ToString(), match.Value);
-
-                            try
-                            {
-                                if (MainWindow.XmlDocument.Root.Element("info").Attribute("user_email") != null)
-                                    MainWindow.XmlDocument.Root.Element("info").Attribute("user_email").SetValue(match.Value.Trim());
-                            }
+                            try { MainWindow.JsonSettingsSet("info.user_email", match.Value.Trim()); }
                             catch (Exception) { }
                             match = match.NextMatch();
                         }
