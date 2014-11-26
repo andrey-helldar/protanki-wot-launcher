@@ -16,8 +16,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Variables
     {
+        Debug Debug = new Debug();
+        Language Language = new Language();
+
+
         //public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.json";
-        public string SettingsPath = "settings.json";
+        private string SettingsPath = "settings.json";
+        
+        string lang = Properties.Resources.Default_Lang;
 
         // Product
         /*public string ProductName = String.Empty;
@@ -61,12 +67,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public bool ShowVideoNotify = true,
                     CommonTest = false;*/
 
-        JObject obj;
-        string lang = Properties.Resources.Default_Lang;
-
-        Debug Debug = new Debug();
-        Language Language = new Language();
-
 
         /********************
          * Functions
@@ -79,9 +79,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 MainWindow.JsonSettingsSet("info.ProductName", Application.Current.GetType().Assembly.GetName().Name);
                 MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major == 5, "bool");
-
+                
                 string lang_pack = Properties.Resources.Default_Lang;
                 string lang_game = Properties.Resources.Default_Lang;
+
+                /*
+                 *      Дополнительные переменные
+                 */
+                MainWindow.JsonSettingsSet("info.user_id", GetUserID());
+                
 
                 /*
                  *      Путь к игре
@@ -144,7 +150,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             MainWindow.JsonSettingsSet("multipack.type", (string)o.SelectToken("type"));
                             MainWindow.JsonSettingsSet("multipack.version", (string)o.SelectToken("path") + "." + (string)o.SelectToken("version"));
                             MainWindow.JsonSettingsSet("multipack.date", (string)o.SelectToken("date"));
-                            MainWindow.JsonSettingsSet("multipack.language", (string)o.SelectToken("language"));
+                            lang_pack = (string)o.SelectToken("language");
                         }
                     }
                     else
@@ -174,7 +180,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", e.Message, e.StackTrace)); }
         }
 
-        private bool ReadCheckStateBool(XDocument doc, string attr)
+        /*private bool ReadCheckStateBool(XDocument doc, string attr)
         {
             try
             {
@@ -191,7 +197,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 return false;
             }
             catch (Exception ex) { Debug.Save("Variables.Class", "ReadCheckStateBool()", "Attribute: " + attr, doc.ToString(), ex.Message, ex.StackTrace); return false; }
-        }
+        }*/
 
         /*private string GetTanksRegistry()
         {
@@ -223,7 +229,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
         }
 
-        public string GetUserID()
+        private string GetUserID()
         {
             try
             {
@@ -244,21 +250,21 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("Variables.Class", "GetUserID()", ex.Message, ex.StackTrace); return null; }
         }
 
-        public Version Version(string version)
+        /*public Version Version(string version)
         {
             try { return new Version(String.Format("{0}.{1}.{2}.{3}", TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version)); }
             catch (Exception ex) { Debug.Save("Variables.Class", "Version()", version, ex.Message, ex.StackTrace); return new Version("0.0.0.0"); }
-        }
+        }*/
 
         /// <summary>
         /// Формирование версии в решетку
         /// </summary>
-        /// <param name="ver"></param>
-        /// <returns>формат 0.0.0 #0</returns>
-        public string VersionToSharp(Version ver)
+        /// <param name="ver">Версия для обработки</param>
+        /// <returns>Вывод версии в формате 0.0.0 #0</returns>
+        public string VersionSharp(Version ver)
         {
             try { return String.Format("{0}.{1}.{2} #{3}", ver.Major, ver.Minor, ver.Build, ver.Revision); }
-            catch (Exception ex) { Debug.Save("Variables.Class", "VersionToSharp()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0 #0"; }
+            catch (Exception ex) { Debug.Save("Variables.Class", "VersionSharp()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0 #0"; }
         }
 
         /// <summary>
@@ -266,7 +272,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </summary>
         /// <param name="ver">Входящий формат вида 0.0.0. #0</param>
         /// <returns>0.0.0.0</returns>
-        public Version VersionFromSharp(string ver)
+        public Version Version(string ver)
         {
             try { return new Version(ver.Replace(" #", ".")); }
             catch (Exception) { return new Version("0.0.0.0"); }
@@ -277,17 +283,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </summary>
         /// <param name="ver">Версия для преобразования</param>
         /// <returns>формат 0.0.0.</returns>
-        public string VersionPrefix(Version ver)
+        /*public string VersionPrefix(Version ver)
         {
             try { return String.Format("{0}.{1}.{2}.", ver.Major, ver.Minor, ver.Build); }
             catch (Exception ex) { Debug.Save("Variables.Class", "VersionPrefix()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0."; }
-        }
+        }*/
 
-        public void ItXP()
+        /*public void ItXP()
         {
             try { WinXP = Environment.OSVersion.Version.Major == 5; }
             catch (Exception ex) { Debug.Save("Variables.Class", "ItXP()", ex.Message, ex.StackTrace); }
-        }
+        }*/
 
         /// <summary>
         /// Проверка внесен ли элемент новости/видео в так называемый "черный список"
@@ -297,7 +303,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         ///     TRUE - запись находится в черном списке;
         ///     FALSE - запись "чистая"
         /// </returns>
-        public bool ElementBan(string item, string block = "video")
+        /*public bool ElementBan(string item, string block = "video")
         {
             try
             {
@@ -310,7 +316,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("Variables.Class", "ElementBan()", item, block, ex.Message, ex.StackTrace); }
 
             return false;
-        }
+        }*/
 
 
         /// <summary>
@@ -319,7 +325,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <param name="block">Имя ключевого элемента</param>
         /// <param name="attr">Имя аттрибута</param>
         /// <returns>Булевое значение существования элемента</returns>
-        public bool GetElement(string block, string attr)
+        /*public bool GetElement(string block, string attr)
         {
             try
             {
@@ -330,7 +336,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("Variables.Class", "GetElement()", block, attr, ex.Message, ex.StackTrace); }
 
             return true;
-        }
+        }*/
+
         /// <summary>
         /// ИЗвлечение ресурсов, если оригинальные файлы не найдены
         /// </summary>

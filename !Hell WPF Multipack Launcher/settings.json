@@ -8,7 +8,9 @@
         "locale": 2,
         "user_email": null,
         "user_name": null,
-        "notify_link": null
+        "user_id": null,
+        "notify_link": null,
+        "ProductName": null
     },
     "settings": {
         "kill": false,
@@ -22,11 +24,13 @@
     "multipack": {
         "type": null,
         "version": "0.0.0.0",
+        "date": null,
         "link": null
     },
     "game": {
         "version": "0.0.0.0",
-        "path": null
+        "path": null,
+        "test": false
     },
     "processes": null,
     "youtube": null,

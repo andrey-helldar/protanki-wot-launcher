@@ -183,7 +183,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Debug.Class.cs" />
-    <Compile Include="Classes\INI.Class.cs" />
     <Compile Include="Classes\Optimize.Class.cs" />
     <Compile Include="Classes\POST.Class.cs" />
     <Compile Include="Classes\Variables.Class.cs" />
