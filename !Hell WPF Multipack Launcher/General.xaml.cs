@@ -77,8 +77,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     Task.Factory.StartNew(() => WargamingClass.Start())                
                 });
                 //StatusBarSet(true, 1);
-
-
+                
                 Task.WaitAll(new Task[]{
                     Task.Factory.StartNew(() => ViewNews()),
                     Task.Factory.StartNew(() => ViewNews(false))
@@ -86,7 +85,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 StatusBarSet(false, 1, true, true, true);
 
-                Task.Factory.StartNew(() => VideoNotify()); // Выводим уведомления
+                Task.Factory.StartNew(() => Notify()); // Выводим уведомления видео
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
@@ -226,12 +225,13 @@ namespace _Hell_WPF_Multipack_Launcher
                                     // Добавляем заголовок в гиперссылку
                                     TextBlock blockTitle = new TextBlock();
                                     blockTitle.SetResourceReference(TextBlock.StyleProperty, "ListBoxTitleGeneral");
-
+                                    
                                     // Добавляем идентификатор записи
                                     Hyperlink hyperID = new Hyperlink(new Run(""));
                                     hyperID.NavigateUri = new Uri(youtube ? "http://" + YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
                                     hyperID.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
                                     this.RegisterName(hyperID.Name, hyperID);
+
 
                                     // Гиперссылка для заголовка
                                     Run run = new Run();
@@ -268,13 +268,13 @@ namespace _Hell_WPF_Multipack_Launcher
                                     }
                                     catch (Exception ex2) { Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex2.Message, ex2.StackTrace); }
                                 }
-                                catch (Exception ex3) { Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "FOR: " + i.ToString(), ex3.Message, ex3.StackTrace); }
+                                catch (Exception ex3) { Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "Record: " + i.ToString(), ex3.Message, ex3.StackTrace); }
 
 
                                 StatusBarSet(true);
                             }
 
-                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Sleeping_News));
+                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Show_Item));
                         }
                     }));
 
@@ -286,8 +286,11 @@ namespace _Hell_WPF_Multipack_Launcher
             return true;
         }
 
-        private void VideoNotify()
+        private void Notify()
         {
+            /*
+             *  Видео
+             */
             try
             {
                 if (MainWindow.XmlDocument.Root.Element("info").Attribute("video") != null)
@@ -295,47 +298,120 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         if (YoutubeClass.Count() > 0)
                         {
-                            if (MainWindow.XmlDocument.Root.Element("youtube") != null)
-                                foreach (var el in MainWindow.XmlDocument.Root.Element("youtube").Elements("video")) { YoutubeClass.Delete(el.Value); }
-                            else MainWindow.XmlDocument.Root.Add(new XElement("youtube", null));
-
-                            Task.Factory.StartNew(() => DeleteOldVideo()).Wait(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
-
                             foreach (var el in YoutubeClass.List)
                             {
-                                Thread.Sleep(5000);
+                                bool show_this = true;
 
-                                for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
+                                if (MainWindow.XmlDocument.Root.Element("youtube") != null)
+                                    foreach (var elem in MainWindow.XmlDocument.Root.Element("youtube").Elements("video"))
+                                    {
+                                        if (elem.Value == el.ID)
+                                        {
+                                            show_this = false;
+                                            break;
+                                        }
+                                    }
+
+                                if (show_this)
                                 {
+                                    DeleteOldVideo(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
+
+                                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
+
+                                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
+                                    {
+                                        try
+                                        {
+                                            // Если запущен клиент игры - ждем 5 секунд до следующей проверки
+                                            while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
+                                                Process.GetProcessesByName("WoTLauncher").Length > 0)
+                                                Thread.Sleep(5000);
+
+                                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
+                                        }
+                                        catch (Exception) { }
+                                    }
+
                                     try
                                     {
-                                        // Если запущен клиент игры - ждем 5 секунд до следующей проверки
-                                        while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
-                                            Process.GetProcessesByName("WoTLauncher").Length > 0)
-                                            Thread.Sleep(5000);
+                                        MainWindow.NotifyLink = el.Link;
 
-                                        Thread.Sleep(5000);
+                                        Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
+
+                                        if (MainWindow.XmlDocument.Root.Element("youtube") != null)
+                                            MainWindow.XmlDocument.Root.Element("youtube").Add(new XElement("video", el.ID));
+                                        else
+                                            MainWindow.XmlDocument.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
                                     }
-                                    catch (Exception) { }
+                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE", el.ToString(), ex0.Message, ex0.StackTrace)); }
                                 }
-
-                                try
-                                {
-                                    MainWindow.NotifyLink = el.Link;
-
-                                    Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
-
-                                    if (MainWindow.XmlDocument.Root.Element("youtube") != null)
-                                        MainWindow.XmlDocument.Root.Element("youtube").Add(new XElement("video", el.ID));
-                                    else
-                                        MainWindow.XmlDocument.Root.Add(new XElement("youtube", new XElement("video", el.ID)));
-                                }
-                                catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", el.ToString(), ex0.Message, ex0.StackTrace)); }
                             }
                         }
                     }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "VideoNotify()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE", ex.Message, ex.StackTrace)); }
+
+
+            /*
+             *  Новости
+             */
+            try
+            {
+                if (MainWindow.XmlDocument.Root.Element("info").Attribute("news") != null)
+                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("news").Value == "True")
+                    {
+                        if (WargamingClass.Count() > 0)
+                        {
+                            foreach (var el in WargamingClass.List)
+                            {
+                                bool show_this = true;
+
+                                if (MainWindow.XmlDocument.Root.Element("wargaming") != null)
+                                    foreach (var elem in MainWindow.XmlDocument.Root.Element("wargaming").Elements("news"))
+                                    {
+                                        if (elem.Value == el.Link)
+                                        {
+                                            show_this = false;
+                                            break;
+                                        }
+                                    }
+
+                                if (show_this)
+                                {
+                                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
+
+                                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
+                                    {
+                                        try
+                                        {
+                                            // Если запущен клиент игры - ждем 5 секунд до следующей проверки
+                                            while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
+                                                Process.GetProcessesByName("WoTLauncher").Length > 0)
+                                                Thread.Sleep(5000);
+
+                                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
+                                        }
+                                        catch (Exception) { }
+                                    }
+
+                                    try
+                                    {
+                                        MainWindow.NotifyLink = el.Link;
+
+                                        Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowNews", lang), el.Title));
+
+                                        if (MainWindow.XmlDocument.Root.Element("wargaming") != null)
+                                            MainWindow.XmlDocument.Root.Element("wargaming").Add(new XElement("news", el.Link));
+                                        else
+                                            MainWindow.XmlDocument.Root.Add(new XElement("wargaming", new XElement("news", el.Link)));
+                                    }
+                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "WARGAMING", el.ToString(), ex0.Message, ex0.StackTrace)); }
+                                }
+                            }
+                        }
+                    }
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "WARGAMING", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -373,7 +449,6 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             caption = caption != null ? caption : MainWindow.ProductName;
                             MainWindow.Notifier.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
-                            //MainWindow.Notifier.BalloonTipClicked += new EventHandler(NotifyClick);
                         }
                         catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", "Caption: " + caption, text, "IsPopup = " + isPopup.ToString(), ex0.Message, ex0.StackTrace)); }
                     }

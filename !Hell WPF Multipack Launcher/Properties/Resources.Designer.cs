@@ -383,6 +383,24 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2000.
+        /// </summary>
+        public static string Default_Sleeping_Notify {
+            get {
+                return ResourceManager.GetString("Default_Sleeping_Notify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        public static string Default_Sleeping_Show_Item {
+            get {
+                return ResourceManager.GetString("Default_Sleeping_Show_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 30.
         /// </summary>
         public static string Developer_Feedback_Symbols {
@@ -952,25 +970,27 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*
+        ///   Looks up a localized string similar to {
         ///    &quot;token&quot;: {
         ///        &quot;access_token&quot;: &quot;6ad398683640110e0d42c5a95ac7eda6c92c9962&quot;,
         ///        &quot;expires_at&quot;: 1412214576,
         ///        &quot;nickname&quot;: &quot;First_Helldar&quot;,
-        ///        &quot;account_id&quot;: 2732865
+        ///        &quot;account_id&quot;: 2732865,
+        ///        &quot;email&quot;: &quot;&quot;
         ///    },
-        ///*/
-        ///{
-        ///    &quot;info&quot;: { &quot;video&quot;: false, &quot;news&quot;: false }
-        ///}
-        ///
-        ////*
-        ///&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;pro&gt;
-        ///  &lt;info video=&quot;False&quot; news=&quot;False&quot; multipack=&quot;True&quot; notification=&quot;0.0.0.0&quot; language=&quot;ru&quot; locale=&quot;2&quot;&gt;
-        ///    &lt;notify_link /&gt;
-        ///  &lt;/info&gt;
-        ///  &lt;settings kill=&quot;False&quot; force=&quot;False&quot; aero=&quot;False&quot; video=&quot;False&quot;  [rest of string was truncated]&quot;;.
+        ///    &quot;info&quot;: {
+        ///        &quot;video&quot;: false,
+        ///        &quot;news&quot;: false,
+        ///        &quot;multipack&quot;: true,
+        ///        &quot;notification&quot;: &quot;0.0.0.0&quot;,
+        ///        &quot;language&quot;: &quot;ru&quot;,
+        ///        &quot;locale&quot;: 2,
+        ///        &quot;notify_link&quot;: &quot;&quot;,
+        ///        &quot;user_email&quot;: &quot;&quot;,
+        ///        &quot;user_name&quot;: &quot;&quot;
+        ///    },
+        ///    &quot;settings&quot;: {
+        ///       [rest of string was truncated]&quot;;.
         /// </summary>
         public static string SettingsXML {
             get {
@@ -1005,15 +1025,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
             get {
                 object obj = ResourceManager.GetObject("skrepka_pressed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 0.
-        /// </summary>
-        public static string Sleeping_News {
-            get {
-                return ResourceManager.GetString("Sleeping_News", resourceCulture);
             }
         }
         

@@ -31,8 +31,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Debug Debug = new Classes.Debug();
         Classes.Optimize Optimize = new Classes.Optimize();
         Classes.Language Lang = new Classes.Language();
-
-
+        
 
         public System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
         public static System.Windows.Forms.NotifyIcon Notifier { get { return notifier; } }

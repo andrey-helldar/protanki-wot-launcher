@@ -192,7 +192,7 @@
     <value>30</value>
     <comment>Минимальное количество символов в отправляемом сообщении</comment>
   </data>
-  <data name="Sleeping_News" xml:space="preserve">
+  <data name="Default_Sleeping_Show_Item" xml:space="preserve">
     <value>0</value>
     <comment>Таймаут перед созданием следующей записи на форме</comment>
   </data>
@@ -470,5 +470,9 @@
   <data name="Default_Debug_Crypt" xml:space="preserve">
     <value>0</value>
     <comment>Шифрование логов дебага</comment>
+  </data>
+  <data name="Default_Sleeping_Notify" xml:space="preserve">
+    <value>2000</value>
+    <comment>Таймаут между показом уведомлений новостей и видео</comment>
   </data>
 </root>
