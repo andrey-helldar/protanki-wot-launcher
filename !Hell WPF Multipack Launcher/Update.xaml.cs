@@ -22,16 +22,11 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class Update : Page
     {
-        Classes.POST POST = new Classes.POST();
         Classes.Debug Debug = new Classes.Debug();
-
-        private string downloadLink = String.Empty;
-
 
         public Update()
         {
             InitializeComponent();
-
             Task.Factory.StartNew(() => MultipackUpdate());
         }
 
@@ -40,21 +35,17 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 if (cbNotify.IsChecked == true)
-                    //MainWindow.JsonSettingsSet("info.notification", new Classes.Variables().VersionFromSharp(newVersion.Content.ToString()).ToString());
-                    MainWindow.JsonSettingsSet("info.notification", new Classes.Variables().Version("").ToString());
+                    MainWindow.JsonSettingsSet("info.notification", MainWindow.JsonSettingsGet("multipack.new_version"));
 
-                if (downloadLink!=String.Empty)
-                    Process.Start(downloadLink);
+                string link = (string)MainWindow.JsonSettingsGet("multipack.link");
+                if (link != String.Empty) Process.Start(link);
 
                 MainWindow.LoadingPanelShow(1);
 
                 Task.Factory.StartNew(() =>
                 {
-                    try
-                    {
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
-                    }
-                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+                    try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
+                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "bUpdate_Click()", ex0.Message, ex0.StackTrace)); }
                 });
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
@@ -74,26 +65,44 @@ namespace _Hell_WPF_Multipack_Launcher
             });
         }
 
-        public void MultipackUpdate()
+        private void MultipackUpdate()
         {
             try
             {
+                Classes.Language Lang = new Classes.Language();
                 string lang = (string)MainWindow.JsonSettingsGet("info.language");
-                string mType = (string)MainWindow.JsonSettingsGet("multipack.type");
-                string thisVersion = (string)MainWindow.JsonSettingsGet("multipack.version");
-                downloadLink = (string)MainWindow.JsonSettingsGet("multipack.link");
 
-                var json = POST.JsonResponse(Properties.Resources.Multipack_Updates);
-                tbContent.Text = (string)json.SelectToken(mType + ".changelog." + lang);
-                newVersion.Content = new Version((string)json.SelectToken("version"));
+                /*
+                 *      Применяем локализацию интерфейса
+                 */
+                gbCaption.Content = Lang.Set("PageUpdate", "gbCaption", lang);
+                lDownloadFromLink.Content = Lang.Set("PageUpdate", "lDownloadFromLink", lang);
+                cbNotify.Content = Lang.Set("PageUpdate", "cbNotify", lang);
+                bUpdate.Content = Lang.Set("PageUpdate", "bUpdate", lang);
+                bCancel.Content = Lang.Set("PageUpdate", "bCancel", lang);
+
+                /*
+                 *      Подгружаем другие данные
+                 */
+                newVersion.Content = new Classes.Variables().VersionSharp((string)MainWindow.JsonSettingsGet("multipack.new_version"), false);
+                tbContent.Text = (string)MainWindow.JsonSettingsGet("multipack.changelog");
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "MultipackUpdate()", ex.Message, ex.StackTrace)); }
-        }
 
-        private void PageUpdate_Loaded(object sender, RoutedEventArgs e)
-        {
+
             try { MainWindow.LoadingPanelShow(); }
             catch (Exception) { }
+        }
+
+        private string ParseChangelog(string log) {
+            try {
+                if (log.Length > 0)
+                {
+
+                }
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "ParseChangelog()", ex.Message, ex.StackTrace)); }
+            return log;
         }
     }
 }

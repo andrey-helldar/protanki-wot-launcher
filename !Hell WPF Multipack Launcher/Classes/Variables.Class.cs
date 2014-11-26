@@ -267,10 +267,20 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// Формирование версии в решетку
         /// </summary>
         /// <param name="ver">Версия для обработки</param>
+        /// 
         /// <returns>Вывод версии в формате 0.0.0 #0</returns>
-        public string VersionSharp(Version ver)
+        public string VersionSharp(object ver, bool version = true)
         {
-            try { return String.Format("{0}.{1}.{2} #{3}", ver.Major, ver.Minor, ver.Build, ver.Revision); }
+            try
+            {
+                if (version)
+                    return String.Format("{0}.{1}.{2} #{3}", ((Version)ver).Major, ((Version)ver).Minor, ((Version)ver).Build, ((Version)ver).Revision);
+                else
+                {
+                    Version str_ver = new Version((string)ver);
+                    return String.Format("{0}.{1}.{2} #{3}", str_ver.Major, str_ver.Minor, str_ver.Build, str_ver.Revision);
+                }
+            }
             catch (Exception ex) { Debug.Save("Variables.Class", "VersionSharp()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0 #0"; }
         }
 

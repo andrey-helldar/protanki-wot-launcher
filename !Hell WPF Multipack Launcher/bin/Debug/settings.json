@@ -26,7 +26,8 @@
         "version": "0.0.0.0",
         "date": null,
         "link": null,
-        "changelog": null
+        "changelog": null,
+        "new_version": "0.0.0.0"
     },
     "game": {
         "version": "0.0.0.0",

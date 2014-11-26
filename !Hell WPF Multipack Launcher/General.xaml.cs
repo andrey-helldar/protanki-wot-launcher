@@ -750,26 +750,26 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 if (json != null)
                 {
-                    if (
-                        (
-                            new Version((string)MainWindow.JsonSettingsGet("multipack.version")) <
-                            new Version((string)json.SelectToken("version"))
-                        ) &&
-                        (
-                            (string)MainWindow.JsonSettingsGet("info.notification") !=
-                            (string)json.SelectToken("version")
-                        )
-                      )
+                    if (new Version((string)MainWindow.JsonSettingsGet("multipack.version")) <
+                        new Version((string)json.SelectToken("version")))
                     {
                         string path = (string)MainWindow.JsonSettingsGet("multipack.type") + ".";
 
-                        MainWindow.JsonSettingsSet("multipack.link", path + "download");
-                        MainWindow.JsonSettingsSet("multipack.changelog", path + "changelog");
+                        MainWindow.JsonSettingsSet("multipack.link", (string)json.SelectToken(path + "download"));
+                        MainWindow.JsonSettingsSet("multipack.changelog", (string)json.SelectToken(path + "changelog."+lang));
+                        MainWindow.JsonSettingsSet("multipack.new_version", (string)json.SelectToken("version"));
 
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
                             lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", lang, (string)json.SelectToken("version"));
                         }));
+
+                        if (
+                            (string)MainWindow.JsonSettingsGet("info.notification") !=
+                            (string)json.SelectToken("version"))
+                        {
+                            OpenPage("Update");
+                        }
                     }
                 }
             }
