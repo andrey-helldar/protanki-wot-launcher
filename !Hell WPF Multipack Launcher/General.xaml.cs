@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
+//using System.Xml.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +31,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Variables Variables = new Classes.Variables();
 
         private string NotifyLink = String.Empty;
-        private string lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
+        private string lang = (string)MainWindow.JsonSettingsGet("info.language");
 
 
         public General()
@@ -44,12 +44,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
             try
             {
-                if (MainWindow.XmlDocument.Root.Element("token") != null)
-                    if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname") != null)
-                        if (MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value != "")
-                            nickname = ", " + MainWindow.XmlDocument.Root.Element("token").Attribute("nickname").Value;
-                        else
-                            MainWindow.XmlDocument.Root.Element("token").Remove();
+                nickname = (string)MainWindow.JsonSettingsGet("info.user_name");
+                if (nickname.Length > 0) nickname = ", " + nickname;
             }
             catch (Exception) { nickname = String.Empty; }
 
@@ -60,11 +56,7 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             // Устанавливаем заголовок в зависимости от типа версии
-            try
-            {
-                if (MainWindow.XmlDocument.Root.Element("multipack").Attribute("type") != null)
-                    lType.Content = Lang.Set("PageGeneral", MainWindow.XmlDocument.Root.Element("multipack").Attribute("type").Value, lang);
-            }
+            try { lType.Content = Lang.Set("PageGeneral", (string)MainWindow.JsonSettingsGet("multipack.type"), lang); }
             catch (Exception) { lType.Content = Lang.Set("PageGeneral", "base", lang); }
 
             // Загружаем список видео и новостей
@@ -76,7 +68,6 @@ namespace _Hell_WPF_Multipack_Launcher
                     Task.Factory.StartNew(() => YoutubeClass.Start()),
                     Task.Factory.StartNew(() => WargamingClass.Start())                
                 });
-                //StatusBarSet(true, 1);
                 
                 Task.WaitAll(new Task[]{
                     Task.Factory.StartNew(() => ViewNews()),

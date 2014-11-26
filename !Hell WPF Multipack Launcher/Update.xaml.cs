@@ -40,7 +40,7 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 if (cbNotify.IsChecked == true)
-                    MainWindow.XmlDocument.Root.Element("info").Attribute("notification").SetValue(new Classes.Variables().VersionFromSharp(newVersion.Content.ToString()));
+                    MainWindow.JsonSettingsSet("info.notification", new Classes.Variables().VersionFromSharp(newVersion.Content.ToString()).ToString());
 
                 if (downloadLink!=String.Empty)
                     Process.Start(downloadLink);
@@ -77,34 +77,14 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
+                string lang = (string)MainWindow.JsonSettingsGet("info.language");
+                string mType = (string)MainWindow.JsonSettingsGet("multipack.type");
+                string thisVersion = (string)MainWindow.JsonSettingsGet("multipack.version");
+                downloadLink = (string)MainWindow.JsonSettingsGet("multipack.link");
+
                 var json = POST.JsonResponse(Properties.Resources.JsonUpdates);
-
-                string mType = "base";
-                if (MainWindow.XmlDocument.Root.Element("multipack") != null)
-                    if (MainWindow.XmlDocument.Root.Element("multipack").Attribute("type") != null)
-                        if (MainWindow.XmlDocument.Root.Element("multipack").Attribute("type").Value != "")
-                            mType = MainWindow.XmlDocument.Root.Element("multipack").Attribute("type").Value;
-
-                string thisVersion = "0.0.0.0";
-                if (MainWindow.XmlDocument.Root.Element("multipack") != null)
-                    if (MainWindow.XmlDocument.Root.Element("multipack").Attribute("version") != null)
-                        if (MainWindow.XmlDocument.Root.Element("multipack").Attribute("version").Value != "")
-                            thisVersion = MainWindow.XmlDocument.Root.Element("multipack").Attribute("version").Value;
-                
-                string lang = Properties.Resources.Default_Lang;
-                if (MainWindow.XmlDocument.Root.Element("info") != null)
-                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
-                        if (MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value != "")
-                            lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
-
-                if (MainWindow.XmlDocument.Root.Element("multipack") != null)
-                    if (MainWindow.XmlDocument.Root.Element("multipack").Element("link") != null)
-                        if (MainWindow.XmlDocument.Root.Element("multipack").Element("link").Value != "")
-                            downloadLink = MainWindow.XmlDocument.Root.Element("multipack").Element("link").Value;
-
-
-                newVersion.Content = new Version(new Classes.Variables().VersionPrefix(new Version(thisVersion)) + json[mType]["version"]).ToString();
-                tbContent.Text = json[mType]["changelog"][lang].ToString();
+                tbContent.Text = (string)json.SelectToken(mType + ".changelog." + lang);
+                newVersion.Content = new Version((string)json.SelectToken("version"));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "MultipackUpdate()", ex.Message, ex.StackTrace)); }
         }

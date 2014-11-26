@@ -1,0 +1,10 @@
+﻿{
+  "uid": "64935334dc97650ae4e896ceebd4cae7",
+  "version": "2.5.34.760",
+  "date": "2014-11-26 5-7-13",
+  "module": "General.xaml",
+  "function": "Notify()",
+  "param0": "YOUTUBE",
+  "param1": "Коллекция была изменена; невозможно выполнить операцию перечисления.",
+  "param2": "   в System.Collections.Generic.List`1.Enumerator.MoveNextRare()\r\n   в _Hell_WPF_Multipack_Launcher.General.Notify() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\General.xaml.cs:строка 301"
+}

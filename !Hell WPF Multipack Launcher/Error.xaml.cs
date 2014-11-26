@@ -22,8 +22,8 @@ namespace _Hell_WPF_Multipack_Launcher
         public Error()
         {
             InitializeComponent();
-
-            bClose.Content = new Classes.Language().Set("PageSettings", "bClose", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value.Trim());
+            
+            bClose.Content = new Classes.Language().Set("PageSettings", "bClose", (string)MainWindow.JsonSettingsGet("info.language"));
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)

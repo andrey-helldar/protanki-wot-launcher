@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
+//using System.Xml.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
@@ -32,7 +32,7 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            gbProcesses.Header = new Classes.Language().Set("PageSettingsProcesses", "lProcesses", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value);
+            gbProcesses.Header = new Classes.Language().Set("PageSettingsProcesses", "lProcesses", (string)MainWindow.JsonSettingsGet("info.language"));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -140,14 +140,8 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <returns>Если процесс есть в списке, выводим TRUE, иначе - FALSE</returns>
         private bool CheckUserProcess(string proc)
         {
-            try
-            {
-                if (MainWindow.XmlDocument.Root.Element("processes") != null)
-                    if (MainWindow.XmlDocument.Root.Element("processes").Element(proc) != null)
-                        return true;
-            }
+            try { return (bool)MainWindow.JsonSettingsGet("processes." + proc); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsProcesses.xaml", "CheckUserProcess()", "Process: " + proc, ex.Message, ex.StackTrace)); }
-
             return false;
         }
 
@@ -181,22 +175,14 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 if (cb.IsEnabled)
                 {
-                    XElement elem = MainWindow.XmlDocument.Root.Element("processes");
-
                     if (cb.IsChecked == true)
                     {
-                        if (elem != null)
-                            if (elem.Element(processName) == null)
-                                elem.Add(new XElement(processName, null));
-
+                        MainWindow.JsonSettingsSet("processes", processName);
                         el.SetResourceReference(ListBoxItem.StyleProperty, "lbiProcessCheck");
                     }
                     else
                     {
-                        if (elem != null)
-                            if (elem.Element(processName) != null)
-                                elem.Element(processName).Remove();
-
+                        MainWindow.JsonSettingsRemove("processes." + processName);
                         el.SetResourceReference(ListBoxItem.StyleProperty, "lbiProcessUnCheck");
                     }
                 }

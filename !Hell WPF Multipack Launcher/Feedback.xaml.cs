@@ -37,12 +37,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
             Task.Factory.StartNew(() =>
             {
-                try { lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value; }
-                catch (Exception ex)
-                {
-                    Debug.Save("Feedback.xaml", "Feedback()", ex.Message, ex.StackTrace);
-                    lang = Properties.Resources.Default_Lang;
-                }
+                try { lang = (string)MainWindow.JsonSettingsGet("info.language"); }
+                catch (Exception ex) { Debug.Save("Feedback.xaml", "Feedback()", ex.Message, ex.StackTrace); }
             }).Wait();
 
             Task.Factory.StartNew(() => SetInterface()); // Загрузка языка
@@ -54,9 +50,10 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 MainWindow.LoadingPanelShow();
 
-                if (MainWindow.XmlDocument.Root.Element("token").Attribute("email") != null)
+
+                if ((string)MainWindow.JsonSettingsGet("token.email") != null)
                 {
-                    tbEmail.Text = MainWindow.XmlDocument.Root.Element("token").Attribute("email").Value;
+                    tbEmail.Text = (string)MainWindow.JsonSettingsGet("token.email");
                     tbEmail.IsEnabled = false;
                 }
             }
@@ -197,11 +194,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 if (rec.Length > 0)
                 {
-                    if (MainWindow.XmlDocument.Root.Element("token") != null)
-                        if (MainWindow.XmlDocument.Root.Element("token").Attribute(rec) != null)
-                            return MainWindow.XmlDocument.Root.Element("token").Attribute(rec).Value;
-                        else return "";
-                    else return "";
+                    string token = (string)MainWindow.JsonSettingsGet("token." + rec);
+                    return token == null ? "" : token;
                 }
                 else
                     return "";

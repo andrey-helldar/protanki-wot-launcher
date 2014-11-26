@@ -26,11 +26,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
-                string lang = Properties.Resources.Default_Lang;
+                string lang = (string)MainWindow.JsonSettingsGet("info.language");
 
-                if (MainWindow.XmlDocument.Root.Element("info") != null)
-                    if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
-                        lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
 
                 XDocument doc;
 
@@ -49,7 +46,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             DateTime.Parse(el.Element("pubDate").Value).ToString("dd.MM"));
                     }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Start()", ex.Message, ex.StackTrace, MainWindow.XmlDocument.ToString())); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Start()", ex.Message, ex.StackTrace)); }
         }
 
 

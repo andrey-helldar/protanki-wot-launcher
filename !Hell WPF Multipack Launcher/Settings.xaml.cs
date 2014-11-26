@@ -25,7 +25,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Language Lang = new Classes.Language();
 
         private bool openedPage = true;
-        string lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;
+        string lang = (string)MainWindow.JsonSettingsGet("info.language");
 
 
         public Settings()
@@ -72,13 +72,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.PlayBtn.Content = Lang.Set("MainProject", "bPlay", MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value);
-
-            Task.Factory.StartNew(() =>
-            {
-                try { MainWindow.XmlDocument.Save(new Classes.Variables().SettingsPath); }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "bClose_Click()", "xmlDocument.Save();", ex.Message, ex.StackTrace)); }
-            }).Wait();
+            MainWindow.PlayBtn.Content = Lang.Set("MainProject", "bPlay", lang);
 
             MainWindow.LoadingPanelShow(1);
       

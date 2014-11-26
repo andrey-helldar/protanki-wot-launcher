@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
+//using System.Xml.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,8 +52,8 @@ namespace _Hell_WPF_Multipack_Launcher
         private static Frame framePreview;
         private static TextBlock tbPreview;
 
-        public static XDocument XmlDocument { get { return xmlDocument; } }
-        private static XDocument xmlDocument;
+        //public static XDocument XmlDocument { get { return xmlDocument; } }
+        //private static XDocument xmlDocument;
 
         // Глобальная переменная настроек
         private static JObject jSettings;
@@ -99,7 +99,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 else
                 {
                     framePreview.Visibility = Visibility.Hidden;
-                    MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", XmlDocument.Root.Element("info").Attribute("language").Value));
+                    MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language")));
                 }
             }
             catch (Exception ex)
@@ -117,10 +117,13 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
+            loadingpanel = 1;
+            Task.Factory.StartNew(() => LoadingPanel());    // LoadingPanel
+
             // Загружаем настройки из XML-файла
-            if (File.Exists(Variables.SettingsPath))
+            /*if (File.Exists(Variables.SettingsPath))
                 xmlDocument = XDocument.Load(Variables.SettingsPath);
-            this.Closing += delegate { xmlDocument = null; };
+            this.Closing += delegate { xmlDocument = null; };*/
 
             // Загружаем настройки из JSON
             JsonSettingsLoad();
@@ -130,9 +133,6 @@ namespace _Hell_WPF_Multipack_Launcher
             Variables.Start();
             MultipackDate = Variables.MultipackDate;
             ProductName = Variables.ProductName;
-
-            loadingpanel = 1;
-            Task.Factory.StartNew(() => LoadingPanel());    // LoadingPanel
 
             Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
         }
@@ -193,9 +193,9 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="path">Передаем ссылку на параметр</param>
         /// <returns>Значение параметра</returns>
-        public static string JsonSettingsGet(string path)
+        public static JToken JsonSettingsGet(string path)
         {
-            try { return (string)jSettings.SelectToken(path); }
+            try { return jSettings.SelectToken(path); }
             catch (Exception) { }
             return null;
         }
@@ -215,6 +215,22 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     string[] str = path.Split('.');
                     jSettings[str[0]][str[1]] = value;
+                }
+            }
+            catch (Exception) { }
+        }
+
+        public static void JsonSettingsRemove(string path)
+        {
+            try
+            {
+                if (path.IndexOf('.') == -1)
+                    jSettings.Remove(path);
+                else
+                {
+                    string[] str = path.Split('.');
+                    JObject sub = (JObject)jSettings[str[0]];
+                    sub.Property(str[1]).Remove();
                 }
             }
             catch (Exception) { }
@@ -242,7 +258,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 {
                                     Button sp = new Button();
                                     sp.SetResourceReference(Button.StyleProperty, "LoadingPanel");
-                                    sp.Content = Lang.Set("PageLoading", "lLoading", XmlDocument.Root.Element("info").Attribute("language").Value);
+                                    sp.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
                                     sp.Name = "LoadingPanel";
                                     GridGlobal.Children.Add(sp);
                                     this.RegisterName(sp.Name, sp); // Register name of panel
@@ -347,8 +363,11 @@ namespace _Hell_WPF_Multipack_Launcher
             try { notifyIcon.Dispose(); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing(0)", "notifyIcon.Dispose();", ex.Message, ex.StackTrace)); }
 
-            try { xmlDocument.Save(Variables.SettingsPath); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing(1)", "xmlDocument.Save();", ex.Message, ex.StackTrace)); }
+            //try { xmlDocument.Save(Variables.SettingsPath); }
+            //catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing(1)", "xmlDocument.Save();", ex.Message, ex.StackTrace)); }
+
+            try { JsonSettingsSave(); }
+            catch (Exception ex) { Debug.Save("MainWindow", "Window_Closing(1)", "JSON save settings", ex.Message, ex.StackTrace); }
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
@@ -384,19 +403,19 @@ namespace _Hell_WPF_Multipack_Launcher
                     if (File.Exists(Variables.PathTanks + "WorldOfTanks.exe"))
                     {
                         Optimize.Start(
-                                XmlDocument.Root.Element("settings").Attribute("winxp").Value == "True",
-                                XmlDocument.Root.Element("settings").Attribute("kill").Value == "True",
-                                XmlDocument.Root.Element("settings").Attribute("force").Value == "True",
-                                XmlDocument.Root.Element("settings").Attribute("aero").Value == "True",
-                                XmlDocument.Root.Element("settings").Attribute("video").Value == "True",
-                                XmlDocument.Root.Element("settings").Attribute("weak").Value == "True",
+                                (bool)JsonSettingsGet("settings.winxp"),
+                                (bool)JsonSettingsGet("settings.kill"),
+                                (bool)JsonSettingsGet("settings.force"),
+                                (bool)JsonSettingsGet("settings.aero"),
+                                (bool)JsonSettingsGet("settings.video"),
+                                (bool)JsonSettingsGet("settings.weak"),
                                 true
                             );
 
                         ProcessStart(Variables.PathTanks, "WorldOfTanks.exe");
                     }
                     else
-                        MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", XmlDocument.Root.Element("info").Attribute("language").Value));
+                        MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bPlay_Click()", ex.Message, ex.StackTrace)); }
             });
@@ -417,7 +436,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     if (File.Exists(Variables.PathTanks + "WoTLauncher.exe"))
                         ProcessStart(Variables.PathTanks, "WoTLauncher.exe");
                     else
-                        MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", xmlDocument.Root.Element("info").Attribute("language").Value));
+                        MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bLauncherWOT_Click()", ex.Message, ex.StackTrace)); }
             });
@@ -459,7 +478,7 @@ namespace _Hell_WPF_Multipack_Launcher
             //Dispatcher.BeginInvoke(new ThreadStart(delegate
             //{
                 // Images & other
-                try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, XmlDocument.Root.Element("info").Attribute("language").Value))); }
+                try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", Variables.ProductName, (string)JsonSettingsGet("info.language")))); }
                 catch (Exception ex)
                 {
                     Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
