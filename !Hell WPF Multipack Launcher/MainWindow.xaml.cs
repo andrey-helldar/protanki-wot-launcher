@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using System.IO;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher
@@ -54,8 +55,9 @@ namespace _Hell_WPF_Multipack_Launcher
         public static XDocument XmlDocument { get { return xmlDocument; } }
         private static XDocument xmlDocument;
 
-        public static JObject JSettings { get { return jSettings; } }
-        private static JObject jSettings;
+        //public static JObject JSettings { get { return jSettings; } }
+        //private static JObject jSettings;
+        private JObject jSettings;
 
 
         public static string MultipackDate = "1970-1-1";
@@ -115,17 +117,16 @@ namespace _Hell_WPF_Multipack_Launcher
         public MainWindow()
         {
             InitializeComponent();
-            
+
             // Загружаем настройки из XML-файла
             if (File.Exists(Variables.SettingsPath))
                 xmlDocument = XDocument.Load(Variables.SettingsPath);
             this.Closing += delegate { xmlDocument = null; };
 
             // Загружаем настройки из JSON
-            if (File.Exists(Variables.SettingsPath))
-                jSettings = JObject.Parse(JObject.Load(Variables.SettingsPath));
-                this.Closing += delegate { jSettings = null; };
-            
+            JsonLoadSettings();
+            this.Closing += delegate { jSettings = null; };
+
 
             Variables.Start();
             MultipackDate = Variables.MultipackDate;
@@ -140,36 +141,102 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <summary>
         /// Загружаем настройки из файла JSON
         /// </summary>
-        /// <returns>Возврат массива JObject</returns>
-        private JObject JsonLoadSettings()
+        private void JsonLoadSettings()
         {
             try
             {
-                if (File.Exists("settings.json"))
+                string settings = "settings.json";
+                string decrypt = File.ReadAllText(settings);
+
+                if (File.Exists(settings))
                 {
                     if (Properties.Resources.Default_Crypt_Settings == "1")
                     {
                         Classes.Crypt Crypt = new Classes.Crypt();
-
-                        string encoded = File.ReadAllText("settings.json");
-                        return JObject.Parse(Crypt.Encrypt(encoded, Variables.GetUserID()));
-                    }else
-                        return JObject.Parse(File.ReadAllText("settings.json"));
+                        decrypt = Crypt.Decrypt(decrypt, Variables.GetUserID());
+                    }
+                    else
+                        jSettings = JObject.Parse(decrypt);
                 }
-                else return null;
+                else
+                    jSettings = null;
             }
-            catch (Exception ex) {
-                return null;
-            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "JsonLoadSettings()", ex.Message, ex.StackTrace)); }
         }
 
+        /// <summary>
+        /// Сохранение настроек в файл
+        /// </summary>
         private void JsonSaveSettings()
         {
             try
             {
+                string settings = "settings.json";
+                string encrypt = String.Empty;
 
+                if (File.Exists(settings)) File.Delete(settings);
+
+                if (Properties.Resources.Default_Crypt_Settings == "1")
+                {
+                    Classes.Crypt Crypt = new Classes.Crypt();
+                    encrypt = Crypt.Encrypt(jSettings.ToString(), Variables.GetUserID());
+                }
+                else
+                    encrypt = jSettings.ToString();
+
+                File.WriteAllText(settings, encrypt);
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "JsonSaveSettings()", ex.Message, ex.StackTrace, jSettings.ToString())); }
+        }
+
+        /// <summary>
+        /// Получение параметра настроек по ключу
+        /// </summary>
+        /// <param name="path">Передаем ссылку на параметр</param>
+        /// <returns>Значение параметра</returns>
+        public string JsonGetSettings(string path)
+        {
+            try { return (string)jSettings.SelectToken(path); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "JsonGetSettings()", ex.Message, ex.StackTrace, path, jSettings.ToString())); }
+            return null;
+        }
+
+        public void JsonSetSettings(string path, string value)
+        {
+            try
+            {
+                if (path.IndexOf(".") < 0)
+                    jSettings[path] = value;
+                else
+                {
+                    string[] str = path.Split('.');
+
+                    if (jSettings.SelectToken(str[0]) == null)
+                    {
+                        jSettings[str[0]] = "";
+                    }
+                }
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "JsonSetSettings()", "Path: " + path, "Value: " + value, ex.Message, ex.StackTrace)); }
+        }
+
+        //  data
+        private JObject JsonToken(JObject obj, string path, string value)
+        {
+            if (path.IndexOf('.') == -1)
+                obj[path] = value;
+            else
+            {
+                /*
+                 * data.status.message
+                 */
+                string[] str = path.Split('.');
+
+                if (obj.SelectToken(str[0]) != null)
+                    obj = JsonToken((JObject)obj[str[0]], str[1], value);
+            }
+
+            return obj;
         }
 
         private void LoadingPanel()
@@ -446,6 +513,18 @@ namespace _Hell_WPF_Multipack_Launcher
                 Task.Factory.StartNew(() => Debug.Save("MainWindow.xaml", "FindLoadingPanel()", "Find LoadingPanel", ex.Message, ex.StackTrace));
                 return null;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string path = "game.version.my";
+
+            JsonSetSettings(path, "my value");
+
+            string res = jSettings.SelectToken(path) != null ? jSettings.SelectToken(path).ToString() : "NULL";
+
+            MessageBox.Show(res);
+            MessageBox.Show(jSettings.ToString());
         }
     }
 }
