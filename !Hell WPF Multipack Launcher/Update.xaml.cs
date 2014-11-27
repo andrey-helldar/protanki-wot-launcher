@@ -28,6 +28,7 @@ namespace _Hell_WPF_Multipack_Launcher
         public Update()
         {
             InitializeComponent();
+
             Task.Factory.StartNew(() => MultipackUpdate());
         }
 
@@ -76,17 +77,20 @@ namespace _Hell_WPF_Multipack_Launcher
                 /*
                  *      Применяем локализацию интерфейса
                  */
-                gbCaption.Content = Lang.Set("PageUpdate", "gbCaption", lang);
-                lDownloadFromLink.Content = Lang.Set("PageUpdate", "lDownloadFromLink", lang);
-                cbNotify.Content = Lang.Set("PageUpdate", "cbNotify", lang);
-                bUpdate.Content = Lang.Set("PageUpdate", "bUpdate", lang);
-                bCancel.Content = Lang.Set("PageUpdate", "bCancel", lang);
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    gbCaption.Content = Lang.Set("PageUpdate", "gbCaption", lang);
+                    lDownloadFromLink.Content = Lang.Set("PageUpdate", "lDownloadFromLink", lang);
+                    cbNotify.Content = Lang.Set("PageUpdate", "cbNotify", lang);
+                    bUpdate.Content = Lang.Set("PageUpdate", "bUpdate", lang);
+                    bCancel.Content = Lang.Set("PageUpdate", "bCancel", lang);
 
-                /*
-                 *      Подгружаем другие данные
-                 */
-                newVersion.Content = new Classes.Variables().VersionSharp((string)MainWindow.JsonSettingsGet("multipack.new_version"), false);
-                tbContent.Text = (string)MainWindow.JsonSettingsGet("multipack.changelog");
+                    /*
+                     *      Подгружаем другие данные
+                     */
+                    newVersion.Content = new Classes.Variables().VersionSharp((string)MainWindow.JsonSettingsGet("multipack.new_version"), false);
+                    tbContent.Text = ParseChangelog((string)MainWindow.JsonSettingsGet("multipack.changelog"));
+                }));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "MultipackUpdate()", ex.Message, ex.StackTrace)); }
 

@@ -9,7 +9,7 @@
     "user_email": null,
     "user_name": null,
     "user_id": "f39d3705d0925c26120f42599dc7d336",
-    "notify_link": "https://www.youtube.com/watch?v=sEajQJDWB2E&feature=youtube_gdata",
+    "notify_link": "https://www.youtube.com/watch?v=faYNJXB-bNI&feature=youtube_gdata",
     "ProductName": "Multipack Launcher"
   },
   "settings": {
@@ -34,19 +34,13 @@
     "path": "F:::;ВАЖНЫЕ ДАННЫЕ::;!!Важные документы::;!Сохранения программ::;Visual Studio C#::;!Hell PRO Tanki Launcher::;!Hell WPF Multipack Launcher::;bin::;",
     "test": false
   },
-  "processes": [
-    "chrome",
-    "TOTALCMD64"
-  ],
+  "processes": null,
   "wargaming": null,
   "youtube": [
     "76630c181cc9c79d1eb03e6f772b9ceb",
     "b071b7a9d2a0f6f1184bca6f034f762c",
     "b748284b9804172a31d8ec15b2c9aced",
-    "012c85a3f31f936d7b91744d26997862",
-    "a6b5d54f7c6975af21985ba44de82570",
-    "60088f443898b4a1d5e904c3d79f7a73",
-    "0306d67fefa79e8bc0d9d3d48fab472f"
+    "b748284b9804172a31d8ec15b2c9aced"
   ],
   "do_not_display": {
     "video": null,

@@ -742,8 +742,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Updates);
                 json_upd["version"] = "0.9.4." + (string)json_upd.SelectToken("base.version");
 
-                MessageBox.Show(json_upd.ToString());
-
                 if (json_upd != null && (string)json_upd.SelectToken("version") != null)
                 {
                     if (new Version((string)MainWindow.JsonSettingsGet("multipack.version")) <

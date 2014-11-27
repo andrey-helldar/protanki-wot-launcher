@@ -770,7 +770,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="true">
-                                <Setter Property="FontFamily" Value="Sochi2014" />
+                                <Setter Property="FontFamily" Value="{StaticResource FontSochi2014}" />
                                 <Setter Property="Foreground" Value="#FF585654" />
                                 <Setter Property="FontSize" Value="14pt" />
                             </Trigger>
@@ -797,7 +797,7 @@
 
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="true">
-                                <Setter Property="FontFamily" Value="Sochi2014" />
+                                <Setter Property="FontFamily" Value="{StaticResource FontSochi2014}" />
                                 <Setter Property="Foreground" Value="#FF585654" />
                                 <Setter Property="FontSize" Value="14px" />
                                 <Setter Property="Cursor" Value="Hand" />
@@ -826,7 +826,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="true">
-                                <Setter Property="FontFamily" Value="Sochi2014" />
+                                <Setter Property="FontFamily" Value="{StaticResource FontSochi2014}" />
                                 <Setter Property="Foreground" Value="White" />
                                 <Setter Property="FontSize" Value="20px" />
                             </Trigger>

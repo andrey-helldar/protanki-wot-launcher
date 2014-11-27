@@ -34,10 +34,7 @@
         "path": null,
         "test": false
     },
-  "processes": [
-    "chrome",
-    "TOTALCMD64"
-  ],
+    "processes": null,
     "wargaming": null,
     "youtube": null,
     "do_not_display": {
