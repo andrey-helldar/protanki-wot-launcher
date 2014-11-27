@@ -25,48 +25,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
         string lang = Properties.Resources.Default_Lang;
 
-        // Product
-        /*public string ProductName = String.Empty;
-        public string Lang = Properties.Resources.Default_Lang;
-
-        // Multipack
-        public Version MultipackVersion = new Version("0.0.0.0");
-        public string MultipackType = Properties.Resources.Default_Multipack_Type,
-                      MultipackDate = "1970-1-1";
-
-        // Tanks
-        public Version TanksVersion = new Version("0.0.0.0");
-
-        // Paths
-        public string PathTanks = String.Empty;
-
-        public string UpdateLink = Properties.Resources.LinkVideoAll,
-                      UpdateMessage = String.Empty,
-                      UpdateNotify = String.Empty;
-
-        public bool UpdateMultipack = false,
-                    UpdateTanks = false;
-
-        public Version UpdateMultipackVersion = new Version("0.0.0.0"),
-                       UpdateTanksVersion = new Version("0.0.0.0");
-
-        // Launcher settings
-        //public XDocument Doc = null;
-
-        public bool AutoKill = false,
-                    AutoForceKill = false,
-                    AutoAero = false,
-                    AutoVideo = false,
-                    AutoWeak = false,
-                    AutoCPU = true;
-
-        // OS Version
-        public bool WinXP = true;
-
-        // Other
-        public bool ShowVideoNotify = true,
-                    CommonTest = false;*/
-
 
         /********************
          * Functions
@@ -240,19 +198,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
-                string name = Environment.MachineName +
+                return Md5(Environment.MachineName +
                     Environment.UserName +
                     Environment.UserDomainName +
-                    Environment.OSVersion.ToString();
-
-                using (System.Security.Cryptography.MD5 md5Hash = System.Security.Cryptography.MD5.Create())
-                {
-                    byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(name));
-                    StringBuilder sBuilder = new StringBuilder();
-                    for (int i = 0; i < data.Length; i++) { sBuilder.Append(data[i].ToString("x2")); }
-
-                    return sBuilder.ToString();
-                }
+                    Environment.OSVersion.ToString());
             }
             catch (Exception ex) { Debug.Save("Variables.Class", "GetUserID()", ex.Message, ex.StackTrace); return null; }
         }
@@ -436,7 +385,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 string ja = MainWindow.JsonSettingsGet("do_not_display." + block).ToString();
-                if (ja.IndexOf(item) == -1) return false;
+                if (ja.IndexOf(Md5(item)) == -1) return false;
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace)); }
             return true;
