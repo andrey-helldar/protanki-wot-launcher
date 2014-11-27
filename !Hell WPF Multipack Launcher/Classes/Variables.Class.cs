@@ -393,15 +393,20 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
-                JArray ja = (JArray)MainWindow.JsonSettingsGet("do_not_display." + block);
-                if (ja.IndexOf(item) == -1) ja.Add(new JProperty("item", item.Replace(@"\", Properties.Resources.Default_JSON_Splitter)));
-                return true;
+                string item_s = ((string)item).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
+                var jo = MainWindow.JsonSettingsGet("do_not_display." + block);
+                JArray ja;
+
+                if (jo != null && jo.ToString().Length > 0)
+                    ja = JArray.Parse(jo.ToString());
+                else
+                    ja = new JArray();
+
+                ja.Add(item_s);
+                MainWindow.jSettings["do_not_display"][block] = ja;
             }
-            catch (Exception ex)
-            {
-                Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace));
-                return true;
-            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace)); }
+            return true;
         }
 
         /// <summary>

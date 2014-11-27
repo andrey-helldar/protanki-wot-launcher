@@ -213,6 +213,8 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
+                string key_s = String.Empty;
+
                 switch (type)
                 {
                     case "int":
@@ -236,37 +238,35 @@ namespace _Hell_WPF_Multipack_Launcher
                         break;
 
                     case "array":
-                        string key_s = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
+                        key_s = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
                         JArray ja;
-                        
+
                         if (path.IndexOf('.') == -1)
-                            if (jSettings[path] != null)
-                            {
-                                if (jSettings[path] == null)
-                                    ja = new JArray();
-                                else
-                                    ja = (JArray)jSettings[path];
-
-                                ja.Add(key_s);
-
-                                jSettings[path] = ja;
-                            }
+                        {
+                            if (jSettings[path] != null && jSettings[path].ToString().Length > 0)
+                                ja = JArray.Parse(jSettings[path].ToString());
                             else
-                            {
-                                key_s = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
-
                                 ja = new JArray();
-                                ja.Add(key_s);
-                            }
+
+                            ja.Add(key_s);
+                            jSettings[path] = ja;
+                        }
                         else
                         {
                             string[] str = path.Split('.');
-                            jSettings[str[0]][str[1]] = (bool)key;
+
+                            if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
+                                ja = JArray.Parse(jSettings[str[0]][str[1]].ToString());
+                            else
+                                ja = new JArray();
+
+                            ja.Add(key_s);
+                            jSettings[str[0]][str[1]] = ja;
                         }
                         break;
 
                     default:
-                        string key_s = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
+                        key_s = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
                         if (path.IndexOf('.') == -1)
                             jSettings[path] = key_s;
                         else
@@ -276,10 +276,10 @@ namespace _Hell_WPF_Multipack_Launcher
                         } break;
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex) { File.WriteAllText(@"temp\log.log", ex.Message + Environment.NewLine + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
         }
 
-        public static void JsonSettingsSetArray(string path, string value)
+        /*public static void JsonSettingsSetArray(string path, string value)
         {
             try
             {
@@ -292,7 +292,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 ja.Add(value);
             }
             catch (Exception ex) { File.WriteAllText(@"temp\log.log", ex.Message + Environment.NewLine + Environment.NewLine + Environment.NewLine+ex.StackTrace); }
-        }
+        }*/
 
         public static void JsonSettingsRemove(string path)
         {

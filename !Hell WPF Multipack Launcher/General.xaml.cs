@@ -218,7 +218,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     
                                     // Добавляем идентификатор записи
                                     Hyperlink hyperID = new Hyperlink(new Run(""));
-                                    hyperID.NavigateUri = new Uri(youtube ? "http://" + YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
+                                    hyperID.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
                                     hyperID.Name = (youtube ? "LinkYoutube_" : "LinkWargaming_") + i.ToString();
                                     this.RegisterName(hyperID.Name, hyperID);
 
@@ -326,10 +326,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                         Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
                                         
                                         string item = el.ID.Replace(@"\", Properties.Resources.Default_JSON_Splitter);
-                                        //JArray ja = (JArray)MainWindow.JsonSettingsGet("youtube", "JArray");
-                                        MainWindow.JsonSettingsSetArray("youtube", item);
-                                        //if (ja.IndexOf(item) == -1) ja.Add(new JProperty("video", item));
-                                        //if (ja.IndexOf(item) == -1) ja.Add(item);
+                                        MainWindow.JsonSettingsSet("youtube", item, "array");
                                     }
                                     catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE (Inner)", el.ToString(), ex0.Message, ex0.StackTrace, ex0.Source)); }
                                 }
@@ -385,10 +382,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowNews", lang), el.Title));
 
                                     string item = el.Link.Replace(@"\", Properties.Resources.Default_JSON_Splitter);
-                                    //JArray ja = (JArray)MainWindow.JsonSettingsGet("wargaming", "JArray");
-                                    //if (ja.IndexOf(el.Link) == -1) ja.Add(new JProperty("news", el.Link.Replace(@"\", Properties.Resources.Default_JSON_Splitter)));
-                                    JArray ja = (JArray)MainWindow.jSettings["wargaming"];
-                                    ja.Add(item);
+                                    MainWindow.JsonSettingsSet("wargaming", item, "array");
                                 }
                                 catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "WARGAMING", el.ToString(), ex0.Message, ex0.StackTrace)); }
                             }
@@ -498,8 +492,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
                         if (elemY != null)
                         {
-                            string[] item = elemY.NavigateUri.AbsoluteUri.Split('/');
-                            Variables.ElementToBan("video", item[2].ToUpper());
+                            //string[] item = elemY.NavigateUri.AbsoluteUri.Split('/');
+                            Variables.ElementToBan("video", elemY.NavigateUri.AbsoluteUri);
                         }
                         break;
                 }
