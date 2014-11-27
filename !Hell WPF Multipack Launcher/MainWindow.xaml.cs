@@ -123,8 +123,6 @@ namespace _Hell_WPF_Multipack_Launcher
             Task.Factory.StartNew(()=> JsonSettingsLoad()).Wait();
             this.Closing += delegate { jSettings = null; };
 
-            game_path = ((string)JsonSettingsGet("game.path")).Replace(Properties.Resources.Default_JSON_Splitter, @"\");
-
             Task.Factory.StartNew(() => new Classes.Variables().Start()).Wait();
             Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
         }
@@ -354,7 +352,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    MouseDown += delegate { DragMove(); };
+                    try { MouseDown += delegate { DragMove(); }; }
+                    catch (Exception) { }
 
                     // Делаем общей иконку в трее
                     notifier = this.notifyIcon;
@@ -407,6 +406,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            game_path = ((string)JsonSettingsGet("game.path")).Replace(Properties.Resources.Default_JSON_Splitter, @"\");
+
             try { Task.Factory.StartNew(() => Debug.ClearLogs()); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Debug.ClearLogs()", ex.Message, ex.StackTrace)); }
 

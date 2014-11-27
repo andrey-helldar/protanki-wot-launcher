@@ -140,7 +140,11 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <returns>Если процесс есть в списке, выводим TRUE, иначе - FALSE</returns>
         private bool CheckUserProcess(string proc)
         {
-            try { return (bool)MainWindow.JsonSettingsGet("processes." + proc); }
+            try
+            {
+                string processes = MainWindow.JsonSettingsGet("processes").ToString();
+                if (processes.IndexOf(proc) != -1) return true;
+            }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsProcesses.xaml", "CheckUserProcess()", "Process: " + proc, ex.Message, ex.StackTrace)); }
             return false;
         }
@@ -177,7 +181,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     if (cb.IsChecked == true)
                     {
-                        MainWindow.JsonSettingsSet("processes", processName);
+                        MainWindow.JsonSettingsSet("processes", processName, "array");
                         el.SetResourceReference(ListBoxItem.StyleProperty, "lbiProcessCheck");
                     }
                     else

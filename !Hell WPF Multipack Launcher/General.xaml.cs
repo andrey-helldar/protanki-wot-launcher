@@ -296,7 +296,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 try
                                 {
                                     string elem = MainWindow.JsonSettingsGet("youtube").ToString();
-                                    if (elem.IndexOf(el.ID) > -1) show_this = false;
+                                    if (elem.IndexOf(Variables.Md5(el.ID)) > -1) show_this = false;
                                 }
                                 catch (Exception) { }
                                 
@@ -324,9 +324,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                         MainWindow.JsonSettingsSet("info.notify_link", el.Link);
 
                                         Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
-                                        
-                                        string item = el.ID.Replace(@"\", Properties.Resources.Default_JSON_Splitter);
-                                        MainWindow.JsonSettingsSet("youtube", item, "array");
+
+                                        MainWindow.JsonSettingsSet("youtube", Variables.Md5(el.ID), "array");
                                     }
                                     catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE (Inner)", el.ToString(), ex0.Message, ex0.StackTrace, ex0.Source)); }
                                 }
@@ -353,7 +352,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             try
                             {
                                 string elem = MainWindow.JsonSettingsGet("wargaming").ToString();
-                                if (elem.IndexOf(el.Link) > -1) show_this = false;
+                                if (elem.IndexOf(Variables.Md5(el.Link)) > -1) show_this = false;
                             }
                             catch (Exception) { }
 
@@ -381,8 +380,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                     Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowNews", lang), el.Title));
 
-                                    string item = el.Link.Replace(@"\", Properties.Resources.Default_JSON_Splitter);
-                                    MainWindow.JsonSettingsSet("wargaming", item, "array");
+                                    MainWindow.JsonSettingsSet("wargaming", Variables.Md5(el.Link), "array");
                                 }
                                 catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "WARGAMING", el.ToString(), ex0.Message, ex0.StackTrace)); }
                             }
