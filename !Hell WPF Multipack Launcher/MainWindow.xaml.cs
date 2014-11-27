@@ -55,6 +55,8 @@ namespace _Hell_WPF_Multipack_Launcher
         // Глобальная переменная настроек ПО
         public static JObject jSettings;
 
+        private string game_path = String.Empty;
+
 
         //public static string MultipackDate = "1970-1-1";
         //public static string ProductName = String.Empty;
@@ -118,9 +120,10 @@ namespace _Hell_WPF_Multipack_Launcher
             Task.Factory.StartNew(() => LoadingPanel());    // LoadingPanel
             
             // Загружаем настройки из JSON
-            JsonSettingsLoad();
+            Task.Factory.StartNew(()=> JsonSettingsLoad()).Wait();
             this.Closing += delegate { jSettings = null; };
 
+            game_path = ((string)JsonSettingsGet("game.path")).Replace(Properties.Resources.Default_JSON_Splitter, @"\");
 
             Task.Factory.StartNew(() => new Classes.Variables().Start()).Wait();
             Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
@@ -157,7 +160,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     jSettings = null;
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "JsonLoadSettings()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Debug.Save("MainWindow", "JsonLoadSettings()", ex.Message, ex.StackTrace); }
         }
 
         /// <summary>
@@ -278,21 +281,6 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex) { File.WriteAllText(@"temp\log.log", ex.Message + Environment.NewLine + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
         }
-
-        /*public static void JsonSettingsSetArray(string path, string value)
-        {
-            try
-            {
-                JArray ja;
-
-                try { ja = (JArray)jSettings[path]; }
-                catch (Exception) { JsonSettingsRemove(path); }
-
-                ja = (JArray)jSettings[path];
-                ja.Add(value);
-            }
-            catch (Exception ex) { File.WriteAllText(@"temp\log.log", ex.Message + Environment.NewLine + Environment.NewLine + Environment.NewLine+ex.StackTrace); }
-        }*/
 
         public static void JsonSettingsRemove(string path)
         {
@@ -474,7 +462,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    if (File.Exists((string)JsonSettingsGet("game.path") + "WorldOfTanks.exe"))
+                    if (File.Exists(game_path + "WorldOfTanks.exe"))
                     {
                         Optimize.Start(
                                 (bool)JsonSettingsGet("settings.winxp"),
@@ -486,7 +474,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 true
                             );
 
-                        ProcessStart((string)JsonSettingsGet("game.path"), "WorldOfTanks.exe");
+                        ProcessStart(game_path, "WorldOfTanks.exe");
                     }
                     else
                         MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
@@ -507,8 +495,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    if (File.Exists((string)JsonSettingsGet("game.path") + "WoTLauncher.exe"))
-                        ProcessStart((string)JsonSettingsGet("game.path"), "WoTLauncher.exe");
+                    if (File.Exists(game_path + "WoTLauncher.exe"))
+                        ProcessStart(game_path, "WoTLauncher.exe");
                     else
                         MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
                 }
