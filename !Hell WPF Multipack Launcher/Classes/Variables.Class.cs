@@ -257,6 +257,22 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("Variables.Class", "GetUserID()", ex.Message, ex.StackTrace); return null; }
         }
 
+        public string Md5(string input)
+        {
+            try
+            {
+                using (System.Security.Cryptography.MD5 md5Hash = System.Security.Cryptography.MD5.Create())
+                {
+                    byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+                    StringBuilder sBuilder = new StringBuilder();
+                    for (int i = 0; i < data.Length; i++) { sBuilder.Append(data[i].ToString("x2")); }
+
+                    return sBuilder.ToString();
+                }
+            }
+            catch (Exception ex) { Debug.Save("Variables.Class", "Md5()", "Input: "+input, ex.Message, ex.StackTrace); return null; }
+        }
+
         /*public Version Version(string version)
         {
             try { return new Version(String.Format("{0}.{1}.{2}.{3}", TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version)); }
@@ -393,7 +409,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
-                string item_s = ((string)item).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
+                item = Md5(item);
                 var jo = MainWindow.JsonSettingsGet("do_not_display." + block);
                 JArray ja;
 
@@ -402,7 +418,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 else
                     ja = new JArray();
 
-                ja.Add(item_s);
+                ja.Add(item);
                 MainWindow.jSettings["do_not_display"][block] = ja;
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace)); }

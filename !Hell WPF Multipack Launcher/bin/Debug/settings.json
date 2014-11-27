@@ -1,44 +1,100 @@
-﻿{
-    "info": {
-        "video": true,
-        "news": true,
-        "multipack": true,
-        "notification": "0.0.0.0",
-        "language": "ru",
-        "locale": 2,
-        "user_email": null,
-        "user_name": null,
-        "user_id": null,
-        "notify_link": null,
-        "ProductName": null
-    },
-    "settings": {
-        "kill": false,
-        "force": false,
-        "aero": false,
-        "video": false,
-        "weak": false,
-        "winxp": false,
-        "launcher": 0
-    },
-    "multipack": {
-        "type": "base",
-        "version": "0.0.0.0",
-        "date": null,
-        "link": null,
-        "changelog": null,
-        "new_version": "0.0.0.0"
-    },
-    "game": {
-        "version": "0.0.0.0",
-        "path": null,
-        "test": false
-    },
-    "processes": null,
-    "wargaming": null,
-    "youtube": null,
-    "do_not_display": {
-        "video": null,
-        "news": null
-    }
+{
+  "info": {
+    "video": true,
+    "news": true,
+    "multipack": true,
+    "notification": "0.0.0.0",
+    "language": "ru",
+    "locale": 2,
+    "user_email": null,
+    "user_name": null,
+    "user_id": "64935334dc97650ae4e896ceebd4cae7",
+    "notify_link": "https://www.youtube.com/watch?v=xJgHf7CUn_k&feature=youtube_gdata",
+    "ProductName": "Multipack Launcher"
+  },
+  "settings": {
+    "kill": false,
+    "force": false,
+    "aero": false,
+    "video": false,
+    "weak": false,
+    "winxp": false,
+    "launcher": 0
+  },
+  "multipack": {
+    "type": "extended",
+    "version": "0.9.4.10",
+    "date": "23.11.2014",
+    "link": null,
+    "changelog": null,
+    "new_version": "0.0.0.0"
+  },
+  "game": {
+    "version": "0.9.4.805",
+    "path": "D:::;Helldar::;Visual C#::;!Hell PRO Tanks Launcher::;!Hell WPF Multipack Launcher::;bin::;",
+    "test": false
+  },
+  "processes": null,
+  "wargaming": null,
+  "youtube": [
+    "PIc7SiK2BDY",
+    "y10xkV3GNog",
+    "eyxVR5XlADg",
+    "sEajQJDWB2E",
+    "nm_C_WDsfnQ",
+    "DB7GxJMNN1s",
+    "F6PBOdldPLw",
+    "PwkuMx1L8lY",
+    "Iuyrh0eszR8",
+    "krxOrzCRMiI",
+    "x-wPwwhzVMI",
+    "xJgHf7CUn_k"
+  ],
+  "do_not_display": {
+    "video": [
+      "0282541ef43f1f06ed359cc75d676eb6",
+      "7300300e19f95570dd1c27dad66deb1b",
+      "49854294e3a8a89e3ae1ba768a87e0a6",
+      "bb903eceb3f9e1bdb8eff238013f4a21",
+      "6e883f53d59d2c5e160c4c90dac86b40",
+      "4107649adcae59bce4c8c5a17d954010",
+      "552d671cbbda916d18f0c096ed989b15",
+      "92582a34361383d60522a0aaddc9b835",
+      "5f8748522f581151314b6a1e44376140",
+      "a705d58f5589bdd3990114e2549d2ab5",
+      "559416b97f64a8b05d60c89baf031c13",
+      "36bc2a7359b52ca77603e1b466d96715",
+      "79065d7ede01f6c64b84e33c6fd72b80",
+      "822618d83c1c5f01af95507bb5e4d056",
+      "9506b7e21b6aee74381a9feaa6c04a6a",
+      "b983b890b5c7edf022df1e4917784eb5",
+      "0d7c2eb571ccffdc618de84117d00cd4",
+      "40de0033c2484149aeaadabb05ed28d6",
+      "cff1be4fffc29bbe28fcb07d06320caa",
+      "d6730f36bc8a821c52e5566aa625187c",
+      "d0b1f6b72f9d36222b13d90f2bd1d2bb",
+      "f6c8ee108236b97f6cf7764d53d31036",
+      "7b4a71f06c0abfc993af58b403d95524"
+    ],
+    "news": [
+      "4c2747ea6e304ebd3186cb99a4644c0e",
+      "af99a93bcf479cc1ba56e52338170f9d",
+      "964adcf417407791cb4eadede57d6089",
+      "f729812ba38d9808a6a1f7f5d1e9ea64",
+      "53a6d83eeb828b28428af3758c2e2722",
+      "cc2ec775f6947dda675f24dc90506d8d",
+      "a308c03a297ba7f1ffe2e038113fffff",
+      "fd079502d7e4dcf3c221c60bfb8febe5",
+      "b525d62ba301dbf7a932396bcc750ec8",
+      "ad29de3121f9bf2f026b61fccf09b470",
+      "af6f2e99165cb64c5286305229a0b111",
+      "5f7940256d2d65c88168f6e5863cf1b0",
+      "7331c0cc056069655fdb71161f4f06a4",
+      "7f1b7f7e0089ae4e840e40c50c812c63",
+      "63b1f82e290fd90b7be46dd1ab4bbb82",
+      "a39ec31bbfba6d17091fe521257e9949",
+      "07091db4e0f45b820a45a9729a775ed0",
+      "7c398c4d2b76c78ee0256e97f091b2e4"
+    ]
+  }
 }
