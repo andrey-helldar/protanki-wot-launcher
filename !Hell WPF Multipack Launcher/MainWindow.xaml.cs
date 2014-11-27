@@ -235,6 +235,36 @@ namespace _Hell_WPF_Multipack_Launcher
                         }
                         break;
 
+                    case "array":
+                        string key_s = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
+                        JArray ja;
+                        
+                        if (path.IndexOf('.') == -1)
+                            if (jSettings[path] != null)
+                            {
+                                if (jSettings[path] == null)
+                                    ja = new JArray();
+                                else
+                                    ja = (JArray)jSettings[path];
+
+                                ja.Add(key_s);
+
+                                jSettings[path] = ja;
+                            }
+                            else
+                            {
+                                key_s = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
+
+                                ja = new JArray();
+                                ja.Add(key_s);
+                            }
+                        else
+                        {
+                            string[] str = path.Split('.');
+                            jSettings[str[0]][str[1]] = (bool)key;
+                        }
+                        break;
+
                     default:
                         string key_s = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
                         if (path.IndexOf('.') == -1)
@@ -253,10 +283,15 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                JArray ja = (JArray)jSettings[path];
+                JArray ja;
+
+                try { ja = (JArray)jSettings[path]; }
+                catch (Exception) { JsonSettingsRemove(path); }
+
+                ja = (JArray)jSettings[path];
                 ja.Add(value);
             }
-            catch (Exception) { }
+            catch (Exception ex) { File.WriteAllText(@"temp\log.log", ex.Message + Environment.NewLine + Environment.NewLine + Environment.NewLine+ex.StackTrace); }
         }
 
         public static void JsonSettingsRemove(string path)
@@ -272,7 +307,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     ((JObject)jSettings[str[0]]).Property(str[1]).Remove();
                 }
             }
-            catch (Exception) { }
+            catch (Exception) {  }
         }
 
         private void LoadingPanel()

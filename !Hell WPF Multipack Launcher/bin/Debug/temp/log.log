@@ -1,0 +1,4 @@
+Ссылка на объект не указывает на экземпляр объекта.
+
+
+   в _Hell_WPF_Multipack_Launcher.MainWindow.JsonSettingsSetArray(String path, String value) в d:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\MainWindow.xaml.cs:строка 262
