@@ -35,8 +35,8 @@
         "test": false
     },
     "processes": null,
-    "youtube": null,
     "wargaming": null,
+    "youtube": null,
     "do_not_display": {
         "video": null,
         "news": null

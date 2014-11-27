@@ -53,7 +53,7 @@ namespace _Hell_WPF_Multipack_Launcher
         //private static XDocument xmlDocument;
 
         // Глобальная переменная настроек ПО
-        private static JObject jSettings;
+        public static JObject jSettings;
 
 
         //public static string MultipackDate = "1970-1-1";
@@ -190,9 +190,16 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="path">Передаем ссылку на параметр</param>
         /// <returns>Значение параметра</returns>
-        public static JToken JsonSettingsGet(string path)
+        public static JToken JsonSettingsGet(string path, string type = "token")
         {
-            try { return jSettings.SelectToken(path); }
+            try
+            {
+                switch (type)
+                {
+                    case "JArray": return (JArray)jSettings[path];
+                    default: return jSettings.SelectToken(path);
+                }
+            }
             catch (Exception) { }
             return null;
         }
@@ -229,15 +236,25 @@ namespace _Hell_WPF_Multipack_Launcher
                         break;
 
                     default:
-                        key = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
+                        string key_s = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
                         if (path.IndexOf('.') == -1)
-                            jSettings[path] = (string)key;
+                            jSettings[path] = key_s;
                         else
                         {
                             string[] str = path.Split('.');
-                            jSettings[str[0]][str[1]] = (string)key;
+                            jSettings[str[0]][str[1]] = key_s;
                         } break;
                 }
+            }
+            catch (Exception) { }
+        }
+
+        public static void JsonSettingsSetArray(string path, string value)
+        {
+            try
+            {
+                JArray ja = (JArray)jSettings[path];
+                ja.Add(value);
             }
             catch (Exception) { }
         }
@@ -247,12 +264,12 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 if (path.IndexOf('.') == -1)
-                    jSettings.Remove(path);
+                    //jSettings.Remove(path);
+                    jSettings.Property(path).Remove();
                 else
                 {
                     string[] str = path.Split('.');
-                    JObject sub = (JObject)jSettings[str[0]];
-                    sub.Property(str[1]).Remove();
+                    ((JObject)jSettings[str[0]]).Property(str[1]).Remove();
                 }
             }
             catch (Exception) { }
@@ -545,6 +562,11 @@ namespace _Hell_WPF_Multipack_Launcher
                 MessageBox.Show(text, caption, mbb, MessageBoxImage.Information);
             }
             catch (Exception) { }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(jSettings.ToString());
         }
     }
 }

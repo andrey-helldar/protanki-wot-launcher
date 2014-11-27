@@ -30,7 +30,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Language Lang = new Classes.Language();
         Classes.Variables Variables = new Classes.Variables();
 
-        private string NotifyLink = String.Empty;
+        //private string NotifyLink = String.Empty;
         private string lang = (string)MainWindow.JsonSettingsGet("info.language");
 
 
@@ -62,11 +62,11 @@ namespace _Hell_WPF_Multipack_Launcher
             // Загружаем список видео и новостей
             try
             {
-                StatusBarSet(false, 1, true, true);
+                Task.Factory.StartNew(() => StatusBarSet(false, 1, true, true)).Wait();
 
                 Task.WaitAll(new Task[]{
                     Task.Factory.StartNew(() => YoutubeClass.Start()),
-                    Task.Factory.StartNew(() => WargamingClass.Start())                
+                    Task.Factory.StartNew(() => WargamingClass.Start())               
                 });
                 
                 Task.WaitAll(new Task[]{
@@ -74,8 +74,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     Task.Factory.StartNew(() => ViewNews(false))
                 });
 
-                StatusBarSet(false, 1, true, true, true);
-
+                Task.Factory.StartNew(() => StatusBarSet(false, 1, true, true, true));
                 Task.Factory.StartNew(() => Notify()); // Выводим уведомления видео
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
@@ -288,18 +287,22 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         if (YoutubeClass.Count() > 0)
                         {
+                            DeleteOldVideo(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
+
                             foreach (var el in YoutubeClass.List)
                             {
                                 bool show_this = true;
 
-
-                                string elem = MainWindow.JsonSettingsGet("youtube").ToString();
-                                if (elem.IndexOf(el.ID) > -1) show_this = false;
+                                try
+                                {
+                                    string elem = MainWindow.JsonSettingsGet("youtube").ToString();
+                                    if (elem.IndexOf(el.ID) > -1) show_this = false;
+                                }
+                                catch (Exception) { }
+                                
 
                                 if (show_this)
                                 {
-                                    DeleteOldVideo(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
-
                                     Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
 
                                     for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
@@ -318,21 +321,23 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                     try
                                     {
-                                        //MainWindow.NotifyLink = el.Link;
                                         MainWindow.JsonSettingsSet("info.notify_link", el.Link);
 
                                         Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
-
-                                        JArray ja = (JArray)MainWindow.JsonSettingsGet("youtube");
-                                        if (ja.IndexOf(el.ID) == -1) ja.Add(new JProperty("video", el.ID.Replace(@"\", @"\\")));
+                                        
+                                        string item = el.ID.Replace(@"\", Properties.Resources.Default_JSON_Splitter);
+                                        //JArray ja = (JArray)MainWindow.JsonSettingsGet("youtube", "JArray");
+                                        MainWindow.JsonSettingsSetArray("youtube", item);
+                                        //if (ja.IndexOf(item) == -1) ja.Add(new JProperty("video", item));
+                                        //if (ja.IndexOf(item) == -1) ja.Add(item);
                                     }
-                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE", el.ToString(), ex0.Message, ex0.StackTrace)); }
+                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE (Inner)", el.ToString(), ex0.Message, ex0.StackTrace, ex0.Source)); }
                                 }
                             }
                         }
                     }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE", ex.Message, ex.StackTrace, ex.Source)); }
 
 
             /*
@@ -340,50 +345,56 @@ namespace _Hell_WPF_Multipack_Launcher
              */
             try
             {
-                    if ((bool)MainWindow.JsonSettingsGet("info.news"))
+                if ((bool)MainWindow.JsonSettingsGet("info.news"))
+                {
+                    if (WargamingClass.Count() > 0)
                     {
-                        if (WargamingClass.Count() > 0)
+                        foreach (var el in WargamingClass.List)
                         {
-                            foreach (var el in WargamingClass.List)
-                            {
-                                bool show_this = true;
+                            bool show_this = true;
 
+                            try
+                            {
                                 string elem = MainWindow.JsonSettingsGet("wargaming").ToString();
                                 if (elem.IndexOf(el.Link) > -1) show_this = false;
+                            }
+                            catch (Exception) { }
 
-                                if (show_this)
+                            if (show_this)
+                            {
+                                Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
+
+                                for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
                                 {
-                                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
-
-                                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
-                                    {
-                                        try
-                                        {
-                                            // Если запущен клиент игры - ждем 5 секунд до следующей проверки
-                                            while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
-                                                Process.GetProcessesByName("WoTLauncher").Length > 0)
-                                                Thread.Sleep(5000);
-
-                                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
-                                        }
-                                        catch (Exception) { }
-                                    }
-
                                     try
                                     {
-                                        //MainWindow.NotifyLink = el.Link;
-                                        MainWindow.JsonSettingsSet("info.notify_link", el.Link);
+                                        // Если запущен клиент игры - ждем 5 секунд до следующей проверки
+                                        while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
+                                            Process.GetProcessesByName("WoTLauncher").Length > 0)
+                                            Thread.Sleep(5000);
 
-                                        Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowNews", lang), el.Title));
-
-                                        JArray ja = (JArray)MainWindow.JsonSettingsGet("wargaming");
-                                        if (ja.IndexOf(el.Link) == -1) ja.Add(new JProperty("news", el.Link.Replace(@"\", @"\\")));
+                                        Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
                                     }
-                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "WARGAMING", el.ToString(), ex0.Message, ex0.StackTrace)); }
+                                    catch (Exception) { }
                                 }
+
+                                try
+                                {
+                                    MainWindow.JsonSettingsSet("info.notify_link", el.Link);
+
+                                    Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowNews", lang), el.Title));
+
+                                    string item = el.Link.Replace(@"\", Properties.Resources.Default_JSON_Splitter);
+                                    //JArray ja = (JArray)MainWindow.JsonSettingsGet("wargaming", "JArray");
+                                    //if (ja.IndexOf(el.Link) == -1) ja.Add(new JProperty("news", el.Link.Replace(@"\", Properties.Resources.Default_JSON_Splitter)));
+                                    JArray ja = (JArray)MainWindow.jSettings["wargaming"];
+                                    ja.Add(item);
+                                }
+                                catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "WARGAMING", el.ToString(), ex0.Message, ex0.StackTrace)); }
                             }
                         }
                     }
+                }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "WARGAMING", ex.Message, ex.StackTrace)); }
         }
@@ -440,8 +451,9 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="e"></param>
         private void NotifyClick(object sender, EventArgs e)
         {
-            try { Process.Start(NotifyLink); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + NotifyLink, ex.Message, ex.StackTrace)); }
+            //try { Process.Start(NotifyLink); }
+            try { Process.Start((string)MainWindow.JsonSettingsGet("info.notify_link")); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + (string)MainWindow.JsonSettingsGet("info.notify_link"), ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -726,7 +738,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     }));
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "GetInfo()", ans, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "GetInfo(0)", ans, ex.Message, ex.StackTrace)); }
 
 
             /*
@@ -736,8 +748,9 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Updates);
+                json_upd["version"] = "0.9.4." + (string)json_upd.SelectToken("base.version");
 
-                if (json_upd != null)
+                if (json_upd != null && (string)json_upd.SelectToken("version") != null)
                 {
                     if (new Version((string)MainWindow.JsonSettingsGet("multipack.version")) <
                         new Version((string)json_upd.SelectToken("version")))
@@ -762,7 +775,10 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "GetInfo()", ex.Message, ex.StackTrace, json_upd.ToString())); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "GetInfo(1)",
+                "This version: " + (string)MainWindow.JsonSettingsGet("multipack.version"),
+                "New version: " + (string)json_upd.SelectToken("version"),
+                ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
