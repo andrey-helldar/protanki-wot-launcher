@@ -129,36 +129,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, ex.Message, ex.StackTrace); }
         }
 
-        /// <summary>
-        /// Перекодируем массив JObject в JSON строку
-        /// </summary>
-        /// <param name="json"></param>
-        /// <returns>Строка</returns>
-        /*public string Json(JObject json)
-        {
-            try { return json.ToString(); }
-            catch (Exception ex) { Debug.Save("POST.Class", "Json()", ex.Message, ex.StackTrace); }
-            return null;
-        }*/
-
-        /// <summary>
-        /// http://stackoverflow.com/questions/4749639/deserializing-json-to-net-object-using-newtonsoft-or-linq-to-json-maybe
-        /// 
-        /// http://james.newtonking.com/json
-        /// </summary>
-        /// <param name="json"></param>
-        /// <returns></returns>
-        /*public JObject FromJson(string json)
-        {
-            if (json.Length > 0)
-            {
-                try { return JObject.Parse(json); }
-                catch (Exception ex) { Debug.Save("POST.Class", "FromJson()", json, ex.Message, ex.StackTrace); return null; }
-            }
-            else
-                return null;
-        }*/
-
         public JObject JsonResponse(string uri)
         {
             try
@@ -216,28 +186,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex) { Debug.Save("POST.Class", "DataRegex()", "Input string: " + str, ex.Message, ex.StackTrace); return str; }
         }
-
-        /*public string RequestInfo(string request)
-        {
-            string result = String.Empty;
-
-            try
-            {
-                Dictionary<string, string> jData = new Dictionary<string, string>();
-                jData.Add("code", Properties.Resources.API);
-                jData.Add("request", request);
-
-                result = Send(Properties.Resources.Developer + Properties.Resources.API_Dev_Info, "data=" + Json(jData));
-
-                Dictionary<string, string> status = FromJson(result);
-                return status["info"];
-            }
-            catch (Exception ex)
-            {
-                new Debug().Save("POST Class", "RequestInfo()", "Request: " + request, result, ex.Message, ex.StackTrace);
-                return "FAIL";
-            }
-        }*/
 
         public string Shield(string text)
         {
