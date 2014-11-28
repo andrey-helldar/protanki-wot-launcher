@@ -531,6 +531,9 @@
   <ItemGroup>
     <None Include="Resources\Newtonsoft.Json.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\waiting.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

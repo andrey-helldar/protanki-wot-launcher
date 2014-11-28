@@ -161,7 +161,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// 0 - код формы
         /// 1 - код функции
         /// </returns>
-        public string ErrorCode(string formID, string func)
+        public static string ErrorCode(string formID, string func)
         {
             int form = 0;
             string num = "0";
@@ -206,7 +206,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </summary>
         /// <param name="num">Число</param>
         /// <returns>Формат в соответствии с количеством символов кода</returns>
-        private string FormatNum(int num)
+        private static string FormatNum(int num)
         {
             int nums = 4;
             string result = String.Empty;

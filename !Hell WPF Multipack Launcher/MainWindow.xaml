@@ -33,5 +33,6 @@
         </TextBlock>
         <Image x:Name="rectLang" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="26,33,0,26" Grid.Row="4" VerticalAlignment="Center" Width="20" Stretch="Fill" Source="Resources/flag_ru.png"/>
         <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <MediaElement Grid.Column="1" HorizontalAlignment="Left" Height="136" Margin="25,134,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="136" Source="Resources/waiting.gif"/>
     </Grid>
 </Window>

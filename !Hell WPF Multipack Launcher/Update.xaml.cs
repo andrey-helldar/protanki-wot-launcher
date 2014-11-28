@@ -34,33 +34,30 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (cbNotify.IsChecked == true)
-                    MainWindow.JsonSettingsSet("info.notification", MainWindow.JsonSettingsGet("multipack.new_version"));
-
-                string link = (string)MainWindow.JsonSettingsGet("multipack.link");
-                if (link != String.Empty) Process.Start(link);
-
-                MainWindow.LoadingPanelShow(1);
-
-                Task.Factory.StartNew(() =>
-                {
-                    try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
-                    catch (Exception ex0) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bUpdate_Click()", ex0.Message, ex0.StackTrace)); }
-                });
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
-        }
-
-        private void bCancel_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.LoadingPanelShow(1);
-
             Task.Factory.StartNew(() =>
             {
                 try
                 {
+                    if (cbNotify.IsChecked == true)
+                        MainWindow.JsonSettingsSet("info.notification", MainWindow.JsonSettingsGet("multipack.new_version"));
+
+                    string link = (string)MainWindow.JsonSettingsGet("multipack.link");
+                    if (link != String.Empty) Process.Start(link);
+
+                    MainWindow.JsonSettingsSet("info.session", System.Diagnostics.Process.GetCurrentProcess().SessionId, "int");
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
+            });
+        }
+
+        private void bCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    MainWindow.JsonSettingsSet("info.session", System.Diagnostics.Process.GetCurrentProcess().SessionId, "int");
                     Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bCancel_Click()", ex.Message, ex.StackTrace)); }
@@ -93,10 +90,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 }));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "MultipackUpdate()", ex.Message, ex.StackTrace)); }
-
-
-            try { MainWindow.LoadingPanelShow(); }
-            catch (Exception) { }
         }
 
         private string ParseChangelog(string log)

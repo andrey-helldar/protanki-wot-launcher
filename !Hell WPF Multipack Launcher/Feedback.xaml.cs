@@ -48,8 +48,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                MainWindow.LoadingPanelShow();
-
                 if ((string)MainWindow.JsonSettingsGet("info.user_email") != null &&
                     (string)MainWindow.JsonSettingsGet("info.user_email") != "")
                 {
@@ -67,8 +65,6 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.LoadingPanelShow(1);
-
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }

@@ -90,8 +90,6 @@ namespace _Hell_WPF_Multipack_Launcher
                         // Если неактивен, загружаем главную страницу
                         if (!active)
                         {
-                            MainWindow.LoadingPanelShow(1);
-
                             Task.Factory.StartNew(() =>
                             {
                                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
@@ -114,8 +112,6 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.LoadingPanelShow(1);
-
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
@@ -733,29 +729,6 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "CheckElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
             return false;
-        }
-
-        /// <summary>
-        /// Получаем значение аттрибута
-        /// </summary>
-        /// <param name="attr">Аттрибут</param>
-        /// <returns>Значение</returns>
-        /*private string GetElement(string attr)
-        {
-            try
-            {
-                if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value != "")
-                    return MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value;
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "GetElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
-
-            return "fail";
-        }*/
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            try { MainWindow.LoadingPanelShow(); }
-            catch (Exception) { }
         }
 
         private string DateFormat(string date, string format = "dd.MM.yyyy")

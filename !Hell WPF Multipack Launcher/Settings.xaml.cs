@@ -47,9 +47,6 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    try { MainWindow.LoadingPanelShow(1); }
-                    catch (Exception) { }
-
                     SettingsFrame.NavigationService.Navigate(new Uri("SettingsProcesses.xaml", UriKind.Relative));
                     bChangeSettingsPage.Content = Lang.Set("PageSettings", "tbSettingsStShare", lang);
                     tbSettingsSubTitle.Text = Lang.Set("PageSettings", "tbSettingsStProcesses", lang);
@@ -72,10 +69,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.PlayBtn.Content = Lang.Set("MainProject", "bPlay", lang);
-
-            MainWindow.LoadingPanelShow(1);
-      
+            MainWindow.PlayBtn.Content = Lang.Set("MainProject", "bPlay", lang);      
 
             Task.Factory.StartNew(() =>
             {
@@ -85,12 +79,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Settings.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
             });
-        }
-
-        private void PageSettings_Loaded(object sender, RoutedEventArgs e)
-        {
-            try { MainWindow.LoadingPanelShow(); }
-            catch (Exception) { }
         }
     }
 }

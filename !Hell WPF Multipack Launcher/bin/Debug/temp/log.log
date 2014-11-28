@@ -1,9 +1,0 @@
-Can not add Newtonsoft.Json.Linq.JProperty to Newtonsoft.Json.Linq.JProperty.
-
-
-   в Newtonsoft.Json.Linq.JContainer.ValidateToken(JToken o, JToken existing)
-   в Newtonsoft.Json.Linq.JContainer.SetItem(Int32 index, JToken item)
-   в Newtonsoft.Json.Linq.JProperty.SetItem(Int32 index, JToken item)
-   в Newtonsoft.Json.Linq.JProperty.set_Value(JToken value)
-   в Newtonsoft.Json.Linq.JObject.set_Item(String propertyName, JToken value)
-   в _Hell_WPF_Multipack_Launcher.MainWindow.JsonSettingsSet(String path, JToken key, String type) в f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\MainWindow.xaml.cs:строка 291

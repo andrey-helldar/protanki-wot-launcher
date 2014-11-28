@@ -35,7 +35,6 @@ namespace _Hell_WPF_Multipack_Launcher
         public System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
         public static System.Windows.Forms.NotifyIcon Notifier { get { return notifier; } }
         private static System.Windows.Forms.NotifyIcon notifier;
-        //public static string NotifyLink = String.Empty;
 
         public static Frame MainFrame0 { get { return mainFrame; } }
         private static Frame mainFrame;
@@ -49,38 +48,27 @@ namespace _Hell_WPF_Multipack_Launcher
         private static Frame framePreview;
         private static TextBlock tbPreview;
 
-        //public static XDocument XmlDocument { get { return xmlDocument; } }
-        //private static XDocument xmlDocument;
-
         // Глобальная переменная настроек ПО
         public static JObject jSettings;
 
         private string game_path = String.Empty;
 
+        // Задаем переменную слоя загрузки
+        private static Button LoadPage { get { return loadPage; } }
+        private static Button loadPage;
 
-        //public static string MultipackDate = "1970-1-1";
-        //public static string ProductName = String.Empty;
 
-
-        /*********************
-         * Functions
-         * *******************/
-        private static int loadingPanel { get { return loadingpanel; } }
-        private static int loadingpanel = 0;
-
-        public static bool LoadingPanelShow(int id = 2)
+        public void Navigator(string page = "General")
         {
-            loadingpanel = id;
-            return true;
-        }
-
-        public static bool Navigator(string page = "General")
-        {
-            loadingpanel = 1;
+            try
+            {
+                
+            }
+            catch (Exception) { }
 
             try { MainWindow.mainFrame.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
             catch (Exception) { }
-            return true;
+            finally { }
         }
 
         /// <summary>
@@ -116,7 +104,10 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            loadingpanel = 1;
+            loadPage = FindLoadingPanel(GridGlobal);
+            this.Closing += delegate { loadPage = null; };
+
+            //loadingpanel = 1;
             Task.Factory.StartNew(() => LoadingPanel());    // LoadingPanel
             
             // Загружаем настройки из JSON
@@ -292,7 +283,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         } break;
                 }
             }
-            catch (Exception ex) { File.WriteAllText(@"temp\log.log", ex.Message + Environment.NewLine + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
+            catch (Exception) { }
         }
 
         public static void JsonSettingsRemove(string path)
@@ -311,54 +302,36 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception) {  }
         }
 
-        private void LoadingPanel()
+        private void LoadingPanel(bool show = true)
         {
-            while (true)
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
-                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                try
                 {
-                    /*
-                     *  loadingPanel
-                     *      0   -   обычное состояние
-                     *      1   -   показывать
-                     *      2   -   скрыть
-                     */
-                    try
+                    if (show)
                     {
-                        switch (loadingPanel)
+                        Button sp1 = FindLoadingPanel(GridGlobal);
+                        if (sp1 == null)
                         {
-                            case 1:
-                                Button sp1 = FindLoadingPanel(GridGlobal);
-                                if (sp1 == null)
-                                {
-                                    Button sp = new Button();
-                                    sp.SetResourceReference(Button.StyleProperty, "LoadingPanel");
-                                    sp.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
-                                    sp.Name = "LoadingPanel";
-                                    GridGlobal.Children.Add(sp);
-                                    this.RegisterName(sp.Name, sp); // Register name of panel
-                                }
-                                else
-                                    sp1.Visibility = System.Windows.Visibility.Visible;
-
-                                loadingpanel = 0;
-                                break;
-
-                            case 2:
-                                Button sp2 = FindLoadingPanel(GridGlobal);
-                                if (sp2 != null)
-                                    sp2.Visibility = System.Windows.Visibility.Hidden;
-                                loadingpanel = 0;
-                                break;
-
-                            default: break;
+                            Button sp = new Button();
+                            sp.SetResourceReference(Button.StyleProperty, "LoadingPanel");
+                            sp.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
+                            sp.Name = "LoadingPanel";
+                            GridGlobal.Children.Add(sp);
+                            this.RegisterName(sp.Name, sp); // Register name of panel
                         }
+                        else
+                            sp1.Visibility = System.Windows.Visibility.Visible;
                     }
-                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "LoadingPanel()", ex.Message, ex.StackTrace)); }
-                }));
-
-                Thread.Sleep(100);
-            }
+                    else
+                    {
+                        Button sp2 = FindLoadingPanel(GridGlobal);
+                        if (sp2 != null)
+                            sp2.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                }
+                catch (Exception) { }
+            }));
         }
 
         private void Loading()
@@ -429,8 +402,8 @@ namespace _Hell_WPF_Multipack_Launcher
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(4)", ex.InnerException.ToString(), ex.Message, ex.StackTrace)); }
-            }).Wait();
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(4)", ex.Message, ex.StackTrace)); }
+            });
 
             // Запускаем функцию автоматической отправки неотправленных тикетов
             Task.Factory.StartNew(() => new Classes.POST().AutosendTicket());
@@ -576,21 +549,33 @@ namespace _Hell_WPF_Multipack_Launcher
             //}));
         }
 
-        private Button FindLoadingPanel(Grid sender)
+        private static void FindLoadingPanel(Grid sender, bool show=true)
         {
             try
             {
-                object wantedNode = sender.FindName("LoadingPanel");
-                if (wantedNode is Button)
-                    return wantedNode as Button;
+                if (show)
+                {
+                    object wantedNode = sender.FindName("LoadingPanel");
+                    if (wantedNode is Button)
+                    {
+                        (wantedNode as Button).Visibility = System.Windows.Visibility.Visible;
+                    }
+                    else if (wantedNode == null)
+                    {
+                        Button sp = new Button();
+                        sp.SetResourceReference(Button.StyleProperty, "LoadingPanel");
+                        sp.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
+                        sp.Name = "LoadingPanel";
+                        sender.Children.Add(sp);
+                        this.RegisterName(sp.Name, sp); // Register name of panel
+                    }
+                }
                 else
-                    return null;
+                {
+
+                }
             }
-            catch (Exception ex)
-            {
-                Task.Factory.StartNew(() => Debugging.Save("MainWindow.xaml", "FindLoadingPanel()", "Find LoadingPanel", ex.Message, ex.StackTrace));
-                return null;
-            }
+            catch (Exception) {   }
         }
 
         public static void MessageShow(string text, string caption = "", MessageBoxButton mbb = MessageBoxButton.OK)

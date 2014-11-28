@@ -40,8 +40,6 @@ namespace _Hell_WPF_Multipack_Launcher
 
             string nickname = String.Empty;
 
-            //Task.Factory.StartNew(() => Variables.Start()).Wait();
-
             try
             {
                 nickname = (string)MainWindow.JsonSettingsGet("info.user_name");
@@ -80,10 +78,9 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
 
-            try { StatusBarSet(false, 1, true, true, true); MainWindow.LoadingPanelShow(); }
+            try { StatusBarSet(false, 1, true, true, true); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
-            //Task.Factory.StartNew(() => GetTanksVersion());
             //  Получаем инфу с сайта
             Task.Factory.StartNew(() => GetInfo());
         }
@@ -634,16 +631,12 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="page">Имя открываемой формы</param>
         private void OpenPage(string page)
         {
-            Task.Factory.StartNew(() => MainWindow.LoadingPanelShow(1)).Wait();
-
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(page); })); }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "OpenPage()", "Page: " + page, ex.Message, ex.StackTrace)); }
             });
         }
-
-
 
         /// <summary>
         /// Костыль в виде установки значений интерфейса
@@ -762,6 +755,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             (string)MainWindow.JsonSettingsGet("info.notification") !=
                             (string)json_upd.SelectToken("version"))
                         {
+                            if ((int)MainWindow.JsonSettingsGet("info.session") != Process.GetCurrentProcess().SessionId)
                             OpenPage("Update");
                         }
                     }

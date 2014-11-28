@@ -22,28 +22,14 @@ namespace _Hell_WPF_Multipack_Launcher
         public Error()
         {
             InitializeComponent();
-            
+
             bClose.Content = new Classes.Language().Set("PageSettings", "bClose", (string)MainWindow.JsonSettingsGet("info.language"));
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
-        {       
-            MainWindow.LoadingPanelShow(1);
-
-            System.Threading.Tasks.Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    Dispatcher.BeginInvoke(new System.Threading.ThreadStart(delegate { MainWindow.Navigator(); }));
-                }
-                catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => new Classes.Debugging().Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
-            });
-        }
-
-        private void PageError_Loaded(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.LoadingPanelShow(); }
-            catch (Exception) { }
+            try { Dispatcher.BeginInvoke(new System.Threading.ThreadStart(delegate { MainWindow.Navigator(); })); }
+            catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => new Classes.Debugging().Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
         }
     }
 }
