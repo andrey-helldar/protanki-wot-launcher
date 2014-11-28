@@ -33,7 +33,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
-                SaveFromResources();
+                //SaveFromResources();
 
                 MainWindow.JsonSettingsSet("info.ProductName", Application.Current.GetType().Assembly.GetName().Name);
                 MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major == 5, "bool");

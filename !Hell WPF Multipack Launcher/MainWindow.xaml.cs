@@ -134,6 +134,8 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
+                //Task.Factory.StartNew(() => Variables.SaveFromResources()).Wait();
+
                 string settings = "settings.json";
                 string decrypt = "";
 

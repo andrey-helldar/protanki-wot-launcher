@@ -15,6 +15,8 @@ namespace _Hell_WPF_Multipack_Launcher
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Task.Factory.StartNew(() => new Classes.Variables().SaveFromResources()).Wait();
+
             // hook on error before app really starts
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
             base.OnStartup(e);
