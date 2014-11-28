@@ -58,7 +58,8 @@ namespace _Hell_WPF_Multipack_Launcher
         private static Button loadPage;
 
 
-        public void Navigator(string page = "General")
+
+        public static void Navigator(string page = "General")
         {
             try
             {
@@ -104,7 +105,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
             try
             {
-                loadPage = FindLoadingPanel(GridGlobal); // Создаем сплеш загрузки
+                loadPage = LoadingPanel; // Создаем сплеш загрузки
                 loadPage.Visibility = System.Windows.Visibility.Visible; // Включаем отображение юзерам
                 this.Closing += delegate { loadPage = null; }; // Создаем делегат очистки памяти после загрузки проги
             }
@@ -518,7 +519,7 @@ namespace _Hell_WPF_Multipack_Launcher
             //}));
         }
 
-        private static Button FindLoadingPanel(Grid sender)
+        /*private static Button FindLoadingPanel(Grid sender)
         {
             try
             {
@@ -531,14 +532,14 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     Button sp = new Button();
                     sp.SetResourceReference(Button.StyleProperty, "LoadingPanel");
-                    sp.Content = "ЗАГРУЗКА..." /*Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"))*/;
+                    sp.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
                     sp.Name = "LoadingPanel";
                     sender.Children.Add(sp);
                     this.RegisterName(sp.Name, sp); // Register name of panel
                 }
             }
             catch (Exception) { }
-        }
+        }*/
 
         public static void MessageShow(string text, string caption = "", MessageBoxButton mbb = MessageBoxButton.OK)
         {
