@@ -27,7 +27,7 @@ namespace _Hell_WPF_Multipack_Launcher
     public partial class MainWindow : Window
     {
         Classes.Variables Variables = new Classes.Variables();
-        Classes.Debug Debug = new Classes.Debug();
+        Classes.Debugging Debugging = new Classes.Debugging();
         Classes.Optimize Optimize = new Classes.Optimize();
         Classes.Language Lang = new Classes.Language();
 
@@ -107,7 +107,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     tbPreview.Visibility = Visibility.Hidden;
                     framePreview.Visibility = Visibility.Hidden;
-                    new Classes.Debug().Save("MainWindow", "PreviewVideo(3)", "ID: " + id, "Title: " + title, "Show: " + show.ToString(), ex.Message, ex.StackTrace);
+                    new Classes.Debugging().Save("MainWindow", "PreviewVideo(3)", "ID: " + id, "Title: " + title, "Show: " + show.ToString(), ex.Message, ex.StackTrace);
                 });
             }
         }
@@ -160,7 +160,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     jSettings = null;
                 }
             }
-            catch (Exception ex) { Debug.Save("MainWindow", "JsonLoadSettings()", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("MainWindow", "JsonLoadSettings()", ex.Message, ex.StackTrace); }
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 File.WriteAllText(settings, encrypt);
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "JsonSaveSettings()", ex.Message, ex.StackTrace, jSettings.ToString())); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "JsonSaveSettings()", ex.Message, ex.StackTrace, jSettings.ToString())); }
         }
 
         /// <summary>
@@ -226,7 +226,11 @@ namespace _Hell_WPF_Multipack_Launcher
                         else
                         {
                             string[] str = path.Split('.');
-                            jSettings[str[0]][str[1]] = (int)key;
+
+                            if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
+                                jSettings[str[0]][str[1]] = (int)key;
+                            else
+                                jSettings[str[0]] = new JProperty(str[1], (int)key);
                         }
                         break;
 
@@ -236,7 +240,11 @@ namespace _Hell_WPF_Multipack_Launcher
                         else
                         {
                             string[] str = path.Split('.');
-                            jSettings[str[0]][str[1]] = (bool)key;
+
+                            if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
+                                jSettings[str[0]][str[1]] = (bool)key;
+                            else
+                                jSettings[str[0]] = new JProperty(str[1], (bool)key);
                         }
                         break;
 
@@ -270,12 +278,17 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     default:
                         key_s = ((string)key).Replace(@"\", Properties.Resources.Default_JSON_Splitter);
+
                         if (path.IndexOf('.') == -1)
                             jSettings[path] = key_s;
                         else
                         {
                             string[] str = path.Split('.');
-                            jSettings[str[0]][str[1]] = key_s;
+
+                            if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
+                                jSettings[str[0]][str[1]] = key_s;
+                            else
+                                jSettings[str[0]] = new JProperty(str[1], (string)key_s);
                         } break;
                 }
             }
@@ -341,7 +354,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             default: break;
                         }
                     }
-                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "LoadingPanel()", ex.Message, ex.StackTrace)); }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "LoadingPanel()", ex.Message, ex.StackTrace)); }
                 }));
 
                 Thread.Sleep(100);
@@ -382,14 +395,14 @@ namespace _Hell_WPF_Multipack_Launcher
                         notifyIcon.Text = (string)JsonSettingsGet("info.ProductName");
                         notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
                     }
-                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
 
                     try
                     {
                         Stream cursorStream = Application.GetResourceStream(new Uri(@"pack://application:,,,/" + (string)JsonSettingsGet("info.ProductName") + ";component/Resources/cursor_chrome.cur")).Stream;
                         MainProject.Cursor = new Cursor(cursorStream);
                     }
-                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(5)", "cursorStream", ex.Message, ex.StackTrace)); }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(5)", "cursorStream", ex.Message, ex.StackTrace)); }
 
 
                     try
@@ -398,11 +411,11 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                     catch (Exception ex)
                     {
-                        Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)).Wait();
-                        Task.Factory.StartNew(() => Debug.Restart());
+                        Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)).Wait();
+                        Task.Factory.StartNew(() => Debugging.Restart());
                     }
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
             }));
         }
 
@@ -410,13 +423,13 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             game_path = ((string)JsonSettingsGet("game.path")).Replace(Properties.Resources.Default_JSON_Splitter, @"\");
 
-            try { Task.Factory.StartNew(() => Debug.ClearLogs()); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Debug.ClearLogs()", ex.Message, ex.StackTrace)); }
+            try { Task.Factory.StartNew(() => Debugging.ClearLogs()); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Debugging.ClearLogs()", ex.Message, ex.StackTrace)); }
 
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Loaded(4)", ex.InnerException.ToString(), ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(4)", ex.InnerException.ToString(), ex.Message, ex.StackTrace)); }
             }).Wait();
 
             // Запускаем функцию автоматической отправки неотправленных тикетов
@@ -426,37 +439,37 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try { notifyIcon.Dispose(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing(0)", "notifyIcon.Dispose();", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Closing(0)", "notifyIcon.Dispose();", ex.Message, ex.StackTrace)); }
 
             //try { xmlDocument.Save(Variables.SettingsPath); }
-            //catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "Window_Closing(1)", "xmlDocument.Save();", ex.Message, ex.StackTrace)); }
+            //catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Closing(1)", "xmlDocument.Save();", ex.Message, ex.StackTrace)); }
 
             try { JsonSettingsSave(); }
-            catch (Exception ex) { Debug.Save("MainWindow", "Window_Closing(1)", "JSON save settings", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("MainWindow", "Window_Closing(1)", "JSON save settings", ex.Message, ex.StackTrace); }
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
             try { Close(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bClose_Click()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "bClose_Click()", ex.Message, ex.StackTrace)); }
         }
 
         private void bMinimize_Click(object sender, RoutedEventArgs e)
         {
             try { this.WindowState = WindowState.Minimized; }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bMinimize_Click()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "bMinimize_Click()", ex.Message, ex.StackTrace)); }
         }
 
         private void NotifyClick(object sender, EventArgs e)
         {
             try { OpenLink((string)JsonSettingsGet("info.notify_link")); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + (string)JsonSettingsGet("info.notify_link"), ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "NotifyClick()", "Link: " + (string)JsonSettingsGet("info.notify_link"), ex.Message, ex.StackTrace)); }
         }
 
         private void OpenLink(string url)
         {
             try { ProcessStart(url); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "OpenLink()", "URL = " + url, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "OpenLink()", "URL = " + url, ex.Message, ex.StackTrace)); }
         }
 
         private void bPlay_Click(object sender, RoutedEventArgs e)
@@ -482,14 +495,14 @@ namespace _Hell_WPF_Multipack_Launcher
                     else
                         MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bPlay_Click()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "bPlay_Click()", ex.Message, ex.StackTrace)); }
             });
         }
 
         private void bAirus_Click(object sender, RoutedEventArgs e)
         {
             try { ProcessStart(Properties.Resources.Developer_Link_Site); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bAirus_Click()", "Link: " + Properties.Resources.Developer_Link_Site, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "bAirus_Click()", "Link: " + Properties.Resources.Developer_Link_Site, ex.Message, ex.StackTrace)); }
         }
 
         private void bLauncherWOT_Click(object sender, RoutedEventArgs e)
@@ -503,7 +516,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     else
                         MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "bLauncherWOT_Click()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "bLauncherWOT_Click()", ex.Message, ex.StackTrace)); }
             });
         }
 
@@ -531,7 +544,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     Process.Start(path);
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); }
         }
 
 
@@ -546,7 +559,7 @@ namespace _Hell_WPF_Multipack_Launcher
             try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)JsonSettingsGet("info.ProductName"), (string)JsonSettingsGet("info.language")))); }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
                 MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
             }
 
@@ -557,7 +570,7 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
                 MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
             }
             //}));
@@ -575,7 +588,7 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("MainWindow.xaml", "FindLoadingPanel()", "Find LoadingPanel", ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("MainWindow.xaml", "FindLoadingPanel()", "Find LoadingPanel", ex.Message, ex.StackTrace));
                 return null;
             }
         }

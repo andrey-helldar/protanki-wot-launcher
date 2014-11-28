@@ -13,7 +13,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class WargamingAPI
     {
-        Debug Debug = new Debug();
+        Debugging Debugging = new Debugging();
 
 
         /// <summary>

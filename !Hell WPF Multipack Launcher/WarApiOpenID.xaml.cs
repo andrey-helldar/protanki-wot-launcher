@@ -25,7 +25,7 @@ namespace _Hell_WPF_Multipack_Launcher
     public partial class WarApiOpenID : Window
     {
         Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
-        Classes.Debug Debug = new Classes.Debug();
+        Classes.Debugging Debugging = new Classes.Debugging();
 
         public WarApiOpenID()
         {
@@ -39,11 +39,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (WB.Source.ToString().IndexOf("status=ok") > -1)
                 {
                     JObject Token = WarAPI.Token(WB.Source.ToString());
-
-                    /*SetValue("access_token", Token.SelectToken("access_token").ToString());
-                    SetValue("expires_at", Token.SelectToken("expires_at").ToString());
-                    SetValue("nickname", Token.SelectToken("nickname").ToString());
-                    SetValue("account_id", Token.SelectToken("account_id").ToString());*/
 
                     MainWindow.JsonSettingsSet("token.access_token", (string)Token.SelectToken("access_token"));
                     MainWindow.JsonSettingsSet("token.expires_at", (string)Token.SelectToken("expires_at"));
@@ -71,7 +66,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                 }
             }
-            catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "WebBrowser_LoadCompleted()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WarApiOpenID.xaml", "WebBrowser_LoadCompleted()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>

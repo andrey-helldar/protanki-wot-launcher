@@ -11,7 +11,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Crypt
     {
-        Classes.Debug Debug = new Debug();
+        Classes.Debugging Debugging = new Debugging();
         Classes.Variables Variables = new Variables();
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("Crypt.Class", "Encrypt()", "Debug: " + debug.ToString(), text, ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("Crypt.Class", "Encrypt()", "Debug: " + debug.ToString(), text, ex.Message, ex.StackTrace));
                 return "FAIL";
             }
         }
@@ -49,7 +49,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("Crypt.Class", "Decrypt()", "Debug: " + debug.ToString(), encoded, ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("Crypt.Class", "Decrypt()", "Debug: " + debug.ToString(), encoded, ex.Message, ex.StackTrace));
                 return "FAIL";
             }
         }

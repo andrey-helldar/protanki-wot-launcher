@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher.Classes
 {
-    class Debug
+    class Debugging
     {
         public void Save(string module, string func, params string[] args)
         {
@@ -56,7 +56,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Process.Start("restart.exe", String.Format("\"{0}.exe\"", Process.GetCurrentProcess().ProcessName));
                 Process.GetCurrentProcess().Kill();
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Save("Debug.Class", "Restart()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Save("Debugging.Class", "Restart()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     }
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Save("Debug.Class", "ClearLogs()", "Temp: " + temp.ToString(), ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Save("Debugging.Class", "ClearLogs()", "Temp: " + temp.ToString(), ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     }
                 }
             }
-            catch (Exception ex) { Save("Debug.Class", "ArchiveLogs()", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Save("Debugging.Class", "ArchiveLogs()", ex.Message, ex.StackTrace); }
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         case "Window_Loaded(2)": num = FormatNum(2); break;
                         case "Window_Loaded(3)": num = FormatNum(3); break;
                         case "Window_Loaded(4)": num = FormatNum(4); break;
-                        case "Debug.ClearLogs()": num = FormatNum(5); break;
+                        case "Debugging.ClearLogs()": num = FormatNum(5); break;
                         case "Window_Closing(0)": num = FormatNum(6); break;
                         case "Window_Closing(1)": num = FormatNum(7); break;
                         case "bClose_Click()": num = FormatNum(8); break;

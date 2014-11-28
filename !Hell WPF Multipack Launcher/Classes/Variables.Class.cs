@@ -16,7 +16,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Variables
     {
-        Debug Debug = new Debug();
+        Debugging Debugging = new Debugging();
         Language Language = new Language();
 
 
@@ -91,7 +91,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         lang_game = lang_game.Remove(0, lang_game.IndexOf(" ")).ToLower().Trim();
                     }
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", "Row: PathTanks", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Variables.Class", "Start()", "Row: PathTanks", ex.Message, ex.StackTrace)); }
 
 
                 /*
@@ -114,7 +114,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     else
                         MainWindow.MessageShow(Language.Set("MainProject", "Pack_Not_Found", lang));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", "Row: Multipack config", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Variables.Class", "Start()", "Row: Multipack config", ex.Message, ex.StackTrace)); }
 
 
                 /*
@@ -133,7 +133,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                     MainWindow.JsonSettingsSet("info.language", lang);
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", "Row: Apply language", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Variables.Class", "Start()", "Row: Apply language", ex.Message, ex.StackTrace)); }
 
 
 
@@ -142,7 +142,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                  */
 
             }
-            catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("Variables.Class", "Start()", e.Message, e.StackTrace)); }
+            catch (Exception e) { Task.Factory.StartNew(() => Debugging.Save("Variables.Class", "Start()", e.Message, e.StackTrace)); }
         }
 
         /*private bool ReadCheckStateBool(XDocument doc, string attr)
@@ -161,7 +161,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     }
                 return false;
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "ReadCheckStateBool()", "Attribute: " + attr, doc.ToString(), ex.Message, ex.StackTrace); return false; }
+            catch (Exception ex) { Debugging.Save("Variables.Class", "ReadCheckStateBool()", "Attribute: " + attr, doc.ToString(), ex.Message, ex.StackTrace); return false; }
         }*/
 
         /*private string GetTanksRegistry()
@@ -171,7 +171,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
                 return key != null ? (string)key.GetValue("InstallLocation") : null;
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "GetTanksRegistry()", ex.Message, ex.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("Variables.Class", "GetTanksRegistry()", ex.Message, ex.StackTrace); return null; }
         }*/
 
         private string CorrectPath(string sourcePath, int remove = 0)
@@ -189,7 +189,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                Debug.Save("Variables.Class", "CorrectPath()", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message, ex.StackTrace);
+                Debugging.Save("Variables.Class", "CorrectPath()", "sourcePath = " + sourcePath, "remove = " + remove.ToString(), "newPath = " + newPath, ex.Message, ex.StackTrace);
                 return sourcePath;
             }
         }
@@ -203,7 +203,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     Environment.UserDomainName +
                     Environment.OSVersion.ToString());
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "GetUserID()", ex.Message, ex.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("Variables.Class", "GetUserID()", ex.Message, ex.StackTrace); return null; }
         }
 
         public string Md5(string input)
@@ -219,13 +219,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     return sBuilder.ToString();
                 }
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "Md5()", "Input: "+input, ex.Message, ex.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("Variables.Class", "Md5()", "Input: " + input, ex.Message, ex.StackTrace); return null; }
         }
 
         /*public Version Version(string version)
         {
             try { return new Version(String.Format("{0}.{1}.{2}.{3}", TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version)); }
-            catch (Exception ex) { Debug.Save("Variables.Class", "Version()", version, ex.Message, ex.StackTrace); return new Version("0.0.0.0"); }
+            catch (Exception ex) { Debugging.Save("Variables.Class", "Version()", version, ex.Message, ex.StackTrace); return new Version("0.0.0.0"); }
         }*/
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     return String.Format("{0}.{1}.{2} #{3}", str_ver.Major, str_ver.Minor, str_ver.Build, str_ver.Revision);
                 }
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "VersionSharp()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0 #0"; }
+            catch (Exception ex) { Debugging.Save("Variables.Class", "VersionSharp()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0 #0"; }
         }
 
         /// <summary>
@@ -268,13 +268,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /*public string VersionPrefix(Version ver)
         {
             try { return String.Format("{0}.{1}.{2}.", ver.Major, ver.Minor, ver.Build); }
-            catch (Exception ex) { Debug.Save("Variables.Class", "VersionPrefix()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0."; }
+            catch (Exception ex) { Debugging.Save("Variables.Class", "VersionPrefix()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0."; }
         }*/
 
         /*public void ItXP()
         {
             try { WinXP = Environment.OSVersion.Version.Major == 5; }
-            catch (Exception ex) { Debug.Save("Variables.Class", "ItXP()", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Variables.Class", "ItXP()", ex.Message, ex.StackTrace); }
         }*/
 
         /// <summary>
@@ -295,7 +295,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item"))
                                 if (str == item) return true;
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "ElementBan()", item, block, ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Variables.Class", "ElementBan()", item, block, ex.Message, ex.StackTrace); }
 
             return false;
         }*/
@@ -315,7 +315,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     if (MainWindow.XmlDocument.Root.Element(block).Attribute(attr) != null)
                         return MainWindow.XmlDocument.Root.Element(block).Attribute(attr).Value == "True";
             }
-            catch (Exception ex) { Debug.Save("Variables.Class", "GetElement()", block, attr, ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Variables.Class", "GetElement()", block, attr, ex.Message, ex.StackTrace); }
 
             return true;
         }*/
@@ -343,7 +343,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => new Debug().Save("Update.Class", "SaveFromResources()", ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => new Debugging().Save("Update.Class", "SaveFromResources()", ex.Message, ex.StackTrace));
                 return false;
             }
         }
@@ -370,7 +370,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 ja.Add(item);
                 MainWindow.jSettings["do_not_display"][block] = ja;
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace)); }
             return true;
         }
 
@@ -387,7 +387,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 string ja = MainWindow.JsonSettingsGet("do_not_display." + block).ToString();
                 if (ja.IndexOf(Md5(item)) == -1) return false;
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "ElementToBan()", "Block: " + block, "Item: " + item, ex.Message, ex.StackTrace)); }
             return true;
         }
     }

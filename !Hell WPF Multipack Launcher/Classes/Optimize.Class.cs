@@ -13,7 +13,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 {
     class Optimize
     {
-        Debug Debug = new Debug();
+        Debugging Debugging = new Debugging();
 
         public void Start(
             bool WinXP = true,
@@ -41,7 +41,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         ++progress;
                     }
             }
-            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Disable Windows Aero", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Optimize.Class", "Start()", "Disable Windows Aero", ex.Message, ex.StackTrace); }
 
 
             /***************************
@@ -86,7 +86,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     }
                 }
             }
-            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Kill & Force Kill", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Optimize.Class", "Start()", "Kill & Force Kill", ex.Message, ex.StackTrace); }
 
 
             /***************************
@@ -101,13 +101,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     ++progress;
                 }
             }
-            catch (Exception ex) { Debug.Save("Optimize.Class", "Start()", "Graphic optimize", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Optimize.Class", "Start()", "Graphic optimize", ex.Message, ex.StackTrace); }
         }
 
         /*private void Sleep(int sec = 5)
         {
             try { for (int i = 0; i < sec; i++) Thread.Sleep(5000); }
-            catch (Exception ex) { Debug.Save("Optimize.Class", "Sleep()", "Timeout is " + sec.ToString() + " seconds", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Optimize.Class", "Sleep()", "Timeout is " + sec.ToString() + " seconds", ex.Message, ex.StackTrace); }
         }*/
 
         private void Graphic(bool commonTest = false, bool weak = false)
@@ -226,7 +226,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     sw.Close();
                 }
             }
-            catch (Exception ex) { Debug.Save("Optimize.Class", "Graphic()", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Optimize.Class", "Graphic()", ex.Message, ex.StackTrace); }
         }
     }
 }
