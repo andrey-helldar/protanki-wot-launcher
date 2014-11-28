@@ -27,7 +27,7 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class UserProfile : Page
     {
-        Classes.Debug Debug = new Classes.Debug();
+        Classes.Debugging Debugging = new Classes.Debugging();
         Classes.Language Lang = new Classes.Language();
         Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
 
@@ -47,7 +47,7 @@ namespace _Hell_WPF_Multipack_Launcher
         private void OnColumnHeaderClick(object sender, RoutedEventArgs e)
         {
             /*try { piePlotter.PlottedProperty = ((GridViewColumnHeader)e.OriginalSource).Column.Header.ToString(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "OnColumnHeaderClick()", ex.Message, ex.StackTrace)); }*/
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "OnColumnHeaderClick()", ex.Message, ex.StackTrace)); }*/
         }
 
         public UserProfile()
@@ -95,7 +95,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             Task.Factory.StartNew(() =>
                             {
                                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
-                                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+                                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
                             });
                         }
                         else
@@ -104,11 +104,11 @@ namespace _Hell_WPF_Multipack_Launcher
                             Task.Factory.StartNew(() => { AccountInfo(); });
                         }
                     }
-                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", ex.Message, ex.StackTrace)); }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", ex.Message, ex.StackTrace)); }
                 }
                 else { Task.Factory.StartNew(() => { AccountInfo(); }); }
             }
-            catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (active)", e.Message, e.StackTrace)); }
+            catch (Exception e) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "if (active)", e.Message, e.StackTrace)); }
         }
 
 
@@ -119,7 +119,7 @@ namespace _Hell_WPF_Multipack_Launcher
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
             });
         }
 
@@ -331,7 +331,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                         )
                                                     )));
                                                 }
-                                                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Graphic", ex.Message, ex.StackTrace)); }
+                                                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Graphic", ex.Message, ex.StackTrace)); }
                                                 */
 
                                                 /*
@@ -351,7 +351,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                         dataon.Text = DateFormat(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "updated_at"));
 
                                                     }
-                                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan", ex.Message, ex.StackTrace)); }
+                                                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Clan", ex.Message, ex.StackTrace)); }
 
 
                                                     /*
@@ -438,7 +438,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                             ));*/
                                                         }
                                                     }
-                                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan members", ex.Message, ex.StackTrace)); }
+                                                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Clan members", ex.Message, ex.StackTrace)); }
 
 
 
@@ -526,7 +526,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                              }*/
                                                         }
                                                     }
-                                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan battles", ex.Message, ex.StackTrace)); }
+                                                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Clan battles", ex.Message, ex.StackTrace)); }
 
 
                                                     /*
@@ -639,7 +639,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                             }*/
                                                         }
                                                     }
-                                                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "Clan provincies", ex.Message, ex.StackTrace)); }
+                                                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Clan provincies", ex.Message, ex.StackTrace)); }
                                                 }
                                             }
                                             else
@@ -656,11 +656,11 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 catch (Exception) { }
                                             }
                                         }
-                                        catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", e.Message, e.StackTrace)); }
+                                        catch (Exception e) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", e.Message, e.StackTrace)); }
                                     }));
                             }
                         }
-                        catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "AccountInfo()", e.Message, e.StackTrace)); }
+                        catch (Exception e) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", e.Message, e.StackTrace)); }
                     }));
             }
             catch (Exception) { }
@@ -678,7 +678,7 @@ namespace _Hell_WPF_Multipack_Launcher
             try { return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", account_id, key)).ToString(); }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "SelectToken()", "Key: " + key, "Data: " + data, obj.ToString(), ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "SelectToken()", "Key: " + key, "Data: " + data, obj.ToString(), ex.Message, ex.StackTrace));
                 return null;
             }
         }
@@ -696,7 +696,7 @@ namespace _Hell_WPF_Multipack_Launcher
             try { return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", clan_id, key)).ToString(); }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "SelectTokenClan()", "Clan" + clan_id, "Key: " + key, "Data: " + data, obj.ToString(), ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "SelectTokenClan()", "Clan" + clan_id, "Key: " + key, "Data: " + data, obj.ToString(), ex.Message, ex.StackTrace));
                 return "fail";
             }
         }
@@ -713,7 +713,7 @@ namespace _Hell_WPF_Multipack_Launcher
             try { return obj.SelectToken(!data ? key : String.Format("data.{0}", key)).ToString(); }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "SelectTokenNoClan()", "Key: " + key, "Data: " + data, obj.ToString(), ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "SelectTokenNoClan()", "Key: " + key, "Data: " + data, obj.ToString(), ex.Message, ex.StackTrace));
                 return "fail";
             }
         }
@@ -731,7 +731,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 string elem = (string)MainWindow.JsonSettingsGet("token." + attr);
                 if (elem != null && elem != "") return true;
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "CheckElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "CheckElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
             return false;
         }
 
@@ -747,7 +747,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value != "")
                     return MainWindow.XmlDocument.Root.Element("token").Attribute(attr).Value;
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("UserProfile.xaml", "GetElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "GetElement()", "Attribute: " + attr, ex.Message, ex.StackTrace)); }
 
             return "fail";
         }*/

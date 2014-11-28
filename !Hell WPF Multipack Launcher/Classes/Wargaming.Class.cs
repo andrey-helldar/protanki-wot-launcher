@@ -16,7 +16,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
     public class Wargaming
     {
-        Debug Debug = new Debug();
+        Debugging Debugging = new Debugging();
 
         public string mTitle, mLink, mDate, mDateShort;
         public List<Loading> List;
@@ -46,7 +46,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             DateTime.Parse(el.Element("pubDate").Value).ToString("dd.MM"));
                     }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Start()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Wargaming.News.Class", "Start()", ex.Message, ex.StackTrace)); }
         }
 
 
@@ -71,7 +71,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Add()", ex.Message, ex.StackTrace,
+                Task.Factory.StartNew(() => Debugging.Save("Wargaming.News.Class", "Add()", ex.Message, ex.StackTrace,
                     "Title: " + title,
                     "Link: " + link,
                     "Date: " + date,
@@ -82,19 +82,19 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public void Clear()
         {
             try { if (List.Count > 0) List.Clear(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Clear()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Wargaming.News.Class", "Clear()", ex.Message, ex.StackTrace)); }
         }
 
         public int IndexOf(string str)
         {
             try { if (List.Count > -1) { for (int i = 0; i < List.Count; i++) { if (List[i].Link == str) { return i; } } } return -1; }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "IndexOf()", "Search: " + str, ex.Message, ex.StackTrace)); return -1; }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Wargaming.News.Class", "IndexOf()", "Search: " + str, ex.Message, ex.StackTrace)); return -1; }
         }
 
         public int Count()
         {
             try { return List.Count; }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Count()", ex.Message, ex.StackTrace)); return 0; }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Wargaming.News.Class", "Count()", ex.Message, ex.StackTrace)); return 0; }
         }
 
         /// <summary>
@@ -109,10 +109,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     for (int i = 0; i < List.Count; i++)
                         if (List[i].Link == link) { List.RemoveAt(i); }
             }
-            catch (Exception /*ex*/) { /*Debug.Save("Wargaming.News.Class", "Count(id = " + id + ")", ex.Message);*/ /*Delete(id);*/ }
+            catch (Exception /*ex*/) { /*Debugging.Save("Wargaming.News.Class", "Count(id = " + id + ")", ex.Message);*/ /*Delete(id);*/ }
 
             try { List.TrimExcess(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Wargaming.News.Class", "Delete()", "Function: TrimExcess()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Wargaming.News.Class", "Delete()", "Function: TrimExcess()", ex.Message, ex.StackTrace)); }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class Feedback : Page
     {
-        Classes.Debug Debug = new Classes.Debug();
+        Classes.Debugging Debugging = new Classes.Debugging();
         Classes.Language Lang = new Classes.Language();
 
 
@@ -38,7 +38,7 @@ namespace _Hell_WPF_Multipack_Launcher
             Task.Factory.StartNew(() =>
             {
                 try { lang = (string)MainWindow.JsonSettingsGet("info.language"); }
-                catch (Exception ex) { Debug.Save("Feedback.xaml", "Feedback()", ex.Message, ex.StackTrace); }
+                catch (Exception ex) { Debugging.Save("Feedback.xaml", "Feedback()", ex.Message, ex.StackTrace); }
             }).Wait();
 
             Task.Factory.StartNew(() => SetInterface()); // Загрузка языка
@@ -72,7 +72,7 @@ namespace _Hell_WPF_Multipack_Launcher
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
             });
         }
 
@@ -185,7 +185,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     else
                         MessageBox.Show(Lang.Set("PageFeedback", "MinimumSymbols", lang, Properties.Resources.Developer_Feedback_Symbols));
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Feedback.xaml", "bSend_Click()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Feedback.xaml", "bSend_Click()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     SymbolsTitle.Text = Lang.Set("PageFeedback", "SymbolsTitle", lang);
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageFeedback", "SetInterface()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageFeedback", "SetInterface()", ex.Message, ex.StackTrace)); }
             }));
         }
 
@@ -280,7 +280,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     Lang.Set("PageFeedback", "TicketSaved", lang),
                     System.Windows.Forms.ToolTipIcon.Info);
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageFeedback", "SaveTicket()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageFeedback", "SaveTicket()", ex.Message, ex.StackTrace)); }
         }
     }
 }

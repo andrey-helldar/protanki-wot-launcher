@@ -26,7 +26,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Processes.Global ProccessLibrary = new Processes.Global();
         Processes.Listing ProcessList = new Processes.Listing();
 
-        Classes.Debug Debug = new Classes.Debug();
+        Classes.Debugging Debugging = new Classes.Debugging();
 
         public SettingsProcesses()
         {
@@ -38,7 +38,7 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             try { Task.Factory.StartNew(() => Processes()).Wait(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsProcesses.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsProcesses.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
             try { MainWindow.LoadingPanelShow(); }
             catch (Exception) { }
@@ -130,7 +130,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     DoubleProcess = null;
                 }));
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsProcesses.xaml", "Processes()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsProcesses.xaml", "Processes()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 string processes = MainWindow.JsonSettingsGet("processes").ToString();
                 if (processes.IndexOf(proc) != -1) return true;
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsProcesses.xaml", "CheckUserProcess()", "Process: " + proc, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsProcesses.xaml", "CheckUserProcess()", "Process: " + proc, ex.Message, ex.StackTrace)); }
             return false;
         }
 
@@ -163,7 +163,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (CheckUserProcess(process)) return "ProcessesChecked";
                 return "ProcessesUnChecked";
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsProcesses.xaml", "Style()", "Process: " + process, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsProcesses.xaml", "Style()", "Process: " + process, ex.Message, ex.StackTrace)); }
 
             return "ProcessesUnChecked";
         }*/
@@ -193,7 +193,7 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("SettingsProcesses.xaml", "ProcessChanged()", ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("SettingsProcesses.xaml", "ProcessChanged()", ex.Message, ex.StackTrace));
             }
         }
     }

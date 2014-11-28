@@ -21,7 +21,7 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class Settings : Page
     {
-        Classes.Debug Debug = new Classes.Debug();
+        Classes.Debugging Debugging = new Classes.Debugging();
         Classes.Language Lang = new Classes.Language();
 
         private bool openedPage = true;
@@ -38,7 +38,7 @@ namespace _Hell_WPF_Multipack_Launcher
             bChangeSettingsPage.Content = Lang.Set("PageSettings", "tbSettingsStProcesses", lang);
 
             try { SettingsFrame.NavigationService.Navigate(new Uri("SettingsGeneral.xaml", UriKind.Relative)); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "Settings()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Settings.xaml", "Settings()", ex.Message, ex.StackTrace)); }
         }
 
         private void bChangeSettingsPage_Click(object sender, RoutedEventArgs e)
@@ -55,7 +55,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     tbSettingsSubTitle.Text = Lang.Set("PageSettings", "tbSettingsStProcesses", lang);
                     openedPage = false;
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "bChangeSettingsPage_Click()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Settings.xaml", "bChangeSettingsPage_Click()", ex.Message, ex.StackTrace)); }
             }
             else
             {
@@ -66,7 +66,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     tbSettingsSubTitle.Text = Lang.Set("PageSettings", "tbSettingsStShare", lang);
                     openedPage = true;
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "bChangeSettingsPage_Click()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Settings.xaml", "bChangeSettingsPage_Click()", ex.Message, ex.StackTrace)); }
             }
         }
 
@@ -83,7 +83,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Settings.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Settings.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
             });
         }
 

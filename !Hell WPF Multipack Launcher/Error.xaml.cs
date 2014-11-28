@@ -36,7 +36,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     Dispatcher.BeginInvoke(new System.Threading.ThreadStart(delegate { MainWindow.Navigator(); }));
                 }
-                catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => new Classes.Debug().Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => new Classes.Debugging().Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
             });
         }
 

@@ -61,8 +61,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return Out;
             }
-            catch (WebException we) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, "Out: " + Out, we.Message, we.StackTrace); return "FAIL"; }
-            catch (Exception ex) { Debug.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, "Out: " + Out, ex.Message, ex.StackTrace); return "FAIL"; }
+            catch (WebException we) { Debugging.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, "Out: " + Out, we.Message, we.StackTrace); return "FAIL"; }
+            catch (Exception ex) { Debugging.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, "Out: " + Out, ex.Message, ex.StackTrace); return "FAIL"; }
         }
 
         public void HttpUploadFile(string url, string file, string paramName, string contentType, NameValueCollection nvc)
@@ -80,7 +80,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 Stream rs;
                 try { rs = wr.GetRequestStream(); }
-                catch (WebException we) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, we.Message, we.StackTrace); rs = wr.GetRequestStream(); }
+                catch (WebException we) { Debugging.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, we.Message, we.StackTrace); rs = wr.GetRequestStream(); }
 
                 string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}";
                 foreach (string key in nvc.Keys)
@@ -125,8 +125,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
                 finally { wr = null; }
             }
-            catch (WebException we) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, we.Message, we.StackTrace); }
-            catch (Exception ex) { Debug.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, ex.Message, ex.StackTrace); }
+            catch (WebException we) { Debugging.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, we.Message, we.StackTrace); }
+            catch (Exception ex) { Debugging.Save("POST.Class", "HttpUploadFile()", "URL: " + url, "File: " + file, "Parameter: " + paramName, "Content type: " + contentType, ex.Message, ex.StackTrace); }
         }
 
         public JObject JsonResponse(string uri)
@@ -148,8 +148,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return JObject.Parse(sb.ToString());
             }
-            catch (WebException we) { Debug.Save("POST.Class", "JsonResponse()", "URL: " + uri, we.Message, we.StackTrace); return null; }
-            catch (Exception ex) { Debug.Save("POST.Class", "JsonResponse()", "URL: " + uri, ex.Message, ex.StackTrace); return null; }
+            catch (WebException we) { Debugging.Save("POST.Class", "JsonResponse()", "URL: " + uri, we.Message, we.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("POST.Class", "JsonResponse()", "URL: " + uri, ex.Message, ex.StackTrace); return null; }
         }
 
         public string DataRegex(string str)
@@ -184,13 +184,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return str;
             }
-            catch (Exception ex) { Debug.Save("POST.Class", "DataRegex()", "Input string: " + str, ex.Message, ex.StackTrace); return str; }
+            catch (Exception ex) { Debugging.Save("POST.Class", "DataRegex()", "Input string: " + str, ex.Message, ex.StackTrace); return str; }
         }
 
         public string Shield(string text)
         {
             try { return text.Replace("\"", "\\\"").Trim(); }
-            catch (Exception ex) { new Debug().Save("POST Class", "Shield()", text, ex.Message, ex.StackTrace); }
+            catch (Exception ex) { new Debugging().Save("POST Class", "Shield()", text, ex.Message, ex.StackTrace); }
 
             return text;
         }
@@ -248,7 +248,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     if (File.Exists(file.FullName)) File.Delete(file.FullName);
                             }
                         }
-                        catch (Exception e) { Task.Factory.StartNew(() => Debug.Save("POST.Class", "AutosendTicket()", file.FullName, e.Message, e.StackTrace)); }
+                        catch (Exception e) { Task.Factory.StartNew(() => Debugging.Save("POST.Class", "AutosendTicket()", file.FullName, e.Message, e.StackTrace)); }
                     }
 
                     if (status.Length > 0)
@@ -261,7 +261,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     }
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("POST.Class", "AutosendTicket()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("POST.Class", "AutosendTicket()", ex.Message, ex.StackTrace)); }
         }
     }
 }

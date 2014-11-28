@@ -24,7 +24,7 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class General : Page
     {
-        Classes.Debug Debug = new Classes.Debug();
+        Classes.Debugging Debugging = new Classes.Debugging();
         Classes.YoutubeVideo YoutubeClass = new Classes.YoutubeVideo();
         Classes.Wargaming WargamingClass = new Classes.Wargaming();
         Classes.Language Lang = new Classes.Language();
@@ -77,11 +77,11 @@ namespace _Hell_WPF_Multipack_Launcher
                 Task.Factory.StartNew(() => StatusBarSet(false, 1, true, true, true));
                 Task.Factory.StartNew(() => Notify()); // Выводим уведомления видео
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
 
             try { StatusBarSet(false, 1, true, true, true); MainWindow.LoadingPanelShow(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
             //Task.Factory.StartNew(() => GetTanksVersion());
             //  Получаем инфу с сайта
@@ -168,11 +168,11 @@ namespace _Hell_WPF_Multipack_Launcher
                                 lbi.Content = gridPanel;
 
                                 try { if (youtube) lbVideo.Items.Add(lbi); else lbNews.Items.Add(lbi); }
-                                catch (Exception ex0) { Debug.Save("General.xaml", "ViewNews()", "Count " + (youtube ? "VIDEO" : "NEWS") + " is " + count.ToString(), ex0.Message, ex0.StackTrace); }
+                                catch (Exception ex0) { Debugging.Save("General.xaml", "ViewNews()", "Count " + (youtube ? "VIDEO" : "NEWS") + " is " + count.ToString(), ex0.Message, ex0.StackTrace); }
 
                                 StatusBarSet(true);
                             }
-                            catch (Exception ex1) { Debug.Save("General.xaml", "ViewNews()", "if (count == 0)", "Записи не обнаружены", ex1.Message, ex1.StackTrace); }
+                            catch (Exception ex1) { Debugging.Save("General.xaml", "ViewNews()", "if (count == 0)", "Записи не обнаружены", ex1.Message, ex1.StackTrace); }
                         }
                         else
                         {
@@ -256,9 +256,9 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                         Thread.Sleep(50);
                                     }
-                                    catch (Exception ex2) { Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex2.Message, ex2.StackTrace); }
+                                    catch (Exception ex2) { Debugging.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex2.Message, ex2.StackTrace); }
                                 }
-                                catch (Exception ex3) { Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "Record: " + i.ToString(), ex3.Message, ex3.StackTrace); }
+                                catch (Exception ex3) { Debugging.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", "Record: " + i.ToString(), ex3.Message, ex3.StackTrace); }
 
 
                                 StatusBarSet(true);
@@ -269,9 +269,9 @@ namespace _Hell_WPF_Multipack_Launcher
                     }));
 
                 }
-                catch (Exception ex4) { Debug.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex4.Message, ex4.StackTrace); }
+                catch (Exception ex4) { Debugging.Save("General.xaml", "ViewNews()", "Apply " + (youtube ? "VIDEO" : "NEWS") + " to form", ex4.Message, ex4.StackTrace); }
             }
-            catch (Exception e) { Debug.Save("General.xaml", "ViewNews()", "Youtube = " + youtube.ToString(), e.Message, e.StackTrace); }
+            catch (Exception e) { Debugging.Save("General.xaml", "ViewNews()", "Youtube = " + youtube.ToString(), e.Message, e.StackTrace); }
 
             return true;
         }
@@ -327,13 +327,13 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                         MainWindow.JsonSettingsSet("youtube", Variables.Md5(el.ID), "array");
                                     }
-                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE (Inner)", el.ToString(), ex0.Message, ex0.StackTrace, ex0.Source)); }
+                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Notify()", "YOUTUBE (Inner)", el.ToString(), ex0.Message, ex0.StackTrace, ex0.Source)); }
                                 }
                             }
                         }
                     }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "YOUTUBE", ex.Message, ex.StackTrace, ex.Source)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Notify()", "YOUTUBE", ex.Message, ex.StackTrace, ex.Source)); }
 
 
             /*
@@ -382,13 +382,13 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                     MainWindow.JsonSettingsSet("wargaming", Variables.Md5(el.Link), "array");
                                 }
-                                catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "WARGAMING", el.ToString(), ex0.Message, ex0.StackTrace)); }
+                                catch (Exception ex0) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Notify()", "WARGAMING", el.ToString(), ex0.Message, ex0.StackTrace)); }
                             }
                         }
                     }
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Notify()", "WARGAMING", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Notify()", "WARGAMING", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -427,13 +427,13 @@ namespace _Hell_WPF_Multipack_Launcher
                             caption = caption != null ? caption : (string)MainWindow.JsonSettingsGet("info.ProductName");
                             MainWindow.Notifier.ShowBalloonTip(5000, caption, text, System.Windows.Forms.ToolTipIcon.Info);
                         }
-                        catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", "Caption: " + caption, text, "IsPopup = " + isPopup.ToString(), ex0.Message, ex0.StackTrace)); }
+                        catch (Exception ex0) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "ShowNotify()", "Caption: " + caption, text, "IsPopup = " + isPopup.ToString(), ex0.Message, ex0.StackTrace)); }
                     }
                     else
                         lStatus.Text = text;
                 }));
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "ShowNotify()", "Caption: " + caption, text, "IsPopup = " + isPopup.ToString(), ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "ShowNotify()", "Caption: " + caption, text, "IsPopup = " + isPopup.ToString(), ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -445,7 +445,7 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             //try { Process.Start(NotifyLink); }
             try { Process.Start((string)MainWindow.JsonSettingsGet("info.notify_link")); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("MainWindow", "NotifyClick()", "Link: " + (string)MainWindow.JsonSettingsGet("info.notify_link"), ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "NotifyClick()", "Link: " + (string)MainWindow.JsonSettingsGet("info.notify_link"), ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -460,7 +460,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
                 e.Handled = true;
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "Hyperlink_RequestNavigate()", "Link: " + e.Uri.AbsoluteUri, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Hyperlink_RequestNavigate()", "Link: " + e.Uri.AbsoluteUri, ex.Message, ex.StackTrace)); }
         }
 
 
@@ -499,7 +499,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 el.IsSelected = true;
                 lb.Items.Remove(lb.SelectedItem);
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "CloseBlock()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "CloseBlock()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>
@@ -529,7 +529,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     else
                         MainWindow.PreviewVideo("", "", false);
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "PlayPreview()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "PlayPreview()", ex.Message, ex.StackTrace)); }
             }));
         }
 
@@ -551,7 +551,7 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("General.xaml", "Find()", "Find name: " + name, ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Find()", "Find name: " + name, ex.Message, ex.StackTrace));
                 return null;
             }
         }
@@ -574,7 +574,7 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("General.xaml", "FindRun()", "Find name: " + name, ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("General.xaml", "FindRun()", "Find name: " + name, ex.Message, ex.StackTrace));
                 return null;
             }
         }
@@ -600,7 +600,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     StatusBarSet(true);
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "bOptimize_Click()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "bOptimize_Click()", ex.Message, ex.StackTrace)); }
         }
 
         private void bSettings_Click(object sender, RoutedEventArgs e)
@@ -639,7 +639,7 @@ namespace _Hell_WPF_Multipack_Launcher
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(page); })); }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "OpenPage()", "Page: " + page, ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "OpenPage()", "Page: " + page, ex.Message, ex.StackTrace)); }
             });
         }
 
@@ -657,7 +657,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     lNews.Content = Lang.Set("PageGeneral", "lNews", lang);
                     lVideo.Content = Lang.Set("PageGeneral", "lVideo", lang);
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "SetInterface()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "SetInterface()", ex.Message, ex.StackTrace)); }
             }));
         }
 
@@ -730,7 +730,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     }));
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("PageGeneral", "GetInfo(0)", ans, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "GetInfo(0)", ans, ex.Message, ex.StackTrace)); }
 
 
             /*
@@ -767,7 +767,9 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("General.xaml", "GetInfo(1)",
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debugging.Save("General.xaml", "GetInfo(1)",
                 "This version: " + (string)MainWindow.JsonSettingsGet("multipack.version"),
                 "New version: " + (string)json_upd.SelectToken("version"),
                 ex.Message, ex.StackTrace)); }

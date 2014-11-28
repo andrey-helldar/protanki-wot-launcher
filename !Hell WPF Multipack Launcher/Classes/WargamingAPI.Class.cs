@@ -64,8 +64,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
                 catch (Exception) { return users; }                
             }
-            catch (WebException we) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, we.Message, we.StackTrace); return null; }
-            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, ex.Message, ex.StackTrace); return null; }
+            catch (WebException we) { Debugging.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, we.Message, we.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, ex.Message, ex.StackTrace); return null; }
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Account_Info, Data);
             }
-            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "AccountInfo()", "Account ID: " + account_id, ex.Message, ex.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "AccountInfo()", "Account ID: " + account_id, ex.Message, ex.StackTrace); return null; }
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Info, Data);
             }
-            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "ClanInfo()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanInfo()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); }
 
             return null;
         }
@@ -146,7 +146,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Battles, Data);
             }
-            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "ClanBattles()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanBattles()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); return null; }
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Provinces, Data);
             }
-            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "ClanProvinces()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanProvinces()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); return null; }
         }
 
 
@@ -198,7 +198,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Global_Provinces, Data);
             }
-            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "ClanProvinces()", "Province ID: " + province_id, "Map ID: " + map_id, ex.Message, ex.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanProvinces()", "Province ID: " + province_id, "Map ID: " + map_id, ex.Message, ex.StackTrace); return null; }
         }
 
 
@@ -244,8 +244,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return Out;
             }
-            catch (WebException we) { Debug.Save("WargamingAPI.Class", "POST()", "Url: " + Url, "Data: " + Data, we.Message, we.StackTrace); return null; }
-            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "POST()", "Url: " + Url, "Data: " + Data, ex.Message, ex.StackTrace); return null; }
+            catch (WebException we) { Debugging.Save("WargamingAPI.Class", "POST()", "Url: " + Url, "Data: " + Data, we.Message, we.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "POST()", "Url: " + Url, "Data: " + Data, ex.Message, ex.StackTrace); return null; }
         }
 
 
@@ -266,10 +266,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         }
 
 
-        private Dictionary<string, string> FromJSON(string json)
+        private JObject FromJSON(string json)
         {
-            try { return JsonConvert.DeserializeObject<Dictionary<string, string>>(json); }
-            catch (Exception ex) { Debug.Save("WargamingAPI.Class", "FromJSON()", json, ex.Message, ex.StackTrace); return null; }
+            try { return JObject.Parse(json); }
+            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "FromJSON()", json, ex.Message, ex.StackTrace); return null; }
         }
     }
 }

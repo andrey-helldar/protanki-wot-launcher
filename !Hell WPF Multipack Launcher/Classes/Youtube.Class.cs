@@ -16,7 +16,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
     public class YoutubeVideo
     {
-        Debug Debug = new Debug();
+        Debugging Debugging = new Debugging();
 
         public string mID, mTitle, mContent, mLink, mDate, mDateShort;
         public List<VideoLoading> List;
@@ -55,7 +55,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     }
                 }
             }
-            catch (Exception ex) { Debug.Save("Youtube.Class", "Start()", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Youtube.Class", "Start()", ex.Message, ex.StackTrace); }
         }
 
         public void Add(string id, string title, string content, string link, string date, string dateShort)
@@ -81,7 +81,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex)
             {
-                Debug.Save("Youtube.Class", "Add()", ex.Message, ex.StackTrace,
+                Debugging.Save("Youtube.Class", "Add()", ex.Message, ex.StackTrace,
                     "ID: " + id,
                     "Title: " + title,
                     "Content: " + content,
@@ -94,13 +94,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         public void Clear()
         {
             try { if (List.Count > 0) List.Clear(); }
-            catch (Exception ex) { Debug.Save("Youtube.Class", "Clear()", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Youtube.Class", "Clear()", ex.Message, ex.StackTrace); }
         }
 
         public int IndexOf(string str)
         {
             try { if (List.Count > -1) { for (int i = 0; i < List.Count; i++) { if (List[i].ID == str) { return i; } } } return -1; }
-            catch (Exception ex) { Debug.Save("Youtube.Class", "IndexOf()", ex.Message, ex.StackTrace, "Search: " + str); return -1; }
+            catch (Exception ex) { Debugging.Save("Youtube.Class", "IndexOf()", ex.Message, ex.StackTrace, "Search: " + str); return -1; }
         }
 
         public int Count()
@@ -121,10 +121,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     for (int i = 0; i < List.Count; i++)
                         if (List[i].ID == id) { List.RemoveAt(i); }
             }
-            catch (Exception /*ex*/) { /*Debug.Save("Youtube.Class", "Count(id = " + id + ")", ex.Message);*/ /*Delete(id);*/ }
+            catch (Exception /*ex*/) { /*Debugging.Save("Youtube.Class", "Count(id = " + id + ")", ex.Message);*/ /*Delete(id);*/ }
 
             try { List.TrimExcess(); }
-            catch (Exception ex) { Debug.Save("Youtube.Class", "Delete()", "Function: TrimExcess()", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("Youtube.Class", "Delete()", "Function: TrimExcess()", ex.Message, ex.StackTrace); }
         }
 
 
@@ -143,7 +143,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     if (DateTime.Parse(videoDate) < DateTime.Parse(packDate)) { return false; }
                 return true;
             }
-            catch (Exception ex) { Debug.Save("Youtube.Class", "ParseDate()", "Pack Date = " + packDate, "Video date = " + videoDate, ex.Message, ex.StackTrace); return true; }
+            catch (Exception ex) { Debugging.Save("Youtube.Class", "ParseDate()", "Pack Date = " + packDate, "Video date = " + videoDate, ex.Message, ex.StackTrace); return true; }
         }
     }
 }

@@ -24,7 +24,7 @@ namespace _Hell_WPF_Multipack_Launcher
     public partial class SettingsOptimize : Page
     {
         Classes.Language Lang = new Classes.Language();
-        Classes.Debug Debug = new Classes.Debug();
+        Classes.Debugging Debugging = new Classes.Debugging();
 
         string lang = Properties.Resources.Default_Lang;
 
@@ -45,7 +45,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 // Определяем язык интерфейса
                 try { lang = (string)MainWindow.JsonSettingsGet("info.language"); }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", ex.Message, ex.StackTrace)); }
 
                 /*
                  * Загружаем заголовки
@@ -75,7 +75,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     for (int i = 0; i < Convert.ToInt16(Lang.Set("PageSettingsGeneral", "priority")); i++)
                         cbPriority.Items.Add(Lang.Set("PageSettingsGeneral", "priority" + i.ToString(), lang));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbPriority.Items", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "cbPriority.Items", ex.Message, ex.StackTrace)); }
 
                 try
                 {
@@ -83,7 +83,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     for (int i = 0; i < Convert.ToInt16(Lang.Set("PageSettingsGeneral", "minimize")); i++)
                         cbLauncher.Items.Add(Lang.Set("PageSettingsGeneral", "minimize" + i.ToString(), lang));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLauncher.Items", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLauncher.Items", ex.Message, ex.StackTrace)); }
 
                 /*
                  *  Блок ИНТЕРФЕЙС
@@ -94,7 +94,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     foreach (var jp in Lang.Translated())
                         cbLang.Items.Add(jp.Value.ToString().Remove(0,3));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLangPriority.Items", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLangPriority.Items", ex.Message, ex.StackTrace)); }
 
                 // Устанавливаем выбранный системой язык
                 try
@@ -106,11 +106,11 @@ namespace _Hell_WPF_Multipack_Launcher
                         default: cbLang.SelectedIndex = 0; break;
                     }
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLang.Items", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLang.Items", ex.Message, ex.StackTrace)); }
 
                 // Заголовок локали
                 try { cbLangLocale.Content = Lang.Set("PageSettingsGeneral", "cbLangLocale", lang); }
-                    catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLangLocale.Content", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLangLocale.Content", ex.Message, ex.StackTrace)); }
 
                 // Приоритет загрузки локализации
                 try
@@ -119,13 +119,13 @@ namespace _Hell_WPF_Multipack_Launcher
                     for (int i = 0; i < Convert.ToInt16(Lang.Set("PageSettingsGeneral", "LangPriority")); i++)
                         cbLangPriority.Items.Add(Lang.Set("PageSettingsGeneral", "cbLangPriority" + i.ToString(), lang));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLangPriority.Items", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLangPriority.Items", ex.Message, ex.StackTrace)); }
 
 
                 // Устанавливаем выбранный параметр локализации
                 try
                 { cbLangPriority.SelectedIndex = (int)MainWindow.JsonSettingsGet("info.locale"); }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLang.Items", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLang.Items", ex.Message, ex.StackTrace)); }
 
                 
                 /*
@@ -145,7 +145,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         cbAero.IsEnabled = false;
                     }
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbKill, cbForce ...", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "cbKill, cbForce ...", ex.Message, ex.StackTrace)); }
 
                 // Определяем приоритет игры в системе
                 try
@@ -156,7 +156,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 catch (Exception ex)
                 {
                     cbPriority.SelectedIndex = 2;
-                    Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "Reestr Reading", ex.Message, ex.StackTrace));
+                    Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "Reestr Reading", ex.Message, ex.StackTrace));
                 }
                 finally { cbPriority.SelectionChanged += cbPriority_SelectionChanged; }
 
@@ -166,7 +166,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 catch (Exception ex)
                 {
                     cbLauncher.SelectedIndex = 0;
-                    Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLauncher.SelectedIndex = 0;", ex.Message, ex.StackTrace));
+                    Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "cbLauncher.SelectedIndex = 0;", ex.Message, ex.StackTrace));
                 }
 
 
@@ -182,7 +182,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     cbNotifyVideo.IsChecked = (bool)MainWindow.JsonSettingsGet("info.video");
                     cbNotifyNews.IsChecked = (bool)MainWindow.JsonSettingsGet("info.news");
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "LoadingPage()", "cbNotifyVideo.IsChecked, cbNotifyNews.IsChecked", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "LoadingPage()", "cbNotifyVideo.IsChecked, cbNotifyNews.IsChecked", ex.Message, ex.StackTrace)); }
             }));
         }
 
@@ -204,7 +204,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         if (MainWindow.XmlDocument.Root.Element(el).Attribute(attr).Value == "True")
                             return true;
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "Check()", "Element: " + el, "Attribute: " + attr, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "Check()", "Element: " + el, "Attribute: " + attr, ex.Message, ex.StackTrace)); }
 
             return false;
         }*/
@@ -223,7 +223,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     if (MainWindow.XmlDocument.Root.Element(el).Attribute(attr) != null)
                         MainWindow.XmlDocument.Root.Element(el).Attribute(attr).SetValue(val);
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "Set()", "Element: " + el, "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "Set()", "Element: " + el, "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
         }*/
 
         /// <summary>
@@ -268,7 +268,7 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "getPriority()", "Priority: " + pr.ToString(), "Save: " + save.ToString(), ex.Message, ex.StackTrace));
+                Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "getPriority()", "Priority: " + pr.ToString(), "Save: " + save.ToString(), ex.Message, ex.StackTrace));
                 return 2;
             }
         }
@@ -362,7 +362,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     var key = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\WorldOfTanks.exe\PerfOptions");
                     key.SetValue("CpuPriorityClass", getPriority(cbPriority.SelectedIndex).ToString(), Microsoft.Win32.RegistryValueKind.DWord);
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("SettingsGeneral.xaml", "cbPriority_SelectionChanged()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsGeneral.xaml", "cbPriority_SelectionChanged()", ex.Message, ex.StackTrace)); }
             }
         }
     }

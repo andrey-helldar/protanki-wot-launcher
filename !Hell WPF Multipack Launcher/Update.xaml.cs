@@ -23,7 +23,7 @@ namespace _Hell_WPF_Multipack_Launcher
     /// </summary>
     public partial class Update : Page
     {
-        Classes.Debug Debug = new Classes.Debug();
+        Classes.Debugging Debugging = new Classes.Debugging();
 
         public Update()
         {
@@ -47,10 +47,10 @@ namespace _Hell_WPF_Multipack_Launcher
                 Task.Factory.StartNew(() =>
                 {
                     try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
-                    catch (Exception ex0) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "bUpdate_Click()", ex0.Message, ex0.StackTrace)); }
+                    catch (Exception ex0) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bUpdate_Click()", ex0.Message, ex0.StackTrace)); }
                 });
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
         }
 
         private void bCancel_Click(object sender, RoutedEventArgs e)
@@ -63,7 +63,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "bCancel_Click()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bCancel_Click()", ex.Message, ex.StackTrace)); }
             });
         }
 
@@ -79,11 +79,11 @@ namespace _Hell_WPF_Multipack_Launcher
                  */
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
-                    gbCaption.Content = Lang.Set("PageUpdate", "gbCaption", lang);
-                    lDownloadFromLink.Content = Lang.Set("PageUpdate", "lDownloadFromLink", lang);
-                    cbNotify.Content = Lang.Set("PageUpdate", "cbNotify", lang);
-                    bUpdate.Content = Lang.Set("PageUpdate", "bUpdate", lang);
-                    bCancel.Content = Lang.Set("PageUpdate", "bCancel", lang);
+                    gbCaption.Content = Lang.Set("DebugginggingUpdate", "gbCaption", lang);
+                    lDownloadFromLink.Content = Lang.Set("DebugginggingUpdate", "lDownloadFromLink", lang);
+                    cbNotify.Content = Lang.Set("DebugginggingUpdate", "cbNotify", lang);
+                    bUpdate.Content = Lang.Set("DebugginggingUpdate", "bUpdate", lang);
+                    bCancel.Content = Lang.Set("DebugginggingUpdate", "bCancel", lang);
 
                     /*
                      *      Подгружаем другие данные
@@ -92,7 +92,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     tbContent.Text = ParseChangelog((string)MainWindow.JsonSettingsGet("multipack.changelog"));
                 }));
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "MultipackUpdate()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "MultipackUpdate()", ex.Message, ex.StackTrace)); }
 
 
             try { MainWindow.LoadingPanelShow(); }
@@ -155,7 +155,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Update.xaml", "ParseChangelog()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "ParseChangelog()", ex.Message, ex.StackTrace)); }
             return log;
         }
     }
