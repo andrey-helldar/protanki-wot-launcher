@@ -508,6 +508,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                     ClanBattles.Items.Add(gr);
                                                                 }
                                                             }
+                                                            else
+                                                                ClanBattlesNoRecords.Text = Lang.Set("PageUser", "ClanBattlesNoRecords", lang);
                                                             /* else
                                                              {
                                                                  TextBlock tbCB = new TextBlock();
@@ -621,6 +623,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                 }
 
                                                             }
+                                                            else
+                                                                ClanProvincesNoRecords.Text = Lang.Set("PageUser", "ClanProvincesNoRecords", lang);
                                                             /*else
                                                             {
                                                                 TextBlock tbCP = new TextBlock();

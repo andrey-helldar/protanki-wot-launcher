@@ -391,9 +391,6 @@ namespace _Hell_WPF_Multipack_Launcher
             try { notifyIcon.Dispose(); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Closing(0)", "notifyIcon.Dispose();", ex.Message, ex.StackTrace)); }
 
-            //try { xmlDocument.Save(Variables.SettingsPath); }
-            //catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Closing(1)", "xmlDocument.Save();", ex.Message, ex.StackTrace)); }
-
             try { JsonSettingsSave(); }
             catch (Exception ex) { Debugging.Save("MainWindow", "Window_Closing(1)", "JSON save settings", ex.Message, ex.StackTrace); }
         }
@@ -525,28 +522,6 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             //}));
         }
-
-        /*private static Button FindLoadingPanel(Grid sender)
-        {
-            try
-            {
-                object wantedNode = sender.FindName("LoadingPanel");
-                if (wantedNode is Button)
-                {
-                    (wantedNode as Button).Visibility = System.Windows.Visibility.Visible;
-                }
-                else if (wantedNode == null)
-                {
-                    Button sp = new Button();
-                    sp.SetResourceReference(Button.StyleProperty, "LoadingPanel");
-                    sp.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
-                    sp.Name = "LoadingPanel";
-                    sender.Children.Add(sp);
-                    this.RegisterName(sp.Name, sp); // Register name of panel
-                }
-            }
-            catch (Exception) { }
-        }*/
 
         public static void MessageShow(string text, string caption = "", MessageBoxButton mbb = MessageBoxButton.OK)
         {

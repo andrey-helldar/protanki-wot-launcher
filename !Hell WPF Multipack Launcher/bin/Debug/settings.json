@@ -1,110 +1,50 @@
-{
-  "token": {
-    "access_token": "f737699f5fbc8ab1df156d0266d311e37d138527",
-    "expires_at": "1418476563",
-    "nickname": "First_Helldar",
-    "account_id": "2732865"
-  },
-  "info": {
-    "video": true,
-    "news": true,
-    "multipack": true,
-    "notification": "0.0.0.0",
-    "language": "en",
-    "locale": 2,
-    "user_email": null,
-    "user_name": "First_Helldar",
-    "user_id": "f39d3705d0925c26120f42599dc7d336",
-    "notify_link": "https://www.youtube.com/watch?v=xJgHf7CUn_k&feature=youtube_gdata",
-    "ProductName": "Multipack Launcher",
-    "session": 14304
-  },
-  "settings": {
-    "kill": false,
-    "force": false,
-    "aero": false,
-    "video": false,
-    "weak": false,
-    "winxp": false,
-    "launcher": 0
-  },
-  "multipack": {
-    "type": "extended",
-    "version": "0.9.4.11",
-    "date": "23.11.2014",
-    "link": "http://goo.gl/NnMFHh",
-    "changelog": "In this version the following changes:<font size='12' color='808080'><ul><li>Updated sight \"Select Murazor\" J1mB0s Crosshair;</li><li>Added voice from WG TV:</li><li>-The voice of Cyril Oreshkin;</li><li>-The voice of Olga Sergeyevna;</li><li>-Voice from the ASI which Fumbles :)</li><li>__________________</li><li>I would be grateful if You again see the ad in the beginning of the video.</li></ul></font>__________________________________________<br><font color='#E00000'>New version is available on the link in the description of the video.</font>",
-    "new_version": "0.9.4.12"
-  },
-  "game": {
-    "version": "0.9.4.805",
-    "path": "F:::;ВАЖНЫЕ ДАННЫЕ::;!!Важные документы::;!Сохранения программ::;Visual Studio C#::;!Hell PRO Tanki Launcher::;!Hell WPF Multipack Launcher::;bin::;",
-    "test": false
-  },
-  "processes": null,
-  "wargaming": null,
-  "youtube": [
-    "98ea572e6eea962435906981262e5721",
-    "468d8c760b68c8be915dcc8a3b102df5",
-    "ac6c5a68cd70d502fb4850324ec3aead",
-    "ac6c5a68cd70d502fb4850324ec3aead",
-    "b901b924c58e8d666b2137b6dae005eb",
-    "b901b924c58e8d666b2137b6dae005eb",
-    "fbd46a34fe1a967facda3f410322b9eb",
-    "fbd46a34fe1a967facda3f410322b9eb",
-    "76630c181cc9c79d1eb03e6f772b9ceb",
-    "76630c181cc9c79d1eb03e6f772b9ceb",
-    "b071b7a9d2a0f6f1184bca6f034f762c",
-    "b071b7a9d2a0f6f1184bca6f034f762c",
-    "b071b7a9d2a0f6f1184bca6f034f762c",
-    "b748284b9804172a31d8ec15b2c9aced",
-    "b748284b9804172a31d8ec15b2c9aced",
-    "b748284b9804172a31d8ec15b2c9aced",
-    "012c85a3f31f936d7b91744d26997862",
-    "012c85a3f31f936d7b91744d26997862",
-    "012c85a3f31f936d7b91744d26997862",
-    "a6b5d54f7c6975af21985ba44de82570",
-    "a6b5d54f7c6975af21985ba44de82570",
-    "a6b5d54f7c6975af21985ba44de82570",
-    "60088f443898b4a1d5e904c3d79f7a73",
-    "60088f443898b4a1d5e904c3d79f7a73",
-    "60088f443898b4a1d5e904c3d79f7a73",
-    "0306d67fefa79e8bc0d9d3d48fab472f",
-    "0306d67fefa79e8bc0d9d3d48fab472f",
-    "0306d67fefa79e8bc0d9d3d48fab472f",
-    "77ca590ae00d02945391e7f391ea4de7",
-    "77ca590ae00d02945391e7f391ea4de7",
-    "77ca590ae00d02945391e7f391ea4de7",
-    "2354e79f3a6a355e6c936176c295f853",
-    "2354e79f3a6a355e6c936176c295f853",
-    "2354e79f3a6a355e6c936176c295f853",
-    "9d947199c6672a2f20ddfcd336be9459",
-    "9d947199c6672a2f20ddfcd336be9459",
-    "9d947199c6672a2f20ddfcd336be9459",
-    "9d947199c6672a2f20ddfcd336be9459",
-    "f44b060039f17e520a4ef3a0a5317f51",
-    "f44b060039f17e520a4ef3a0a5317f51",
-    "f44b060039f17e520a4ef3a0a5317f51",
-    "f44b060039f17e520a4ef3a0a5317f51",
-    "99088ccae2c58ce8c3fa90c4b0fb6cba",
-    "99088ccae2c58ce8c3fa90c4b0fb6cba",
-    "99088ccae2c58ce8c3fa90c4b0fb6cba",
-    "99088ccae2c58ce8c3fa90c4b0fb6cba",
-    "286d88625aedc1a4c68ca7f08a3d501f",
-    "286d88625aedc1a4c68ca7f08a3d501f",
-    "286d88625aedc1a4c68ca7f08a3d501f",
-    "286d88625aedc1a4c68ca7f08a3d501f",
-    "5973394000ee939c639f88e57031963e",
-    "5973394000ee939c639f88e57031963e",
-    "5973394000ee939c639f88e57031963e",
-    "5973394000ee939c639f88e57031963e",
-    "5973394000ee939c639f88e57031963e",
-    "e3cb802333f8935acd6d985d371b435a",
-    "e3cb802333f8935acd6d985d371b435a",
-    "e3cb802333f8935acd6d985d371b435a"
-  ],
-  "do_not_display": {
-    "video": null,
-    "news": null
-  }
+﻿{
+    "token": {
+        "access_token": "f737699f5fbc8ab1df156d0266d311e37d138527",
+        "expires_at": "1418476563",
+        "nickname": "First_Helldar",
+        "account_id": "2732865"
+    },
+    "info": {
+        "video": true,
+        "news": true,
+        "multipack": true,
+        "notification": "0.0.0.0",
+        "language": "en",
+        "locale": 2,
+        "user_email": null,
+        "user_name": null,
+        "user_id": null,
+        "notify_link": null,
+        "ProductName": null
+    },
+    "settings": {
+        "kill": false,
+        "force": false,
+        "aero": false,
+        "video": false,
+        "weak": false,
+        "winxp": false,
+        "launcher": 0
+    },
+    "multipack": {
+        "type": "base",
+        "version": "0.0.0.0",
+        "date": null,
+        "link": null,
+        "changelog": null,
+        "new_version": "0.0.0.0"
+    },
+    "game": {
+        "version": "0.0.0.0",
+        "path": null,
+        "test": false
+    },
+    "processes": null,
+    "wargaming": null,
+    "youtube": null,
+    "do_not_display": {
+        "video": null,
+        "news": null
+    }
 }

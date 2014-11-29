@@ -213,7 +213,7 @@
                 <Grid>
                     <ListBox x:Name="ClanBattles" Margin="0">
                         <ListBoxItem Style="{DynamicResource rec_not_found}">
-                            <TextBlock Text="Записи не обнаружены"/>
+                            <TextBlock x:Name="ClanBattlesNoRecords" Text="У клана отсутствуют назначенные бои"/>
                         </ListBoxItem>
                     </ListBox>
                 </Grid>
@@ -222,7 +222,7 @@
                 <Grid>
                     <ListBox x:Name="ClanProvinces" Margin="0">
                         <ListBoxItem Style="{DynamicResource rec_not_found}">
-                            <TextBlock Text="Записи не обнаружены"/>
+                            <TextBlock x:Name="ClanProvincesNoRecords" Text="У клана нет провинций на Глобальной карте"/>
                         </ListBoxItem>
                     </ListBox>
                 </Grid>

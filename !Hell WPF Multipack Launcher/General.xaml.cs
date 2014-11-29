@@ -30,6 +30,8 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Language Lang = new Classes.Language();
         Classes.Variables Variables = new Classes.Variables();
 
+        private bool show_notify = true;
+
         //private string NotifyLink = String.Empty;
         private string lang = (string)MainWindow.JsonSettingsGet("info.language");
 
@@ -287,22 +289,25 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 if ((bool)MainWindow.JsonSettingsGet("info.video"))
+                {
+                    if (YoutubeClass.Count() > 0)
                     {
-                        if (YoutubeClass.Count() > 0)
-                        {
-                            DeleteOldVideo(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
+                        DeleteOldVideo(); // Перед выводом уведомлений проверяем даты. Все лишние удаляем
 
-                            foreach (var el in YoutubeClass.List)
+                        foreach (var el in YoutubeClass.List)
+                        {
+                            if (show_notify)
                             {
                                 bool show_this = true;
+                                string id_md5 = Variables.Md5(el.ID);
 
                                 try
                                 {
                                     string elem = MainWindow.JsonSettingsGet("youtube").ToString();
-                                    if (elem.IndexOf(Variables.Md5(el.ID)) > -1) show_this = false;
+                                    if (elem.IndexOf(id_md5) > -1) show_this = false;
                                 }
                                 catch (Exception) { }
-                                
+
 
                                 if (show_this)
                                 {
@@ -328,13 +333,18 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                         Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowVideo", lang), el.Title));
 
-                                        MainWindow.JsonSettingsSet("youtube", Variables.Md5(el.ID), "array");
+                                        string elem = MainWindow.JsonSettingsGet("youtube").ToString();
+                                        if (elem.IndexOf(id_md5) == -1)
+                                            MainWindow.JsonSettingsSet("youtube", id_md5, "array");
+                                        else
+                                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
                                     }
                                     catch (Exception ex0) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Notify()", "YOUTUBE (Inner)", el.ToString(), ex0.Message, ex0.StackTrace, ex0.Source)); }
                                 }
                             }
                         }
                     }
+                }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Notify()", "YOUTUBE", ex.Message, ex.StackTrace, ex.Source)); }
 
@@ -350,42 +360,50 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         foreach (var el in WargamingClass.List)
                         {
-                            bool show_this = true;
-
-                            try
+                            if (show_notify)
                             {
-                                string elem = MainWindow.JsonSettingsGet("wargaming").ToString();
-                                if (elem.IndexOf(Variables.Md5(el.Link)) > -1) show_this = false;
-                            }
-                            catch (Exception) { }
-
-                            if (show_this)
-                            {
-                                Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
-
-                                for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
-                                {
-                                    try
-                                    {
-                                        // Если запущен клиент игры - ждем 5 секунд до следующей проверки
-                                        while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
-                                            Process.GetProcessesByName("WoTLauncher").Length > 0)
-                                            Thread.Sleep(5000);
-
-                                        Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
-                                    }
-                                    catch (Exception) { }
-                                }
+                                bool show_this = true;
+                                string id_md5 = Variables.Md5(el.Link);
 
                                 try
                                 {
-                                    MainWindow.JsonSettingsSet("info.notify_link", el.Link);
-
-                                    Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowNews", lang), el.Title));
-
-                                    MainWindow.JsonSettingsSet("wargaming", Variables.Md5(el.Link), "array");
+                                    string elem = MainWindow.JsonSettingsGet("wargaming").ToString();
+                                    if (elem.IndexOf(id_md5) > -1) show_this = false;
                                 }
-                                catch (Exception ex0) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Notify()", "WARGAMING", el.ToString(), ex0.Message, ex0.StackTrace)); }
+                                catch (Exception) { }
+
+                                if (show_this)
+                                {
+                                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
+
+                                    for (int i = 0; i < 2; i++) // Если цикл прерван случайно, то выжидаем еще 5 секунд перед повторным запуском
+                                    {
+                                        try
+                                        {
+                                            // Если запущен клиент игры - ждем 5 секунд до следующей проверки
+                                            while (Process.GetProcessesByName("WorldOfTanks").Length > 0 ||
+                                                Process.GetProcessesByName("WoTLauncher").Length > 0)
+                                                Thread.Sleep(5000);
+
+                                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
+                                        }
+                                        catch (Exception) { }
+                                    }
+
+                                    try
+                                    {
+                                        MainWindow.JsonSettingsSet("info.notify_link", el.Link);
+
+                                        Task.Factory.StartNew(() => ShowNotify(Lang.Set("PageGeneral", "ShowNews", lang), el.Title));
+
+                                        string elem = MainWindow.JsonSettingsGet("wargaming").ToString();
+                                        if (elem.IndexOf(id_md5) == -1)
+                                            MainWindow.JsonSettingsSet("wargaming", Variables.Md5(el.Link), "array");
+                                        else
+                                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Sleeping_Notify));
+                                    }
+                                    catch (Exception ex0) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Notify()", "WARGAMING", el.ToString(), ex0.Message, ex0.StackTrace)); }
+                                }
                             }
                         }
                     }
@@ -637,6 +655,8 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="page">Имя открываемой формы</param>
         private void OpenPage(string page)
         {
+            show_notify = false; // Вырубаем вывод уведомлений
+
             Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
             Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
 

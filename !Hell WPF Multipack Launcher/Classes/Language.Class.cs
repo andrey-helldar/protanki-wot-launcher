@@ -1153,6 +1153,24 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                         default: return toReturn;
                                     }
 
+                                case "ClanBattlesNoRecords":
+                                    switch (lang)
+                                    {
+                                        case "ru": return "У клана отсутствуют назначенные бои";
+                                        case "en": return "У клана отсутствуют назначенные бои";
+                                        case "de": return "У клана отсутствуют назначенные бои";
+                                        default: return toReturn;
+                                    }
+
+                                case "ClanProvincesNoRecords":
+                                    switch (lang)
+                                    {
+                                        case "ru": return "У клана нет провинций на Глобальной карте";
+                                        case "en": return "У клана нет провинций на Глобальной карте";
+                                        case "de": return "У клана нет провинций на Глобальной карте";
+                                        default: return toReturn;
+                                    }
+
 
 
                                 default: return toReturn;
