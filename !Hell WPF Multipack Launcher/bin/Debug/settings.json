@@ -1,45 +1,47 @@
-﻿{
-    "info": {
-        "session": null,
-        "video": true,
-        "news": true,
-        "multipack": true,
-        "notification": "0.0.0.0",
-        "language": "ru",
-        "locale": 2,
-        "user_email": null,
-        "user_name": null,
-        "user_id": null,
-        "notify_link": null,
-        "ProductName": null
-    },
-    "settings": {
-        "kill": false,
-        "force": false,
-        "aero": false,
-        "video": false,
-        "weak": false,
-        "winxp": false,
-        "launcher": 0
-    },
-    "multipack": {
-        "type": "base",
-        "version": "0.0.0.0",
-        "date": null,
-        "link": null,
-        "changelog": null,
-        "new_version": "0.0.0.0"
-    },
-    "game": {
-        "version": "0.0.0.0",
-        "path": null,
-        "test": false
-    },
-    "processes": null,
-    "wargaming": null,
-    "youtube": null,
-    "do_not_display": {
-        "video": null,
-        "news": null
-    }
+{
+  "info": {
+    "video": true,
+    "news": true,
+    "multipack": true,
+    "notification": "0.0.0.0",
+    "language": "ru",
+    "locale": 2,
+    "user_email": null,
+    "user_name": null,
+    "user_id": "f39d3705d0925c26120f42599dc7d336",
+    "notify_link": "https://www.youtube.com/watch?v=NDBkECUV-NE&feature=youtube_gdata",
+    "ProductName": "Multipack Launcher"
+  },
+  "settings": {
+    "kill": false,
+    "force": false,
+    "aero": false,
+    "video": false,
+    "weak": false,
+    "winxp": false,
+    "launcher": 0
+  },
+  "multipack": {
+    "type": "extended",
+    "version": "0.9.4.6",
+    "date": "23.11.2014",
+    "link": "http://goo.gl/NnMFHh",
+    "changelog": "В этой версии произошли следующие изменения:<font size='12' color='808080'><ul><li>Обновлен мод радиального меню;</li><li>Добавлено возможное решение проблемы с радио WG FM для тех у кого не работало (у большинства все нормально).</li><li>__________________</li><li>Буду благодарен, если Вы еще раз посмотрите рекламный ролик в начале видео.</li><li></li></ul></font>__________________________________________<br><font color='#E00000'>Новая версия доступна по ссылке в описании к видео.</font>",
+    "new_version": "0.9.4.11"
+  },
+  "game": {
+    "version": "0.9.4.805",
+    "path": "F:::;ВАЖНЫЕ ДАННЫЕ::;!!Важные документы::;!Сохранения программ::;Visual Studio C#::;!Hell PRO Tanki Launcher::;!Hell WPF Multipack Launcher::;bin::;",
+    "test": false
+  },
+  "processes": null,
+  "wargaming": null,
+  "youtube": [
+    "468d8c760b68c8be915dcc8a3b102df5",
+    "ac6c5a68cd70d502fb4850324ec3aead"
+  ],
+  "do_not_display": {
+    "video": null,
+    "news": null
+  }
 }

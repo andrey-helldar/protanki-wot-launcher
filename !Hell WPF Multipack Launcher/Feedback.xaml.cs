@@ -61,6 +61,9 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
             }
             catch (Exception) { tbEmail.IsEnabled = true; }
+
+            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
+            catch (Exception) { }
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)

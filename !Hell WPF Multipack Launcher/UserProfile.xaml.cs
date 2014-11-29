@@ -747,5 +747,11 @@ namespace _Hell_WPF_Multipack_Launcher
                 return date;
             }
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
+            catch (Exception) { }
+        }
     }
 }

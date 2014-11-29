@@ -39,6 +39,9 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try { Task.Factory.StartNew(() => Processes()).Wait(); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("SettingsProcesses.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
+
+            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
+            catch (Exception) { }
         }
 
         private void Processes()

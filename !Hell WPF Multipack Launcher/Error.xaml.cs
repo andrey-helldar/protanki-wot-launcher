@@ -31,5 +31,11 @@ namespace _Hell_WPF_Multipack_Launcher
             try { Dispatcher.BeginInvoke(new System.Threading.ThreadStart(delegate { MainWindow.Navigator(); })); }
             catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => new Classes.Debugging().Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
         }
+
+        private void PageError_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
+            catch (Exception) { }
+        }
     }
 }

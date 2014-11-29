@@ -283,6 +283,9 @@ namespace _Hell_WPF_Multipack_Launcher
                 cbLangPriority.SelectionChanged += cbLangPriority_SelectionChanged;
             }
             catch (Exception) { }
+
+            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
+            catch (Exception) { }
         }
 
         private void cbKill_Click(object sender, RoutedEventArgs e)

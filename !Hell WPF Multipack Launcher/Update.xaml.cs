@@ -44,7 +44,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     string link = (string)MainWindow.JsonSettingsGet("multipack.link");
                     if (link != String.Empty) Process.Start(link);
 
-                    MainWindow.JsonSettingsSet("info.session", System.Diagnostics.Process.GetCurrentProcess().SessionId, "int");
+                    MainWindow.JsonSettingsSet("info.session", System.Diagnostics.Process.GetCurrentProcess().Id, "int");
                     Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
@@ -57,7 +57,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    MainWindow.JsonSettingsSet("info.session", System.Diagnostics.Process.GetCurrentProcess().SessionId, "int");
+                    MainWindow.JsonSettingsSet("info.session", System.Diagnostics.Process.GetCurrentProcess().Id, "int");
                     Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bCancel_Click()", ex.Message, ex.StackTrace)); }
@@ -76,11 +76,11 @@ namespace _Hell_WPF_Multipack_Launcher
                  */
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
-                    gbCaption.Content = Lang.Set("DebugginggingUpdate", "gbCaption", lang);
-                    lDownloadFromLink.Content = Lang.Set("DebugginggingUpdate", "lDownloadFromLink", lang);
-                    cbNotify.Content = Lang.Set("DebugginggingUpdate", "cbNotify", lang);
-                    bUpdate.Content = Lang.Set("DebugginggingUpdate", "bUpdate", lang);
-                    bCancel.Content = Lang.Set("DebugginggingUpdate", "bCancel", lang);
+                    gbCaption.Content = Lang.Set("PageUpdate", "gbCaption", lang);
+                    lDownloadFromLink.Content = Lang.Set("PageUpdate", "lDownloadFromLink", lang);
+                    cbNotify.Content = Lang.Set("PageUpdate", "cbNotify", lang);
+                    bUpdate.Content = Lang.Set("PageUpdate", "bUpdate", lang);
+                    bCancel.Content = Lang.Set("PageUpdate", "bCancel", lang);
 
                     /*
                      *      Подгружаем другие данные
@@ -142,14 +142,22 @@ namespace _Hell_WPF_Multipack_Launcher
                     Match matchLI = regexLI.Match(log);
                     while (matchLI.Success)
                     {
-                        try { log = log.Replace(matchLI.Value, " * " + matchLI.Value); }
+                        try { log = " * " + matchLI.Value.Replace("<li>", "").Replace("</li>", "") + Environment.NewLine; }
                         catch (Exception) { }
                         matchLI = matchLI.NextMatch();
                     }
+
+                    MessageBox.Show(log);
                 }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "ParseChangelog()", ex.Message, ex.StackTrace)); }
             return log;
+        }
+
+        private void PageUpdate_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
+            catch (Exception) { }
         }
     }
 }

@@ -142,5 +142,11 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex) { Debugging.Save("WarApiOpenID.xaml", "WB_Navigating()", WB.Source.ToString(), ex.Message, ex.StackTrace); }
         }
+
+        private void WarApiOpenID1_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
+            catch (Exception) { }
+        }
     }
 }

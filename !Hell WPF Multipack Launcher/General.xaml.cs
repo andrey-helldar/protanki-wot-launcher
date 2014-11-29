@@ -82,7 +82,10 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
             //  Получаем инфу с сайта
-            Task.Factory.StartNew(() => GetInfo());
+            Task.Factory.StartNew(() => GetInfo()).Wait();
+
+            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
+            catch (Exception) { }
         }
 
         private void StatusBarSet(bool inc, int max_inc = 0, bool set_max = false, bool disp = false, bool value_set = false)
@@ -751,22 +754,26 @@ namespace _Hell_WPF_Multipack_Launcher
                             lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", lang, (string)json_upd.SelectToken("version"));
                         }));
 
-                        if (
-                            (string)MainWindow.JsonSettingsGet("info.notification") !=
-                            (string)json_upd.SelectToken("version"))
+                        try
                         {
-                            if ((int)MainWindow.JsonSettingsGet("info.session") != Process.GetCurrentProcess().SessionId)
-                            OpenPage("Update");
+                            if ((string)MainWindow.JsonSettingsGet("info.notification") != (string)json_upd.SelectToken("version"))
+                                if (MainWindow.JsonSettingsGet("info.session") == null)
+                                    OpenPage("Update");
+                                else
+                                    if ((int)MainWindow.JsonSettingsGet("info.session") != Process.GetCurrentProcess().Id)
+                                        OpenPage("Update");
                         }
+                        catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "GetInfo(0)", "OpenPage(Update)", ex.Message, ex.StackTrace)); }
                     }
                 }
             }
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debugging.Save("General.xaml", "GetInfo(1)",
-                "This version: " + (string)MainWindow.JsonSettingsGet("multipack.version"),
-                "New version: " + (string)json_upd.SelectToken("version"),
-                ex.Message, ex.StackTrace)); }
+                "This version: " + MainWindow.JsonSettingsGet("multipack.version").ToString(),
+                "New version: " + json_upd.SelectToken("version").ToString(),
+                ex.Message, ex.StackTrace));
+            }
         }
 
         /// <summary>

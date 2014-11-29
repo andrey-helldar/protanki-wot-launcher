@@ -54,7 +54,7 @@ namespace _Hell_WPF_Multipack_Launcher
         private string game_path = String.Empty;
 
         // Задаем переменную слоя загрузки
-        private static Button LoadPage { get { return loadPage; } }
+        public static Button LoadPage { get { return loadPage; } }
         private static Button loadPage;
 
 
@@ -63,9 +63,8 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                LoadPage.Visibility = System.Windows.Visibility.Visible;
-                Task.Factory.StartNew(() => MainWindow.mainFrame.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative))).Wait();
-                LoadPage.Visibility = System.Windows.Visibility.Hidden;
+                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
+                MainWindow.mainFrame.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative));
             }
             catch (Exception) { }
         }
@@ -112,8 +111,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
             try
             {
+                LoadingPanel.SetResourceReference(Button.StyleProperty, "LoadingPanel");
+                LoadingPanel.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
+                LoadingPanel.Visibility = System.Windows.Visibility.Visible;
+
                 loadPage = LoadingPanel; // Создаем сплеш загрузки
-               w loadPage.Visibility = System.Windows.Visibility.Visible; // Включаем отображение юзерам
                 this.Closing += delegate { loadPage = null; }; // Создаем делегат очистки памяти после загрузки проги
             }
             catch (Exception) { }
@@ -222,7 +224,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
                                 jSettings[str[0]][str[1]] = (int)key;
                             else
-                                jSettings.Property(str[0]).Add(new JProperty(str[1], (int)key));
+                                jSettings[str[0]][str[1]] = (int)key;
                         }
                         break;
 
@@ -236,7 +238,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
                                 jSettings[str[0]][str[1]] = (bool)key;
                             else
-                                jSettings.Property(str[0]).Add(new JProperty(str[1], (bool)key));
+                                jSettings[str[0]][str[1]] = (bool)key;
                         }
                         break;
 
@@ -280,7 +282,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
                                 jSettings[str[0]][str[1]] = key_s;
                             else
-                                jSettings.Property(str[0]).Add(new JProperty(str[1], (string)key_s));
+                                jSettings[str[0]][str[1]] = (string)key_s;
                         } break;
                 }
             }
@@ -373,8 +375,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)); }
-            });
-            
+            }).Wait();
+            LoadPage.Visibility = System.Windows.Visibility.Hidden;
             // Запускаем функцию автоматической отправки неотправленных тикетов
             Task.Factory.StartNew(() => new Classes.POST().AutosendTicket());
             
@@ -541,19 +543,6 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception) { }
         }*/
-
-        private Button LoadingPanelBtn()
-        {
-            try
-            {
-                LoadingPanel.SetResourceReference(Button.StyleProperty, "LoadingPanel");
-                LoadingPanel.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
-                LoadingPanel.Visibility = System.Windows.Visibility.Visible;
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "LoadingPanelBtn()", ex.Message, ex.StackTrace)); }
-
-            return null;
-        }
 
         public static void MessageShow(string text, string caption = "", MessageBoxButton mbb = MessageBoxButton.OK)
         {

@@ -7,7 +7,7 @@
     xmlns:b="clr-namespace:ScottLogic.Shapes"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="540"
-	Title="UserProfile" Width="Auto" Height="Auto">
+	Title="UserProfile" Width="Auto" Height="Auto" Loaded="Page_Loaded">
     <Page.Resources>
         <x:ArrayExtension Type="{x:Type Brush}" x:Key="brushes">
             <SolidColorBrush Color="#FF159927"/>
