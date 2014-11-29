@@ -107,18 +107,21 @@ namespace _Hell_WPF_Multipack_Launcher
             this.Closing += delegate { jSettings = null; };
 
             Task.Factory.StartNew(() => Variables.Start()).Wait();
-            
 
-            try
-            {
-                LoadingPanel.SetResourceReference(Button.StyleProperty, "LoadingPanel");
-                LoadingPanel.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
-                LoadingPanel.Visibility = System.Windows.Visibility.Visible;
-
-                loadPage = LoadingPanel; // Создаем сплеш загрузки
-                this.Closing += delegate { loadPage = null; }; // Создаем делегат очистки памяти после загрузки проги
-            }
-            catch (Exception) { }
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    try
+                    {
+                        LoadingPanel.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
+                        LoadingPanel.Visibility = System.Windows.Visibility.Visible;
+                    }
+                    catch (Exception ex) { Task.Factory.StartNew(() => new Classes.Debugging().Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
+                    finally
+                    {
+                        loadPage = LoadingPanel;
+                        this.Closing += delegate { loadPage = null; };
+                    }
+                }));
 
             Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
         }
@@ -378,7 +381,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)); }
             }).Wait();
-            LoadPage.Visibility = System.Windows.Visibility.Hidden;
+
+            //LoadPage.Visibility = System.Windows.Visibility.Hidden;
             // Запускаем функцию автоматической отправки неотправленных тикетов
             Task.Factory.StartNew(() => new Classes.POST().AutosendTicket());
             

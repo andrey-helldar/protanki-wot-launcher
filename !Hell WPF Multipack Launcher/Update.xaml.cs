@@ -54,22 +54,22 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void MultipackUpdate()
         {
-           try
+            try
             {
                 Classes.Language Lang = new Classes.Language();
                 string lang = (string)MainWindow.JsonSettingsGet("info.language");
 
-                 Dispatcher.BeginInvoke(new ThreadStart(delegate
-                {
-                       gbCaption.Header = Lang.Set("PageUpdate", "gbCaption", lang);
-                     lDownloadFromLink.Content = Lang.Set("PageUpdate", "lDownloadFromLink", lang);
-                     cbNotify.Content = Lang.Set("PageUpdate", "cbNotify", lang);
-                     bUpdate.Content = Lang.Set("PageUpdate", "bUpdate", lang);
-                     bCancel.Content = Lang.Set("PageUpdate", "bCancel", lang);
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+               {
+                   gbCaption.Header = Lang.Set("PageUpdate", "gbCaption", lang);
+                   lDownloadFromLink.Content = Lang.Set("PageUpdate", "lDownloadFromLink", lang);
+                   cbNotify.Content = Lang.Set("PageUpdate", "cbNotify", lang);
+                   bUpdate.Content = Lang.Set("PageUpdate", "bUpdate", lang);
+                   bCancel.Content = Lang.Set("PageUpdate", "bCancel", lang);
 
-                     newVersion.Content = new Classes.Variables().VersionSharp((string)MainWindow.JsonSettingsGet("multipack.new_version"), false);
-                     tbContent.Text = ParseChangelog((string)MainWindow.JsonSettingsGet("multipack.changelog"));
-                }));
+                   newVersion.Content = new Classes.Variables().VersionSharp((string)MainWindow.JsonSettingsGet("multipack.new_version"), false);
+                   tbContent.Text = ParseChangelog((string)MainWindow.JsonSettingsGet("multipack.changelog"));
+               }));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "MultipackUpdate()", ex.Message, ex.StackTrace)); }
         }
