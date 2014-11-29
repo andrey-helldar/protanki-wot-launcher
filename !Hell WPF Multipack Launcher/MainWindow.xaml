@@ -32,7 +32,7 @@
             </TextBlock.Effect>
         </TextBlock>
         <Image x:Name="rectLang" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="26,33,0,26" Grid.Row="4" VerticalAlignment="Center" Width="20" Stretch="Fill" Source="Resources/flag_ru.png"/>
-        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button x:Name="LoadingPanel" Content="Load"/>
+        <Button x:Name="LoadingPanel" Content="Load" Margin="430,0,44,0"/>
+        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="26,6,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>

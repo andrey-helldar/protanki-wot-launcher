@@ -86,6 +86,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         case "API":
                             switch (control)
                             {
+                                case "ANSWER":
+                                    switch (lang)
+                                    {
+                                        case "ru": return "Сервер ответил: " + Environment.NewLine + text;
+                                        case "en": return "Сервер ответил: " + Environment.NewLine + text;
+                                        case "de": return "Сервер ответил: " + Environment.NewLine + text;
+                                        default: return toReturn;
+                                    }
+
                                 case "SOFTWARE_NOT_AUTORIZED":
                                     switch (lang)
                                     {

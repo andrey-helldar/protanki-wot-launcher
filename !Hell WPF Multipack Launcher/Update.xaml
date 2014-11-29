@@ -22,18 +22,18 @@
                     <ColumnDefinition Width="133*"/>
                     <ColumnDefinition Width="135*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="bUpdate" Content="Скачать" Margin="20,0" VerticalAlignment="Center" Width="120" HorizontalAlignment="Center" Click="bUpdate_Click"/>
-                <Button x:Name="bCancel" Content="Не надо" Grid.Column="1" HorizontalAlignment="Center" Margin="20,0" VerticalAlignment="Center" Width="120" Click="bCancel_Click"/>
+                <Button x:Name="bUpdate" Style="{DynamicResource ButtonOK}" Content="Скачать" Margin="20,0" VerticalAlignment="Center" Width="120" HorizontalAlignment="Center" Click="bUpdate_Click"/>
+                <Button x:Name="bCancel" Style="{DynamicResource ButtonCLOSE}" Content="Не надо" Grid.Column="1" HorizontalAlignment="Center" Margin="20,0" VerticalAlignment="Center" Width="120" Click="bCancel_Click"/>
             </Grid>
         </StackPanel>
-        <GroupBox x:Name="gbCaption" Header="Обнаружена новая версия:" Margin="0">
+        <GroupBox x:Name="gbCaption" Header="Обнаружена новая версия:" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label x:Name="newVersion" Content="0.0.0 #0" HorizontalAlignment="Center" Margin="0,20" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Sochi2014" FontSize="20"/>
-                <TextBlock x:Name="tbContent" Margin="5" Grid.Row="1" TextWrapping="Wrap" Text="Information" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+                <TextBlock x:Name="tbContent" Margin="5" Grid.Row="1" TextWrapping="Wrap" Text="Information" ScrollViewer.VerticalScrollBarVisibility="Auto" TextTrimming="WordEllipsis"/>
             </Grid>
         </GroupBox>
 

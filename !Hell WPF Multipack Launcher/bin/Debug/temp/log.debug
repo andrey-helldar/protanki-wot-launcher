@@ -1,0 +1,3 @@
+Ссылка на объект не указывает на экземпляр объекта.
+
+   в _Hell_WPF_Multipack_Launcher.MainWindow.JsonSettingsSet(String path, JToken key, String type) в f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\MainWindow.xaml.cs:строка 286

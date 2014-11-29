@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Multipack Launcher.exe.manifest" size="7884">
+    <dependentAssembly dependencyType="install" codebase="Multipack Launcher.exe.manifest" size="7886">
       <assemblyIdentity name="Multipack Launcher.exe" version="1.0.15.220" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6jI4xcTXoVF/t1MQs/yw6jW3i3Upfey23bmwgqTO++w=</dsig:DigestValue>
+        <dsig:DigestValue>XRoKE0bJU4xeubG/5fMB3uXe0/HXBWRQirZ6Cpx7Gtc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

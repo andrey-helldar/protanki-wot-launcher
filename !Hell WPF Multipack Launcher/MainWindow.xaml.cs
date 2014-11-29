@@ -279,14 +279,16 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             string[] str = path.Split('.');
 
-                            if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
-                                jSettings[str[0]][str[1]] = key_s;
+                            if (jSettings[str[0]] == null)
+                                jSettings[str[0]] = new JObject(new JProperty(str[1], (string)key_s));
                             else
+                            {
                                 jSettings[str[0]][str[1]] = (string)key_s;
+                            }
                         } break;
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex) { File.WriteAllText(@"temp\log.debug", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
         }
 
         public static void JsonSettingsRemove(string path)

@@ -7,9 +7,9 @@
     "language": "ru",
     "locale": 2,
     "user_email": null,
-    "user_name": null,
+    "user_name": "First_Helldar",
     "user_id": "f39d3705d0925c26120f42599dc7d336",
-    "notify_link": "https://www.youtube.com/watch?v=NDBkECUV-NE&feature=youtube_gdata",
+    "notify_link": "https://www.youtube.com/watch?v=TL5xr5tGYc8&feature=youtube_gdata",
     "ProductName": "Multipack Launcher"
   },
   "settings": {
@@ -23,11 +23,11 @@
   },
   "multipack": {
     "type": "extended",
-    "version": "0.9.4.6",
+    "version": "0.9.4.11",
     "date": "23.11.2014",
-    "link": "http://goo.gl/NnMFHh",
-    "changelog": "В этой версии произошли следующие изменения:<font size='12' color='808080'><ul><li>Обновлен мод радиального меню;</li><li>Добавлено возможное решение проблемы с радио WG FM для тех у кого не работало (у большинства все нормально).</li><li>__________________</li><li>Буду благодарен, если Вы еще раз посмотрите рекламный ролик в начале видео.</li><li></li></ul></font>__________________________________________<br><font color='#E00000'>Новая версия доступна по ссылке в описании к видео.</font>",
-    "new_version": "0.9.4.11"
+    "link": null,
+    "changelog": null,
+    "new_version": "0.0.0.0"
   },
   "game": {
     "version": "0.9.4.805",
@@ -38,10 +38,21 @@
   "wargaming": null,
   "youtube": [
     "468d8c760b68c8be915dcc8a3b102df5",
-    "ac6c5a68cd70d502fb4850324ec3aead"
+    "ac6c5a68cd70d502fb4850324ec3aead",
+    "ac6c5a68cd70d502fb4850324ec3aead",
+    "b901b924c58e8d666b2137b6dae005eb",
+    "b901b924c58e8d666b2137b6dae005eb",
+    "fbd46a34fe1a967facda3f410322b9eb",
+    "fbd46a34fe1a967facda3f410322b9eb"
   ],
   "do_not_display": {
     "video": null,
     "news": null
+  },
+  "token": {
+    "access_token": "d7c2e6b39365e5bd98c49206872de4b12041eecd",
+    "expires_at": "1418476114",
+    "nickname": "First_Helldar",
+    "account_id": "2732865"
   }
 }

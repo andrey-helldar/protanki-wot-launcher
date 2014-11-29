@@ -710,19 +710,19 @@ namespace _Hell_WPF_Multipack_Launcher
                             }));
                         }
                     }
-                    else
+                    /*else
                     {
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
                             lStatus.Text = Lang.Set("API", answer["content"].ToString(), lang);
                         }));
-                    }
+                    }*/
                 }
                 else
                 {
                     Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
-                        lStatus.Text = Lang.Set("API", "gbCaption", lang, answer["content"].ToString());
+                        lStatus.Text = Lang.Set("API", "ANSWER", lang, answer["content"].ToString());
                     }));
                 }
             }
@@ -775,25 +775,5 @@ namespace _Hell_WPF_Multipack_Launcher
                 ex.Message, ex.StackTrace));
             }
         }
-
-        /// <summary>
-        ////Получаем ключ токена, если существует
-        /// </summary>
-        /// <param name="rec">Передаем имя аттрибута</param>
-        /// <returns>Получаем значение, если ключ существует</returns>
-        /*private string GetTokenRec(string rec)
-        {
-            try
-            {
-                if (rec.Length > 0)
-                {
-                    string token = (string)MainWindow.JsonSettingsGet("token." + rec);
-                    return token == null ? "" : token;
-                }
-                else
-                    return "";
-            }
-            catch (Exception) { return ""; }
-        }*/
     }
 }
