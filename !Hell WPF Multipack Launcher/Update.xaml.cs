@@ -38,30 +38,18 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    if (cbNotify.IsChecked == true)
-                        MainWindow.JsonSettingsSet("info.notification", MainWindow.JsonSettingsGet("multipack.new_version"));
-
                     string link = (string)MainWindow.JsonSettingsGet("multipack.link");
                     if (link != String.Empty) Process.Start(link);
-
-                    MainWindow.JsonSettingsSet("info.session", System.Diagnostics.Process.GetCurrentProcess().Id, "int");
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
             }));
+
+            Task.Factory.StartNew(() => ClosingPage());
         }
 
         private void bCancel_Click(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    MainWindow.JsonSettingsSet("info.session", System.Diagnostics.Process.GetCurrentProcess().Id, "int");
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
-                }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bCancel_Click()", ex.Message, ex.StackTrace)); }
-            });
+            Task.Factory.StartNew(() => ClosingPage());
         }
 
         private void MultipackUpdate()
@@ -124,6 +112,25 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
             catch (Exception) { }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ClosingPage()
+        {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try
+                {
+                    if (cbNotify.IsChecked == true)
+                        MainWindow.JsonSettingsSet("info.notification", MainWindow.JsonSettingsGet("multipack.new_version"));
+
+                    MainWindow.JsonSettingsSet("info.session", System.Diagnostics.Process.GetCurrentProcess().Id, "int");
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
+            }));
         }
     }
 }

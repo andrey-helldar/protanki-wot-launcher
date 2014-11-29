@@ -1,11 +1,17 @@
 ﻿{
+    "token": {
+        "access_token": "f737699f5fbc8ab1df156d0266d311e37d138527",
+        "expires_at": "1418476563",
+        "nickname": "First_Helldar",
+        "account_id": "2732865"
+    },
     "info": {
         "video": true,
         "news": true,
         "multipack": true,
         "notification": "0.0.0.0",
         "language": "ru",
-        "locale": 2,
+        "locale": 0,
         "user_email": null,
         "user_name": null,
         "user_id": null,

@@ -37,7 +37,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Image HorizontalAlignment="Left" Height="131" Margin="40,0,0,0" VerticalAlignment="Top" Width="132" Source="pack://siteoforigin:,,,/Resources/ava.jpg" Grid.Column="0"/>
+                    <Image HorizontalAlignment="Left" Height="131" Margin="40,0,0,0" VerticalAlignment="Top" Width="132" Source="Resources/ava.jpg" Grid.Column="0"/>
 
                     <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Bottom" Grid.Row="0">
                         <Grid VerticalAlignment="Bottom">

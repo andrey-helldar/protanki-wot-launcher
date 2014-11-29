@@ -526,7 +526,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ava.jpg" />
+    <Resource Include="Resources\ava.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Newtonsoft.Json.dll" />
