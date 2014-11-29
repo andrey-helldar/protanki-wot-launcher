@@ -63,7 +63,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
                 MainWindow.mainFrame.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative));
             }
             catch (Exception) { }
@@ -112,13 +111,14 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     try
                     {
-                        LoadingPanel.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
-                        LoadingPanel.Visibility = System.Windows.Visibility.Visible;
+                        loadPage = LoadingPanel;
+                        loadPage.SetResourceReference(Button.StyleProperty, "LoadingPanel");
+                        loadPage.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
+                        loadPage.Visibility = System.Windows.Visibility.Visible;
                     }
-                    catch (Exception ex) { Task.Factory.StartNew(() => new Classes.Debugging().Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
+                    catch (Exception ex) {  new Classes.Debugging().Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace); }
                     finally
                     {
-                        loadPage = LoadingPanel;
                         this.Closing += delegate { loadPage = null; };
                     }
                 }));
@@ -224,7 +224,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             string[] str = path.Split('.');
 
-                            if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
+                            if (jSettings[str[0]][str[1]] != null)
                                 jSettings[str[0]][str[1]] = (int)key;
                             else
                                 jSettings[str[0]][str[1]] = (int)key;
@@ -238,7 +238,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             string[] str = path.Split('.');
 
-                            if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
+                            if (jSettings[str[0]][str[1]] != null)
                                 jSettings[str[0]][str[1]] = (bool)key;
                             else
                                 jSettings[str[0]][str[1]] = (bool)key;
@@ -263,10 +263,10 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             string[] str = path.Split('.');
 
-                            if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
-                                ja = JArray.Parse(jSettings[str[0]][str[1]].ToString());
-                            else
+                            if (jSettings[str[0]][str[1]] == null)
                                 ja = new JArray();
+                            else
+                                ja = JArray.Parse(jSettings[str[0]][str[1]].ToString());
 
                             ja.Add(key_s);
                             jSettings[str[0]][str[1]] = ja;
@@ -285,9 +285,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             if (jSettings[str[0]] == null)
                                 jSettings[str[0]] = new JObject(new JProperty(str[1], (string)key_s));
                             else
-                            {
                                 jSettings[str[0]][str[1]] = (string)key_s;
-                            }
                         } break;
                 }
             }

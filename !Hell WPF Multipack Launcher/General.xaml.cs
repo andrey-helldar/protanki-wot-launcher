@@ -84,8 +84,11 @@ namespace _Hell_WPF_Multipack_Launcher
             //  Получаем инфу с сайта
             Task.Factory.StartNew(() => GetInfo()).Wait();
 
-            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
-            catch (Exception) { }
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                catch (Exception) { }
+            }));
         }
 
         private void StatusBarSet(bool inc, int max_inc = 0, bool set_max = false, bool disp = false, bool value_set = false)
@@ -634,11 +637,10 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="page">Имя открываемой формы</param>
         private void OpenPage(string page)
         {
-            Task.Factory.StartNew(() =>
-            {
-                try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(page); })); }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "OpenPage()", "Page: " + page, ex.Message, ex.StackTrace)); }
-            });
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
+            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(page); }));
         }
 
         /// <summary>

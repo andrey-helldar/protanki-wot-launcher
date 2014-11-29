@@ -69,22 +69,21 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.PlayBtn.Content = Lang.Set("MainProject", "bPlay", lang);      
+            MainWindow.PlayBtn.Content = Lang.Set("MainProject", "bPlay", lang);
 
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
-                }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Settings.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
-            });
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
+            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
         }
 
         private void PageSettings_Loaded(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
-            catch (Exception) { }
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                catch (Exception) { }
+            }));
         }
     }
 }

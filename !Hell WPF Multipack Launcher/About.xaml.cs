@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -26,8 +27,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
-            catch (Exception) { }
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                catch (Exception) { }
+            }));
         }
     }
 }

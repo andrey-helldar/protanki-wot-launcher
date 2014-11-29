@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -46,6 +47,15 @@ namespace _Hell_WPF_Multipack_Launcher
                     MainWindow.JsonSettingsSet("token.account_id", (string)Token.SelectToken("account_id"));
 
                     MainWindow.JsonSettingsSet("info.user_name", (string)Token.SelectToken("nickname"));
+
+                    try
+                    {
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
+                        Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator("UserProfile"); }));
+                    }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WarApiOpenID.xaml", "WB_LoadCompleted()", ex.Message, ex.StackTrace)); }
 
                     this.Close();
                 }
@@ -145,8 +155,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void WarApiOpenID1_Loaded(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
-            catch (Exception) { }
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                catch (Exception) { }
+            }));
         }
     }
 }

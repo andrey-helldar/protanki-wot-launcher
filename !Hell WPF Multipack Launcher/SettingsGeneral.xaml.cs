@@ -284,8 +284,11 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception) { }
 
-            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
-            catch (Exception) { }
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                catch (Exception) { }
+            }));
         }
 
         private void cbKill_Click(object sender, RoutedEventArgs e)

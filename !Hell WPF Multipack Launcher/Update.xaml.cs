@@ -110,8 +110,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void PageUpdate_Loaded(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
-            catch (Exception) { }
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                catch (Exception) { }
+            }));
         }
 
         /// <summary>
@@ -119,15 +122,17 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         private void ClosingPage()
         {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
+            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
                 try
                 {
-                    if (cbNotify.IsChecked == true)
-                        MainWindow.JsonSettingsSet("info.notification", MainWindow.JsonSettingsGet("multipack.new_version"));
-
+                    if (cbNotify.IsChecked == true) MainWindow.JsonSettingsSet("info.notification", MainWindow.JsonSettingsGet("multipack.new_version"));
                     MainWindow.JsonSettingsSet("info.session", System.Diagnostics.Process.GetCurrentProcess().Id, "int");
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
+
+                    MainWindow.Navigator();
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Update.xaml", "bUpdate_Click()", ex.Message, ex.StackTrace)); }
             }));

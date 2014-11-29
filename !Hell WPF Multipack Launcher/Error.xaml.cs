@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -28,14 +29,18 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            try { Dispatcher.BeginInvoke(new System.Threading.ThreadStart(delegate { MainWindow.Navigator(); })); }
-            catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => new Classes.Debugging().Save("Feedback.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
-        }
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
+            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+
+             Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));   }
 
         private void PageError_Loaded(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; }
-            catch (Exception) { }
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                catch (Exception) { }
+            }));
         }
     }
 }
