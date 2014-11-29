@@ -1,45 +1,45 @@
-{
-  "info": {
-    "session": null,
-    "video": true,
-    "news": true,
-    "multipack": true,
-    "notification": "0.0.0.0",
-    "language": "ru",
-    "locale": 2,
-    "user_email": null,
-    "user_name": null,
-    "user_id": null,
-    "notify_link": null,
-    "ProductName": null
-  },
-  "settings": {
-    "kill": false,
-    "force": false,
-    "aero": false,
-    "video": false,
-    "weak": false,
-    "winxp": false,
-    "launcher": 0
-  },
-  "multipack": {
-    "type": "extended",
-    "version": "0.9.4.6",
-    "date": null,
-    "link": null,
-    "changelog": null,
-    "new_version": "0.0.0.0"
-  },
-  "game": {
-    "version": "0.9.4.805",
-    "path": null,
-    "test": false
-  },
-  "processes": null,
-  "wargaming": null,
-  "youtube": null,
-  "do_not_display": {
-    "video": null,
-    "news": null
-  }
+﻿{
+    "info": {
+        "session": null,
+        "video": true,
+        "news": true,
+        "multipack": true,
+        "notification": "0.0.0.0",
+        "language": "ru",
+        "locale": 2,
+        "user_email": null,
+        "user_name": null,
+        "user_id": null,
+        "notify_link": null,
+        "ProductName": null
+    },
+    "settings": {
+        "kill": false,
+        "force": false,
+        "aero": false,
+        "video": false,
+        "weak": false,
+        "winxp": false,
+        "launcher": 0
+    },
+    "multipack": {
+        "type": "base",
+        "version": "0.0.0.0",
+        "date": null,
+        "link": null,
+        "changelog": null,
+        "new_version": "0.0.0.0"
+    },
+    "game": {
+        "version": "0.0.0.0",
+        "path": null,
+        "test": false
+    },
+    "processes": null,
+    "wargaming": null,
+    "youtube": null,
+    "do_not_display": {
+        "video": null,
+        "news": null
+    }
 }

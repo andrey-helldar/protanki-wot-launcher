@@ -103,20 +103,21 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
+            // Загружаем настройки из JSON
+            Task.Factory.StartNew(() => JsonSettingsLoad()).Wait();
+            this.Closing += delegate { jSettings = null; };
+
+            Task.Factory.StartNew(() => Variables.Start()).Wait();
+            
+
             try
             {
                 loadPage = LoadingPanel; // Создаем сплеш загрузки
-                loadPage.Visibility = System.Windows.Visibility.Visible; // Включаем отображение юзерам
+               w loadPage.Visibility = System.Windows.Visibility.Visible; // Включаем отображение юзерам
                 this.Closing += delegate { loadPage = null; }; // Создаем делегат очистки памяти после загрузки проги
             }
             catch (Exception) { }
 
-            
-            // Загружаем настройки из JSON
-            Task.Factory.StartNew(()=> JsonSettingsLoad()).Wait();
-            this.Closing += delegate { jSettings = null; };
-
-            Task.Factory.StartNew(() => new Classes.Variables().Start()).Wait();
             Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
         }
 
@@ -127,8 +128,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                //Task.Factory.StartNew(() => Variables.SaveFromResources()).Wait();
-
                 string settings = "settings.json";
                 string decrypt = "";
 
@@ -223,7 +222,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
                                 jSettings[str[0]][str[1]] = (int)key;
                             else
-                                jSettings[str[0]] = new JProperty(str[1], (int)key);
+                                jSettings.Property(str[0]).Add(new JProperty(str[1], (int)key));
                         }
                         break;
 
@@ -237,7 +236,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
                                 jSettings[str[0]][str[1]] = (bool)key;
                             else
-                                jSettings[str[0]] = new JProperty(str[1], (bool)key);
+                                jSettings.Property(str[0]).Add(new JProperty(str[1], (bool)key));
                         }
                         break;
 
@@ -281,7 +280,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             if (jSettings[str[0]][str[1]] != null && jSettings[str[0]][str[1]].ToString().Length > 0)
                                 jSettings[str[0]][str[1]] = key_s;
                             else
-                                jSettings[str[0]] = new JProperty(str[1], (string)key_s);
+                                jSettings.Property(str[0]).Add(new JProperty(str[1], (string)key_s));
                         } break;
                 }
             }
@@ -348,14 +347,14 @@ namespace _Hell_WPF_Multipack_Launcher
                     catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(5)", "cursorStream", ex.Message, ex.StackTrace)); }
 
 
-                    try
-                    {
-                        SetInterface(); // Загрузка языка 
-                    }
+                    try { SetInterface(); }
                     catch (Exception ex)
                     {
-                        Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)).Wait();
-                        Task.Factory.StartNew(() => Debugging.Restart());
+                        Task.Factory.StartNew(() =>
+                        {
+                            Debugging.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace);
+                            Debugging.Restart();
+                        }).Wait();
                     }
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace)); }
@@ -364,19 +363,21 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            game_path = ((string)JsonSettingsGet("game.path")).Replace(Properties.Resources.Default_JSON_Splitter, @"\");
-
+            try { game_path = ((string)JsonSettingsGet("game.path")).Replace(Properties.Resources.Default_JSON_Splitter, @"\"); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(0)", ex.Message, ex.StackTrace)); }
+            
             try { Task.Factory.StartNew(() => Debugging.ClearLogs()); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Debugging.ClearLogs()", ex.Message, ex.StackTrace)); }
-
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(1)", ex.Message, ex.StackTrace)); }
+            
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(4)", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(2)", ex.Message, ex.StackTrace)); }
             });
-
+            
             // Запускаем функцию автоматической отправки неотправленных тикетов
             Task.Factory.StartNew(() => new Classes.POST().AutosendTicket());
+            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -540,6 +541,19 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception) { }
         }*/
+
+        private Button LoadingPanelBtn()
+        {
+            try
+            {
+                LoadingPanel.SetResourceReference(Button.StyleProperty, "LoadingPanel");
+                LoadingPanel.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
+                LoadingPanel.Visibility = System.Windows.Visibility.Visible;
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "LoadingPanelBtn()", ex.Message, ex.StackTrace)); }
+
+            return null;
+        }
 
         public static void MessageShow(string text, string caption = "", MessageBoxButton mbb = MessageBoxButton.OK)
         {

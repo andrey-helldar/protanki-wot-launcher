@@ -35,14 +35,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 MainWindow.JsonSettingsSet("info.ProductName", Application.Current.GetType().Assembly.GetName().Name);
                 MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major == 5, "bool");
+                MainWindow.JsonSettingsSet("info.user_id", GetUserID());
 
                 string lang_pack = Properties.Resources.Default_Lang;
                 string lang_game = Properties.Resources.Default_Lang;
-
-                /*
-                 *      Дополнительные переменные
-                 */
-                MainWindow.JsonSettingsSet("info.user_id", GetUserID());
 
 
                 /*
@@ -132,45 +128,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     MainWindow.JsonSettingsSet("info.language", lang);
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Variables.Class", "Start()", "Row: Apply language", ex.Message, ex.StackTrace)); }
-
-
-
-                /*
-                 *      Загружаем инфу об обновлении мультипака
-                 */
-
             }
             catch (Exception e) { Task.Factory.StartNew(() => Debugging.Save("Variables.Class", "Start()", e.Message, e.StackTrace)); }
         }
-
-        /*private bool ReadCheckStateBool(XDocument doc, string attr)
-        {
-            try
-            {
-                if (doc.Root.Element("settings") != null)
-                    if (doc.Root.Element("settings").Attribute(attr) != null)
-                    {
-                        switch (doc.Root.Element("settings").Attribute(attr).Value)
-                        {
-                            case "Checked": return true;
-                            case "Indeterminate": return true;
-                            default: return false;
-                        }
-                    }
-                return false;
-            }
-            catch (Exception ex) { Debugging.Save("Variables.Class", "ReadCheckStateBool()", "Attribute: " + attr, doc.ToString(), ex.Message, ex.StackTrace); return false; }
-        }*/
-
-        /*private string GetTanksRegistry()
-        {
-            try
-            {
-                var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
-                return key != null ? (string)key.GetValue("InstallLocation") : null;
-            }
-            catch (Exception ex) { Debugging.Save("Variables.Class", "GetTanksRegistry()", ex.Message, ex.StackTrace); return null; }
-        }*/
 
         private string CorrectPath(string sourcePath, int remove = 0)
         {
@@ -220,12 +180,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debugging.Save("Variables.Class", "Md5()", "Input: " + input, ex.Message, ex.StackTrace); return null; }
         }
 
-        /*public Version Version(string version)
-        {
-            try { return new Version(String.Format("{0}.{1}.{2}.{3}", TanksVersion.Major, TanksVersion.Minor, TanksVersion.Build, version)); }
-            catch (Exception ex) { Debugging.Save("Variables.Class", "Version()", version, ex.Message, ex.StackTrace); return new Version("0.0.0.0"); }
-        }*/
-
         /// <summary>
         /// Формирование версии в решетку
         /// </summary>
@@ -257,66 +211,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try { return new Version(ver.Replace(" #", ".")); }
             catch (Exception) { return new Version("0.0.0.0"); }
         }
-
-        /// <summary>
-        /// Формирование префикса из версии
-        /// </summary>
-        /// <param name="ver">Версия для преобразования</param>
-        /// <returns>формат 0.0.0.</returns>
-        /*public string VersionPrefix(Version ver)
-        {
-            try { return String.Format("{0}.{1}.{2}.", ver.Major, ver.Minor, ver.Build); }
-            catch (Exception ex) { Debugging.Save("Variables.Class", "VersionPrefix()", "Version: " + ver.ToString(), ex.Message, ex.StackTrace); return "0.0.0."; }
-        }*/
-
-        /*public void ItXP()
-        {
-            try { WinXP = Environment.OSVersion.Version.Major == 5; }
-            catch (Exception ex) { Debugging.Save("Variables.Class", "ItXP()", ex.Message, ex.StackTrace); }
-        }*/
-
-        /// <summary>
-        /// Проверка внесен ли элемент новости/видео в так называемый "черный список"
-        /// </summary>
-        /// <param name="item">Входящий идентификатор записи для проверки</param>
-        /// <returns>
-        ///     TRUE - запись находится в черном списке;
-        ///     FALSE - запись "чистая"
-        /// </returns>
-        /*public bool ElementBan(string item, string block = "video")
-        {
-            try
-            {
-                if (MainWindow.XmlDocument.Root.Element("do_not_display") != null)
-                    if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block) != null)
-                        if (MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item").Count() > 0)
-                            foreach (string str in MainWindow.XmlDocument.Root.Element("do_not_display").Element(block).Elements("item"))
-                                if (str == item) return true;
-            }
-            catch (Exception ex) { Debugging.Save("Variables.Class", "ElementBan()", item, block, ex.Message, ex.StackTrace); }
-
-            return false;
-        }*/
-
-
-        /// <summary>
-        /// Достаем булевое значение элемента
-        /// </summary>
-        /// <param name="block">Имя ключевого элемента</param>
-        /// <param name="attr">Имя аттрибута</param>
-        /// <returns>Булевое значение существования элемента</returns>
-        /*public bool GetElement(string block, string attr)
-        {
-            try
-            {
-                if (MainWindow.XmlDocument.Root.Element(block) != null)
-                    if (MainWindow.XmlDocument.Root.Element(block).Attribute(attr) != null)
-                        return MainWindow.XmlDocument.Root.Element(block).Attribute(attr).Value == "True";
-            }
-            catch (Exception ex) { Debugging.Save("Variables.Class", "GetElement()", block, attr, ex.Message, ex.StackTrace); }
-
-            return true;
-        }*/
 
         /// <summary>
         /// ИЗвлечение ресурсов, если оригинальные файлы не найдены
