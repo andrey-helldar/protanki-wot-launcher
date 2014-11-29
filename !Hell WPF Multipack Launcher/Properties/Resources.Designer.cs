@@ -812,6 +812,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Modpack_Creator {
+            get {
+                object obj = ResourceManager.GetObject("Modpack_Creator", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to config.json.
         /// </summary>
         public static string Multipack_Config {

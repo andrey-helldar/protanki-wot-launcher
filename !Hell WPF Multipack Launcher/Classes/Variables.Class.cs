@@ -223,6 +223,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Task.WaitAll(new Task[]{
                     Task.Factory.StartNew(() => SavingFile("restart.exe", Properties.Resources.Restart)),
                     Task.Factory.StartNew(() => SavingFile("Processes.Library.dll", Properties.Resources.Processes_Library)),
+                    Task.Factory.StartNew(() => SavingFile("Modpack.Creator.dll", Properties.Resources.Modpack_Creator)),
                     
                     Task.Factory.StartNew(() => SavingFile(SettingsPath, Properties.Resources.Settings)),
                     

@@ -1,16 +1,16 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ModpackCreatorPROTanki")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Modpack Creator: PROTanki")]
+[assembly: AssemblyDescription("Library for Multipack Launcher of AI RUS - Professional IT support")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ModpackCreatorPROTanki")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCompany("AI RUS - Professional IT support")]
+[assembly: AssemblyProduct("Modpack Creator: PROTanki")]
+[assembly: AssemblyCopyright("Copyright ©  2014 AI RUS - Professional IT support")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d24a799d-6062-4cb1-8bac-6d217a0acac7")]
+[assembly: Guid("bc134607-41b3-4d27-89f9-a71bda529764")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,6 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.794")]
+[assembly: AssemblyFileVersion("1.0.0.794")]
