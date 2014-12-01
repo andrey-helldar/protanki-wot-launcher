@@ -32,7 +32,6 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private bool show_notify = true;
 
-        //private string NotifyLink = String.Empty;
         private string lang = (string)MainWindow.JsonSettingsGet("info.language");
 
 

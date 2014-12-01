@@ -95,15 +95,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 {
                     if (File.Exists(Properties.Resources.Multipack_Config))
                     {
-                        using (StreamReader reader = File.OpenText(Properties.Resources.Multipack_Config))
-                        {
-                            JObject o = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
+                        string pathINI = "config.ini";
 
-                            MainWindow.JsonSettingsSet("multipack.type", (string)o.SelectToken("type"));
-                            MainWindow.JsonSettingsSet("multipack.version", (string)o.SelectToken("path") + "." + (string)o.SelectToken("version"));
-                            MainWindow.JsonSettingsSet("multipack.date", (string)o.SelectToken("date"));
-                            lang_pack = (string)o.SelectToken("language");
-                        }
+                        MainWindow.JsonSettingsSet("multipack.type", new IniFile(pathINI).IniReadValue("protanki", "type").ToLower());
+                        MainWindow.JsonSettingsSet("multipack.version", new IniFile(pathINI).IniReadValue("protanki", "path") + "." + new IniFile(pathINI).IniReadValue("protanki", "version"));
+                        MainWindow.JsonSettingsSet("multipack.date", new IniFile(pathINI).IniReadValue("protanki", "date"));
+                        lang_pack = new IniFile(pathINI).IniReadValue("protanki", "language");
                     }
                     else
                         MainWindow.MessageShow(Language.Set("MainProject", "Pack_Not_Found", lang));

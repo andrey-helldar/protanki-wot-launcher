@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="2.5.34.797" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher" version="2.5.34.798" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -56,25 +56,25 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Modpack.Creator.dll" size="5632">
-      <assemblyIdentity name="Modpack.Creator" version="1.0.0.794" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Modpack.Creator" version="1.0.0.798" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>iVysHd4vdCjl4uJz3y4JWnRUSqc=</dsig:DigestValue>
+        <dsig:DigestValue>CX+E0pfx4qw9qdjou8nUNeUDEKo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="4622848">
-      <assemblyIdentity name="Multipack Launcher" version="2.5.34.797" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="4624272">
+      <assemblyIdentity name="Multipack Launcher" version="2.5.34.798" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>fCSJl+Cinf0nPpGnH/0O0E2X0kI=</dsig:DigestValue>
+        <dsig:DigestValue>7FMTJ7e1qUYE3UnTDGH5QqM0+kk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

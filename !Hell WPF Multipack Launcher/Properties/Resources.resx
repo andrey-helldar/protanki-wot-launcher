@@ -177,7 +177,7 @@
     <comment>RSS Ютуба</comment>
   </data>
   <data name="Multipack_Config" xml:space="preserve">
-    <value>config.json</value>
+    <value>config.ini</value>
     <comment>Файл настроек мультипака</comment>
   </data>
   <data name="YoutubeChannel" xml:space="preserve">
