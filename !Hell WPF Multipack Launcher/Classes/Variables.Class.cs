@@ -95,7 +95,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 {
                     if (File.Exists("Modpack.Creator.dll"))
                     {
-                        JObject obj = new Modpack.Creator().Config();
+                        JObject obj = new Modpack.Creator().Config(Properties.Resources.API_DEV_Address);
 
                         if (obj != null)
                         {

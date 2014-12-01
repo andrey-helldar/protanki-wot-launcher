@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -11,15 +12,14 @@ namespace Modpack
     public class Creator
     {
         public readonly string multipack_id = "05b877de3562048c5d1bd7cc18d4f286";
-        public readonly string multipack_youtube = "PROTankiWoT";
 
-        public readonly string IniSection = "protanki";
+        private readonly string IniSection = "protanki";
 
         // Ссылки
-        public string multipack_link_video_all = "http://goo.gl/LXaU7T";
-        public string multipack_link_updates = "http://file.theaces.ru/mods/proupdate/update.json";
+        public readonly string multipack_link_video_all = "http://goo.gl/LXaU7T";
+        public readonly string multipack_link_updates = "http://file.theaces.ru/mods/proupdate/update.json";
 
-        public JObject Config()
+        public JObject Config(string developer_uri)
         {
             /*
              * [protanki]
@@ -31,11 +31,19 @@ namespace Modpack
              */
             try
             {
+                // Получаем данные с сервера
+                //Response(developer_uri);
+
+                // Обрабатываем файл конфига
                 if (File.Exists("config.json"))
                 {
                     using (StreamReader file = File.OpenText("config.json"))
                     using (JsonTextReader reader = new JsonTextReader(file))
-                        return (JObject)JToken.ReadFrom(reader);
+                    {
+                        JObject obj = (JObject)JToken.ReadFrom(reader);
+                        obj["version"] = (string)obj["path"] + "." + (string)obj["version"];
+                        return obj;
+                    }
                 }
                 else
                 {
@@ -51,5 +59,30 @@ namespace Modpack
 
             return null;
         }
+
+        /*private JObject Response(string uri)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                byte[] buf = new byte[8192];
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream resStream = response.GetResponseStream();
+                int count = 0;
+                do
+                {
+                    count = resStream.Read(buf, 0, buf.Length);
+                    if (count != 0) sb.Append(Encoding.UTF8.GetString(buf, 0, count));
+                }
+                while (count > 0);
+
+                return JObject.Parse(sb.ToString());
+            }
+            catch (WebException) { }
+            catch (Exception) { }
+
+            return null;
+        }*/
     }
 }

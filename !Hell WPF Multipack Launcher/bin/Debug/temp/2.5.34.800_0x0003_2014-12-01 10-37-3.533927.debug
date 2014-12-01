@@ -1,0 +1,11 @@
+﻿{
+  "uid": "f39d3705d0925c26120f42599dc7d336",
+  "version": "2.5.34.800",
+  "date": "2014-12-01 10-37-3",
+  "module": "General.xaml",
+  "function": "GetInfo(1)",
+  "param0": "This version: .",
+  "param1": "New version: 0.9.4.12",
+  "param2": "Входная строка имела неверный формат.",
+  "param3": "   в System.Version.TryParseComponent(String component, String componentName, VersionResult& result, Int32& parsedComponent)\r\n   в System.Version.TryParseVersion(String version, VersionResult& result)\r\n   в System.Version..ctor(String version)\r\n   в _Hell_WPF_Multipack_Launcher.General.GetInfo() в f:\\ВАЖНЫЕ ДАННЫЕ\\!!Важные документы\\!Сохранения программ\\Visual Studio C#\\!Hell PRO Tanki Launcher\\!Hell WPF Multipack Launcher\\General.xaml.cs:строка 764"
+}

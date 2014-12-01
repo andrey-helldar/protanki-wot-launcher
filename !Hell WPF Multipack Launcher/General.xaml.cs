@@ -783,27 +783,39 @@ namespace _Hell_WPF_Multipack_Launcher
                                 {
                                     OpenPage("Update");
 
-                                    bNotification.Visibility = System.Windows.Visibility.Visible;
-                                    bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                    {
+                                        bNotification.Visibility = System.Windows.Visibility.Visible;
+                                        bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                    }));
                                 }
                                 else
                                     if ((int)MainWindow.JsonSettingsGet("info.session") != Process.GetCurrentProcess().Id)
                                     {
                                         OpenPage("Update");
 
-                                        bNotification.Visibility = System.Windows.Visibility.Visible;
-                                        bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                        {
+                                            bNotification.Visibility = System.Windows.Visibility.Visible;
+                                            bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                        }));
                                     }
                                     else
                                     {
-                                        bNotification.Visibility = System.Windows.Visibility.Hidden;
-                                        bUpdate.Visibility = System.Windows.Visibility.Hidden;
+                                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                        {
+                                            bNotification.Visibility = System.Windows.Visibility.Visible;
+                                            bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                        }));
                                     }
                             }
                             else
                             {
-                                bNotification.Visibility = System.Windows.Visibility.Hidden;
-                                bUpdate.Visibility = System.Windows.Visibility.Hidden;
+                                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                {
+                                    bNotification.Visibility = System.Windows.Visibility.Hidden;
+                                    bUpdate.Visibility = System.Windows.Visibility.Hidden;
+                                }));
                             }
                         }
                         catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "GetInfo(0)", "OpenPage(Update)", ex.Message, ex.StackTrace)); }
