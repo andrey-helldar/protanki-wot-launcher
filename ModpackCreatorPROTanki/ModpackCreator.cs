@@ -45,15 +45,18 @@ namespace Modpack
                         return obj;
                     }
                 }
-                else
+                else if (File.Exists("config.ini"))
                 {
+                    string path = "config.ini";
                     return new JObject(
                         new JProperty("type", new IniFile("config.ini").IniReadValue(IniSection, "type").ToLower()),
                         new JProperty("version", new IniFile("config.ini").IniReadValue(IniSection, "path") + "." + new IniFile("config.ini").IniReadValue(IniSection, "version")),
+                        new JProperty("path", new IniFile("config.ini").IniReadValue(IniSection, "path")),
                         new JProperty("date", new IniFile("config.ini").IniReadValue(IniSection, "date")),
                         new JProperty("language", new IniFile("config.ini").IniReadValue(IniSection, "language"))
                     );
                 }
+                else return null;
             }
             catch (Exception) { }
 

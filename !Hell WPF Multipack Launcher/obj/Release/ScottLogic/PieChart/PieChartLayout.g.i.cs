@@ -52,7 +52,7 @@ namespace ScottLogic.Controls.PieChart {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Multipack_Launcher;component/scottlogic/piechart/piechartlayout.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Multipack Launcher;component/scottlogic/piechart/piechartlayout.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\ScottLogic\PieChart\PieChartLayout.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

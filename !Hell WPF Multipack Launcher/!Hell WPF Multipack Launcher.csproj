@@ -536,9 +536,6 @@
     <Resource Include="Resources\waiting.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Modpack.Creator.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\update_hover.png" />
   </ItemGroup>
   <ItemGroup>
@@ -555,6 +552,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\notify_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Modpack.Creator.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

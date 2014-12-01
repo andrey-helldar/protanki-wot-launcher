@@ -75,7 +75,7 @@ namespace _Hell_WPF_Multipack_Launcher {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Multipack_Launcher;component/settingsprocesses.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Multipack Launcher;component/settingsprocesses.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\SettingsProcesses.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

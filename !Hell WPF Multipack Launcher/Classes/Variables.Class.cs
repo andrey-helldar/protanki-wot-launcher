@@ -110,7 +110,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     else
                         MainWindow.MessageShow(Language.Set("MainProject", "Pack_Not_Found", lang));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Variables.Class", "Start()", "Row: Multipack config", ex.Message, ex.StackTrace)); }
+                catch (Exception ex)
+                {
+                    Task.Factory.StartNew(() => Debugging.Save("Variables.Class", "Start()", "Row: Multipack config", ex.Message, ex.StackTrace));
+                    MainWindow.MessageShow(Language.Set("MainProject", "Pack_Not_Found", lang));
+                }
 
 
                 /*
