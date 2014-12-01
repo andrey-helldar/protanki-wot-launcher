@@ -1,47 +1,44 @@
-{
-  "info": {
-    "video": true,
-    "news": true,
-    "multipack": true,
-    "notification": "0.0.0.0",
-    "language": "en",
-    "locale": 2,
-    "user_email": null,
-    "user_name": null,
-    "user_id": "f39d3705d0925c26120f42599dc7d336",
-    "notify_link": "https://www.youtube.com/watch?v=WeaPvrznZZA&feature=youtube_gdata",
-    "ProductName": "Multipack Launcher",
-    "session": 964
-  },
-  "settings": {
-    "kill": false,
-    "force": false,
-    "aero": false,
-    "video": false,
-    "weak": false,
-    "winxp": false,
-    "launcher": 0
-  },
-  "multipack": {
-    "type": "extended",
-    "version": "0.9.4.11",
-    "date": "23.11.2014",
-    "link": "http://goo.gl/NnMFHh",
-    "changelog": "In this version the following changes:<font size='12' color='808080'><ul><li>Updated sight \"Select Murazor\" J1mB0s Crosshair;</li><li>Added voice from WG TV:</li><li>-The voice of Cyril Oreshkin;</li><li>-The voice of Olga Sergeyevna;</li><li>-Voice from the ASI which Fumbles :)</li><li>__________________</li><li>I would be grateful if You again see the ad in the beginning of the video.</li></ul></font>__________________________________________<br><font color='#E00000'>New version is available on the link in the description of the video.</font>",
-    "new_version": "0.9.4.12"
-  },
-  "game": {
-    "version": "0.9.4.805",
-    "path": "F:::;ВАЖНЫЕ ДАННЫЕ::;!!Важные документы::;!Сохранения программ::;Visual Studio C#::;!Hell PRO Tanki Launcher::;!Hell WPF Multipack Launcher::;bin::;",
-    "test": false
-  },
-  "processes": null,
-  "wargaming": null,
-  "youtube": [
-    "cce4a44fa065fb6e768c73d702cd2d0e"
-  ],
-  "do_not_display": {
-    "video": null,
-    "news": null
-  }
+﻿{
+    "info": {
+        "video": true,
+        "news": true,
+        "multipack": true,
+        "notification": "0.0.0.0",
+        "language": "en",
+        "locale": 0,
+        "user_email": null,
+        "user_name": null,
+        "user_id": null,
+        "notify_link": null,
+        "ProductName": null
+    },
+    "settings": {
+        "kill": false,
+        "force": false,
+        "aero": false,
+        "video": false,
+        "weak": false,
+        "winxp": false,
+        "launcher": 0
+    },
+    "multipack": {
+        "type": "base",
+        "version": "0.0.0.0",
+        "date": null,
+        "link": null,
+        "changelog": null,
+        "new_version": "0.0.0.0"
+    },
+    "game": {
+        "version": "0.0.0.0",
+        "path": null,
+        "test": false
+    },
+    "processes": null,
+    "wargaming": null,
+    "youtube": null,
+    "do_not_display": {
+        "video": null,
+        "news": null
+    }
 }

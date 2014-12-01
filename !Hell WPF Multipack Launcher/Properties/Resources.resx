@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Default_Lang" xml:space="preserve">
-    <value>ru</value>
+    <value>en</value>
     <comment>Дефолтный язык</comment>
   </data>
   <data name="Default_Multipack_Type" xml:space="preserve">
@@ -463,7 +463,7 @@
     <comment>Шифрование логов дебага</comment>
   </data>
   <data name="Default_Crypt_Settings" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
     <comment>Шифрование файла настроек</comment>
   </data>
   <data name="Default_Sleeping_Notify" xml:space="preserve">
@@ -476,9 +476,6 @@
   </data>
   <data name="Newtonsoft_Json" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Newtonsoft.Json.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\settings.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Waiting" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\waiting.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -507,5 +504,11 @@
   </data>
   <data name="update_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\update_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Settings_Encoded" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings_enc.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

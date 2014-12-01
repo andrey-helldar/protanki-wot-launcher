@@ -280,6 +280,8 @@
     <Resource Include="Resources\restart.exe" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\settings.json" />
+    <None Include="Resources\settings_enc.json" />
     <None Include="settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

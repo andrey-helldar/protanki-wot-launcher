@@ -231,7 +231,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     Task.Factory.StartNew(() => SavingFile("Processes.Library.dll", Properties.Resources.Processes_Library)),
                     Task.Factory.StartNew(() => SavingFile("Modpack.Creator.dll", Properties.Resources.Modpack_Creator)),
                     
-                    Task.Factory.StartNew(() => SavingFile(SettingsPath, Properties.Resources.Settings)),
+                    Task.Factory.StartNew(() => {
+                        if(Properties.Resources.Default_Crypt_Settings == "1")
+                            SavingFile(SettingsPath, Properties.Resources.Settings_Encoded);
+                        else
+                            SavingFile(SettingsPath, Properties.Resources.Settings);
+                    }),
                     
                     Task.Factory.StartNew(() => SavingFile("Ionic.Zip.dll", Properties.Resources.Ionic_Zip)),
                     Task.Factory.StartNew(() => SavingFile("Newtonsoft.Json.dll", Properties.Resources.Newtonsoft_Json)),

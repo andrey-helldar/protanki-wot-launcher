@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="2.5.34.801" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher" version="2.5.34.802" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -56,25 +56,25 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Modpack.Creator.dll" size="7168">
-      <assemblyIdentity name="Modpack.Creator" version="1.0.1.801" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Modpack.Creator" version="1.0.2.802" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>esAJfj4hmgf+FPOvZKKr7YA7JW8=</dsig:DigestValue>
+        <dsig:DigestValue>LacEZNy35zuYuF+Cvtx3p8NzMIQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="4625296">
-      <assemblyIdentity name="Multipack Launcher" version="2.5.34.801" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="4626832">
+      <assemblyIdentity name="Multipack Launcher" version="2.5.34.802" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>HIlqFHiwPfTEC9wJ2NsVaFoJ6lE=</dsig:DigestValue>
+        <dsig:DigestValue>3LFud5DXkBD9NWnDp8r8PhE6WNg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -92,13 +92,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Processes.Library.dll" size="20992">
-      <assemblyIdentity name="Processes.Library" version="1.5.5446.36025" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Processes.Library" version="1.5.5449.646" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>DHLdTG3Y59umh17+TpBhTBripAY=</dsig:DigestValue>
+        <dsig:DigestValue>lyd/g4UZ737kI+jG5RrwKmy3rPQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

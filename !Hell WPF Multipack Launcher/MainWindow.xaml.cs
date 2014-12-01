@@ -144,11 +144,22 @@ namespace _Hell_WPF_Multipack_Launcher
 
                         if (Properties.Resources.Default_Crypt_Settings == "1")
                         {
-                            Classes.Crypt Crypt = new Classes.Crypt();
-                            decrypt = Crypt.Decrypt(decrypt, Variables.GetUserID());
+                            try
+                            {
+                                Classes.Crypt Crypt = new Classes.Crypt();
+                                decrypt = Crypt.Decrypt(decrypt, Variables.GetUserID());
+                            }
+                            catch (Exception) {
+                                if (File.Exists(settings)) File.Delete(settings);
+                                Thread.Sleep(300);
+                                File.WriteAllBytes(settings, Properties.Resources.Settings_Encoded);
+
+                                Classes.Crypt Crypt = new Classes.Crypt();
+                                decrypt = Crypt.Decrypt(decrypt, Variables.GetUserID());
+                            }
                         }
-                        else
-                            jSettings = JObject.Parse(decrypt);
+
+                        jSettings = JObject.Parse(decrypt);
                     }
                 }
                 else

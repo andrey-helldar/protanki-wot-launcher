@@ -356,7 +356,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.
+        ///   Looks up a localized string similar to 1.
         /// </summary>
         public static string Default_Crypt_Settings {
             get {
@@ -383,7 +383,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ru.
+        ///   Looks up a localized string similar to en.
         /// </summary>
         public static string Default_Lang {
             get {
@@ -1032,6 +1032,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         public static byte[] Settings {
             get {
                 object obj = ResourceManager.GetObject("Settings", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Settings_Encoded {
+            get {
+                object obj = ResourceManager.GetObject("Settings_Encoded", resourceCulture);
                 return ((byte[])(obj));
             }
         }
