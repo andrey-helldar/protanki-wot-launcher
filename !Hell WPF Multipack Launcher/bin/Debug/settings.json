@@ -1,50 +1,56 @@
-﻿{
-    "token": {
-        "access_token": "f737699f5fbc8ab1df156d0266d311e37d138527",
-        "expires_at": "1418476563",
-        "nickname": "First_Helldar",
-        "account_id": "2732865"
-    },
-    "info": {
-        "video": true,
-        "news": true,
-        "multipack": true,
-        "notification": "0.0.0.0",
-        "language": "en",
-        "locale": 2,
-        "user_email": null,
-        "user_name": null,
-        "user_id": null,
-        "notify_link": null,
-        "ProductName": null
-    },
-    "settings": {
-        "kill": false,
-        "force": false,
-        "aero": false,
-        "video": false,
-        "weak": false,
-        "winxp": false,
-        "launcher": 0
-    },
-    "multipack": {
-        "type": "base",
-        "version": "0.0.0.0",
-        "date": null,
-        "link": null,
-        "changelog": null,
-        "new_version": "0.0.0.0"
-    },
-    "game": {
-        "version": "0.0.0.0",
-        "path": null,
-        "test": false
-    },
-    "processes": null,
-    "wargaming": null,
-    "youtube": null,
-    "do_not_display": {
-        "video": null,
-        "news": null
-    }
+{
+  "token": {
+    "access_token": "f737699f5fbc8ab1df156d0266d311e37d138527",
+    "expires_at": "1418476563",
+    "nickname": "First_Helldar",
+    "account_id": "2732865"
+  },
+  "info": {
+    "video": false,
+    "news": false,
+    "multipack": true,
+    "notification": "0.0.0.0",
+    "language": "en",
+    "locale": 2,
+    "user_email": null,
+    "user_name": null,
+    "user_id": "64935334dc97650ae4e896ceebd4cae7",
+    "notify_link": "https://www.youtube.com/watch?v=NDBkECUV-NE&feature=youtube_gdata",
+    "ProductName": "Multipack Launcher",
+    "session": 22520
+  },
+  "settings": {
+    "kill": false,
+    "force": false,
+    "aero": false,
+    "video": false,
+    "weak": false,
+    "winxp": false,
+    "launcher": 0
+  },
+  "multipack": {
+    "type": "extended",
+    "version": "0.9.4.11",
+    "date": "23.11.2014",
+    "link": "http://goo.gl/NnMFHh",
+    "changelog": "In this version the following changes:<font size='12' color='808080'><ul><li>Updated sight \"Select Murazor\" J1mB0s Crosshair;</li><li>Added voice from WG TV:</li><li>-The voice of Cyril Oreshkin;</li><li>-The voice of Olga Sergeyevna;</li><li>-Voice from the ASI which Fumbles :)</li><li>__________________</li><li>I would be grateful if You again see the ad in the beginning of the video.</li></ul></font>__________________________________________<br><font color='#E00000'>New version is available on the link in the description of the video.</font>",
+    "new_version": "0.9.4.12"
+  },
+  "game": {
+    "version": "0.9.4.805",
+    "path": "D:::;Helldar::;Visual C#::;!Hell PRO Tanks Launcher::;!Hell WPF Multipack Launcher::;bin::;",
+    "test": false
+  },
+  "processes": null,
+  "wargaming": null,
+  "youtube": [
+    "680f85d5e5fdd013b1fcd841cafa6ca1",
+    "98ea572e6eea962435906981262e5721",
+    "468d8c760b68c8be915dcc8a3b102df5",
+    "ac6c5a68cd70d502fb4850324ec3aead"
+  ],
+  "do_not_display": {
+    "video": null,
+    "news": null
+  }
 }

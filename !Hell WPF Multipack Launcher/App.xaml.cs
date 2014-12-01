@@ -17,6 +17,8 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             Task.Factory.StartNew(() => new Classes.Variables().SaveFromResources()).Wait();
 
+            MessageBox.Show(Environment.Version.ToString());
+
             // hook on error before app really starts
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
             base.OnStartup(e);

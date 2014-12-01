@@ -69,7 +69,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.PlayBtn.Content = Lang.Set("MainProject", "bPlay", lang);
+            MainWindow.PlayBtn.Text = Lang.Set("MainProject", "bPlay", lang);
 
             Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
             Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
