@@ -636,12 +636,12 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bUpdate_Click(object sender, RoutedEventArgs e)
         {
-            OpenPage("Update");
+            MainWindow.ProcessStart((string)MainWindow.JsonSettingsGet("multipack.link"));
         }
 
         private void bNotification_Click(object sender, RoutedEventArgs e)
         {
-            OpenPage("Notification");
+            OpenPage("Update");
         }
 
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
@@ -779,11 +779,33 @@ namespace _Hell_WPF_Multipack_Launcher
                         try
                         {
                             if ((string)MainWindow.JsonSettingsGet("info.notification") != (string)json_upd.SelectToken("version"))
+                            {
                                 if (MainWindow.JsonSettingsGet("info.session") == null)
+                                {
                                     OpenPage("Update");
+
+                                    bNotification.Visibility = System.Windows.Visibility.Visible;
+                                    bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                }
                                 else
                                     if ((int)MainWindow.JsonSettingsGet("info.session") != Process.GetCurrentProcess().Id)
+                                    {
                                         OpenPage("Update");
+
+                                        bNotification.Visibility = System.Windows.Visibility.Visible;
+                                        bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                    }
+                                    else
+                                    {
+                                        bNotification.Visibility = System.Windows.Visibility.Hidden;
+                                        bUpdate.Visibility = System.Windows.Visibility.Hidden;
+                                    }
+                            }
+                            else
+                            {
+                                bNotification.Visibility = System.Windows.Visibility.Hidden;
+                                bUpdate.Visibility = System.Windows.Visibility.Hidden;
+                            }
                         }
                         catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "GetInfo(0)", "OpenPage(Update)", ex.Message, ex.StackTrace)); }
                     }

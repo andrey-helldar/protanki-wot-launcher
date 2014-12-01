@@ -411,9 +411,6 @@
     <Resource Include="Resources\arrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\loading.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
@@ -540,6 +537,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Modpack.Creator.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\update_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\update_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\update_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\notify_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\notify_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\notify_normal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

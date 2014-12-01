@@ -6,8 +6,8 @@
     "account_id": "2732865"
   },
   "info": {
-    "video": false,
-    "news": false,
+    "video": true,
+    "news": true,
     "multipack": true,
     "notification": "0.0.0.0",
     "language": "en",
@@ -15,9 +15,9 @@
     "user_email": null,
     "user_name": null,
     "user_id": "64935334dc97650ae4e896ceebd4cae7",
-    "notify_link": "https://www.youtube.com/watch?v=NDBkECUV-NE&feature=youtube_gdata",
+    "notify_link": "https://www.youtube.com/watch?v=wTN__Vgbt1M&feature=youtube_gdata",
     "ProductName": "Multipack Launcher",
-    "session": 22520
+    "session": 18024
   },
   "settings": {
     "kill": false,
@@ -45,9 +45,7 @@
   "wargaming": null,
   "youtube": [
     "680f85d5e5fdd013b1fcd841cafa6ca1",
-    "98ea572e6eea962435906981262e5721",
-    "468d8c760b68c8be915dcc8a3b102df5",
-    "ac6c5a68cd70d502fb4850324ec3aead"
+    "98ea572e6eea962435906981262e5721"
   ],
   "do_not_display": {
     "video": null,

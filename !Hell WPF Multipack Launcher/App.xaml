@@ -10,10 +10,48 @@
         <FontFamily x:Key="FontMicra">pack://application:,,,/Fonts/#Micra</FontFamily>
         <FontFamily x:Key="FontSochi2014">pack://application:,,,/Fonts/#Sochi2014</FontFamily>
 
-        <Style x:Key="FontSochi" TargetType="{x:Type TextBlock}">
+       <!-- <Style x:Key="FontSochi" TargetType="{x:Type TextBlock}">
             <Setter Property="FontFamily" Value="{StaticResource FontSochi2014}"/>
-        </Style>
+        </Style> //-->
 
+        <!-- *******************************
+                    COLORS
+            *********************************-->
+        <Color x:Key="GlobalTextColor">#FF006699</Color>
+
+
+        <SolidColorBrush x:Key="BackNormal" Color="#FF006699" />
+        <SolidColorBrush x:Key="BackHover" Color="#FF007AFF" />
+        <SolidColorBrush x:Key="BackPressed" Color="#FF004C9E" />
+
+        <SolidColorBrush x:Key="Gray" Color="#FF5f5d5c" />
+
+        <Color x:Key="ControlLightColor">#60d04c42</Color>
+        <Color x:Key="ControlMediumColor">#FF9D9A97</Color>
+
+        <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
+        <Color x:Key="BorderMediumColor">#FF888888</Color>
+        <Color x:Key="BorderDarkColor">#FF444444</Color>
+
+        <Color x:Key="PressedBorderLightColor">#FF888888</Color>
+        <Color x:Key="PressedBorderDarkColor">#FF444444</Color>
+
+        <Color x:Key="DisabledBorderLightColor">#FFAAAAAA</Color>
+        <Color x:Key="DisabledBorderDarkColor">#FF888888</Color>
+
+        <LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill"
+                     StartPoint="0,0"
+                     EndPoint="1,0">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#00d04c42" Offset="0" />
+                    <GradientStop Color="#80EC4437" Offset="0.4" />
+                    <GradientStop Color="#80EC4437" Offset="0.6" />
+                    <GradientStop Color="#00d04c42" Offset="1" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+        
 
         <!-- *******************************
                      LOADING PANEL      
@@ -36,65 +74,12 @@
                         <Grid Margin="0"
                               Background="Black"
                               Opacity="0.7">
-                            <!--<Rectangle
-                                       Width="80"
-                                       Height="80"
-                                       Stretch="Fill"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center">
-                                <Rectangle.Fill>
-                                    <ImageBrush ImageSource="Resources/loading.gif"/>
-                                </Rectangle.Fill>
-                            </Rectangle>-->
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <!-- *******************************
-                    BUTTON backgrounds
-            *********************************-->
-        <Color x:Key="GlobalTextColor">#FF006699</Color>
-
-
-        <SolidColorBrush x:Key="BackNormal" Color="#FF006699" />
-        <SolidColorBrush x:Key="BackHover" Color="#FF007AFF" />
-        <SolidColorBrush x:Key="BackPressed" Color="#FF004C9E" />
-
-        <!--Control colors.-->
-        <Color x:Key="ControlLightColor">#60d04c42</Color>
-        <Color x:Key="ControlMediumColor">#FF9D9A97</Color>
-
-        <!--Border colors-->
-        <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
-        <Color x:Key="BorderMediumColor">#FF888888</Color>
-        <Color x:Key="BorderDarkColor">#FF444444</Color>
-
-        <Color x:Key="PressedBorderLightColor">#FF888888</Color>
-        <Color x:Key="PressedBorderDarkColor">#FF444444</Color>
-
-        <Color x:Key="DisabledBorderLightColor">#FFAAAAAA</Color>
-        <Color x:Key="DisabledBorderDarkColor">#FF888888</Color>
-
-        <!--Control-specific resources.-->
-        <LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill"
-                     StartPoint="0,0"
-                     EndPoint="1,0">
-            <LinearGradientBrush.GradientStops>
-                <GradientStopCollection>
-                    <GradientStop Color="#00d04c42"
-                    Offset="0" />
-                    <GradientStop Color="#80EC4437"
-                    Offset="0.4" />
-                    <GradientStop Color="#80EC4437"
-                    Offset="0.6" />
-                    <GradientStop Color="#00d04c42"
-                    Offset="1" />
-                </GradientStopCollection>
-            </LinearGradientBrush.GradientStops>
-        </LinearGradientBrush>
 
 
         <!-- *******************************
@@ -181,7 +166,22 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <!-- NEW VERSION
+        -->
+        <Style x:Key="newVersion" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource FontSochi2014}"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,20"/>
+        </Style>
+        
+        <!--General line-->
+        <Style x:Key="GeneralLine" TargetType="Rectangle">  
 
+        </Style>
 
 
         <!-- *******************************
@@ -191,7 +191,7 @@
         http://social.msdn.microsoft.com/Forums/vstudio/en-US/ea8fa494-9535-48fb-8f7f-3c4baacbe86e/change-the-image-inside-a-button-when-the-button-is-clicked-using-xaml-trigger?forum=wpf
             *********************************-->
         <Style x:Key="ButtonStylePlay" TargetType="{x:Type Button}">
-            <Setter Property="Foreground" Value="#FF5f5d5c"/>
+            <Setter Property="Foreground" Value="{StaticResource Gray}"/>
             <Setter Property="FontSize" Value="20px"/>
             <Setter Property="FontFamily" Value="{StaticResource FontMicra}"/>
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
@@ -272,7 +272,6 @@
                             <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <!--<ImageBrush ImageSource="Resources/close_normal.png"/>-->
                                         <ImageBrush ImageSource="{x:Null}"/>
                                     </Setter.Value>
                                 </Setter>
@@ -659,32 +658,47 @@
                         UPDATE
             *********************************-->
         <Style x:Key="ButtonStyleUpdate" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="19"/>
+            <Setter Property="Height" Value="18"/>
+            <Setter Property="Margin" Value="0,9,8,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid Margin="0">
-                            <Rectangle x:Name="UpdateBackground" Fill="Red" Opacity="0.5" Cursor="Hand"/>
+                            <Path Stretch="Fill" x:Name="UpdateBackground"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand">
+                            </Path>
                             <ContentPresenter Name="content" 
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center"
-                                        Margin="15"/>
+                                        Margin="15"
+                                        Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="UpdateBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/update_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Fill" TargetName="UpdateBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/update_hover.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
                                 <Setter Property="Fill" TargetName="UpdateBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/update_press.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -696,35 +710,50 @@
 
 
         <!-- *******************************
-                        FAQ
+                        NOTIFICATION
             *********************************-->
-        <Style x:Key="ButtonStyleFAQ" TargetType="{x:Type Button}">
+        <Style x:Key="ButtonStyleNotify" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="0,9,8,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid Margin="0">
-                            <Rectangle x:Name="FAQBackground" Fill="Red" Opacity="0.5" Cursor="Hand"/>
+                            <Path Stretch="Fill" x:Name="NotifyBackground"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand">
+                            </Path>
                             <ContentPresenter Name="content" 
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center"
-                                        Margin="15"/>
+                                        Margin="15"
+                                        Cursor="Hand"/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Fill" TargetName="FAQBackground">
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="NotifyBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/notify_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="NotifyBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/notify_hover.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Fill" TargetName="FAQBackground">
+                                <Setter Property="Fill" TargetName="NotifyBackground">
                                     <Setter.Value>
-                                        <RadialGradientBrush>
-                                            <GradientStop Color="#FFccd9d9" Offset="0"/>
-                                        </RadialGradientBrush>
+                                        <ImageBrush ImageSource="Resources/notify_press.png"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>

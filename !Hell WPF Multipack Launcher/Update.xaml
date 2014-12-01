@@ -32,7 +32,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label x:Name="newVersion" Content="0.0.0 #0" HorizontalAlignment="Center" Margin="0,20" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Sochi2014" FontSize="20"/>
+                <Label x:Name="newVersion" Style="{StaticResource newVersion}" Content="0.0.0 #0"/>
                 <TextBlock x:Name="tbContent" Margin="5" Grid.Row="1" TextWrapping="Wrap" Text="Information" ScrollViewer.VerticalScrollBarVisibility="Auto" TextTrimming="WordEllipsis"/>
             </Grid>
         </GroupBox>

@@ -472,7 +472,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         /// <param name="path">Пусть к файлу или ссылка</param>
         /// <param name="filename">Если используется запуск приложения, то обязательно указать имя файла</param>
-        private void ProcessStart(string path, string filename = null)
+        public static void ProcessStart(string path, string filename = null)
         {
             try
             {
@@ -487,11 +487,9 @@ namespace _Hell_WPF_Multipack_Launcher
                     process.Start();
                 }
                 else
-                {
                     Process.Start(path);
-                }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) {/* Task.Factory.StartNew(() => Debugging.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); */}
         }
 
 
