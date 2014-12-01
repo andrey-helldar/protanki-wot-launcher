@@ -93,14 +93,19 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                  */
                 try
                 {
-                    if (File.Exists(Properties.Resources.Multipack_Config))
+                    if (File.Exists("Modpack.Creator.dll"))
                     {
-                        string pathINI = "config.ini";
+                        JObject obj = new Modpack.Creator().Config();
 
-                        MainWindow.JsonSettingsSet("multipack.type", new IniFile(pathINI).IniReadValue("protanki", "type").ToLower());
-                        MainWindow.JsonSettingsSet("multipack.version", new IniFile(pathINI).IniReadValue("protanki", "path") + "." + new IniFile(pathINI).IniReadValue("protanki", "version"));
-                        MainWindow.JsonSettingsSet("multipack.date", new IniFile(pathINI).IniReadValue("protanki", "date"));
-                        lang_pack = new IniFile(pathINI).IniReadValue("protanki", "language");
+                        if (obj != null)
+                        {
+                            MainWindow.JsonSettingsSet("multipack.type", (string)obj["type"]);
+                            MainWindow.JsonSettingsSet("multipack.version", (string)obj["version"]);
+                            MainWindow.JsonSettingsSet("multipack.date", (string)obj["date"]);
+                            lang_pack = (string)obj["language"];
+                        }
+                        else
+                            MainWindow.MessageShow(Language.Set("MainProject", "Pack_Not_Found", lang));
                     }
                     else
                         MainWindow.MessageShow(Language.Set("MainProject", "Pack_Not_Found", lang));

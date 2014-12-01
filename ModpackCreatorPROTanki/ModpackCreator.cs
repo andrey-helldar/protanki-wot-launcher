@@ -6,26 +6,14 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ModpackCreatorPROTanki
+namespace Modpack
 {
-    public class ModpackCreator
+    public class Creator
     {
-        public string multipack_youtube = "PROTankiWoT";
+        public readonly string multipack_id = "05b877de3562048c5d1bd7cc18d4f286";
+        public readonly string multipack_youtube = "PROTankiWoT";
 
-        // Конфиг
-        public bool IsJSON = false;
-
-        private string configJSON = "config.json";
-        private string configINI = "config.ini";
-
-        public string IniSection = "protanki";
-
-        // Тип мультипака
-        public string multipack_type = "base";
-        public string multipack_version = "0";
-        public string multipack_path = "0.0.0";
-        public string multipack_date = "1.1.1970";
-        public string multipack_language = "ru";
+        public readonly string IniSection = "protanki";
 
         // Ссылки
         public string multipack_link_video_all = "http://goo.gl/LXaU7T";
@@ -33,24 +21,29 @@ namespace ModpackCreatorPROTanki
 
         public JObject Config()
         {
+            /*
+             * [protanki]
+             * type=extended
+             * version=12
+             * path=0.9.4
+             * date=30.11.2014
+             * language=ru
+             */
             try
             {
-                if (IsJSON)
+                if (File.Exists("config.json"))
                 {
-                    if (File.Exists("config.json"))
-                    {
-                        using (StreamReader file = File.OpenText("config.json"))
-                        using (JsonTextReader reader = new JsonTextReader(file))
-                            return (JObject)JToken.ReadFrom(reader);
-                    }
+                    using (StreamReader file = File.OpenText("config.json"))
+                    using (JsonTextReader reader = new JsonTextReader(file))
+                        return (JObject)JToken.ReadFrom(reader);
                 }
                 else
                 {
                     return new JObject(
-                        new JProperty("type", new IniFile(configINI).IniReadValue(IniSection, "type").ToLower()),
-                        new JProperty("version", new IniFile(configINI).IniReadValue(IniSection, "path") + "." + new IniFile(configINI).IniReadValue(IniSection, "version")),
-                        new JProperty("date", new IniFile(configINI).IniReadValue(IniSection, "date")),
-                        new JProperty("language", new IniFile(configINI).IniReadValue(IniSection, "language"))
+                        new JProperty("type", new IniFile("config.ini").IniReadValue(IniSection, "type").ToLower()),
+                        new JProperty("version", new IniFile("config.ini").IniReadValue(IniSection, "path") + "." + new IniFile("config.ini").IniReadValue(IniSection, "version")),
+                        new JProperty("date", new IniFile("config.ini").IniReadValue(IniSection, "date")),
+                        new JProperty("language", new IniFile("config.ini").IniReadValue(IniSection, "language"))
                     );
                 }
             }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 
 
-namespace ModpackCreator
+namespace Modpack
 {
     /// <summary>
     /// Create a New INI file to store or load data
