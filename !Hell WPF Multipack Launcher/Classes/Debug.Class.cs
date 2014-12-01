@@ -87,7 +87,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Thread.Sleep(10000); // При запуске выжидаем 10 секунд перед началом архивации
 
                 ClearLogs(true); // Очищаем папки от старых логов
-                //ArchiveLogs(); // Запускаем архивацию логов
+                ArchiveLogs(); // Запускаем архивацию логов
             }
 
             string path = Environment.CurrentDirectory;
