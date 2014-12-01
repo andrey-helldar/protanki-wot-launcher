@@ -90,8 +90,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Сервер ответил: " + Environment.NewLine + text;
-                                        case "en": return "Сервер ответил: " + Environment.NewLine + text;
-                                        case "de": return "Сервер ответил: " + Environment.NewLine + text;
+                                        case "en": return "The server responded: " + Environment.NewLine + text;
+                                        case "de": return "Der Server reagiert: " + Environment.NewLine + text;
                                         default: return toReturn;
                                     }
 
@@ -99,8 +99,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Приложение не авторизовано на сервере";
-                                        case "en": return "Приложение не авторизовано на сервере";
-                                        case "de": return "Приложение не авторизовано на сервере";
+                                        case "en": return "The application is not authorized on the server";
+                                        case "de": return "Die Anwendung ist nicht auf dem Server autorisiert";
                                         default: return toReturn;
                                     }
 
@@ -108,8 +108,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Сервер статистики временно недоступен";
-                                        case "en": return "Сервер статистики временно недоступен";
-                                        case "de": return "Сервер статистики временно недоступен";
+                                        case "en": return "Server is temporarily unavailable";
+                                        case "de": return "Server vorübergehend nicht verfügbar";
                                         default: return toReturn;
                                     }
 
@@ -174,8 +174,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Настройки лаунчера не обнаружены!";
-                                        case "en": return "Настройки лаунчера не обнаружены!";
-                                        case "de": return "Настройки лаунчера не обнаружены!";
+                                        case "en": return "Settings of launcher not found!";
+                                        case "de": return "Einstellungen Launcher wurde nicht gefunden!";
                                         default: return toReturn;
                                     }
 
@@ -403,8 +403,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Приоритет определения локализации:";
-                                        case "en": return "Приоритет определения локализации:";
-                                        case "de": return "Приоритет определения локализации:";
+                                        case "en": return "Priority localization:";
+                                        case "de": return "Priorität Lokalisierung:";
                                         default: return toReturn;
                                     }
 
@@ -422,7 +422,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     {
                                         case "ru": return "Клиент игры";
                                         case "en": return "Game client";
-                                        case "de": return "Game client";
+                                        case "de": return "Spielclients";
                                         default: return toReturn;
                                     }
 
@@ -431,7 +431,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     {
                                         case "ru": return "Вручную";
                                         case "en": return "Manual";
-                                        case "de": return "Manual";
+                                        case "de": return "Manuell";
                                         default: return toReturn;
                                     }
 
@@ -727,8 +727,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Тикет успешно сохранен и будет автоматически отправлен на сервер познее.";
-                                        case "en": return "Тикет успешно сохранен и будет автоматически отправлен на сервер познее.";
-                                        case "de": return "Тикет успешно сохранен и будет автоматически отправлен на сервер познее.";
+                                        case "en": return "Ticket successfully saved and will be automatically sent to the server within.";
+                                        case "de": return "Ticket erfolgreich gespeichert und wird automatisch an den Server innerhalb gesendet werden.";
                                         default: return toReturn;
                                     }
 
@@ -825,8 +825,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Сервер временно недоступен.";
-                                        case "en": return "Сервер временно недоступен.";
-                                        case "de": return "Сервер временно недоступен.";
+                                        case "en": return "The server is temporarily unavailable.";
+                                        case "de": return "Der Server ist momentan nicht verfügbar.";
                                         default: return toReturn;
                                     }
 
@@ -836,8 +836,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Сервер не получил данные. Попробуйте еще раз.";
-                                        case "en": return "Сервер не получил данные. Попробуйте еще раз.";
-                                        case "de": return "Сервер не получил данные. Попробуйте еще раз.";
+                                        case "en": return "The server did not receive the data. Try again.";
+                                        case "de": return "Der Server hat die Daten zu empfangen. Versuchen Sie es erneut.";
                                         default: return toReturn;
                                     }
 
@@ -845,17 +845,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Ошибка получения данных. Попробуйте еще раз.";
-                                        case "en": return "Ошибка получения данных. Попробуйте еще раз.";
-                                        case "de": return "Ошибка получения данных. Попробуйте еще раз.";
+                                        case "en": return "Failed to get data. Please try again later.";
+                                        case "de": return "Daten konnten nicht bekommen. Versuchen Sie es erneut.";
                                         default: return toReturn;
                                     }
 
                                 case "TICKET_ADD_ERROR":
                                     switch (lang)
                                     {
-                                        case "ru": return "Ошибка обработки тикета. Попробуйте позже";
-                                        case "en": return "Ошибка обработки тикета. Попробуйте позже";
-                                        case "de": return "Ошибка обработки тикета. Попробуйте позже";
+                                        case "ru": return "Ошибка обработки тикета. Попробуйте позже.";
+                                        case "en": return "Error processing the ticket. Please try again later.";
+                                        case "de": return "Fehler bei der Verarbeitung des Tickets. Bitte versuchen Sie es später noch einmal.";
                                         default: return toReturn;
                                     }
 
@@ -863,8 +863,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Приложение не авторизовано на сервере. Попробуйте позже или обратитесь к разработчику.";
-                                        case "en": return "Приложение не авторизовано на сервере. Попробуйте позже или обратитесь к разработчику.";
-                                        case "de": return "Приложение не авторизовано на сервере. Попробуйте позже или обратитесь к разработчику.";
+                                        case "en": return "The application is not authorized on the server. Please try again later or contact the manufacturer.";
+                                        case "de": return "Die Anwendung ist nicht auf dem Server autorisiert. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie den Hersteller.";
                                         default: return toReturn;
                                     }
 
@@ -872,8 +872,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return text != "null" && text != "" ? Environment.NewLine + Environment.NewLine + "Сервер ответил: " + Environment.NewLine + text : "";
-                                        case "en": return text != "null" && text != "" ? Environment.NewLine + Environment.NewLine + "Сервер ответил: " + Environment.NewLine + text : "";
-                                        case "de": return text != "null" && text != "" ? Environment.NewLine + Environment.NewLine + "Сервер ответил: " + Environment.NewLine + text : "";
+                                        case "en": return text != "null" && text != "" ? Environment.NewLine + Environment.NewLine + "The server responded: " + Environment.NewLine + text : "";
+                                        case "de": return text != "null" && text != "" ? Environment.NewLine + Environment.NewLine + "Der Server reagiert: " + Environment.NewLine + text : "";
                                         default: return toReturn;
                                     }
 
@@ -938,8 +938,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Читать новость";
-                                        case "en": return "Читать новость";
-                                        case "de": return "Читать новость";
+                                        case "en": return "Read news";
+                                        case "de": return "News lesen";
                                         default: return toReturn;
                                     }
 
@@ -1148,8 +1148,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Вы не состоите в клане";
-                                        case "en": return "Вы не состоите в клане";
-                                        case "de": return "Вы не состоите в клане";
+                                        case "en": return "You are not in a clan";
+                                        case "de": return "Sie sind in keinem Clan";
                                         default: return toReturn;
                                     }
 
@@ -1157,8 +1157,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "У клана отсутствуют назначенные бои";
-                                        case "en": return "У клана отсутствуют назначенные бои";
-                                        case "de": return "У клана отсутствуют назначенные бои";
+                                        case "en": return "There are no designated clan battles";
+                                        case "de": return "Es sind keine benannten Clan Schlachten";
                                         default: return toReturn;
                                     }
 
@@ -1166,8 +1166,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "У клана нет провинций на Глобальной карте";
-                                        case "en": return "У клана нет провинций на Глобальной карте";
-                                        case "de": return "У клана нет провинций на Глобальной карте";
+                                        case "en": return "The clan has no provinces on the Global Map";
+                                        case "de": return "Der Clan hat keine Provinzen auf der Weltkarte";
                                         default: return toReturn;
                                     }
 
@@ -1303,8 +1303,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Тикеты успешно отправлены";
-                                        case "en": return "Тикеты успешно отправлены";
-                                        case "de": return "Тикеты успешно отправлены";
+                                        case "en": return "Tickets successfully sent";
+                                        case "de": return "Tickets erfolgreich gesendet";
                                         default: return toReturn;
                                     }
 
@@ -1312,8 +1312,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Ожидание отправки тикетов";
-                                        case "en": return "Ожидание отправки тикетов";
-                                        case "de": return "Ожидание отправки тикетов";
+                                        case "en": return "Waiting for sending tickets";
+                                        case "de": return "Warten auf Senden Tickets";
                                         default: return toReturn;
                                     }
 
@@ -1321,8 +1321,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Успешно отправлено: " + text;
-                                        case "en": return "Успешно отправлено: " + text;
-                                        case "de": return "Успешно отправлено: " + text;
+                                        case "en": return "Successfully sent: " + text;
+                                        case "de": return "Erfolgreich gesendet: " + text;
                                         default: return toReturn;
                                     }
 
@@ -1330,8 +1330,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Присвоенные номера: " + Environment.NewLine + text;
-                                        case "en": return "Присвоенные номера: " + Environment.NewLine + text;
-                                        case "de": return "Присвоенные номера: " + Environment.NewLine + text;
+                                        case "en": return "Assigned numbers: " + Environment.NewLine + text;
+                                        case "de": return "Zugeordneten Nummern: " + Environment.NewLine + text;
                                         default: return toReturn;
                                     }
 
@@ -1339,8 +1339,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     switch (lang)
                                     {
                                         case "ru": return "Ответ будет отправлен на email";
-                                        case "en": return "Ответ будет отправлен на email";
-                                        case "de": return "Ответ будет отправлен на email";
+                                        case "en": return "The answer will be sent by email";
+                                        case "de": return "Die Antwort wird per E-Mail gesendet werden";
                                         default: return toReturn;
                                     }
 

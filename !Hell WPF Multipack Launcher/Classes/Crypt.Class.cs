@@ -42,7 +42,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
-                if ((debug && Properties.Resources.Default_Debug_Crypt == "1") || Properties.Resources.API_DEV_CRYPT == "1")
+                if ((debug && Properties.Resources.Default_Debug_Crypt == "1") ||
+                    Properties.Resources.API_DEV_CRYPT == "1" ||
+                    Properties.Resources.Default_Crypt_Settings == "1")
                     return Encoding.UTF8.GetString(Convert.FromBase64String(encoded));
                 else
                     return encoded;
@@ -50,7 +52,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debugging.Save("Crypt.Class", "Decrypt()", "Debug: " + debug.ToString(), encoded, ex.Message, ex.StackTrace));
-                return "FAIL";
+                return null;
             }
         }
     }
