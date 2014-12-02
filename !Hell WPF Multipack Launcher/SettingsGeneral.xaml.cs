@@ -27,6 +27,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Debugging Debugging = new Classes.Debugging();
 
         string lang = Properties.Resources.Default_Lang;
+        bool IsManual = false;
 
 
         public SettingsOptimize()
@@ -334,21 +335,23 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void cbLangPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string newLang = Properties.Resources.Default_Lang;
+            string newLang = String.Empty;
 
             switch (cbLangPriority.SelectedIndex)
             {
                 //  Мультипак 0
-                case 0: newLang = (string)MainWindow.JsonSettingsGet("multipack.language"); GetLangNow(newLang, 0); break;
+                case 0: newLang = (string)MainWindow.JsonSettingsGet("multipack.language"); IsManual = false; break;
                 //  Клиент игры 1
-                case 1: newLang = (string)MainWindow.JsonSettingsGet("game.language"); GetLangNow(newLang, 1); break;
+                case 1: newLang = (string)MainWindow.JsonSettingsGet("game.language"); IsManual = false; break;
                 //  Вручную 2
-                case 2: newLang = (string)MainWindow.JsonSettingsGet("info.language"); break;
-                default: newLang = Properties.Resources.Default_Lang; break;
+                case 2: newLang = (string)MainWindow.JsonSettingsGet("info.language"); IsManual = true; break;
+                default: newLang = Properties.Resources.Default_Lang; IsManual = true; break;
             }
-
-            MainWindow.JsonSettingsSet("info.language", newLang);
+            
             MainWindow.JsonSettingsSet("info.locale", cbLangPriority.SelectedIndex, "int");
+            MainWindow.JsonSettingsSet("info.language", newLang);
+
+            GetLangNow();
         }
 
         private void cbLang_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -366,25 +369,29 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception) { }
             finally
             {
-                cbLangPriority.SelectedIndex = 2;
-                MainWindow.JsonSettingsSet("info.locale", cbLangPriority.SelectedIndex, "int");
+                //if (IsManual)
+                //    
+                //MainWindow.JsonSettingsSet("info.locale", cbLangPriority.SelectedIndex, "int");
             }
         }
 
-        private void GetLangNow(string lang_now="en", int locale=32)
+        private void GetLangNow()
         {
             try
             {
-                if (locale == 0 || locale == 1)
-                {
-                    switch (lang_now)
+                    switch ((string)MainWindow.JsonSettingsGet("info.language"))
                     {
                         case "en": cbLang.SelectedIndex = 1; break;
                         case "de": cbLang.SelectedIndex = 2; break;
                         case "ua": cbLang.SelectedIndex = 3; break;
                         default: cbLang.SelectedIndex = 0; break;
                     }
-                }
+
+                    if (IsManual)
+                    {
+                        cbLangPriority.SelectedIndex = 2;
+                        MainWindow.JsonSettingsSet("info.locale", cbLangPriority.SelectedIndex, "int");
+                    }
             }
             catch (Exception) { }
         }

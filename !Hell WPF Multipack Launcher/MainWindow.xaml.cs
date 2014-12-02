@@ -356,6 +356,12 @@ namespace _Hell_WPF_Multipack_Launcher
                         notifyIcon.Visible = true;
                         notifyIcon.Text = (string)JsonSettingsGet("info.ProductName");
                         notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
+                        notifyIcon.Click +=
+            delegate(object sender, EventArgs args)
+            {
+                this.Show();
+                this.WindowState = WindowState.Normal;
+            };
                     }
                     catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
 
@@ -448,9 +454,20 @@ namespace _Hell_WPF_Multipack_Launcher
                             (bool)JsonSettingsGet("settings.video"),
                             (bool)JsonSettingsGet("settings.weak"),
                             false
-                        ));
+                        )).Wait();
 
-                    Task.Factory.StartNew(() => ProcessStart(game_path, "WorldOfTanks.exe"));
+                    //Task.Factory.StartNew(() => ProcessStart(game_path, "WorldOfTanks.exe"));
+
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        switch ((int)JsonSettingsGet("settings.launcher"))
+                        {
+                            case 1: this.Hide(); break;
+                            case 2: this.WindowState = System.Windows.WindowState.Minimized; break;
+                            case 3: Task.Factory.StartNew(() => JsonSettingsSave()).Wait(); this.Close(); break;
+                            default: break;
+                        }
+                    }));
                 }
                 else
                     MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
