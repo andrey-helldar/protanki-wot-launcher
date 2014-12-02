@@ -303,7 +303,7 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { File.WriteAllText(@"temp\log.debug", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
         }
 
-        public static void JsonSettingsRemove(string path)
+        public static void JsonSettingsRemove(string path, string type = "string")
         {
             try
             {
@@ -312,11 +312,21 @@ namespace _Hell_WPF_Multipack_Launcher
                     jSettings.Property(path).Remove();
                 else
                 {
-                    string[] str = path.Split('.');
-                    ((JObject)jSettings[str[0]]).Property(str[1]).Remove();
+
+                    switch (type)
+                    {
+                        case "array":
+                            jSettings.SelectToken(path).Remove();
+                            break;
+
+                        default:
+                            string[] str = path.Split('.');
+                            ((JObject)jSettings[str[0]]).Property(str[1]).Remove();
+                            break;
+                    }
                 }
             }
-            catch (Exception) {  }
+            catch (Exception) { }
         }
 
         private void Loading()
