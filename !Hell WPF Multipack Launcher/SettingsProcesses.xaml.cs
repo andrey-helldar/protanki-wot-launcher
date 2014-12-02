@@ -72,7 +72,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     {
                                         DoubleProcess.Add(myProcesses[i].ProcessName);
 
-                                        
+
                                         //  Заполняем данные
                                         Grid gridPanel = new Grid();
                                         gridPanel.Width = 459;
@@ -88,7 +88,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                         gridPanel.ColumnDefinitions.Add(cd3);
 
                                         CheckBox cb = new CheckBox();
-                                        cb.Margin = new Thickness(5,0,5,0);
+                                        cb.Margin = new Thickness(5, 0, 5, 0);
                                         cb.Name = "Cb" + myProcesses[i].ProcessName;
                                         this.RegisterName(cb.Name, cb);
                                         cb.Click += ProcessChanged;
@@ -119,9 +119,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                         ListBoxItem lbi = new ListBoxItem();
                                         //lbi.SetResourceReference(ListBoxItem.StyleProperty, i % 2 == 0 ? "lbiProcess2" : "lbiProcess");
-                                        lbi.SetResourceReference(ListBoxItem.StyleProperty, "lbiProcess");
+                                        lbi.SetResourceReference(ListBoxItem.StyleProperty, CheckUserProcess(myProcesses[i].ProcessName) ? "lbiProcessCheck" : "lbiProcess");
                                         lbi.Content = gridPanel;
-
 
                                         lbProcesses.Items.Add(lbi);
                                     }

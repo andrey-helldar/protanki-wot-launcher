@@ -456,7 +456,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             false
                         )).Wait();
 
-                    //Task.Factory.StartNew(() => ProcessStart(game_path, "WorldOfTanks.exe"));
+                    Task.Factory.StartNew(() => ProcessStart(game_path, "WorldOfTanks.exe"));
 
                     Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
