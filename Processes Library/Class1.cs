@@ -44,10 +44,7 @@ namespace Processes
 
         public void Clear()
         {
-            try
-            {
-                List.Clear();
-            }
+            try { List.Clear(); }
             catch (Exception) { }
         }
 

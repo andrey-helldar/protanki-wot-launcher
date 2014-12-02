@@ -69,7 +69,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             {
                                 if (process.SessionId == session &&
                                     Array.IndexOf(ProcessesGlobal.Processes(), process.ProcessName) == -1 && // Global processes list
-                                    !ProcessesList.IndexOf(process.ProcessName)) // User processes list
+                                    MainWindow.JsonSettingsGet("processes").ToString().IndexOf(process.ProcessName) == -1 // User processes list
+                                    /*!ProcessesList.IndexOf(process.ProcessName)*/) // User processes list
                                     if (!kill) process.CloseMainWindow(); else process.Kill();
                             }
                             finally { ++progress; }
