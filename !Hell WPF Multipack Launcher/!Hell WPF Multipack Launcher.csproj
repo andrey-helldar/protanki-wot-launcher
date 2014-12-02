@@ -553,6 +553,9 @@
   <ItemGroup>
     <Resource Include="Resources\notify_normal.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flag_ua.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

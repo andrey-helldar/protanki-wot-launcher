@@ -42,6 +42,9 @@ namespace _Hell_WPF_Multipack_Launcher
         public static TextBlock PlayBtn { get { return playBtn; } }
         private static TextBlock playBtn;
 
+        public static Image Flag { get { return flag; } }
+        private static Image flag;
+
         /// <summary>
         /// Готовим контрол для отображения превью видео
         /// </summary>
@@ -61,10 +64,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         public static void Navigator(string page = "General")
         {
-            try
-            {
-                MainWindow.mainFrame.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative));
-            }
+            try { MainWindow.mainFrame.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
             catch (Exception) { }
         }
 
@@ -339,6 +339,10 @@ namespace _Hell_WPF_Multipack_Launcher
                     mainFrame = this.MainFrame;
                     this.Closing += delegate { mainFrame = null; };
 
+                    // Переменная флага
+                    flag = this.rectLang;
+                    this.Closing += delegate { flag = null; };
+
                     // Готовим превью
                     framePreview = this.FramePreview;
                     tbPreview = this.TbPreview;
@@ -507,7 +511,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <summary>
         /// Костыль в виде установки значений интерфейса
         /// </summary>
-        private void SetInterface()
+        public void SetInterface()
         {
             //Dispatcher.BeginInvoke(new ThreadStart(delegate
             //{

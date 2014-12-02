@@ -103,6 +103,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         case "en": cbLang.SelectedIndex = 1; break;
                         case "de": cbLang.SelectedIndex = 2; break;
+                        case "ua": cbLang.SelectedIndex = 3; break;
                         default: cbLang.SelectedIndex = 0; break;
                     }
                 }
@@ -344,6 +345,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     case 1: MainWindow.JsonSettingsSet("info.language", "en"); break;
                     case 2: MainWindow.JsonSettingsSet("info.language", "de"); break;
+                    case 3: MainWindow.JsonSettingsSet("info.language", "ua"); break;
                     default: MainWindow.JsonSettingsSet("info.language", "ru"); break;
                 }
             }

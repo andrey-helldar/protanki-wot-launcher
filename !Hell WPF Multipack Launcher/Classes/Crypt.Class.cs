@@ -49,9 +49,14 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 else
                     return encoded;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Task.Factory.StartNew(() => Debugging.Save("Crypt.Class", "Decrypt()", "Debug: " + debug.ToString(), encoded, ex.Message, ex.StackTrace));
+                try
+                {
+                    return encoded;
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Crypt.Class", "Decrypt()", "Debug: " + debug.ToString(), encoded, ex.Message, ex.StackTrace)); }
+
                 return null;
             }
         }

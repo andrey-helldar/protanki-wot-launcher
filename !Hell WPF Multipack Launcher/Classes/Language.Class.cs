@@ -24,7 +24,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 obj.Add(new JProperty("ru", "ru:Русский"));	// Andrey Helldar
                 obj.Add(new JProperty("en", "en:English"));	// D Voronoff
                 obj.Add(new JProperty("de", "de:Deutsch"));	// Alexander Storz
-                obj.Add(new JProperty("ua", "ua:Український")); // Predator_Od
+                obj.Add(new JProperty("ua", "ua:Український")); // PROTanki Team
 
                 return obj;
             }
@@ -195,7 +195,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     case "ru": return "Для получения инструкций по устранению данной ошибки, Вы можете связаться с разработчиком";
                                     case "en": return "Please, contact the developer, to resolve this error.";
                                     case "de": return "Wenn Sie einen Bug melden möchten setzen Sie bitte die Entwickler darüber in Kenntnis";
-                                    case "ua": return "Для отримання інструкцій щодо усунення даної помилки, Ви можете зв\"язатися з розробником";
+                                    case "ua": return "Для отримання інструкцій щодо усунення даної помилки, Ви можете зв'язатися з розробником";
                                     default: return toReturn;
                                 }
 
@@ -363,7 +363,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     case "ru": return "Очень слабый компьютер";
                                     case "en": return "Weak PC";
                                     case "de": return "Leistungsschwache Rechner";
-                                    case "ua": return "Дуже слабкий комп\"ютер";
+                                    case "ua": return "Дуже слабкий комп'ютер";
                                     default: return toReturn;
                                 }
 
@@ -679,7 +679,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     case "ru": return "Обратная связь";
                                     case "en": return "Feedback";
                                     case "de": return "Feedback";
-                                    case "ua": return "Зворотній зв\"язок";
+                                    case "ua": return "Зворотній зв'язок";
                                     default: return toReturn;
                                 }
 
@@ -989,8 +989,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 switch (lang)
                                 {
                                     case "ru": return "ВИДЕО PROТанки";
-                                    case "en": return "VIDEO PROТанки";
-                                    case "de": return "VIDEO PROТанки";
+                                    case "en": return "VIDEO PROTanki";
+                                    case "de": return "VIDEO PROTanki";
                                     case "ua": return "ВІДЕО PROТанки";
                                     default: return toReturn;
                                 }

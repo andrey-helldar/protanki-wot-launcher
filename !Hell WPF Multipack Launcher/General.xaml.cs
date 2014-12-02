@@ -67,7 +67,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     Task.Factory.StartNew(() => YoutubeClass.Start()),
                     Task.Factory.StartNew(() => WargamingClass.Start())               
                 });
-                
+
                 Task.WaitAll(new Task[]{
                     Task.Factory.StartNew(() => ViewNews()),
                     Task.Factory.StartNew(() => ViewNews(false))
@@ -219,7 +219,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     // Добавляем заголовок в гиперссылку
                                     TextBlock blockTitle = new TextBlock();
                                     blockTitle.SetResourceReference(TextBlock.StyleProperty, "ListBoxTitleGeneral");
-                                    
+
                                     // Добавляем идентификатор записи
                                     Hyperlink hyperID = new Hyperlink(new Run(""));
                                     hyperID.NavigateUri = new Uri(youtube ? YoutubeClass.List[i].Link : WargamingClass.List[i].Link);
@@ -713,6 +713,8 @@ namespace _Hell_WPF_Multipack_Launcher
                 ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json);
                 JObject answer = JObject.Parse(ans);
 
+                MessageBox.Show(ans);
+
                 /*
                  * code
                  * status
@@ -732,10 +734,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         }
                     }
                 }
-                else
-                {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("API", "ANSWER", lang, answer["content"].ToString()); }));
-                }
+                else { Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("API", "ANSWER", lang, answer["content"].ToString()); })); }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "GetInfo(0)", ans, ex.Message, ex.StackTrace)); }
 
@@ -831,8 +830,8 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debugging.Save("General.xaml", "GetInfo(1)",
-                "This version: " + MainWindow.JsonSettingsGet("multipack.version").ToString(),
-                "New version: " + json_upd.SelectToken("version").ToString(),
+                "This version: " + (string)MainWindow.JsonSettingsGet("multipack.version"),
+                "New version: " + (json_upd != null ? (string)json_upd["version"] : "null"),
                 ex.Message, ex.StackTrace));
             }
         }

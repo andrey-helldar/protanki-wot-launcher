@@ -1,9 +1,0 @@
-﻿{
-  "uid": "64935334dc97650ae4e896ceebd4cae7",
-  "version": "2.5.34.806",
-  "date": "2014-12-02 1-13-58",
-  "module": "MainWindow",
-  "function": "SetInterface()",
-  "param0": "Не удается найти ресурс \"resources/flag_.png\".",
-  "param1": "   в MS.Internal.AppModel.ResourcePart.GetStreamCore(FileMode mode, FileAccess access)\r\n   в System.IO.Packaging.PackagePart.GetStream(FileMode mode, FileAccess access)\r\n   в System.IO.Packaging.PackWebResponse.CachedResponse.GetResponseStream()\r\n   в System.IO.Packaging.PackWebResponse.get_ContentType()\r\n   в System.Windows.Media.Imaging.BitmapDecoder.SetupDecoderFromUriOrStream(Uri uri, Stream stream, BitmapCacheOption cacheOption, Guid& clsId, Boolean& isOriginalWritable, Stream& uriStream, UnmanagedMemoryStream& unmanagedMemoryStream, SafeFileHandle& safeFilehandle)\r\n   в System.Windows.Media.Imaging.BitmapDecoder.CreateFromUriOrStream(Uri baseUri, Uri uri, Stream stream, BitmapCreateOptions createOptions, BitmapCacheOption cacheOption, RequestCachePolicy uriCachePolicy, Boolean insertInDecoderCache)\r\n   в System.Windows.Media.Imaging.BitmapImage.FinalizeCreation()\r\n   в System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource)\r\n   в _Hell_WPF_Multipack_Launcher.MainWindow.SetInterface() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\MainWindow.xaml.cs:строка 515"
-}

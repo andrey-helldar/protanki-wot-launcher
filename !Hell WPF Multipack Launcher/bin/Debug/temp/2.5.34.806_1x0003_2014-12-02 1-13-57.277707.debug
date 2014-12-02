@@ -1,9 +1,0 @@
-﻿{
-  "uid": "64935334dc97650ae4e896ceebd4cae7",
-  "version": "2.5.34.806",
-  "date": "2014-12-02 1-13-57",
-  "module": "MainWindow",
-  "function": "JsonLoadSettings()",
-  "param0": "Значение не может быть неопределенным.\r\nИмя параметра: s",
-  "param1": "   в System.IO.StringReader..ctor(String s)\r\n   в Newtonsoft.Json.Linq.JObject.Parse(String json)\r\n   в _Hell_WPF_Multipack_Launcher.MainWindow.JsonSettingsLoad() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\MainWindow.xaml.cs:строка 162"
-}
