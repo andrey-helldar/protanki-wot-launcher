@@ -713,25 +713,20 @@ namespace _Hell_WPF_Multipack_Launcher
                 ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json);
                 JObject answer = JObject.Parse(ans);
 
-                MessageBox.Show(ans);
-
                 /*
                  * code
                  * status
                  * version
                  */
 
-                if (answer["status"].ToString() != "FAIL" && answer["code"].ToString() == Properties.Resources.API)
+                if (answer["status"].ToString() == "OK" && answer["code"].ToString() == Properties.Resources.API)
                 {
-                    if (answer["status"].ToString() == "OK")
+                    if (new Version((string)MainWindow.JsonSettingsGet("game.version")) < new Version(answer["version"].ToString()))
                     {
-                        if (new Version((string)MainWindow.JsonSettingsGet("game.version")) < new Version(answer["version"].ToString()))
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
-                            Dispatcher.BeginInvoke(new ThreadStart(delegate
-                            {
-                                lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, answer["version"].ToString());
-                            }));
-                        }
+                            lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, answer["version"].ToString());
+                        }));
                     }
                 }
                 else { Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("API", "ANSWER", lang, answer["content"].ToString()); })); }

@@ -126,26 +126,29 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
-                string path = Environment.CurrentDirectory;
-
-                if (File.Exists("Ionic.Zip.dll"))
+                if (Properties.Resources.Default_Debug_Archive == "1")
                 {
-                    if (Directory.Exists(path + @"\temp"))
+                    string path = Environment.CurrentDirectory;
+
+                    if (File.Exists("Ionic.Zip.dll"))
                     {
-                        if (!Directory.Exists(path + @"\debug")) { Directory.CreateDirectory(path + @"\debug"); }
-
-                        using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile())
+                        if (Directory.Exists(path + @"\temp"))
                         {
-                            string uid = new Classes.Variables().GetUserID();
-                            string version = Application.Current.GetType().Assembly.GetName().Version.ToString();
+                            if (!Directory.Exists(path + @"\debug")) { Directory.CreateDirectory(path + @"\debug"); }
 
-                            zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
-                            zip.Password = uid;
-                            zip.AddDirectory(path + @"\temp");
-                            zip.Save(path + @"\debug\" + String.Format("{0}_{1}_{2}.zip", uid, version, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff")));
+                            using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile())
+                            {
+                                string uid = new Classes.Variables().GetUserID();
+                                string version = Application.Current.GetType().Assembly.GetName().Version.ToString();
+
+                                zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
+                                zip.Password = uid;
+                                zip.AddDirectory(path + @"\temp");
+                                zip.Save(path + @"\debug\" + String.Format("{0}_{1}_{2}.zip", uid, version, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff")));
+                            }
+
+                            Directory.Delete(path + @"\temp", true);
                         }
-
-                        Directory.Delete(path + @"\temp", true);
                     }
                 }
             }

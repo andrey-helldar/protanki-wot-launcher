@@ -508,6 +508,10 @@
   <data name="Settings_Encoded" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings_enc.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Default_Debug_Archive" xml:space="preserve">
+    <value>0</value>
+    <comment>Архивировать ли логи дебага?</comment>
+  </data>
   <data name="flag_ua" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\flag_ua.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -550,5 +550,24 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             MessageBox.Show(jSettings.ToString());
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                using (StreamReader reader = File.OpenText( @"d:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!!DLL\settings.json"))
+                {
+                    string settings_enc = @"d:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!!DLL\settings_enc.json";
+                    Classes.Crypt Crypt = new Classes.Crypt();
+
+                    if (File.Exists(settings_enc)) File.Delete(settings_enc);
+                    File.WriteAllText(settings_enc, Crypt.Encrypt(Crypt.Decrypt(reader.ReadToEnd(), Variables.GetUserID()), Variables.GetUserID()));
+                }
+
+                
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "JsonSaveSettings()", ex.Message, ex.StackTrace, jSettings.ToString())); }
+        }
     }
 }

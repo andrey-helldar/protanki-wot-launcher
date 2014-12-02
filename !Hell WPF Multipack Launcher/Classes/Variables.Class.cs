@@ -83,6 +83,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                          */
                         lang_game = doc.Root.Element("meta").Element("localization").Value;
                         lang_game = lang_game.Remove(0, lang_game.IndexOf(" ")).ToLower().Trim();
+                        MainWindow.JsonSettingsSet("game.language", lang_game);
                     }
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Variables.Class", "Start()", "Row: PathTanks", ex.Message, ex.StackTrace)); }
@@ -126,6 +127,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         else MainWindow.MessageShow(Language.Set("MainProject", "Pack_Not_Found", lang));
                     }
                     catch (Exception) { }
+                    finally { MainWindow.JsonSettingsSet("game.language", lang_pack); }
                 }
                 catch (Exception ex)
                 {

@@ -22,6 +22,7 @@
         "launcher": 0
     },
     "multipack": {
+        "language": "en",
         "type": "base",
         "version": "0.0.0.0",
         "date": null,
@@ -32,7 +33,8 @@
     "game": {
         "version": "0.0.0.0",
         "path": null,
-        "test": false
+        "test": false,
+        "language": "en"
     },
     "processes": null,
     "wargaming": null,

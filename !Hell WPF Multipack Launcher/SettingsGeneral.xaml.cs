@@ -334,6 +334,17 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void cbLangPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            string newLang = Properties.Resources.Default_Lang;
+
+            switch (cbLangPriority.SelectedIndex)
+            {
+                case 0: newLang = (string)MainWindow.JsonSettingsGet("multipack.language"); break;  //  Мультипак 0
+                case 1: newLang = (string)MainWindow.JsonSettingsGet("game.language"); break;       //  Клиент игры 1
+                case 2: newLang = (string)MainWindow.JsonSettingsGet("info.language"); break;       //  Вручную 2
+                default: newLang = Properties.Resources.Default_Lang; break;
+            }
+
+            MainWindow.JsonSettingsSet("info.language", newLang);
             MainWindow.JsonSettingsSet("info.locale", cbLangPriority.SelectedIndex, "int");
         }
 
