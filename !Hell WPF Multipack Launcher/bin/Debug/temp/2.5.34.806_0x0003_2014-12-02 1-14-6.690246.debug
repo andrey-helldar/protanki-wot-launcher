@@ -1,0 +1,10 @@
+﻿{
+  "uid": "64935334dc97650ae4e896ceebd4cae7",
+  "version": "2.5.34.806",
+  "date": "2014-12-02 1-14-6",
+  "module": "PageGeneral",
+  "function": "GetInfo(0)",
+  "param0": "{\"code\":\"05b877de3962048c5d1bd7cc18d4b286\",\"status\":\"OK\",\"version\":null,\"count\":null,\"min_symbols\":30}",
+  "param1": "Значение не может быть неопределенным.\r\nИмя параметра: input",
+  "param2": "   в System.Version..ctor(String version)\r\n   в _Hell_WPF_Multipack_Launcher.General.GetInfo() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\General.xaml.cs:строка 726"
+}

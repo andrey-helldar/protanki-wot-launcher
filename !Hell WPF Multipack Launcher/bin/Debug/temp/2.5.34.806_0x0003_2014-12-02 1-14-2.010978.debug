@@ -1,0 +1,11 @@
+﻿{
+  "uid": "64935334dc97650ae4e896ceebd4cae7",
+  "version": "2.5.34.806",
+  "date": "2014-12-02 1-14-2",
+  "module": "General.xaml",
+  "function": "ElementToBan()",
+  "param0": "Block: news",
+  "param1": "Item: http://worldoftanks.eu/en/news/pc-browser/cw/3campaign-2stage-announcement/",
+  "param2": "Ссылка на объект не указывает на экземпляр объекта.",
+  "param3": "   в _Hell_WPF_Multipack_Launcher.Classes.Variables.ElementIsBan(String block, String item) в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\Classes\\Variables.Class.cs:строка 291"
+}

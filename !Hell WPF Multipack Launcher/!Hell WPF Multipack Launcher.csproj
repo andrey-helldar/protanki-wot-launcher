@@ -123,6 +123,7 @@
     </Compile>
     <Compile Include="Classes\Asset.Class.cs" />
     <Compile Include="Classes\Crypt.Class.cs" />
+    <Compile Include="Classes\Ini.Class.cs" />
     <Compile Include="Classes\Language.Class.cs" />
     <Compile Include="Classes\WargamingAPI.Class.cs" />
     <Compile Include="ScottLogic\BaseWPFHelpers.cs" />
@@ -517,10 +518,6 @@
     <None Include="Resources\Ionic.Zip.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModpackCreatorPROTanki\ModpackCreatorPROTanki.csproj">
-      <Project>{aaa57f04-7a54-4341-876d-28695099b039}</Project>
-      <Name>ModpackCreatorPROTanki</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Processes Library\Processes Library.csproj">
       <Project>{c89f98dd-cf7b-4b7b-ae2c-fbf49177b8a6}</Project>
       <Name>Processes Library</Name>
@@ -555,9 +552,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\notify_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Modpack.Creator.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

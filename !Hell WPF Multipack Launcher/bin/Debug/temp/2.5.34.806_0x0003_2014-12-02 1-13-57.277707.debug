@@ -1,0 +1,11 @@
+﻿{
+  "uid": "64935334dc97650ae4e896ceebd4cae7",
+  "version": "2.5.34.806",
+  "date": "2014-12-02 1-13-57",
+  "module": "Crypt.Class",
+  "function": "Decrypt()",
+  "param0": "Debug: False",
+  "param1": "{\r\n    \"info\": {\r\n        \"video\": true,\r\n        \"news\": true,\r\n        \"multipack\": true,\r\n        \"notification\": \"0.0.0.0\",\r\n        \"language\": \"en\",\r\n        \"locale\": 0,\r\n        \"user_email\": null,\r\n        \"user_name\": null,\r\n        \"user_id\": null,\r\n        \"notify_link\": null,\r\n        \"ProductName\": null\r\n    },\r\n    \"settings\": {\r\n        \"kill\": false,\r\n        \"force\": false,\r\n        \"aero\": false,\r\n        \"video\": false,\r\n        \"weak\": false,\r\n        \"winxp\": false,\r\n        \"launcher\": 0\r\n    },\r\n    \"multipack\": {\r\n        \"type\": \"base\",\r\n        \"version\": \"0.0.0.0\",\r\n        \"date\": null,\r\n        \"link\": null,\r\n        \"changelog\": null,\r\n        \"new_version\": \"0.0.0.0\"\r\n    },\r\n    \"game\": {\r\n        \"version\": \"0.0.0.0\",\r\n        \"path\": null,\r\n        \"test\": false\r\n    },\r\n    \"processes\": null,\r\n    \"wargaming\": null,\r\n    \"youtube\": null,\r\n    \"do_not_display\": {\r\n        \"video\": null,\r\n        \"news\": null\r\n    }\r\n}\r\n",
+  "param2": "Входные данные не являются действительной строкой Base-64, поскольку содержат символ в кодировке, отличной от Base 64, больше двух символов заполнения или недопустимый символ среди символов заполнения. ",
+  "param3": "   в System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)\r\n   в System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)\r\n   в System.Convert.FromBase64String(String s)\r\n   в _Hell_WPF_Multipack_Launcher.Classes.Crypt.Decrypt(String encoded, String key, Boolean debug) в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\Classes\\Crypt.Class.cs:строка 48"
+}
