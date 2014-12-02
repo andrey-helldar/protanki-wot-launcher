@@ -167,10 +167,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     else
                         docPref.Root.Element("devicePreferences").Add(new XElement("drrScale", "	0.850000	"));
 
-                    if (docPref.Root.Element("devicePreferences").Element("windowed") != null)
+                    /*if (docPref.Root.Element("devicePreferences").Element("windowed") != null)
                         docPref.Root.Element("devicePreferences").Element("windowed").SetValue("	false	");
                     else
-                        docPref.Root.Element("devicePreferences").Add(new XElement("windowed", "	false	"));
+                        docPref.Root.Element("devicePreferences").Add(new XElement("windowed", "	false	"));*/
 
                     if (docPref.Root.Element("devicePreferences").Element("waitVSync") != null)
                         docPref.Root.Element("devicePreferences").Element("waitVSync").SetValue("	false	");

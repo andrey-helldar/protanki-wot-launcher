@@ -127,7 +127,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         else MainWindow.MessageShow(Language.Set("MainProject", "Pack_Not_Found", lang));
                     }
                     catch (Exception) { }
-                    finally { MainWindow.JsonSettingsSet("game.language", lang_pack); }
+                    finally { MainWindow.JsonSettingsSet("multipack.language", lang_pack); }
                 }
                 catch (Exception ex)
                 {

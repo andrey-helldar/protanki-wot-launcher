@@ -113,7 +113,7 @@
             <ListBoxItem Style="{DynamicResource ListBoxItemGeneral}"/>-->
         </ListBox>
         <ProgressBar x:Name="pbStatus" Style="{DynamicResource pbStatus}" Height="6" Margin="0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Maximum="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,8" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2">
+        <TextBlock Margin="10,8" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2">
             <Run x:Name="lStatus"></Run>
         </TextBlock>
     </Grid>

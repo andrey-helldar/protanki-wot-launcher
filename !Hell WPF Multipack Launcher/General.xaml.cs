@@ -729,7 +729,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         }));
                     }
                 }
-                else { Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("API", "ANSWER", lang, answer["content"].ToString()); })); }
+                //else { Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("API", "ANSWER", lang, answer["content"].ToString()); })); }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "GetInfo(0)", ans, ex.Message, ex.StackTrace)); }
 

@@ -436,29 +436,26 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bPlay_Click(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() =>
+            try
             {
-                try
+                if (File.Exists(game_path + "WorldOfTanks.exe"))
                 {
-                    if (File.Exists(game_path + "WorldOfTanks.exe"))
-                    {
-                        Optimize.Start(
-                                (bool)JsonSettingsGet("settings.winxp"),
-                                (bool)JsonSettingsGet("settings.kill"),
-                                (bool)JsonSettingsGet("settings.force"),
-                                (bool)JsonSettingsGet("settings.aero"),
-                                (bool)JsonSettingsGet("settings.video"),
-                                (bool)JsonSettingsGet("settings.weak"),
-                                true
-                            );
+                    Task.Factory.StartNew(() => Optimize.Start(
+                            (bool)JsonSettingsGet("settings.winxp"),
+                            (bool)JsonSettingsGet("settings.kill"),
+                            (bool)JsonSettingsGet("settings.force"),
+                            (bool)JsonSettingsGet("settings.aero"),
+                            (bool)JsonSettingsGet("settings.video"),
+                            (bool)JsonSettingsGet("settings.weak"),
+                            false
+                        ));
 
-                        ProcessStart(game_path, "WorldOfTanks.exe");
-                    }
-                    else
-                        MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
+                    Task.Factory.StartNew(() => ProcessStart(game_path, "WorldOfTanks.exe"));
                 }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "bPlay_Click()", ex.Message, ex.StackTrace)); }
-            });
+                else
+                    MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "bPlay_Click()", ex.Message, ex.StackTrace)); }
         }
 
         private void bAirus_Click(object sender, RoutedEventArgs e)
@@ -469,17 +466,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bLauncherWOT_Click(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    if (File.Exists(game_path + "WoTLauncher.exe"))
-                        ProcessStart(game_path, "WoTLauncher.exe");
-                    else
-                        MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)JsonSettingsGet("info.language")));
-                }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "bLauncherWOT_Click()", ex.Message, ex.StackTrace)); }
-            });
+            try { Task.Factory.StartNew(() => ProcessStart(Properties.Resources.Wargaming_Link)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "bLauncherWOT_Click()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>

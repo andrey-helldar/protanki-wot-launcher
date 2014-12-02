@@ -338,9 +338,12 @@ namespace _Hell_WPF_Multipack_Launcher
 
             switch (cbLangPriority.SelectedIndex)
             {
-                case 0: newLang = (string)MainWindow.JsonSettingsGet("multipack.language"); break;  //  Мультипак 0
-                case 1: newLang = (string)MainWindow.JsonSettingsGet("game.language"); break;       //  Клиент игры 1
-                case 2: newLang = (string)MainWindow.JsonSettingsGet("info.language"); break;       //  Вручную 2
+                //  Мультипак 0
+                case 0: newLang = (string)MainWindow.JsonSettingsGet("multipack.language"); GetLangNow(newLang, 0); break;
+                //  Клиент игры 1
+                case 1: newLang = (string)MainWindow.JsonSettingsGet("game.language"); GetLangNow(newLang, 1); break;
+                //  Вручную 2
+                case 2: newLang = (string)MainWindow.JsonSettingsGet("info.language"); break;
                 default: newLang = Properties.Resources.Default_Lang; break;
             }
 
@@ -358,6 +361,29 @@ namespace _Hell_WPF_Multipack_Launcher
                     case 2: MainWindow.JsonSettingsSet("info.language", "de"); break;
                     case 3: MainWindow.JsonSettingsSet("info.language", "ua"); break;
                     default: MainWindow.JsonSettingsSet("info.language", "ru"); break;
+                }
+            }
+            catch (Exception) { }
+            finally
+            {
+                cbLangPriority.SelectedIndex = 2;
+                MainWindow.JsonSettingsSet("info.locale", cbLangPriority.SelectedIndex, "int");
+            }
+        }
+
+        private void GetLangNow(string lang_now="en", int locale=32)
+        {
+            try
+            {
+                if (locale == 0 || locale == 1)
+                {
+                    switch (lang_now)
+                    {
+                        case "en": cbLang.SelectedIndex = 1; break;
+                        case "de": cbLang.SelectedIndex = 2; break;
+                        case "ua": cbLang.SelectedIndex = 3; break;
+                        default: cbLang.SelectedIndex = 0; break;
+                    }
                 }
             }
             catch (Exception) { }
