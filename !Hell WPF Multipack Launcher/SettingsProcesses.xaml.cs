@@ -188,7 +188,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                     else
                     {
-                        MainWindow.JsonSettingsRemove("processes." + processName);
+                        MainWindow.JsonSettingsRemove("processes." + processName, "array");
                         el.SetResourceReference(ListBoxItem.StyleProperty, "lbiProcessUnCheck");
                     }
                 }

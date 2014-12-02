@@ -300,7 +300,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         } break;
                 }
             }
-            catch (Exception ex) { File.WriteAllText(@"temp\log.debug", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
+            catch (Exception /*ex*/) {/* File.WriteAllText(@"temp\log.debug", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);*/ }
         }
 
         public static void JsonSettingsRemove(string path, string type = "string")
@@ -312,21 +312,22 @@ namespace _Hell_WPF_Multipack_Launcher
                     jSettings.Property(path).Remove();
                 else
                 {
+                    string[] str = path.Split('.');
 
                     switch (type)
                     {
                         case "array":
-                            jSettings.SelectToken(path).Remove();
+                            foreach (var item in (JArray)jSettings.SelectToken(str[0]))
+                                if ((string)item == str[1]) { item.Remove(); break; }
                             break;
 
                         default:
-                            string[] str = path.Split('.');
                             ((JObject)jSettings[str[0]]).Property(str[1]).Remove();
                             break;
                     }
                 }
             }
-            catch (Exception) { }
+            catch (Exception /*ex*/) { /* File.WriteAllText(@"temp\log2.debug", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);*/ }
         }
 
         private void Loading()
