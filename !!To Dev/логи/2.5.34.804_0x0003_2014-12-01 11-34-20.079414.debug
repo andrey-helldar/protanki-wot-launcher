@@ -1,0 +1,10 @@
+﻿{
+  "uid": "7c21edc1b6226653c977cddabe81e2a2",
+  "version": "2.5.34.804",
+  "date": "2014-12-01 11-34-20",
+  "module": "Optimize.Class",
+  "function": "Start()",
+  "param0": "Kill & Force Kill",
+  "param1": "Отказано в доступе",
+  "param2": "   в System.Diagnostics.ProcessManager.OpenProcess(Int32 processId, Int32 access, Boolean throwIfExited)\r\n   в System.Diagnostics.Process.GetProcessHandle(Int32 access, Boolean throwIfExited)\r\n   в System.Diagnostics.Process.Kill()\r\n   в _Hell_WPF_Multipack_Launcher.Classes.Optimize.Start(Boolean WinXP, Boolean Kill, Boolean ForceKill, Boolean Aero, Boolean Video, Boolean Weak, Boolean Manual)"
+}
