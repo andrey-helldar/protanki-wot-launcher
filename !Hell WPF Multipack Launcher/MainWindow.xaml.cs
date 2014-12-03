@@ -487,7 +487,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             (bool)JsonSettingsGet("settings.video"),
                             (bool)JsonSettingsGet("settings.weak"),
                             false
-                        )).Wait();
+                        ));
 
                     Task.Factory.StartNew(() => ProcessStart(game_path, "WorldOfTanks.exe"));
 
@@ -631,6 +631,14 @@ namespace _Hell_WPF_Multipack_Launcher
 
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "JsonSaveSettings()", ex.Message, ex.StackTrace, jSettings.ToString())); }
+        }
+
+        private void rectLang_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { LoadingPanel.Visibility = System.Windows.Visibility.Visible; }));
+            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { Navigator("ChangeLocale"); }));
         }
     }
 }

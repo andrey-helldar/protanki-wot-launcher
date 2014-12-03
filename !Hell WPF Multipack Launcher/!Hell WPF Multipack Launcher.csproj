@@ -121,6 +121,9 @@
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangeLocale.xaml.cs">
+      <DependentUpon>ChangeLocale.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Asset.Class.cs" />
     <Compile Include="Classes\Crypt.Class.cs" />
     <Compile Include="Classes\Ini.Class.cs" />
@@ -162,6 +165,10 @@
       <DependentUpon>WarApiOpenID.xaml</DependentUpon>
     </Compile>
     <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangeLocale.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
