@@ -479,50 +479,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     default: return toReturn;
                                 }
 
-
-                            /* -----------------------------
-                             *      Очистка кэша
-                             * -----------------------------*/
-                            case "bClearAutorization":
-                                switch (lang)
-                                {
-                                    case "ru": return "Отменить авторизацию WG";
-                                    case "en": return "Deauthorize WG";
-                                    case "de": return "WG zu deaktivieren";
-                                    case "ua": return "Скасувати авторизацію WG";
-                                    default: return toReturn;
-                                }
-
-                            case "ClearCacheSure":
-                                switch (lang)
-                                {
-                                    case "ru": return "Вы точно хотите отменить авторизацию Wargaming OpenID?";
-                                    case "en": return "Are you sure you want to cancel the authorization Wargaming OpenID?";
-                                    case "de": return "Sind Sie sicher, dass Sie die Berechtigung Wargaming OpenID abbrechen?";
-                                    case "ua": return "Ви точно хочете скасувати авторизацію Wargaming OpenID?";
-                                    default: return toReturn;
-                                }
-
-                            case "ClearCacheSuccess":
-                                switch (lang)
-                                {
-                                    case "ru": return "Авторизация успешно отменена!";
-                                    case "en": return "Authorization successfully canceled!";
-                                    case "de": return "Autorisierung erfolgreich abgesagt!";
-                                    case "ua": return "Авторизація успішно скасована!";
-                                    default: return toReturn;
-                                }
-
-                            case "ClearCacheError":
-                                switch (lang)
-                                {
-                                    case "ru": return "Ошибка отмены авторизации. Попробуйте позднее.";
-                                    case "en": return "Error cancellation of authorization. Try again later.";
-                                    case "de": return "Fehler Widerruf der Zulassung. Versuchen Sie es später noch einmal.";
-                                    case "ua": return "Помилка скасування авторизації. Спробуйте пізніше.";
-                                    default: return toReturn;
-                                }
-
                             default: return toReturn;
                         }
 
@@ -678,6 +634,50 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     case "en": return "WARNING! We are strongly recommend you to include only a really necessary programs in to exception list.";
                                     case "de": return "ACHTUNG!!! In die Ausnahmeliste sollen nur die wichtigsten Programme aufgenommen werden.";
                                     case "ua": return "УВАГА!!! У список виключень рекомендується додавати дійсно важливі програми.";
+                                    default: return toReturn;
+                                }
+
+
+                            /* -----------------------------
+                             *      Очистка кэша
+                             * -----------------------------*/
+                            case "bClearAutorization":
+                                switch (lang)
+                                {
+                                    case "ru": return "Отменить авторизацию WG";
+                                    case "en": return "Deauthorize WG";
+                                    case "de": return "WG zu deaktivieren";
+                                    case "ua": return "Скасувати авторизацію WG";
+                                    default: return toReturn;
+                                }
+
+                            case "ClearCacheSure":
+                                switch (lang)
+                                {
+                                    case "ru": return "Вы точно хотите отменить авторизацию Wargaming OpenID?";
+                                    case "en": return "Are you sure you want to cancel the authorization Wargaming OpenID?";
+                                    case "de": return "Sind Sie sicher, dass Sie die Berechtigung Wargaming OpenID abbrechen?";
+                                    case "ua": return "Ви точно хочете скасувати авторизацію Wargaming OpenID?";
+                                    default: return toReturn;
+                                }
+
+                            case "ClearCacheSuccess":
+                                switch (lang)
+                                {
+                                    case "ru": return "Авторизация успешно отменена!";
+                                    case "en": return "Authorization successfully canceled!";
+                                    case "de": return "Autorisierung erfolgreich abgesagt!";
+                                    case "ua": return "Авторизація успішно скасована!";
+                                    default: return toReturn;
+                                }
+
+                            case "ClearCacheError":
+                                switch (lang)
+                                {
+                                    case "ru": return "Ошибка отмены авторизации. Попробуйте позднее.";
+                                    case "en": return "Error cancellation of authorization. Try again later.";
+                                    case "de": return "Fehler Widerruf der Zulassung. Versuchen Sie es später noch einmal.";
+                                    case "ua": return "Помилка скасування авторизації. Спробуйте пізніше.";
                                     default: return toReturn;
                                 }
 

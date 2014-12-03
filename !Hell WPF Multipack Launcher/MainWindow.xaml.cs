@@ -497,7 +497,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             case 1: this.Hide(); break;
                             case 2: this.WindowState = System.Windows.WindowState.Minimized; break;
-                            case 3: /*Task.Factory.StartNew(() => JsonSettingsSave()).Wait();*/ this.Close(); break;
+                            case 3: this.Close(); break;
                             default: break;
                         }
                     }));
