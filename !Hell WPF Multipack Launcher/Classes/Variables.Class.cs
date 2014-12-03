@@ -253,7 +253,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Task.WaitAll(new Task[]{
                     Task.Factory.StartNew(() => SavingFile("restart.exe", Properties.Resources.Restart)),
                     Task.Factory.StartNew(() => SavingFile("Processes.Library.dll", Properties.Resources.Processes_Library)),
-                    Task.Factory.StartNew(() => {if(File.Exists("Modpack.Creator.dll"))File.Delete("Modpack.Creator.dll");}),
                     
                     Task.Factory.StartNew(() => {
                         if(Properties.Resources.Default_Crypt_Settings == "1")
