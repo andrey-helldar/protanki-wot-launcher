@@ -317,13 +317,23 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                              *      Optimize
                              * -----------------------------*/
 
+                            case "Optimize":
+                                switch (lang)
+                                {
+                                    case "ru": return "Оптимизация...";
+                                    case "en": return "Optimization...";
+                                    case "de": return "Optimierung...";
+                                    case "ua": return "Оптимізація...";
+                                    default: return toReturn;
+                                }
+
                             case "gbOptimize":
                                 switch (lang)
                                 {
                                     case "ru": return "Оптимизация ПК и игры:";
                                     case "en": return "Game and PC optimization:";
                                     case "de": return "PC und Spiel Optimierung:";
-                                    case "ua": return "Оптимізація ПК та гри";
+                                    case "ua": return "Оптимізація ПК та гри:";
                                     default: return toReturn;
                                 }
 

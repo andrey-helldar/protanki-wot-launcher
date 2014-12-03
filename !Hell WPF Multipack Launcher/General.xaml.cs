@@ -609,9 +609,9 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     new Classes.Optimize().Start(
                             (bool)MainWindow.JsonSettingsGet("settings.winxp"),
-                            (bool)MainWindow.JsonSettingsGet("settings.kill"),
-                            (bool)MainWindow.JsonSettingsGet("settings.force"),
-                            (bool)MainWindow.JsonSettingsGet("settings.aero"),
+                            true,
+                            true,
+                            true,
                             (bool)MainWindow.JsonSettingsGet("settings.video"),
                             (bool)MainWindow.JsonSettingsGet("settings.weak"),
                             true

@@ -26,7 +26,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             bool Weak = false,
             bool Manual = false)
         {
-            Progress(0, 1, true, true);
+            Task.Factory.StartNew(() => Progress(0, 2, true, true)).Wait();
+
+            MainWindow.LoadPage.Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
+                MainWindow.LoadPage.Content = new Classes.Language().Set("PageSettingsGeneral", "Optimize", (string)MainWindow.JsonSettingsGet("info.language"));
+            }));
+            Thread.Sleep(100);
+            Task.Factory.StartNew(() => Progress(1)).Wait();
 
             /***************************
              * Disable Windows Aero
@@ -38,7 +46,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     {
                         Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms"));
                         MainWindow.JsonSettingsSet("settings.aero_disable", true, "bool");
-                        Progress(1);
+                        Task.Factory.StartNew(() => Progress(1)).Wait();
                     }
             }
             catch (Exception ex) { Debugging.Save("Optimize.Class", "Start()", "Disable Windows Aero", ex.Message, ex.StackTrace); }
@@ -54,50 +62,39 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     Global ProcessesGlobal = new Processes.Global();
                     Listing ProcessesList = new Listing();
 
+                    int count = (Manual || ForceKill) ? 2 : 1;
 
-                    int session = Process.GetCurrentProcess().SessionId;
-                    bool kill = false;
-
-                    for (int i = 0; i < 2; i++)
+                    for (int i = 0; i < count; i++)
                     {
-                        int processCount = Process.GetProcesses().Length;
-                        Progress(0, processCount);
-
-                        var processes = Process.GetProcesses();
-
-                        foreach (var process in processes)
+                        try
                         {
-                            try
+                            Task.Factory.StartNew(() => Progress(0, Process.GetProcesses().Length)).Wait();
+                            var processes = Process.GetProcesses();
+
+                            foreach (var process in processes)
                             {
-                                try
+                                if (process.SessionId == Process.GetCurrentProcess().SessionId &&
+                                    Array.IndexOf(ProcessesGlobal.Processes(), process.ProcessName) == -1 && // Global processes list
+                                    MainWindow.JsonSettingsGet("processes").ToString().IndexOf(process.ProcessName) == -1) // User processes list
+                                    if (i == 0) process.CloseMainWindow(); else process.Kill();
+
+                                Task.Factory.StartNew(() => Progress(1)).Wait();
+                            }
+
+                            // If ForceKill is True, then...
+                            if (count > 1)
+                            {
+                                Task.Factory.StartNew(() => Progress(0, 5)).Wait();
+
+                                // Отображаем прогресс, пока ждем завершения процессов
+                                for (int s = 0; s < 5; s++)
                                 {
-                                    if (process.SessionId == session &&
-                                        Array.IndexOf(ProcessesGlobal.Processes(), process.ProcessName) == -1 && // Global processes list
-                                        MainWindow.JsonSettingsGet("processes").ToString().IndexOf(process.ProcessName) == -1 // User processes list
-                                        /*!ProcessesList.IndexOf(process.ProcessName)*/) // User processes list
-                                        if (!kill) process.CloseMainWindow(); else process.Kill();
+                                    Task.Factory.StartNew(() => Progress(1)).Wait();
+                                    Thread.Sleep(1000);
                                 }
-                                //catch (Exception ex0) { Debugging.Save("Optimize.Class", "Start()", "Kill & Force Kill", "Current process: " + process.ProcessName, ex0.Message, ex0.StackTrace); }
-                                finally { }
-                            }
-                            finally { Progress(1); }
-                        }
-
-                        // If ForceKill is True, then...
-                        if (Manual || ForceKill)
-                        {
-                            kill = true;
-                            Progress(0, 5);
-
-                            // Отображаем прогресс, пока ждем завершения процессов
-                            for (int s = 0; i < 5; s++)
-                            {
-                                Progress(1);
-                                Thread.Sleep(1000);
                             }
                         }
-                        else
-                            break;
+                        catch (Exception) { }
                     }
                 }
             }
@@ -111,7 +108,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 if (Manual || Video || Weak)
                 {
-                    Progress(0, 1);
+                    Task.Factory.StartNew(() => Progress(0, 1)).Wait();
 
                     try
                     {
@@ -124,7 +121,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                             if (docPref.Root.Element("graphicsPreferences") != null)
                             {
-                                Progress(0, (from s in docPref.Root.Element("graphicsPreferences").Descendants("entry") select s).Count());
+                                Task.Factory.StartNew(() => Progress(0, (from s in docPref.Root.Element("graphicsPreferences").Descendants("entry") select s).Count())).Wait();
 
                                 foreach (XElement el in docPref.Root.Element("graphicsPreferences").Elements("entry"))
                                 {
@@ -153,7 +150,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                             default: break;
                                         }
 
-                                    Progress(1);
+                                    Task.Factory.StartNew(() => Progress(1)).Wait();
                                 }
                             }
 
@@ -235,12 +232,19 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     }
                     catch (Exception ex0) { Debugging.Save("Optimize.Class", "Graphic()", ex0.Message, ex0.StackTrace); }
 
-                    Progress(1);
+                    Task.Factory.StartNew(() => Progress(1)).Wait();
                 }
             }
             catch (Exception ex) { Debugging.Save("Optimize.Class", "Start()", "Graphic optimize", ex.Message, ex.StackTrace); }
-
-            Progress(1);
+            finally
+            {
+                MainWindow.LoadPage.Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    MainWindow.LoadPage.Content = new Classes.Language().Set("PageLoading", "lLoading", (string)MainWindow.JsonSettingsGet("info.language"));
+                    MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
+                }));
+                Task.Factory.StartNew(() => Progress(1));
+            }
         }
 
         private void Progress(int value, int max = 0, bool resetValue = false, bool resetMax = false)
@@ -264,7 +268,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             MainWindow.OptimizeProgress.Value = MainWindow.OptimizeProgress.Value + value;
                 }));
             }
-            catch (Exception ex) { /*Debugging.Save("Optimize.Class", "Progress()", ex.Message, ex.StackTrace);*/ }
+            catch (Exception ex) { Debugging.Save("Optimize.Class", "Progress()", ex.Message, ex.StackTrace); }
         }
     }
 }

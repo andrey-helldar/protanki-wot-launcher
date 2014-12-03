@@ -550,7 +550,8 @@ namespace Processes
 "xStarter",
 "xStartUI",
 "YandexDisk",
-"YCMMirage"
+"YCMMirage",
+"msvsmon"
             };
 
             return vipProcess;
