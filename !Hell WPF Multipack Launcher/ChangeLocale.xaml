@@ -12,48 +12,48 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="lbLocales" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ListBoxItem VerticalAlignment="Center" Cursor="Hand">
+        <ListBox x:Name="lbLocales" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="lbLocales_SelectionChanged">
+            <ListBoxItem x:Name="ru" VerticalAlignment="Center" Cursor="Hand">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="0,5" Source="Resources/flag_ru.png"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5" TextWrapping="Wrap" Text="Русский" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                    <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="10,10,5,10" Source="Resources/flag_ru.png"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Русский" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
                 </Grid>
             </ListBoxItem>
 
-            <ListBoxItem VerticalAlignment="Center" Cursor="Hand">
+            <ListBoxItem x:Name="en" VerticalAlignment="Center" Cursor="Hand">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="0,5" Source="Resources/flag_en.png"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5" TextWrapping="Wrap" Text="Английский" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                    <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="10,10,5,10" Source="Resources/flag_en.png"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Английский" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
                 </Grid>
             </ListBoxItem>
 
-            <ListBoxItem VerticalAlignment="Center" Cursor="Hand">
+            <ListBoxItem x:Name="de" VerticalAlignment="Center" Cursor="Hand">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="0,5" Source="Resources/flag_de.png"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5" TextWrapping="Wrap" Text="Немецкий" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                    <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="10,10,5,10" Source="Resources/flag_de.png"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Немецкий" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
                 </Grid>
             </ListBoxItem>
 
-            <ListBoxItem VerticalAlignment="Center" Cursor="Hand">
+            <ListBoxItem x:Name="ua" VerticalAlignment="Center" Cursor="Hand">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="0,5" Source="Resources/flag_ua.png"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,5" TextWrapping="Wrap" Text="Украинский" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                    <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="10,10,5,10" Source="Resources/flag_ua.png"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Украинский" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
                 </Grid>
             </ListBoxItem>
         </ListBox>
