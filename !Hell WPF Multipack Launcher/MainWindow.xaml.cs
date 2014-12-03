@@ -432,11 +432,14 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            try { if ((bool)JsonSettingsGet("settings.aero_disable")) { Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms")); } }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Closing()", "aero_disable", ex.Message, ex.StackTrace)).Wait(); }
+            
             try { notifyIcon.Dispose(); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Closing(0)", "notifyIcon.Dispose();", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Closing()", "notifyIcon.Dispose();", ex.Message, ex.StackTrace)).Wait(); }
 
             try { JsonSettingsSave(); }
-            catch (Exception ex) { Debugging.Save("MainWindow", "Window_Closing(1)", "JSON save settings", ex.Message, ex.StackTrace); }
+            catch (Exception ex) { Debugging.Save("MainWindow", "Window_Closing()", "JsonSettingsSave()", ex.Message, ex.StackTrace); }
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)

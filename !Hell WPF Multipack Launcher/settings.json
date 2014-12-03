@@ -13,13 +13,15 @@
         "ProductName": null
     },
     "settings": {
+        "admin": false,
         "kill": false,
         "force": false,
         "aero": false,
         "video": false,
         "weak": false,
         "winxp": false,
-        "launcher": 0
+        "launcher": 0,
+        "aero_disable": false
     },
     "multipack": {
         "language": "en",

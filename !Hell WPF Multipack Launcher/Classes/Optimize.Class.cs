@@ -38,9 +38,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 if (!WinXP)
-                    if (Manual || Aero)
+                    if ((Manual || Aero) && (bool)MainWindow.JsonSettingsGet("settings.admin"))
                     {
                         Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms"));
+                        MainWindow.JsonSettingsSet("settings.aero_disable", true);
                         Progress(1);
                     }
             }

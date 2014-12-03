@@ -377,6 +377,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     default: return toReturn;
                                 }
 
+                            case "NeedAdmin":
+                                switch (lang)
+                                {
+                                    case "ru": return "нужны права администратора";
+                                    case "en": return "administrator rights are required";
+                                    case "de": return "administratorrechte erforderlich";
+                                    case "ua": return "потрібні права адміністратора";
+                                    default: return toReturn;
+                                }
+
 
                             /* -----------------------------
                              *      Optimize

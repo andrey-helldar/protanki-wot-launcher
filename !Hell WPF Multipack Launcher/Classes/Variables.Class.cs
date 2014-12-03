@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
+using System.Security.Principal;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -36,6 +37,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 MainWindow.JsonSettingsSet("info.ProductName", Application.Current.GetType().Assembly.GetName().Name);
                 MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major == 5, "bool");
                 MainWindow.JsonSettingsSet("info.user_id", GetUserID());
+
+                // Проверяем права администратора
+                MainWindow.JsonSettingsSet("settings.admin", new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator));
+
 
                 string lang_pack = Properties.Resources.Default_Lang;
                 string lang_game = Properties.Resources.Default_Lang;

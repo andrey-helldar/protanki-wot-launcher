@@ -62,6 +62,15 @@ namespace _Hell_WPF_Multipack_Launcher
                     cbAero.Content = Lang.Set("PageSettingsGeneral", "cbAero", lang);
                     cbKill.Content = Lang.Set("PageSettingsGeneral", "cbKill", lang);
 
+                    // Если права админа есть, то активируем элемент
+                    if ((bool)MainWindow.JsonSettingsGet("settings.admin"))
+                        cbAero.IsEnabled = true;
+                    else
+                    {
+                        cbAero.IsEnabled = false;
+                        cbAero.Content += String.Format(" ({0})", Lang.Set("PageSettingsGeneral", "NeedAdmin", lang));
+                    }
+
                     gbOther.Header = Lang.Set("PageSettingsGeneral", "gbOther", lang);
                     cbNotifyVideo.Content = Lang.Set("PageSettingsGeneral", "cbNotifyVideo", lang);
                     cbNotifyNews.Content = Lang.Set("PageSettingsGeneral", "cbNotifyNews", lang);
