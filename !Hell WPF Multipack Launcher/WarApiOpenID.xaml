@@ -9,6 +9,20 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WB_LoadCompleted" Navigated="WB_Navigated" Navigating="WB_Navigating" Panel.ZIndex="1" />
+        <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WB_LoadCompleted" Navigated="WB_Navigated" Navigating="WB_Navigating" />
+        <Popup
+              AllowsTransparency="True"
+              Placement="Center"
+              Width="{Binding ActualWidth,
+                              ElementName=WB,
+                              Mode=OneWay}"
+              Height="{Binding ActualHeight, 
+                               ElementName=WB,
+                               Mode=OneWay}"
+              PlacementTarget="{Binding ElementName=WB}"
+              Opacity="1"
+              Margin="3">
+            <TextBlock Text="Loading ..." FontSize="48"/>
+        </Popup>
     </Grid>
 </Window>
