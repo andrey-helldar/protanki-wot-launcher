@@ -27,16 +27,37 @@ namespace _Hell_WPF_Multipack_Launcher
     {
         Classes.WargamingAPI WarAPI = new Classes.WargamingAPI();
         Classes.Debugging Debugging = new Classes.Debugging();
+        Classes.Language Lang = new Classes.Language();
 
         public WarApiOpenID()
         {
             InitializeComponent();
+
+            /*Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        WOIloading.Visibility = System.Windows.Visibility.Visible;
+                        WOIloading.SetResourceReference(Button.StyleProperty, "LoadingPanelWOI");
+                        WOIloading.Content = Lang.Set("PageLoading", "lLoading", (string)MainWindow.JsonSettingsGet("info.language"));
+                    }));
+                }
+                catch (Exception ex) { new Classes.Debugging().Save("WarApiOpenID.xaml", "WarApiOpenID()", ex.Message, ex.StackTrace); }
+            }).Wait();*/
         }
 
         private void WB_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             try
             {
+               /* Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    try { WOIloading.Visibility = System.Windows.Visibility.Hidden; }
+                    catch (Exception ex0) { new Classes.Debugging().Save("WarApiOpenID.xaml", "WB_LoadCompleted()", "WOIloading.Visibility = Hidden", ex0.Message, ex0.StackTrace); }
+                }));*/
+
                 if (WB.Source.ToString().IndexOf("status=ok") > -1)
                 {
                     JObject Token = WarAPI.Token(WB.Source.ToString());
@@ -62,7 +83,6 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 if (WB.Source.ToString().IndexOf("AUTH_CANCEL") > -1)
                 {
-                    Classes.Language Lang = new Classes.Language();
                     MessageBoxResult mbr = MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", (string)MainWindow.JsonSettingsGet("info.language")) +
                         Environment.NewLine +
                         Lang.Set("PageUser", "RepeatActivation", (string)MainWindow.JsonSettingsGet("info.language")),

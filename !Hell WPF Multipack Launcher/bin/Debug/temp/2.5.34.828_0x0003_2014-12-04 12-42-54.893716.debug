@@ -1,0 +1,9 @@
+﻿{
+  "uid": "f39d3705d0925c26120f42599dc7d336",
+  "version": "2.5.34.828",
+  "date": "2014-12-04 12-42-54",
+  "module": "WarApiOpenID.xaml",
+  "function": "WarApiOpenID()",
+  "param0": "Вызывающий поток не может получить доступ к данному объекту, так как владельцем этого объекта является другой поток.",
+  "param1": "   в System.Windows.DependencyObject.SetValue(DependencyProperty dp, Object value)\r\n   в _Hell_WPF_Multipack_Launcher.WarApiOpenID.<.ctor>b__0() в f:\\ВАЖНЫЕ ДАННЫЕ\\!!Важные документы\\!Сохранения программ\\Visual Studio C#\\!Hell PRO Tanki Launcher\\!Hell WPF Multipack Launcher\\WarApiOpenID.xaml.cs:строка 41"
+}

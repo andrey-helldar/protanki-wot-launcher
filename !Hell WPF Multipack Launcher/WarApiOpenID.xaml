@@ -9,6 +9,6 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WB_LoadCompleted" Navigated="WB_Navigated" Navigating="WB_Navigating"/>
+        <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WB_LoadCompleted" Navigated="WB_Navigated" Navigating="WB_Navigating" Panel.ZIndex="1" />
     </Grid>
 </Window>

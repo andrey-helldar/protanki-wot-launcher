@@ -84,6 +84,33 @@
 
 
         <!-- *******************************
+                     LOADING PANEL      
+            *********************************-->
+        <Style x:Key="LoadingPanelWOI" TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="FontFamily" Value="{StaticResource FontMicra}"/>
+            <Setter Property="FontSize" Value="16pt"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="0"
+                              Background="Black"
+                              Opacity="0.7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!-- *******************************
                      LOGOTYPE
             *********************************-->
         <Style x:Key="ButtonStyleLogotype" TargetType="{x:Type Button}">
