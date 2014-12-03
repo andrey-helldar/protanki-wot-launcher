@@ -45,6 +45,9 @@ namespace _Hell_WPF_Multipack_Launcher
         public static Image Flag { get { return flag; } }
         private static Image flag;
 
+        public static ProgressBar OptimizeProgress { get { return optimizeProgress; } }
+        private static ProgressBar optimizeProgress;
+
         /// <summary>
         /// Готовим контрол для отображения превью видео
         /// </summary>
@@ -116,7 +119,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         loadPage.Content = Lang.Set("PageLoading", "lLoading", (string)JsonSettingsGet("info.language"));
                         loadPage.Visibility = System.Windows.Visibility.Visible;
                     }
-                    catch (Exception ex) {  new Classes.Debugging().Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace); }
+                    catch (Exception ex) { new Classes.Debugging().Save("MainWindow", "MainWindow()", ex.Message, ex.StackTrace); }
                     finally
                     {
                         this.Closing += delegate { loadPage = null; };
@@ -149,7 +152,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                 Classes.Crypt Crypt = new Classes.Crypt();
                                 decrypt = Crypt.Decrypt(decrypt, Variables.GetUserID());
                             }
-                            catch (Exception) {
+                            catch (Exception)
+                            {
                                 if (File.Exists(settings)) File.Delete(settings);
                                 Thread.Sleep(300);
                                 File.WriteAllBytes(settings, Properties.Resources.Settings_Encoded);
@@ -303,7 +307,7 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception /*ex*/) {/* File.WriteAllText(@"temp\log.debug", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);*/ }
         }
 
-        public static void JsonSettingsRemove(string path, string type = "string")
+        public static bool JsonSettingsRemove(string path, string type = "string")
         {
             try
             {
@@ -326,8 +330,12 @@ namespace _Hell_WPF_Multipack_Launcher
                             break;
                     }
                 }
+
+                return true;
             }
             catch (Exception /*ex*/) { /* File.WriteAllText(@"temp\log2.debug", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);*/ }
+
+            return false;
         }
 
         private void Loading()
@@ -358,6 +366,10 @@ namespace _Hell_WPF_Multipack_Launcher
                     framePreview = this.FramePreview;
                     tbPreview = this.TbPreview;
                     this.Closing += delegate { framePreview = null; tbPreview = null; };
+
+                    // Прогресс-бар функции оптимизации
+                    optimizeProgress = this.pbOptimize;
+                    this.Closing += delegate { optimizeProgress = null; };
 
 
                     try
@@ -402,10 +414,10 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try { game_path = ((string)JsonSettingsGet("game.path")).Replace(Properties.Resources.Default_JSON_Splitter, @"\"); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(0)", ex.Message, ex.StackTrace)); }
-            
+
             try { Task.Factory.StartNew(() => Debugging.ClearLogs()); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(1)", ex.Message, ex.StackTrace)); }
-            
+
             Task.Factory.StartNew(() =>
             {
                 try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainFrame.NavigationService.Navigate(new Uri("General.xaml", UriKind.Relative)); })); }
@@ -415,7 +427,7 @@ namespace _Hell_WPF_Multipack_Launcher
             //LoadPage.Visibility = System.Windows.Visibility.Hidden;
             // Запускаем функцию автоматической отправки неотправленных тикетов
             Task.Factory.StartNew(() => new Classes.POST().AutosendTicket());
-            
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -520,7 +532,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 else
                     Process.Start(path);
             }
-            catch (Exception ex) {/* Task.Factory.StartNew(() => Debugging.Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace)); */}
+            catch (Exception ex) { new Classes.Debugging().Save("MainWindow", "ProcessStart()", "Path: " + path, "Filename: " + filename, ex.Message, ex.StackTrace); }
         }
 
 
@@ -552,14 +564,43 @@ namespace _Hell_WPF_Multipack_Launcher
             //}));
         }
 
-        public static void MessageShow(string text, string caption = "", MessageBoxButton mbb = MessageBoxButton.OK)
+        public static MessageBoxResult MessageShow(string text, string caption = "", MessageBoxButton mbb = MessageBoxButton.OK)
         {
             try
             {
                 caption = caption != "" ? caption : (string)JsonSettingsGet("info.ProductName");
-                MessageBox.Show(text, caption, mbb, MessageBoxImage.Information);
+                return MessageBox.Show(text, caption, mbb, MessageBoxImage.Information);
             }
-            catch (Exception) { }
+            catch (Exception) { return MessageBoxResult.OK; }
+        }
+
+        public static void Progress(int value, int max = 0, bool resetValue = false, bool resetMax = false)
+        {
+            try
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    OptimizeProgress.Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        if (max > 0)
+                            if (resetMax)
+                                OptimizeProgress.Maximum = max;
+                            else
+                                OptimizeProgress.Maximum = OptimizeProgress.Maximum + max;
+
+                        if (resetValue)
+                            OptimizeProgress.Value = value;
+                        else
+                            if (OptimizeProgress.Value > OptimizeProgress.Maximum)
+                                OptimizeProgress.Value = OptimizeProgress.Maximum;
+                            else
+                                OptimizeProgress.Value = OptimizeProgress.Value + value;
+
+                        MessageBox.Show("Setted: " + value.ToString() + " / " + max.ToString() + Environment.NewLine + OptimizeProgress.Value.ToString() + " / " + OptimizeProgress.Maximum.ToString());
+                    }));
+                });
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); /*Debugging.Save("Optimize.Class", "Progress()", ex.Message, ex.StackTrace);*/ }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -571,17 +612,19 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
+                string file = @"settings.json";
+                string settings_enc = @"settings_enc.json";
 
-                using (StreamReader reader = File.OpenText( @"d:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!!DLL\settings.json"))
+                if (File.Exists(file))
+                using (StreamReader reader = File.OpenText(file))
                 {
-                    string settings_enc = @"d:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!!DLL\settings_enc.json";
                     Classes.Crypt Crypt = new Classes.Crypt();
 
                     if (File.Exists(settings_enc)) File.Delete(settings_enc);
                     File.WriteAllText(settings_enc, Crypt.Encrypt(Crypt.Decrypt(reader.ReadToEnd(), Variables.GetUserID()), Variables.GetUserID()));
                 }
 
-                
+
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "JsonSaveSettings()", ex.Message, ex.StackTrace, jSettings.ToString())); }
         }

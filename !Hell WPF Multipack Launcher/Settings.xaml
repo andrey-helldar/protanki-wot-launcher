@@ -18,11 +18,12 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Frame x:Name="SettingsFrame" Margin="10,0" Grid.Row="1" Grid.ColumnSpan="2"/>
-        <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" TextWrapping="Wrap" VerticalAlignment="Center" Style="{DynamicResource FontSochi}">
+        <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="{StaticResource FontSochi2014}">
                     <Run FontSize="20" x:Name="tbSettingsTitle">Настройки ></Run>
                     <Run FontSize="16" x:Name="tbSettingsSubTitle">Общие</Run>
         </TextBlock>
         <Button x:Name="bClose" Content="Закрыть" Style="{DynamicResource ButtonCLOSE}" HorizontalAlignment="Right" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" Click="bClose_Click" Grid.Column="1"/>
         <Button x:Name="bChangeSettingsPage" Style="{DynamicResource bChangeSettingsPage}" Content="Процессы" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Click="bChangeSettingsPage_Click" Grid.Column="1" Padding="20,5" Foreground="#FF006699" FontFamily="Verdana"/>
+        <Button x:Name="bClearAutorization" Content="Отменить авторизацию WG" Style="{DynamicResource ButtonCLOSE}" HorizontalAlignment="Right" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Margin="0,10" Click="bClearCache_Click" />
     </Grid>
 </Page>

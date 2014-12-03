@@ -36,6 +36,7 @@ namespace _Hell_WPF_Multipack_Launcher
             tbSettingsTitle.Text = Lang.Set("PageSettings", "tbSettingsTitle", lang);
             tbSettingsSubTitle.Text = Lang.Set("PageSettings", "tbSettingsStShare", lang);
             bChangeSettingsPage.Content = Lang.Set("PageSettings", "tbSettingsStProcesses", lang);
+            bClearAutorization.Content = Lang.Set("PageSettings", "bClearAutorization", lang);
 
             try { SettingsFrame.NavigationService.Navigate(new Uri("SettingsGeneral.xaml", UriKind.Relative)); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Settings.xaml", "Settings()", ex.Message, ex.StackTrace)); }
@@ -89,6 +90,23 @@ namespace _Hell_WPF_Multipack_Launcher
                 try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
                 catch (Exception) { }
             }));
+        }
+
+        private void bClearCache_Click(object sender, RoutedEventArgs e)
+        {
+            Task.Factory.StartNew(() =>{
+                try
+                {
+                    if (MainWindow.MessageShow(Lang.Set("PageSettings", "ClearCacheSure", lang), "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        if (MainWindow.JsonSettingsRemove("token"))
+                            MainWindow.MessageShow(Lang.Set("PageSettings", "ClearCacheSuccess", lang));
+                        else
+                            MainWindow.MessageShow(Lang.Set("PageSettings", "ClearCacheError", lang));
+                    }
+                }
+                catch (Exception ex) { Debugging.Save("Settings.xaml", "bClearCache_Click()", ex.Message, ex.StackTrace); }
+                });
         }
     }
 }
