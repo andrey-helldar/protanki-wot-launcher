@@ -31,7 +31,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="10,10,5,10" Source="Resources/flag_en.png"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Английский" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="English" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
                 </Grid>
             </ListBoxItem>
 
@@ -42,7 +42,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="10,10,5,10" Source="Resources/flag_de.png"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Немецкий" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Deutsch" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
                 </Grid>
             </ListBoxItem>
 
@@ -53,7 +53,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="10,10,5,10" Source="Resources/flag_ua.png"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Украинский" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Український" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
                 </Grid>
             </ListBoxItem>
         </ListBox>

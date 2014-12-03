@@ -846,7 +846,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             (bool)MainWindow.JsonSettingsGet("settings.aero"),
                             (bool)MainWindow.JsonSettingsGet("settings.video"),
                             (bool)MainWindow.JsonSettingsGet("settings.weak"),
-                            false
+                            true
                         ));
 
                     Task.Factory.StartNew(() => MainWindow.ProcessStart(game_path, "WoTLauncher.exe"));
