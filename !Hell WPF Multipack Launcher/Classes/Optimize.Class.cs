@@ -26,10 +26,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             bool Weak = false,
             bool Manual = false)
         {
-            //int progress = 0,
-            //    maxProgress = 0;
-
-            Aero = true;
             Progress(0, 1, true, true);
 
             /***************************
@@ -41,7 +37,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     if ((Manual || Aero) && (bool)MainWindow.JsonSettingsGet("settings.admin"))
                     {
                         Process.Start(new ProcessStartInfo("cmd", @"/c net stop uxsms"));
-                        MainWindow.JsonSettingsSet("settings.aero_disable", true);
+                        MainWindow.JsonSettingsSet("settings.aero_disable", true, "bool");
                         Progress(1);
                     }
             }
@@ -244,7 +240,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex) { Debugging.Save("Optimize.Class", "Start()", "Graphic optimize", ex.Message, ex.StackTrace); }
 
-            //Progress(0, 1, true, true);
+            Progress(1);
         }
 
         private void Progress(int value, int max = 0, bool resetValue = false, bool resetMax = false)

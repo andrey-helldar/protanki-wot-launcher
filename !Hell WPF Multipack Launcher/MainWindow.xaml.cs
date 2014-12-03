@@ -31,6 +31,9 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Optimize Optimize = new Classes.Optimize();
         Classes.Language Lang = new Classes.Language();
 
+        // Главное окно для передачи статуса
+        public static Window State { get { return state; } }
+        private static Window state;
 
         public System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
         public static System.Windows.Forms.NotifyIcon Notifier { get { return notifier; } }
@@ -347,6 +350,10 @@ namespace _Hell_WPF_Multipack_Launcher
                     try { MouseDown += delegate { DragMove(); }; }
                     catch (Exception) { }
 
+                    // Главное окно
+                    state = this.MainProject;
+                    this.Closing += delegate { state = null; };
+
                     // Делаем общей иконку в трее
                     notifier = this.notifyIcon;
                     this.Closing += delegate { notifier = null; };
@@ -490,7 +497,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             case 1: this.Hide(); break;
                             case 2: this.WindowState = System.Windows.WindowState.Minimized; break;
-                            case 3: Task.Factory.StartNew(() => JsonSettingsSave()).Wait(); this.Close(); break;
+                            case 3: /*Task.Factory.StartNew(() => JsonSettingsSave()).Wait();*/ this.Close(); break;
                             default: break;
                         }
                     }));
@@ -505,12 +512,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try { ProcessStart(Properties.Resources.Developer_Link_Site); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "bAirus_Click()", "Link: " + Properties.Resources.Developer_Link_Site, ex.Message, ex.StackTrace)); }
-        }
-
-        private void bLauncherWOT_Click(object sender, RoutedEventArgs e)
-        {
-            try { Task.Factory.StartNew(() => ProcessStart(Properties.Resources.Wargaming_Link)); }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "bLauncherWOT_Click()", ex.Message, ex.StackTrace)); }
         }
 
         /// <summary>

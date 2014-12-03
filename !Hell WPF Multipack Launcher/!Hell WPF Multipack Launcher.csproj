@@ -556,6 +556,15 @@
   <ItemGroup>
     <Resource Include="Resources\flag_ua.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_normal.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

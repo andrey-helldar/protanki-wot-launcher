@@ -23,7 +23,7 @@
         </Button>
         <Button x:Name="bClose" Content="Close" Grid.Column="1" Style="{DynamicResource ButtonStyleClose}" HorizontalAlignment="Right" Margin="0,0,9,7" VerticalAlignment="Bottom" Click="bClose_Click"/>
         <Button x:Name="bMinimize" Content="Minimize" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleMin}" Margin="0,6,45,0" VerticalAlignment="Top" Click="bMinimize_Click" Grid.Column="1"/>
-        <Button x:Name="bLauncherWOT" Style="{DynamicResource ButtonStyleLogotype}" Grid.Column="1" Margin="77,0,75,0" Grid.Row="1" VerticalAlignment="Top" Height="134" Click="bLauncherWOT_Click"/>
+        <!--<Button x:Name="bLauncherWOT" Style="{DynamicResource ButtonStyleLogotype}" Grid.Column="1" Margin="77,0,75,0" Grid.Row="1" VerticalAlignment="Top" Height="134"/>-->
         <Button x:Name="bAirus" Grid.Column="1" Style="{DynamicResource ButtonStyleAIRUS}" Margin="25,30,25,0" Grid.Row="3" VerticalAlignment="Top" Height="68" Click="bAirus_Click"/>
         <Frame x:Name="FramePreview" Grid.Column="1" HorizontalAlignment="Center" Height="141" Margin="6,0" Grid.Row="2" VerticalAlignment="Center" Width="250" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" NavigationUIVisibility="Hidden" VerticalContentAlignment="Center"/>
         <TextBlock x:Name="TbPreview" Grid.Column="1" Margin="10,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="White" FontFamily="Verdana" Visibility="Hidden" Height="15">

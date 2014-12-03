@@ -518,4 +518,13 @@
   <data name="Wargaming_Link" xml:space="preserve">
     <value>http://ru.wargaming.net/</value>
   </data>
+  <data name="wot_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wot_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wot_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wot_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wot_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wot_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

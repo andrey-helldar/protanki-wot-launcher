@@ -39,7 +39,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 MainWindow.JsonSettingsSet("info.user_id", GetUserID());
 
                 // Проверяем права администратора
-                MainWindow.JsonSettingsSet("settings.admin", new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator));
+                MainWindow.JsonSettingsSet("settings.admin", new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator), "bool");
 
 
                 string lang_pack = Properties.Resources.Default_Lang;

@@ -830,5 +830,42 @@ namespace _Hell_WPF_Multipack_Launcher
                 ex.Message, ex.StackTrace));
             }
         }
+
+        private void bLauncher_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string game_path = ((string)MainWindow.JsonSettingsGet("game.path")).Replace(Properties.Resources.Default_JSON_Splitter, @"\");
+
+                if (System.IO.File.Exists(game_path + "WoTLauncher.exe"))
+                {
+                    Task.Factory.StartNew(() => new Classes.Optimize().Start(
+                            (bool)MainWindow.JsonSettingsGet("settings.winxp"),
+                            (bool)MainWindow.JsonSettingsGet("settings.kill"),
+                            (bool)MainWindow.JsonSettingsGet("settings.force"),
+                            (bool)MainWindow.JsonSettingsGet("settings.aero"),
+                            (bool)MainWindow.JsonSettingsGet("settings.video"),
+                            (bool)MainWindow.JsonSettingsGet("settings.weak"),
+                            false
+                        )).Wait();
+
+                    Task.Factory.StartNew(() => MainWindow.ProcessStart(game_path, "WorldOfTanks.exe"));
+
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        switch ((int)MainWindow.JsonSettingsGet("settings.launcher"))
+                        {
+                            case 1: MainWindow.State.Hide(); break;
+                            case 2: MainWindow.State.WindowState = System.Windows.WindowState.Minimized; break;
+                            case 3: MainWindow.State.Close(); break;
+                            default: break;
+                        }
+                    }));
+                }
+                else
+                    MessageBox.Show(Lang.Set("MainProject", "Game_Not_Found", (string)MainWindow.JsonSettingsGet("info.language")));
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "bLauncher_Click()", ex.Message, ex.StackTrace)); }
+        }
     }
 }

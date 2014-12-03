@@ -493,6 +493,59 @@
 
 
         <!-- *******************************
+                        WOT LAUNCHER
+            *********************************-->
+        <Style x:Key="ButtonStyleLauncher" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Height" Value="30"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="0">
+                            <Path Stretch="Fill" x:Name="LauncherBackground"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand">
+                            </Path>
+                            <ContentPresenter Name="content" 
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"
+                                        Margin="15"
+                                        Cursor="Hand"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="LauncherBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/wot_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="LauncherBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/wot_hover.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Fill" TargetName="LauncherBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/wot_press.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!-- *******************************
                         FEEDBACK
             *********************************-->
         <Style x:Key="ButtonStyleFeedback" TargetType="{x:Type Button}">
