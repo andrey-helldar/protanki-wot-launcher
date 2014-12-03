@@ -19,6 +19,7 @@
             *********************************-->
         <Color x:Key="GlobalTextColor">#FF006699</Color>
 
+        <SolidColorBrush x:Key="ButtonDisabled" Color="#FF878382" />
 
         <SolidColorBrush x:Key="BackNormal" Color="#FF006699" />
         <SolidColorBrush x:Key="BackHover" Color="#FF007AFF" />
@@ -1296,6 +1297,10 @@
                                 <Setter Property="Background" Value="{StaticResource BackPressed}" />
                             </Trigger>
 
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{StaticResource ButtonDisabled}" />
+                            </Trigger>
+
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -1357,6 +1362,10 @@
 
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="Background" Value="{StaticResource BackPressed}" />
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{StaticResource ButtonDisabled}" />
                             </Trigger>
 
                         </ControlTemplate.Triggers>
@@ -1603,6 +1612,7 @@
                                     <Condition Property="RadioButton.IsChecked" Value="False"/>
                                 </MultiTrigger.Conditions>
                                 <MultiTrigger.Setters>
+                                    <Setter Property="Foreground" Value="{StaticResource ButtonDisabled}" />
                                     <Setter Property="Rectangle.Fill" TargetName="RbImage">
                                         <Setter.Value>
                                             <ImageBrush ImageSource="Resources/checkbox_unactive_unchecked.png"/>

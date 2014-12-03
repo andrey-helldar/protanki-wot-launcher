@@ -25,11 +25,11 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <CheckBox x:Name="cbKill" Foreground="#FF006699" Content="Закрывать процессы при запуске игры" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Click="cbKill_Click" FontWeight="Normal"/>
-                        <CheckBox x:Name="cbForce" Foreground="#FF006699" Content="Принудительно закрывать процессы" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="1" Click="cbForce_Click" FontWeight="Normal"/>
-                        <CheckBox x:Name="cbVideo" Foreground="#FF006699" Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="2" Click="cbVideo_Click" FontWeight="Normal"/>
-                        <CheckBox x:Name="cbAero" Foreground="#FF006699" Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="4" Click="cbAero_Click" FontWeight="Normal"/>
-                        <CheckBox x:Name="cbWeak" Foreground="#FF006699" Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="3" Click="cbWeak_Click" FontWeight="Normal"/>
+                        <CheckBox x:Name="cbKill" Content="Закрывать процессы при запуске игры" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Click="cbKill_Click" FontWeight="Normal"/>
+                        <CheckBox x:Name="cbForce" Content="Принудительно закрывать процессы" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="1" Click="cbForce_Click" FontWeight="Normal"/>
+                        <CheckBox x:Name="cbVideo" Content="Уменьшить качество графики в игре" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="2" Click="cbVideo_Click" FontWeight="Normal"/>
+                        <CheckBox x:Name="cbAero" Content="Отключать Windows Aero" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Grid.Row="4" Click="cbAero_Click" FontWeight="Normal"/>
+                        <CheckBox x:Name="cbWeak" Content="Очень слабый компьютер" HorizontalAlignment="Left" Margin="30,5,0,0" VerticalAlignment="Top" Grid.Row="3" Click="cbWeak_Click" FontWeight="Normal"/>
                         <ComboBox x:Name="cbPriority" VerticalAlignment="Top" Margin="10,10,10,5" SelectedIndex="0" Grid.Row="5" FontWeight="Normal">
                             <ComboBoxItem Content="---"/>
                         </ComboBox>
@@ -49,8 +49,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <CheckBox x:Name="cbNotifyVideo" Foreground="#FF006699" Content="Уведомлять о новых видео" Margin="10,5,0,4" Click="cbNotifyVideo_Click" FontWeight="Normal"/>
-                        <CheckBox x:Name="cbNotifyNews" Foreground="#FF006699" Content="Уведомлять о новых новостях" Margin="10,6,0,3" Grid.Row="1" Click="cbNotifyNews_Click" FontWeight="Normal"/>
+                        <CheckBox x:Name="cbNotifyVideo" Content="Уведомлять о новых видео" Margin="10,5,0,4" Click="cbNotifyVideo_Click" FontWeight="Normal"/>
+                        <CheckBox x:Name="cbNotifyNews" Content="Уведомлять о новых новостях" Margin="10,6,0,3" Grid.Row="1" Click="cbNotifyNews_Click" FontWeight="Normal"/>
                         <ComboBox x:Name="cbLauncher" VerticalAlignment="Top" Margin="10" SelectedIndex="0" Grid.Row="2" FontWeight="Normal">
                             <ComboBoxItem Content="---"/>
                         </ComboBox>

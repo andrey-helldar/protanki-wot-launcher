@@ -38,6 +38,9 @@ namespace _Hell_WPF_Multipack_Launcher
             bChangeSettingsPage.Content = Lang.Set("PageSettings", "tbSettingsStProcesses", lang);
             bClearAutorization.Content = Lang.Set("PageSettings", "bClearAutorization", lang);
 
+            // Если блок токена найден - делаем доступным, иначе вырубаем
+            bClearAutorization.IsEnabled = MainWindow.jSettings["token"] != null ;
+
             try { SettingsFrame.NavigationService.Navigate(new Uri("SettingsGeneral.xaml", UriKind.Relative)); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Settings.xaml", "Settings()", ex.Message, ex.StackTrace)); }
         }
