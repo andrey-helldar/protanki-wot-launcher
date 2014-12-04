@@ -7,10 +7,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="163*"/>
-            <RowDefinition Height="342*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="qwe" Content="Button" Margin="0" Background="Red" />
+        <Button x:Name="WOIloading" Content="Loading..." Style="{DynamicResource LoadingPanelWOI}"  />
         <WebBrowser x:Name="WB" LoadCompleted="WB_LoadCompleted" Navigated="WB_Navigated" Navigating="WB_Navigating" Grid.Row="1" />
     </Grid>
 </Window>

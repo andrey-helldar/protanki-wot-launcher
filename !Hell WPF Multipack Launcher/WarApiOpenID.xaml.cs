@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-//using System.Windows.Controls;
+using System.Windows.Controls;
 //using System.Windows.Data;
 //using System.Windows.Documents;
 //using System.Windows.Input;
-//using System.Windows.Media;
+using System.Windows.Media.Animation;
 //using System.Windows.Media.Imaging;
 //using System.Windows.Shapes;
 using System.Threading;
@@ -29,9 +29,24 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Debugging Debugging = new Classes.Debugging();
         Classes.Language Lang = new Classes.Language();
 
+        private bool loaded = false;
+
         public WarApiOpenID()
         {
             InitializeComponent();
+
+            try
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        WOIloading.Height = WarApiOpenID1.ActualHeight;
+                        WOIloading.Content = Lang.Set("PageLoading", "lLoading", (string)MainWindow.JsonSettingsGet("info.language"));
+                    }));
+                }).Wait();
+            }
+            catch (Exception ex) { MainWindow.MessageShow(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
 
             /*Task.Factory.StartNew(() =>
             {
@@ -90,12 +105,28 @@ namespace _Hell_WPF_Multipack_Launcher
                                    if (mbr == MessageBoxResult.Yes)
                                        WB.Source = new Uri(WarAPI.OpenID());
                                    else
-                                   {
                                        this.Close();
-                                   }
                                }
                            }));
                 }).Wait();
+
+                if (!loaded)
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        try
+                        {
+                            DoubleAnimation da = new DoubleAnimation();
+                            da.From = WOIloading.Height;
+                            da.To = 0;
+                            da.Duration = TimeSpan.FromSeconds(1);
+                            WOIloading.BeginAnimation(Button.HeightProperty, da);
+                        }
+                        catch (Exception ex) { MainWindow.MessageShow(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
+                    }));
+
+                    loaded = true;
+                }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WarApiOpenID.xaml", "WebBrowser_LoadCompleted()", ex.Message, ex.StackTrace)); }
         }

@@ -1,0 +1,9 @@
+﻿{
+  "uid": "64935334dc97650ae4e896ceebd4cae7",
+  "version": "2.5.34.831",
+  "date": "2014-12-04 11-21-3",
+  "module": "Wargaming.News.Class",
+  "function": "Start()",
+  "param0": "Отсутствует корневой элемент.",
+  "param1": "   в System.Xml.XmlTextReaderImpl.ThrowWithoutLineInfo(String res)\r\n   в System.Xml.XmlTextReaderImpl.ParseDocumentContent()\r\n   в System.Xml.Linq.XDocument.Load(XmlReader reader, LoadOptions options)\r\n   в System.Xml.Linq.XDocument.Load(String uri, LoadOptions options)\r\n   в _Hell_WPF_Multipack_Launcher.Classes.Wargaming.Start() в d:\\Helldar\\Visual C#\\!Hell PRO Tanks Launcher\\!Hell WPF Multipack Launcher\\Classes\\Wargaming.Class.cs:строка 35"
+}
