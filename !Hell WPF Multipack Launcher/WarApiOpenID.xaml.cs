@@ -195,9 +195,6 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try { WB.Source = new Uri(WarAPI.OpenID()); }
                 catch (Exception) { }
-
-                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
-                catch (Exception) { }
             }));
         }
     }
