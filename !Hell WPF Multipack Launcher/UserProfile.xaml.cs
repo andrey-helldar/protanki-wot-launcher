@@ -79,9 +79,10 @@ namespace _Hell_WPF_Multipack_Launcher
                         Task.Factory.StartNew(() =>
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
-                            WarApiOpenID WarApiOpenID = new WarApiOpenID();
-                            WarApiOpenID.WB.Source = new Uri(WarAPI.OpenID());
-                            WarApiOpenID.ShowDialog();
+                            /*WarApiOpenID WarApiOpenID = new WarApiOpenID();
+                            //WarApiOpenID.WB.Source = new Uri(WarAPI.OpenID());
+                            WarApiOpenID.ShowDialog();*/
+                            new WarApiOpenID().ShowDialog();
                         }))).Wait();
 
                         // Проверяем токен

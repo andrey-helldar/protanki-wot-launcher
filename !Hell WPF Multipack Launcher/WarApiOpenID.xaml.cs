@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 //using System.Xml.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+//using System.Windows.Controls;
+//using System.Windows.Data;
+//using System.Windows.Documents;
+//using System.Windows.Input;
+//using System.Windows.Media;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Shapes;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -52,84 +52,77 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-               /* Dispatcher.BeginInvoke(new ThreadStart(delegate
+                Task.Factory.StartNew(() =>
                 {
-                    try { WOIloading.Visibility = System.Windows.Visibility.Hidden; }
-                    catch (Exception ex0) { new Classes.Debugging().Save("WarApiOpenID.xaml", "WB_LoadCompleted()", "WOIloading.Visibility = Hidden", ex0.Message, ex0.StackTrace); }
-                }));*/
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                           {
 
-                if (WB.Source.ToString().IndexOf("status=ok") > -1)
-                {
-                    JObject Token = WarAPI.Token(WB.Source.ToString());
+                               if (WB.Source.ToString().IndexOf("status=ok") > -1)
+                               {
+                                   JObject Token = WarAPI.Token(WB.Source.ToString());
 
-                    MainWindow.JsonSettingsSet("token.access_token", (string)Token.SelectToken("access_token"));
-                    MainWindow.JsonSettingsSet("token.expires_at", (string)Token.SelectToken("expires_at"));
-                    MainWindow.JsonSettingsSet("token.nickname", (string)Token.SelectToken("nickname"));
-                    MainWindow.JsonSettingsSet("token.account_id", (string)Token.SelectToken("account_id"));
+                                   MainWindow.JsonSettingsSet("token.access_token", (string)Token.SelectToken("access_token"));
+                                   MainWindow.JsonSettingsSet("token.expires_at", (string)Token.SelectToken("expires_at"));
+                                   MainWindow.JsonSettingsSet("token.nickname", (string)Token.SelectToken("nickname"));
+                                   MainWindow.JsonSettingsSet("token.account_id", (string)Token.SelectToken("account_id"));
 
-                    MainWindow.JsonSettingsSet("info.user_name", (string)Token.SelectToken("nickname"));
+                                   MainWindow.JsonSettingsSet("info.user_name", (string)Token.SelectToken("nickname"));
 
-                    try
-                    {
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
-                        Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                                   try
+                                   {
+                                       Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
+                                       Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
 
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator("UserProfile"); }));
-                    }
-                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WarApiOpenID.xaml", "WB_LoadCompleted()", ex.Message, ex.StackTrace)); }
+                                       Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator("UserProfile"); }));
+                                   }
+                                   catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WarApiOpenID.xaml", "WB_LoadCompleted()", ex.Message, ex.StackTrace)); }
 
-                    this.Close();
-                }
+                                   this.Close();
+                               }
 
-                if (WB.Source.ToString().IndexOf("AUTH_CANCEL") > -1)
-                {
-                    MessageBoxResult mbr = MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", (string)MainWindow.JsonSettingsGet("info.language")) +
-                        Environment.NewLine +
-                        Lang.Set("PageUser", "RepeatActivation", (string)MainWindow.JsonSettingsGet("info.language")),
-                        (string)MainWindow.JsonSettingsGet("info.ProductName"), MessageBoxButton.YesNo, MessageBoxImage.Information);
+                               if (WB.Source.ToString().IndexOf("AUTH_CANCEL") > -1)
+                               {
+                                   MessageBoxResult mbr = MessageBox.Show(Lang.Set("PageUser", "ActivateWarID", (string)MainWindow.JsonSettingsGet("info.language")) +
+                                       Environment.NewLine +
+                                       Lang.Set("PageUser", "RepeatActivation", (string)MainWindow.JsonSettingsGet("info.language")),
+                                       (string)MainWindow.JsonSettingsGet("info.ProductName"), MessageBoxButton.YesNo, MessageBoxImage.Information);
 
-                    if (mbr == MessageBoxResult.Yes)
-                        WB.Source = new Uri(WarAPI.OpenID());
-                    else
-                    {
-                        this.Close();
-                    }
-                }
+                                   if (mbr == MessageBoxResult.Yes)
+                                       WB.Source = new Uri(WarAPI.OpenID());
+                                   else
+                                   {
+                                       this.Close();
+                                   }
+                               }
+                           }));
+                }).Wait();
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WarApiOpenID.xaml", "WebBrowser_LoadCompleted()", ex.Message, ex.StackTrace)); }
         }
 
-        /// <summary>
-        /// Устанавливаем значение в ключ токена XML
-        /// </summary>
-        /// <param name="attr">Ключ токена</param>
-        /// <param name="val">Значение</param>
-        /*private void SetValue(string attr, string val)
-        {
-            try { MainWindow.JsonSettingsSet("token." + attr, val); }
-            catch (Exception ex) { System.Threading.Tasks.Task.Factory.StartNew(() => Debug.Save("WarApiOpenID.xaml", "SetValue()", "Attribute: " + attr, "Value: " + val, ex.Message, ex.StackTrace)); }
-        }*/
-
         private void WB_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            InjectDisableScript();
+            Task.Factory.StartNew(() => InjectDisableScript()).Wait();
         }
 
         private void InjectDisableScript()
         {
-            var doc = WB.Document as HTMLDocument;
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+                           {
+                               var doc = WB.Document as HTMLDocument;
 
-            if (doc != null)
-            {
-                //Create the sctipt element 
-                var scriptErrorSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
-                scriptErrorSuppressed.type = "text/javascript";
-                scriptErrorSuppressed.text = DisableScriptError;
-                //Inject it to the head of the page 
-                IHTMLElementCollection nodes = doc.getElementsByTagName("head");
-                foreach (IHTMLElement elem in nodes)
-                    (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
-            }
+                               if (doc != null)
+                               {
+                                   //Create the sctipt element 
+                                   var scriptErrorSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
+                                   scriptErrorSuppressed.type = "text/javascript";
+                                   scriptErrorSuppressed.text = DisableScriptError;
+                                   //Inject it to the head of the page 
+                                   IHTMLElementCollection nodes = doc.getElementsByTagName("head");
+                                   foreach (IHTMLElement elem in nodes)
+                                       (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
+                               }
+                           }));
         }
 
         private const string DisableScriptError =
@@ -145,30 +138,36 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                var doc = WB.Document as HTMLDocument;
-
-                if (
-                    doc != null &&
-                    WB.Source.ToString() != Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_OpenID &&
-                    WB.Source.ToString().IndexOf("AUTH_CANCEL") == -1
-                    )
+                Task.Factory.StartNew(() =>
                 {
-                    Regex regex = new Regex(@"\w+[a-zA-Z0-9-_.]+@+\w+[a-zA-Z0-9-]+.[a-zA-Z]{2,10}");
-
-                    IHTMLElementCollection nodes = doc.getElementsByTagName("html");
-                    foreach (IHTMLElement elem in nodes)
-                    {
-                        var body = (HTMLHeadElement)elem;
-
-                        Match match = regex.Match(body.innerHTML);
-                        while (match.Success)
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
-                            try { MainWindow.JsonSettingsSet("info.user_email", match.Value.Trim()); }
-                            catch (Exception) { }
-                            match = match.NextMatch();
-                        }
-                    }
-                }
+                            var doc = WB.Document as HTMLDocument;
+
+                            if (
+                                doc != null &&
+                                WB.Source.ToString() != Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_OpenID &&
+                                WB.Source.ToString().IndexOf("AUTH_CANCEL") == -1
+                                )
+                            {
+                                Regex regex = new Regex(@"\w+[a-zA-Z0-9-_.]+@+\w+[a-zA-Z0-9-]+.[a-zA-Z]{2,10}");
+
+                                IHTMLElementCollection nodes = doc.getElementsByTagName("html");
+                                foreach (IHTMLElement elem in nodes)
+                                {
+                                    var body = (HTMLHeadElement)elem;
+
+                                    Match match = regex.Match(body.innerHTML);
+                                    while (match.Success)
+                                    {
+                                        try { MainWindow.JsonSettingsSet("info.user_email", match.Value.Trim()); }
+                                        catch (Exception) { }
+                                        match = match.NextMatch();
+                                    }
+                                }
+                            }
+                        }));
+                }).Wait();
             }
             catch (Exception ex) { Debugging.Save("WarApiOpenID.xaml", "WB_Navigating()", WB.Source.ToString(), ex.Message, ex.StackTrace); }
         }
@@ -177,6 +176,9 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
+                try { WB.Source = new Uri(WarAPI.OpenID()); }
+                catch (Exception) { }
+
                 try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
                 catch (Exception) { }
             }));

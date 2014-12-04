@@ -1,8 +1,0 @@
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Language Pack\bin\Debug\LanguagePack.dll
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Language Pack\bin\Debug\LanguagePack.pdb
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Language Pack\obj\Debug\LanguagePack.dll
-f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Language Pack\obj\Debug\LanguagePack.pdb
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Language Pack\bin\Debug\LanguagePack.dll
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Language Pack\bin\Debug\LanguagePack.pdb
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Language Pack\obj\Debug\LanguagePack.dll
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Language Pack\obj\Debug\LanguagePack.pdb

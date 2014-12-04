@@ -7,22 +7,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="163*"/>
+            <RowDefinition Height="342*"/>
         </Grid.RowDefinitions>
-        <WebBrowser x:Name="WB" Margin="0" LoadCompleted="WB_LoadCompleted" Navigated="WB_Navigated" Navigating="WB_Navigating" />
-        <Popup
-              AllowsTransparency="True"
-              Placement="Center"
-              Width="{Binding ActualWidth,
-                              ElementName=WB,
-                              Mode=OneWay}"
-              Height="{Binding ActualHeight, 
-                               ElementName=WB,
-                               Mode=OneWay}"
-              PlacementTarget="{Binding ElementName=WB}"
-              Opacity="1"
-              Margin="3">
-            <TextBlock Text="Loading ..." FontSize="48"/>
-        </Popup>
+        <Button x:Name="qwe" Content="Button" Margin="0" Background="Red" />
+        <WebBrowser x:Name="WB" LoadCompleted="WB_LoadCompleted" Navigated="WB_Navigated" Navigating="WB_Navigating" Grid.Row="1" />
     </Grid>
 </Window>

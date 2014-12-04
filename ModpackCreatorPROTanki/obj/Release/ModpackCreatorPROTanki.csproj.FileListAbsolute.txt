@@ -1,6 +1,0 @@
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ModpackCreatorPROTanki\bin\Release\Modpack.Creator.dll
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ModpackCreatorPROTanki\bin\Release\Modpack.Creator.pdb
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ModpackCreatorPROTanki\bin\Release\Newtonsoft.Json.dll
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ModpackCreatorPROTanki\obj\Release\ModpackCreatorPROTanki.csprojResolveAssemblyReference.cache
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ModpackCreatorPROTanki\obj\Release\Modpack.Creator.dll
-F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\ModpackCreatorPROTanki\obj\Release\Modpack.Creator.pdb
