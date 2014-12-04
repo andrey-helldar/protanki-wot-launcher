@@ -523,9 +523,6 @@
     <Resource Include="Resources\stat_perc_vins.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Processes.Library.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Ookii.Dialogs.Wpf.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -578,6 +575,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\wot_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Processes.Library.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

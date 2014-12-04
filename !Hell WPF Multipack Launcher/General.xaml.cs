@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Reflection;
 using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher
