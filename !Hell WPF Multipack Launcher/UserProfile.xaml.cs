@@ -102,6 +102,10 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         try
                         {
+                            MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
+                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+
+
                             active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
 
                             if (!active)
@@ -606,6 +610,11 @@ namespace _Hell_WPF_Multipack_Launcher
                             }
                         }
                         catch (Exception e) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", e.Message, e.StackTrace)); }
+                        finally
+                        {
+                            MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
+                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                        }
                     }));
             }
             catch (Exception) { }
@@ -699,19 +708,18 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Dispatcher.BeginInvoke(new ThreadStart(delegate
-            {
-                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
-                catch (Exception) { }
-            }));
-
-
             bool active = false;
             try { active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id"); }
             catch (Exception) { active = false; }
 
             try
             {
+                Task.Factory.StartNew(() =>
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
+                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                });
+
                 // Проверяем актуальность даты
                 if (active)
                 {
@@ -736,18 +744,12 @@ namespace _Hell_WPF_Multipack_Launcher
                         // Открываем окно
                         new WarApiOpenID().ShowDialog();
 
-
                         // Если токен неактивен, загружаем главную страницу
                         if (!(CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id")))
                         {
                             Task.Factory.StartNew(() =>
                             {
-                                try {
-                                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
-                                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep)); 
-                                    
-                                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
-                                }
+                                try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
                                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
                             });
                         }
@@ -759,7 +761,8 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                     catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", ex.Message, ex.StackTrace)); }
                 }
-                else { Task.Factory.StartNew(() => { AccountInfo(); }); }
+                else
+                    Task.Factory.StartNew(() => { AccountInfo(); });
             }
             catch (Exception ex0) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "if (active)", ex0.Message, ex0.StackTrace)); }
         }

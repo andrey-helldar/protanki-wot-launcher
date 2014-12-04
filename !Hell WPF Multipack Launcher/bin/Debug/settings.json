@@ -1,1 +1,48 @@
-ew0KICAiaW5mbyI6IHsNCiAgICAidmlkZW8iOiB0cnVlLA0KICAgICJuZXdzIjogdHJ1ZSwNCiAgICAibXVsdGlwYWNrIjogdHJ1ZSwNCiAgICAibm90aWZpY2F0aW9uIjogIjAuMC4wLjAiLA0KICAgICJsYW5ndWFnZSI6ICJydSIsDQogICAgImxvY2FsZSI6IDAsDQogICAgInVzZXJfZW1haWwiOiBudWxsLA0KICAgICJ1c2VyX25hbWUiOiBudWxsLA0KICAgICJ1c2VyX2lkIjogIjY0OTM1MzM0ZGM5NzY1MGFlNGU4OTZjZWViZDRjYWU3IiwNCiAgICAibm90aWZ5X2xpbmsiOiAiaHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj13VE5fX1ZnYnQxTSZmZWF0dXJlPXlvdXR1YmVfZ2RhdGEiLA0KICAgICJQcm9kdWN0TmFtZSI6ICJNdWx0aXBhY2sgTGF1bmNoZXIiDQogIH0sDQogICJzZXR0aW5ncyI6IHsNCiAgICAiYWRtaW4iOiB0cnVlLA0KICAgICJraWxsIjogZmFsc2UsDQogICAgImZvcmNlIjogZmFsc2UsDQogICAgImFlcm8iOiBmYWxzZSwNCiAgICAidmlkZW8iOiBmYWxzZSwNCiAgICAid2VhayI6IGZhbHNlLA0KICAgICJ3aW54cCI6IGZhbHNlLA0KICAgICJsYXVuY2hlciI6IDAsDQogICAgImFlcm9fZGlzYWJsZSI6IGZhbHNlDQogIH0sDQogICJtdWx0aXBhY2siOiB7DQogICAgImxhbmd1YWdlIjogInJ1IiwNCiAgICAidHlwZSI6ICJleHRlbmRlZCIsDQogICAgInZlcnNpb24iOiAiMC45LjQuMTIiLA0KICAgICJkYXRlIjogIjIzLjExLjIwMTQiLA0KICAgICJsaW5rIjogbnVsbCwNCiAgICAiY2hhbmdlbG9nIjogbnVsbCwNCiAgICAibmV3X3ZlcnNpb24iOiAiMC4wLjAuMCIsDQogICAgInBhdGgiOiAiMC45LjQiDQogIH0sDQogICJnYW1lIjogew0KICAgICJ2ZXJzaW9uIjogIjAuOS40LjgxMSIsDQogICAgInBhdGgiOiAiRDo6OjtIZWxsZGFyOjo7VmlzdWFsIEMjOjo7IUhlbGwgUFJPIFRhbmtzIExhdW5jaGVyOjo7IUhlbGwgV1BGIE11bHRpcGFjayBMYXVuY2hlcjo6O2Jpbjo6OyIsDQogICAgInRlc3QiOiBmYWxzZSwNCiAgICAibGFuZ3VhZ2UiOiAicnUiDQogIH0sDQogICJwcm9jZXNzZXMiOiBudWxsLA0KICAid2FyZ2FtaW5nIjogbnVsbCwNCiAgInlvdXR1YmUiOiBbDQogICAgIjNhODQzY2QyMDYwYWQ5OWRjYzg0ZDAwYmFlZDBlMDZkIiwNCiAgICAiY2NlNGE0NGZhMDY1ZmI2ZTc2OGM3M2Q3MDJjZDJkMGUiLA0KICAgICI2ODBmODVkNWU1ZmRkMDEzYjFmY2Q4NDFjYWZhNmNhMSIsDQogICAgIjk4ZWE1NzJlNmVlYTk2MjQzNTkwNjk4MTI2MmU1NzIxIg0KICBdLA0KICAiZG9fbm90X2Rpc3BsYXkiOiB7DQogICAgInZpZGVvIjogbnVsbCwNCiAgICAibmV3cyI6IG51bGwNCiAgfQ0KfQ==
+﻿{
+    "info": {
+        "video": true,
+        "news": true,
+        "multipack": true,
+        "notification": "0.0.0.0",
+        "language": "en",
+        "locale": 0,
+        "user_email": null,
+        "user_name": null,
+        "user_id": null,
+        "notify_link": null,
+        "ProductName": null
+    },
+    "settings": {
+        "admin": false,
+        "kill": false,
+        "force": false,
+        "aero": false,
+        "video": false,
+        "weak": false,
+        "winxp": false,
+        "launcher": 0,
+        "aero_disable": false
+    },
+    "multipack": {
+        "language": "en",
+        "type": "base",
+        "version": "0.0.0.0",
+        "date": null,
+        "link": null,
+        "changelog": null,
+        "new_version": "0.0.0.0"
+    },
+    "game": {
+        "version": "0.0.0.0",
+        "path": null,
+        "test": false,
+        "language": "en"
+    },
+    "processes": null,
+    "wargaming": null,
+    "youtube": null,
+    "do_not_display": {
+        "video": null,
+        "news": null
+    }
+}

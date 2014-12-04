@@ -46,21 +46,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     }));
                 }).Wait();
             }
-            catch (Exception ex) { MainWindow.MessageShow(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
-
-            /*Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate
-                    {
-                        WOIloading.Visibility = System.Windows.Visibility.Visible;
-                        WOIloading.SetResourceReference(Button.StyleProperty, "LoadingPanelWOI");
-                        WOIloading.Content = Lang.Set("PageLoading", "lLoading", (string)MainWindow.JsonSettingsGet("info.language"));
-                    }));
-                }
-                catch (Exception ex) { new Classes.Debugging().Save("WarApiOpenID.xaml", "WarApiOpenID()", ex.Message, ex.StackTrace); }
-            }).Wait();*/
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WarApiOpenID.xaml", "WarApiOpenID()", ex.Message, ex.StackTrace)); }
         }
 
         private void WB_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -122,7 +108,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             da.Duration = TimeSpan.FromSeconds(1);
                             WOIloading.BeginAnimation(Button.HeightProperty, da);
                         }
-                        catch (Exception ex) { MainWindow.MessageShow(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); }
+                        catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WarApiOpenID.xaml", "WB_LoadCompleted()", "DoubleAnimation da = new DoubleAnimation();", ex.Message, ex.StackTrace)); }
                     }));
 
                     loaded = true;
