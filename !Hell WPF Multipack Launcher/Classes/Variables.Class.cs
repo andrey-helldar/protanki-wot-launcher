@@ -51,28 +51,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                  */
                 try
                 {
-                    string path_tanks;
                     if (File.Exists(@"..\version.xml"))
-                        path_tanks = CorrectPath(Directory.GetCurrentDirectory(), -1);
-                    else
                     {
-                        var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1EAC1D02-C6AC-4FA6-9A44-96258C37C812RU}_is1");
-                        path_tanks = key != null ? (string)key.GetValue("InstallLocation") : null;
-                    }
-                    if (path_tanks != null)
-                        MainWindow.JsonSettingsSet("game.path", path_tanks);
-                    else
-                        MainWindow.MessageShow(Language.Set("MainProject", "Game_Not_Found", lang));
+                        string path_tanks = CorrectPath(Directory.GetCurrentDirectory(), -1);
 
+                        XDocument doc = XDocument.Load(path_tanks + "version.xml");
 
-                    if (path_tanks != null)
-                    {
-                        /*
-                         *  Версия клиента игры
-                         */
-                        XDocument doc = XDocument.Load(@"..\version.xml");
-
-                        if (doc.Root.Element("version").Value.IndexOf("Test") > 0)
+                        if (doc.Root.Element("version").Value.IndexOf("Test") > -1)
                         {
                             MainWindow.JsonSettingsSet("game.test", true, "bool");
                             MainWindow.JsonSettingsSet("game.version", doc.Root.Element("version").Value.Trim().Remove(0, 2).Replace(" Common Test #", "."));
@@ -89,7 +74,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                         lang_game = doc.Root.Element("meta").Element("localization").Value;
                         lang_game = lang_game.Remove(0, lang_game.IndexOf(" ")).ToLower().Trim();
                         MainWindow.JsonSettingsSet("game.language", lang_game);
+                        
+                        MainWindow.JsonSettingsSet("game.path", path_tanks);
                     }
+                    else
+                        MainWindow.MessageShow(Language.Set("MainProject", "Game_Not_Found", lang));
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Variables.Class", "Start()", "Row: PathTanks", ex.Message, ex.StackTrace)); }
 
