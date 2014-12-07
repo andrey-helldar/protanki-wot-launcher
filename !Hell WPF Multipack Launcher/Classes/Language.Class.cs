@@ -1339,6 +1339,25 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     default: return toReturn;
                                 }
 
+                            case "tbBattles":
+                                switch (lang)
+                                {
+                                    case "ru": return "Назначенные бои клана:";
+                                    case "en": return "Assigned fights Clan:";
+                                    case "de": return "Zugewiesen Kämpfe Clan:";
+                                    case "ua": return "Призначені бої клану:";
+                                    default: return toReturn;
+                                }
+
+                            case "tbProvinces":
+                                switch (lang)
+                                {
+                                    case "ru": return "Провинции клана:";
+                                    case "en": return "Province of Clan:";
+                                    case "de": return "Provinz im Clan:";
+                                    case "ua": return "Провінції клану:";
+                                    default: return toReturn;
+                                }
 
 
                             default: return toReturn;

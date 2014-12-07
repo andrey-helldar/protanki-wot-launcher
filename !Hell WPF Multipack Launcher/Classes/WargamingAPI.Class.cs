@@ -128,7 +128,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <param name="access_token">Токен</param>
         /// <param name="fields">Запрос определенных полей</param>
         /// <returns>JSON ответ</returns>
-        public string ClanBattles(string clan_id, string access_token = "", string map_id = "globalmap", string fields = "")
+        public string ClanBattles(string clan_id, string access_token = "", string map_id = "eventmap", string fields = "")
         {
             /*
              * api.worldoftanks.ru/wot/clan/battles/
@@ -183,7 +183,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <param name="province_id">Идентификатор провинции</param>
         /// <param name="map_id">Идентификатор Глобальной карты:  globalwars</param>
         /// <returns>JSON ответ</returns>
-        public string GlobalProvinces(string province_id = "", string map_id = "globalmap")
+        public string GlobalProvinces(string province_id = "", string map_id = "eventmap")
         {
             /*
              * api.worldoftanks.ru/wot/globalwar/provinces/

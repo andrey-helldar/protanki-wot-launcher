@@ -217,7 +217,7 @@
     <comment>Протокол передачи запросов Wargaming API</comment>
   </data>
   <data name="API_WOT_Clan_Battles" xml:space="preserve">
-    <value>/wot/globalwar/battles</value>
+    <value>/wot/globalwar/battles/</value>
     <comment>Список назначенных боев клана</comment>
   </data>
   <data name="API_WOT_Clan_Info" xml:space="preserve">
@@ -526,5 +526,9 @@
   </data>
   <data name="wot_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wot_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="API_WOT_EVENTMAP" xml:space="preserve">
+    <value>http://worldoftanks.ru/clanwars/maps/eventmap/</value>
+    <comment>Ссылка для быстрого перехода на события</comment>
   </data>
 </root>

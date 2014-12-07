@@ -475,24 +475,6 @@
     <Resource Include="Resources\%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\icon__landing.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\icon__meeting.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\icon__province.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\province_types_gold.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\province_types_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\province_types_start.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\flag_de.png" />
   </ItemGroup>
   <ItemGroup>
@@ -578,6 +560,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Processes.Library.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\province_types_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\province_types_start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\province_types_gold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon__province.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon__landing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon__meeting.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

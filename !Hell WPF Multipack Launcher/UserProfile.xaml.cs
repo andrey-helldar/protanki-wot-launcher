@@ -392,6 +392,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                                      */
                                                     try
                                                     {
+                                                        tbBattles.Text = Lang.Set("PageUser", "tbBattles", lang);
+
                                                         if (SelectTokenClan(Battles, SelectToken(obj, "clan_id"), "status", false) == "ok")
                                                         {
                                                             JArray arr = (JArray)Battles["data"][SelectToken(obj, "clan_id")];
@@ -422,10 +424,10 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                     ColumnDefinition cd3 = new ColumnDefinition();
                                                                     ColumnDefinition cd4 = new ColumnDefinition();
 
-                                                                    cd1.Width = new GridLength(30, GridUnitType.Pixel);
-                                                                    cd2.Width = new GridLength(155, GridUnitType.Pixel);
-                                                                    cd3.Width = new GridLength(130, GridUnitType.Pixel);
-                                                                    cd4.Width = new GridLength(80, GridUnitType.Pixel);
+                                                                    cd1.Width = new GridLength(1, GridUnitType.Auto);
+                                                                    cd2.Width = new GridLength(250, GridUnitType.Pixel);
+                                                                    cd3.Width = new GridLength(150, GridUnitType.Pixel);
+                                                                    cd4.Width = new GridLength(1, GridUnitType.Auto);
 
                                                                     gr.ColumnDefinitions.Add(cd1);
                                                                     gr.ColumnDefinitions.Add(cd2);
@@ -438,7 +440,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                     TextBlock tbID = new TextBlock();
                                                                     tbID.Text = DateFormat((string)battle["time"], "m:s");
                                                                     tbID.SetResourceReference(TextBlock.StyleProperty, "CmTIME");
-                                                                    Grid.SetColumn(tbID, 0);
+                                                                    Grid.SetColumn(tbID, 3);
 
                                                                     TextBlock CmName = new TextBlock();
                                                                     CmName.Text = SelectTokenNoClan(GlobalProvinces, (string)battle["provinces"][0] + ".province_i18n");
@@ -455,7 +457,12 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                     gr.Children.Add(CmName);
                                                                     gr.Children.Add(CmTitle);
 
-                                                                    ClanBattles.Items.Add(gr);
+                                                                    ListBoxItem lbi = new ListBoxItem();
+                                                                    lbi.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                                                                    lbi.SetResourceReference(Grid.StyleProperty, "ClanBattles");
+                                                                    lbi.Content = gr;
+
+                                                                    ClanBattles.Items.Add(lbi);
                                                                 }
                                                             }
                                                             else
@@ -500,6 +507,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                                      */
                                                     try
                                                     {
+                                                        tbProvinces.Text = Lang.Set("PageUser", "tbProvinces", lang);
+
                                                         if (SelectTokenClan(Provinces, SelectToken(obj, "clan_id"), "status", false) == "ok")
                                                         {
                                                             JObject arr = (JObject)Provinces["data"];
@@ -693,9 +702,16 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                dtDateTime = dtDateTime.AddSeconds(double.Parse(date)).ToLocalTime();
-                return dtDateTime.ToString(format);
+                if (date != "0")
+                {
+                    DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                    dtDateTime = dtDateTime.AddSeconds(double.Parse(date)).ToLocalTime();
+                    return dtDateTime.ToString(format);
+                }
+                else
+                {
+                    return "--:--";
+                }
 
                 //return DateTime.FromOADate(double.Parse(date)).ToString(format);
             }

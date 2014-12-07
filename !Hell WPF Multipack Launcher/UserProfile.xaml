@@ -47,7 +47,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="0" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF3a6696" FontWeight="Bold" FontFamily="Arial" FontSize="18">
+                            <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="0" TextWrapping="Wrap" VerticalAlignment="Bottom" FontWeight="Bold" FontFamily="Arial" FontSize="18" Foreground="#FF3A6696">
                     <Run x:Name="PlayerName">Guest</Run>
                     <Run x:Name="PlayerClan"></Run>
                             </TextBlock>
@@ -158,9 +158,9 @@
                             </Grid.ColumnDefinitions>
                             <Image x:Name="ClanEmblem2" Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="{x:Null}"/>
                             <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
-                            <Run x:Name="ClanFullname">---</Run>
+                            <Run x:Name="ClanFullname" FontWeight="Bold" FontSize="12pt">---</Run>
                             <LineBreak/>
-                            <Run x:Name="ClanDesc">---</Run>
+                            <Run x:Name="ClanDesc" FontSize="9pt">---</Run>
                             </TextBlock>
                         </Grid>
                     </StackPanel>
@@ -190,7 +190,7 @@
 
 
                             <ListBox x:Name="ClanMembers" Margin="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center">
-                                <ListBoxItem Style="{DynamicResource lbiProcess}" Width="Auto" Height="30">
+                                <!--<ListBoxItem Style="{DynamicResource lbiProcess}" Width="Auto" Height="30">
                                     <Grid Width="470">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -203,7 +203,7 @@
                                         <TextBlock Style="{DynamicResource CmTitle}" Text="Командующий" Grid.Column="2"/>
                                         <TextBlock Style="{DynamicResource CmDate}" Text="01.01.2014" Grid.Column="3"/>
                                     </Grid>
-                                </ListBoxItem>
+                                </ListBoxItem>-->
                             </ListBox>
                         </Grid>
                     </GroupBox>
@@ -211,20 +211,120 @@
             </TabItem>
             <TabItem x:Name="tiClanBattles" Header="Список боев">
                 <Grid>
-                    <ListBox x:Name="ClanBattles" Margin="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="ClanBattles" Margin="0" Grid.Row="1">
                         <ListBoxItem Style="{DynamicResource rec_not_found}">
                             <TextBlock x:Name="ClanBattlesNoRecords" Text="У клана отсутствуют назначенные бои"/>
                         </ListBoxItem>
+
+                        <ListBoxItem Style="{DynamicResource ClanBattles}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Style="{DynamicResource Icon_province}" />
+                            <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                            <TextBlock Style="{DynamicResource CmName}" Text="Маради" Grid.Column="1"/>
+                            <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
+                            </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Style="{DynamicResource ClanBattles}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Style="{DynamicResource Icon_meeting}" />
+                                <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                                <TextBlock Style="{DynamicResource CmName}" Text="Маради" Grid.Column="1"/>
+                                <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
+                            </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Style="{DynamicResource ClanBattles}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Style="{DynamicResource Icon_landing}" />
+                                <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                                <TextBlock Style="{DynamicResource CmName}" Text="Карачаево-Черкесия" Grid.Column="1"/>
+                                <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
+                                </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Style="{DynamicResource ClanBattles}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Style="{DynamicResource Icon_province}" />
+                                <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                                <TextBlock Style="{DynamicResource CmName}" Text="Маради" Grid.Column="1"/>
+                                <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
+                            </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Style="{DynamicResource ClanBattles}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Style="{DynamicResource Icon_province}" />
+                                <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                                <TextBlock Style="{DynamicResource CmName}" Text="Маради" Grid.Column="1"/>
+                                <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
+                            </Grid>
+                        </ListBoxItem>
+
+                        <ListBoxItem Style="{DynamicResource ClanBattles}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Style="{DynamicResource Icon_province}" />
+                                <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                                <TextBlock Style="{DynamicResource CmName}" Text="Маради" Grid.Column="1"/>
+                                <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
+                            </Grid>
+                        </ListBoxItem>
                     </ListBox>
+                    <TextBlock x:Name="tbBattles" HorizontalAlignment="Left" Margin="10,10,0,10" TextWrapping="Wrap" Text="Назначенные бои клана:" VerticalAlignment="Top" Foreground="#FF3A6696" FontFamily="Arial" FontSize="18" FontWeight="Bold"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tiClanProvinces" Header="Список владений">
                 <Grid>
-                    <ListBox x:Name="ClanProvinces" Margin="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="ClanProvinces" Margin="0" Grid.Row="1">
                         <ListBoxItem Style="{DynamicResource rec_not_found}">
                             <TextBlock x:Name="ClanProvincesNoRecords" Text="У клана нет провинций на Глобальной карте"/>
                         </ListBoxItem>
                     </ListBox>
+                    <TextBlock x:Name="tbProvinces" HorizontalAlignment="Left" Margin="10,10,0,10" TextWrapping="Wrap" Text="Провинции клана:" VerticalAlignment="Top" Foreground="#FF3A6696" FontSize="18" FontWeight="Bold" FontFamily="Arial"/>
                 </Grid>
             </TabItem>
         </TabControl>
