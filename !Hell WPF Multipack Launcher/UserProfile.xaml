@@ -328,19 +328,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <!--<StackPanel HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center">
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Button Style="{DynamicResource tcPage}" Grid.Column="0" Content=" " Margin="7,0" Click="Button_Click_1" Height="Auto"/>
-                <Button Style="{DynamicResource tcPage}" Grid.Column="1" Content=" " Margin="7,0" Click="Button_Click_2"/>
-                <Button Style="{DynamicResource tcPage}" Grid.Column="2" Content=" " Margin="7,0" Click="Button_Click_3"/>
-                <Button Style="{DynamicResource tcPage}" Grid.Column="3" Content=" " Margin="7,0" Click="Button_Click_4"/>
-            </Grid>
-        </StackPanel>//-->
     </Grid>
 </Page>
