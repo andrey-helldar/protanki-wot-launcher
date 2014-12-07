@@ -220,7 +220,7 @@
                             <TextBlock x:Name="ClanBattlesNoRecords" Text="У клана отсутствуют назначенные бои"/>
                         </ListBoxItem>
 
-                        <ListBoxItem Style="{DynamicResource ClanBattles}">
+                        <!--<ListBoxItem Style="{DynamicResource ClanBattles}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -229,7 +229,7 @@
                                     <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Image Style="{DynamicResource Icon_province}" />
-                            <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                            <TextBlock Style="{DynamicResource CmTIME}" Text="0" Grid.Column="3" />
                             <TextBlock Style="{DynamicResource CmName}" Text="Маради" Grid.Column="1"/>
                             <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
                             </Grid>
@@ -244,7 +244,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Style="{DynamicResource Icon_meeting}" />
-                                <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                                <TextBlock Style="{DynamicResource CmTIME}" Text="0" Grid.Column="3" />
                                 <TextBlock Style="{DynamicResource CmName}" Text="Маради" Grid.Column="1"/>
                                 <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
                             </Grid>
@@ -259,7 +259,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Style="{DynamicResource Icon_landing}" />
-                                <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                                <TextBlock Style="{DynamicResource CmTIME}" Text="0" Grid.Column="3" />
                                 <TextBlock Style="{DynamicResource CmName}" Text="Карачаево-Черкесия" Grid.Column="1"/>
                                 <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
                                 </Grid>
@@ -274,7 +274,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Style="{DynamicResource Icon_province}" />
-                                <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                                <TextBlock Style="{DynamicResource CmTIME}" Text="0" Grid.Column="3" />
                                 <TextBlock Style="{DynamicResource CmName}" Text="Маради" Grid.Column="1"/>
                                 <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
                             </Grid>
@@ -289,7 +289,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Style="{DynamicResource Icon_province}" />
-                                <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                                <TextBlock Style="{DynamicResource CmTIME}" Text="0" Grid.Column="3" />
                                 <TextBlock Style="{DynamicResource CmName}" Text="Маради" Grid.Column="1"/>
                                 <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
                             </Grid>
@@ -304,11 +304,11 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Style="{DynamicResource Icon_province}" />
-                                <TextBlock Style="{DynamicResource CmTIME}" Text="--:--" Grid.Column="3" />
+                                <TextBlock Style="{DynamicResource CmTIME}" Text="0" Grid.Column="3" />
                                 <TextBlock Style="{DynamicResource CmName}" Text="Маради" Grid.Column="1"/>
                                 <TextBlock Style="{DynamicResource CmTitle}" Text="Перевал" Grid.Column="2"/>
                             </Grid>
-                        </ListBoxItem>
+                        </ListBoxItem>-->
                     </ListBox>
                     <TextBlock x:Name="tbBattles" HorizontalAlignment="Left" Margin="10,10,0,10" TextWrapping="Wrap" Text="Назначенные бои клана:" VerticalAlignment="Top" Foreground="#FF3A6696" FontFamily="Arial" FontSize="18" FontWeight="Bold"/>
                 </Grid>
