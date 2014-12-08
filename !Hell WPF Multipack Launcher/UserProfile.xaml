@@ -88,7 +88,7 @@
                                         <LineBreak/>
                                         <Run x:Name="PercWins">Процент побед</Run>
                                         <LineBreak/><LineBreak/>
-                                        <Run x:Name="PercWinsPerc" Style="{DynamicResource stattext}">0%</Run>
+                                        <Run x:Name="PercWinsPerc" Style="{DynamicResource stattext}">0</Run><Run Style="{DynamicResource stattext}">%</Run>
                                     </TextBlock>
 
                                     <TextBlock HorizontalAlignment="Center" Grid.Column="1" Margin="0" TextWrapping="Wrap"  VerticalAlignment="Center" TextAlignment="Center">

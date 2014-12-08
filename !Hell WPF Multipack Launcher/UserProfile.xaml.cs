@@ -110,7 +110,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
                             if (!active)
                             {
-                                try { MainWindow.Navigator(); }
+                                try
+                                {
+                                    MainWindow.JsonSettingsRemove("token");
+                                    MainWindow.Navigator();
+                                }
                                 catch (Exception) { }
                             }
                             else
@@ -128,14 +132,14 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                             PlayerName.Text = nickname;
 
-                                            JObject obj = JObject.Parse(WarAPI.AccountInfo(account_id, access_token));
+                                            JObject JAccountInfo = WarAPI.AccountInfo(account_id, access_token);
                                             JObject
                                                 Clan = null,
                                                 Battles = null,
                                                 Provinces = null;
 
 
-                                            if (SelectToken(obj, "status", false) == "ok")
+                                            if ((string)JAccountInfo.SelectToken("status")=="ok")
                                             {
                                                 /* =========================================
                                                  *       Проверяем клан
@@ -143,7 +147,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                  * =========================================*/
                                                 try
                                                 {
-                                                    if (SelectToken(obj, "clan_id") == "")
+                                                    if ((int)JAccountInfo.SelectToken("clan_id") == null)
                                                     {
                                                         tiClanInfo.IsEnabled = false;
                                                         tiClanBattles.IsEnabled = false;
@@ -153,10 +157,10 @@ namespace _Hell_WPF_Multipack_Launcher
                                                     {
                                                         //obj["data"]["2732865"]["clan_id"] = 60118; // Подставной клан  
 
-                                                        Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id"), access_token));
-                                                        Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id"), access_token));
-                                                        Provinces = JObject.Parse(WarAPI.ClanProvinces(SelectToken(obj, "clan_id"), access_token, "type,name,arena_i18n,prime_time,revenue,occupancy_time,attacked"));
-                                              
+                                                        Clan = WarAPI.ClanInfo(SelectToken(JAccountInfo, "clan_id"), access_token);
+                                                        Battles = WarAPI.ClanBattles(SelectToken(JAccountInfo, "clan_id"), access_token);
+                                                        Provinces = WarAPI.ClanProvinces(SelectToken(JAccountInfo, "clan_id"), access_token, "type,name,arena_i18n,prime_time,revenue,occupancy_time,attacked");
+
                                                     }
                                                 }
                                                 catch (Exception) { }
@@ -169,32 +173,24 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 try
                                                 {
                                                     // Краткая информация по клану
-                                                    if (Clan != null)
+                                                    if (Clan != null && (string)Clan.SelectToken("status") == "ok")
                                                     {
                                                         try
                                                         {
                                                             DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                                                            dt = dt.AddSeconds(Convert.ToDouble(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + account_id + ".created_at")));
+                                                            dt = dt.AddSeconds((double)Clan.SelectToken(String.Format("data.{0}.members.{1}.created_at", (string)JAccountInfo.SelectToken("clan_id"), account_id)));
                                                             TimeSpan ts = DateTime.Now - dt;
 
-                                                            PlayerClan.Text = "[" + SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation") + "]";
+                                                            PlayerClan.Text = "[" + (string)Clan.SelectToken(String.Format("data.{0}.abbreviation", (string)JAccountInfo.SelectToken("clan_id"))) + "]";
 
-                                                            PlayerClan2.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
+                                                            PlayerClan2.Text = (string)Clan.SelectToken(String.Format("data.{0}.name", (string)JAccountInfo.SelectToken("clan_id")));
                                                             ClanFullname.Text = PlayerClan2.Text;
 
-                                                            PlayerZvanie.Text = Lang.Set("Rank", SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members." + account_id + ".role"), lang);
-
-                                                            //   emblems.medium
-                                                            //   SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium")
-                                                            //ClanEmblem.Source = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium");
-                                                            //ClanEmblem2.Source = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium");
-
-                                                            var image = new Image();
-                                                            var fullFilePath = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "emblems.medium", true);
+                                                            PlayerZvanie.Text = Lang.Set("Rank", (string)Clan.SelectToken(String.Format("data.{0}.members.{1}.role", (string)JAccountInfo.SelectToken("clan_id"), account_id)), lang);
 
                                                             BitmapImage bitmap = new BitmapImage();
                                                             bitmap.BeginInit();
-                                                            bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                                                            bitmap.UriSource = new Uri((string)Clan.SelectToken(String.Format("data.{0}.emblems.medium", (string)JAccountInfo.SelectToken("clan_id"))), UriKind.Absolute);
                                                             bitmap.EndInit();
 
                                                             ClanEmblem.Source = bitmap;
@@ -205,29 +201,29 @@ namespace _Hell_WPF_Multipack_Launcher
                                                     else
                                                     {
                                                         PlayerClan2.Text = Lang.Set("PageUser", "NotClan", lang);
-                                                        PlayerZvanie.Text = "";
+                                                        PlayerZvanie.Text = String.Empty;
                                                     }
 
 
                                                     // Процент побед
                                                     PercWins.Text = Lang.Set("PageUser", "tbPercentWins", lang);
-                                                    PercWinsPerc.Text = String.Format("{0}%", (Math.Round(((Convert.ToDouble(SelectToken(obj, "statistics.all.wins")) / Convert.ToDouble(SelectToken(obj, "statistics.all.battles"))) * 100), 2)).ToString());
+                                                    PercWinsPerc.Text = (Math.Round(((double)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.wins", account_id)) / (double)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.battles", account_id))) * 100, 2)).ToString();
 
                                                     // Личный рейтинг
                                                     MyRating.Text = Lang.Set("PageUser", "tbMyRating", lang);
-                                                    MyRatingPerc.Text = SelectToken(obj, "global_rating");
+                                                    MyRatingPerc.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.global_rating", account_id));
 
                                                     // Средний опыт за бой
                                                     AvgXP.Text = Lang.Set("PageUser", "tbAvgXP", lang);
-                                                    AvgXPPerc.Text = SelectToken(obj, "statistics.all.battle_avg_xp");
+                                                    AvgXPPerc.Text =(string)JAccountInfo.SelectToken(String.Format("data.{0}.all.battle_avg_xp", account_id));
 
                                                     // Количество боев
                                                     BattleCount.Text = Lang.Set("PageUser", "tbCountWars", lang);
-                                                    BattleCountPerc.Text = SelectToken(obj, "statistics.all.battles");
+                                                    BattleCountPerc.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.battles", account_id));
 
                                                     // Средний нанесенный урон за бой
                                                     AvgDamage.Text = Lang.Set("PageUser", "tbAvgDamage", lang);
-                                                    AvgDamagePerc.Text = SelectToken(obj, "statistics.all.avg_damage_assisted");
+                                                    AvgDamagePerc.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.avg_damage_assisted", account_id));
                                                 }
                                                 catch (Exception) { }
 
@@ -280,52 +276,35 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Graphic", ex.Message, ex.StackTrace)); }
                                                 */
 
-                                                /*
-                                                 *   ВКЛАДКА КЛАН
-                                                 *       Обшая информация
-                                                 */
+
+
+                                                /* =========================================
+                                                 *       Общая информация о клане
+                                                 * =========================================*/
                                                 if (Clan != null)
                                                 {
                                                     try
                                                     {
-                                                        ClanDesc.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "motto");
-                                                        //ClanFullname.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "name");
-                                                        //ClanAbbr.Text += SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "abbreviation");
-                                                        ClanCount.Text = SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "members_count");
+                                                        ClanDesc.Text = (string)Clan.SelectToken(String.Format("data.{0}.motto", (string)JAccountInfo.SelectToken("clan_id")));
+                                                        ClanCount.Text = (string)Clan.SelectToken(String.Format("data.{0}.members_count", (string)JAccountInfo.SelectToken("clan_id")));
 
                                                         dataonTitle.Text = Lang.Set("PageUser", "tbDataOn", lang);
-                                                        dataon.Text = DateFormat(SelectTokenClan(Clan, SelectToken(obj, "clan_id"), "updated_at"));
+                                                        dataon.Text = DateFormat((double)Clan.SelectToken(String.Format("data.{0}.updated_at", (string)JAccountInfo.SelectToken("clan_id"))));
 
                                                     }
                                                     catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Clan", ex.Message, ex.StackTrace)); }
 
 
-                                                    /*
+                                                    /* =========================================
                                                      *       Члены клана
-                                                     */
+                                                     * =========================================*/
                                                     try
                                                     {
                                                         ClanMembers.Items.Clear();
                                                         int i = 1;
 
-                                                        foreach (var member in (JObject)Clan["data"][SelectToken(obj, "clan_id")]["members"])
+                                                        foreach (var member in (JObject)Clan.SelectToken(String.Format("data.{0}.members", (string)JAccountInfo.SelectToken("clan_id"))))
                                                         {
-                                                            /*
-                                                             * <ListBoxItem Style="{DynamicResource lbiProcess}" Width="396">
-                                                             *   <Grid>
-                                                             *       <Grid.ColumnDefinitions>
-                                                             *           <ColumnDefinition Width="30"/>
-                                                             *           <ColumnDefinition Width="155"/>
-                                                             *           <ColumnDefinition Width="130"/>
-                                                             *           <ColumnDefinition Width="80"/>
-                                                             *       </Grid.ColumnDefinitions>
-                                                             *       <TextBlock Style="{DynamicResource CmID}" Text="100" />
-                                                             *       <TextBlock Style="{DynamicResource CmName}" Text="d_voronoff" Grid.Column="1"/>
-                                                             *       <TextBlock Style="{DynamicResource CmTitle}" Text="Командующий" Grid.Column="2"/>
-                                                             *       <TextBlock Style="{DynamicResource CmDate}" Text="01.01.2014" Grid.Column="3"/>
-                                                             *   </Grid>
-                                                             * </ListBoxItem>
-                                                             */
                                                             Grid gr = new Grid();
                                                             gr.SetResourceReference(Grid.StyleProperty, "GridW470");
 
@@ -356,12 +335,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                                             TextBlock CmTitle = new TextBlock();
                                                             CmTitle.Text = Lang.Set("Rank", (string)member.Value["role"], lang);
-                                                            //CmTitle.Text = (string)member.Value["role"];
                                                             CmTitle.SetResourceReference(TextBlock.StyleProperty, "CmTitle");
                                                             Grid.SetColumn(CmTitle, 2);
 
                                                             TextBlock CmDate = new TextBlock();
-                                                            CmDate.Text = DateFormat((string)member.Value["created_at"]);
+                                                            CmDate.Text = DateFormat((double)member.Value["created_at"]);
                                                             CmDate.SetResourceReference(TextBlock.StyleProperty, "CmDate");
                                                             Grid.SetColumn(CmDate, 3);
 
@@ -376,12 +354,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                                             lbi.Content = gr;
 
                                                             ClanMembers.Items.Add(lbi);
-                                                            /*ClanMembers.Items.Add(String.Format("{0}  ::  {1}  ::  {2}  ::  {3}",
-                                                                (++i).ToString(),
-                                                                (string)member.Value["account_name"],
-                                                                (string)member.Value["role_i18n"],
-                                                                (string)member.Value["created_at"]
-                                                            ));*/
                                                         }
                                                     }
                                                     catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Clan members", ex.Message, ex.StackTrace)); }
@@ -642,15 +614,15 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="key">Ключ выборки</param>
         /// <param name="data">Если TRUE, то выбираем ключ из массива DATA информации о пользователе</param>
         /// <returns>Возвращаем значение элемента в текстовом формате</returns>
-        private string SelectToken(JObject obj, string key, bool data = true)
+        /*private string SelectToken(JObject obj, string key, bool data = true)
         {
-            try { return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", account_id, key)).ToString(); }
+            try { return (string)obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", account_id, key)); }
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "SelectToken()", "Key: " + key, "Data: " + data, obj.ToString(), ex.Message, ex.StackTrace));
                 return null;
             }
-        }
+        }*/
 
         /// <summary>
         /// Из объекта клана JObject выбираем нужный токен.
@@ -660,15 +632,15 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="key">Ключ выборки</param>
         /// <param name="data">Если TRUE, то выбираем ключ из массива DATA информации о пользователе</param>
         /// <returns>Возвращаем значение элемента в текстовом формате</returns>
-        private string SelectTokenClan(JObject obj, string clan_id, string key, bool data = true)
+        /*private string SelectTokenClan(JObject obj, string clan_id, string key, bool data = true)
         {
             try { return obj.SelectToken(!data ? key : String.Format("data.{0}.{1}", clan_id, key)).ToString(); }
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "SelectTokenClan()", "Clan" + clan_id, "Key: " + key, "Data: " + data, obj.ToString(), ex.Message, ex.StackTrace));
-                return "fail";
+                return null;
             }
-        }
+        }*/
 
         /// <summary>
         /// Получение информации из раздела
@@ -677,7 +649,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="key">Ключ</param>
         /// <param name="data">Искать в разделе DATA?</param>
         /// <returns>JSON</returns>
-        private string SelectTokenNoClan(JObject obj, string key, bool data = true)
+        /*private string SelectTokenNoClan(JObject obj, string key, bool data = true)
         {
             try { return obj.SelectToken(!data ? key : String.Format("data.{0}", key)).ToString(); }
             catch (Exception ex)
@@ -685,7 +657,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "SelectTokenNoClan()", "Key: " + key, "Data: " + data, obj.ToString(), ex.Message, ex.StackTrace));
                 return "fail";
             }
-        }
+        }*/
 
 
         /// <summary>
@@ -704,27 +676,25 @@ namespace _Hell_WPF_Multipack_Launcher
             return false;
         }
 
-        private string DateFormat(string date, string format = "dd.MM.yyyy")
+        private string DateFormat(double date, string format = "dd.MM.yyyy")
         {
             try
             {
-                if (date != "0")
+                if (date > 0)
                 {
                     DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                    dtDateTime = dtDateTime.AddSeconds(double.Parse(date)).ToLocalTime();
+                    dtDateTime = dtDateTime.AddSeconds(date).ToLocalTime();
                     return dtDateTime.ToString(format);
                 }
                 else
-                {
                     return "--:--";
-                }
 
                 //return DateTime.FromOADate(double.Parse(date)).ToString(format);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return date;
+                return date.ToString();
             }
         }
 

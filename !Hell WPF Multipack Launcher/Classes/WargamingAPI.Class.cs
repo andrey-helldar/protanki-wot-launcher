@@ -33,48 +33,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception) { return null; }
         }
 
-
-        /// <summary>
-        /// Запрашиваем список пользователей для вычисления ACCOUNT_ID
-        /// </summary>
-        /// <param name="name">Имя пользователя для начала поиска (поисковый запрос)</param>
-        /// <returns>Выводим список пользователей с идентификаторами</returns>
-        public Dictionary<string, string> AccountList(string name)
-        {
-            string Data = String.Empty;
-
-            try
-            {
-                Data = "application_id=" + Properties.Resources.API;
-                Data += "&fields=" + "nickname,account_id";
-                Data += "&search=" + name;
-
-                JObject obj = JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Account_List, Data));
-                Dictionary<string, string> users = new Dictionary<string, string>();
-
-                users.Add("status", obj.SelectToken("status").ToString());
-
-                try
-                {
-                    if (obj.SelectToken("status").ToString() == "ok")
-                        for (int i = 0; i < Convert.ToInt16(obj.SelectToken("count").ToString()); i++)
-                            users.Add(obj.SelectToken("data[" + i.ToString() + "].nickname").ToString(), obj.SelectToken("data[" + i.ToString() + "].account_id").ToString());
-
-                    return users;
-                }
-                catch (Exception) { return users; }                
-            }
-            catch (WebException we) { Debugging.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, we.Message, we.StackTrace); return null; }
-            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "AccountList()", "Username: " + name, "JSON: " + Data, ex.Message, ex.StackTrace); return null; }
-        }
-
         /// <summary>
         /// Получение информации о пользователе
         /// </summary>
         /// <param name="account_id">Идентификатор пользователя</param>
         /// <param name="access_token">Если ключ введен, отображается личная информация, иначе только общая</param>
         /// <returns>Возврат данных в формате JSON</returns>
-        public string AccountInfo(string account_id, string access_token="")
+        public JObject AccountInfo(string account_id, string access_token="")
         {
             /*
              * https://ru.wargaming.net/developers/api_reference/wot/account/info/
@@ -87,7 +52,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Data += "&account_id=" + account_id;
                 if (access_token.Length > 0) Data += "&access_token=" + access_token;
 
-                return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Account_Info, Data);
+                return JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Account_Info, Data));
             }
             catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "AccountInfo()", "Account ID: " + account_id, ex.Message, ex.StackTrace); return null; }
         }
@@ -200,15 +165,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             }
             catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanProvinces()", "Province ID: " + province_id, "Map ID: " + map_id, ex.Message, ex.StackTrace); return null; }
         }
-
-
-        /*public string ClanMember(string account_id)
-        {
-            /*
-             * https://api.worldoftanks.ru/wot/clan/membersinfo/
-             *
-            return POST(Properties.Resources.API_Protocol + Properties.Resources.API_Account_Info, Data);
-        }*/
 
 
         /// <summary>

@@ -17,7 +17,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         Crypt Crypt = new Crypt();
 
 
-        public string Send(string Url, JObject json, string encoded_string = null)
+        public string Send(string Url, JObject json, string encoded_string = null, bool manual_enc = true)
         {
             string Data = String.Empty;
             string Out = String.Empty;
@@ -28,7 +28,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 if (encoded_string == null)
                 {
-                    if (Properties.Resources.API_DEV_CRYPT == "1")
+                    if (Properties.Resources.API_DEV_CRYPT == "1" && manual_enc)
                         Data = "data=" + Crypt.Encrypt(json.ToString(), UserID) + "&u=" + UserID + "&e=" + Properties.Resources.API_DEV_CRYPT;
                     else
                         Data = "data=" + json.ToString();
