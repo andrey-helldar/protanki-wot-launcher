@@ -218,9 +218,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 PlayerGold.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.gold", account_id));
                                                 PlayerCredit.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.credits", account_id));
                                                 PlayerXP.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.free_xp", account_id));
-                                                iAccountType.Source = "";
-
-                                                prem.Content = SelectToken(obj, "private.is_premium") == "True" ? "Премиум аккаунт" : "Базовый аккаунт";*/
+                                                iAccountType.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)MainWindow.JsonSettingsGet("info.ProductName"), (bool)JAccountInfo.SelectToken(String.Format("data.{0}.private.is_premium", account_id)) ? "ico-account-premium.png" : "ico-account-base.png")));
 
                                                 /*Batles.Text = SelectToken(obj, "statistics.all.battles");                               
                                                 Wins.Text = SelectToken(obj, "statistics.all.wins");

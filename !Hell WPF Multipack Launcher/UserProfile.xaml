@@ -65,12 +65,12 @@
                                         <LineBreak/>
                                         <Run x:Name="PlayerZvanie">---</Run>
                                     </TextBlock>
-                                    <TextBlock HorizontalAlignment="Right" Grid.Column="3" Margin="0,0,0,-1" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
-                                        <Run x:Name="PlayerGold">---</Run>
+                                    <TextBlock HorizontalAlignment="Right" Grid.Column="3" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial">
+                                        <Run x:Name="PlayerGold" Foreground="#FFFFD100" FontWeight="Bold">---</Run><Image Source="Resources/gold.png" Margin="5,0,0,0" />
                                         <LineBreak/>
-                                        <Run x:Name="PlayerCredit">---</Run>
+                                        <Run x:Name="PlayerCredit">---</Run><Image Source="Resources/credit.png" Margin="5,0,0,0" />
                                         <LineBreak/>
-                                        <Run x:Name="PlayerXP">---</Run>
+                                        <Run x:Name="PlayerXP">---</Run><Image Source="Resources/currency-experience.png" Margin="5,0,0,0" />
                                     </TextBlock>
                                     <Image x:Name="iAccountType" Grid.Column="2" HorizontalAlignment="Center" Height="25" Margin="10,0" VerticalAlignment="Center" Width="25" Source="Resources/ico-account-base.png" Stretch="None"/>
                                 </Grid>
