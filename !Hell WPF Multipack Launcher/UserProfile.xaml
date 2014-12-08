@@ -56,13 +56,23 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Image x:Name="ClanEmblem" Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Source="{x:Null}"/>
-                                    <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
-                            <Run x:Name="PlayerClan2">---</Run>
-                            <LineBreak/>
-                            <Run x:Name="PlayerZvanie">---</Run>
+                                    <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,7,0,6" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial">
+                                        <Run x:Name="PlayerClan2">---</Run>
+                                        <LineBreak/>
+                                        <Run x:Name="PlayerZvanie">---</Run>
                                     </TextBlock>
+                                    <TextBlock HorizontalAlignment="Right" Grid.Column="3" Margin="0,0,0,-1" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="#FF676767" FontFamily="Arial">
+                                        <Run x:Name="PlayerGold">---</Run>
+                                        <LineBreak/>
+                                        <Run x:Name="PlayerCredit">---</Run>
+                                        <LineBreak/>
+                                        <Run x:Name="PlayerXP">---</Run>
+                                    </TextBlock>
+                                    <Image x:Name="iAccountType" Grid.Column="2" HorizontalAlignment="Center" Height="25" Margin="10,0" VerticalAlignment="Center" Width="25" Source="Resources/ico-account-base.png" Stretch="None"/>
                                 </Grid>
                             </StackPanel>
 

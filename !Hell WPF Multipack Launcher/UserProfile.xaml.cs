@@ -36,6 +36,7 @@ namespace _Hell_WPF_Multipack_Launcher
         string nickname = String.Empty;
         string account_id = String.Empty;
         string access_token = String.Empty;
+        string clan_id = String.Empty;
 
         //private ObservableCollection<AssetClass> classes;
 
@@ -77,7 +78,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 string user_name = (string)MainWindow.JsonSettingsGet("token.nickname");
                 if (user_name != null && user_name != "") MainWindow.JsonSettingsSet("info.user_name", user_name);
             }
-            catch (Exception) { }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Set username", ex.Message, ex.StackTrace)); }
 
             // Apply language
             try
@@ -90,14 +91,11 @@ namespace _Hell_WPF_Multipack_Launcher
                         dataonTitle.Text = Lang.Set("PageUser", "tbDataOn", lang);
                     }));
             }
-            catch (Exception) { }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Apply language", ex.Message, ex.StackTrace)); }
 
 
             try
             {
-                // Проверяем актуальность токена
-                bool active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
-
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
                         try
@@ -105,17 +103,14 @@ namespace _Hell_WPF_Multipack_Launcher
                             MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
                             Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
 
-
-                            active = CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id");
-
-                            if (!active)
+                            if (!(CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id")))
                             {
                                 try
                                 {
                                     MainWindow.JsonSettingsRemove("token");
                                     MainWindow.Navigator();
                                 }
-                                catch (Exception) { }
+                                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Token is FAIL", ex.Message, ex.StackTrace)); }
                             }
                             else
                             {
@@ -123,10 +118,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     {
                                         try
                                         {
-                                            /*
-                                             *      Читаем информацию о пользователе
-                                             */
-                                            nickname = (string)MainWindow.JsonSettingsGet("token.nickname"); // Переменная, чтобы по 100 раз не читать конфиг
+                                            nickname = (string)MainWindow.JsonSettingsGet("token.nickname");
                                             account_id = (string)MainWindow.JsonSettingsGet("token.account_id");
                                             access_token = (string)MainWindow.JsonSettingsGet("token.access_token");
 
@@ -147,7 +139,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                  * =========================================*/
                                                 try
                                                 {
-                                                    if ((int)JAccountInfo.SelectToken("clan_id") == null)
+                                                    if (JAccountInfo.SelectToken("clan_id") == null)
                                                     {
                                                         tiClanInfo.IsEnabled = false;
                                                         tiClanBattles.IsEnabled = false;
@@ -156,15 +148,15 @@ namespace _Hell_WPF_Multipack_Launcher
                                                     else
                                                     {
                                                         //obj["data"]["2732865"]["clan_id"] = 60118; // Подставной клан  
+                                                        clan_id = (string)JAccountInfo.SelectToken(String.Format("data.{0}.clan_id", account_id));
 
-                                                        Clan = WarAPI.ClanInfo((string)JAccountInfo.SelectToken("clan_id"), access_token);
-                                                        Battles = WarAPI.ClanBattles((string)JAccountInfo.SelectToken("clan_id"), access_token);
-                                                        Provinces = WarAPI.ClanProvinces((string)JAccountInfo.SelectToken("clan_id"), access_token, "type,name,arena_i18n,prime_time,revenue,occupancy_time,attacked");
+                                                        Clan = WarAPI.ClanInfo(clan_id, access_token);
+                                                        Battles = WarAPI.ClanBattles(clan_id, access_token);
+                                                        Provinces = WarAPI.ClanProvinces(clan_id, access_token, "type,name,arena_i18n,prime_time,revenue,occupancy_time,attacked");
 
                                                     }
                                                 }
-                                                catch (Exception) { }
-
+                                                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Check Clan", ex.Message, ex.StackTrace)); }
 
 
                                                 /* =========================================
@@ -172,38 +164,32 @@ namespace _Hell_WPF_Multipack_Launcher
                                                  * =========================================*/
                                                 try
                                                 {
-                                                    // Краткая информация по клану
-                                                    if (Clan != null && (string)Clan.SelectToken("status") == "ok")
+                                                    if ((string)Clan.SelectToken("status") == "ok")
                                                     {
-                                                        try
-                                                        {
-                                                            DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-                                                            dt = dt.AddSeconds((double)Clan.SelectToken(String.Format("data.{0}.members.{1}.created_at", (string)JAccountInfo.SelectToken("clan_id"), account_id)));
-                                                            TimeSpan ts = DateTime.Now - dt;
+                                                        DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                                                        dt = dt.AddSeconds((double)Clan.SelectToken(String.Format("data.{0}.members.{1}.created_at", clan_id, account_id)));
+                                                        TimeSpan ts = DateTime.Now - dt;
 
-                                                            PlayerClan.Text = "[" + (string)Clan.SelectToken(String.Format("data.{0}.abbreviation", (string)JAccountInfo.SelectToken("clan_id"))) + "]";
+                                                        PlayerClan.Text = "[" + (string)Clan.SelectToken(String.Format("data.{0}.abbreviation", clan_id)) + "]";
 
-                                                            PlayerClan2.Text = (string)Clan.SelectToken(String.Format("data.{0}.name", (string)JAccountInfo.SelectToken("clan_id")));
-                                                            ClanFullname.Text = PlayerClan2.Text;
+                                                        PlayerClan2.Text = (string)Clan.SelectToken(String.Format("data.{0}.name", clan_id));
+                                                        ClanFullname.Text = PlayerClan2.Text;
 
-                                                            PlayerZvanie.Text = Lang.Set("Rank", (string)Clan.SelectToken(String.Format("data.{0}.members.{1}.role", (string)JAccountInfo.SelectToken("clan_id"), account_id)), lang);
+                                                        PlayerZvanie.Text = Lang.Set("Rank", (string)Clan.SelectToken(String.Format("data.{0}.members.{1}.role", clan_id, account_id)), lang);
 
-                                                            BitmapImage bitmap = new BitmapImage();
-                                                            bitmap.BeginInit();
-                                                            bitmap.UriSource = new Uri((string)Clan.SelectToken(String.Format("data.{0}.emblems.medium", (string)JAccountInfo.SelectToken("clan_id"))), UriKind.Absolute);
-                                                            bitmap.EndInit();
+                                                        BitmapImage bitmap = new BitmapImage();
+                                                        bitmap.BeginInit();
+                                                        bitmap.UriSource = new Uri((string)Clan.SelectToken(String.Format("data.{0}.emblems.medium", clan_id)), UriKind.Absolute);
+                                                        bitmap.EndInit();
 
-                                                            ClanEmblem.Source = bitmap;
-                                                            ClanEmblem2.Source = bitmap;
-                                                        }
-                                                        catch (Exception) { }
+                                                        ClanEmblem.Source = bitmap;
+                                                        ClanEmblem2.Source = bitmap;
                                                     }
                                                     else
                                                     {
                                                         PlayerClan2.Text = Lang.Set("PageUser", "NotClan", lang);
                                                         PlayerZvanie.Text = String.Empty;
                                                     }
-
 
                                                     // Процент побед
                                                     PercWins.Text = Lang.Set("PageUser", "tbPercentWins", lang);
@@ -225,14 +211,14 @@ namespace _Hell_WPF_Multipack_Launcher
                                                     AvgDamage.Text = Lang.Set("PageUser", "tbAvgDamage", lang);
                                                     AvgDamagePerc.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.avg_damage_assisted", account_id));
                                                 }
-                                                catch (Exception) { }
+                                                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "User Info", ex.Message, ex.StackTrace)); }
 
 
 
-                                                /*PlayerGold.Text = SelectToken(obj, "private.gold");
-                                                rating.Content = "Личный рейтинг: " + SelectToken(obj, "global_rating");
-                                                credit.Content = "Кредитов: " + SelectToken(obj, "private.credits");
-                                                opit.Content = "Свободный опыт: " + SelectToken(obj, "private.free_xp");
+                                                PlayerGold.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.gold", account_id));
+                                                PlayerCredit.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.credits", account_id));
+                                                PlayerXP.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.free_xp", account_id));
+                                                iAccountType.Source = "";
 
                                                 prem.Content = SelectToken(obj, "private.is_premium") == "True" ? "Премиум аккаунт" : "Базовый аккаунт";*/
 
@@ -285,11 +271,11 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 {
                                                     try
                                                     {
-                                                        ClanDesc.Text = (string)Clan.SelectToken(String.Format("data.{0}.motto", (string)JAccountInfo.SelectToken("clan_id")));
-                                                        ClanCount.Text = (string)Clan.SelectToken(String.Format("data.{0}.members_count", (string)JAccountInfo.SelectToken("clan_id")));
+                                                        ClanDesc.Text = (string)Clan.SelectToken(String.Format("data.{0}.motto", clan_id));
+                                                        ClanCount.Text = (string)Clan.SelectToken(String.Format("data.{0}.members_count", clan_id));
 
                                                         dataonTitle.Text = Lang.Set("PageUser", "tbDataOn", lang);
-                                                        dataon.Text = DateFormat((double)Clan.SelectToken(String.Format("data.{0}.updated_at", (string)JAccountInfo.SelectToken("clan_id"))));
+                                                        dataon.Text = DateFormat((double)Clan.SelectToken(String.Format("data.{0}.updated_at", clan_id)));
 
                                                     }
                                                     catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Clan", ex.Message, ex.StackTrace)); }
@@ -303,7 +289,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                         ClanMembers.Items.Clear();
                                                         int i = 1;
 
-                                                        foreach (var member in (JObject)Clan.SelectToken(String.Format("data.{0}.members", (string)JAccountInfo.SelectToken("clan_id"))))
+                                                        foreach (var member in (JObject)Clan.SelectToken(String.Format("data.{0}.members", clan_id)))
                                                         {
                                                             Grid gr = new Grid();
                                                             gr.SetResourceReference(Grid.StyleProperty, "GridW470");
@@ -369,7 +355,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                                         if ((string)Battles.SelectToken("status") == "ok")
                                                         {
-                                                            JArray arr = (JArray)Battles.SelectToken("data." + (string)JAccountInfo.SelectToken("clan_id"));
+                                                            JArray arr = (JArray)Battles.SelectToken("data." + clan_id);
 
                                                             if (arr.Count > 0)
                                                             {

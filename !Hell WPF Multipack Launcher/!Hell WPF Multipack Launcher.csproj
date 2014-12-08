@@ -582,6 +582,12 @@
   <ItemGroup>
     <Resource Include="Resources\gold.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ico-account-premium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ico-account-base.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

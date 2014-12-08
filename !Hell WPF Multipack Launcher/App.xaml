@@ -2400,12 +2400,14 @@
             <Setter Property="Source" Value="Resources/province_types_gold.png"/>
             <Setter Property="Margin" Value="5,0"/>
         </Style>
+        
         <Style x:Key="province_types_normal" TargetType="{x:Type Image}">
             <Setter Property="Width" Value="30"/>
             <Setter Property="Height" Value="24"/>
             <Setter Property="Source" Value="Resources/province_types_normal.png"/>
             <Setter Property="Margin" Value="5,0"/>
         </Style>
+        
         <Style x:Key="province_types_start" TargetType="{x:Type Image}">
             <Setter Property="Width" Value="30"/>
             <Setter Property="Height" Value="24"/>
