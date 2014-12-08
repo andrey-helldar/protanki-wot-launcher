@@ -102,7 +102,7 @@
                                         <ColumnDefinition Width="27*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
-                                        <Image Source="Resources/stat_perc_vins.png" Width="33" Height="29"/>
+                                        <Image Source="Resources/stat_perc_vins.png" Width="50" Height="50" Stretch="Fill"/>
                                         <LineBreak/>
                                         <Run x:Name="PercWins">Процент побед</Run>
                                         <LineBreak/><LineBreak/>
@@ -118,7 +118,7 @@
                                     </TextBlock>
 
                                     <TextBlock HorizontalAlignment="Center" Grid.Column="2" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
-                                        <Image Source="Resources/stat_perc_avgxp.png" Width="33" Height="29"/>
+                                        <Image Source="Resources/stat_perc_avgxp.png" Width="50" Height="50"/>
                                         <LineBreak/>
                                         <Run x:Name="AvgXP">Средний опыт за бой</Run>
                                         <LineBreak/><LineBreak/>
@@ -135,7 +135,7 @@
                                         <ColumnDefinition Width="1*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
-                                        <Image Source="Resources/stat_perc_battles.png" Width="33" Height="29"/>
+                                        <Image Source="Resources/stat_perc_battles.png" Width="50" Height="50"/>
                                         <LineBreak/>
                                         <Run x:Name="BattleCount">Количество боев</Run>
                                         <LineBreak/><LineBreak/>
@@ -143,7 +143,7 @@
                                     </TextBlock>
 
                                     <TextBlock HorizontalAlignment="Center" Grid.Column="2" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
-                                        <Image Source="Resources/stat_perc_avgdamage.png" Width="33" Height="29"/>
+                                        <Image Source="Resources/stat_perc_avgdamage.png" Width="50" Height="50"/>
                                         <LineBreak/>
                                         <Run x:Name="AvgDamage">Средний нанесенный урон за бой</Run>
                                         <LineBreak/><LineBreak/>
