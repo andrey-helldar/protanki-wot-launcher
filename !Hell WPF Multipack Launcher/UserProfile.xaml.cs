@@ -419,6 +419,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
 
                                                                     Grid gr = new Grid();
+                                                                    gr.SetResourceReference(Grid.StyleProperty, "ClanBattlesGrid");
 
                                                                     ColumnDefinition cd1 = new ColumnDefinition();
                                                                     ColumnDefinition cd2 = new ColumnDefinition();
@@ -426,8 +427,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                     ColumnDefinition cd4 = new ColumnDefinition();
 
                                                                     cd1.Width = new GridLength(1, GridUnitType.Auto);
-                                                                    cd2.Width = new GridLength(250, GridUnitType.Pixel);
-                                                                    cd3.Width = new GridLength(150, GridUnitType.Pixel);
+                                                                    //cd2.Width = new GridLength(250, GridUnitType.Pixel);
+                                                                    cd3.Width = new GridLength(1, GridUnitType.Auto);
                                                                     cd4.Width = new GridLength(1, GridUnitType.Auto);
 
                                                                     gr.ColumnDefinitions.Add(cd1);
@@ -439,7 +440,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                     im.SetResourceReference(Image.StyleProperty, "Icon_" + (string)battle["type"]);
 
                                                                     TextBlock tbID = new TextBlock();
-                                                                    tbID.Text = DateFormat((string)battle["time"], "m:s");
+                                                                    tbID.Text = DateFormat((string)battle["time"], "HH:mm");
                                                                     tbID.SetResourceReference(TextBlock.StyleProperty, "CmTIME");
                                                                     Grid.SetColumn(tbID, 3);
 
@@ -520,7 +521,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                 foreach (var province in arr)
                                                                 {
                                                                     Grid gr = new Grid();
-                                                                    if ((string)province.Value["attacked"] == "true") gr.SetResourceReference(Grid.StyleProperty, "attacked");
+                                                                    gr.SetResourceReference(Grid.StyleProperty, "ClanBattlesGrid");
 
                                                                     ColumnDefinition cd1 = new ColumnDefinition();
                                                                     ColumnDefinition cd2 = new ColumnDefinition();
@@ -530,12 +531,12 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                     ColumnDefinition cd6 = new ColumnDefinition();
                                                                     ColumnDefinition cd7 = new ColumnDefinition();
 
-                                                                    cd1.Width = new GridLength(30, GridUnitType.Auto);
-                                                                    cd2.Width = new GridLength(30, GridUnitType.Auto);
-                                                                    cd3.Width = new GridLength(30, GridUnitType.Auto);
-                                                                    cd4.Width = new GridLength(30, GridUnitType.Auto);
-                                                                    cd5.Width = new GridLength(30, GridUnitType.Auto);
-                                                                    cd6.Width = new GridLength(30, GridUnitType.Auto);
+                                                                    cd1.Width = new GridLength(1, GridUnitType.Auto);
+                                                                    //cd2.Width = new GridLength(1, GridUnitType.Auto);
+                                                                    cd3.Width = new GridLength(1, GridUnitType.Auto);
+                                                                    cd4.Width = new GridLength(50, GridUnitType.Pixel);
+                                                                    cd5.Width = new GridLength(1, GridUnitType.Auto);
+                                                                    cd6.Width = new GridLength(50, GridUnitType.Pixel);
 
                                                                     gr.ColumnDefinitions.Add(cd1);
                                                                     gr.ColumnDefinitions.Add(cd2);
@@ -558,7 +559,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                     Grid.SetColumn(t2, 2);
 
                                                                     TextBlock t3 = new TextBlock();
-                                                                    t3.Text = DateFormat((string)province.Value["prime_time"], "m:s");
+                                                                    t3.Text = DateFormat((string)province.Value["prime_time"], "HH:mm");
                                                                     t3.SetResourceReference(TextBlock.StyleProperty, "t3");
                                                                     Grid.SetColumn(t3, 3);
 
@@ -579,9 +580,13 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                     gr.Children.Add(t4);
                                                                     gr.Children.Add(t5);
 
-                                                                    ClanProvinces.Items.Add(gr);
-                                                                }
+                                                                    ListBoxItem lbi = new ListBoxItem();
+                                                                    lbi.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                                                                    lbi.SetResourceReference(ListBoxItem.StyleProperty, (bool)province.Value["attacked"] ? "ClanProvincesAttacked" : "ClanProvincesNonAttacked");
+                                                                    lbi.Content = gr;
 
+                                                                    ClanProvinces.Items.Add(lbi);
+                                                                }
                                                             }
                                                             else
                                                                 ClanProvincesNoRecords.Text = Lang.Set("PageUser", "ClanProvincesNoRecords", lang);

@@ -68,6 +68,8 @@ namespace _Hell_WPF_Multipack_Launcher
                     MainWindow.PlayBtn.Text = Lang.Set("MainProject", "bPlay", lbi.Name);
                     MainWindow.Flag.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)MainWindow.JsonSettingsGet("info.ProductName"), lbi.Name)));
 
+                    try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("ChangeLocale.xaml", "lbLocales_SelectionChanged", ex.Message, ex.StackTrace)); }
                 }));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("ChangeLocale.xaml", "lbLocales_SelectionChanged", ex.Message, ex.StackTrace)); }

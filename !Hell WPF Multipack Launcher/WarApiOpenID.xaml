@@ -1,7 +1,7 @@
 ﻿<Window x:Name="WarApiOpenID1" x:Class="_Hell_WPF_Multipack_Launcher.WarApiOpenID"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Wargaming OpenID" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="Resources/WOT.ico" HorizontalAlignment="Center" VerticalAlignment="Center" Loaded="WarApiOpenID1_Loaded">
+        Title="Wargaming.net OpenID" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="Resources/WOT.ico" HorizontalAlignment="Center" VerticalAlignment="Center" Loaded="WarApiOpenID1_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
