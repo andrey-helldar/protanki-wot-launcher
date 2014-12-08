@@ -64,7 +64,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <param name="access_token">Токен</param>
         /// <param name="fields">Запрос определенных полей</param>
         /// <returns>JSON ответ</returns>
-        public string ClanInfo(string clan_id, string access_token="", string fields="")
+        public JObject ClanInfo(string clan_id, string access_token = "", string fields = "")
         {
             /*
              * https://api.worldoftanks.ru/wot/clan/info/
@@ -79,7 +79,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
                 if (fields.Trim().Length > 0) Data += "&fields=" + fields;
 
-                return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Info, Data);
+                return JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Info, Data));
             }
             catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanInfo()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); }
 
@@ -93,7 +93,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <param name="access_token">Токен</param>
         /// <param name="fields">Запрос определенных полей</param>
         /// <returns>JSON ответ</returns>
-        public string ClanBattles(string clan_id, string access_token = "", string map_id = "eventmap", string fields = "")
+        public JObject ClanBattles(string clan_id, string access_token = "", string map_id = "eventmap", string fields = "")
         {
             /*
              * api.worldoftanks.ru/wot/clan/battles/
@@ -109,7 +109,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
                 if (fields.Trim().Length > 0) Data += "&fields=" + fields;
 
-                return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Battles, Data);
+                return JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Battles, Data));
             }
             catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanBattles()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); return null; }
         }
@@ -121,7 +121,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <param name="access_token">Токен</param>
         /// <param name="fields">Запрос определенных полей</param>
         /// <returns>JSON ответ</returns>
-        public string ClanProvinces(string clan_id, string access_token = "", string fields = "")
+        public JObject ClanProvinces(string clan_id, string access_token = "", string fields = "")
         {
             /*
              * api.worldoftanks.ru/wot/clan/provinces/
@@ -135,7 +135,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
                 if (fields.Trim().Length > 0) Data += "&fields=" + fields;
 
-                return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Provinces, Data);
+                return JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Provinces, Data));
             }
             catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanProvinces()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); return null; }
         }
@@ -146,9 +146,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// При передаче ID конкретной провинции, можно получить данные только по ней
         /// </summary>
         /// <param name="province_id">Идентификатор провинции</param>
-        /// <param name="map_id">Идентификатор Глобальной карты:  globalwars</param>
+        /// <param name="map_id">Идентификатор Глобальной карты:  eventmap</param>
         /// <returns>JSON ответ</returns>
-        public string GlobalProvinces(string province_id = "", string map_id = "eventmap")
+        public JObject GlobalProvinces(string province_id = "", string map_id = "eventmap")
         {
             /*
              * api.worldoftanks.ru/wot/globalwar/provinces/
@@ -161,7 +161,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 Data += "&map_id=" + map_id;
                 if (province_id.Trim().Length > 0) Data += "&province_id=" + province_id;
 
-                return POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Global_Provinces, Data);
+                return JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Global_Provinces, Data));
             }
             catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanProvinces()", "Province ID: " + province_id, "Map ID: " + map_id, ex.Message, ex.StackTrace); return null; }
         }
@@ -222,10 +222,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         }
 
 
-        private JObject FromJSON(string json)
+        /*private JObject FromJSON(string json)
         {
             try { return JObject.Parse(json); }
             catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "FromJSON()", json, ex.Message, ex.StackTrace); return null; }
-        }
+        }*/
     }
 }
