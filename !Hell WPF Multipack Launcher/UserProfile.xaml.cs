@@ -151,7 +151,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                     }
                                                     else
                                                     {
-                                                        obj["data"]["2732865"]["clan_id"] = 60118; // Подставной клан  
+                                                        //obj["data"]["2732865"]["clan_id"] = 60118; // Подставной клан  
 
                                                         Clan = JObject.Parse(WarAPI.ClanInfo(SelectToken(obj, "clan_id"), access_token));
                                                         Battles = JObject.Parse(WarAPI.ClanBattles(SelectToken(obj, "clan_id"), access_token));

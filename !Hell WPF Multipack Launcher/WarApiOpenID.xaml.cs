@@ -89,7 +89,16 @@ namespace _Hell_WPF_Multipack_Launcher
                                        (string)MainWindow.JsonSettingsGet("info.ProductName"), MessageBoxButton.YesNo, MessageBoxImage.Information);
 
                                    if (mbr == MessageBoxResult.Yes)
-                                       WB.Source = new Uri(WarAPI.OpenID());
+                                   {
+                                       string uri = WarAPI.OpenID();
+                                       if (uri != null)
+                                           WB.Source = new Uri(WarAPI.OpenID());
+                                       else
+                                       {
+                                           Debugging.Save("WarApiOpenID.xaml", "WB_LoadCompleted()", "WarAPI.OpenID() == null");
+                                           this.Close();
+                                       }
+                                   }
                                    else
                                        this.Close();
                                }
@@ -193,7 +202,17 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
-                try { WB.Source = new Uri(WarAPI.OpenID()); }
+                try
+                {
+                    string uri = WarAPI.OpenID();
+                    if (uri != null)
+                        WB.Source = new Uri(WarAPI.OpenID());
+                    else
+                    {
+                        Debugging.Save("WarApiOpenID.xaml", "WarApiOpenID1_Loaded()", "WarAPI.OpenID() == null");
+                        this.Close();
+                    }
+                }
                 catch (Exception) { }
             }));
         }

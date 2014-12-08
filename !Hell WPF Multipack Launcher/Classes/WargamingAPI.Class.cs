@@ -30,7 +30,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 return Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_OpenID + Data;
             }
-            catch (Exception) { return "FAIL"; }
+            catch (Exception) { return null; }
         }
 
 
