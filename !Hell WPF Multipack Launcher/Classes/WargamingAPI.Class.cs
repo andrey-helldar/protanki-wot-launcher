@@ -220,12 +220,5 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
             return Uri;
         }
-
-
-        /*private JObject FromJSON(string json)
-        {
-            try { return JObject.Parse(json); }
-            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "FromJSON()", json, ex.Message, ex.StackTrace); return null; }
-        }*/
     }
 }

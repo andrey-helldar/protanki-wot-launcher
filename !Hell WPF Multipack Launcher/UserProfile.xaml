@@ -58,21 +58,29 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image x:Name="ClanEmblem" Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Source="{x:Null}"/>
-                                    <TextBlock HorizontalAlignment="Left" Grid.Column="1" Margin="10,7,0,6" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial">
+                                    <Image x:Name="ClanEmblem" Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" VerticalAlignment="Center" Source="{x:Null}"/>
+                                    <TextBlock HorizontalAlignment="Left" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial" Margin="10,0,0,0">
                                         <Run x:Name="PlayerClan2">---</Run>
                                         <LineBreak/>
                                         <Run x:Name="PlayerZvanie">---</Run>
                                     </TextBlock>
-                                    <TextBlock HorizontalAlignment="Right" Grid.Column="3" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial">
-                                        <Run x:Name="PlayerGold" Foreground="#FFFFD100" FontWeight="Bold">---</Run><Image Source="Resources/gold.png" Margin="5,0,0,0" />
+                                    <TextBlock HorizontalAlignment="Right" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial" Margin="0,0,5,0">
+                                        <Run x:Name="PlayerGold" Foreground="#FFFFD100" FontWeight="Bold">---</Run>
                                         <LineBreak/>
-                                        <Run x:Name="PlayerCredit">---</Run><Image Source="Resources/credit.png" Margin="5,0,0,0" />
+                                        <Run x:Name="PlayerCredit">---</Run>
                                         <LineBreak/>
-                                        <Run x:Name="PlayerXP">---</Run><Image Source="Resources/currency-experience.png" Margin="5,0,0,0" />
+                                        <Run x:Name="PlayerXP">---</Run>
                                     </TextBlock>
-                                    <Image x:Name="iAccountType" Grid.Column="2" HorizontalAlignment="Center" Height="25" Margin="10,0" VerticalAlignment="Center" Width="25" Source="Resources/ico-account-base.png" Stretch="None"/>
+                                    <TextBlock HorizontalAlignment="Right" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial">
+                                        <Image Source="Resources/gold.png" Margin="5,0,0,0" />
+                                        <LineBreak/>
+                                        <Image Source="Resources/credit.png" Margin="5,0,0,0" />
+                                        <LineBreak/>
+                                        <Image Source="Resources/currency-experience.png" Margin="5,0,0,0" />
+                                    </TextBlock>
+                                    <Image x:Name="iAccountType" Grid.Column="2" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="25" Source="Resources/ico-account-base.png" Stretch="None" Margin="10,0"/>
                                 </Grid>
                             </StackPanel>
 
