@@ -219,6 +219,8 @@ namespace _Hell_WPF_Multipack_Launcher
                                                     PlayerCredit.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.credits", account_id));
                                                     PlayerXP.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.free_xp", account_id));
                                                     iAccountType.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/{1}", (string)MainWindow.JsonSettingsGet("info.ProductName"), (bool)JAccountInfo.SelectToken(String.Format("data.{0}.private.is_premium", account_id)) ? "ico-account-premium.png" : "ico-account-base.png")));
+
+                                                    iAccountType.ToolTip = Lang.Set("Global", (bool)JAccountInfo.SelectToken(String.Format("data.{0}.private.is_premium", account_id)) ? "IsPremium" : "IsBase", lang);
                                                 }
                                                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "User Credits", ex.Message, ex.StackTrace)); }
 

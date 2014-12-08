@@ -37,7 +37,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Image HorizontalAlignment="Left" Height="131" Margin="40,0,0,0" VerticalAlignment="Top" Width="132" Source="Resources/ava.jpg" Grid.Column="0"/>
+                    <Image HorizontalAlignment="Center" Height="149" VerticalAlignment="Top" Width="132" Source="Resources/ava.png" Grid.Column="0" Margin="40,0,0,0"/>
 
                     <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Bottom" Grid.Row="0">
                         <Grid VerticalAlignment="Bottom">
@@ -66,7 +66,7 @@
                                         <LineBreak/>
                                         <Run x:Name="PlayerZvanie">---</Run>
                                     </TextBlock>
-                                    <TextBlock HorizontalAlignment="Right" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial" Margin="0,0,5,0">
+                                    <TextBlock HorizontalAlignment="Right" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial" Margin="0,0,5,0" TextAlignment="Right">
                                         <Run x:Name="PlayerGold" Foreground="#FFFFD100" FontWeight="Bold">---</Run>
                                         <LineBreak/>
                                         <Run x:Name="PlayerCredit">---</Run>
@@ -80,7 +80,7 @@
                                         <LineBreak/>
                                         <Image Source="Resources/currency-experience.png" Margin="5,0,0,0" />
                                     </TextBlock>
-                                    <Image x:Name="iAccountType" Grid.Column="2" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="25" Source="Resources/ico-account-base.png" Stretch="None" Margin="10,0"/>
+                                    <Image x:Name="iAccountType" Grid.Column="2" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="25" Source="Resources/ico-account-base.png" Stretch="None" Margin="10,0" ToolTip="Базовый аккаунт"/>
                                 </Grid>
                             </StackPanel>
 

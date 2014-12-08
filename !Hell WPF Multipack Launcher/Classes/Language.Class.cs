@@ -80,6 +80,37 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
 
 
+                    /* =====================================
+                     *      Global words
+                     * =====================================*/
+                    case "Global":
+                        switch (control)
+                        {
+                            case "IsPremium":
+                                switch (lang)
+                                {
+                                    case "ru": return "Премиум аккаунт";
+                                    case "en": return "Premium account";
+                                    case "de": return "Premium account";
+                                    case "ua": return "Преміум аккаунт";
+                                    default: return toReturn;
+                                }
+
+                            case "IsBase":
+                                switch (lang)
+                                {
+                                    case "ru": return "Базовый аккаунт";
+                                    case "en": return "Basic account";
+                                    case "de": return "Basic account";
+                                    case "ua": return "Базовий аккаунт";
+                                    default: return toReturn;
+                                }
+
+                            default: return toReturn;
+                        }
+
+
+
 
                     /* =====================================
                      *      STATUSES API

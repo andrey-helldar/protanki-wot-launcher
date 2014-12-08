@@ -508,9 +508,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ava.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Newtonsoft.Json.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -568,19 +565,10 @@
     <Resource Include="Resources\icon__meeting.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\gold.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\ico-account-premium.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ico-account-base.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\currency-experience.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\credit.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\stat_perc_vins.png" />
@@ -593,6 +581,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\stat_perc_battles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\gold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\credit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\currency-experience.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ava.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
