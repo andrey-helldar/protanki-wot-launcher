@@ -139,7 +139,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                                  * =========================================*/
                                                 try
                                                 {
-                                                    if (JAccountInfo.SelectToken("clan_id") == null)
+                                                    if (JAccountInfo.SelectToken(String.Format("data.{0}.clan_id", account_id)) == null)
                                                     {
                                                         tiClanInfo.IsEnabled = false;
                                                         tiClanBattles.IsEnabled = false;
@@ -201,7 +201,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                                     // Средний опыт за бой
                                                     AvgXP.Text = Lang.Set("PageUser", "tbAvgXP", lang);
-                                                    AvgXPPerc.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.all.battle_avg_xp", account_id));
+                                                    AvgXPPerc.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.battle_avg_xp", account_id));
 
                                                     // Количество боев
                                                     BattleCount.Text = Lang.Set("PageUser", "tbCountWars", lang);
@@ -213,12 +213,14 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 }
                                                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "User Info", ex.Message, ex.StackTrace)); }
 
-
-
-                                                PlayerGold.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.gold", account_id));
-                                                PlayerCredit.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.credits", account_id));
-                                                PlayerXP.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.free_xp", account_id));
-                                                iAccountType.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)MainWindow.JsonSettingsGet("info.ProductName"), (bool)JAccountInfo.SelectToken(String.Format("data.{0}.private.is_premium", account_id)) ? "ico-account-premium.png" : "ico-account-base.png")));
+                                                try
+                                                {
+                                                    PlayerGold.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.gold", account_id));
+                                                    PlayerCredit.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.credits", account_id));
+                                                    PlayerXP.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.free_xp", account_id));
+                                                    iAccountType.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/{1}", (string)MainWindow.JsonSettingsGet("info.ProductName"), (bool)JAccountInfo.SelectToken(String.Format("data.{0}.private.is_premium", account_id)) ? "ico-account-premium.png" : "ico-account-base.png")));
+                                                }
+                                                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "User Credits", ex.Message, ex.StackTrace)); }
 
                                                 /*Batles.Text = SelectToken(obj, "statistics.all.battles");                               
                                                 Wins.Text = SelectToken(obj, "statistics.all.wins");
