@@ -103,7 +103,10 @@ namespace _Hell_WPF_Multipack_Launcher
                     if (MainWindow.MessageShow(Lang.Set("PageSettings", "ClearCacheSure", lang), "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         if (MainWindow.JsonSettingsRemove("token"))
+                        {
+                            Dispatcher.BeginInvoke(new ThreadStart(delegate { bClearAutorization.IsEnabled = false; }));
                             MainWindow.MessageShow(Lang.Set("PageSettings", "ClearCacheSuccess", lang));
+                        }
                         else
                             MainWindow.MessageShow(Lang.Set("PageSettings", "ClearCacheError", lang));
                     }

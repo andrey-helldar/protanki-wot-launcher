@@ -1444,6 +1444,13 @@
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Fill" TargetName="PlayBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/skrepka_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
