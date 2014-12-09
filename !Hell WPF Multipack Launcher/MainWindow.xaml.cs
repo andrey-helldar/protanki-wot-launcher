@@ -635,7 +635,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     new JProperty("modpack_ver", (string)JsonSettingsGet("multipack.version")),
                                     new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
                                     new JProperty("game", (string)JsonSettingsGet("game.version")),
-                                    new JProperty("game_test", (string)JsonSettingsGet("game.test")),
+                                    new JProperty("game_test", (bool)JsonSettingsGet("game.test")),
                                     new JProperty("youtube", Properties.Resources.YoutubeChannel),
                                     new JProperty("lang", (string)JsonSettingsGet("info.language")),
                                     new JProperty("os", Environment.OSVersion.Version.ToString())
