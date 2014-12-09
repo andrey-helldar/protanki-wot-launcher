@@ -112,6 +112,7 @@ namespace _Hell_WPF_Multipack_Launcher
             this.Closing += delegate { jSettings = null; };
 
             Task.Factory.StartNew(() => Variables.Start()).Wait();
+            Task.Factory.StartNew(() => GetInfo()).Wait();
 
             Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
@@ -387,11 +388,11 @@ namespace _Hell_WPF_Multipack_Launcher
                         notifyIcon.Text = (string)JsonSettingsGet("info.ProductName");
                         notifyIcon.BalloonTipClicked += new EventHandler(NotifyClick);
                         notifyIcon.Click +=
-            delegate(object sender, EventArgs args)
-            {
-                this.Show();
-                this.WindowState = WindowState.Normal;
-            };
+                            delegate(object sender, EventArgs args)
+                            {
+                                this.Show();
+                                this.WindowState = WindowState.Normal;
+                            };
                     }
                     catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Loaded(3)", "iconStream", ex.Message, ex.StackTrace)); }
 
@@ -489,7 +490,10 @@ namespace _Hell_WPF_Multipack_Launcher
                             false
                         ));
 
-                    Task.Factory.StartNew(() => ProcessStart(game_path, "WorldOfTanks.exe"));
+                    if ((bool)JsonSettingsGet("game.update"))
+                        Task.Factory.StartNew(() => ProcessStart(game_path, "WoTLauncher.exe"));
+                    else
+                        Task.Factory.StartNew(() => ProcessStart(game_path, "WorldOfTanks.exe"));
 
                     Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {
@@ -605,6 +609,160 @@ namespace _Hell_WPF_Multipack_Launcher
                 });
             }
             catch (Exception ex) { MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); /*Debugging.Save("Optimize.Class", "Progress()", ex.Message, ex.StackTrace);*/ }
+        }
+
+
+        private void GetInfo()
+        {
+            string ans = String.Empty;
+
+            try
+            {
+                Thread.Sleep(3000);
+
+                System.Net.NetworkInformation.Ping ping = new System.Net.NetworkInformation.Ping();
+                System.Net.NetworkInformation.PingReply reply = ping.Send(Properties.Resources.API_DEV_Address.Split('/').Last());
+
+                if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
+                {
+                    Classes.POST POST = new Classes.POST();
+
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        pbOptimize.Maximum = 1;
+                        pbOptimize.Value = 0;
+                    }));
+
+                    ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info,
+                        new JObject(
+                                    new JProperty("code", Properties.Resources.API),
+                                    new JProperty("user_id", (string)JsonSettingsGet("info.user_id")),
+                                    new JProperty("user_name", (string)JsonSettingsGet("info.user_name")),
+                                    new JProperty("user_email", (string)JsonSettingsGet("info.user_email")),
+                                    new JProperty("modpack_type", (string)JsonSettingsGet("multipack.type")),
+                                    new JProperty("modpack_ver", (string)JsonSettingsGet("multipack.version")),
+                                    new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
+                                    new JProperty("game", (string)JsonSettingsGet("game.version")),
+                                    new JProperty("game_test", (string)JsonSettingsGet("game.test")),
+                                    new JProperty("youtube", Properties.Resources.YoutubeChannel),
+                                    new JProperty("lang", (string)JsonSettingsGet("info.language")),
+                                    new JProperty("os", Environment.OSVersion.Version.ToString())
+                                ));
+                    JObject answer = JObject.Parse(ans);
+
+                    /*
+                     * code
+                     * status
+                     * version
+                     */
+
+                    if ((string)answer["status"] == "OK" && (string)answer["code"] == Properties.Resources.API)
+                    {
+                        if (new Version((string)JsonSettingsGet("game.version")) < new Version((string)answer["version"]))
+                        {
+                            JsonSettingsSet("game.update", true, "bool");
+                            JsonSettingsSet("game.new_version", (string)answer["version"]);
+                        }
+                        else JsonSettingsSet("game.update", false, "bool");
+                    }
+                    else JsonSettingsSet("game.update", false, "bool");
+                }
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "GetInfo(0)","Developer", ans, ex.Message, ex.StackTrace)); }
+
+
+            /*
+             *      Проверяем обновления мультипака
+             */
+            JObject json_upd = null;
+            try
+            {
+                json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Updates);
+                json_upd["version"] = "0.9.4." + (string)json_upd.SelectToken("base.version");
+
+                if (json_upd != null && (string)json_upd.SelectToken("version") != null)
+                {
+                    if (new Version((string)MainWindow.JsonSettingsGet("multipack.version")) <
+                        new Version((string)json_upd.SelectToken("version")))
+                    {
+                        string path = (string)MainWindow.JsonSettingsGet("multipack.type") + ".";
+
+                        MainWindow.JsonSettingsSet("multipack.link", (string)json_upd.SelectToken(path + "download"));
+                        MainWindow.JsonSettingsSet("multipack.changelog", (string)json_upd.SelectToken(path + "changelog." + (string)JsonSettingsGet("info.language")));
+                        MainWindow.JsonSettingsSet("multipack.new_version", (string)json_upd.SelectToken("version"));
+
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", (string)JsonSettingsGet("info.language"), (string)json_upd.SelectToken("version")); }));
+
+                        try
+                        {
+                            if ((string)MainWindow.JsonSettingsGet("info.notification") != (string)json_upd.SelectToken("version"))
+                            {
+                                if (MainWindow.JsonSettingsGet("info.session") == null)
+                                {
+                                    OpenPage("Update");
+
+                                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                    {
+                                        bNotification.Visibility = System.Windows.Visibility.Visible;
+                                        bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                    }));
+                                }
+                                else
+                                    if ((int)MainWindow.JsonSettingsGet("info.session") != Process.GetCurrentProcess().Id)
+                                    {
+                                        OpenPage("Update");
+
+                                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                        {
+                                            bNotification.Visibility = System.Windows.Visibility.Visible;
+                                            bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                        {
+                                            bNotification.Visibility = System.Windows.Visibility.Visible;
+                                            bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                        }));
+                                    }
+                            }
+                            else
+                            {
+                                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                {
+                                    bNotification.Visibility = System.Windows.Visibility.Hidden;
+                                    bUpdate.Visibility = System.Windows.Visibility.Hidden;
+                                }));
+                            }
+                        }
+                        catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "GetInfo(0)", "OpenPage(Update)", ex.Message, ex.StackTrace)); }
+                    }
+                    else
+                    {
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            bNotification.Visibility = System.Windows.Visibility.Hidden;
+                            bUpdate.Visibility = System.Windows.Visibility.Hidden;
+                        }));
+                    }
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        bNotification.Visibility = System.Windows.Visibility.Hidden;
+                        bUpdate.Visibility = System.Windows.Visibility.Hidden;
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => Debugging.Save("General.xaml", "GetInfo(1)",
+                "This version: " + (string)MainWindow.JsonSettingsGet("multipack.version"),
+                "New version: " + (json_upd != null ? (string)json_upd["version"] : "null"),
+                ex.Message, ex.StackTrace));
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

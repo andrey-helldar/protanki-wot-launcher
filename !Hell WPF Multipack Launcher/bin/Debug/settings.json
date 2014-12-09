@@ -36,7 +36,8 @@
         "version": "0.0.0.0",
         "path": null,
         "test": false,
-        "language": "en"
+        "language": "en",
+        "update": false
     },
     "processes": null,
     "wargaming": null,

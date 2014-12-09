@@ -76,15 +76,20 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 Task.Factory.StartNew(() => StatusBarSet(false, 1, true, true, true));
                 Task.Factory.StartNew(() => Notify()); // Выводим уведомления видео
+
+                Task.Factory.StartNew(() =>
+                {
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", lang, (string)json_upd.SelectToken("version")); }));
+
+                    if ((bool)MainWindow.JsonSettingsGet("game.update"))
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, (string)MainWindow.JsonSettingsGet("game.new_version")); }));
+                });
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
 
             try { StatusBarSet(false, 1, true, true, true); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
-
-            //  Получаем инфу с сайта
-            Task.Factory.StartNew(() => GetInfo()).Wait();
 
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
@@ -677,159 +682,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "SetInterface()", ex.Message, ex.StackTrace)); }
             }));
-        }
-
-
-        private void GetInfo()
-        {
-            string ans = String.Empty;
-
-            try
-            {
-                Thread.Sleep(3000);
-
-                Classes.POST POST = new Classes.POST();
-
-                Dispatcher.BeginInvoke(new ThreadStart(delegate
-                        {
-                            pbStatus.Maximum = 1;
-                            pbStatus.Value = 0;
-                        }));
-
-                JObject json = new JObject(
-                                new JProperty("code", Properties.Resources.API),
-                                new JProperty("user_id", (string)MainWindow.JsonSettingsGet("info.user_id")),
-                                new JProperty("user_name", (string)MainWindow.JsonSettingsGet("info.user_name")),
-                                new JProperty("user_email", (string)MainWindow.JsonSettingsGet("info.user_email")),
-                                new JProperty("modpack_type", (string)MainWindow.JsonSettingsGet("multipack.type")),
-                                new JProperty("modpack_ver", (string)MainWindow.JsonSettingsGet("multipack.version")),
-                                new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
-                                new JProperty("game", (string)MainWindow.JsonSettingsGet("game.version")),
-                                new JProperty("game_test", (string)MainWindow.JsonSettingsGet("game.test")),
-                                new JProperty("youtube", Properties.Resources.YoutubeChannel),
-                                new JProperty("lang", lang),
-                                new JProperty("os", "disabled")
-                            );
-
-                ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info, json);
-                JObject answer = JObject.Parse(ans);
-
-                /*
-                 * code
-                 * status
-                 * version
-                 */
-
-                if (answer["status"].ToString() == "OK" && answer["code"].ToString() == Properties.Resources.API)
-                {
-                    if (new Version((string)MainWindow.JsonSettingsGet("game.version")) < new Version(answer["version"].ToString()))
-                    {
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate
-                        {
-                            lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, answer["version"].ToString());
-                        }));
-                    }
-                }
-                //else { Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("API", "ANSWER", lang, answer["content"].ToString()); })); }
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "GetInfo(0)", ans, ex.Message, ex.StackTrace)); }
-
-
-            /*
-             *      Проверяем обновления мультипака
-             */
-            JObject json_upd = null;
-            try
-            {
-                json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Updates);
-                json_upd["version"] = "0.9.4." + (string)json_upd.SelectToken("base.version");
-
-                if (json_upd != null && (string)json_upd.SelectToken("version") != null)
-                {
-                    if (new Version((string)MainWindow.JsonSettingsGet("multipack.version")) <
-                        new Version((string)json_upd.SelectToken("version")))
-                    {
-                        string path = (string)MainWindow.JsonSettingsGet("multipack.type") + ".";
-
-                        MainWindow.JsonSettingsSet("multipack.link", (string)json_upd.SelectToken(path + "download"));
-                        MainWindow.JsonSettingsSet("multipack.changelog", (string)json_upd.SelectToken(path + "changelog." + lang));
-                        MainWindow.JsonSettingsSet("multipack.new_version", (string)json_upd.SelectToken("version"));
-
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate
-                        {
-                            lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", lang, (string)json_upd.SelectToken("version"));
-                        }));
-
-                        try
-                        {
-                            if ((string)MainWindow.JsonSettingsGet("info.notification") != (string)json_upd.SelectToken("version"))
-                            {
-                                if (MainWindow.JsonSettingsGet("info.session") == null)
-                                {
-                                    OpenPage("Update");
-
-                                    Dispatcher.BeginInvoke(new ThreadStart(delegate
-                                    {
-                                        bNotification.Visibility = System.Windows.Visibility.Visible;
-                                        bUpdate.Visibility = System.Windows.Visibility.Visible;
-                                    }));
-                                }
-                                else
-                                    if ((int)MainWindow.JsonSettingsGet("info.session") != Process.GetCurrentProcess().Id)
-                                    {
-                                        OpenPage("Update");
-
-                                        Dispatcher.BeginInvoke(new ThreadStart(delegate
-                                        {
-                                            bNotification.Visibility = System.Windows.Visibility.Visible;
-                                            bUpdate.Visibility = System.Windows.Visibility.Visible;
-                                        }));
-                                    }
-                                    else
-                                    {
-                                        Dispatcher.BeginInvoke(new ThreadStart(delegate
-                                        {
-                                            bNotification.Visibility = System.Windows.Visibility.Visible;
-                                            bUpdate.Visibility = System.Windows.Visibility.Visible;
-                                        }));
-                                    }
-                            }
-                            else
-                            {
-                                Dispatcher.BeginInvoke(new ThreadStart(delegate
-                                {
-                                    bNotification.Visibility = System.Windows.Visibility.Hidden;
-                                    bUpdate.Visibility = System.Windows.Visibility.Hidden;
-                                }));
-                            }
-                        }
-                        catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "GetInfo(0)", "OpenPage(Update)", ex.Message, ex.StackTrace)); }
-                    }
-                    else
-                    {
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate
-                        {
-                            bNotification.Visibility = System.Windows.Visibility.Hidden;
-                            bUpdate.Visibility = System.Windows.Visibility.Hidden;
-                        }));
-                    }
-                }
-                else
-                {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate
-                    {
-                        bNotification.Visibility = System.Windows.Visibility.Hidden;
-                        bUpdate.Visibility = System.Windows.Visibility.Hidden;
-                    }));
-                }
-            }
-            catch (Exception ex)
-            {
-                Task.Factory.StartNew(() => Debugging.Save("General.xaml", "GetInfo(1)",
-                "This version: " + (string)MainWindow.JsonSettingsGet("multipack.version"),
-                "New version: " + (json_upd != null ? (string)json_upd["version"] : "null"),
-                ex.Message, ex.StackTrace));
-            }
         }
 
         private void bLauncher_Click(object sender, RoutedEventArgs e)
