@@ -70,7 +70,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         public static void Navigator(string page = "General")
         {
-            try { MainWindow.mainFrame.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
+            try { mainFrame.NavigationService.Navigate(new Uri(page + ".xaml", UriKind.Relative)); }
             catch (Exception) { }
         }
 
@@ -618,20 +618,12 @@ namespace _Hell_WPF_Multipack_Launcher
 
             try
             {
-                Thread.Sleep(3000);
-
                 System.Net.NetworkInformation.Ping ping = new System.Net.NetworkInformation.Ping();
                 System.Net.NetworkInformation.PingReply reply = ping.Send(Properties.Resources.API_DEV_Address.Split('/').Last());
 
                 if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
                 {
                     Classes.POST POST = new Classes.POST();
-
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate
-                    {
-                        pbOptimize.Maximum = 1;
-                        pbOptimize.Value = 0;
-                    }));
 
                     ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info,
                         new JObject(
@@ -668,7 +660,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     else JsonSettingsSet("game.update", false, "bool");
                 }
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "GetInfo(0)","Developer", ans, ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "GetInfo(0)", "Developer", ans, ex.Message, ex.StackTrace)); }
 
 
             /*
@@ -677,89 +669,58 @@ namespace _Hell_WPF_Multipack_Launcher
             JObject json_upd = null;
             try
             {
-                json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Updates);
-                json_upd["version"] = "0.9.4." + (string)json_upd.SelectToken("base.version");
+                System.Net.NetworkInformation.Ping ping = new System.Net.NetworkInformation.Ping();
+                System.Net.NetworkInformation.PingReply reply = ping.Send(Properties.Resources.Multipack_Address.Split('/').Last());
 
-                if (json_upd != null && (string)json_upd.SelectToken("version") != null)
+                if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
                 {
-                    if (new Version((string)MainWindow.JsonSettingsGet("multipack.version")) <
-                        new Version((string)json_upd.SelectToken("version")))
+                    json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Address + Properties.Resources.Multipack_Updates);
+                    //json_upd["version"] = "0.9.4." + (string)json_upd.SelectToken("base.version");
+
+                    if (json_upd != null && (string)json_upd.SelectToken("version") != null)
                     {
-                        string path = (string)MainWindow.JsonSettingsGet("multipack.type") + ".";
-
-                        MainWindow.JsonSettingsSet("multipack.link", (string)json_upd.SelectToken(path + "download"));
-                        MainWindow.JsonSettingsSet("multipack.changelog", (string)json_upd.SelectToken(path + "changelog." + (string)JsonSettingsGet("info.language")));
-                        MainWindow.JsonSettingsSet("multipack.new_version", (string)json_upd.SelectToken("version"));
-
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", (string)JsonSettingsGet("info.language"), (string)json_upd.SelectToken("version")); }));
-
-                        try
+                        if (new Version((string)JsonSettingsGet("multipack.version")) <
+                            new Version((string)json_upd.SelectToken("version")))
                         {
-                            if ((string)MainWindow.JsonSettingsGet("info.notification") != (string)json_upd.SelectToken("version"))
+                            string path = (string)JsonSettingsGet("multipack.type") + ".";
+
+                            JsonSettingsSet("multipack.link", (string)json_upd.SelectToken(path + "download"));
+                            JsonSettingsSet("multipack.changelog", (string)json_upd.SelectToken(path + "changelog." + (string)JsonSettingsGet("info.language")));
+                            JsonSettingsSet("multipack.new_version", (string)json_upd.SelectToken("version"));
+                            JsonSettingsSet("multipack.update", true, "bool");
+
+                            try
                             {
-                                if (MainWindow.JsonSettingsGet("info.session") == null)
+                                if ((string)JsonSettingsGet("info.notification") != (string)json_upd.SelectToken("version"))
                                 {
-                                    OpenPage("Update");
-
-                                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                    if (JsonSettingsGet("info.session") == null)
                                     {
-                                        bNotification.Visibility = System.Windows.Visibility.Visible;
-                                        bUpdate.Visibility = System.Windows.Visibility.Visible;
-                                    }));
-                                }
-                                else
-                                    if ((int)MainWindow.JsonSettingsGet("info.session") != Process.GetCurrentProcess().Id)
-                                    {
-                                        OpenPage("Update");
-
                                         Dispatcher.BeginInvoke(new ThreadStart(delegate
                                         {
-                                            bNotification.Visibility = System.Windows.Visibility.Visible;
-                                            bUpdate.Visibility = System.Windows.Visibility.Visible;
+                                            LoadingPanel.Visibility = System.Windows.Visibility.Visible;
+                                            MainFrame.NavigationService.Navigate(new Uri("Update.xaml", UriKind.Relative));
                                         }));
                                     }
                                     else
-                                    {
-                                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                        if ((int)JsonSettingsGet("info.session") != Process.GetCurrentProcess().Id)
                                         {
-                                            bNotification.Visibility = System.Windows.Visibility.Visible;
-                                            bUpdate.Visibility = System.Windows.Visibility.Visible;
-                                        }));
-                                    }
+                                            Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                            {
+                                                LoadingPanel.Visibility = System.Windows.Visibility.Visible;
+                                                MainFrame.NavigationService.Navigate(new Uri("Update.xaml", UriKind.Relative));
+                                            }));
+                                        }
+                                }
                             }
-                            else
-                            {
-                                Dispatcher.BeginInvoke(new ThreadStart(delegate
-                                {
-                                    bNotification.Visibility = System.Windows.Visibility.Hidden;
-                                    bUpdate.Visibility = System.Windows.Visibility.Hidden;
-                                }));
-                            }
+                            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "GetInfo(0)", "OpenPage(Update)", ex.Message, ex.StackTrace)); }
                         }
-                        catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "GetInfo(0)", "OpenPage(Update)", ex.Message, ex.StackTrace)); }
                     }
-                    else
-                    {
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate
-                        {
-                            bNotification.Visibility = System.Windows.Visibility.Hidden;
-                            bUpdate.Visibility = System.Windows.Visibility.Hidden;
-                        }));
-                    }
-                }
-                else
-                {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate
-                    {
-                        bNotification.Visibility = System.Windows.Visibility.Hidden;
-                        bUpdate.Visibility = System.Windows.Visibility.Hidden;
-                    }));
                 }
             }
             catch (Exception ex)
             {
-                Task.Factory.StartNew(() => Debugging.Save("General.xaml", "GetInfo(1)",
-                "This version: " + (string)MainWindow.JsonSettingsGet("multipack.version"),
+                Task.Factory.StartNew(() => Debugging.Save("MainWindow.xaml", "GetInfo(1)",
+                "This version: " + (string)JsonSettingsGet("multipack.version"),
                 "New version: " + (json_upd != null ? (string)json_upd["version"] : "null"),
                 ex.Message, ex.StackTrace));
             }

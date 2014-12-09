@@ -79,7 +79,20 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 Task.Factory.StartNew(() =>
                 {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", lang, (string)json_upd.SelectToken("version")); }));
+                    if ((bool)MainWindow.JsonSettingsGet("multipack.update"))
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", (string)MainWindow.JsonSettingsGet("info.language"), (string)MainWindow.JsonSettingsGet("multipack.new_version"));
+
+                            bNotification.Visibility = System.Windows.Visibility.Visible;
+                            bUpdate.Visibility = System.Windows.Visibility.Visible;
+                        }));
+                    else
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            bNotification.Visibility = System.Windows.Visibility.Hidden;
+                            bUpdate.Visibility = System.Windows.Visibility.Hidden;
+                        }));
 
                     if ((bool)MainWindow.JsonSettingsGet("game.update"))
                         Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, (string)MainWindow.JsonSettingsGet("game.new_version")); }));
