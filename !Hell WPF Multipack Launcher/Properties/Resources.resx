@@ -456,7 +456,7 @@
     <comment>Страница активации Open ID</comment>
   </data>
   <data name="Default_Debug_Crypt" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
     <comment>Шифрование логов дебага</comment>
   </data>
   <data name="Default_Crypt_Settings" xml:space="preserve">
@@ -506,7 +506,7 @@
     <value>..\Resources\settings_enc.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Default_Debug_Archive" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
     <comment>Архивировать ли логи дебага?</comment>
   </data>
   <data name="flag_ua" type="System.Resources.ResXFileRef, System.Windows.Forms">

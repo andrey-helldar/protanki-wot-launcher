@@ -14,26 +14,13 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\R
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\!Hell WPF Multipack Launcher.csproj.GenerateResource.Cache
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Ionic.Zip.dll
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Newtonsoft.Json.dll
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Ookii.Dialogs.Wpf.dll
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\ProcessesLibrary.dll
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\restart.exe
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\ProcessesLibrary.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\restart.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\App.baml
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher 2.exe.config
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\settings.xml
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher 2.exe
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher 2.pdb
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Error.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\General.baml
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Loading.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Error.g.cs
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\General.g.cs
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Loading.g.cs
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher 2_MarkupCompile.cache
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher 2.g.resources
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher 2.exe
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher 2.pdb
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\bin\Release\settings.xml
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\obj\Release\Error.baml
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\obj\Release\General.baml
@@ -63,21 +50,15 @@ F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\obj\Release\ScottLogic\PieChart\PieChartLayout.baml
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\obj\Release\ScottLogic\PieChart\PiePlotter.baml
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\obj\Release\UserProfile.baml
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher 2.exe.manifest
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher 2.application
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\About.baml
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Clan.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Feedback.baml
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Language.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Settings.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\SettingsGeneral.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\SettingsProcesses.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Update.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\WarApiOpenID.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\About.g.cs
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Clan.g.cs
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Feedback.g.cs
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Language.g.cs
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\ScottLogic\PieChart\Legend.g.cs
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\ScottLogic\PieChart\PieChartLayout.g.cs
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\ScottLogic\PieChart\PiePlotter.g.cs
@@ -88,14 +69,10 @@ D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\R
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\UserProfile.g.cs
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\WarApiOpenID.g.cs
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\GeneratedInternalTypeHelper.g.cs
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher 2_MarkupCompile.lref
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\ScottLogic\PieChart\Legend.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\ScottLogic\PieChart\PieChartLayout.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\ScottLogic\PieChart\PiePlotter.baml
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\UserProfile.baml
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher 2.TrustInfo.xml
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher 2.exe.manifest
-D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher 2.application
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\!Hell WPF Multipack Launcher.csprojResolveAssemblyReference.cache
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\obj\Release\!Hell WPF Multipack Launcher.csprojResolveAssemblyReference.cache
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\bin\Release\Ookii.Dialogs.Wpf.dll
@@ -118,3 +95,23 @@ F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack_Launcher.pdb
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher.exe.config
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher.exe.config
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\config.json
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\settings.json
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher.exe.manifest
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher.application
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Multipack Launcher.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Processes.Library.dll
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Release\Processes.Library.pdb
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\ChangeLocale.baml
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Window1.baml
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\ChangeLocale.g.cs
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Window1.g.cs
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher_MarkupCompile.cache
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher_MarkupCompile.lref
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher.g.resources
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher.TrustInfo.xml
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher.exe.manifest
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher.application
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Release\Multipack Launcher.pdb

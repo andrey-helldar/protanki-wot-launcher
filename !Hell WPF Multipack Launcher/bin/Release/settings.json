@@ -1,0 +1,48 @@
+﻿{
+    "info": {
+        "video": true,
+        "news": true,
+        "multipack": true,
+        "notification": "0.0.0.0",
+        "language": "en",
+        "locale": 0,
+        "user_email": null,
+        "user_name": null,
+        "user_id": null,
+        "notify_link": null,
+        "ProductName": null
+    },
+    "settings": {
+        "admin": false,
+        "kill": false,
+        "force": false,
+        "aero": false,
+        "video": false,
+        "weak": false,
+        "winxp": false,
+        "launcher": 0,
+        "aero_disable": false
+    },
+    "multipack": {
+        "language": "en",
+        "type": "base",
+        "version": "0.0.0.0",
+        "date": null,
+        "link": null,
+        "changelog": null,
+        "new_version": "0.0.0.0"
+    },
+    "game": {
+        "version": "0.0.0.0",
+        "path": null,
+        "test": false,
+        "language": "en"
+    },
+    "processes": null,
+    "wargaming": null,
+    "youtube": null,
+    "do_not_display": {
+        "video": null,
+        "news": null
+    }
+}

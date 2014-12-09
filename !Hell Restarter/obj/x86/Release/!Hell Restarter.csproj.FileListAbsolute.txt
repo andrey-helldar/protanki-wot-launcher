@@ -9,3 +9,4 @@ f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Restarter\bin\Release\restart.exe.config
 D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\bin\Release\restart.exe.config
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell Restarter\obj\x86\Release\!Hell Restarter.csprojResolveAssemblyReference.cache
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell Restarter\obj\x86\Release\!Hell Restarter.csprojResolveAssemblyReference.cache
