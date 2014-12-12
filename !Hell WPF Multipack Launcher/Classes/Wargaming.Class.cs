@@ -31,7 +31,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 string lang = (string)MainWindow.JsonSettingsGet("info.language");
                 XDocument doc;
 
-                if(lang == "ru")
+                if (lang == "ru" || lang == "ua")
                     doc = XDocument.Load(Properties.Resources.RssWotRU);
                 else
                     doc = XDocument.Load(String.Format(Properties.Resources.RssWotEU, lang));

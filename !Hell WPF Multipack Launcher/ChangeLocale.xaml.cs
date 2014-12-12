@@ -61,15 +61,18 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 MainWindow.JsonSettingsSet("info.language", lbi.Name);
                 MainWindow.JsonSettingsSet("info.locale", 2, "int");
-
+                
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
-                    bClose.Content = Lang.Set("PageSettings", "bClose", lbi.Name);
-                    MainWindow.PlayBtn.Text = Lang.Set("MainProject", "bPlay", lbi.Name);
-                    MainWindow.Flag.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)MainWindow.JsonSettingsGet("info.ProductName"), lbi.Name)));
+                    try
+                    {
+                        bClose.Content = Lang.Set("PageSettings", "bClose", lbi.Name);
+                        MainWindow.PlayBtn.Text = Lang.Set("MainProject", "bPlay", lbi.Name);
+                        MainWindow.Flag.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)MainWindow.JsonSettingsGet("info.ProductName"), lbi.Name)));
 
-                    try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
-                    catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("ChangeLocale.xaml", "lbLocales_SelectionChanged", ex.Message, ex.StackTrace)); }
+                        MainWindow.LoadPage.Visibility = Visibility.Hidden;
+                    }
+                    catch (Exception ex) { Debugging.Save("ChangeLocale.xaml", "lbLocales_SelectionChanged", "Innter Catch", ex.Message, ex.StackTrace); }
                 }));
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("ChangeLocale.xaml", "lbLocales_SelectionChanged", ex.Message, ex.StackTrace)); }
