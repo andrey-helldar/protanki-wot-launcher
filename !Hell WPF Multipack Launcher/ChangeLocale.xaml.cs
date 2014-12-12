@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace _Hell_WPF_Multipack_Launcher
 {
@@ -29,6 +30,86 @@ namespace _Hell_WPF_Multipack_Launcher
             InitializeComponent();
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            /*
+             *
+             * <ListBoxItem x:Name="ru" VerticalAlignment="Center" Cursor="Hand">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="10,10,5,10" Source="Resources/flag_ru.png"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Русский" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                </Grid>
+               </ListBoxItem>
+             */
+            try
+            {
+                JObject obj = Lang.Translated();
+
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { lbLocales.Items.Clear(); }));
+
+                if (obj != null)
+                    foreach (var lang in obj)
+                    {
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            Grid grid = new Grid();
+                            grid.Width = double.NaN;
+                            grid.Margin = new Thickness(0);
+                            grid.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+
+                            ColumnDefinition cd1 = new ColumnDefinition();
+                            ColumnDefinition cd2 = new ColumnDefinition();
+                            cd1.Width = new GridLength(1, GridUnitType.Auto);
+                            cd2.Width = new GridLength(1, GridUnitType.Star);
+                            grid.ColumnDefinitions.Add(cd1);
+                            grid.ColumnDefinitions.Add(cd2);
+
+                            Image img = new Image();
+                            img.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                            img.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                            img.Height = 20;
+                            img.Width = 20;
+                            img.Margin = new Thickness(10, 10, 5, 10);
+                            img.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)MainWindow.JsonSettingsGet("info.ProductName"), (string)lang.Key)));
+
+                            TextBlock tb = new TextBlock();
+                            tb.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                            tb.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                            tb.Margin = new Thickness(5, 10, 10, 10);
+                            tb.TextWrapping = TextWrapping.NoWrap;
+                            tb.FontWeight = FontWeights.Bold;
+                            tb.FontSize = 14;
+                            tb.Text = ((string)lang.Value).Remove(0, 3);
+                            Grid.SetColumn(tb, 1);
+
+                            grid.Children.Add(img);
+                            grid.Children.Add(tb);
+
+                            ListBoxItem lbi = new ListBoxItem();
+                            lbi.IsSelected = (string)lang.Key == (string)MainWindow.JsonSettingsGet("info.language");
+                            lbi.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                            lbi.Cursor = Cursors.Hand;
+                            lbi.Content = grid;
+                            lbi.Name = (string)lang.Key;
+                            this.RegisterName(lbi.Name, lbi);
+
+                            lbLocales.Items.Add(lbi);
+                        }));
+                }
+            }
+            catch (Exception ex) { Debugging.Save("ChangeLocale.xaml", "Page_Loaded", ex.Message, ex.StackTrace); }
+
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("ChangeLocale.xaml", "Page_Loaded", ex.Message, ex.StackTrace)); }
+            }));
+        }
+
         private void bClose_Click(object sender, RoutedEventArgs e)
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
@@ -41,15 +122,6 @@ namespace _Hell_WPF_Multipack_Launcher
                 Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
 
                 Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
-            }));
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            Dispatcher.BeginInvoke(new ThreadStart(delegate
-            {
-                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("ChangeLocale.xaml", "Page_Loaded", ex.Message, ex.StackTrace)); }
             }));
         }
 
