@@ -83,7 +83,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 Task.Factory.StartNew(() =>
                 {
-                    if ((bool)MainWindow.JsonSettingsGet("multipack.update"))
+
+                    if ((bool)MainWindow.JsonSettingsGet("multipack.update") && MainWindow.JsonSettingsGet("multipack.update") != null)
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
                             lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", (string)MainWindow.JsonSettingsGet("info.language"), (string)MainWindow.JsonSettingsGet("multipack.new_version"));
@@ -98,7 +99,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             bUpdate.Visibility = System.Windows.Visibility.Hidden;
                         }));
 
-                    if ((bool)MainWindow.JsonSettingsGet("game.update"))
+                    if ((bool)MainWindow.JsonSettingsGet("game.update") && MainWindow.JsonSettingsGet("game.update") != null)
                         Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, (string)MainWindow.JsonSettingsGet("game.new_version")); }));
                 });
             }
@@ -310,7 +311,7 @@ namespace _Hell_WPF_Multipack_Launcher
              */
             try
             {
-                if ((bool)MainWindow.JsonSettingsGet("info.video"))
+                if ((bool)MainWindow.JsonSettingsGet("info.video") && MainWindow.JsonSettingsGet("info.video") != null)
                 {
                     if (YoutubeClass.Count() > 0)
                     {
@@ -376,7 +377,7 @@ namespace _Hell_WPF_Multipack_Launcher
              */
             try
             {
-                if ((bool)MainWindow.JsonSettingsGet("info.news"))
+                if ((bool)MainWindow.JsonSettingsGet("info.news") && MainWindow.JsonSettingsGet("info.news") !=null)
                 {
                     if (WargamingClass.Count() > 0)
                     {
@@ -486,7 +487,6 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="e"></param>
         private void NotifyClick(object sender, EventArgs e)
         {
-            //try { Process.Start(NotifyLink); }
             try { Process.Start((string)MainWindow.JsonSettingsGet("info.notify_link")); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "NotifyClick()", "Link: " + (string)MainWindow.JsonSettingsGet("info.notify_link"), ex.Message, ex.StackTrace)); }
         }
