@@ -448,7 +448,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5000.
+        ///   Looks up a localized string similar to 10000.
         /// </summary>
         public static string Default_Sleeping_Notify {
             get {

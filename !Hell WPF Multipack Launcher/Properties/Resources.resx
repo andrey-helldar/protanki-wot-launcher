@@ -464,7 +464,7 @@
     <comment>Шифрование файла настроек</comment>
   </data>
   <data name="Default_Sleeping_Notify" xml:space="preserve">
-    <value>5000</value>
+    <value>10000</value>
     <comment>Таймаут между показом уведомлений новостей и видео</comment>
   </data>
   <data name="Default_JSON_Splitter" xml:space="preserve">

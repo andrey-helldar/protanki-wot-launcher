@@ -76,7 +76,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 Task.Factory.StartNew(() => StatusBarSet(false, 1, true, true, true));
                 Task.Factory.StartNew(() => Notify()); // Выводим уведомления видео
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
+            try
+            {
                 Task.Factory.StartNew(() =>
                 {
                     if ((bool)MainWindow.JsonSettingsGet("multipack.update"))
@@ -98,7 +102,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, (string)MainWindow.JsonSettingsGet("game.new_version")); }));
                 });
             }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", "multipack.update", ex.Message, ex.StackTrace)); }
 
 
             try { StatusBarSet(false, 1, true, true, true); }
