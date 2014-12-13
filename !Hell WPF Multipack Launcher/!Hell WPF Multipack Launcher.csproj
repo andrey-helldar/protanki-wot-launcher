@@ -298,8 +298,8 @@
     <Resource Include="Resources\restart.exe" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\settings.json" />
-    <None Include="Resources\settings_enc.json" />
+    <Resource Include="Resources\settings.json" />
+    <Resource Include="Resources\settings_enc.json" />
     <None Include="settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -495,10 +495,10 @@
     <Resource Include="Resources\_play_pressed.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Ookii.Dialogs.Wpf.dll" />
+    <Resource Include="Resources\Ookii.Dialogs.Wpf.dll" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Ionic.Zip.dll" />
+    <Resource Include="Resources\Ionic.Zip.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Processes Library\Processes Library.csproj">
@@ -510,7 +510,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Newtonsoft.Json.dll" />
+    <Resource Include="Resources\Newtonsoft.Json.dll" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\waiting.gif" />
@@ -544,9 +544,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\wot_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Processes.Library.dll" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\province_types_normal.png" />
@@ -595,6 +592,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ava.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Processes.Library.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

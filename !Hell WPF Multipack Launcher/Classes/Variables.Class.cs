@@ -22,7 +22,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
 
         //public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.json";
-        private string SettingsPath = "settings.json";
+        //private string SettingsPath = "settings.json";
 
         string lang = Properties.Resources.Default_Lang;
 
@@ -244,10 +244,12 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     Task.Factory.StartNew(() => SavingFile("Processes.Library.dll", Properties.Resources.Processes_Library)),
                     
                     Task.Factory.StartNew(() => {
+                        if (!Directory.Exists(MainWindow.SettingsDir)) Directory.CreateDirectory(MainWindow.SettingsDir);
+
                         if(Properties.Resources.Default_Crypt_Settings == "1")
-                            SavingFile(SettingsPath, Properties.Resources.Settings_Encoded);
+                            SavingFile(MainWindow.SettingsPath, Properties.Resources.Settings_Encoded);
                         else
-                            SavingFile(SettingsPath, Properties.Resources.Settings);
+                            SavingFile(MainWindow.SettingsPath, Properties.Resources.Settings);
                     }),
                     
                     Task.Factory.StartNew(() => SavingFile("Ionic.Zip.dll", Properties.Resources.Ionic_Zip)),

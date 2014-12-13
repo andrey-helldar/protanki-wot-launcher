@@ -30,13 +30,16 @@
         "date": null,
         "link": null,
         "changelog": null,
-        "new_version": "0.0.0.0"
+        "new_version": "0.0.0.0",
+        "update": false
     },
     "game": {
         "version": "0.0.0.0",
+        "new_version": "0.0.0.0",
         "path": null,
         "test": false,
-        "language": "en"
+        "language": "en",
+        "update": false
     },
     "processes": null,
     "wargaming": null,

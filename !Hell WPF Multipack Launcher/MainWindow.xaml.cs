@@ -31,6 +31,10 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Optimize Optimize = new Classes.Optimize();
         Classes.Language Lang = new Classes.Language();
 
+        // Путь к файлу настроек
+        public static string SettingsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\";
+        public static string SettingsPath = SettingsDir + "settings.json";
+
         // Главное окно для передачи статуса
         public static Window State { get { return state; } }
         private static Window state;
@@ -140,12 +144,12 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                string settings = "settings.json";
+                //string settings = "settings.json";
                 string decrypt = "";
 
-                if (File.Exists(settings))
+                if (File.Exists(SettingsPath))
                 {
-                    using (StreamReader reader = File.OpenText(settings))
+                    using (StreamReader reader = File.OpenText(SettingsPath))
                     {
                         decrypt = reader.ReadToEnd();
 
@@ -158,9 +162,9 @@ namespace _Hell_WPF_Multipack_Launcher
                             }
                             catch (Exception)
                             {
-                                if (File.Exists(settings)) File.Delete(settings);
+                                if (File.Exists(SettingsPath)) File.Delete(SettingsPath);
                                 Thread.Sleep(300);
-                                File.WriteAllBytes(settings, Properties.Resources.Settings_Encoded);
+                                File.WriteAllBytes(SettingsPath, Properties.Resources.Settings_Encoded);
 
                                 Classes.Crypt Crypt = new Classes.Crypt();
                                 decrypt = Crypt.Decrypt(decrypt, Variables.GetUserID());
@@ -189,10 +193,10 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                string settings = "settings.json";
+                //string settings = "settings.json";
                 string encrypt = String.Empty;
 
-                if (File.Exists(settings)) File.Delete(settings);
+                if (File.Exists(SettingsPath)) File.Delete(SettingsPath);
 
                 if (Properties.Resources.Default_Crypt_Settings == "1")
                 {
@@ -202,7 +206,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 else
                     encrypt = jSettings.ToString();
 
-                File.WriteAllText(settings, encrypt);
+                File.WriteAllText(SettingsPath, encrypt);
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "JsonSaveSettings()", ex.Message, ex.StackTrace, jSettings.ToString())); }
         }
