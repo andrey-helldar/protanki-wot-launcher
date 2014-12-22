@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Windows.Navigation;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -857,8 +858,10 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            FramePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/EanDknT-2Ho?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute));
-            FramePreview.Source = new Uri("http://www.youtube.com/embed/EanDknT-2Ho?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute);
+            NavigationService ns = NavigationService.GetNavigationService(FramePreview);
+            ns.Navigate(new Uri("http://www.youtube.com/embed/EanDknT-2Ho?rel=0&controls=0&showinfo=0"));
+
+            //FramePreview.NavigationService.Navigate(ns);
             FramePreview.Visibility = System.Windows.Visibility.Visible;
         }
     }
