@@ -854,5 +854,10 @@ namespace _Hell_WPF_Multipack_Launcher
             if (jSettings.SelectToken("game.language") == null) JsonSettingsSet("game.language", Properties.Resources.Default_Lang);
             if (jSettings.SelectToken("game.update") == null) JsonSettingsSet("game.update", false, "bool");
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            FramePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/EanDknT-2Ho?rel=0&controls=0&showinfo=0", UriKind.Relative));
+        }
     }
 }

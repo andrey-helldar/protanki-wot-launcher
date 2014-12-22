@@ -430,7 +430,20 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                 }
                                                             }
                                                             else
-                                                                ClanBattlesNoRecords.Text = Lang.Set("PageUser", "ClanBattlesNoRecords", lang);
+                                                            {
+                                                                //ClanBattlesNoRecords.Text = Lang.Set("PageUser", "ClanBattlesNoRecords", lang);
+
+                                                                ListBoxItem lbi = new ListBoxItem();
+                                                                lbi.SetResourceReference(ListBoxItem.StyleProperty, "rec_not_found");
+
+                                                                TextBlock tb = new TextBlock();
+                                                                tb.Text = Lang.Set("PageUser", "ClanBattlesNoRecords", lang);
+
+                                                                lbi.Content = tb;
+
+                                                                ClanBattles.Items.Clear();
+                                                                ClanBattles.Items.Add(lbi);
+                                                            }
                                                         }
                                                     }
                                                     catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Clan battles", ex.Message, ex.StackTrace)); }
@@ -540,7 +553,21 @@ namespace _Hell_WPF_Multipack_Launcher
                                                                 }
                                                             }
                                                             else
-                                                                ClanProvincesNoRecords.Text = Lang.Set("PageUser", "ClanProvincesNoRecords", lang);
+                                                            {
+                                                                //ClanProvincesNoRecords.Text = Lang.Set("PageUser", "ClanProvincesNoRecords", lang);
+
+                                                                ListBoxItem lbi = new ListBoxItem();
+                                                                lbi.SetResourceReference(ListBoxItem.StyleProperty, "rec_not_found");
+
+                                                                TextBlock tb = new TextBlock();
+                                                                tb.Text = Lang.Set("PageUser", "ClanProvincesNoRecords", lang);
+
+                                                                lbi.Content = tb;
+
+                                                                ClanProvinces.Items.Clear();
+                                                                ClanProvinces.Items.Add(lbi);
+                                                            }
+
                                                         }
                                                     }
                                                     catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "Clan provincies", ex.Message, ex.StackTrace)); }
