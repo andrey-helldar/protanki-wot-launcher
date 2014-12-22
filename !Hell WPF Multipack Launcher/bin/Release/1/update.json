@@ -1,0 +1,43 @@
+{
+    "base": {
+        "changelog": {
+            "en": "In this version the following changes:<font size='12' color='808080'><ul><li>English one</li><li>Two</li><li>Three</li></ul></font>__________________________________________<br><font color='#E00000'>New version is available on the link in the description of the video.</font>",
+            "ru": "В этой версии произошли следующие изменения:<font size='12' color='808080'><ul><li>Проверка базовой раз</li><li>Два</li><li>Три</li></ul></font>__________________________________________<br><font color='#E00000'>Новая версия доступна по ссылке в описании к видео.</font>"
+        },
+        "download": "http://ai-rus.com",
+        "message": {
+            "en": "Hi, <font color='#B6FF00'>{{playerName}}</font>!<br>I hasten to inform you personally that there is a new build mods - 0.9.5 #{{newVersion}}!<br>{{changeLog}}",
+            "ru": "Привет, <font color='#B6FF00'>{{playerName}}</font>!<br>Cпешу сообщить тебе лично, что доступна новая сборка модов - 0.9.5 #{{newVersion}}!<br>{{changeLog}}"
+        },
+        "title": {
+            "en": "A new assembly mods",
+            "ru": "Доступна новая сборка модов"
+        },
+        "version": 2
+    },
+    "extended": {
+        "changelog": {
+            "en": "In this version the following changes:<font size='12' color='808080'><ul><li>Ext one</li><li>Two</li><li>Three</li></ul></font>__________________________________________<br><font color='#E00000'>New version is available on the link in the description of the video.</font>",
+            "ru": "В этой версии произошли следующие изменения:<font size='12' color='808080'><ul><li>Расширенная раз</li><li>Два</li><li>Три</li></ul></font>__________________________________________<br><font color='#E00000'>Новая версия доступна по ссылке в описании к видео.</font>"
+        },
+        "download": "http://helldar.ru",
+        "message": {
+            "en": "Hi, <font color='#B6FF00'>{{playerName}}</font>!<br>I hasten to inform you personally that there is a new build mods - 0.9.5 #{{newVersion}}!<br>{{changeLog}}",
+            "ru": "Привет, <font color='#B6FF00'>{{playerName}}</font>!<br>Cпешу сообщить тебе лично, что доступна новая сборка модов - 0.9.5 #{{newVersion}}!<br>{{changeLog}}"
+        },
+        "title": {
+            "en": "A new assembly mods",
+            "ru": "Доступна новая сборка модов"
+        },
+        "version": 2
+    },
+    "closeBtn": {
+        "en": "Skip",
+        "ru": "Пропустить"
+    },
+    "downloadBtn": {
+        "en": "Download",
+        "ru": "Скачать"
+    },
+    "path": 0.9.5
+}

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell PRO Tanki Launcher", "!Hell PRO Tanki Launcher\!Hell PRO Tanki Launcher.csproj", "{79E364F5-121C-4402-9295-D6836EB5A805}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell WPF Multipack Launcher", "!Hell WPF Multipack Launcher\!Hell WPF Multipack Launcher.csproj", "{1C8EF491-6532-4340-A8C6-AA77627F9D23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeRevision", "ChangeRevision\ChangeRevision.csproj", "{1C829304-EC32-499C-A2FE-C13614C4EFD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yusha Manager", "!Hell PROТанки JSON Manager\Yusha Manager.csproj", "{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +123,16 @@ Global
 		{1C829304-EC32-499C-A2FE-C13614C4EFD8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1C829304-EC32-499C-A2FE-C13614C4EFD8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1C829304-EC32-499C-A2FE-C13614C4EFD8}.Release|x86.ActiveCfg = Release|Any CPU
+		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

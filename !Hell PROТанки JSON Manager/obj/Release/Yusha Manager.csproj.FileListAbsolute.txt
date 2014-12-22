@@ -1,0 +1,47 @@
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\bin\Release\template.txt
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\obj\Release\MainWindow.baml
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\obj\Release\MainWindow.g.cs
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\obj\Release\App.g.cs
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\obj\Release\Yusha_Manager.Properties.Resources.resources
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\obj\Release\Yusha Manager.csproj.GenerateResource.Cache
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\bin\Release\PROТанки JSON Manager.exe.config
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\bin\Release\PROТанки JSON Manager.exe
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\bin\Release\PROТанки JSON Manager.pdb
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\obj\Release\PROТанки JSON Manager_Content.g.cs
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\obj\Release\PROТанки JSON Manager_MarkupCompile.cache
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\obj\Release\PROТанки JSON Manager.g.resources
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\obj\Release\PROТанки JSON Manager.exe
+d:\Helldar\Visual C#\Yusha Manager\Yusha Manager\obj\Release\PROТанки JSON Manager.pdb
+D:\Helldar\Visual C#\Yusha Manager\Yusha Manager\bin\Release\Newtonsoft.Json.dll
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\bin\Release\PROТанки JSON Manager.exe.config
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\PROТанки JSON Manager.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\PROТанки JSON Manager.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\bin\Release\template.txt
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\bin\Release\PROТанки JSON Manager.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\bin\Release\PROТанки JSON Manager.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\bin\Release\Newtonsoft.Json.dll
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\MainWindow.baml
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\MainWindow.g.cs
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\App.g.cs
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\PROТанки JSON Manager_Content.g.cs
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\PROТанки JSON Manager_MarkupCompile.cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\PROТанки JSON Manager.g.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\Yusha_Manager.Properties.Resources.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\Yusha Manager.csproj.GenerateResource.Cache
+f:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\Yusha Manager\Yusha Manager\obj\Release\Yusha Manager.csprojResolveAssemblyReference.cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\bin\Release\template.txt
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\bin\Release\PROТанки JSON Manager.exe.config
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\bin\Release\PROТанки JSON Manager.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\bin\Release\PROТанки JSON Manager.pdb
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\bin\Release\Newtonsoft.Json.dll
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\Yusha Manager.csprojResolveAssemblyReference.cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\MainWindow.baml
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\MainWindow.g.cs
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\App.g.cs
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\PROТанки JSON Manager_Content.g.cs
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\PROТанки JSON Manager_MarkupCompile.cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\PROТанки JSON Manager.g.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\Yusha_Manager.Properties.Resources.resources
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\Yusha Manager.csproj.GenerateResource.Cache
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\PROТанки JSON Manager.exe
+F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell PROТанки JSON Manager\obj\Release\PROТанки JSON Manager.pdb
