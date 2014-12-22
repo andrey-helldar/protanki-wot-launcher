@@ -857,7 +857,9 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            FramePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/EanDknT-2Ho?rel=0&controls=0&showinfo=0", UriKind.Relative));
+            FramePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/EanDknT-2Ho?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute));
+            FramePreview.Source = new Uri("http://www.youtube.com/embed/EanDknT-2Ho?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute);
+            FramePreview.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }
