@@ -86,7 +86,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="title">Заголовок</param>
         /// <param name="show">Отображать ли запись</param>
         public static void PreviewVideo(string id, string title = "", bool show = true)
-        {/*
+        {
             try
             {
 
@@ -109,10 +109,10 @@ namespace _Hell_WPF_Multipack_Launcher
                     framePreviewM.Visibility = Visibility.Hidden;
                     new Classes.Debugging().Save("MainWindow", "PreviewVideo(3)", "ID: " + id, "Title: " + title, "Show: " + show.ToString(), ex.Message, ex.StackTrace);
                 });
-            }*/
+            }
 
-            try { Process.Start("http://www.youtube.com/watch?v=" + id); }
-            catch (Exception) { MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language"))); }
+            /*try { Process.Start("http://www.youtube.com/watch?v=" + id); }
+            catch (Exception) { MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language"))); }*/
         }
 
         public MainWindow()
@@ -720,7 +720,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
                 {
                     json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Address + Properties.Resources.Multipack_Updates);
-                    //json_upd["version"] = "0.9.4." + (string)json_upd.SelectToken("base.version");
+                    json_upd["version"] = (string)json_upd.SelectToken("path") + "." + (string)json_upd.SelectToken((string)JsonSettingsGet("multipack.type") + ".version");
 
                     if (json_upd != null && (string)json_upd.SelectToken("version") != null)
                     {
@@ -733,10 +733,10 @@ namespace _Hell_WPF_Multipack_Launcher
                             JsonSettingsSet("multipack.changelog", (string)json_upd.SelectToken(path + "changelog." + (string)JsonSettingsGet("info.language")));
                             JsonSettingsSet("multipack.new_version", (string)json_upd.SelectToken("version"));
                             JsonSettingsSet("multipack.update", true, "bool");
-
+                            
                             try
                             {
-                                if ((string)JsonSettingsGet("info.notification") != (string)json_upd.SelectToken("version"))
+                                if ((string)JsonSettingsGet("info.notification") != (string)json_upd.SelectToken("path"))
                                 {
                                     if (JsonSettingsGet("info.session") == null)
                                     {

@@ -501,6 +501,10 @@
     <Resource Include="Resources\Ionic.Zip.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\!Hell Launcher Cleaner\!Hell Launcher Cleaner.csproj">
+      <Project>{0164bf6d-0b40-45d4-a573-077bd8d735fd}</Project>
+      <Name>!Hell Launcher Cleaner</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Processes Library\Processes Library.csproj">
       <Project>{c89f98dd-cf7b-4b7b-ae2c-fbf49177b8a6}</Project>
       <Name>Processes Library</Name>

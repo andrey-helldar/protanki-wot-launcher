@@ -39,5 +39,5 @@
         "en": "Download",
         "ru": "Скачать"
     },
-	"path":"{TanksVersion}"
+    "path": "{TanksVersion}"
 }
