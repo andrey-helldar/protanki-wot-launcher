@@ -48,7 +48,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         public static TextBlock PlayBtn { get { return playBtn; } }
         private static TextBlock playBtn;
-
+        
         public static Image Flag { get { return flag; } }
         private static Image flag;
 
@@ -58,6 +58,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <summary>
         /// Готовим контрол для отображения превью видео
         /// </summary>
+        public static Frame framePreviewM { get { return framePreview; } }
         private static Frame framePreview;
         private static TextBlock tbPreview;
 
@@ -85,14 +86,18 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="title">Заголовок</param>
         /// <param name="show">Отображать ли запись</param>
         public static void PreviewVideo(string id, string title = "", bool show = true)
-        {
+        {/*
             try
             {
+
                 if (show)
-                    framePreview.NavigationService.Navigate(new Uri(String.Format(Properties.Resources.Youtube_Preview, id), UriKind.RelativeOrAbsolute));
+                {
+                    framePreviewM.Visibility = Visibility.Visible;
+                    framePreviewM.NavigationService.Navigate(new Uri(String.Format(Properties.Resources.Youtube_Preview, id), UriKind.RelativeOrAbsolute));
+                }
                 else
                 {
-                    framePreview.Visibility = Visibility.Hidden;
+                    framePreviewM.Visibility = Visibility.Hidden;
                     MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language")));
                 }
             }
@@ -101,10 +106,13 @@ namespace _Hell_WPF_Multipack_Launcher
                 Task.Factory.StartNew(() =>
                 {
                     tbPreview.Visibility = Visibility.Hidden;
-                    framePreview.Visibility = Visibility.Hidden;
+                    framePreviewM.Visibility = Visibility.Hidden;
                     new Classes.Debugging().Save("MainWindow", "PreviewVideo(3)", "ID: " + id, "Title: " + title, "Show: " + show.ToString(), ex.Message, ex.StackTrace);
                 });
-            }
+            }*/
+
+            try { Process.Start("http://www.youtube.com/watch?v=" + id); }
+            catch (Exception) { MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language"))); }
         }
 
         public MainWindow()
@@ -133,6 +141,36 @@ namespace _Hell_WPF_Multipack_Launcher
                         this.Closing += delegate { loadPage = null; };
                     }
                 }));
+
+
+            /*Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                /*
+                 * <Frame x:Name="FramePreview"
+                 * Grid.Column="1"
+                 * Grid.Row="2" 
+                 * HorizontalAlignment="Center"
+                 * Margin="6,0"
+                 * VerticalAlignment="Center" 
+                 * ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                 * ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                 * NavigationUIVisibility="Hidden" 
+                 * VerticalContentAlignment="Center"
+                 * Width="250" 
+                 * Height="141"/>
+                 */
+            /*     Frame frame = new Frame();
+                 frame.Name = "FramePreview";
+                 frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+                 frame.Width = 250;
+                 frame.Height = 141;
+                 frame.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                 frame.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+                 frame.Margin = new Thickness(6, 0, 6,0);
+                 Grid.SetColumn(frame, 1);
+                 Grid.SetRow(frame, 3);
+                 this.RegisterName(frame.Name, frame);
+             }));*/
 
             Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
         }
@@ -498,9 +536,9 @@ namespace _Hell_WPF_Multipack_Launcher
                         ));
 
                     if ((bool)JsonSettingsGet("game.update"))
-                        Task.Factory.StartNew(() => ProcessStart(game_path, "WoTLauncher.exe"));
+                        Task.Factory.StartNew(() => ProcessStart(game_path, "WoTLauncher.exe")).Wait();
                     else
-                        Task.Factory.StartNew(() => ProcessStart(game_path, "WorldOfTanks.exe"));
+                        Task.Factory.StartNew(() => ProcessStart(game_path, "WorldOfTanks.exe")).Wait();
 
                     Dispatcher.BeginInvoke(new ThreadStart(delegate
                     {

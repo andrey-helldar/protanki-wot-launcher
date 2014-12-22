@@ -58,7 +58,7 @@
                                 </Border>
                                 <TextBox x:Name="tbMessage" Style="{DynamicResource TextFeedback}" TextWrapping="Wrap" MinHeight="140" Grid.ColumnSpan="2" AcceptsReturn="True" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" MaxHeight="200" SpellCheck.IsEnabled="True" Margin="10,10,10,0" FontWeight="Normal" TextChanged="tbMessage_TextChanged" Foreground="#FF006699" CaretBrush="#FF1B89BF"/>
                                 <Label x:Name="lSetEmail" Style="{DynamicResource lSetEmail}" Content="Введите Ваш email:" Grid.Row="2" Grid.ColumnSpan="2"/>
-                                <Button x:Name="bAttach" Content="Прикрепить файл" Style="{DynamicResource ButtonATTACH}" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="1" Grid.Row="3" Grid.Column="1" Margin="0,8,10,13" FontWeight="Normal" IsEnabled="False"/>
+                                <!--<Button x:Name="bAttach" Content="Прикрепить файл" Style="{DynamicResource ButtonATTACH}" VerticalAlignment="Center" HorizontalContentAlignment="Center" Padding="1" Grid.Row="3" Grid.Column="1" Margin="0,8,10,13" FontWeight="Normal" IsEnabled="False"/>-->
                                 <TextBox x:Name="tbEmail" Style="{DynamicResource TextEmail}" Margin="10,5,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="3" FontWeight="Normal"/>
                                 <StackPanel Margin="10,0" Grid.Row="1" Background="Transparent" Grid.ColumnSpan="2">
                                     <TextBlock TextWrapping="NoWrap" Foreground="#FF1B89BF" FontWeight="Normal" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center">

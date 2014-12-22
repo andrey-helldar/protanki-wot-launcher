@@ -241,7 +241,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     rbErrorInstaller.Content = Lang.Set("PageFeedback", "rbErrorInstaller", lang);
 
                     lSetEmail.Content = Lang.Set("PageFeedback", "lSetEmail", lang);
-                    bAttach.Content = Lang.Set("PageFeedback", "bAttach", lang);
+                    //bAttach.Content = Lang.Set("PageFeedback", "bAttach", lang);
                     bSend.Content = Lang.Set("PageFeedback", "bSend", lang);
                     bClose.Content = Lang.Set("PageFeedback", "bClose", lang);
 
