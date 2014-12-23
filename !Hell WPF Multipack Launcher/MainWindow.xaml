@@ -37,5 +37,6 @@
         <Frame x:Name="FramePreview" Grid.Column="1" HorizontalAlignment="Center" Height="141" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="240" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFFFBDBD" NavigationUIVisibility="Hidden"/>
         <Button x:Name="LoadingPanel" Content="Load"/>
         <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="25,117,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+        <WebBrowser x:Name="QWER" Grid.Column="1" HorizontalAlignment="Left" Height="161" Margin="26,175,0,0" Grid.Row="2" Grid.RowSpan="3" VerticalAlignment="Top" Width="211"/>
     </Grid>
 </Window>
