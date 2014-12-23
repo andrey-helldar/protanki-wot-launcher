@@ -1,7 +1,7 @@
 ﻿{
     "info": {
-        "video": true,
-        "news": true,
+        "video": false,
+        "news": false,
         "multipack": true,
         "notification": "0.0.0.0",
         "language": "en",

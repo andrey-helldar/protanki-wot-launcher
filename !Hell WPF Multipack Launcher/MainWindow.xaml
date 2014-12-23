@@ -34,8 +34,8 @@
         <!--<Button Content="Settings" Grid.Column="1" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" />
         <Button Content="Enc settings" Grid.Column="1" HorizontalAlignment="Left" Margin="86,7,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>-->
         <ProgressBar x:Name="pbOptimize" Grid.Column="1" Height="7" Margin="0" Grid.Row="3" VerticalAlignment="Top" Maximum="1" Style="{DynamicResource pbStatus}" Value="1" />
+        <Frame x:Name="FramePreview" Grid.Column="1" HorizontalAlignment="Center" Height="141" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="240" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFFFBDBD" NavigationUIVisibility="Hidden"/>
         <Button x:Name="LoadingPanel" Content="Load"/>
-        <Frame x:Name="FramePreview" Grid.Column="1" HorizontalAlignment="Center" Height="141" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="240" NavigationUIVisibility="Hidden"/>
         <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="25,117,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
     </Grid>
 </Window>

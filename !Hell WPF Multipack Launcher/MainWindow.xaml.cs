@@ -59,8 +59,8 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <summary>
         /// Готовим контрол для отображения превью видео
         /// </summary>
-        public static Frame framePreviewM { get { return framePreview; } }
-        private static Frame framePreview;
+        //public static Frame framePreviewM { get { return framePreview; } }
+        //private static Frame framePreview;
         private static TextBlock tbPreview;
 
         // Глобальная переменная настроек ПО
@@ -88,7 +88,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="show">Отображать ли запись</param>
         public static void PreviewVideo(string id, string title = "", bool show = true)
         {
-            try
+            /*try
             {
 
                 if (show)
@@ -110,7 +110,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     framePreviewM.Visibility = Visibility.Hidden;
                     new Classes.Debugging().Save("MainWindow", "PreviewVideo(3)", "ID: " + id, "Title: " + title, "Show: " + show.ToString(), ex.Message, ex.StackTrace);
                 });
-            }
+            }*/
 
             /*try { Process.Start("http://www.youtube.com/watch?v=" + id); }
             catch (Exception) { MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language"))); }*/
@@ -417,9 +417,9 @@ namespace _Hell_WPF_Multipack_Launcher
                     this.Closing += delegate { flag = null; };
 
                     // Готовим превью
-                    framePreview = this.FramePreview;
+                    /*framePreview = this.FramePreview;
                     tbPreview = this.TbPreview;
-                    this.Closing += delegate { framePreview = null; tbPreview = null; };
+                    this.Closing += delegate { framePreview = null; tbPreview = null; };*/
 
                     // Прогресс-бар функции оптимизации
                     optimizeProgress = this.pbOptimize;
@@ -858,11 +858,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            NavigationService ns = NavigationService.GetNavigationService(FramePreview);
-            ns.Navigate(new Uri("http://www.youtube.com/embed/EanDknT-2Ho?rel=0&controls=0&showinfo=0"));
-
-            //FramePreview.NavigationService.Navigate(ns);
-            FramePreview.Visibility = System.Windows.Visibility.Visible;
+            FramePreview.Source = new Uri("http://www.youtube.com/embed/EanDknT-2Ho?rel=0&controls=0&showinfo=0", UriKind.RelativeOrAbsolute);
+            //FramePreview.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }

@@ -278,7 +278,6 @@
     <Resource Include="Fonts\Micra.ttf" />
     <Resource Include="Fonts\sochi.ttf" />
     <None Include="changelog.json" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
