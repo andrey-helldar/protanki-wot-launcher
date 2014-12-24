@@ -59,7 +59,7 @@
     <ApplicationIcon>Resources\WOT.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>90E9B17F21D96E140802E431CBF7CB125A108B40</ManifestCertificateThumbprint>

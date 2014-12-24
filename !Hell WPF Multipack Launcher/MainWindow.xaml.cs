@@ -15,7 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
-using System.Windows.Navigation;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -60,8 +59,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// Готовим контрол для отображения превью видео
         /// </summary>
         //public static Frame framePreviewM { get { return framePreview; } }
-        //private static Frame framePreview;
-        private static TextBlock tbPreview;
+        private static Frame framePreview;
 
         // Глобальная переменная настроек ПО
         public static JObject jSettings;
@@ -88,17 +86,16 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="show">Отображать ли запись</param>
         public static void PreviewVideo(string id, string title = "", bool show = true)
         {
-            /*try
+            try
             {
-
                 if (show)
                 {
-                    framePreviewM.Visibility = Visibility.Visible;
-                    framePreviewM.NavigationService.Navigate(new Uri(String.Format(Properties.Resources.Youtube_Preview, id), UriKind.RelativeOrAbsolute));
+                    framePreview.Visibility = Visibility.Visible;
+                    framePreview.NavigationService.Navigate(new Uri(String.Format(Properties.Resources.Youtube_Preview, id), UriKind.RelativeOrAbsolute));
                 }
                 else
                 {
-                    framePreviewM.Visibility = Visibility.Hidden;
+                    framePreview.Visibility = Visibility.Hidden;
                     MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language")));
                 }
             }
@@ -106,11 +103,10 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 Task.Factory.StartNew(() =>
                 {
-                    tbPreview.Visibility = Visibility.Hidden;
-                    framePreviewM.Visibility = Visibility.Hidden;
+                    framePreview.Visibility = Visibility.Hidden;
                     new Classes.Debugging().Save("MainWindow", "PreviewVideo(3)", "ID: " + id, "Title: " + title, "Show: " + show.ToString(), ex.Message, ex.StackTrace);
                 });
-            }*/
+            }
 
             /*try { Process.Start("http://www.youtube.com/watch?v=" + id); }
             catch (Exception) { MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language"))); }*/
@@ -143,36 +139,6 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                 }));
 
-
-            /*Dispatcher.BeginInvoke(new ThreadStart(delegate
-            {
-                /*
-                 * <Frame x:Name="FramePreview"
-                 * Grid.Column="1"
-                 * Grid.Row="2" 
-                 * HorizontalAlignment="Center"
-                 * Margin="6,0"
-                 * VerticalAlignment="Center" 
-                 * ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-                 * ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
-                 * NavigationUIVisibility="Hidden" 
-                 * VerticalContentAlignment="Center"
-                 * Width="250" 
-                 * Height="141"/>
-                 */
-            /*     Frame frame = new Frame();
-                 frame.Name = "FramePreview";
-                 frame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-                 frame.Width = 250;
-                 frame.Height = 141;
-                 frame.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-                 frame.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-                 frame.Margin = new Thickness(6, 0, 6,0);
-                 Grid.SetColumn(frame, 1);
-                 Grid.SetRow(frame, 3);
-                 this.RegisterName(frame.Name, frame);
-             }));*/
-
             Task.Factory.StartNew(() => Loading()).Wait();  // Loading data
         }
 
@@ -183,7 +149,6 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                //string settings = "settings.json";
                 string decrypt = "";
 
                 if (File.Exists(SettingsPath))
@@ -417,9 +382,8 @@ namespace _Hell_WPF_Multipack_Launcher
                     this.Closing += delegate { flag = null; };
 
                     // Готовим превью
-                    /*framePreview = this.FramePreview;
-                    tbPreview = this.TbPreview;
-                    this.Closing += delegate { framePreview = null; tbPreview = null; };*/
+                    framePreview = this.FramePreview;
+                    this.Closing += delegate { framePreview = null; };
 
                     // Прогресс-бар функции оптимизации
                     optimizeProgress = this.pbOptimize;
@@ -479,6 +443,7 @@ namespace _Hell_WPF_Multipack_Launcher
             }).Wait();
 
             //LoadPage.Visibility = System.Windows.Visibility.Hidden;
+
             // Запускаем функцию автоматической отправки неотправленных тикетов
             Task.Factory.StartNew(() => new Classes.POST().AutosendTicket());
 
@@ -718,16 +683,18 @@ namespace _Hell_WPF_Multipack_Launcher
                 System.Net.NetworkInformation.Ping ping = new System.Net.NetworkInformation.Ping();
                 System.Net.NetworkInformation.PingReply reply = ping.Send(Properties.Resources.Multipack_Address.Split('/').Last());
 
+                JsonSettingsSet("multipack.update", false, "bool");
+
                 if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
                 {
                     json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Address + Properties.Resources.Multipack_Updates);
                     json_upd["version"] = (string)json_upd.SelectToken("path") + "." + (string)json_upd.SelectToken((string)JsonSettingsGet("multipack.type") + ".version");
-
+                    
                     if (json_upd != null && (string)json_upd.SelectToken("version") != null)
                     {
                         if (new Version((string)JsonSettingsGet("multipack.version")) <
                             new Version((string)json_upd.SelectToken("version")))
-                        {
+                        {   
                             string path = (string)JsonSettingsGet("multipack.type") + ".";
 
                             JsonSettingsSet("multipack.link", (string)json_upd.SelectToken(path + "download"));
@@ -859,6 +826,7 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             FramePreview.Navigate(new Uri("http://www.youtube.com/embed/EanDknT-2Ho"));
+            MessageBox.Show(jSettings.ToString());
         }
     }
 }

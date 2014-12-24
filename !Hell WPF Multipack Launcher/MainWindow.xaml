@@ -25,11 +25,6 @@
         <Button x:Name="bMinimize" Content="Minimize" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleMin}" Margin="0,6,45,0" VerticalAlignment="Top" Click="bMinimize_Click" Grid.Column="1"/>
         <!--<Button x:Name="bLauncherWOT" Style="{DynamicResource ButtonStyleLogotype}" Grid.Column="1" Margin="77,0,75,0" Grid.Row="1" VerticalAlignment="Top" Height="134"/>-->
         <Button x:Name="bAirus" Grid.Column="1" Style="{DynamicResource ButtonStyleAIRUS}" Margin="25,30,25,0" Grid.Row="3" VerticalAlignment="Top" Height="68" Click="bAirus_Click" Cursor="Hand"/>
-        <TextBlock x:Name="TbPreview" Grid.Column="1" Margin="10,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="White" FontFamily="Verdana" Visibility="Hidden" Height="15">
-            <TextBlock.Effect>
-                <DropShadowEffect BlurRadius="4" ShadowDepth="2" Opacity="0.85"/>
-            </TextBlock.Effect>
-        </TextBlock>
         <Image x:Name="rectLang" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="26,33,0,26" Grid.Row="4" VerticalAlignment="Center" Width="20" Stretch="Fill" Source="Resources/flag_en.png" MouseDown="rectLang_MouseDown" Cursor="Hand"/>
         <!--<Button Content="Settings" Grid.Column="1" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" />
         <Button Content="Enc settings" Grid.Column="1" HorizontalAlignment="Left" Margin="86,7,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>-->
@@ -37,6 +32,5 @@
         <Frame x:Name="FramePreview" Grid.Column="1" HorizontalAlignment="Center" Height="141" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="240" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFFFBDBD" NavigationUIVisibility="Hidden"/>
         <Button x:Name="LoadingPanel" Content="Load"/>
         <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="25,117,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
-        <WebBrowser x:Name="QWER" Grid.Column="1" HorizontalAlignment="Left" Height="161" Margin="26,175,0,0" Grid.Row="2" Grid.RowSpan="3" VerticalAlignment="Top" Width="211"/>
     </Grid>
 </Window>
