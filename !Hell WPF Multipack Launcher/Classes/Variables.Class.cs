@@ -38,13 +38,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major == 5, "bool");
                 MainWindow.JsonSettingsSet("info.user_id", GetUserID());
 
-
+                // Проверяем вывод уведомлений
                 if (MainWindow.JsonSettingsGet("info.manual_info") == null)
                 {
                     MainWindow.JsonSettingsSet("info.video", false, "bool");
                     MainWindow.JsonSettingsSet("info.news", false, "bool");
                     MainWindow.JsonSettingsSet("info.manual_info", true, "bool");
                 }
+
+                // Ставим параметр наличия уведомлений в начальную точку
+                MainWindow.JsonSettingsSet("multipack.update", false, "bool");
+                MainWindow.JsonSettingsSet("game.update", false, "bool");
 
                 // Проверяем права администратора
                 MainWindow.JsonSettingsSet("settings.admin", new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator), "bool");

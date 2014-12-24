@@ -81,6 +81,37 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
 
                     /* =====================================
+                     *      Buttons
+                     * =====================================*/
+                    case "Button":
+                        switch (control)
+                        {
+                            case "Iagree":
+                                switch (lang)
+                                {
+                                    case "ru": return "Принять";
+                                    case "en": return "Accept";
+                                    case "de": return "übernehmen";
+                                    case "ua": return "Прийняти";
+                                    default: return toReturn;
+                                }
+
+                            case "Idisagree":
+                                switch (lang)
+                                {
+                                    case "ru": return "Отказаться";
+                                    case "en": return "Cancel";
+                                    case "de": return "Abbrechen";
+                                    case "ua": return "Скасування";
+                                    default: return toReturn;
+                                }
+
+                            default: return toReturn;
+                        }
+
+
+
+                    /* =====================================
                      *      Global words
                      * =====================================*/
                     case "Global":
@@ -1574,6 +1605,49 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     case "en": return "The answer will be sent by email";
                                     case "de": return "Die Antwort wird per E-Mail gesendet werden";
                                     case "ua": return "Відповідь буде відправлено на email";
+                                    default: return toReturn;
+                                }
+
+                            default: return toReturn;
+                        }
+
+
+
+                    /* =====================================
+                     *      Give Email
+                     * =====================================*/
+                    case "GiveEmail":
+                        switch (control)
+                        {
+                            case "Caption":
+                                switch (lang)
+                                {
+                                    case "ru": return "Подтверждение запроса";
+                                    case "en": return "Confirmation request";
+                                    case "de": return "Sicherheitsabfrage";
+                                    case "ua": return "Підтвердження запиту";
+                                    default: return toReturn;
+                                }
+
+                            case "Message":
+                                switch (lang)
+                                {
+                                    case "ru": return "Сервису будет предоставлен доступ к Вашим личным данным:" + Environment.NewLine +
+                                                      "> имя пользователя;" + Environment.NewLine +
+                                                      "> email-адрес." + Environment.NewLine + Environment.NewLine +
+                                                      "Администрация \"AI RUS - Professional IT support\" гарантирует использование Ваших данных только для общения в тикет-системе и исключает передачу оных данных третьим лицам.";
+                                    case "en": return "Service will have access to your personal data:" + Environment.NewLine +
+                                                      "> username;" + Environment.NewLine +
+                                                      "> email-адрес." + Environment.NewLine + Environment.NewLine +
+                                                      "Administration \"AI RUS - Professional IT support\" guarantees the use of your data only for communication in the ticket system and prevents the transmission of the add data to third parties.";
+                                    case "de": return "Dienst haben Zugang zu Ihren persönlichen Daten:" + Environment.NewLine +
+                                                      "> benutzername;" + Environment.NewLine +
+                                                      "> e-mail-addresse." + Environment.NewLine + Environment.NewLine +
+                                                      "Administration \"AI RUS - Professionelle IT-Support\" gewährleistet die Nutzung Ihrer Daten nur für die Kommunikation im Ticketsystem und verhindert die Übertragung der Zusatzdaten an Dritte weiter.";
+                                    case "ua": return "Сервісу буде надано доступ до Ваших особистих даних:" + Environment.NewLine +
+                                                      "> ім'я користувача;" + Environment.NewLine +
+                                                      "> email-адрес." + Environment.NewLine + Environment.NewLine +
+                                                      "Адміністрація \"AI RUS - Professional IT support\" гарантує використання Ваших даних тільки для спілкування в тікет-системі і виключає передачу оних даних третім особам.";
                                     default: return toReturn;
                                 }
 

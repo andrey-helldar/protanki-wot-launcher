@@ -682,9 +682,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 System.Net.NetworkInformation.Ping ping = new System.Net.NetworkInformation.Ping();
                 System.Net.NetworkInformation.PingReply reply = ping.Send(Properties.Resources.Multipack_Address.Split('/').Last());
-
-                JsonSettingsSet("multipack.update", false, "bool");
-
+                
                 if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
                 {
                     json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Address + Properties.Resources.Multipack_Updates);
@@ -825,8 +823,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            FramePreview.Navigate(new Uri("http://www.youtube.com/embed/EanDknT-2Ho"));
-            MessageBox.Show(jSettings.ToString());
+            FramePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/EanDknT-2Ho"));
         }
     }
 }

@@ -330,11 +330,13 @@ namespace _Hell_WPF_Multipack_Launcher
         private void cbNotifyVideo_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.JsonSettingsSet("info.video", cbNotifyVideo.IsChecked, "bool");
+            MainWindow.JsonSettingsSet("info.manual_info", true, "bool");
         }
 
         private void cbNotifyNews_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.JsonSettingsSet("info.news", cbNotifyNews.IsChecked, "bool");
+            MainWindow.JsonSettingsSet("info.manual_info", true, "bool");
         }
 
         private void cbLauncher_SelectionChanged(object sender, SelectionChangedEventArgs e)
