@@ -22,11 +22,11 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="Iagree" Content="Accept" Style="{DynamicResource ButtonOK}" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center"/>
-                <Button x:Name="Idisagree" Content="I disagree" Style="{DynamicResource ButtonCLOSE}" Grid.Column="1" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center"/>
+                <Button x:Name="Iagree" Content="Accept" Style="{DynamicResource ButtonOK}" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Click="Iagree_Click"/>
+                <Button x:Name="Idisagree" Content="I disagree" Style="{DynamicResource ButtonCLOSE}" Grid.Column="1" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Click="Idisagree_Click"/>
             </Grid>
         </StackPanel>
-        <TextBlock x:Name="tbMessage" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Center" Grid.Row="1"/>
+        <TextBlock x:Name="tbMessage" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Center" Grid.Row="1" FontSize="14"/>
         <TextBlock x:Name="tbCaption" FontFamily="{StaticResource FontSochi2014}" HorizontalAlignment="Left" Margin="30" TextWrapping="Wrap" Text="Confirmation request" VerticalAlignment="Center" FontSize="20"/>
 
     </Grid>

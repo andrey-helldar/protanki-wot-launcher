@@ -10,6 +10,7 @@
         "user_email": null,
         "user_name": null,
         "user_id": null,
+        "user_accept": false,
         "notify_link": null,
         "ProductName": null
     },
