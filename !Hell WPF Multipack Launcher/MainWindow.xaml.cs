@@ -86,7 +86,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="show">Отображать ли запись</param>
         public static void PreviewVideo(string id, string title = "", bool show = true)
         {
-            /*try
+            try
             {
                 if (show)
                 {
@@ -106,10 +106,10 @@ namespace _Hell_WPF_Multipack_Launcher
                     framePreview.Visibility = Visibility.Hidden;
                     new Classes.Debugging().Save("MainWindow", "PreviewVideo(3)", "ID: " + id, "Title: " + title, "Show: " + show.ToString(), ex.Message, ex.StackTrace);
                 });
-            }*/
+            }
 
-            try { Process.Start("http://www.youtube.com/watch?v=" + id); }
-            catch (Exception) { MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language"))); }
+            /*try { Process.Start("http://www.youtube.com/watch?v=" + id); }
+            catch (Exception) { MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language"))); }*/
         }
 
         public MainWindow()
