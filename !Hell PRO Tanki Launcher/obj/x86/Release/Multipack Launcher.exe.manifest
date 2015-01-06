@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="1.1.41.866" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher" version="1.1.42.877" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -56,13 +56,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="2742672">
-      <assemblyIdentity name="Multipack Launcher" version="1.1.41.866" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Multipack Launcher" version="1.1.42.877" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>C9iawPWYBjoBusw5iQBqgkv3K0Y/vISB22mjIMvg+8I=</dsig:DigestValue>
+        <dsig:DigestValue>EQ9WB8QtUYx/RwdfeMAeb8b2V055Lqbytvyb/tQ6iDI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -80,13 +80,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Processes.Library.dll" size="20992">
-      <assemblyIdentity name="Processes.Library" version="1.6.5451.22662" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Processes.Library" version="1.6.5485.1518" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0lCy+2lCkSM+xa7u48zRaicklgK/8uUXZnnwsiXfYt0=</dsig:DigestValue>
+        <dsig:DigestValue>Qc/ymF2bsW3KwSWCEUImtZ6rdAKIpp9OH/bvS+mpajI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,7 +98,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hh2BBQP66plCVRR5ymjkba8x0qhzt+7gtDi4wrVEzC0=</dsig:DigestValue>
+        <dsig:DigestValue>bFbvYAOqP6Aef/dP4M4wGIntdS+ldDhKGilQ9AtaMXo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

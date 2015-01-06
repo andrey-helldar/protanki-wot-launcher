@@ -1,7 +1,8 @@
 ﻿{
     "info": {
-        "video": true,
-        "news": true,
+        "video": false,
+        "news": false,
+        "manual_info": true,
         "multipack": true,
         "notification": "0.0.0.0",
         "language": "en",
@@ -9,6 +10,7 @@
         "user_email": null,
         "user_name": null,
         "user_id": null,
+        "user_accept": false,
         "notify_link": null,
         "ProductName": null
     },

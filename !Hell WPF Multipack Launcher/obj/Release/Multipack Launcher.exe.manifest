@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\WOT.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="Multipack Launcher" version="2.5.40.866" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="Multipack Launcher" version="2.6.40.877" language="neutral" processorArchitecture="msil" />
     <commandLine file="Multipack Launcher.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -43,6 +43,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="!Hell Launcher Cleaner.exe" size="7168">
+      <assemblyIdentity name="!Hell Launcher Cleaner" version="1.0.5485.1518" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>PChfW74z5iXTSx4CXF+NPVIQzZE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Ionic.Zip.dll" size="462336">
       <assemblyIdentity name="Ionic.Zip" version="1.9.1.8" publicKeyToken="EDBE51AD942A3F5C" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -55,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="5730704">
-      <assemblyIdentity name="Multipack Launcher" version="2.5.40.866" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="5736448">
+      <assemblyIdentity name="Multipack Launcher" version="2.6.40.877" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>c8KB0uCyMnf4Rh5QmuDDzpGfpuU=</dsig:DigestValue>
+        <dsig:DigestValue>Ws6uxc9jvK5/0KJlFa/YGC3dy6s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -79,14 +91,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Processes.Library.dll" size="20992">
-      <assemblyIdentity name="Processes.Library" version="1.6.5451.22662" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Ookii.Dialogs.Wpf.dll" size="107696">
+      <assemblyIdentity name="Ookii.Dialogs.Wpf" version="1.0.0.0" publicKeyToken="0C15020868FD6249" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>qxVR8fuQjx+y2CIZBRulRXlvtzA=</dsig:DigestValue>
+        <dsig:DigestValue>o7M7yMmWP3J7wqJxTsbeDGB7ykA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Processes.Library.dll" size="20992">
+      <assemblyIdentity name="Processes.Library" version="1.6.5485.1518" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>YEdXVJnKGLtBASwF4Hwxhdp3K24=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,17 +122,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>MOphgiODUljXORIyCCEsxoOZDds=</dsig:DigestValue>
+        <dsig:DigestValue>Qq0O+WYHrbg2IdvmKDMOmOM4X/M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Multipack Launcher.exe.config" size="182">
+  <file name="Multipack Launcher.exe.config" size="167">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>wM2gA+0uB5Fhk7V9+uZ5oGZBRNE=</dsig:DigestValue>
+      <dsig:DigestValue>4RnS12hQBk60yafGQFP+/DKgMKQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\WOT.ico" size="22486">
