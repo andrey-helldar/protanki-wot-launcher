@@ -86,7 +86,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="show">Отображать ли запись</param>
         public static void PreviewVideo(string id, string title = "", bool show = true)
         {
-            try
+            /*try
             {
                 if (show)
                 {
@@ -106,10 +106,10 @@ namespace _Hell_WPF_Multipack_Launcher
                     framePreview.Visibility = Visibility.Hidden;
                     new Classes.Debugging().Save("MainWindow", "PreviewVideo(3)", "ID: " + id, "Title: " + title, "Show: " + show.ToString(), ex.Message, ex.StackTrace);
                 });
-            }
+            }*/
 
-            /*try { Process.Start("http://www.youtube.com/watch?v=" + id); }
-            catch (Exception) { MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language"))); }*/
+            try { Process.Start("http://www.youtube.com/watch?v=" + id); }
+            catch (Exception) { MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language"))); }
         }
 
         public MainWindow()
@@ -776,49 +776,53 @@ namespace _Hell_WPF_Multipack_Launcher
         /// </summary>
         private void CheckSettings()
         {
-            //  Info
-            if (jSettings.SelectToken("info.video") == null) JsonSettingsSet("info.video", true, "bool");
-            if (jSettings.SelectToken("info.news") == null) JsonSettingsSet("info.news", true, "bool");
-            if (jSettings.SelectToken("info.multipack") == null) JsonSettingsSet("info.multipack", true, "bool");
-            if (jSettings.SelectToken("info.notification") == null) JsonSettingsSet("info.notification", "0.0.0.0");
-            if (jSettings.SelectToken("info.language") == null) JsonSettingsSet("info.language", Properties.Resources.Default_Lang);
-            if (jSettings.SelectToken("info.locale") == null) JsonSettingsSet("info.locale", 0, "int");
-            if (jSettings.SelectToken("info.user_email") == null) JsonSettingsSet("info.user_email", "");
-            if (jSettings.SelectToken("info.user_id") == null) JsonSettingsSet("info.user_id", "");
-            if (jSettings.SelectToken("info.notify_link") == null) JsonSettingsSet("info.notify_link", "");
-            if (jSettings.SelectToken("info.ProductName") == null) JsonSettingsSet("info.ProductName", "");
+            try
+            {
+                //  Info
+                if (jSettings.SelectToken("info.video") == null) JsonSettingsSet("info.video", true, "bool");
+                if (jSettings.SelectToken("info.news") == null) JsonSettingsSet("info.news", true, "bool");
+                if (jSettings.SelectToken("info.multipack") == null) JsonSettingsSet("info.multipack", true, "bool");
+                if (jSettings.SelectToken("info.notification") == null) JsonSettingsSet("info.notification", "0.0.0.0");
+                if (jSettings.SelectToken("info.language") == null) JsonSettingsSet("info.language", Properties.Resources.Default_Lang);
+                if (jSettings.SelectToken("info.locale") == null) JsonSettingsSet("info.locale", 0, "int");
+                if (jSettings.SelectToken("info.user_email") == null) JsonSettingsSet("info.user_email", "");
+                if (jSettings.SelectToken("info.user_id") == null) JsonSettingsSet("info.user_id", "");
+                if (jSettings.SelectToken("info.notify_link") == null) JsonSettingsSet("info.notify_link", "");
+                if (jSettings.SelectToken("info.ProductName") == null) JsonSettingsSet("info.ProductName", "");
 
 
-            //  Settings
-            if (jSettings.SelectToken("settings.admin") == null) JsonSettingsSet("settings.admin", false, "bool");
-            if (jSettings.SelectToken("settings.kill") == null) JsonSettingsSet("settings.kill", false, "bool");
-            if (jSettings.SelectToken("settings.force") == null) JsonSettingsSet("settings.force", false, "bool");
-            if (jSettings.SelectToken("settings.aero") == null) JsonSettingsSet("settings.aero", false, "bool");
-            if (jSettings.SelectToken("settings.video") == null) JsonSettingsSet("settings.video", false, "bool");
-            if (jSettings.SelectToken("settings.weak") == null) JsonSettingsSet("settings.weak", false, "bool");
-            if (jSettings.SelectToken("settings.winxp") == null) JsonSettingsSet("settings.winxp", false, "bool");
-            if (jSettings.SelectToken("settings.launcher") == null) JsonSettingsSet("settings.launcher", 0, "int");
-            if (jSettings.SelectToken("settings.aero_disable") == null) JsonSettingsSet("settings.aero_disable", false, "bool");
+                //  Settings
+                if (jSettings.SelectToken("settings.admin") == null) JsonSettingsSet("settings.admin", false, "bool");
+                if (jSettings.SelectToken("settings.kill") == null) JsonSettingsSet("settings.kill", false, "bool");
+                if (jSettings.SelectToken("settings.force") == null) JsonSettingsSet("settings.force", false, "bool");
+                if (jSettings.SelectToken("settings.aero") == null) JsonSettingsSet("settings.aero", false, "bool");
+                if (jSettings.SelectToken("settings.video") == null) JsonSettingsSet("settings.video", false, "bool");
+                if (jSettings.SelectToken("settings.weak") == null) JsonSettingsSet("settings.weak", false, "bool");
+                if (jSettings.SelectToken("settings.winxp") == null) JsonSettingsSet("settings.winxp", false, "bool");
+                if (jSettings.SelectToken("settings.launcher") == null) JsonSettingsSet("settings.launcher", 0, "int");
+                if (jSettings.SelectToken("settings.aero_disable") == null) JsonSettingsSet("settings.aero_disable", false, "bool");
 
 
-            //  Multipack
-            if (jSettings.SelectToken("multipack.language") == null) JsonSettingsSet("multipack.language", Properties.Resources.Default_Lang);
-            if (jSettings.SelectToken("multipack.type") == null) JsonSettingsSet("multipack.type", Properties.Resources.Default_Multipack_Type);
-            if (jSettings.SelectToken("multipack.version") == null) JsonSettingsSet("multipack.version", "0.0.0.0");
-            if (jSettings.SelectToken("multipack.date") == null) JsonSettingsSet("multipack.date", "");
-            if (jSettings.SelectToken("multipack.link") == null) JsonSettingsSet("multipack.link", "");
-            if (jSettings.SelectToken("multipack.changelog") == null) JsonSettingsSet("multipack.changelog", "");
-            if (jSettings.SelectToken("multipack.new_version") == null) JsonSettingsSet("multipack.new_version", "0.0.0.0");
-            if (jSettings.SelectToken("multipack.update") == null) JsonSettingsSet("multipack.update", false, "bool");
+                //  Multipack
+                if (jSettings.SelectToken("multipack.language") == null) JsonSettingsSet("multipack.language", Properties.Resources.Default_Lang);
+                if (jSettings.SelectToken("multipack.type") == null) JsonSettingsSet("multipack.type", Properties.Resources.Default_Multipack_Type);
+                if (jSettings.SelectToken("multipack.version") == null) JsonSettingsSet("multipack.version", "0.0.0.0");
+                if (jSettings.SelectToken("multipack.date") == null) JsonSettingsSet("multipack.date", "");
+                if (jSettings.SelectToken("multipack.link") == null) JsonSettingsSet("multipack.link", "");
+                if (jSettings.SelectToken("multipack.changelog") == null) JsonSettingsSet("multipack.changelog", "");
+                if (jSettings.SelectToken("multipack.new_version") == null) JsonSettingsSet("multipack.new_version", "0.0.0.0");
+                if (jSettings.SelectToken("multipack.update") == null) JsonSettingsSet("multipack.update", false, "bool");
 
 
-            //  Game
-            if (jSettings.SelectToken("game.version") == null) JsonSettingsSet("game.version", "0.0.0.0");
-            if (jSettings.SelectToken("game.new_version") == null) JsonSettingsSet("game.new_version", "0.0.0.0");
-            if (jSettings.SelectToken("game.path") == null) JsonSettingsSet("game.path", "");
-            if (jSettings.SelectToken("game.test") == null) JsonSettingsSet("game.test", false, "bool");
-            if (jSettings.SelectToken("game.language") == null) JsonSettingsSet("game.language", Properties.Resources.Default_Lang);
-            if (jSettings.SelectToken("game.update") == null) JsonSettingsSet("game.update", false, "bool");
+                //  Game
+                if (jSettings.SelectToken("game.version") == null) JsonSettingsSet("game.version", "0.0.0.0");
+                if (jSettings.SelectToken("game.new_version") == null) JsonSettingsSet("game.new_version", "0.0.0.0");
+                if (jSettings.SelectToken("game.path") == null) JsonSettingsSet("game.path", "");
+                if (jSettings.SelectToken("game.test") == null) JsonSettingsSet("game.test", false, "bool");
+                if (jSettings.SelectToken("game.language") == null) JsonSettingsSet("game.language", Properties.Resources.Default_Lang);
+                if (jSettings.SelectToken("game.update") == null) JsonSettingsSet("game.update", false, "bool");
+            }
+            catch (Exception) { }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
