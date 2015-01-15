@@ -827,7 +827,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            FramePreview.NavigationService.Navigate(new Uri("http://www.youtube.com/embed/EanDknT-2Ho"));
+            if (File.Exists("settings_open.json")) File.Delete("settings_open.json");
+            File.WriteAllText("settings_open.json", jSettings.ToString());
         }
     }
 }

@@ -1171,13 +1171,23 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     default: return toReturn;
                                 }
 
-                            case "NeedUpdates":
+                            case "UpdatesMultipack":
                                 switch (lang)
                                 {
                                     case "ru": return "Обнаружена новая версия мультипака: " + text;
                                     case "en": return "A new version of Multipack is available: " + text;
                                     case "de": return "Es gibt eine neue Version von Multipack: " + text;
                                     case "ua": return "Виявлена ​​нова версія мультипака: " + text;
+                                    default: return toReturn;
+                                }
+
+                            case "UpdatesGame":
+                                switch (lang)
+                                {
+                                    case "ru": return "Обнаружена новая версия клиента игры: " + text;
+                                    case "en": return "A new version of \"World of Tanks\" is available: " + text;
+                                    case "de": return "Es gibt eine neue Version von \"World of Tanks\" : " + text;
+                                    case "ua": return "Виявлена ​​нова версія \"World of Tanks\" : " + text;
                                     default: return toReturn;
                                 }
 

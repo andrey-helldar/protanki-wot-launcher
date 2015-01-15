@@ -1,0 +1,59 @@
+{
+  "info": {
+    "video": false,
+    "news": false,
+    "multipack": true,
+    "notification": "0.0.0.0",
+    "language": "ru",
+    "locale": 0,
+    "user_email": "helldar@ai-rus.com",
+    "user_name": "First_Helldar",
+    "user_id": "f39d3705d0925c26120f42599dc7d336",
+    "notify_link": null,
+    "ProductName": "Multipack Launcher",
+    "manual_info": true
+  },
+  "settings": {
+    "admin": true,
+    "kill": false,
+    "force": false,
+    "aero": false,
+    "video": false,
+    "weak": false,
+    "winxp": false,
+    "launcher": 0,
+    "aero_disable": true
+  },
+  "multipack": {
+    "language": "ru",
+    "type": "extended",
+    "version": "0.9.5.2",
+    "date": "23.11.2014",
+    "link": "http://goo.gl/45WQrQ",
+    "changelog": "В этой версии произошли следующие изменения:<font size='12' color='808080'><ul><li>Обновлен Лаунчер Мультипака;</li><li>Обновлен XVM до версии XVM-5.5.1.2 (WoT client 0.9.5);</li><li>XVM адаптирован к новым Личным Боевым Задачам;</li><li>Обновлен Подземный ангар (адаптированы звуки на производительность);</li><li>Добален Строгий прицел Andre_v;</li><li>Добавлено сведение Marsoff & BioNick.</li><li>ПРОСТО ПЕРЕКАЧАЙТЕ И ПЕРЕУСТАНОВИТЕ МОДПАК.</li></ul></font>__________________________________________<br><font color='#E00000'>Новая версия доступна по ссылке в описании к видео.</font>",
+    "new_version": "0.9.5.8",
+    "update": true,
+    "path": "0.9.5"
+  },
+  "game": {
+    "version": "0.9.4.811",
+    "new_version": "0.9.5.38",
+    "path": "F:::;ВАЖНЫЕ ДАННЫЕ::;!!Важные документы::;!Сохранения программ::;Visual Studio C#::;!Hell PRO Tanki Launcher::;!Hell WPF Multipack Launcher::;bin::;",
+    "test": false,
+    "language": "ru",
+    "update": true
+  },
+  "processes": null,
+  "wargaming": null,
+  "youtube": null,
+  "do_not_display": {
+    "video": null,
+    "news": null
+  },
+  "token": {
+    "access_token": "b1f152e7e896380b1edece5f346740d2eff78685",
+    "expires_at": "1421854059",
+    "nickname": "First_Helldar",
+    "account_id": "2732865"
+  }
+}

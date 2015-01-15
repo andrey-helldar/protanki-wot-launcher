@@ -87,7 +87,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     if ((bool)MainWindow.JsonSettingsGet("multipack.update") && MainWindow.JsonSettingsGet("multipack.update") != null)
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
-                            lStatus.Text = Lang.Set("PageGeneral", "NeedUpdates", (string)MainWindow.JsonSettingsGet("info.language"), (string)MainWindow.JsonSettingsGet("multipack.new_version"));
+                            lStatus.Text = Lang.Set("PageGeneral", "UpdatesMultipack", (string)MainWindow.JsonSettingsGet("info.language"), (string)MainWindow.JsonSettingsGet("multipack.new_version"));
 
                             bNotification.Visibility = System.Windows.Visibility.Visible;
                             bUpdate.Visibility = System.Windows.Visibility.Visible;
@@ -100,7 +100,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         }));
 
                     if ((bool)MainWindow.JsonSettingsGet("game.update") && MainWindow.JsonSettingsGet("game.update") != null)
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageUpdate", "gbCaption", lang, (string)MainWindow.JsonSettingsGet("game.new_version")); }));
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageGeneral", "UpdatesGame", lang, (string)MainWindow.JsonSettingsGet("game.new_version")); }));
                 });
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", "multipack.update", ex.Message, ex.StackTrace)); }
@@ -716,7 +716,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             (bool)MainWindow.JsonSettingsGet("settings.aero"),
                             (bool)MainWindow.JsonSettingsGet("settings.video"),
                             (bool)MainWindow.JsonSettingsGet("settings.weak"),
-                            true
+                            false
                         ));
 
                     Task.Factory.StartNew(() => MainWindow.ProcessStart(game_path, "WoTLauncher.exe"));

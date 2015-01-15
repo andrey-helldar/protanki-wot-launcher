@@ -93,10 +93,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <param name="access_token">Токен</param>
         /// <param name="fields">Запрос определенных полей</param>
         /// <returns>JSON ответ</returns>
-        public JObject ClanBattles(string clan_id, string access_token = "", string map_id = "eventmap", string fields = "")
+        public JObject ClanBattles(string clan_id, string access_token = "", string fields = "")
         {
             /*
-             * api.worldoftanks.ru/wot/clan/battles/
+             * api.worldoftanks.ru/wot/globalwar/battles/
              */
             string Data = String.Empty;
 
@@ -104,12 +104,21 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 Data = "application_id=" + Properties.Resources.API;
                 Data += "&clan_id=" + clan_id;
-                Data += "&map_id=" + map_id;
 
                 if (access_token.Trim().Length > 0) Data += "&access_token=" + access_token;
                 if (fields.Trim().Length > 0) Data += "&fields=" + fields;
 
-                return JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Battles, Data));
+                JObject globalmap = JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Battles, Data + "&map_id=globalmap"));
+                JObject eventmap = JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Battles, Data + "&map_id=eventmap"));
+
+                JArray wars = (JArray)globalmap["data"][clan_id];
+
+                foreach (JArray jt in (JArray)eventmap["data"][clan_id])
+                    wars.Add(jt);
+
+                return globalmap;
+
+                //return JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Battles, Data + "&map_id=globalmap"));
             }
             catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanBattles()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); return null; }
         }
