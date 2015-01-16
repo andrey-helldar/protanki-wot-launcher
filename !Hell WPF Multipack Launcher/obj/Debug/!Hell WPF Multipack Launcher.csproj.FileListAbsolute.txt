@@ -121,3 +121,8 @@ F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранен
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\bin\Debug\Ookii.Dialogs.Wpf.dll
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\obj\Debug\GiveEmail.baml
 F:\ВАЖНЫЕ ДАННЫЕ\!!Важные документы\!Сохранения программ\Visual Studio C#\!Hell PRO Tanki Launcher\!Hell WPF Multipack Launcher\obj\Debug\GiveEmail.g.cs
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Debug\GiveEmail.baml
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\obj\Debug\GiveEmail.g.cs
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Debug\!Hell Launcher Cleaner.exe
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Debug\Ookii.Dialogs.Wpf.dll
+D:\Helldar\Visual C#\!Hell PRO Tanks Launcher\!Hell WPF Multipack Launcher\bin\Debug\!Hell Launcher Cleaner.pdb

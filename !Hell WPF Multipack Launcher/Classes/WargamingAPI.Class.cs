@@ -117,8 +117,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     wars.Add(jt);
 
                 return globalmap;
-
-                //return JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Clan_Battles, Data + "&map_id=globalmap"));
             }
             catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanBattles()", "Clan ID: " + clan_id, ex.Message, ex.StackTrace); return null; }
         }
@@ -157,7 +155,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// <param name="province_id">Идентификатор провинции</param>
         /// <param name="map_id">Идентификатор Глобальной карты:  eventmap</param>
         /// <returns>JSON ответ</returns>
-        public JObject GlobalProvinces(string province_id = "", string map_id = "eventmap")
+        public JObject GlobalProvinces(string clan_id, string province_id = "")
         {
             /*
              * api.worldoftanks.ru/wot/globalwar/provinces/
@@ -167,12 +165,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 Data = "application_id=" + Properties.Resources.API;
-                Data += "&map_id=" + map_id;
                 if (province_id.Trim().Length > 0) Data += "&province_id=" + province_id;
 
                 return JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Global_Provinces, Data));
             }
-            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanProvinces()", "Province ID: " + province_id, "Map ID: " + map_id, ex.Message, ex.StackTrace); return null; }
+            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "ClanProvinces()", "Province ID: " + province_id, ex.Message, ex.StackTrace); return null; }
         }
 
 

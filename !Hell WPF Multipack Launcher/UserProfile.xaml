@@ -47,7 +47,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="0" TextWrapping="Wrap" VerticalAlignment="Bottom" FontWeight="Bold" FontFamily="Arial" FontSize="18" Foreground="#FF3A6696">
+                            <TextBlock HorizontalAlignment="Left" Grid.Row="0" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Arial" FontSize="18" Foreground="#FF3A6696">
                     <Run x:Name="PlayerName">Guest</Run>
                     <Run x:Name="PlayerClan"></Run>
                             </TextBlock>
@@ -58,34 +58,33 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image x:Name="ClanEmblem" Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" VerticalAlignment="Center" Source="{x:Null}"/>
-                                    <TextBlock HorizontalAlignment="Left" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial" Margin="10,0,0,0">
+                                    <Image x:Name="ClanEmblem" Grid.Column="0" Width="32" Height="32" HorizontalAlignment="Left" VerticalAlignment="Center" Source="{x:Null}" Margin="0,4,0,5"/>
+                                    <TextBlock HorizontalAlignment="Left" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial" Margin="10,7,0,6">
                                         <Run x:Name="PlayerClan2">---</Run>
                                         <LineBreak/>
                                         <Run x:Name="PlayerZvanie">---</Run>
                                     </TextBlock>
-                                    <TextBlock HorizontalAlignment="Right" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial" Margin="0,0,5,0" TextAlignment="Right">
+                                    <TextBlock HorizontalAlignment="Right" Grid.Column="2" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial" Margin="0,0,5,-1" TextAlignment="Right">
                                         <Run x:Name="PlayerGold" Foreground="#FFFFD100" FontWeight="Bold">---</Run>
                                         <LineBreak/>
                                         <Run x:Name="PlayerCredit">---</Run>
                                         <LineBreak/>
                                         <Run x:Name="PlayerXP">---</Run>
                                     </TextBlock>
-                                    <TextBlock HorizontalAlignment="Right" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial">
+                                    <TextBlock HorizontalAlignment="Right" Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF676767" FontFamily="Arial" Margin="0,1">
                                         <Image Source="Resources/gold.png" Margin="5,0,0,0" />
                                         <LineBreak/>
                                         <Image Source="Resources/credit.png" Margin="5,0,0,0" />
                                         <LineBreak/>
                                         <Image Source="Resources/currency-experience.png" Margin="5,0,0,0" />
                                     </TextBlock>
-                                    <Image x:Name="iAccountType" Grid.Column="2" HorizontalAlignment="Center" Height="25" VerticalAlignment="Center" Width="25" Source="Resources/ico-account-base.png" Stretch="None" Margin="10,0" ToolTip="Базовый аккаунт"/>
                                 </Grid>
                             </StackPanel>
 
                             <Image Grid.Row="1" HorizontalAlignment="Left" Margin="0,10" VerticalAlignment="Top" Source="Resources/line.png"/>
                             <Image Grid.Row="3" HorizontalAlignment="Left" Margin="0,10" VerticalAlignment="Top" Source="Resources/line.png"/>
+                            <Image x:Name="iAccountType" HorizontalAlignment="Right" Height="25" Margin="0" VerticalAlignment="Center" Width="25" Source="Resources/ico-account-base.png" ToolTip="Базовый аккаунт"/>
                         </Grid>
                     </StackPanel>
                     <StackPanel Grid.ColumnSpan="2" Margin="0" Grid.Row="1">
@@ -104,7 +103,7 @@
                                     <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
                                         <Image Source="Resources/stat_perc_vins.png" Width="50" Height="50" Stretch="Fill"/>
                                         <LineBreak/>
-                                        <Run x:Name="PercWins">Процент побед</Run>
+                                        <Run x:Name="PercWins" Style="{DynamicResource statcapt}">Процент побед</Run>
                                         <LineBreak/><LineBreak/>
                                         <Run x:Name="PercWinsPerc" Style="{DynamicResource stattext}">0</Run><Run Style="{DynamicResource stattext}">%</Run>
                                     </TextBlock>
@@ -112,7 +111,7 @@
                                     <TextBlock HorizontalAlignment="Center" Grid.Column="1" Margin="0" TextWrapping="Wrap"  VerticalAlignment="Center" TextAlignment="Center">
                                         <Image Source="Resources/stat_rating.png" Width="166" Height="165"/>
                                         <LineBreak/>
-                                        <Run x:Name="MyRating">Личный рейтинг</Run>
+                                        <Run x:Name="MyRating" Style="{DynamicResource statcapt}">Личный рейтинг</Run>
                                         <LineBreak/><LineBreak/>
                                         <Run x:Name="MyRatingPerc" Style="{DynamicResource stattext}">0</Run>
                                     </TextBlock>
@@ -120,7 +119,7 @@
                                     <TextBlock HorizontalAlignment="Center" Grid.Column="2" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
                                         <Image Source="Resources/stat_perc_avgxp.png" Width="50" Height="50"/>
                                         <LineBreak/>
-                                        <Run x:Name="AvgXP">Средний опыт за бой</Run>
+                                        <Run x:Name="AvgXP" Style="{DynamicResource statcapt}">Средний опыт за бой</Run>
                                         <LineBreak/><LineBreak/>
                                         <Run x:Name="AvgXPPerc" Style="{DynamicResource stattext}">0</Run>
                                     </TextBlock>
@@ -137,7 +136,7 @@
                                     <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
                                         <Image Source="Resources/stat_perc_battles.png" Width="50" Height="50"/>
                                         <LineBreak/>
-                                        <Run x:Name="BattleCount">Количество боев</Run>
+                                        <Run x:Name="BattleCount" Style="{DynamicResource statcapt}">Количество боев</Run>
                                         <LineBreak/><LineBreak/>
                                         <Run x:Name="BattleCountPerc" Style="{DynamicResource stattext}">0</Run>
                                     </TextBlock>
@@ -145,7 +144,7 @@
                                     <TextBlock HorizontalAlignment="Center" Grid.Column="2" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center">
                                         <Image Source="Resources/stat_perc_avgdamage.png" Width="50" Height="50"/>
                                         <LineBreak/>
-                                        <Run x:Name="AvgDamage">Средний нанесенный урон за бой</Run>
+                                        <Run x:Name="AvgDamage" Style="{DynamicResource statcapt}">Средний нанесенный урон за бой</Run>
                                         <LineBreak/><LineBreak/>
                                         <Run x:Name="AvgDamagePerc" Style="{DynamicResource stattext}">0</Run>
                                     </TextBlock>

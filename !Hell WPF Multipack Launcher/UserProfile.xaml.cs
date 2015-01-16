@@ -197,27 +197,27 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                                     // Личный рейтинг
                                                     MyRating.Text = Lang.Set("PageUser", "tbMyRating", lang);
-                                                    MyRatingPerc.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.global_rating", account_id));
+                                                    MyRatingPerc.Text = SetSumm((string)JAccountInfo.SelectToken(String.Format("data.{0}.global_rating", account_id)));
 
                                                     // Средний опыт за бой
                                                     AvgXP.Text = Lang.Set("PageUser", "tbAvgXP", lang);
-                                                    AvgXPPerc.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.battle_avg_xp", account_id));
+                                                    AvgXPPerc.Text = SetSumm((string)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.battle_avg_xp", account_id)));
 
                                                     // Количество боев
                                                     BattleCount.Text = Lang.Set("PageUser", "tbCountWars", lang);
-                                                    BattleCountPerc.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.battles", account_id));
+                                                    BattleCountPerc.Text = SetSumm((string)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.battles", account_id)));
 
                                                     // Средний нанесенный урон за бой
                                                     AvgDamage.Text = Lang.Set("PageUser", "tbAvgDamage", lang);
-                                                    AvgDamagePerc.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.avg_damage_assisted", account_id));
+                                                    AvgDamagePerc.Text = SetSumm((string)JAccountInfo.SelectToken(String.Format("data.{0}.statistics.all.avg_damage_assisted", account_id)));
                                                 }
                                                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "User Info", ex.Message, ex.StackTrace)); }
 
                                                 try
                                                 {
-                                                    PlayerGold.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.gold", account_id));
-                                                    PlayerCredit.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.credits", account_id));
-                                                    PlayerXP.Text = (string)JAccountInfo.SelectToken(String.Format("data.{0}.private.free_xp", account_id));
+                                                    PlayerGold.Text = SetSumm((string)JAccountInfo.SelectToken(String.Format("data.{0}.private.gold", account_id)));
+                                                    PlayerCredit.Text = SetSumm((string)JAccountInfo.SelectToken(String.Format("data.{0}.private.credits", account_id)));
+                                                    PlayerXP.Text = SetSumm((string)JAccountInfo.SelectToken(String.Format("data.{0}.private.free_xp", account_id)));
                                                     iAccountType.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/{1}", (string)MainWindow.JsonSettingsGet("info.ProductName"), (bool)JAccountInfo.SelectToken(String.Format("data.{0}.private.is_premium", account_id)) ? "ico-account-premium.png" : "ico-account-base.png")));
 
                                                     iAccountType.ToolTip = Lang.Set("Global", (bool)JAccountInfo.SelectToken(String.Format("data.{0}.private.is_premium", account_id)) ? "IsPremium" : "IsBase", lang);
@@ -700,6 +700,17 @@ namespace _Hell_WPF_Multipack_Launcher
                     Task.Factory.StartNew(() => { AccountInfo(); });
             }
             catch (Exception ex0) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "if (active)", ex0.Message, ex0.StackTrace)); }
+        }
+
+        private string SetSumm(string summ)
+        {
+            try
+            {
+                object[] args = { Convert.ToDouble(summ) };
+                return String.Format("{0,12:N0}", args);
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "SetSumm()", "Summ = " + summ, ex.Message, ex.StackTrace)); }
+            return "---";
         }
     }
 }

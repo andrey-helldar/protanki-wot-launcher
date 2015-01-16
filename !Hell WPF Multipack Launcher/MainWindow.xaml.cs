@@ -48,7 +48,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         public static TextBlock PlayBtn { get { return playBtn; } }
         private static TextBlock playBtn;
-        
+
         public static Image Flag { get { return flag; } }
         private static Image flag;
 
@@ -453,7 +453,7 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try { if ((bool)JsonSettingsGet("settings.aero_disable")) { Process.Start(new ProcessStartInfo("cmd", @"/c net start uxsms")); } }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Closing()", "aero_disable", ex.Message, ex.StackTrace)).Wait(); }
-            
+
             try { notifyIcon.Dispose(); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "Window_Closing()", "notifyIcon.Dispose();", ex.Message, ex.StackTrace)).Wait(); }
 
@@ -682,24 +682,24 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 System.Net.NetworkInformation.Ping ping = new System.Net.NetworkInformation.Ping();
                 System.Net.NetworkInformation.PingReply reply = ping.Send(Properties.Resources.Multipack_Address.Split('/').Last());
-                
+
                 if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
                 {
                     json_upd = new Classes.POST().JsonResponse(Properties.Resources.Multipack_Address + Properties.Resources.Multipack_Updates);
                     json_upd["version"] = (string)json_upd.SelectToken("path") + "." + (string)json_upd.SelectToken((string)JsonSettingsGet("multipack.type") + ".version");
-                    
+
                     if (json_upd != null && (string)json_upd.SelectToken("version") != null)
                     {
                         if (new Version((string)JsonSettingsGet("multipack.version")) <
                             new Version((string)json_upd.SelectToken("version")))
-                        {   
+                        {
                             string path = (string)JsonSettingsGet("multipack.type") + ".";
 
                             JsonSettingsSet("multipack.link", (string)json_upd.SelectToken(path + "download"));
                             JsonSettingsSet("multipack.changelog", (string)json_upd.SelectToken(path + "changelog." + (string)JsonSettingsGet("info.language")));
                             JsonSettingsSet("multipack.new_version", (string)json_upd.SelectToken("version"));
                             JsonSettingsSet("multipack.update", true, "bool");
-                            
+
                             try
                             {
                                 if ((string)JsonSettingsGet("info.notification") != (string)json_upd.SelectToken("path"))
@@ -750,13 +750,13 @@ namespace _Hell_WPF_Multipack_Launcher
                 string settings_enc = @"settings_enc.json";
 
                 if (File.Exists(file))
-                using (StreamReader reader = File.OpenText(file))
-                {
-                    Classes.Crypt Crypt = new Classes.Crypt();
+                    using (StreamReader reader = File.OpenText(file))
+                    {
+                        Classes.Crypt Crypt = new Classes.Crypt();
 
-                    if (File.Exists(settings_enc)) File.Delete(settings_enc);
-                    File.WriteAllText(settings_enc, Crypt.Encrypt(Crypt.Decrypt(reader.ReadToEnd(), Variables.GetUserID()), Variables.GetUserID()));
-                }
+                        if (File.Exists(settings_enc)) File.Delete(settings_enc);
+                        File.WriteAllText(settings_enc, Crypt.Encrypt(Crypt.Decrypt(reader.ReadToEnd(), Variables.GetUserID()), Variables.GetUserID()));
+                    }
 
 
             }
