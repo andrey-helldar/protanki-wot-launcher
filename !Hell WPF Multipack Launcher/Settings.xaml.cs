@@ -39,7 +39,7 @@ namespace _Hell_WPF_Multipack_Launcher
             bClearAutorization.Content = Lang.Set("PageSettings", "bClearAutorization", lang);
 
             // Если блок токена найден - делаем доступным, иначе вырубаем
-            bClearAutorization.IsEnabled = MainWindow.jSettings["token"] != null ;
+            bClearAutorization.IsEnabled = MainWindow.jSettings["token"] != null;
 
             try { SettingsFrame.NavigationService.Navigate(new Uri("SettingsGeneral.xaml", UriKind.Relative)); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Settings.xaml", "Settings()", ex.Message, ex.StackTrace)); }
@@ -75,7 +75,8 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             MainWindow.PlayBtn.Text = Lang.Set("MainProject", "bPlay", (string)MainWindow.JsonSettingsGet("info.language"));
 
-            Dispatcher.BeginInvoke(new ThreadStart(delegate {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
                 MainWindow.LoadPage.Content = Lang.Set("PageLoading", "lLoading", (string)MainWindow.JsonSettingsGet("info.language"));
                 MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
 
@@ -97,13 +98,15 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void bClearCache_Click(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() =>{
+            Task.Factory.StartNew(() =>
+            {
                 try
                 {
                     if (MainWindow.MessageShow(Lang.Set("PageSettings", "ClearCacheSure", lang), "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         if (MainWindow.JsonSettingsRemove("token"))
                         {
+                            new Classes.WargamingAPI().Logout();
                             Dispatcher.BeginInvoke(new ThreadStart(delegate { bClearAutorization.IsEnabled = false; }));
                             MainWindow.MessageShow(Lang.Set("PageSettings", "ClearCacheSuccess", lang));
                         }
@@ -112,7 +115,7 @@ namespace _Hell_WPF_Multipack_Launcher
                     }
                 }
                 catch (Exception ex) { Debugging.Save("Settings.xaml", "bClearCache_Click()", ex.Message, ex.StackTrace); }
-                });
+            });
         }
     }
 }

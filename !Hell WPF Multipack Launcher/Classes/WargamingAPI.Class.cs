@@ -33,6 +33,23 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception) { return null; }
         }
 
+        public JObject Logout()
+        {
+            try
+            {
+                if (MainWindow.JsonSettingsGet("token.access_token") != null)
+                {
+                    string Data = "?application_id=" + Properties.Resources.API;
+                    Data += "&access_token=" + (string)MainWindow.JsonSettingsGet("token.access_token");
+
+                    return JObject.Parse(POST(Properties.Resources.API_WOT_Address + Properties.Resources.API_WOT_Auth_Logout, Data));
+                }
+                else
+                    return JObject.Parse("{'status':'ok'}");
+            }
+            catch (Exception ex) { Debugging.Save("WargamingAPI.Class", "Logout()", "Account ID: " + (string)MainWindow.JsonSettingsGet("info.user_id"), ex.Message, ex.StackTrace); return null; }
+        }
+
         /// <summary>
         /// Получение информации о пользователе
         /// </summary>

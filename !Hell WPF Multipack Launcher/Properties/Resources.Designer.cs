@@ -201,6 +201,15 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /wot/auth/logout/.
+        /// </summary>
+        public static string API_WOT_Auth_Logout {
+            get {
+                return ResourceManager.GetString("API_WOT_Auth_Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /wot/globalwar/battles/.
         /// </summary>
         public static string API_WOT_Clan_Battles {

@@ -550,4 +550,8 @@
     <value>http://file.aces.gg</value>
     <comment>Сайт с конфигом мультипака</comment>
   </data>
+  <data name="API_WOT_Auth_Logout" xml:space="preserve">
+    <value>/wot/auth/logout/</value>
+    <comment>Функция отмены регистрации токена</comment>
+  </data>
 </root>
