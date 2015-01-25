@@ -126,7 +126,7 @@
     <comment>Дефолтный тип мультипака</comment>
   </data>
   <data name="API_DEV_Address" xml:space="preserve">
-    <value>http://n.helldar.ru</value>
+    <value>https://ai-rus.com</value>
     <comment>БЕЗ СЛЕША В КОНЦЕ!!!</comment>
   </data>
   <data name="Developer_Link_Site" xml:space="preserve">
