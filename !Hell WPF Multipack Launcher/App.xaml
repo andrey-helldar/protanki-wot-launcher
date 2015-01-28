@@ -2592,6 +2592,12 @@
         -->
         <Style x:Key="CaptionTextBlock" TargetType="{x:Type Run}">
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="{StaticResource FontSochi2014}"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <Style x:Key="TextTextBlock" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Verdana"/>
         </Style>
 
 

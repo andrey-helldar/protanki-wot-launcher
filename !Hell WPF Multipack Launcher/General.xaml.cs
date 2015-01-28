@@ -746,5 +746,10 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "bLauncher_Click()", ex.Message, ex.StackTrace)); }
         }
+
+        private void bDonate_Click(object sender, RoutedEventArgs e)
+        {
+            OpenPage("Donate");
+        }
     }
 }

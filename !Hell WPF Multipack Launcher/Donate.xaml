@@ -18,21 +18,21 @@
         </Grid.RowDefinitions>
         <TextBlock x:Name="tbCaption" FontFamily="{StaticResource FontSochi2014}" HorizontalAlignment="Left" Margin="30" TextWrapping="Wrap" Text="Donate" VerticalAlignment="Center" FontSize="20"/>
         <Button x:Name="bClose" Content="Закрыть" Style="{DynamicResource ButtonCLOSE}" HorizontalAlignment="Right" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" Click="bClose_Click" Grid.Column="1" Margin="10,10,10,25"/>
-        
-        <TextBlock HorizontalAlignment="Center" Margin="0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center">
-            <Run Style="{DynamicResource CaptionTextBlock}">Multipack PROTanki:</Run><LineBreak/>
-                <Run>QIWI:</Run> <Run>+79156125636</Run><LineBreak/>
-                <Run>Яндекс.Деньги:</Run> <Hyperlink NavigateUri="http://goo.gl/H9FGKR"><Run>410011148194719</Run></Hyperlink><LineBreak/>
-                <Run>PayPal:</Run> <Hyperlink NavigateUri="http://goo.gl/KxATUU"><Run>http://goo.gl/KxATUU</Run></Hyperlink><LineBreak/>
-                <Run>WebMoney:</Run> <Run>R289127926080</Run><LineBreak/>
-                                     <Run>Z190255406905</Run><LineBreak/><LineBreak/>
+
+        <TextBlock HorizontalAlignment="Center" Margin="0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Style="{DynamicResource TextTextBlock}">
+            <Run Style="{DynamicResource CaptionTextBlock}">Multipack PROTanki (Yusha):</Run><LineBreak/>
+                <Run xml:space="preserve">     QIWI:</Run> <Run xml:space="preserve">             +79156125636</Run><LineBreak/>
+                <Run xml:space="preserve">     Yandex.Money:</Run> <Hyperlink NavigateUri="http://goo.gl/H9FGKR"><Run>410011148194719</Run></Hyperlink><LineBreak/>
+                <Run xml:space="preserve">     PayPal</Run><Run xml:space="preserve">:           </Run> <Hyperlink NavigateUri="http://goo.gl/KxATUU"><Run xml:space="preserve">http://goo.gl/KxATUU</Run></Hyperlink><LineBreak/>
+                <Run xml:space="preserve">     WebMoney:</Run> <Run xml:space="preserve">     R289127926080</Run><LineBreak/>
+                                     <Run xml:space="preserve">                            Z190255406905</Run><LineBreak/><LineBreak/><LineBreak/>
             
-            <Run Style="{DynamicResource CaptionTextBlock}">Multipack Launcher:</Run><LineBreak/>
-                <Run>QIWI:</Run> <Run>+79244758889</Run><LineBreak/>
-                <Run>Яндекс.Деньги:</Run> <Hyperlink NavigateUri="http://goo.gl/mQcZnw"><Run>410012608840929</Run></Hyperlink><LineBreak/>
-                <Run>WebMoney:</Run> <Run>R343524258966</Run><LineBreak/>
-                                     <Run>Z124862854284</Run><LineBreak/>
-                                     <Run>E910131715335</Run>
+            <Run Style="{DynamicResource CaptionTextBlock}">Multipack Launcher (Helldar):</Run><LineBreak/>
+                <Run xml:space="preserve">     QIWI:</Run> <Run xml:space="preserve">             +79244758889</Run><LineBreak/>
+                <Run xml:space="preserve">     Yandex.Money:</Run> <Hyperlink NavigateUri="http://goo.gl/mQcZnw"><Run>410012608840929</Run></Hyperlink><LineBreak/>
+                <Run xml:space="preserve">     WebMoney:</Run> <Run xml:space="preserve">     R343524258966</Run><LineBreak/>
+                                     <Run xml:space="preserve">                            Z124862854284</Run><LineBreak/>
+                                     <Run xml:space="preserve">                            E910131715335</Run>
         </TextBlock>
     </Grid>
 </Page>

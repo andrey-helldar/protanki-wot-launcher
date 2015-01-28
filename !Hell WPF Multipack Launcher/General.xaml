@@ -117,6 +117,7 @@
         <TextBlock Margin="10,8" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2">
             <Run x:Name="lStatus"></Run>
         </TextBlock>
+        <Button x:Name="bDonate" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleSettings}" Margin="90,20,0,20" Grid.Row="4" VerticalAlignment="Center" Grid.Column="1" Click="bDonate_Click"/>
 
     </Grid>
 </Page>
