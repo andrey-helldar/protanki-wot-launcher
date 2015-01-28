@@ -36,8 +36,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     if (!Variables.ElementIsBan("video", el.Element(ns + "id").Value.Remove(0, 42)))
                     {
                         string link = "";
-                        foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value; break; } }
-
+                        foreach (XElement subEl in el.Elements(ns + "link")) { if (subEl.Attribute("rel").Value == "alternate") { link = subEl.Attribute("href").Value.Replace("https://", "http://"); break; } }
+                        
                         string q1 = el.Element(ns + "id").Value.Remove(0, 42);
                         string q2 = (el.Element(ns + "title").Value.IndexOf(" / PRO") > 0 ? el.Element(ns + "title").Value.Remove(el.Element(ns + "title").Value.IndexOf(" / PRO")) : el.Element(ns + "title").Value);
                         string q3 = el.Element(ns + "content").Value.Length > 256 ? el.Element(ns + "content").Value.Remove(256) + "..." : "";
