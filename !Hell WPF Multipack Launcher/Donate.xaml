@@ -1,0 +1,35 @@
+﻿<Page x:Class="_Hell_WPF_Multipack_Launcher.Donate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="391" d:DesignWidth="404"
+	Title="Donate">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="tbCaption" FontFamily="{StaticResource FontSochi2014}" HorizontalAlignment="Left" Margin="30" TextWrapping="Wrap" Text="Donate" VerticalAlignment="Center" FontSize="20"/>
+        <Button x:Name="bClose" Content="Закрыть" Style="{DynamicResource ButtonCLOSE}" HorizontalAlignment="Right" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" Click="bClose_Click" Grid.Column="1" Margin="10,10,10,25"/>
+        
+        <TextBlock HorizontalAlignment="Center" Margin="0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center">
+            <Run>Multipack PROTanki:</Run><LineBreak/>
+                <Run>QIWI:</Run> <Run>+79156125636</Run><LineBreak/>
+                <Run>Яндекс.Деньги:</Run> <Run>410011148194719 http://goo.gl/H9FGKR</Run><LineBreak/>
+                <Run>PayPal:</Run> <Run>http://goo.gl/KxATUU</Run><LineBreak/>
+                <Run>WebMoney:</Run> <Run>R289127926080  Z190255406905</Run><LineBreak/><LineBreak/>
+            
+            <Run>Multipack Launcher:</Run><LineBreak/>
+                <Run>QIWI:</Run> <Run>+79244758889</Run><LineBreak/>
+                <Run>Яндекс.Деньги:</Run> <Run>410012608840929 http://goo.gl/mQcZnw</Run><LineBreak/>
+                <Run>WebMoney:</Run> <Run>R343524258966   Z124862854284   E910131715335</Run>
+        </TextBlock>
+    </Grid>
+</Page>

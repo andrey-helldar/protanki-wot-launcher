@@ -131,6 +131,9 @@
     <Compile Include="Classes\Ini.Class.cs" />
     <Compile Include="Classes\Language.Class.cs" />
     <Compile Include="Classes\WargamingAPI.Class.cs" />
+    <Compile Include="Donate.xaml.cs">
+      <DependentUpon>Donate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GiveEmail.xaml.cs">
       <DependentUpon>GiveEmail.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChangeLocale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Donate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -82,7 +82,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             }
 
                             // If ForceKill is True, then...
-                            if (count > 1)
+                            if (count > 0)
                             {
                                 Task.Factory.StartNew(() => Progress(0, 5)).Wait();
 

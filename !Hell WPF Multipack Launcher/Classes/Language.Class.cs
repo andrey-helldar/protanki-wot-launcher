@@ -106,6 +106,16 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                     default: return toReturn;
                                 }
 
+                            case "Close":
+                                switch (lang)
+                                {
+                                    case "ru": return "Закрыть";
+                                    case "en": return "Close";
+                                    case "de": return "Schließen";
+                                    case "ua": return "Закрити";
+                                    default: return toReturn;
+                                }
+
                             default: return toReturn;
                         }
 
