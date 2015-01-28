@@ -666,9 +666,18 @@ namespace _Hell_WPF_Multipack_Launcher
             OpenPage("Update");
         }
 
+        /// <summary>
+        /// Если юзер уже подтверждал свое согласие на передачу данных сервису,
+        /// то выводить уведомление повторно нет смысла, иначе выводим
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
-            OpenPage("UserProfile");
+            if ((bool)MainWindow.JsonSettingsGet("info.user_accept"))
+                OpenPage("UserProfile");
+            else
+                OpenPage("GiveEmail");
         }
 
         /// <summary>

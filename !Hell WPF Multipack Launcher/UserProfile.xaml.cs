@@ -706,8 +706,8 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                object[] args = { Convert.ToDouble(summ) };
-                return String.Format("{0,12:N0}", args);
+                object[] args = { Convert.ToDouble(summ.Replace(".", ",")) };
+                return String.Format("{0,1:N0}", args);
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "SetSumm()", "Summ = " + summ, ex.Message, ex.StackTrace)); }
             return "---";

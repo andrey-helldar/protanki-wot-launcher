@@ -38,6 +38,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major == 5, "bool");
                 MainWindow.JsonSettingsSet("info.user_id", GetUserID());
 
+                // Проверяем разрешал ли юзер обработку данных
+                if (MainWindow.JsonSettingsGet("info.user_accept") == null)
+                    MainWindow.JsonSettingsSet("info.user_accept", false, "bool");
+
                 // Проверяем вывод уведомлений
                 if (MainWindow.JsonSettingsGet("info.manual_info") == null)
                 {

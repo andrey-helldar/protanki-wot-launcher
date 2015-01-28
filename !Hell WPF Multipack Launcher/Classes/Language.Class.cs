@@ -1664,6 +1664,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             default: return toReturn;
                         }
 
+
                     default: return toReturn;
                 }
             }

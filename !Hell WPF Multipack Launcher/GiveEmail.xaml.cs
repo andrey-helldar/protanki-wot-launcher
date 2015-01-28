@@ -27,7 +27,7 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            Task.Factory.StartNew(() => SetText());
+            Task.Factory.StartNew(() => SetText()).Wait();
         }
 
         private void SetText()
@@ -38,18 +38,25 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 string lang = (string)MainWindow.JsonSettingsGet("info.language");
 
-                tbCaption.Text = Lang.Set("GiveEmail", "Caption", lang);
-                tbMessage.Text = Lang.Set("GiveEmail", "Message", lang);
+                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                {
+                    tbCaption.Text = Lang.Set("GiveEmail", "Caption", lang);
+                    tbMessage.Text = Lang.Set("GiveEmail", "Message", lang);
 
-                Iagree.Content = Lang.Set("Button", "Iagree", lang);
-                Idisagree.Content = Lang.Set("Button", "Idisagree", lang);
+                    Iagree.Content = Lang.Set("Button", "Iagree", lang);
+                    Idisagree.Content = Lang.Set("Button", "Idisagree", lang);
+                }));
             }
             catch (Exception ex) { Debugging.Save("GiveEmail.xaml", "SetText()", ex.Message, ex.StackTrace); }
         }
 
         private void Iagree_Click(object sender, RoutedEventArgs e)
         {
-            try { MainWindow.JsonSettingsSet("info.user_accept", true, "bool"); }
+            try
+            {
+                MainWindow.JsonSettingsSet("info.user_accept", true, "bool");
+                MainWindow.Navigator("UserProfile");
+            }
             catch (Exception ex) { Debugging.Save("GiveEmail.xaml", "Iagree_Click()", ex.Message, ex.StackTrace); }
         }
 
@@ -61,6 +68,15 @@ namespace _Hell_WPF_Multipack_Launcher
                 MainWindow.Navigator();
             }
             catch (Exception ex) { Debugging.Save("GiveEmail.xaml", "Idisagree_Click()", ex.Message, ex.StackTrace); }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                catch (Exception) { }
+            }));
         }
     }
 }
