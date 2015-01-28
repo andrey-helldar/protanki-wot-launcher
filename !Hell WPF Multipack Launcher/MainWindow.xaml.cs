@@ -661,12 +661,20 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     if ((string)answer["status"] == "OK" && (string)answer["code"] == Properties.Resources.API)
                     {
-                        if (new Version((string)JsonSettingsGet("game.version")) < new Version((string)answer["version"]))
+                        // Проверяем корректность получения версии
+                        // Ticket #106 Bitbucket
+                        Version verRgame;
+                        try { verRgame = new Version((string)answer["version"]); }
+                        catch (Exception) { verRgame = new Version("0.0.0.0"); }
+
+                        if (new Version((string)JsonSettingsGet("game.version")) < verRgame)
                         {
                             JsonSettingsSet("game.update", true, "bool");
                             JsonSettingsSet("game.new_version", (string)answer["version"]);
                         }
                         else JsonSettingsSet("game.update", false, "bool");
+
+                        verRgame = null;
                     }
                     else JsonSettingsSet("game.update", false, "bool");
                 }
