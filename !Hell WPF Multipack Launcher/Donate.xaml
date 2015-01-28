@@ -20,16 +20,19 @@
         <Button x:Name="bClose" Content="Закрыть" Style="{DynamicResource ButtonCLOSE}" HorizontalAlignment="Right" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" Click="bClose_Click" Grid.Column="1" Margin="10,10,10,25"/>
         
         <TextBlock HorizontalAlignment="Center" Margin="0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center">
-            <Run>Multipack PROTanki:</Run><LineBreak/>
+            <Run Style="{DynamicResource CaptionTextBlock}">Multipack PROTanki:</Run><LineBreak/>
                 <Run>QIWI:</Run> <Run>+79156125636</Run><LineBreak/>
-                <Run>Яндекс.Деньги:</Run> <Run>410011148194719 http://goo.gl/H9FGKR</Run><LineBreak/>
-                <Run>PayPal:</Run> <Run>http://goo.gl/KxATUU</Run><LineBreak/>
-                <Run>WebMoney:</Run> <Run>R289127926080  Z190255406905</Run><LineBreak/><LineBreak/>
+                <Run>Яндекс.Деньги:</Run> <Hyperlink NavigateUri="http://goo.gl/H9FGKR"><Run>410011148194719</Run></Hyperlink><LineBreak/>
+                <Run>PayPal:</Run> <Hyperlink NavigateUri="http://goo.gl/KxATUU"><Run>http://goo.gl/KxATUU</Run></Hyperlink><LineBreak/>
+                <Run>WebMoney:</Run> <Run>R289127926080</Run><LineBreak/>
+                                     <Run>Z190255406905</Run><LineBreak/><LineBreak/>
             
-            <Run>Multipack Launcher:</Run><LineBreak/>
+            <Run Style="{DynamicResource CaptionTextBlock}">Multipack Launcher:</Run><LineBreak/>
                 <Run>QIWI:</Run> <Run>+79244758889</Run><LineBreak/>
-                <Run>Яндекс.Деньги:</Run> <Run>410012608840929 http://goo.gl/mQcZnw</Run><LineBreak/>
-                <Run>WebMoney:</Run> <Run>R343524258966   Z124862854284   E910131715335</Run>
+                <Run>Яндекс.Деньги:</Run> <Hyperlink NavigateUri="http://goo.gl/mQcZnw"><Run>410012608840929</Run></Hyperlink><LineBreak/>
+                <Run>WebMoney:</Run> <Run>R343524258966</Run><LineBreak/>
+                                     <Run>Z124862854284</Run><LineBreak/>
+                                     <Run>E910131715335</Run>
         </TextBlock>
     </Grid>
 </Page>

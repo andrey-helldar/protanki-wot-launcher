@@ -2586,6 +2586,13 @@
             </Setter>
         </Style>
 
+        
+        <!--
+            Заголовки доната
+        -->
+        <Style x:Key="CaptionTextBlock" TargetType="{x:Type Run}">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
 
 
     </Application.Resources>
