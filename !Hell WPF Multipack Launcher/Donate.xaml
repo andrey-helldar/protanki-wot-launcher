@@ -23,7 +23,7 @@
             <Run Style="{DynamicResource CaptionTextBlock}">Multipack PROTanki (Yusha):</Run><LineBreak/>
                 <Run xml:space="preserve">     QIWI:</Run> <Run xml:space="preserve">             +79156125636</Run><LineBreak/>
                 <Run xml:space="preserve">     Yandex.Money:</Run> <Hyperlink NavigateUri="http://goo.gl/H9FGKR" RequestNavigate="Hyperlink_RequestNavigate"><Run>410011148194719</Run></Hyperlink><LineBreak/>
-                <Run xml:space="preserve">     PayPal</Run><Run xml:space="preserve">:           </Run> <Hyperlink NavigateUri="http://goo.gl/KxATUU" RequestNavigate="Hyperlink_RequestNavigate"><Run xml:space="preserve">http://goo.gl/KxATUU</Run></Hyperlink><LineBreak/>
+                <Run xml:space="preserve">     PayPal</Run><Run xml:space="preserve">:           </Run> <Hyperlink NavigateUri="http://goo.gl/KxATUU" RequestNavigate="Hyperlink_RequestNavigate"><Run xml:space="preserve">goo.gl/KxATUU</Run></Hyperlink><LineBreak/>
                 <Run xml:space="preserve">     WebMoney:</Run> <Run xml:space="preserve">     R289127926080</Run><LineBreak/>
                                      <Run xml:space="preserve">                            Z190255406905</Run><LineBreak/><LineBreak/><LineBreak/>
             

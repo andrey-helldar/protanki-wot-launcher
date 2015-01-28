@@ -14,6 +14,10 @@
         "notify_link": null,
         "ProductName": null
     },
+    "stats": {
+        "donate": 0,
+        "donate_link": 0
+    },
     "settings": {
         "admin": false,
         "kill": false,

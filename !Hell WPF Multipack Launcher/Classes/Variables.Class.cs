@@ -20,10 +20,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         Debugging Debugging = new Debugging();
         Language Language = new Language();
 
-
-        //public string SettingsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.json";
-        //private string SettingsPath = "settings.json";
-
         string lang = Properties.Resources.Default_Lang;
 
 
@@ -37,10 +33,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 MainWindow.JsonSettingsSet("info.ProductName", Application.Current.GetType().Assembly.GetName().Name);
                 MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major == 5, "bool");
                 MainWindow.JsonSettingsSet("info.user_id", GetUserID());
-
-                // Проверяем разрешал ли юзер обработку данных
-                if (MainWindow.JsonSettingsGet("info.user_accept") == null)
-                    MainWindow.JsonSettingsSet("info.user_accept", false, "bool");
 
                 // Проверяем вывод уведомлений
                 if (MainWindow.JsonSettingsGet("info.manual_info") == null)
@@ -56,7 +48,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 // Проверяем права администратора
                 MainWindow.JsonSettingsSet("settings.admin", new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator), "bool");
-
+                
 
                 string lang_pack = Properties.Resources.Default_Lang;
                 string lang_game = Properties.Resources.Default_Lang;

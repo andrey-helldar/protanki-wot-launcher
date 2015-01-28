@@ -26,10 +26,7 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             InitializeComponent();
 
-            Task.Factory.StartNew(() =>
-            {
-                Dispatcher.BeginInvoke(new ThreadStart(delegate { bClose.Content = new Classes.Language().Set("Button", "Close", (string)MainWindow.JsonSettingsGet("info.language")); }));
-            });
+            Task.Factory.StartNew(() => { Dispatcher.BeginInvoke(new ThreadStart(delegate { bClose.Content = new Classes.Language().Set("Button", "Close", (string)MainWindow.JsonSettingsGet("info.language")); })); });
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
@@ -41,7 +38,11 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
-                try { MainWindow.LoadPage.Visibility = Visibility.Hidden; }
+                try
+                {
+                    MainWindow.LoadPage.Visibility = Visibility.Hidden;
+                    MainWindow.JsonSettingsSet("stats.donate", 1 + (int)MainWindow.JsonSettingsGet("stats.donate"), "int");
+                }
                 catch (Exception) { }
             }));
         }
@@ -57,6 +58,8 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
                 e.Handled = true;
+
+                MainWindow.JsonSettingsSet("stats.donate_link", 1 + (int)MainWindow.JsonSettingsGet("stats.donate_link"), "int");
             }
             catch (Exception ex) { Task.Factory.StartNew(() => new Classes.Debugging().Save("General.xaml", "Hyperlink_RequestNavigate()", "Link: " + e.Uri.AbsoluteUri, ex.Message, ex.StackTrace)); }
         }

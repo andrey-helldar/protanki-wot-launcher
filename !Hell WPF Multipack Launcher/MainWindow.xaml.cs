@@ -786,6 +786,9 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
+                // Проверяем разрешал ли юзер обработку данных
+                if (jSettings.SelectToken("info.user_accept") == null) JsonSettingsSet("info.user_accept", false, "bool");
+
                 //  Info
                 if (jSettings.SelectToken("info.video") == null) JsonSettingsSet("info.video", true, "bool");
                 if (jSettings.SelectToken("info.news") == null) JsonSettingsSet("info.news", true, "bool");
@@ -829,8 +832,12 @@ namespace _Hell_WPF_Multipack_Launcher
                 if (jSettings.SelectToken("game.test") == null) JsonSettingsSet("game.test", false, "bool");
                 if (jSettings.SelectToken("game.language") == null) JsonSettingsSet("game.language", Properties.Resources.Default_Lang);
                 if (jSettings.SelectToken("game.update") == null) JsonSettingsSet("game.update", false, "bool");
+
+                // Создаем блок статистики
+                if (jSettings.SelectToken("stats.donate") == null) JsonSettingsSet("stats.donate", 0, "int");
+                if (jSettings.SelectToken("stats.donate_link") == null) JsonSettingsSet("stats.donate_link", 0, "int");
             }
-            catch (Exception) { }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "CheckSettings()", ex.Message, ex.StackTrace)); }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
