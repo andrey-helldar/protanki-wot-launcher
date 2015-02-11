@@ -254,29 +254,29 @@ namespace _Hell_WPF_Multipack_Launcher
                 switch (type)
                 {
                     case "int":
-                        dynamic jsettings = jSettings;
-
                         if (path.IndexOf('.') == -1)
-                            jsettings.path = (int)key;
+                            jSettings[path] = (int)key;
                         else
                         {
                             string[] str = path.Split('.');
 
-                            try
-                            {
-                                if (jSettings.SelectToken(path) != null)
-                                    //jSettings[str[0]][str[1]] = (int)key;
-                                    jsettings.str[0].str[1] = (int)key;
+                            if (jSettings.SelectToken(path) != null)
+                                jSettings[str[0]][str[1]] = (int)key;
+                            else
+                                if (jSettings.SelectToken(str[0]) != null)
+                                {
+                                    JObject jp = (JObject)jSettings[str[0]];
+                                    jp.Add(new JProperty(str[1], (int)key));
+                                }
                                 else
-                                    jsettings.str[0] = new JObject(new JProperty(str[1], (int)key));
-                            }
-                            catch (Exception)
-                            {
-                                // JObject jo = JObject(new JProperty(str[0], str[1]));
-                            }
+                                    jSettings.Add(
+                                        new JProperty(str[0],
+                                            new JObject(
+                                                new JProperty(str[1], (int)key)
+                                                )
+                                            )
+                                        );
                         }
-
-                        jSettings = (JObject)jsettings;
                         break;
 
                     case "bool":
@@ -286,10 +286,22 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             string[] str = path.Split('.');
 
-                            if (jSettings[str[0]][str[1]] != null)
+                            if (jSettings.SelectToken(path) != null)
                                 jSettings[str[0]][str[1]] = (bool)key;
                             else
-                                jSettings[str[0]][str[1]] = (bool)key;
+                                if (jSettings.SelectToken(str[0]) != null)
+                                {
+                                    JObject jp = (JObject)jSettings[str[0]];
+                                    jp.Add(new JProperty(str[1], (bool)key));
+                                }
+                                else
+                                    jSettings.Add(
+                                        new JProperty(str[0],
+                                            new JObject(
+                                                new JProperty(str[1], (bool)key)
+                                                )
+                                            )
+                                        );
                         }
                         break;
 
@@ -330,14 +342,30 @@ namespace _Hell_WPF_Multipack_Launcher
                         {
                             string[] str = path.Split('.');
 
-                            if (jSettings[str[0]] == null)
+                            /*if (jSettings[str[0]] == null)
                                 jSettings[str[0]] = new JObject(new JProperty(str[1], (string)key_s));
                             else
+                                jSettings[str[0]][str[1]] = (string)key_s;*/
+                            if (jSettings.SelectToken(path) != null)
                                 jSettings[str[0]][str[1]] = (string)key_s;
+                            else
+                                if (jSettings.SelectToken(str[0]) != null)
+                                {
+                                    JObject jp = (JObject)jSettings[str[0]];
+                                    jp.Add(new JProperty(str[1], (string)key_s));
+                                }
+                                else
+                                    jSettings.Add(
+                                        new JProperty(str[0],
+                                            new JObject(
+                                                new JProperty(str[1], (string)key_s)
+                                                )
+                                            )
+                                        );
                         } break;
                 }
             }
-            catch (Exception /*ex*/) { /*File.WriteAllText(@"temp\log.debug", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); */}
+            catch (Exception ex) { Task.Factory.StartNew(() => new Classes.Debugging().Save("MainWindow", "JsonSettingsSet", "Path : " + path, "Key : " + (string)key, "Key type : " + type, ex.Message, ex.StackTrace)); }
         }
 
         public static bool JsonSettingsRemove(string path, string type = "string")
