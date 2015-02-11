@@ -32,17 +32,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 for (int i = 0; i < args.Length; i++)
                     json.Add(new JProperty("param" + i.ToString(), args[i]));
 
-                if (!Directory.Exists("temp")) { Directory.CreateDirectory("temp"); }
+                if (!Directory.Exists(MainWindow.SettingsDir + @"temp")) { Directory.CreateDirectory(MainWindow.SettingsDir + @"temp"); }
 
                 string filename = String.Format("{0}_{1}_{2}.debug", version, ErrorCode(module, func), DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
 
                 if (Properties.Resources.Default_Debug_Crypt == "1")
                 {
                     string encoded = new Crypt().Encrypt(json.ToString(), UserID, true);
-                    if (encoded != "FAIL") File.WriteAllText(@"temp\" + filename, encoded, Encoding.UTF8);
+                    if (encoded != "FAIL") File.WriteAllText(MainWindow.SettingsDir + @"temp\" + filename, encoded, Encoding.UTF8);
                 }
                 else
-                    File.WriteAllText(@"temp\" + filename, json.ToString(), Encoding.UTF8);
+                    File.WriteAllText(MainWindow.SettingsDir + @"temp\" + filename, json.ToString(), Encoding.UTF8);
             }
             catch (IOException) { Thread.Sleep(3000); Save(module, func, args); }
             catch (Exception) { }
@@ -60,23 +60,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         }
 
         /// <summary>
-        /// Если в настройках включен параметр дебага, выводить сообщения на форму
-        /// </summary>
-        private void Message(string message)
-        {
-            /*MainWindow.LoadingPanelShow(1);
-
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                  Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator("Error"); }));
-                }
-                catch (Exception ex) { Task.Factory.StartNew(() => Debug.Save("Debug Class.xaml", "Message()", ex.Message, ex.StackTrace)); }
-            }); ;*/
-        }
-
-        /// <summary>
         /// Очистка папки с логами
         /// </summary>
         /// <param name="temp">Если TRUE - чистим папку TEMP, иначе - DEBUG</param>
@@ -90,13 +73,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 ArchiveLogs(); // Запускаем архивацию логов
             }
 
-            string path = Environment.CurrentDirectory;
-
             try
             {
-                if (Directory.Exists(path + (temp ? @"\temp" : @"\debug")))
+                if (Directory.Exists(MainWindow.SettingsDir + (temp ? "temp" : "debug")))
                 {
-                    foreach (FileInfo file in new DirectoryInfo(path + (temp ? @"\temp" : @"\debug")).GetFiles())
+                    foreach (FileInfo file in new DirectoryInfo(MainWindow.SettingsDir + (temp ? "temp" : "debug")).GetFiles())
                     {
                         DateTime now = DateTime.Now;
                         DateTime cf = File.GetCreationTime(file.FullName);
@@ -128,13 +109,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             {
                 if (Properties.Resources.Default_Debug_Archive == "1")
                 {
-                    string path = Environment.CurrentDirectory;
-
                     if (File.Exists("Ionic.Zip.dll"))
                     {
-                        if (Directory.Exists(path + @"\temp"))
+                        if (Directory.Exists(MainWindow.SettingsDir + "temp"))
                         {
-                            if (!Directory.Exists(path + @"\debug")) { Directory.CreateDirectory(path + @"\debug"); }
+                            if (!Directory.Exists(MainWindow.SettingsDir + "debug")) { Directory.CreateDirectory(MainWindow.SettingsDir + "debug"); }
 
                             using (Ionic.Zip.ZipFile zip = new Ionic.Zip.ZipFile())
                             {
@@ -143,11 +122,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                                 zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
                                 zip.Password = uid;
-                                zip.AddDirectory(path + @"\temp");
-                                zip.Save(path + @"\debug\" + String.Format("{0}_{1}_{2}.zip", uid, version, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff")));
+                                zip.AddDirectory(MainWindow.SettingsDir + "temp");
+                                zip.Save(MainWindow.SettingsDir + @"debug\" + String.Format("{0}_{1}_{2}.zip", uid, version, DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff")));
                             }
 
-                            Directory.Delete(path + @"\temp", true);
+                            Directory.Delete(MainWindow.SettingsDir + "temp", true);
                         }
                     }
                 }

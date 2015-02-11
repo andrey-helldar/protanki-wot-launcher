@@ -31,7 +31,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 MainWindow.JsonSettingsSet("info.ProductName", Application.Current.GetType().Assembly.GetName().Name);
-                MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major == 5, "bool");
+                MainWindow.JsonSettingsSet("settings.winxp", Environment.OSVersion.Version.Major != 6 && Environment.OSVersion.Version.Minor > 1, "bool");
                 MainWindow.JsonSettingsSet("info.user_id", GetUserID());
 
                 // Проверяем вывод уведомлений
@@ -251,9 +251,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     Task.Factory.StartNew(() => SavingFile("restart.exe", Properties.Resources.Restart)),
                     Task.Factory.StartNew(() => SavingFile("Processes.Library.dll", Properties.Resources.Processes_Library)),
                     
-                    Task.Factory.StartNew(() => {
-                        if (!Directory.Exists(MainWindow.SettingsDir)) Directory.CreateDirectory(MainWindow.SettingsDir);
-
+                    Task.Factory.StartNew(() => {                        
                         if(Properties.Resources.Default_Crypt_Settings == "1")
                             SavingFile(MainWindow.SettingsPath, Properties.Resources.Settings_Encoded);
                         else

@@ -189,26 +189,6 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("Feedback.xaml", "bSend_Click()", ex.Message, ex.StackTrace)); }
         }
 
-        /// <summary>
-        ////Получаем ключ токена, если существует
-        /// </summary>
-        /// <param name="rec">Передаем имя аттрибута</param>
-        /// <returns>Получаем значение, если ключ существует</returns>
-        /*private string GetTokenRec(string rec)
-        {
-            try
-            {
-                if (rec.Length > 0)
-                {
-                    string token = (string)MainWindow.JsonSettingsGet("token." + rec);
-                    return token == null ? "" : token;
-                }
-                else
-                    return "";
-            }
-            catch (Exception) { return ""; }
-        }*/
-
         private void tbMessage_TextChanged(object sender, TextChangedEventArgs e)
         {
             SymbolsCount.Text = tbMessage.Text.Trim().Length.ToString();
@@ -259,17 +239,17 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                if (!Directory.Exists("tickets")) { Directory.CreateDirectory("tickets"); }
+                if (!Directory.Exists(MainWindow.SettingsDir + "tickets")) { Directory.CreateDirectory(MainWindow.SettingsDir + "tickets"); }
 
                 string filename = String.Format("{0}_{1}.ticket", (string)MainWindow.JsonSettingsGet("info.user_id"), DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff"));
 
                 if (Properties.Resources.API_DEV_CRYPT == "1")
                 {
                     string encoded = new Classes.Crypt().Encrypt(json.ToString(), (string)MainWindow.JsonSettingsGet("info.user_id"), true);
-                    if (encoded != "FAIL") File.WriteAllText(@"tickets\" + filename, encoded, Encoding.UTF8);
+                    if (encoded != "FAIL") File.WriteAllText(MainWindow.SettingsDir + @"tickets\" + filename, encoded, Encoding.UTF8);
                 }
                 else
-                    File.WriteAllText(@"tickets\" + filename, json.ToString(), Encoding.UTF8);
+                    File.WriteAllText(MainWindow.SettingsDir + @"tickets\" + filename, json.ToString(), Encoding.UTF8);
 
                 // Очищаем поля
                 tbMessage.Text = String.Empty;

@@ -6,13 +6,13 @@
     "notification": "0.0.0.0",
     "language": "ru",
     "locale": 0,
-    "user_email": "helldar@ai-rus.com",
-    "user_name": "First_Helldar",
+    "user_email": null,
+    "user_name": null,
     "user_id": "f39d3705d0925c26120f42599dc7d336",
     "notify_link": null,
     "ProductName": "Multipack Launcher",
-    "manual_info": true,
-    "user_accept": true
+    "user_accept": false,
+    "manual_info": true
   },
   "settings": {
     "admin": true,
@@ -23,22 +23,22 @@
     "weak": false,
     "winxp": false,
     "launcher": 0,
-    "aero_disable": true
+    "aero_disable": false
   },
   "multipack": {
     "language": "ru",
     "type": "extended",
     "version": "0.9.5.2",
     "date": "23.11.2014",
-    "link": "http://goo.gl/45WQrQ",
-    "changelog": "В этой версии произошли следующие изменения:<font size='12' color='808080'><ul><li>Обновлена Белорусская локализация;</li><li>Обновлена Украинская локализация;</li><li>Обновлены контурные иконки от PROТанки;</li><li>Обновлены контурные иконки от J1mB0;</li><li>Обновлено горизонтальное дерево исследований танков;</li><li>Добавлен ангар к 23 февраля \"Танковый полигон\";</li><li>Удален мод автоактивации микрофона;</li><li>Удален мод предзагрузки звуковых модов.</li></ul></font>__________________________________________<br><font color='#E00000'>Новая версия доступна по ссылке в описании к видео.</font>",
-    "new_version": "0.9.5.12",
+    "link": "http://goo.gl/58fzz5",
+    "changelog": "В эт��й версии произошли следующие изменения:<font size='12' color='808080'><ul><li>Обновлен XVM до версии XVM-6.0.0.1 (WoT client 0.9.6);</li><li>Исправлена редкая ошибка ложного срабатывания лицензионного нарушения;</li><li>Добавлено компактное горизонтальное дерево исследования танков;</li><li>Добавлено вертикальное дерево исследования танков;</li><li>Обновлен мод отключения тумана на картах,</li><li>Обновлен Твикер отключения эффектов,</li><li>Добавлены белые текстуры уничтоженных танков;</li><li>Добавлены белые текстуры сбитых гусениц;</li><li>Добавлены белые текстуры разрушенных вагонов;</li><li>Исправлена ошибка фильтра засвета артиллерии в моде Я обнаружен;</li><li>Исправлен прицел на миникарте для артиллерии.</li><li>ОБНОВЛЕНИЕ ОБЯЗАТЕЛЬНОЕ!</li></ul></font>__________________________________________<br><font color='#E00000'>Новая версия доступна по ссылке в описании к видео.</font>",
+    "new_version": "0.9.6.2",
     "update": true,
     "path": "0.9.5"
   },
   "game": {
     "version": "0.9.4.811",
-    "new_version": "0.9.5.38",
+    "new_version": "0.9.6.71",
     "path": "F:::;ВАЖНЫЕ ДАННЫЕ::;!!Важные документы::;!Сохранения программ::;Visual Studio C#::;!Hell PRO Tanki Launcher::;!Hell WPF Multipack Launcher::;bin::;",
     "test": false,
     "language": "ru",
@@ -50,11 +50,5 @@
   "do_not_display": {
     "video": null,
     "news": null
-  },
-  "token": {
-    "access_token": "992eff35d974c3a8db31d2eede90ab0f8dd76046",
-    "expires_at": "1422890239",
-    "nickname": "First_Helldar",
-    "account_id": "2732865"
   }
 }

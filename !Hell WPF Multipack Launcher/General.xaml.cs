@@ -79,11 +79,10 @@ namespace _Hell_WPF_Multipack_Launcher
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }
 
-            try
+            Task.Factory.StartNew(() =>
             {
-                Task.Factory.StartNew(() =>
+                try
                 {
-
                     if ((bool)MainWindow.JsonSettingsGet("multipack.update") && MainWindow.JsonSettingsGet("multipack.update") != null)
                         Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
@@ -101,10 +100,10 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     if ((bool)MainWindow.JsonSettingsGet("game.update") && MainWindow.JsonSettingsGet("game.update") != null)
                         Dispatcher.BeginInvoke(new ThreadStart(delegate { lStatus.Text = Lang.Set("PageGeneral", "UpdatesGame", lang, (string)MainWindow.JsonSettingsGet("game.new_version")); }));
-                });
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", "multipack.update", ex.Message, ex.StackTrace)); }
 
+                }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", "multipack.update", ex.Message, ex.StackTrace)); }
+            });
 
             try { StatusBarSet(false, 1, true, true, true); }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "Page_Loaded()", ex.Message, ex.StackTrace)); }

@@ -32,7 +32,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Language Lang = new Classes.Language();
 
         // Путь к файлу настроек
-        public static string SettingsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\";
+        public static string SettingsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\multipack_launcher\";
         public static string SettingsPath = SettingsDir + "settings.json";
 
         // Главное окно для передачи статуса
@@ -107,9 +107,6 @@ namespace _Hell_WPF_Multipack_Launcher
                     new Classes.Debugging().Save("MainWindow", "PreviewVideo(3)", "ID: " + id, "Title: " + title, "Show: " + show.ToString(), ex.Message, ex.StackTrace);
                 });
             }
-
-            /*try { Process.Start("http://www.youtube.com/watch?v=" + id); }
-            catch (Exception) { MessageBox.Show(new Classes.Language().Set("MainProject", "Preview_NoData", (string)JsonSettingsGet("info.language"))); }*/
         }
 
         public MainWindow()
@@ -151,9 +148,17 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 string decrypt = "";
 
-                if (File.Exists(SettingsPath))
+                // При необходимости создаем папку настроек
+                if (!Directory.Exists(SettingsDir)) Directory.CreateDirectory(SettingsDir);
+                
+                // Избавляемся от старого файла
+                string old_settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.json";
+                if (File.Exists(SettingsPath)) old_settings = SettingsPath;
+
+
+                if (File.Exists(/*SettingsPath*/old_settings))
                 {
-                    using (StreamReader reader = File.OpenText(SettingsPath))
+                    using (StreamReader reader = File.OpenText(/*SettingsPath*/old_settings))
                     {
                         decrypt = reader.ReadToEnd();
 
@@ -166,6 +171,7 @@ namespace _Hell_WPF_Multipack_Launcher
                             }
                             catch (Exception)
                             {
+                                if (File.Exists(/*SettingsPath*/old_settings)) File.Delete(/*SettingsPath*/old_settings);
                                 if (File.Exists(SettingsPath)) File.Delete(SettingsPath);
                                 Thread.Sleep(300);
                                 File.WriteAllBytes(SettingsPath, Properties.Resources.Settings_Encoded);
@@ -248,17 +254,29 @@ namespace _Hell_WPF_Multipack_Launcher
                 switch (type)
                 {
                     case "int":
+                        dynamic jsettings = jSettings;
+
                         if (path.IndexOf('.') == -1)
-                            jSettings[path] = (int)key;
+                            jsettings.path = (int)key;
                         else
                         {
                             string[] str = path.Split('.');
 
-                            if (jSettings[str[0]][str[1]] != null)
-                                jSettings[str[0]][str[1]] = (int)key;
-                            else
-                                jSettings[str[0]][str[1]] = (int)key;
+                            try
+                            {
+                                if (jSettings.SelectToken(path) != null)
+                                    //jSettings[str[0]][str[1]] = (int)key;
+                                    jsettings.str[0].str[1] = (int)key;
+                                else
+                                    jsettings.str[0] = new JObject(new JProperty(str[1], (int)key));
+                            }
+                            catch (Exception)
+                            {
+                                // JObject jo = JObject(new JProperty(str[0], str[1]));
+                            }
                         }
+
+                        jSettings = (JObject)jsettings;
                         break;
 
                     case "bool":
@@ -319,7 +337,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         } break;
                 }
             }
-            catch (Exception /*ex*/) {/* File.WriteAllText(@"temp\log.debug", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);*/ }
+            catch (Exception /*ex*/) { /*File.WriteAllText(@"temp\log.debug", ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace); */}
         }
 
         public static bool JsonSettingsRemove(string path, string type = "string")
@@ -359,8 +377,9 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 try
                 {
-                    try { MouseDown += delegate { DragMove(); }; }
+                    try { MouseDown += delegate { try { DragMove(); } catch (Exception) { } }; }
                     catch (Exception) { }
+                    finally { }
 
                     // Главное окно
                     state = this.MainProject;
