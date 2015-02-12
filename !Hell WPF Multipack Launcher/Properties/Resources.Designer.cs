@@ -907,11 +907,29 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://goo.gl/soxOeL.
+        /// </summary>
+        public static string Multipack_FAQ {
+            get {
+                return ResourceManager.GetString("Multipack_FAQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /mods/proupdate/update.json.
         /// </summary>
         public static string Multipack_Updates {
             get {
                 return ResourceManager.GetString("Multipack_Updates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://goo.gl/udevPW.
+        /// </summary>
+        public static string Multipack_VK {
+            get {
+                return ResourceManager.GetString("Multipack_VK", resourceCulture);
             }
         }
         

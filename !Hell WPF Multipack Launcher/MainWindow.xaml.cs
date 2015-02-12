@@ -892,5 +892,17 @@ namespace _Hell_WPF_Multipack_Launcher
             if (File.Exists("settings_open.json")) File.Delete("settings_open.json");
             File.WriteAllText("settings_open.json", jSettings.ToString());
         }
+
+        private void bFAQ_Click(object sender, RoutedEventArgs e)
+        {
+            try { ProcessStart(Properties.Resources.Multipack_FAQ); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "bFAQ_Click()", "Link: " + Properties.Resources.Multipack_FAQ, ex.Message, ex.StackTrace)); }
+        }
+
+        private void bVK_Click(object sender, RoutedEventArgs e)
+        {
+            try { ProcessStart(Properties.Resources.Multipack_VK); }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("General.xaml", "bVK_Click()", "Link: " + Properties.Resources.Multipack_VK, ex.Message, ex.StackTrace)); }
+        }
     }
 }

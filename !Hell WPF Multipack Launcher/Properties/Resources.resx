@@ -554,4 +554,12 @@
     <value>/wot/auth/logout/</value>
     <comment>Функция отмены регистрации токена</comment>
   </data>
+  <data name="Multipack_FAQ" xml:space="preserve">
+    <value>http://goo.gl/soxOeL</value>
+    <comment>Ссылка на форум или другой ресурс</comment>
+  </data>
+  <data name="Multipack_VK" xml:space="preserve">
+    <value>http://goo.gl/udevPW</value>
+    <comment>Группа в ВК</comment>
+  </data>
 </root>
