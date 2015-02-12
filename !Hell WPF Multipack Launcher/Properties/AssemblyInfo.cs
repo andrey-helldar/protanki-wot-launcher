@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AI RUS - Professional IT support")]
 [assembly: AssemblyProduct("!Hell Multipack Launcher")]
-[assembly: AssemblyCopyright("Copyright © 2014 AI RUS - Professional IT support")]
+[assembly: AssemblyCopyright("Copyright © 2012-2015 AI RUS - Professional IT support")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -50,6 +50,6 @@ using System.Windows;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.6.41.895")]
-[assembly: AssemblyFileVersion("2.6.41.895")]
+[assembly: AssemblyVersion("2.7.41.896")]
+[assembly: AssemblyFileVersion("2.7.41.896")]
 [assembly: GuidAttribute("B3F13C67-4CBB-4AA3-B942-F8A285ED1CBF")]
