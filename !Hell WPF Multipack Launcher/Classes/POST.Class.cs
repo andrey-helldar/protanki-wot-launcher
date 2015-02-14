@@ -204,9 +204,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 if (Directory.Exists(Environment.CurrentDirectory + @"\tickets"))
-                    Directory. (Environment.CurrentDirectory + @"\tickets", MainWindow.SettingsDir);
+                    Copy(Environment.CurrentDirectory + @"\tickets", MainWindow.SettingsDir+ "tickets");
             }
-            catch (Exception ex) { File.WriteAllText("2.txt", ex.Message); }
+            catch (Exception) { }
 
             // Готовим тикеты
             try
@@ -267,6 +267,33 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("POST.Class", "AutosendTicket()", ex.Message, ex.StackTrace)); }
+        }
+
+
+        public static void Copy(string sourceDirectory, string targetDirectory)
+        {
+            DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
+            DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
+
+            CopyAll(diSource, diTarget);
+
+            Directory.Delete(sourceDirectory);
+        }
+
+        public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        {
+            if (Directory.Exists(target.FullName) == false)
+                Directory.CreateDirectory(target.FullName);
+
+            foreach (FileInfo fi in source.GetFiles())
+                fi.MoveTo(Path.Combine(target.ToString(), fi.Name));            
+
+            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+            {
+                DirectoryInfo nextTargetSubDir =
+                    target.CreateSubdirectory(diSourceSubDir.Name);
+                CopyAll(diSourceSubDir, nextTargetSubDir);
+            }
         }
     }
 }
