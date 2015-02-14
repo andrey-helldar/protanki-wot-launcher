@@ -200,6 +200,15 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         /// </summary>
         public void AutosendTicket()
         {
+            // Переносим тикеты в новое место
+            try
+            {
+                if (Directory.Exists(Environment.CurrentDirectory + @"\tickets"))
+                    Directory. (Environment.CurrentDirectory + @"\tickets", MainWindow.SettingsDir);
+            }
+            catch (Exception ex) { File.WriteAllText("2.txt", ex.Message); }
+
+            // Готовим тикеты
             try
             {
                 string status = String.Empty;
@@ -208,11 +217,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 if (Directory.Exists(MainWindow.SettingsDir + "tickets"))
                 {
                     Language Lang = new Language();
-
                     string lang = (string)MainWindow.JsonSettingsGet("info.language");
-
-                    /*if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
-                        lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;*/
 
                     foreach (FileInfo file in new DirectoryInfo(MainWindow.SettingsDir + "tickets").GetFiles("*.ticket"))
                     {

@@ -585,16 +585,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap General_Line {
-            get {
-                object obj = ResourceManager.GetObject("General_Line", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap General_News_Close_hover {
             get {
                 object obj = ResourceManager.GetObject("General_News_Close_hover", resourceCulture);
@@ -1006,16 +996,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Page_Background {
-            get {
-                object obj = ResourceManager.GetObject("Page_Background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap page_select {
             get {
                 object obj = ResourceManager.GetObject("page_select", resourceCulture);
@@ -1029,16 +1009,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         public static System.Drawing.Bitmap play_hover {
             get {
                 object obj = ResourceManager.GetObject("play_hover", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap play_normal {
-            get {
-                object obj = ResourceManager.GetObject("play_normal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1286,26 +1256,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         public static string Wargaming_Link {
             get {
                 return ResourceManager.GetString("Wargaming_Link", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap wot_emblem {
-            get {
-                object obj = ResourceManager.GetObject("wot_emblem", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap wot_emblem_pressed {
-            get {
-                object obj = ResourceManager.GetObject("wot_emblem_pressed", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

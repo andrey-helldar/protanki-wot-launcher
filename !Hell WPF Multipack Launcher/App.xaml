@@ -111,7 +111,7 @@
         <!-- *******************************
                      LOGOTYPE
             *********************************-->
-        <Style x:Key="ButtonStyleLogotype" TargetType="{x:Type Button}">
+        <!--<Style x:Key="ButtonStyleLogotype" TargetType="{x:Type Button}">
             <Setter Property="Cursor" Value="Hand"/>
 
             <Setter Property="Control.Template">
@@ -150,7 +150,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
 
 
 
@@ -243,7 +243,7 @@
                             <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="Resources/play_normal.png"/>
+                                        <ImageBrush ImageSource="{x:Null}"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -707,8 +707,8 @@
                            <Trigger Property="IsEnabled" Value="true">
                                 <Setter Property="Fill" TargetName="PlayBackground">
                                     <Setter.Value>
-                                        <!--<ImageBrush ImageSource="Resources/General_Profile_normal.png"/>-->
-                                        <ImageBrush ImageSource="{x:Null}"/>
+                                        <ImageBrush ImageSource="Resources/General_Profile_normal.png"/>
+                                        <!--<ImageBrush ImageSource="{x:Null}"/>//-->
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>

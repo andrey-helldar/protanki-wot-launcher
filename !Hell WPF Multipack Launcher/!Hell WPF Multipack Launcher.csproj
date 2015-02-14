@@ -322,12 +322,6 @@
     <Resource Include="Resources\cursor_chrome.cur" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\General_Line.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Page_Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\checkbox_active_checked.png" />
   </ItemGroup>
   <ItemGroup>
@@ -388,9 +382,6 @@
     <Resource Include="Resources\play_hover.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\play_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\play_press.png" />
   </ItemGroup>
   <ItemGroup>
@@ -403,12 +394,6 @@
     <Resource Include="Resources\skrepka_pressed.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\wot_emblem.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\wot_emblem_pressed.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\General_News_Close_hover.png" />
   </ItemGroup>
   <ItemGroup>
@@ -416,12 +401,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\General_News_Close_pressed.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Global_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\close_hover.png" />
@@ -613,6 +592,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Processes.Library.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Global_Background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
