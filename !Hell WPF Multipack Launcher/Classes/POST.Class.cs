@@ -202,11 +202,10 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
         {
             try
             {
-                string path = Environment.CurrentDirectory;
                 string status = String.Empty;
                 int count = 0;
 
-                if (Directory.Exists(path + @"\tickets"))
+                if (Directory.Exists(MainWindow.SettingsDir + "tickets"))
                 {
                     Language Lang = new Language();
 
@@ -215,7 +214,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                     /*if (MainWindow.XmlDocument.Root.Element("info").Attribute("language") != null)
                         lang = MainWindow.XmlDocument.Root.Element("info").Attribute("language").Value;*/
 
-                    foreach (FileInfo file in new DirectoryInfo(path + @"\tickets").GetFiles("*.ticket"))
+                    foreach (FileInfo file in new DirectoryInfo(MainWindow.SettingsDir + "tickets").GetFiles("*.ticket"))
                     {
                         try
                         {
@@ -224,17 +223,17 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 null,
                                 File.ReadAllText(file.FullName, Encoding.UTF8)));
 
-                            if (answer["status"].ToString() != "FAIL" && answer["code"].ToString() == Properties.Resources.API)
+                            if ((string)answer["status"] != "FAIL" && (string)answer["code"] == Properties.Resources.API)
                             {
-                                switch (answer["status"].ToString())
+                                switch ((string)answer["status"])
                                 {
                                     case "OK":
-                                        status += answer["id"].ToString() + (answer["email"] != null ? Lang.Set("PostClass", "EmailAnswer", lang) + ";" : ";") + Environment.NewLine;
+                                        status += (string)answer["id"] + "; ";
                                         count++;
                                         if (File.Exists(file.FullName)) File.Delete(file.FullName);
                                         break;
                                     case "BANNED":
-                                        status += answer["content"].ToString() + (answer["email"] != null ? Lang.Set("PostClass", "EmailAnswer", lang) + ";" : ";") + Environment.NewLine;
+                                        status += answer["content"] + "; ";
                                         count++;
                                         if (File.Exists(file.FullName)) File.Delete(file.FullName);
                                         break;
@@ -253,6 +252,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                     if (status.Length > 0)
                     {
+
                         MainWindow.Notifier.ShowBalloonTip(5000,
                             Lang.Set("PostClass", "AutoTicket", lang),
                             Lang.Set("PostClass", "AutoTicketCount", lang, count.ToString()) + Environment.NewLine + Environment.NewLine +

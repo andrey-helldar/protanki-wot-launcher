@@ -101,86 +101,96 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         if (MessageBox.Show(Lang.Set("PageFeedback", "SendNow", lang), Application.Current.GetType().Assembly.GetName().Name, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
                         {
-                            // Dictionary<string, string> json1 = new Dictionary<string, string>();
-                            Classes.POST POST = new Classes.POST();
-                            //Classes.Variables Variables = new Classes.Variables();
-
-                            string cat = String.Empty;
-                            string status = string.Empty;
-
-                            /*
-                             *  Получаем тикет
-                             * 
-                             *  api             код API
-                             *  user_id         идентификатор пользователя
-                             *  user_name       имя юзера, если авторизован
-                             *  user_email      мыло юзера, если авторизован
-                             *  modpack_type    тип мультипака
-                             *  modpack_ver     версия мультипака
-                             *  launcher        версия лаунчера
-                             *  youtube         канал ютуба (идентификатор мододела)
-                             *  lang            язык запроса
-                             *  os              версия ОС
-                             */
-
-                            if (rbWishMultipack.IsChecked == true)
-                                cat = "WM";
-                            else if (rbWishLauncher.IsChecked == true)
-                                cat = "WL";
-                            else if (rbWishInstaller.IsChecked == true)
-                                cat = "WI";
-                            else if (rbErrorMultipack.IsChecked == true)
-                                cat = "EM";
-                            else if (rbErrorLauncher.IsChecked == true)
-                                cat = "EL";
-                            else if (rbErrorInstaller.IsChecked == true)
-                                cat = "EI";
-
-                            JObject json = new JObject(
-                                new JProperty("code", Properties.Resources.API),
-                                new JProperty("user_id", (string)MainWindow.JsonSettingsGet("info.user_id")),
-                                new JProperty("user_name", (string)MainWindow.JsonSettingsGet("info.user_name")),
-                                new JProperty("user_email", POST.Shield(tbEmail.Text.Trim())),
-                                new JProperty("modpack_type", (string)MainWindow.JsonSettingsGet("multipack.type")),
-                                new JProperty("modpack_ver", (string)MainWindow.JsonSettingsGet("multipack.version")),
-                                new JProperty("launcher", (string)MainWindow.JsonSettingsGet("info.ProductName")),
-                                new JProperty("youtube", Properties.Resources.YoutubeChannel),
-                                new JProperty("lang", lang),
-                                new JProperty("os", "disabled"),
-                                new JProperty("category", cat),
-                                new JProperty("message", POST.Shield(tbMessage.Text.Trim()))
-                            );
-
-                            //  http://ai-rus.com/api/wot/ticket                            
-                            JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket, json));
-
-                            if (answer["status"].ToString() != "FAIL" && answer["code"].ToString() == Properties.Resources.API)
-                            {
-                                switch (answer["status"].ToString())
+                            Task.Factory.StartNew(() =>
+                                Dispatcher.BeginInvoke(new ThreadStart(delegate
                                 {
-                                    case "OK":
-                                        status = Lang.Set("PageFeedback", "OK", lang, answer["id"].ToString());
-                                        tbMessage.Text = String.Empty;
-                                        tbEmail.Text = String.Empty;
-                                        break;
-                                    case "BANNED":
-                                        status = Lang.Set("PageFeedback", "BANNED", lang);
-                                        tbMessage.Text = String.Empty;
-                                        tbEmail.Text = String.Empty;
-                                        break;
-                                    default:
-                                        SaveTicket(json); // Сохранение тикета для последующей отправки
-                                        status = Lang.Set("PageFeedback", answer["status"].ToString(), lang) +
-                                        Lang.Set("PageFeedback", answer["content"].ToString(), lang, answer["message"].ToString());
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                SaveTicket(json); // Сохранение тикета для последующей отправки
-                                status = Lang.Set("PageFeedback", "FAIL", lang, Lang.Set("PageFeedback", answer["content"].ToString(), lang));
-                            }
-                            MessageBox.Show(status);
+                                    string cat = String.Empty;
+                                    string status = string.Empty;
+
+                                    try
+                                    {
+                                        Classes.POST POST = new Classes.POST();
+
+                                        /*
+                                         *  Получаем тикет
+                                         * 
+                                         *  api             код API
+                                         *  user_id         идентификатор пользователя
+                                         *  user_name       имя юзера, если авторизован
+                                         *  user_email      мыло юзера, если авторизован
+                                         *  modpack_type    тип мультипака
+                                         *  modpack_ver     версия мультипака
+                                         *  launcher        версия лаунчера
+                                         *  youtube         канал ютуба (идентификатор мододела)
+                                         *  lang            язык запроса
+                                         *  os              версия ОС
+                                         */
+
+                                        if (rbWishMultipack.IsChecked == true)
+                                            cat = "WM";
+                                        else if (rbWishLauncher.IsChecked == true)
+                                            cat = "WL";
+                                        else if (rbWishInstaller.IsChecked == true)
+                                            cat = "WI";
+                                        else if (rbErrorMultipack.IsChecked == true)
+                                            cat = "EM";
+                                        else if (rbErrorLauncher.IsChecked == true)
+                                            cat = "EL";
+                                        else if (rbErrorInstaller.IsChecked == true)
+                                            cat = "EI";
+
+                                        JObject json = new JObject(
+                                            new JProperty("code", Properties.Resources.API),
+                                            new JProperty("user_id", (string)MainWindow.JsonSettingsGet("info.user_id")),
+                                            new JProperty("user_name", (string)MainWindow.JsonSettingsGet("info.user_name")),
+                                            new JProperty("user_email", POST.Shield(tbEmail.Text.Trim())),
+                                            new JProperty("modpack_type", (string)MainWindow.JsonSettingsGet("multipack.type")),
+                                            new JProperty("modpack_ver", (string)MainWindow.JsonSettingsGet("multipack.version")),
+                                            new JProperty("launcher", (string)MainWindow.JsonSettingsGet("info.ProductName")),
+                                            new JProperty("youtube", Properties.Resources.YoutubeChannel),
+                                            new JProperty("lang", lang),
+                                            new JProperty("os", "disabled"),
+                                            new JProperty("category", cat),
+                                            new JProperty("message", POST.Shield(tbMessage.Text.Trim()))
+                                        );
+
+                                        JObject answer = JObject.Parse(POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Ticket, json));
+
+                                        if (answer["status"].ToString() != "FAIL" && answer["code"].ToString() == Properties.Resources.API)
+                                        {
+                                            switch (answer["status"].ToString())
+                                            {
+                                                case "OK":
+                                                    status = Lang.Set("PageFeedback", "OK", lang, answer["id"].ToString());
+                                                    tbMessage.Text = String.Empty;
+                                                    if (tbEmail.IsEnabled) tbEmail.Text = String.Empty;
+                                                    break;
+                                                case "BANNED":
+                                                    status = Lang.Set("PageFeedback", "BANNED", lang);
+                                                    tbMessage.Text = String.Empty;
+                                                    if (tbEmail.IsEnabled) tbEmail.Text = String.Empty;
+                                                    break;
+                                                default:
+                                                    SaveTicket(json); // Сохранение тикета для последующей отправки
+                                                    status = Lang.Set("PageFeedback", answer["status"].ToString(), lang) +
+                                                    Lang.Set("PageFeedback", answer["content"].ToString(), lang, answer["message"].ToString());
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            SaveTicket(json); // Сохранение тикета для последующей отправки
+                                            status = Lang.Set("PageFeedback", "FAIL", lang, Lang.Set("PageFeedback", answer["content"].ToString(), lang));
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Task.Factory.StartNew(() => Debugging.Save("Feedback.xaml", "bSend_Click()", "Intro function", ex.Message, ex.StackTrace));
+                                        status = Lang.Set("PageFeedback", "TICKET_ADD_ERROR", lang);
+                                    }
+
+                                    MessageBox.Show(status);
+                                })));
                         }
                     }
                     else
@@ -253,7 +263,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 // Очищаем поля
                 tbMessage.Text = String.Empty;
-                tbEmail.Text = String.Empty;
+                if (tbEmail.IsEnabled) tbEmail.Text = String.Empty;
 
                 // Выдаем сообщение о сохранении тикета
                 MainWindow.Notifier.ShowBalloonTip(5000,
