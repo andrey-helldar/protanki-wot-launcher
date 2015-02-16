@@ -86,7 +86,7 @@ namespace Yusha_Manager
                 for (int i = 0; i < TextBaseEN.LineCount; i++) if (TextBaseEN.GetLineText(i).Trim().Length > 0) changelogEN += "<li>" + TextBaseEN.GetLineText(i).Trim() + "</li>";
                 for (int i = 0; i < TextBaseRU.LineCount; i++) if (TextBaseRU.GetLineText(i).Trim().Length > 0) changelogRU += "<li>" + TextBaseRU.GetLineText(i).Trim() + "</li>";
                 text = text.Replace("{ChangeBaseEN}", changelogEN).Replace("{ChangeBaseRU}", changelogRU).Replace("{LinkBase}", LinkBase.Text);
-                
+
                 //Thread.Sleep(100);
 
                 // Расширенная
@@ -299,7 +299,7 @@ namespace Yusha_Manager
                     LinkExtended.Text = String.Empty;
 
                     PackVersion.Text = "0";
-                    TanksVersion.Text = "0.9.5";
+                    //TanksVersion.Text = "0.9.6";
                 }
             }
             else
@@ -311,6 +311,10 @@ namespace Yusha_Manager
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Recovery(false); // Восстановление данных, если бэкап найден
+
+            //  TanksVersion
+            if (File.Exists("TanksVersion.bak"))
+                TanksVersion.Text = File.ReadAllText("TanksVersion.bak");
         }
 
         private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
@@ -446,6 +450,14 @@ namespace Yusha_Manager
                     list += m.Groups[1].Value + Environment.NewLine;
 
             return list;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //  TanksVersion
+            if (File.Exists("TanksVersion.bak"))
+                File.Delete("TanksVersion.bak");
+            File.WriteAllText("TanksVersion.bak", TanksVersion.Text.Trim());
         }
     }
 }
