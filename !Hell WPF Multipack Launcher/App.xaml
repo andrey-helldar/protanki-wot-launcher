@@ -469,8 +469,8 @@
                         MINIMIZE
             *********************************-->
         <Style x:Key="ButtonStyleOptimize" TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="30"/>
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
             
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -681,8 +681,8 @@
                         ABOUT
             *********************************-->
         <Style x:Key="ButtonStyleAbout" TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="20"/>
-            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="18"/>
+            <Setter Property="Height" Value="18"/>
             <Setter Property="Margin" Value="0,9,8,5"/>
             <Setter Property="Cursor" Value="Hand"/>
             
@@ -737,8 +737,8 @@
                         UPDATE
             *********************************-->
         <Style x:Key="ButtonStyleUpdate" TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="19"/>
-            <Setter Property="Height" Value="18"/>
+            <Setter Property="Width" Value="17"/>
+            <Setter Property="Height" Value="16"/>
             <Setter Property="Margin" Value="0,9,8,5"/>
             <Setter Property="Cursor" Value="Hand"/>
 
@@ -792,8 +792,8 @@
                         NOTIFICATION
             *********************************-->
         <Style x:Key="ButtonStyleNotify" TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="20"/>
-            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="18"/>
+            <Setter Property="Height" Value="18"/>
             <Setter Property="Margin" Value="0,9,8,5"/>
             <Setter Property="Cursor" Value="Hand"/>
 
@@ -2598,6 +2598,170 @@
 
         <Style x:Key="TextTextBlock" TargetType="{x:Type TextBlock}">
             <Setter Property="FontFamily" Value="Verdana"/>
+        </Style>
+
+
+        <!-- *******************************
+                        DONATE
+            *********************************-->
+        <Style x:Key="ButtonStyleDonate" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="0">
+                            <Path Stretch="Fill" x:Name="PlayBackground"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand">
+                            </Path>
+                            <ContentPresenter Name="content" 
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"
+                                        Margin="15"
+                                        Cursor="Hand"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/donate_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/donate_hover.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Fill" TargetName="PlayBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/donate_press.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+        <!-- *******************************
+                        FAQ
+            *********************************-->
+        <Style x:Key="ButtonStyleFAQ" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="0,9,8,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="0">
+                            <Path Stretch="Fill" x:Name="UpdateBackground"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand">
+                            </Path>
+                            <ContentPresenter Name="content" 
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"
+                                        Margin="15"
+                                        Cursor="Hand"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="UpdateBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/wot_forum_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="UpdateBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/wot_forum_hover.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Fill" TargetName="UpdateBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/wot_forum_press.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!-- *******************************
+                        VK
+            *********************************-->
+        <Style x:Key="ButtonStyleVK" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="0,9,8,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Margin="0">
+                            <Path Stretch="Fill" x:Name="UpdateBackground"
+                                    Data="M10,20 L10,10 43,10 L43,20 Z"
+                                    Stroke="Black"
+                                    StrokeThickness="0"
+                                    SnapsToDevicePixels="True"
+                                    Cursor="Hand">
+                            </Path>
+                            <ContentPresenter Name="content" 
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"
+                                        Margin="15"
+                                        Cursor="Hand"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="true">
+                                <Setter Property="Fill" TargetName="UpdateBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/vk_normal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="UpdateBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/vk_hover.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Fill" TargetName="UpdateBackground">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/vk_press.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
 

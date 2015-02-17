@@ -547,4 +547,22 @@
     <value>http://goo.gl/udevPW</value>
     <comment>Группа в ВК</comment>
   </data>
+  <data name="vk_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vk_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vk_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vk_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vk_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vk_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wot_forum_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wot_forum_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wot_forum_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wot_forum_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wot_forum_press" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wot_forum_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

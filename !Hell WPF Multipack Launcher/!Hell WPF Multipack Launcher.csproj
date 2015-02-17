@@ -334,46 +334,7 @@
     <Resource Include="Resources\checkbox_unactive_unchecked.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\close.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\download.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Feedback_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Feedback_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Feedback_press.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Optimize_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Optimize_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Optimize_pressed.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Profile_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Profile_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Profile_pressed.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Settings_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Settings_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\General_Settings_press.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ok.png" />
@@ -401,15 +362,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\General_News_Close_pressed.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\close_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\close_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\close_press.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\minimize_hover.png" />
@@ -513,36 +465,6 @@
     <Resource Include="Resources\waiting.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\update_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\update_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\update_press.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\notify_press.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\notify_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\notify_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\flag_ua.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\wot_press.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\wot_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\wot_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\province_types_normal.png" />
   </ItemGroup>
   <ItemGroup>
@@ -598,6 +520,102 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Global_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_forum_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_forum_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_forum_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\close_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flag_ua.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Feedback_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Feedback_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Feedback_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Optimize_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Optimize_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Optimize_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Profile_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Profile_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Profile_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Settings_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Settings_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Settings_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\notify_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\notify_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\notify_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\update_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\update_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\update_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\vk_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\vk_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\vk_press.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
