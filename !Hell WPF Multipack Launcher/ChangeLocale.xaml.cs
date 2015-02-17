@@ -32,19 +32,6 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            /*
-             *
-             * <ListBoxItem x:Name="ru" VerticalAlignment="Center" Cursor="Hand">
-                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="10,10,5,10" Source="Resources/flag_ru.png"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,10,10" TextWrapping="Wrap" Text="Русский" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
-                </Grid>
-               </ListBoxItem>
-             */
             try
             {
                 JObject obj = Lang.Translated();
@@ -118,6 +105,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
 
                 MainWindow.Flag.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)MainWindow.JsonSettingsGet("info.ProductName"), (string)MainWindow.JsonSettingsGet("info.language"))));
+                MainWindow.Flag.ToolTip = Lang.Set("Tooltip", "rectLang", (string)MainWindow.JsonSettingsGet("info.language"));
 
                 Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
 

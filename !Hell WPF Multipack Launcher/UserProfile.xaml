@@ -25,7 +25,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="bClose" Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="Button_Click" Style="{DynamicResource ButtonCLOSE}" Grid.Row="1"/>
+        <Button x:Name="bClose" Content="Закрыть" HorizontalAlignment="Right" Margin="0,0,10,30" VerticalAlignment="Bottom" Click="Button_Click" Style="{DynamicResource ButtonCLOSE}" Grid.Row="1"/>
         <TabControl x:Name="tcInfo" Margin="5,0,5,5" Background="{x:Null}" BorderBrush="{x:Null}">
             <TabItem Header="Персональная информация">
                 <Grid>

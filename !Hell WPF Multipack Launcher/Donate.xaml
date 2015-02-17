@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="tbCaption" FontFamily="{StaticResource FontSochi2014}" HorizontalAlignment="Left" Margin="30" TextWrapping="Wrap" Text="Donate" VerticalAlignment="Center" FontSize="20"/>
-        <Button x:Name="bClose" Content="Закрыть" Style="{DynamicResource ButtonCLOSE}" HorizontalAlignment="Right" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" Click="bClose_Click" Grid.Column="1" Margin="10,10,10,25"/>
+        <Button x:Name="bClose" Content="Закрыть" Style="{DynamicResource ButtonCLOSE}" HorizontalAlignment="Right" Grid.Row="2" VerticalContentAlignment="Center" VerticalAlignment="Center" Click="bClose_Click" Grid.Column="1" Margin="10,10,10,30"/>
 
         <TextBlock HorizontalAlignment="Center" Margin="0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Style="{DynamicResource TextTextBlock}">
             <Run Style="{DynamicResource CaptionTextBlock}">Multipack PROTanki (Yusha):</Run><LineBreak/>

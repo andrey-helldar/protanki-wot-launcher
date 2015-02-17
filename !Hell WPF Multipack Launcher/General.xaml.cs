@@ -376,7 +376,7 @@ namespace _Hell_WPF_Multipack_Launcher
              */
             try
             {
-                if ((bool)MainWindow.JsonSettingsGet("info.news") && MainWindow.JsonSettingsGet("info.news") !=null)
+                if ((bool)MainWindow.JsonSettingsGet("info.news") && MainWindow.JsonSettingsGet("info.news") != null)
                 {
                     if (WargamingClass.Count() > 0)
                     {
@@ -564,7 +564,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         string y = elemY.NavigateUri.AbsoluteUri;
                         string link = y.Remove(0, y.IndexOf("v=") + 2);
                         link = link.Remove(link.IndexOf("&"));
-                        
+
                         // Выводим юзеру
                         MainWindow.PreviewVideo(link, FindRun(el, "run_" + arr[1]).Text);
                     }
@@ -704,6 +704,16 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     lNews.Content = Lang.Set("PageGeneral", "lNews", lang);
                     lVideo.Content = Lang.Set("PageGeneral", "lVideo", lang);
+
+                    bUpdate.ToolTip = Lang.Set("Tooltip", "bUpdate", lang);
+                    bNotification.ToolTip = Lang.Set("Tooltip", "bNotification", lang);
+                    bUserProfile.ToolTip = Lang.Set("Tooltip", "bUserProfile", lang);
+
+                    bSettings.ToolTip = Lang.Set("Tooltip", "bSettings", lang);
+                    bFeedback.ToolTip = Lang.Set("Tooltip", "bFeedback", lang);
+
+                    bLauncher.ToolTip = Lang.Set("Tooltip", "bLauncher", lang);
+                    bOptimize.ToolTip = Lang.Set("Tooltip", "bOptimize", lang);
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("PageGeneral", "SetInterface()", ex.Message, ex.StackTrace)); }
             }));

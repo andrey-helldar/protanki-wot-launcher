@@ -364,15 +364,6 @@
     <Resource Include="Resources\General_News_Close_pressed.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\minimize_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\minimize_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\minimize_press.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\arrow.png" />
   </ItemGroup>
   <ItemGroup>
@@ -516,19 +507,7 @@
     <Resource Include="Resources\Processes.Library.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\General_Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Global_Background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\wot_forum_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\wot_forum_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\wot_forum_press.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\wot_hover.png" />
@@ -609,6 +588,30 @@
     <Resource Include="Resources\update_press.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\donate_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\donate_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\donate_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\General_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minimize_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minimize_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\minimize_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_forum_press.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\vk_hover.png" />
   </ItemGroup>
   <ItemGroup>
@@ -616,6 +619,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\vk_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_forum_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\wot_forum_normal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

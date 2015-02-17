@@ -1674,6 +1674,97 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             default: return toReturn;
                         }
 
+						
+                    /* =====================================
+                     *      Tooltip
+                     * =====================================*/
+                    case "Tooltip":
+                        switch (control)
+                        {
+                            case "rectLang":
+                                switch (lang)
+                                {
+                                    case "ru": return "Изменить язык интерфейса";
+                                    case "en": return "Change language";
+                                    case "de": return "Sprache Ändern";
+                                    case "ua": return "Змінити мову інтерфейсу";
+                                    default: return toReturn;
+                                }
+								
+                            case "bUpdate":
+                                switch (lang)
+                                {
+                                    case "ru": return "Обновить мультипак";
+                                    case "en": return "Update Multipack";
+                                    case "de": return "Update-Multipack";
+                                    case "ua": return "Оновити Мультипак";
+                                    default: return toReturn;
+                                }
+								
+                            case "bNotification":
+                                switch (lang)
+                                {
+                                    case "ru": return "Изменить язык интерфейса";
+                                    case "en": return "Modified List";
+                                    case "de": return "Geändert Liste";
+                                    case "ua": return "Список змін";
+                                    default: return toReturn;
+                                }
+								
+                            case "bUserProfile":
+                                switch (lang)
+                                {
+                                    case "ru": return "Личный кабинет";
+                                    case "en": return "Personal cabinet";
+                                    case "de": return "Persönlichen Cabinet";
+                                    case "ua": return "Особистий кабінет";
+                                    default: return toReturn;
+                                }
+								
+								
+								
+                            case "bSettings":
+                                switch (lang)
+                                {
+                                    case "ru": return "Настройки";
+                                    case "en": return "Settings";
+                                    case "de": return "Einstellungen";
+                                    case "ua": return "Налаштування11";
+                                    default: return toReturn;
+                                }
+								
+                            case "bFeedback":
+                                switch (lang)
+                                {
+                                    case "ru": return "Обратная связь";
+                                    case "en": return "Feedback";
+                                    case "de": return "Rückkopplung";
+                                    case "ua": return "Зворотній зв'язок";
+                                    default: return toReturn;
+                                }
+								
+                            case "bLauncher":
+                                switch (lang)
+                                {
+                                    case "ru": return "Лаунчер 'World of tanks'";
+                                    case "en": return "'World of tanks' Launcher";
+                                    case "de": return "'World of tanks' Launcher";
+                                    case "ua": return "Лаунчер 'World of tanks'";
+                                    default: return toReturn;
+                                }
+								
+                            case "bOptimize":
+                                switch (lang)
+                                {									
+                                    case "ru": return "Оптимизировать Ваш ПК для поднятия FPS";
+                                    case "en": return "Optimize your PC for maximum FPS";
+                                    case "de": return "Optimieren Sie Ihren PC für maximale FPS";
+                                    case "ua": return "Оптимізувати Ваш ПК для підняття FPS";
+                                    default: return toReturn;
+                                }
+
+                            default: return toReturn;
+                        }
 
                     default: return toReturn;
                 }

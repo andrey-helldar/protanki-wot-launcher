@@ -610,7 +610,12 @@ namespace _Hell_WPF_Multipack_Launcher
             //Dispatcher.BeginInvoke(new ThreadStart(delegate
             //{
             // Images & other
-            try { rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)JsonSettingsGet("info.ProductName"), (string)JsonSettingsGet("info.language")))); }
+            try
+            {
+                rectLang.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/flag_{1}.png", (string)JsonSettingsGet("info.ProductName"), (string)JsonSettingsGet("info.language"))));
+
+                rectLang.ToolTip = Lang.Set("Tooltip", "rectLang", (string)JsonSettingsGet("info.language"));
+            }
             catch (Exception ex)
             {
                 Task.Factory.StartNew(() => Debugging.Save("MainWindow", "SetInterface()", ex.Message, ex.StackTrace));
