@@ -204,7 +204,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             try
             {
                 if (Directory.Exists(Environment.CurrentDirectory + @"\tickets"))
-                    Copy(Environment.CurrentDirectory + @"\tickets", MainWindow.SettingsDir+ "tickets");
+                    Copy(Environment.CurrentDirectory + @"\tickets", MainWindow.SettingsDir + "tickets");
             }
             catch (Exception) { }
 
@@ -218,6 +218,8 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 {
                     Language Lang = new Language();
                     string lang = (string)MainWindow.JsonSettingsGet("info.language");
+
+                    string log = String.Empty;
 
                     foreach (FileInfo file in new DirectoryInfo(MainWindow.SettingsDir + "tickets").GetFiles("*.ticket"))
                     {
@@ -243,14 +245,18 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                         if (File.Exists(file.FullName)) File.Delete(file.FullName);
                                         break;
                                     default:
+                                        log += (string)answer["status"] + " : " + file.Name + Environment.NewLine;
                                         break;
                                 }
                             }
                             else
                             {
-                                if (answer["status"].ToString() == "FAIL" && answer["content"].ToString() == "SOFTWARE_NOT_AUTORIZED")
+                                if (answer["status"].ToString() == "FAIL" && answer["content"].ToString() != "SOFTWARE_NOT_AUTORIZED")
                                     if (File.Exists(file.FullName)) File.Delete(file.FullName);
                             }
+
+                            // Пишем лог
+                            log += String.Format("{0} : {1} : {2}" + Environment.NewLine, (string)answer["status"], (string)answer["content"], file.Name);
                         }
                         catch (Exception e) { Task.Factory.StartNew(() => Debugging.Save("POST.Class", "AutosendTicket()", file.FullName, e.Message, e.StackTrace)); }
                     }
@@ -264,6 +270,13 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 Lang.Set("PostClass", "AutoTicketStatus", lang, status),
                             System.Windows.Forms.ToolTipIcon.Info);
                     }
+
+                    // Записываем лог
+                    string logDir = MainWindow.SettingsDir + @"log\";
+                    if (!Directory.Exists(logDir))
+                        Directory.CreateDirectory(logDir);
+
+                    File.WriteAllText(logDir + "tickets-" + DateTime.Now.ToString("yyyy-MM-dd h-m-s.ffffff") + ".log", log);
                 }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("POST.Class", "AutosendTicket()", ex.Message, ex.StackTrace)); }
