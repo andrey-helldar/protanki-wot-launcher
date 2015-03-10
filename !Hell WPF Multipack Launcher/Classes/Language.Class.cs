@@ -24,7 +24,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 obj.Add(new JProperty("ru", "ru:Русский"));	// Andrey Helldar
                 obj.Add(new JProperty("en", "en:English"));	// D Voronoff
                 obj.Add(new JProperty("de", "de:Deutsch"));	// Alexander Storz
-                obj.Add(new JProperty("ua", "ua:Український")); // PROTanki Team
+                obj.Add(new JProperty("ua", "ua:Українська")); // PROTanki Team
 
                 return obj;
             }
