@@ -56,7 +56,11 @@ namespace _Hell_WPF_Multipack_Launcher
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             // Устанавливаем заголовок в зависимости от типа версии
-            try { lType.Content = Lang.Set("PageGeneral", (string)MainWindow.JsonSettingsGet("multipack.type"), lang); }
+            try
+            {
+                lType.Content = Lang.Set("PageGeneral", (string)MainWindow.JsonSettingsGet("multipack.type"), lang) + " #" +
+                    Version.Parse((string)MainWindow.JsonSettingsGet("multipack.version")).Revision;
+            }
             catch (Exception) { lType.Content = Lang.Set("PageGeneral", "base", lang); }
 
             // Загружаем список видео и новостей
