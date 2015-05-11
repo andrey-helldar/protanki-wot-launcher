@@ -699,7 +699,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
                                     new JProperty("game", (string)JsonSettingsGet("game.version")),
                                     new JProperty("game_test", (bool)JsonSettingsGet("game.test")),
-                                    new JProperty("youtube", Properties.Resources.YoutubeChannel),
+                                    new JProperty("youtube", Properties.Resources.Youtube_Channel),
                                     new JProperty("lang", (string)JsonSettingsGet("info.language")),
                                     new JProperty("os", Environment.OSVersion.Version.ToString())
                                 ));

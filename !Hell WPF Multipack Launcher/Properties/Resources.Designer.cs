@@ -1122,15 +1122,6 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://gdata.youtube.com/feeds/api/users/{0}/uploads.
-        /// </summary>
-        public static string RssYoutube {
-            get {
-                return ResourceManager.GetString("RssYoutube", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         public static byte[] Settings {
@@ -1380,6 +1371,42 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AIzaSyCF4S60s3LrJ0jx0BtG1o3Po-LPquJ5v6M.
+        /// </summary>
+        public static string Youtube_API {
+            get {
+                return ResourceManager.GetString("Youtube_API", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROTankiWoT.
+        /// </summary>
+        public static string Youtube_Channel {
+            get {
+                return ResourceManager.GetString("Youtube_Channel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.googleapis.com/youtube/v3/channels?part=contentDetails&amp;forUsername={0}&amp;fields=items%2FcontentDetails&amp;key={1}.
+        /// </summary>
+        public static string Youtube_Channels_List {
+            get {
+                return ResourceManager.GetString("Youtube_Channels_List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&amp;maxResults=20&amp;playlistId={0}&amp;fields=items%2Fsnippet&amp;key={1}.
+        /// </summary>
+        public static string Youtube_PlaylistItems_List {
+            get {
+                return ResourceManager.GetString("Youtube_PlaylistItems_List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://www.youtube.com/embed/{0}?rel=0&amp;controls=0&amp;showinfo=0.
         /// </summary>
         public static string Youtube_Preview {
@@ -1389,11 +1416,11 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PROTankiWoT.
+        ///   Looks up a localized string similar to http://www.youtube.com/watch?v={0}.
         /// </summary>
-        public static string YoutubeChannel {
+        public static string Youtube_Video {
             get {
-                return ResourceManager.GetString("YoutubeChannel", resourceCulture);
+                return ResourceManager.GetString("Youtube_Video", resourceCulture);
             }
         }
     }
