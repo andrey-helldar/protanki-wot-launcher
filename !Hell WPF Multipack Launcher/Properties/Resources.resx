@@ -571,7 +571,7 @@
     <value>..\Resources\wot_forum_press.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Youtube_API" xml:space="preserve">
-    <value>AIzaSyCF4S60s3LrJ0jx0BtG1o3Po-LPquJ5v6M</value>
+    <value>AIzaSyB28LSsFmxjSkL0eBFDsj5a_J2BXiVfUec</value>
     <comment>hell-multipack-launcher Public API Key</comment>
   </data>
   <data name="Youtube_Channels_List" xml:space="preserve">

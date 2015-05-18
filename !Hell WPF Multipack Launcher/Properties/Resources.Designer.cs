@@ -1371,7 +1371,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AIzaSyCF4S60s3LrJ0jx0BtG1o3Po-LPquJ5v6M.
+        ///   Looks up a localized string similar to AIzaSyB28LSsFmxjSkL0eBFDsj5a_J2BXiVfUec.
         /// </summary>
         public static string Youtube_API {
             get {
