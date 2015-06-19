@@ -58,6 +58,9 @@ namespace _Hell_WPF_Multipack_Launcher
                     Dispatcher.BeginInvoke(new ThreadStart(delegate
                            {
 
+
+                               SaveFile("WB_LoadCompleted");
+
                                if (WB.Source.ToString().IndexOf("status=ok") > -1)
                                {
                                    JObject Token = WarAPI.Token(WB.Source.ToString());
@@ -153,6 +156,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private const string DisableScriptError =
             @"function noError() {return true;}
+              noError();
               window.onerror = noError;";
 
         /// <summary>
@@ -215,6 +219,33 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
                 catch (Exception) { }
             }));
+        }
+
+        private void SaveFile(string name)
+        {
+            string qw = @"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\" + name;
+            Regex regex = new Regex("<IMG class=js-captcha-image src=\"(.*)\">");
+            var doc = WB.Document as HTMLDocument;
+            int i = 0;
+
+            IHTMLElementCollection nodes = doc.getElementsByTagName("html");
+            foreach (IHTMLElement elem in nodes)
+            {
+                var body = (HTMLHeadElement)elem;
+
+
+                Match match = regex.Match(body.innerHTML);
+                while (match.Success)
+                {
+                    string qwe = qw + i.ToString() + ".txt";
+                    if (System.IO.File.Exists(qwe))
+                        System.IO.File.Delete(qwe);
+                    System.IO.File.WriteAllText(qwe, match.Value.Trim().Remove(0, match.Value.Trim().IndexOf("\"")+1).Remove(match.Value.Trim().IndexOf("\"")));
+
+                    i++;
+                    match = match.NextMatch();
+                }
+            }
         }
     }
 }

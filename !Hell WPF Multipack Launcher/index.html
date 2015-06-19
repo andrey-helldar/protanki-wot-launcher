@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Вход | Wargaming.net ID</title>
+    </head>
+    <body>
+        <div id="js-authentication-content-body">
+
+            <h1>Вход</h1>
+
+            <div class="signin-page-layout clearfix">
+                <div class="signin-page-layout_content">
+
+                    <form action="https://ru.wargaming.nethttps://ru.wargaming.net/id/signin/process/" method="post">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="g1fMUdVZKggqEJUwnvFnDGeWn9ZQmQva">
+                        <div class="l-fieldset-fix">
+                            <input name="next" type="hidden" value="https://ru.wargaming.net/id/sso/signin/notify/?next=https://ru.wargaming.net/id/openid/610305250410868392/&amp;trust_root=https%3A%2F%2Fru.wargaming.net%2F">
+                            <input name="flow" type="hidden" value="">                            
+                        </div>
+                        <div class="clearfix" id="js-basic-auth-section">
+                            <div class="l-fieldset">
+                                <fieldset class="b-form_fieldgroup">
+                                    <div class="b-form_input-field-wr">
+                                        <input placeholder="Электронная почта" data-input-wrapper-class="b-form_input-field-wr" class="b-form_input-field -metrika-nokeys" id="id_login" name="login" type="email" maxlength="50">
+                                    </div>
+                                </fieldset>
+                                <fieldset class="b-form_fieldgroup">
+                                    <div class="b-form_input-field-wr">
+                                        <input placeholder="Пароль" class="b-form_input-field -metrika-nokeys" id="id_password" name="password" type="password" maxlength="100">
+                                    </div>
+                                </fieldset>
+                                <fieldset id="js-basic-auth-captcha" class="b-form_fieldgroup hidden" data-forced-class="b-form_fieldgroup__pow" style="display: block;">
+                                    <p class="pow-message js-captcha-forced-message hidden">Мы должны убедиться, что вы не робот. Пожалуйста, введите символы с картинки.</p>
+                                    <label for="id_captcha" class="b-form_label js-captcha-message">Введите символы с картинки</label>
+                                    <div class="b-captcha clearfix">
+                                        <div class="b-captcha_img b-captcha_img__no-indent-right">
+                                            <img class="js-captcha-image" src="https://ru.wargaming.net/id/captcha/lPZvocTuhWGuGULLz414cRJcRTIb5FzE/">
+                                        </div>
+                                        <div class="b-captcha_input-field">
+                                            <div class="b-form_input-field-wr">
+                                                <input type="text" id="id_captcha" name="captcha" class="b-form_input-field js-captcha-input" maxlength="16" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="b-form_fieldgroup b-form_fieldgroup__mobile-hide">
+                                    <div id="js-checkbox-1" class="js-checkbox js-checkbox-unchecked"><span class="js-checkbox-content"></span></div><input class="b-form_checkbox js-control-clean" id="id_remember" name="remember" type="checkbox" style="position: absolute; left: -50000px;">
+                                    <label class="b-label-checkbox" for="id_remember">Запомнить меня</label>
+                                </fieldset>
+                                <fieldset class="b-form_fieldgroup b-form_fieldgroup__noindent">
+                                    <div class="b-big-orange-buttonarea b-big-orange-buttonarea__view-mobile b-big-orange-buttonarea__mobile-submit js-auth-throbbing-element">
+                                        <div class="b-big-orange-button">
+                                            <div class="b-big-orange-button_waiting">
+                                                <input type="submit" class="b-big-orange-button_right" value="Войти">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

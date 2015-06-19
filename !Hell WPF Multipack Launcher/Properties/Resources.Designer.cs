@@ -813,6 +813,26 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///    &lt;head&gt;
+        ///        &lt;title&gt;Autorization&lt;/title&gt;
+        ///        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        ///        &lt;style&gt;
+        ///            html, body {height: 100%; padding: 0px; margin: 0;}
+        ///            .elem { text-align: center; margin-top: 15%; text-align: center;}
+        ///            .input {padding-top: 5px; padding-bottom: 5px;}
+        ///            .input input {padding: 3px 5px; font-size: 11pt; width: 250px;}
+        ///            input[type=chec [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string index {
+            get {
+                return ResourceManager.GetString("index", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to protanki.
         /// </summary>
         public static string INI {
