@@ -909,7 +909,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://file.aces.gg.
+        ///   Looks up a localized string similar to http://brotanki.ru.
         /// </summary>
         public static string Multipack_Address {
             get {
@@ -936,7 +936,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /mods/proupdate/update.json.
+        ///   Looks up a localized string similar to /update/update.protanki.
         /// </summary>
         public static string Multipack_Updates {
             get {

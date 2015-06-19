@@ -567,7 +567,7 @@ namespace _Hell_WPF_Multipack_Launcher
                         // Достаем линк
                         string y = elemY.NavigateUri.AbsoluteUri;
                         string link = y.Remove(0, y.IndexOf("v=") + 2);
-                        link = link.Remove(link.IndexOf("&"));
+                        //link = link.Remove(link.IndexOf("&"));
 
                         // Выводим юзеру
                         MainWindow.PreviewVideo(link, FindRun(el, "run_" + arr[1]).Text);
@@ -677,10 +677,10 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <param name="e"></param>
         private void bUserProfile_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)MainWindow.JsonSettingsGet("info.user_accept"))
+            //if ((bool)MainWindow.JsonSettingsGet("info.user_accept"))
                 OpenPage("UserProfile");
-            else
-                OpenPage("GiveEmail");
+            /*else
+                OpenPage("GiveEmail");*/
         }
 
         /// <summary>

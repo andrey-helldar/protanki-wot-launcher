@@ -44,7 +44,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                             (((string)video.SelectToken("snippet.title")).IndexOf(" / PRO") > 0 ? ((string)video.SelectToken("snippet.title")).Remove(((string)video.SelectToken("snippet.title")).IndexOf(" / PRO")) : (string)video.SelectToken("snippet.title")),
                             String.Format(Properties.Resources.Youtube_Video, (string)video.SelectToken("snippet.resourceId.videoId")),
                             ((string)video.SelectToken("snippet.publishedAt")).Remove(10),
-                            DateTime.Parse("2015-05-14T18:48:34.000Z").ToString("dd.MM"));
+                            DateTime.Parse(video.SelectToken("snippet.publishedAt").ToString()).ToString("dd.MM"));
                     }
                 }
             }
