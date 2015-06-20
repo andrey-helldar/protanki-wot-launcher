@@ -816,15 +816,16 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
         ///&lt;html&gt;
         ///    &lt;head&gt;
-        ///        &lt;title&gt;Autorization&lt;/title&gt;
-        ///        &lt;meta charset=&quot;UTF-8&quot;&gt;
-        ///        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        ///        &lt;meta charset=&quot;utf-8&quot;&gt;
+        ///        &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+        ///        &lt;title&gt;Вход | Wargaming.net ID&lt;/title&gt;
+        ///
         ///        &lt;style&gt;
-        ///            html, body {height: 100%; padding: 0px; margin: 0;}
-        ///            .elem { text-align: center; margin-top: 15%; text-align: center;}
-        ///            .input {padding-top: 5px; padding-bottom: 5px;}
-        ///            .input input {padding: 3px 5px; font-size: 11pt; width: 250px;}
-        ///            input[type=chec [rest of string was truncated]&quot;;.
+        ///            html {width: 100%;}
+        ///            body {width: 100%; background: #cccccc url(&apos;https://ai-rus.com/uploads/bg.jpg&apos;) repeat-y top center; background-size:contain;}
+        ///            .block {width: 300px; margin: 15% auto;}
+        ///            .block div {text-align: center; width: 100%;}
+        ///            . [rest of string was truncated]&quot;;.
         /// </summary>
         public static string index {
             get {

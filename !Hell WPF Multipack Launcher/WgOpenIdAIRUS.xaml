@@ -1,0 +1,52 @@
+﻿<Page x:Class="_Hell_WPF_Multipack_Launcher.WgOpenIdAIRUS"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+       d:DesignHeight="434" d:DesignWidth="475"
+	Title="Authorization" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Center" Margin="72,0,71,0" Grid.Row="2" VerticalAlignment="Center">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Enter" Content="Enter" Style="{DynamicResource ButtonOK}" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center"/>
+                <Button x:Name="Exit" Content="Cancel" Style="{DynamicResource ButtonCLOSE}" Grid.Column="1" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+        <TextBlock x:Name="tbCaption" FontFamily="{StaticResource FontSochi2014}" HorizontalAlignment="Left" Margin="30" TextWrapping="Wrap" Text="Authorization" VerticalAlignment="Center" FontSize="20"/>
+        <StackPanel HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label x:Name="lEmail" Content="Email" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="#FF006699" FontWeight="Normal"/>
+                <Label x:Name="lPassword" Content="Password" HorizontalAlignment="Left" Margin="0,0,10,0" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF006699" FontWeight="Normal"/>
+                <TextBox x:Name="tbEmail" Grid.Column="1" Margin="10,5,0,5" TextWrapping="Wrap" VerticalAlignment="Center" Height="23"/>
+                <TextBox x:Name="tbPassword" Grid.Column="1" Height="23" Margin="10,5,0,5" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbCaptcha" Grid.Column="1" Height="23" Margin="10,5,0,5" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                <Image x:Name="imgCaptcha" HorizontalAlignment="Left" Height="50" Margin="0,0,10,0" Grid.Row="2" VerticalAlignment="Top" Width="120"/>
+            </Grid>
+        </StackPanel>
+        <WebBrowser HorizontalAlignment="Left" Height="100" Margin="359,30,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
+
+    </Grid>
+</Page>
