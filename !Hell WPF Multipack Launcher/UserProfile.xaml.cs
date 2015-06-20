@@ -677,22 +677,16 @@ namespace _Hell_WPF_Multipack_Launcher
                         Win1.Close();
 
                         // Открываем окно
-                        new WarApiOpenID().ShowDialog();
+                        //new WarApiOpenID().ShowDialog();
 
-                        // Если токен неактивен, загружаем главную страницу
-                        if (!(CheckElement("access_token") && CheckElement("expires_at") && CheckElement("nickname") && CheckElement("account_id")))
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
                         {
-                            Task.Factory.StartNew(() =>
-                            {
-                                try { Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); })); }
-                                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "bClose_Click()", ex.Message, ex.StackTrace)); }
-                            });
-                        }
-                        else
-                        {
-                            // Если все нормально - грузим информацию о пользователе
-                            Task.Factory.StartNew(() => { AccountInfo(); });
-                        }
+                            MainWindow.LoadPage.Content = Lang.Set("PageLoading", "lLoading", (string)MainWindow.JsonSettingsGet("info.language"));
+                            MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
+                        }));
+                        Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator("WgOpenIdAIRUS"); }));
                     }
                     catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("UserProfile.xaml", "AccountInfo()", "if (!active)", ex.Message, ex.StackTrace)); }
                 }

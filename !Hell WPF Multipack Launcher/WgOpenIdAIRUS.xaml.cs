@@ -62,8 +62,12 @@ namespace _Hell_WPF_Multipack_Launcher
 
             Task.Factory.StartNew(() =>
             {
-                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
-                Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                try
+                {
+                    MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
+                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                }
+                catch (Exception) { }
             });
         }
 
@@ -107,16 +111,19 @@ namespace _Hell_WPF_Multipack_Launcher
                 {
                     Classes.POST POST = new Classes.POST();
 
-                    POST.PostSend("https://ru.wargaming.net/id/signin/process/",
+                    string result = POST.PostSend("https://ru.wargaming.net/id/signin/process/",
                         new JObject(
                             new JProperty("csrfmiddlewaretoken", resultCsrf),
                             new JProperty("next", "https://ru.wargaming.net" + resultNext),
-                            new JProperty("captcha", resultCaptcha),
+                            new JProperty("captcha", tbCaptcha.Text.Trim()),
                             new JProperty("flow", "web_view"),
                             new JProperty("login", tbEmail.Text.Trim()),
                             new JProperty("password", pbPassword.Password)
                         )
                     );
+
+                    if (!System.IO.File.Exists(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\1.txt"))
+                        System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\1.txt", result);
 
 
                     MainWindow.JsonSettingsSet("info.user_email", tbEmail.Text.Trim());
@@ -282,6 +289,16 @@ namespace _Hell_WPF_Multipack_Launcher
                                 imgCaptcha.Source = bitmap;
 
                                 pageParsed = true;
+
+                                Dispatcher.BeginInvoke(new ThreadStart(delegate
+                                {
+                                    try
+                                    {
+                                        MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
+                                        Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                                    }
+                                    catch (Exception) { }
+                                }));
                             }
                         }
                         catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "WB_LoadCompleted()", "Parse form", ex.Message, ex.StackTrace)); }
