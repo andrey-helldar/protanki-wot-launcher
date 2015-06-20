@@ -101,16 +101,22 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                bool errors = false;
-
-                if (tbEmail.Text.Trim() == "" || tbPassword.Text.Trim() == "" || tbCaptcha.Text.Trim() == "")
-                    errors = true;
-
-                if (errors)
+                if (tbEmail.Text.Trim() == "" || pbPassword.Password == "" || tbCaptcha.Text.Trim() == "")
                     MessageBox.Show("Заполнены не все поля!");
                 else
                 {
+                    Classes.POST POST = new Classes.POST();
 
+                    POST.PostSend("https://ru.wargaming.net/id/signin/process/",
+                        new JObject(
+                            new JProperty("csrfmiddlewaretoken", resultCsrf),
+                            new JProperty("next", "https://ru.wargaming.net" + resultNext),
+                            new JProperty("captcha", resultCaptcha),
+                            new JProperty("flow", "web_view"),
+                            new JProperty("login", tbEmail.Text.Trim()),
+                            new JProperty("password", pbPassword.Password)
+                        )
+                    );
 
 
                     MainWindow.JsonSettingsSet("info.user_email", tbEmail.Text.Trim());

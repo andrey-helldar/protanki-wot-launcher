@@ -65,6 +65,11 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debugging.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, "Out: " + Out, ex.Message, ex.StackTrace); return "FAIL"; }
         }
 
+        public string PostSend(string Url, JObject json)
+        {
+            return "OK";
+        }
+
         public void HttpUploadFile(string url, string file, string paramName, string contentType, NameValueCollection nvc)
         {
             try
