@@ -65,60 +65,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
             catch (Exception ex) { Debugging.Save("POST.Class", "Send()", "URL: " + Url, "Data: " + Data, "Out: " + Out, ex.Message, ex.StackTrace); return "FAIL"; }
         }
 
-        public string PostSend(string Url, JObject json)
-        {
-            try
-            {
-                /*
-                 * 
-                            new JProperty("csrfmiddlewaretoken", resultCsrf),
-                            new JProperty("next", "https://ru.wargaming.net" + resultNext),
-                            new JProperty("captcha", resultCaptcha),
-                            new JProperty("flow", "web_view"),
-                            new JProperty("login", tbEmail.Text.Trim()),
-                            new JProperty("password", pbPassword.Password)
-                 * 
-                 */
-
-                string Out = String.Empty;
-                string Data = "csrfmiddlewaretoken=" + (string)json["csrfmiddlewaretoken"];
-                Data += "&next=" + (string)json["next"];
-                Data += "&captcha=" + (string)json["captcha"];
-                Data += "&flow=" + (string)json["flow"];
-                Data += "&login=" + (string)json["login"];
-                Data += "&password=" + (string)json["password"];
-
-                WebRequest req = WebRequest.Create(Url);
-                req.Headers.Add("csrfmiddlewaretoken", (string)json["csrfmiddlewaretoken"]);
-                req.Headers.Add("&csrf", (string)json["csrfmiddlewaretoken"]);
-                req.Headers.Add("&csrfmiddle", (string)json["csrfmiddlewaretoken"]);
-                req.Headers.Add("&csrf_token", (string)json["csrfmiddlewaretoken"]);
-                req.Method = "POST";
-                req.Timeout = 100000;
-                req.ContentType = "application/x-www-form-urlencoded; charset=UTF-8";
-                byte[] sentData = Encoding.GetEncoding("Utf-8").GetBytes(Data);
-                req.ContentLength = sentData.Length;
-                Stream sendStream = req.GetRequestStream();
-                sendStream.Write(sentData, 0, sentData.Length);
-                sendStream.Close();
-                WebResponse res = req.GetResponse();
-                Stream ReceiveStream = res.GetResponseStream();
-                StreamReader sr = new StreamReader(ReceiveStream, Encoding.UTF8);
-                Char[] read = new Char[256];
-                int count = sr.Read(read, 0, 256);
-                while (count > 0)
-                {
-                    String str = new String(read, 0, count);
-                    Out += str;
-                    count = sr.Read(read, 0, 256);
-                }
-
-                return Out;
-            }
-            catch (WebException we) { Debugging.Save("POST.Class", "PostSend()", "URL: " + Url, we.Message, we.StackTrace); return "FAIL"; }
-            catch (Exception ex) { Debugging.Save("POST.Class", "PostSend()", "URL: " + Url, ex.Message, ex.StackTrace); return "FAIL"; }
-        }
-
         public void HttpUploadFile(string url, string file, string paramName, string contentType, NameValueCollection nvc)
         {
             try

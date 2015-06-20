@@ -31,6 +31,7 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Language Lang = new Classes.Language();
 
         private bool pageParsed = false;
+
         string
             resultCsrf = "",
             resultNext = "",
@@ -96,9 +97,36 @@ namespace _Hell_WPF_Multipack_Launcher
               noError();
               window.onerror = noError;";
 
+        private void InjectSubmit()
+        {
+            try
+            {
+                string sendConfirm =
+                                        "function sendConfirm() {" +
+                                        "$('#confirm_form input[name=allow]').click();" +
+                                        "} " +
+                                        "sendConfirm();";
+
+                var doc = WB.Document as HTMLDocument;
+
+                if (doc != null)
+                {
+                    var scriptErrorSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
+                    scriptErrorSuppressed.type = "text/javascript";
+                    scriptErrorSuppressed.text = sendConfirm;
+                    IHTMLElementCollection nodes = doc.getElementsByTagName("head");
+                    foreach (IHTMLElement elem in nodes)
+                        (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
+                }
+            }
+            catch (Exception) { }
+        }
+
         private void WB_Navigated(object sender, NavigationEventArgs e)
         {
             Task.Factory.StartNew(() => InjectDisableScript()).Wait();
+
+                Task.Factory.StartNew(() => InjectSubmit()).Wait();
         }
 
         private void bEnter_Click(object sender, RoutedEventArgs e)
@@ -109,24 +137,39 @@ namespace _Hell_WPF_Multipack_Launcher
                     MessageBox.Show("Заполнены не все поля!");
                 else
                 {
-                    Classes.POST POST = new Classes.POST();
-
-                    string result = POST.PostSend("https://ru.wargaming.net/id/signin/process/",
-                        new JObject(
-                            new JProperty("csrfmiddlewaretoken", resultCsrf),
-                            new JProperty("next", "https://ru.wargaming.net" + resultNext),
-                            new JProperty("captcha", tbCaptcha.Text.Trim()),
-                            new JProperty("flow", "web_view"),
-                            new JProperty("login", tbEmail.Text.Trim()),
-                            new JProperty("password", pbPassword.Password)
-                        )
-                    );
-
-                    if (!System.IO.File.Exists(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\1.txt"))
-                        System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\1.txt", result);
-
+                    Dispatcher.BeginInvoke(new ThreadStart(delegate
+                    {
+                        try
+                        {
+                            MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
+                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                        }
+                        catch (Exception) { }
+                    }));
 
                     MainWindow.JsonSettingsSet("info.user_email", tbEmail.Text.Trim());
+                    pageParsed = false;
+
+                    string inputData =
+                        "function inputData() {" +
+                        "$('#id_login').val('" + tbEmail.Text.Trim() + "');" +
+                        "$('#id_password').val('" + pbPassword.Password + "');" +
+                        "$('#id_captcha').val('" + tbCaptcha.Text.Trim() + "');" +
+                        "$('#js-auth-form').submit();" +
+                "} " +
+                "inputData();";
+
+                    var doc = WB.Document as HTMLDocument;
+
+                    if (doc != null)
+                    {
+                        var scriptErrorSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
+                        scriptErrorSuppressed.type = "text/javascript";
+                        scriptErrorSuppressed.text = inputData;
+                        IHTMLElementCollection nodes = doc.getElementsByTagName("head");
+                        foreach (IHTMLElement elem in nodes)
+                            (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
+                    }
                 }
             }
             catch (Exception) { }
@@ -168,7 +211,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 }
                                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "WB_LoadCompleted()", ex.Message, ex.StackTrace)); }
 
-                                ClosePage();
+                                ClosePage("UserProfile");
                             }
 
                             if (WB.Source.ToString().IndexOf("AUTH_CANCEL") > -1)
@@ -192,6 +235,9 @@ namespace _Hell_WPF_Multipack_Launcher
                                 else
                                     ClosePage();
                             }
+
+                            if (WB.Source.ToString().IndexOf("confirm") > -1)
+                                InjectSubmit();
                         }
                         catch (Exception) { }
 
@@ -308,7 +354,7 @@ namespace _Hell_WPF_Multipack_Launcher
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "WB_LoadCompleted()", ex.Message, ex.StackTrace)); }
         }
 
-        private void ClosePage()
+        private void ClosePage(string page = "")
         {
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
@@ -317,7 +363,23 @@ namespace _Hell_WPF_Multipack_Launcher
             }));
             Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
 
-            Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(); }));
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(page); }));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var doc = WB.Document as HTMLDocument;
+
+            IHTMLElementCollection nodes = doc.getElementsByTagName("html");
+            foreach (IHTMLElement elem in nodes)
+            {
+                var form = (HTMLHeadElement)elem;
+                System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\2.txt", form.innerHTML);
+            }
+
+            System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\1.txt", WB.Source.ToString());
+
+            InjectSubmit();
         }
     }
 }
