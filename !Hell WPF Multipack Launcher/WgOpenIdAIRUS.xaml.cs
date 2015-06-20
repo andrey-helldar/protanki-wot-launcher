@@ -103,7 +103,7 @@ namespace _Hell_WPF_Multipack_Launcher
             {
                 string sendConfirm =
                                         "function sendConfirm() {" +
-                                        "$('#confirm_form input[name=allow]').click();" +
+                                        "$('#confirm_form').submit();" +
                                         "} " +
                                         "sendConfirm();";
 
@@ -126,7 +126,7 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             Task.Factory.StartNew(() => InjectDisableScript()).Wait();
 
-                Task.Factory.StartNew(() => InjectSubmit()).Wait();
+            Task.Factory.StartNew(() => InjectSubmit()).Wait();
         }
 
         private void bEnter_Click(object sender, RoutedEventArgs e)
@@ -173,6 +173,41 @@ namespace _Hell_WPF_Multipack_Launcher
                 }
             }
             catch (Exception) { }
+
+
+            try
+            {
+                /*
+                 *  Проверка корректности ввода капчи
+                 */
+                Thread.Sleep(4000);
+
+                var doc = WB.Document as HTMLDocument;
+                IHTMLElementCollection nodes = doc.getElementsByTagName("body");
+                foreach (IHTMLElement elem in nodes)
+                {
+                    var body = (HTMLHeadElement)elem;
+                    1
+                    System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\5.txt", body.innerText);
+
+                    if (body.innerText.IndexOf("Символы указаны неверно") > -1)
+                    {
+                        UpdateCaptcha();
+
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            try
+                            {
+                                tbCaptcha.Text = "";
+                                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
+                                Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                            }
+                            catch (Exception) { }
+                        }));
+                    }
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.StackTrace); }
         }
 
         private void bCancel_Click(object sender, RoutedEventArgs e)
@@ -235,6 +270,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 else
                                     ClosePage();
                             }
+
 
                             if (WB.Source.ToString().IndexOf("confirm") > -1)
                                 InjectSubmit();
@@ -327,12 +363,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                 }
 
                                 // Подгружаем изображение
-                                BitmapImage bitmap = new BitmapImage();
-                                bitmap.BeginInit();
-                                bitmap.UriSource = new Uri("https://ru.wargaming.net" + resultCaptcha, UriKind.Absolute);
-                                bitmap.EndInit();
-
-                                imgCaptcha.Source = bitmap;
+                                UpdateCaptcha();
 
                                 pageParsed = true;
 
@@ -380,6 +411,20 @@ namespace _Hell_WPF_Multipack_Launcher
             System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\1.txt", WB.Source.ToString());
 
             InjectSubmit();
+        }
+
+        private void UpdateCaptcha()
+        {
+            try
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri("https://ru.wargaming.net" + resultCaptcha, UriKind.Absolute);
+                bitmap.EndInit();
+
+                imgCaptcha.Source = bitmap;
+            }
+            catch (Exception) { }
         }
     }
 }
