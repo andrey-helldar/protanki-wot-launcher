@@ -636,6 +636,9 @@
   <ItemGroup>
     <None Include="index.html" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\reload.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(SolutionDir)ChangeRevision.exe" $(ConfigurationName) "$(ProjectName)"</PreBuildEvent>

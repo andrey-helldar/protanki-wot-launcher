@@ -35,7 +35,8 @@ namespace _Hell_WPF_Multipack_Launcher
         string
             resultCsrf = "",
             resultNext = "",
-            resultCaptcha = "";
+            resultCaptcha = "",
+            resultErrors = "";
 
 
         public WgOpenIdAIRUS()
@@ -102,9 +103,10 @@ namespace _Hell_WPF_Multipack_Launcher
             try
             {
                 string sendConfirm =
-                                        "function sendConfirm() {" +
+                                        "$(document).ready(function() {" +
                                         "$('#confirm_form').submit();" +
-                                        "} " +
+                                        "sendConfirm();" +
+                                        "}); " +
                                         "sendConfirm();";
 
                 var doc = WB.Document as HTMLDocument;
@@ -137,77 +139,11 @@ namespace _Hell_WPF_Multipack_Launcher
                     MessageBox.Show("Заполнены не все поля!");
                 else
                 {
-                    Dispatcher.BeginInvoke(new ThreadStart(delegate
-                    {
-                        try
-                        {
-                            MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
-                            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
-                        }
-                        catch (Exception) { }
-                    }));
-
-                    MainWindow.JsonSettingsSet("info.user_email", tbEmail.Text.Trim());
-                    pageParsed = false;
-
-                    string inputData =
-                        "function inputData() {" +
-                        "$('#id_login').val('" + tbEmail.Text.Trim() + "');" +
-                        "$('#id_password').val('" + pbPassword.Password + "');" +
-                        "$('#id_captcha').val('" + tbCaptcha.Text.Trim() + "');" +
-                        "$('#js-auth-form').submit();" +
-                "} " +
-                "inputData();";
-
-                    var doc = WB.Document as HTMLDocument;
-
-                    if (doc != null)
-                    {
-                        var scriptErrorSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
-                        scriptErrorSuppressed.type = "text/javascript";
-                        scriptErrorSuppressed.text = inputData;
-                        IHTMLElementCollection nodes = doc.getElementsByTagName("head");
-                        foreach (IHTMLElement elem in nodes)
-                            (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
-                    }
+                    Task.Factory.StartNew(() => SendData()).Wait();
+                    Task.Factory.StartNew(() => CheckData());
                 }
             }
             catch (Exception) { }
-
-
-            try
-            {
-                /*
-                 *  Проверка корректности ввода капчи
-                 */
-                Thread.Sleep(4000);
-
-                var doc = WB.Document as HTMLDocument;
-                IHTMLElementCollection nodes = doc.getElementsByTagName("body");
-                foreach (IHTMLElement elem in nodes)
-                {
-                    var body = (HTMLHeadElement)elem;
-                    1
-                    System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\5.txt", body.innerText);
-
-                    if (body.innerText.IndexOf("Символы указаны неверно") > -1)
-                    {
-                        UpdateCaptcha();
-
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate
-                        {
-                            try
-                            {
-                                tbCaptcha.Text = "";
-                                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
-                                Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
-                            }
-                            catch (Exception) { }
-                        }));
-                    }
-                }
-            }
-            catch (Exception ex) { MessageBox.Show(ex.StackTrace); }
         }
 
         private void bCancel_Click(object sender, RoutedEventArgs e)
@@ -239,7 +175,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                 try
                                 {
-                                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible; }));
+                                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; /* Visible*/ }));
                                     Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
 
                                     Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator("UserProfile"); }));
@@ -293,6 +229,9 @@ namespace _Hell_WPF_Multipack_Launcher
                          *           
                          *   captcha | IgnoreCase
                          *           <img class=js-captcha-image src="(.*)">
+                         *           
+                         *   errors
+                         *          <P class=js-form-errors-content>(.*)</P>
                          */
 
                         try
@@ -390,7 +329,7 @@ namespace _Hell_WPF_Multipack_Launcher
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
                 MainWindow.LoadPage.Content = Lang.Set("PageLoading", "lLoading", (string)MainWindow.JsonSettingsGet("info.language"));
-                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
+                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; // Visible
             }));
             Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
 
@@ -417,14 +356,117 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri("https://ru.wargaming.net" + resultCaptcha, UriKind.Absolute);
-                bitmap.EndInit();
+                // Reload Image
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { imgCaptcha.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/reload.jpg", (string)MainWindow.JsonSettingsGet("info.ProductName")))); })).Wait();
 
-                imgCaptcha.Source = bitmap;
+                // Loading image
+                Dispatcher.BeginInvoke(new ThreadStart(delegate { imgCaptcha.Source = new BitmapImage(new Uri("https://ru.wargaming.net" + resultCaptcha, UriKind.Absolute)); })).Wait();
             }
-            catch (Exception) { }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "UpdateCaptcha()", ex.Message, ex.StackTrace)); }
+        }
+
+        private void imgCaptcha_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            UpdateCaptcha();
+        }
+
+        private void SendData()
+        {
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try
+                {
+                    MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; // Visible
+                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                }
+                catch (Exception) { }
+            }));
+
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.JsonSettingsSet("info.user_email", tbEmail.Text.Trim()); }));
+            pageParsed = false;
+
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                string inputData =
+                    "function inputData() {" +
+                    "$('#id_login').val('" + tbEmail.Text.Trim() + "');" +
+                    "$('#id_password').val('" + pbPassword.Password + "');" +
+                    "$('#id_captcha').val('" + tbCaptcha.Text.Trim() + "');" +
+                    "$('#js-auth-form').submit();" +
+                    "} " +
+                    "inputData();";
+
+                var doc = WB.Document as HTMLDocument;
+
+                if (doc != null)
+                {
+                    var scriptErrorSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
+                    scriptErrorSuppressed.type = "text/javascript";
+                    scriptErrorSuppressed.text = inputData;
+                    IHTMLElementCollection nodes = doc.getElementsByTagName("head");
+                    foreach (IHTMLElement elem in nodes)
+                        (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
+                }
+            }));
+        }
+
+        private void CheckData()
+        {
+            try
+            {
+                /*
+                 *  Проверка корректности ввода капчи
+                 */
+                var doc = WB.Document as HTMLDocument;
+                IHTMLElementCollection nodes = doc.getElementsByTagName("body");
+                foreach (IHTMLElement elem in nodes)
+                {
+                    var body = (HTMLHeadElement)elem;
+
+                    System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\5.txt", body.innerHTML);
+
+                    if (body.innerHTML.IndexOf("Символы указаны неверно") > -1)
+                    {
+                        UpdateCaptcha();
+
+                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        {
+                            try
+                            {
+                                tbCaptcha.Text = "";
+                                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
+                                Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                            }
+                            catch (Exception) { }
+                        }));
+                    }
+                    else
+                    {
+                        /*
+                         *  Проверка не вышла ли другая ошибка
+                         */
+
+                        Regex regexErrors = new Regex("<P class=js-form-errors-content>(.*)</P>", RegexOptions.IgnoreCase);
+
+                        Match matchErrors = regexErrors.Match(body.innerHTML);
+                        while (matchErrors.Success)
+                        {
+                            resultErrors = matchErrors.Value.Trim();
+                            resultErrors = resultErrors
+                                .Replace("<P class=js-form-errors-content>", "")
+                                .Replace("<p class=js-form-errors-content>", "")
+                                .Replace("</P>", "")
+                                .Replace("</p>", "");
+
+                            if (resultErrors == "")
+                                matchErrors = matchErrors.NextMatch();
+                            else
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "CheckCaptcha()", ex.Message, ex.StackTrace)); }
         }
     }
 }
