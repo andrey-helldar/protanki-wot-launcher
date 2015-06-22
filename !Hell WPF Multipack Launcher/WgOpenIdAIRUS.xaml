@@ -52,7 +52,6 @@
             </Grid>
         </StackPanel>
         <WebBrowser x:Name="WB" HorizontalAlignment="Left" Height="128" Margin="136,30,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="323" Navigated="WB_Navigated" LoadCompleted="WB_LoadCompleted" />
-        <Button Content="Button" HorizontalAlignment="Left" Margin="388,264,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Click="Button_Click"/>
 
     </Grid>
 </Page>

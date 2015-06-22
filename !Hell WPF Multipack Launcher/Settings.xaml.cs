@@ -106,6 +106,9 @@ namespace _Hell_WPF_Multipack_Launcher
                     {
                         if (MainWindow.JsonSettingsRemove("token"))
                         {
+                            MainWindow.JsonSettingsSet("info.user_email", "");
+                            MainWindow.JsonSettingsSet("info.user_name", "");
+
                             new Classes.WargamingAPI().Logout();
                             Dispatcher.BeginInvoke(new ThreadStart(delegate { bClearAutorization.IsEnabled = false; }));
                             MainWindow.MessageShow(Lang.Set("PageSettings", "ClearCacheSuccess", lang));

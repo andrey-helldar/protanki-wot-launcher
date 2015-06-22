@@ -62,15 +62,7 @@ namespace _Hell_WPF_Multipack_Launcher
                 catch (Exception) { }
             }));
 
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
-                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
-                }
-                catch (Exception) { }
-            });
+            Task.Factory.StartNew(() => { LoaderShow(false); });
         }
 
         private void InjectDisableScript()
@@ -98,40 +90,10 @@ namespace _Hell_WPF_Multipack_Launcher
               noError();
               window.onerror = noError;";
 
-        private void InjectSubmit()
-        {
-            Dispatcher.BeginInvoke(new ThreadStart(delegate
-               {
-                   try
-                   {
-                       string sendConfirm =
-                                               "function sendConfirm() {" +
-                                               "$('.b-button-cancel').remove();" +
-                                               "$(\"#confirm_form input[name='allow']\").click(function() { $('#confirm_form').submit(); });" +
-                                               "} " +
-                                               "sendConfirm();";
-
-                       var doc = WB.Document as HTMLDocument;
-
-                       if (doc != null)
-                       {
-                           var scriptErrorSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
-                           scriptErrorSuppressed.type = "text/javascript";
-                           scriptErrorSuppressed.text = sendConfirm;
-                           IHTMLElementCollection nodes = doc.getElementsByTagName("head");
-                           foreach (IHTMLElement elem in nodes)
-                               (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
-                       }
-                   }
-                   catch (Exception) { }
-               }));
-        }
 
         private void WB_Navigated(object sender, NavigationEventArgs e)
         {
-            Task.Factory.StartNew(() => InjectDisableScript()).Wait();
-
-            Task.Factory.StartNew(() => InjectSubmit()).Wait();
+            Task.Factory.StartNew(() => InjectDisableScript());
         }
 
         private void bEnter_Click(object sender, RoutedEventArgs e)
@@ -177,8 +139,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                 try
                                 {
-                                    Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; /* Visible*/ }));
-                                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                                    Task.Factory.StartNew(() => { LoaderShow(); });
 
                                     Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator("UserProfile"); }));
                                 }
@@ -285,15 +246,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                                 pageParsed = true;
 
-                                Dispatcher.BeginInvoke(new ThreadStart(delegate
-                                {
-                                    try
-                                    {
-                                        MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
-                                        Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
-                                    }
-                                    catch (Exception) { }
-                                }));
+                                Task.Factory.StartNew(() => { LoaderShow(false); });
                             }
                         }
                         catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "WB_LoadCompleted()", "Parse form", ex.Message, ex.StackTrace)); }
@@ -305,13 +258,8 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void ClosePage(string page = "")
         {
-            Dispatcher.BeginInvoke(new ThreadStart(delegate
-            {
-                MainWindow.LoadPage.Content = Lang.Set("PageLoading", "lLoading", (string)MainWindow.JsonSettingsGet("info.language"));
-                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; // Visible
-            }));
-            Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
-
+            Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.LoadPage.Content = Lang.Set("PageLoading", "lLoading", (string)MainWindow.JsonSettingsGet("info.language")); }));
+            LoaderShow();
             Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(page); }));
         }
 
@@ -373,15 +321,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void SendData()
         {
-            Dispatcher.BeginInvoke(new ThreadStart(delegate
-            {
-                try
-                {
-                    MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden; // Visible
-                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
-                }
-                catch (Exception) { }
-            }));
+            Task.Factory.StartNew(() => { LoaderShow(); });
 
             Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.JsonSettingsSet("info.user_email", tbEmail.Text.Trim()); }));
             pageParsed = false;
@@ -437,8 +377,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     tbCaptcha.Text = "";
                                     resultErrors = "error";
 
-                                    MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
-                                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                                    Task.Factory.StartNew(() => { LoaderShow(false); });
                                 }
                                 catch (Exception) { }
                             }));
@@ -472,6 +411,7 @@ namespace _Hell_WPF_Multipack_Launcher
                                     tbCaptcha.Text = "";
 
                                     UpdateCaptcha();
+                                    Task.Factory.StartNew(() => { LoaderShow(false); });
 
                                     break;
                                 }
@@ -479,13 +419,20 @@ namespace _Hell_WPF_Multipack_Launcher
                         }
 
                         /*
-                         *      Если ошибка найдена
+                         *      Если ошибка НЕ найдена
                          */
                         if (resultErrors == "")
                         {
-                            Thread.Sleep(8000);
-                            Task.Factory.StartNew(() => InjectSubmit());
-                        }
+                            Thread.Sleep(3000);
+
+                            foreach (IHTMLElement elemInput in (WB.Document as HTMLDocument).getElementsByName("allow"))
+                                if (elemInput.tagName == "INPUT" && elemInput.className == "b-big-orange-button_right")
+                                {
+                                    elemInput.click();
+                                    break;
+                                }
+                        }else
+                            Task.Factory.StartNew(() => { LoaderShow(); });
                     }
                 }
                 catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "CheckCaptcha()", ex.Message, ex.StackTrace)); }
@@ -497,64 +444,25 @@ namespace _Hell_WPF_Multipack_Launcher
             UpdateCaptcha();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Show or Hide loader screen
+        /// </summary>
+        /// <param name="show">TRUE or FALSE</param>
+        private void LoaderShow(bool show = true)
         {
-            var doc = WB.Document as HTMLDocument;
-
-            IHTMLElementCollection nodes = doc.getElementsByTagName("html");
-            foreach (IHTMLElement elem in nodes)
-            {
-                var body = (HTMLHeadElement)elem;
-
-                System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\7.txt", body.innerHTML);
-            }
-
-
-
-
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
                 try
                 {
-                    string sendConfirm =
-                            "$('.b-button-cancel').remove(); " +
-                            "$('#confirm_form').submit();";
+                    if (show)
+                        MainWindow.LoadPage.Visibility = System.Windows.Visibility.Visible;
+                    else
+                        MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
 
-                    var doc2 = WB.Document as HTMLDocument;
-
-                    if (doc2 != null)
-                    {
-                        var scriptJQuery = (IHTMLScriptElement)doc2.createElement("SCRIPT");
-                        scriptJQuery.src = "//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js";
-                        IHTMLElementCollection nodes0 = doc2.getElementsByTagName("head");
-                        foreach (IHTMLElement elem in nodes0)
-                            (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptJQuery);
-
-
-                        var scriptErrorSuppressed = (IHTMLScriptElement)doc2.createElement("SCRIPT");
-                        scriptErrorSuppressed.text = sendConfirm;
-                        IHTMLElementCollection nodes2 = doc2.getElementsByTagName("head");
-                        foreach (IHTMLElement elem in nodes2)
-                            (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
-                    }
+                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
                 }
                 catch (Exception) { }
             })).Wait();
-
-
-
-            Dispatcher.BeginInvoke(new ThreadStart(delegate
-            {
-                var doc3 = WB.Document as HTMLDocument;
-
-                IHTMLElementCollection nodes3 = doc3.getElementsByTagName("html");
-                foreach (IHTMLElement elem in nodes3)
-                {
-                    var body = (HTMLHeadElement)elem;
-
-                    System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\8.txt", body.innerHTML);
-                }
-            }));
         }
     }
 }
