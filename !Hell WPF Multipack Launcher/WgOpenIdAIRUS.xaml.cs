@@ -100,28 +100,31 @@ namespace _Hell_WPF_Multipack_Launcher
 
         private void InjectSubmit()
         {
-            try
-            {
-                string sendConfirm =
-                                        "$(document).ready(function() {" +
-                                        "$('#confirm_form').submit();" +
-                                        "sendConfirm();" +
-                                        "}); " +
-                                        "sendConfirm();";
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+               {
+                   try
+                   {
+                       string sendConfirm =
+                                               "function sendConfirm() {" +
+                                               "$('.b-button-cancel').remove();" +
+                                               "$(\"#confirm_form input[name='allow']\").click(function() { $('#confirm_form').submit(); });" +
+                                               "} " +
+                                               "sendConfirm();";
 
-                var doc = WB.Document as HTMLDocument;
+                       var doc = WB.Document as HTMLDocument;
 
-                if (doc != null)
-                {
-                    var scriptErrorSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
-                    scriptErrorSuppressed.type = "text/javascript";
-                    scriptErrorSuppressed.text = sendConfirm;
-                    IHTMLElementCollection nodes = doc.getElementsByTagName("head");
-                    foreach (IHTMLElement elem in nodes)
-                        (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
-                }
-            }
-            catch (Exception) { }
+                       if (doc != null)
+                       {
+                           var scriptErrorSuppressed = (IHTMLScriptElement)doc.createElement("SCRIPT");
+                           scriptErrorSuppressed.type = "text/javascript";
+                           scriptErrorSuppressed.text = sendConfirm;
+                           IHTMLElementCollection nodes = doc.getElementsByTagName("head");
+                           foreach (IHTMLElement elem in nodes)
+                               (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
+                       }
+                   }
+                   catch (Exception) { }
+               }));
         }
 
         private void WB_Navigated(object sender, NavigationEventArgs e)
@@ -205,10 +208,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                 else
                                     ClosePage();
                             }
-
-
-                            if (WB.Source.ToString().IndexOf("confirm") > -1)
-                                InjectSubmit();
                         }
                         catch (Exception) { }
 
@@ -451,6 +450,8 @@ namespace _Hell_WPF_Multipack_Launcher
                          */
                         if (resultErrors == "")
                         {
+                            Thread.Sleep(5000);
+
                             Regex regexErrors = new Regex("<P class=js-form-errors-content>(.*)</P>", RegexOptions.IgnoreCase);
 
                             Match matchErrors = regexErrors.Match(body.innerHTML);
@@ -475,16 +476,15 @@ namespace _Hell_WPF_Multipack_Launcher
                                     break;
                                 }
                             }
-
-                            System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\6.txt", body.innerHTML);
                         }
 
                         /*
                          *      Если ошибка найдена
                          */
-                        if (resultErrors != "")
+                        if (resultErrors == "")
                         {
-
+                            Thread.Sleep(8000);
+                            Task.Factory.StartNew(() => InjectSubmit());
                         }
                     }
                 }
@@ -495,6 +495,66 @@ namespace _Hell_WPF_Multipack_Launcher
         private void bReloadCaptcha_Click(object sender, RoutedEventArgs e)
         {
             UpdateCaptcha();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var doc = WB.Document as HTMLDocument;
+
+            IHTMLElementCollection nodes = doc.getElementsByTagName("html");
+            foreach (IHTMLElement elem in nodes)
+            {
+                var body = (HTMLHeadElement)elem;
+
+                System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\7.txt", body.innerHTML);
+            }
+
+
+
+
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                try
+                {
+                    string sendConfirm =
+                            "$('.b-button-cancel').remove(); " +
+                            "$('#confirm_form').submit();";
+
+                    var doc2 = WB.Document as HTMLDocument;
+
+                    if (doc2 != null)
+                    {
+                        var scriptJQuery = (IHTMLScriptElement)doc2.createElement("SCRIPT");
+                        scriptJQuery.src = "//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js";
+                        IHTMLElementCollection nodes0 = doc2.getElementsByTagName("head");
+                        foreach (IHTMLElement elem in nodes0)
+                            (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptJQuery);
+
+
+                        var scriptErrorSuppressed = (IHTMLScriptElement)doc2.createElement("SCRIPT");
+                        scriptErrorSuppressed.text = sendConfirm;
+                        IHTMLElementCollection nodes2 = doc2.getElementsByTagName("head");
+                        foreach (IHTMLElement elem in nodes2)
+                            (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
+                    }
+                }
+                catch (Exception) { }
+            })).Wait();
+
+
+
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
+            {
+                var doc3 = WB.Document as HTMLDocument;
+
+                IHTMLElementCollection nodes3 = doc3.getElementsByTagName("html");
+                foreach (IHTMLElement elem in nodes3)
+                {
+                    var body = (HTMLHeadElement)elem;
+
+                    System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\8.txt", body.innerHTML);
+                }
+            }));
         }
     }
 }
