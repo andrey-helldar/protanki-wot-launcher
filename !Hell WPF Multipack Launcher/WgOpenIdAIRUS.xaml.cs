@@ -135,13 +135,12 @@ namespace _Hell_WPF_Multipack_Launcher
         {
             try
             {
+                CaptionStatus.Text = "";
+
                 if (tbEmail.Text.Trim() == "" || pbPassword.Password == "" || tbCaptcha.Text.Trim() == "")
                     MessageBox.Show("Заполнены не все поля!");
                 else
-                {
-                    Task.Factory.StartNew(() => SendData()).Wait();
-                    Task.Factory.StartNew(() => CheckData());
-                }
+                    Task.Factory.StartNew(() => SendData());
             }
             catch (Exception) { }
         }
@@ -241,7 +240,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                 Regex regexForm = new Regex("<form id=js-auth-form(.*)form>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                                 Regex regexCsrf = new Regex("value=(.*) name=csrfmiddlewaretoken", RegexOptions.IgnoreCase);
                                 Regex regexNext = new Regex("value=(.*) name=next", RegexOptions.IgnoreCase);
-                                Regex regexCaptcha = new Regex("<img class=js-captcha-image src=\"(.*)\"> </div>", RegexOptions.IgnoreCase);
 
                                 var doc = WB.Document as HTMLDocument;
 
@@ -277,24 +275,6 @@ namespace _Hell_WPF_Multipack_Launcher
                                                 .Replace(" name=next", "");
 
                                             matchNext = matchNext.NextMatch();
-                                        }
-
-
-                                        // Ищем Captcha
-                                        Match matchCaptcha = regexCaptcha.Match(match.Value.Trim());
-                                        while (matchCaptcha.Success)
-                                        {
-                                            resultCaptcha = matchCaptcha.Value.Trim();
-                                            resultCaptcha = resultCaptcha
-                                                .Replace("<IMG class=js-captcha-image src=\"", "")
-                                                .Replace("<img class=js-captcha-image src=\"", "")
-                                                .Replace("\"> </div>", "")
-                                                .Replace("\"> </DIV>", "");
-
-                                            if (resultCaptcha == "")
-                                                matchCaptcha = matchCaptcha.NextMatch();
-                                            else
-                                                break;
                                         }
 
                                         match = match.NextMatch();
@@ -336,33 +316,55 @@ namespace _Hell_WPF_Multipack_Launcher
             Dispatcher.BeginInvoke(new ThreadStart(delegate { MainWindow.Navigator(page); }));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var doc = WB.Document as HTMLDocument;
-
-            IHTMLElementCollection nodes = doc.getElementsByTagName("html");
-            foreach (IHTMLElement elem in nodes)
-            {
-                var form = (HTMLHeadElement)elem;
-                System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\2.txt", form.innerHTML);
-            }
-
-            System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\1.txt", WB.Source.ToString());
-
-            InjectSubmit();
-        }
-
         private void UpdateCaptcha()
         {
-            try
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
-                // Reload Image
-                Dispatcher.BeginInvoke(new ThreadStart(delegate { imgCaptcha.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/reload.jpg", (string)MainWindow.JsonSettingsGet("info.ProductName")))); })).Wait();
+                try
+                {
+                    Regex regexCaptcha = new Regex("<img class=js-captcha-image src=\"(.*)\"> </div>", RegexOptions.IgnoreCase);
 
-                // Loading image
-                Dispatcher.BeginInvoke(new ThreadStart(delegate { imgCaptcha.Source = new BitmapImage(new Uri("https://ru.wargaming.net" + resultCaptcha, UriKind.Absolute)); })).Wait();
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "UpdateCaptcha()", ex.Message, ex.StackTrace)); }
+                    var doc = WB.Document as HTMLDocument;
+
+                    IHTMLElementCollection nodes = doc.getElementsByTagName("body");
+                    foreach (IHTMLElement elem in nodes)
+                    {
+                        var body = (HTMLHeadElement)elem;
+
+
+                        Match matchCaptcha = regexCaptcha.Match(body.innerHTML);
+                        while (matchCaptcha.Success)
+                        {
+                            resultCaptcha = matchCaptcha.Value.Trim();
+                            resultCaptcha = resultCaptcha
+                                .Replace("<IMG class=js-captcha-image src=\"", "")
+                                .Replace("<img class=js-captcha-image src=\"", "")
+                                .Replace("\"> </div>", "")
+                                .Replace("\"> </DIV>", "");
+
+                            if (resultCaptcha == "")
+                                matchCaptcha = matchCaptcha.NextMatch();
+                            else
+                                break;
+                        }
+                    }
+
+                    // Компилируем изображение
+                    BitmapImage bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.CacheOption = BitmapCacheOption.None;
+                    bi.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                    bi.UriSource = new Uri("https://ru.wargaming.net" + resultCaptcha, UriKind.RelativeOrAbsolute);
+                    bi.EndInit();
+
+                    imgCaptcha.Source = bi;
+                }
+                catch (Exception ex)
+                {
+                    imgCaptcha.Source = new BitmapImage(new Uri(String.Format(@"pack://application:,,,/{0};component/Resources/reload.jpg", (string)MainWindow.JsonSettingsGet("info.ProductName"))));
+                    Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "UpdateCaptcha()", ex.Message, ex.StackTrace));
+                }
+            }));
         }
 
         private void imgCaptcha_MouseDown(object sender, MouseButtonEventArgs e)
@@ -408,65 +410,91 @@ namespace _Hell_WPF_Multipack_Launcher
                         (elem as HTMLHeadElement).appendChild((IHTMLDOMNode)scriptErrorSuppressed);
                 }
             }));
-        }
 
-        private void CheckData()
-        {
-            try
+            Thread.Sleep(3000);
+
+            Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
-                /*
-                 *  Проверка корректности ввода капчи
-                 */
-                var doc = WB.Document as HTMLDocument;
-                IHTMLElementCollection nodes = doc.getElementsByTagName("body");
-                foreach (IHTMLElement elem in nodes)
+                try
                 {
-                    var body = (HTMLHeadElement)elem;
-
-                    System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\5.txt", body.innerHTML);
-
-                    if (body.innerHTML.IndexOf("Символы указаны неверно") > -1)
+                    /*
+                     *  Проверка корректности ввода капчи
+                     */
+                    var doc = WB.Document as HTMLDocument;
+                    IHTMLElementCollection nodes = doc.getElementsByTagName("body");
+                    foreach (IHTMLElement elem in nodes)
                     {
-                        UpdateCaptcha();
+                        var body = (HTMLHeadElement)elem;
 
-                        Dispatcher.BeginInvoke(new ThreadStart(delegate
+                        if (body.innerHTML.IndexOf("Символы указаны неверно") > -1)
                         {
-                            try
+                            UpdateCaptcha();
+
+                            Dispatcher.BeginInvoke(new ThreadStart(delegate
                             {
-                                tbCaptcha.Text = "";
-                                MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
-                                Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
-                            }
-                            catch (Exception) { }
-                        }));
-                    }
-                    else
-                    {
+                                try
+                                {
+                                    CaptionStatus.Text = "Error";
+                                    tbCaptcha.Text = "";
+                                    resultErrors = "error";
+
+                                    MainWindow.LoadPage.Visibility = System.Windows.Visibility.Hidden;
+                                    Thread.Sleep(Convert.ToInt16(Properties.Resources.Default_Navigator_Sleep));
+                                }
+                                catch (Exception) { }
+                            }));
+                        }
+
+
                         /*
                          *  Проверка не вышла ли другая ошибка
                          */
-
-                        Regex regexErrors = new Regex("<P class=js-form-errors-content>(.*)</P>", RegexOptions.IgnoreCase);
-
-                        Match matchErrors = regexErrors.Match(body.innerHTML);
-                        while (matchErrors.Success)
+                        if (resultErrors == "")
                         {
-                            resultErrors = matchErrors.Value.Trim();
-                            resultErrors = resultErrors
-                                .Replace("<P class=js-form-errors-content>", "")
-                                .Replace("<p class=js-form-errors-content>", "")
-                                .Replace("</P>", "")
-                                .Replace("</p>", "");
+                            Regex regexErrors = new Regex("<P class=js-form-errors-content>(.*)</P>", RegexOptions.IgnoreCase);
 
-                            if (resultErrors == "")
-                                matchErrors = matchErrors.NextMatch();
-                            else
-                                break;
+                            Match matchErrors = regexErrors.Match(body.innerHTML);
+                            while (matchErrors.Success)
+                            {
+                                resultErrors = matchErrors.Value.Trim();
+                                resultErrors = resultErrors
+                                    .Replace("<P class=js-form-errors-content>", "")
+                                    .Replace("<p class=js-form-errors-content>", "")
+                                    .Replace("</P>", "")
+                                    .Replace("</p>", "");
+
+                                if (resultErrors == "")
+                                    matchErrors = matchErrors.NextMatch();
+                                else
+                                {
+                                    CaptionStatus.Text = "Error";
+                                    tbCaptcha.Text = "";
+
+                                    UpdateCaptcha();
+
+                                    break;
+                                }
+                            }
+
+                            System.IO.File.WriteAllText(@"c:\Users\Helldar\AppData\Roaming\Wargaming.net\WorldOfTanks\multipack_launcher\6.txt", body.innerHTML);
+                        }
+
+                        /*
+                         *      Если ошибка найдена
+                         */
+                        if (resultErrors != "")
+                        {
+
                         }
                     }
                 }
-            }
-            catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "CheckCaptcha()", ex.Message, ex.StackTrace)); }
+                catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("WgOpenIdAIRUS.xaml", "CheckCaptcha()", ex.Message, ex.StackTrace)); }
+            }));
+        }
+
+        private void bReloadCaptcha_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateCaptcha();
         }
     }
 }

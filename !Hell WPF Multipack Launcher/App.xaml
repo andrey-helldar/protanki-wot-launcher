@@ -1348,6 +1348,73 @@
         </Style>
 
 
+
+
+        <!-- *******************************
+                    BUTTON OK
+            *********************************-->
+        <Style x:Key="ButtonRefresh" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="15,5,0,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="{StaticResource BackNormal}" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Width="{TemplateBinding Width}" 
+                             Height="{TemplateBinding Height}" ClipToBounds="True">
+
+                            <!-- Inner Rectangle with rounded corners. -->
+                            <Rectangle x:Name="innerRectangle" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" Stroke="Transparent" 
+                                StrokeThickness="0" 
+                                Fill="{TemplateBinding Background}"
+                                       Cursor="{TemplateBinding Cursor}"/>
+
+                            <!-- Present Content (text) of the button. -->
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <Image Source="Resources/ok.png"
+                                   Width="13"
+                                   Height="10"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="15,0,15,0"/>
+                                
+                                <ContentPresenter x:Name="myContentPresenter"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  Content="{TemplateBinding Content}" 
+                                                  TextBlock.Foreground="{TemplateBinding Foreground}"
+                                                  TextBlock.FontFamily="{TemplateBinding FontFamily}"
+                                                  TextBlock.FontSize="{TemplateBinding FontSize}"/>
+                            </DockPanel>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource BackHover}" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{StaticResource BackPressed}" />
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{StaticResource ButtonDisabled}" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
         <!-- *******************************
                     BUTTON ATTACH
             *********************************-->
