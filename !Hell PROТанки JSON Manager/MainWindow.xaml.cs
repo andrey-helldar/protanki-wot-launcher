@@ -28,6 +28,8 @@ namespace Yusha_Manager
         private bool TimerBool = true;
         private bool BackupWork = true;
 
+        private string fileName = "update.protanki";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,7 +37,7 @@ namespace Yusha_Manager
 
             if (!File.Exists("Newtonsoft.Json.dll")) File.WriteAllBytes("Newtonsoft.Json.dll", Properties.Resources.Newtonsoft_Json);
 
-            bLoadJSON.IsEnabled = File.Exists("update.json");
+            bLoadJSON.IsEnabled = File.Exists(fileName);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -105,8 +107,8 @@ namespace Yusha_Manager
 
 
                 // Сохранение результата
-                if (File.Exists("update.json")) File.Delete("update.json");
-                File.WriteAllText("update.json", text);
+                if (File.Exists(fileName)) File.Delete(fileName);
+                File.WriteAllText(fileName, text);
 
                 MessageBox.Show("Файл успешно сохранен");
             }
@@ -415,7 +417,7 @@ namespace Yusha_Manager
 
         private void LoadJSON()
         {
-            JObject obj = JObject.Parse(File.ReadAllText("update.json"));
+            JObject obj = JObject.Parse(File.ReadAllText(fileName));
 
             /*
              * Head
