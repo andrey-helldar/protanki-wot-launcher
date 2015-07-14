@@ -27,7 +27,7 @@
         <Button x:Name="bLauncher" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleLauncher}" Margin="0,0,55,0" Grid.Row="4" Click="bLauncher_Click"/>
         <Button x:Name="bFeedback" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleFeedback}" Margin="60,0,0,0" Grid.Row="4" Click="bFeedback_Click" VerticalAlignment="Center"/>
         <Button x:Name="bSettings" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyleSettings}" Margin="15,0,0,0" Grid.Row="4" Click="bSettings_Click" VerticalAlignment="Center"/>
-        <Button x:Name="bUserProfile" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleAbout}" Click="bUserProfile_Click" Margin="0,9,8,5"/>
+        <!--<Button x:Name="bUserProfile" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyleAbout}" Click="bUserProfile_Click" Margin="0,9,8,5"/>//-->
         <Button x:Name="bNotification" Grid.Column="1" Style="{DynamicResource ButtonStyleNotify}" Margin="0,5,35,0" Click="bNotification_Click" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <Button x:Name="bUpdate" Grid.Column="1" Style="{DynamicResource ButtonStyleUpdate}" Click="bUpdate_Click" HorizontalAlignment="Right" Margin="0,3,65,0" />
         <Label x:Name="lType" Content="" Style="{StaticResource LabelStyleHeaderBlack}" HorizontalAlignment="Left" Margin="200,0,0,1" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>

@@ -711,7 +711,7 @@ namespace _Hell_WPF_Multipack_Launcher
 
                     bUpdate.ToolTip = Lang.Set("Tooltip", "bUpdate", lang);
                     bNotification.ToolTip = Lang.Set("Tooltip", "bNotification", lang);
-                    bUserProfile.ToolTip = Lang.Set("Tooltip", "bUserProfile", lang);
+                    //bUserProfile.ToolTip = Lang.Set("Tooltip", "bUserProfile", lang);
 
                     bSettings.ToolTip = Lang.Set("Tooltip", "bSettings", lang);
                     bFeedback.ToolTip = Lang.Set("Tooltip", "bFeedback", lang);
