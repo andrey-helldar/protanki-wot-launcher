@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-//using System.Xml.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,6 +30,8 @@ namespace _Hell_WPF_Multipack_Launcher
         Classes.Optimize Optimize = new Classes.Optimize();
         Classes.Language Lang = new Classes.Language();
 
+        string ApiLauncher = String.Empty;
+
         // Путь к файлу настроек
         public static string SettingsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\multipack_launcher\";
         public static string SettingsPath = SettingsDir + "settings.json";
@@ -58,7 +59,6 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <summary>
         /// Готовим контрол для отображения превью видео
         /// </summary>
-        //public static Frame framePreviewM { get { return framePreview; } }
         private static Frame framePreview;
 
         // Глобальная переменная настроек ПО
@@ -142,7 +142,7 @@ namespace _Hell_WPF_Multipack_Launcher
         /// <summary>
         /// Загружаем настройки из файла JSON
         /// </summary>
-        private void JsonSettingsLoad()
+        private void JsonSettingsLoad(bool second = false)
         {
             try
             {
@@ -150,15 +150,11 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 // При необходимости создаем папку настроек
                 if (!Directory.Exists(SettingsDir)) Directory.CreateDirectory(SettingsDir);
-                
-                // Избавляемся от старого файла
-                string old_settings = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Wargaming.net\WorldOfTanks\settings.json";
-                if (File.Exists(SettingsPath)) old_settings = SettingsPath;
 
 
-                if (File.Exists(/*SettingsPath*/old_settings))
+                if (File.Exists(SettingsPath))
                 {
-                    using (StreamReader reader = File.OpenText(/*SettingsPath*/old_settings))
+                    using (StreamReader reader = File.OpenText(SettingsPath))
                     {
                         decrypt = reader.ReadToEnd();
 
@@ -171,7 +167,6 @@ namespace _Hell_WPF_Multipack_Launcher
                             }
                             catch (Exception)
                             {
-                                if (File.Exists(/*SettingsPath*/old_settings)) File.Delete(/*SettingsPath*/old_settings);
                                 if (File.Exists(SettingsPath)) File.Delete(SettingsPath);
                                 Thread.Sleep(300);
                                 File.WriteAllBytes(SettingsPath, Properties.Resources.Settings_Encoded);
@@ -183,17 +178,49 @@ namespace _Hell_WPF_Multipack_Launcher
 
                         jSettings = JObject.Parse(decrypt);
 
-                        // Проверяем настройки
-                        CheckSettings();
+                        if (jSettings == null)
+                        {
+                            // Пересоздаем файл и загружаем заново настройки
+                            SaveSettingsFile();
+                        }
+                        else
+                        {
+                            // Проверяем настройки
+                            CheckSettings();
+                        }
                     }
                 }
                 else
-                {// "Файл настроек не обнаружен"
-                    MessageShow(Lang.Set("MainWindow", "Settings_Not_Found", (string)JsonSettingsGet("info.language")));
-                    jSettings = null;
+                {
+                    // "Файл настроек не обнаружен"
+                    if (!second)
+                    {
+                        // Пересоздаем файл и загружаем заново настройки
+                        SaveSettingsFile();
+                    }
+                    else
+                    {
+                        // Если ошибка возникла и после второго запуска - выводим уведомление юзеру.
+                        MessageShow(Lang.Set("MainWindow", "Settings_Not_Found", (string)JsonSettingsGet("info.language")));
+                        jSettings = null;
+                    }
                 }
             }
             catch (Exception ex) { Debugging.Save("MainWindow", "JsonLoadSettings()", ex.Message, ex.StackTrace); }
+        }
+
+        private void SaveSettingsFile()
+        {
+            try
+            {
+                Thread.Sleep(200);
+                File.WriteAllBytes(SettingsPath, Properties.Resources.Settings_Encoded);
+                Thread.Sleep(500);
+
+                // Повторно загружаем настройки
+                JsonSettingsLoad(true);
+            }
+            catch (Exception ex) { Debugging.Save("MainWindow", "SaveSettingsFile()", ex.Message, ex.StackTrace); }
         }
 
         /// <summary>
@@ -686,49 +713,59 @@ namespace _Hell_WPF_Multipack_Launcher
 
                 if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
                 {
-                    Classes.POST POST = new Classes.POST();
-
-                    ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info,
-                        new JObject(
-                                    new JProperty("code", Properties.Resources.API),
-                                    new JProperty("user_id", (string)JsonSettingsGet("info.user_id")),
-                                    new JProperty("user_name", (string)JsonSettingsGet("info.user_name")),
-                                    new JProperty("user_email", (string)JsonSettingsGet("info.user_email")),
-                                    new JProperty("modpack_type", (string)JsonSettingsGet("multipack.type")),
-                                    new JProperty("modpack_ver", (string)JsonSettingsGet("multipack.version")),
-                                    new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
-                                    new JProperty("game", (string)JsonSettingsGet("game.version")),
-                                    new JProperty("game_test", (bool)JsonSettingsGet("game.test")),
-                                    new JProperty("youtube", Properties.Resources.Youtube_Channel),
-                                    new JProperty("lang", (string)JsonSettingsGet("info.language")),
-                                    new JProperty("os", Environment.OSVersion.Version.ToString())
-                                ));
-                    JObject answer = JObject.Parse(ans);
-
-                    /*
-                     * code
-                     * status
-                     * version
-                     */
-
-                    if ((string)answer["status"] == "OK" && (string)answer["code"] == Properties.Resources.API)
+                    if (File.Exists(Properties.Resources.Multipack_Config))
                     {
-                        // Проверяем корректность получения версии
-                        // Ticket #106 Bitbucket
-                        Version verRgame;
-                        try { verRgame = new Version((string)answer["version"]); }
-                        catch (Exception) { verRgame = new Version("0.0.0.0"); }
+                        string path = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.Multipack_Config;
+                        ApiLauncher = new Classes.IniFile(path).IniReadValue(Properties.Resources.INI, "id").ToLower();
+                    }
 
-                        if (new Version((string)JsonSettingsGet("game.version")) < verRgame)
+                    if (ApiLauncher != "")
+                    {
+                        Classes.POST POST = new Classes.POST();
+
+                        ans = POST.Send(Properties.Resources.API_DEV_Address + Properties.Resources.API_DEV_Info,
+                            new JObject(
+                                        new JProperty("secret", ApiLauncher),
+                                        new JProperty("youtube", Properties.Resources.Youtube_Channel),
+
+                                        new JProperty("user_id", (string)JsonSettingsGet("info.user_id")),
+                                        new JProperty("user_name", (string)JsonSettingsGet("info.user_name")),
+                                        new JProperty("user_email", (string)JsonSettingsGet("info.user_email")),
+                                        new JProperty("modpack_type", (string)JsonSettingsGet("multipack.type")),
+                                        new JProperty("modpack_ver", (string)JsonSettingsGet("multipack.version")),
+                                        new JProperty("launcher", Application.Current.GetType().Assembly.GetName().Version.ToString()),
+                                        new JProperty("game_ver", (string)JsonSettingsGet("game.version")),
+                                        new JProperty("game_test", (bool)JsonSettingsGet("game.test")),
+                                        new JProperty("lang", (string)JsonSettingsGet("info.language")),
+                                        new JProperty("os", Environment.OSVersion.Version.ToString())
+                                    ));
+
+                        JObject answer = JObject.Parse(ans);
+
+                        /*
+                         * code
+                         * status
+                         * version
+                         */
+
+                        if ((string)answer["status"] == "ok" && (bool)answer["response"][0]["new_version"] == true)
                         {
-                            JsonSettingsSet("game.update", true, "bool");
-                            JsonSettingsSet("game.new_version", (string)answer["version"]);
+                            // Проверяем корректность получения версии
+                            Version verRgame;
+                            try { verRgame = new Version((string)answer["response"][0]["game_ver"]); }
+                            catch (Exception) { verRgame = new Version("0.0.0.0"); }
+
+                            if (new Version((string)JsonSettingsGet("game.version")) < verRgame)
+                            {
+                                JsonSettingsSet("game.update", true, "bool");
+                                JsonSettingsSet("game.new_version", (string)answer["version"]);
+                            }
+                            else JsonSettingsSet("game.update", false, "bool");
+
+                            verRgame = null;
                         }
                         else JsonSettingsSet("game.update", false, "bool");
-
-                        verRgame = null;
                     }
-                    else JsonSettingsSet("game.update", false, "bool");
                 }
             }
             catch (Exception ex) { Task.Factory.StartNew(() => Debugging.Save("MainWindow", "GetInfo(0)", "Developer", ans, ex.Message, ex.StackTrace)); }

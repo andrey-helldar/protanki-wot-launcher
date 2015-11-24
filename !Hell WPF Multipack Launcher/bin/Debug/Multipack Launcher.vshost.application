@@ -4,17 +4,17 @@
   <description asmv2:publisher="AI RUS - Professional IT support" asmv2:product="MultiPack Launcher" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Multipack Launcher.exe.manifest" size="8992">
+    <dependentAssembly dependencyType="install" codebase="Multipack Launcher.exe.manifest" size="9154">
       <assemblyIdentity name="Multipack Launcher.exe" version="2.3.25.709" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>nl2yn/4T0AoyHlR9kErIse0nROs=</dsig:DigestValue>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>tjeTYUufH0TGh4wLjsUsbz4cCXmgJdoyDUQ/6xcJfEI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

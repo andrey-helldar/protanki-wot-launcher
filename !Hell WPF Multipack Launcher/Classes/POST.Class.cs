@@ -28,10 +28,7 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
 
                 if (encoded_string == null)
                 {
-                    if (Properties.Resources.API_DEV_CRYPT == "1" && manual_enc)
-                        Data = "data=" + Crypt.Encrypt(json.ToString(), UserID) + "&u=" + UserID + "&e=" + Properties.Resources.API_DEV_CRYPT;
-                    else
-                        Data = "data=" + json.ToString();
+                    Data = "data=" + json.ToString();
                 }
                 else
                 {

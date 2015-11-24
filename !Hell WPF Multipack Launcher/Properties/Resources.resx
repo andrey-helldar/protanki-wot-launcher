@@ -126,19 +126,15 @@
     <comment>Дефолтный тип мультипака</comment>
   </data>
   <data name="API_DEV_Address" xml:space="preserve">
-    <value>https://ai-rus.com</value>
+    <value>http://ai-rus.local</value>
     <comment>БЕЗ СЛЕША В КОНЦЕ!!!</comment>
   </data>
   <data name="Developer_Link_Site" xml:space="preserve">
     <value>http://goo.gl/5PR4ma</value>
     <comment>Сайт разработчика со счетчиком (https://ai-rus.com)</comment>
   </data>
-  <data name="API_DEV_Processes" xml:space="preserve">
-    <value>/api/wot/processes</value>
-    <comment>Глобальный список процессов</comment>
-  </data>
   <data name="API_DEV_Info" xml:space="preserve">
-    <value>/api/wot/info</value>
+    <value>/api/launcher</value>
     <comment>Общая информация, получаемая клиентом в ответ сервера</comment>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -421,7 +417,7 @@
     <value>..\Resources\Processes.Library.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="API_DEV_Ticket" xml:space="preserve">
-    <value>/api/wot/ticket</value>
+    <value>/api/ticket</value>
     <comment>Тикет-система обратной связи</comment>
   </data>
   <data name="Youtube_Preview" xml:space="preserve">

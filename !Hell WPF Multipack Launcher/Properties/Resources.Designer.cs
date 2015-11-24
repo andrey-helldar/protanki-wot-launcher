@@ -120,7 +120,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://ai-rus.com.
+        ///   Looks up a localized string similar to http://ai-rus.local.
         /// </summary>
         public static string API_DEV_Address {
             get {
@@ -138,7 +138,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /api/wot/info.
+        ///   Looks up a localized string similar to /api/launcher.
         /// </summary>
         public static string API_DEV_Info {
             get {
@@ -156,16 +156,7 @@ namespace _Hell_WPF_Multipack_Launcher.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /api/wot/processes.
-        /// </summary>
-        public static string API_DEV_Processes {
-            get {
-                return ResourceManager.GetString("API_DEV_Processes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to /api/wot/ticket.
+        ///   Looks up a localized string similar to /api/ticket.
         /// </summary>
         public static string API_DEV_Ticket {
             get {

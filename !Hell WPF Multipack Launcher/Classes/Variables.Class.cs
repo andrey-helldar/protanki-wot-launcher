@@ -98,9 +98,6 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                 {
                     try
                     {
-                        // Получаем данные с сервера
-                        //Response(developer_uri);
-
                         // Обрабатываем файл конфига
                         if (File.Exists("config.json"))
                         {
@@ -116,9 +113,9 @@ namespace _Hell_WPF_Multipack_Launcher.Classes
                                 lang_pack = (string)obj["language"];
                             }
                         }
-                        else if (File.Exists("config.ini"))
+                        else if (File.Exists(Properties.Resources.Multipack_Config))
                         {
-                            string path = Directory.GetCurrentDirectory() + @"\config.ini";
+                            string path = Directory.GetCurrentDirectory() + @"\" + Properties.Resources.Multipack_Config;
 
                             MainWindow.JsonSettingsSet("multipack.type", new IniFile(path).IniReadValue(Properties.Resources.INI, "type").ToLower());
                             MainWindow.JsonSettingsSet("multipack.version", new IniFile(path).IniReadValue(Properties.Resources.INI, "path") + "." + new IniFile(path).IniReadValue(Properties.Resources.INI, "version"));
