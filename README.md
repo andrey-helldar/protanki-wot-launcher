@@ -51,7 +51,23 @@
 
 **!!other_dll** - список используемых библиотек.
 
-**changelog.json** - лог изменений в ревизиях
+**changelog.json** - лог изменений в ревизиях.
+
+
+# О нас
+
+Первоначальный разработчик: "AI RUS - Professional IT support", г. Чита
+
+Автор: Andrey Helldar <helldar@ai-rus.com>
+
+Дизайн: [David Jinjolava](https://new.vk.com/jinjolavadavid)
+
+Локализации:
+
+- Английский: [Dmitry Voronov](https://new.vk.com/amiramedia)
+- Немецкий: Alexander Storz
+- Украинский: [Sergey Metasjov](https://new.vk.com/metasev)
+- Русский: [Andrey Helldar](https://new.vk.com/helldar)
 
 
 # Лицензия
