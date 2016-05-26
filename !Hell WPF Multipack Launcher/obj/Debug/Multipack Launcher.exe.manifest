@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="!Hell Launcher Cleaner.exe" size="7168">
-      <assemblyIdentity name="!Hell Launcher Cleaner" version="1.0.5805.1713" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="!Hell Launcher Cleaner.exe" size="7680">
+      <assemblyIdentity name="!Hell Launcher Cleaner" version="1.0.5881.3480" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uDlv0FOnjPFl45IgsJFDb1gkXgfPmncfqPjjpWd97ug=</dsig:DigestValue>
+        <dsig:DigestValue>KxwSHL7HpmUlIHQOam2wQxLMOs4eh3rpNqo1AoHfpVk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="5937152">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Multipack Launcher.exe" size="5930496">
       <assemblyIdentity name="Multipack Launcher" version="2.10.48.931" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>F4ij3yIQWuekG97j9xJBBNuLdMfOnfYk8IFD3lso9fA=</dsig:DigestValue>
+        <dsig:DigestValue>BbuEDncuc9DONZcGVJM1V5/z080w3OOjLQfwmA+OnQI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -104,13 +104,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Processes.Library.dll" size="20992">
-      <assemblyIdentity name="Processes.Library" version="1.6.5805.1713" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="Processes.Library" version="1.6.5881.3480" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>f58frgB6YxGwJg73VWG24i1uIlusdbJYdy+xyeXKWCQ=</dsig:DigestValue>
+        <dsig:DigestValue>8UtfUtJHbOYBY11nPcvS5hFgzVEy6VLUbQw1YteqMVA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

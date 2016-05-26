@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Process List", "!Hell Process List\!Hell Process List.csproj", "{AF9F8199-194C-4BFA-B49D-4BE012B0028A}"
 EndProject
@@ -18,8 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell WPF Multipack Launcher", "!Hell WPF Multipack Launcher\!Hell WPF Multipack Launcher.csproj", "{1C8EF491-6532-4340-A8C6-AA77627F9D23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeRevision", "ChangeRevision\ChangeRevision.csproj", "{1C829304-EC32-499C-A2FE-C13614C4EFD8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yusha Manager", "!Hell PROТанки JSON Manager\Yusha Manager.csproj", "{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "!Hell Launcher Cleaner", "!Hell Launcher Cleaner\!Hell Launcher Cleaner.csproj", "{0164BF6D-0B40-45D4-A573-077BD8D735FD}"
 EndProject
@@ -113,16 +111,6 @@ Global
 		{1C829304-EC32-499C-A2FE-C13614C4EFD8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1C829304-EC32-499C-A2FE-C13614C4EFD8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1C829304-EC32-499C-A2FE-C13614C4EFD8}.Release|x86.ActiveCfg = Release|Any CPU
-		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0E3CAD0C-85D4-41B0-AEDB-9ECB7A9C8F8B}.Release|x86.ActiveCfg = Release|Any CPU
 		{0164BF6D-0B40-45D4-A573-077BD8D735FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0164BF6D-0B40-45D4-A573-077BD8D735FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0164BF6D-0B40-45D4-A573-077BD8D735FD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
