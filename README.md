@@ -56,7 +56,7 @@
 
 # О нас
 
-Первоначальный разработчик: "AI RUS - Professional IT support", г. Чита
+Первоначальный разработчик: ["AI RUS - Professional IT support"](http://ai-rus.com), г. Чита
 
 Автор: Andrey Helldar <helldar@ai-rus.com>
 
