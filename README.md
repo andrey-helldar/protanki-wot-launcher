@@ -9,13 +9,15 @@
 
 ## Поддерживаемая операционная система
 
-	Windows 7 Service Pack 1; Windows 8; Windows Server 2008 R2 SP1; Windows Server 2012
+	Windows 7 Service Pack 1; Windows 8; Windows 8.1; Windows 10; Windows Server 2008 R2 SP1; Windows Server 2012
 		Windows 7 с пакетом обновления 1 (SP1) (x86 и x64)
 		Windows 8 (x86 и x64)
+		Windows 8.1 (x86 и x64)
+		Windows 10 (x86 и x64)
 		Windows Server 2008 R2 с пакетом обновления 1 (SP1) (x64)
 		Windows Server 2012 (x64)
 
-## Требования к оборудованию:
+## Минимальные требования к оборудованию:
 
 	Процессор с тактовой частотой 1,6 ГГц или большей
 		ОЗУ объемом 1 ГБ (1,5 ГБ для работы на виртуальной машине)
