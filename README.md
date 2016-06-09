@@ -83,6 +83,14 @@
 
 Во второй половине 2014 года [Multipack Launcher](https://special.habrahabr.ru/wgdc/project/53c934afa4ff7aa27800834d/) был выставлен на конкурс [Wargaming Developers Contest](https://special.habrahabr.ru/wgdc/project/53c934afa4ff7aa27800834d/), в ходе которого не занял призового места.
 
+## Тестовая версия
+
+Для использования тестовой версии, необходимо установить [.NET Framework 4.5.2](https://www.microsoft.com/ru-RU/download/details.aspx?id=42643), затем зайти в папку с установленной игрой, создать в ней папку с именем "Multipack Launcher" и распаковать в нее содержимое [**этого архива**](https://yadi.sk/d/lDVutaAQsLtvQ).
+
+Не забудьте создать ярлык на рабочем столе для запуска лаунчера.
+
+Также архив тестовой версии добавлен в репозиторий в папку **/files/Multipack Launcher.7z**. Для получения файла из репозитория, необходимо его скачать как ZIP-архив, в котором Вы найдете все необходимое.
+
 
 # Лицензия
 
